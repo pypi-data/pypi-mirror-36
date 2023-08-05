@@ -1,0 +1,3 @@
+[console_scripts]
+lifetime = lifetime.me:main
+
