@@ -1,0 +1,5 @@
+[console_scripts]
+annotatetsca = covermi.annotatetsca:main
+bringmiup = covermi.bringmiup:main
+covermi = covermi.covermigui:main
+
