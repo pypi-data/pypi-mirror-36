@@ -1,0 +1,14 @@
+dyn_cli-0.1.0.dist-info/METADATA,sha256=D2U7Mmg18_g5NJXqngEkq0a1XtBCzXIERReY337d8VI,8055
+dyn_cli-0.1.0.dist-info/RECORD,,
+dyn_cli-0.1.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+dyn_cli-0.1.0.dist-info/entry_points.txt,sha256=jqGYjPeqk6G29asiEkT0-GfjWGDvx21pQhZ2M5Wx-8c,46
+dyn_cli-0.1.0.dist-info/top_level.txt,sha256=pWiho5z3Acysgf92QBbIHXwBhl-ZyZH8JWus05lcNmQ,7
+dyncli/__init__.py,sha256=skMz3EbToCglvmtyarmRXtwKyTOupRywOk5FXBSl5Ws,183
+dyncli/__main__.py,sha256=sW4gDWue6mCu1WkNjWQGWsbU-47gMbZilKvrZtY2Ozo,114
+dyncli/cli.py,sha256=gWt60i9H4DSlFwAW0OITu3NYcjmSG8-AESQdMM_7fqM,49
+dyncli/commands/__init__.py,sha256=GqXsdnCyc7O00Q-kZyXwhQ8T67UJqxkEer1fd1pCebM,131
+dyncli/commands/base.py,sha256=n2MXBOHUYeIn4i7F5eK7zdyjOJVP7Y4zRbjnM4m9NFA,1218
+dyncli/commands/create_table.py,sha256=Z8k7n_XHWrdbOSNLiLEdmpNcMhL_5_4S_-3j2at6d6s,3319
+dyncli/commands/delete_table.py,sha256=MMlnLLXHr5-ieDqG5vVQa5JCpBtrLBIbyeYOfxuuWi0,1421
+dyncli/commands/list_tables.py,sha256=HkWQ6sBtL7__yppffQ_eia7mSCOySHnNTOGTjRE7L0c,670
+dyncli/commands/update_table.py,sha256=uI1dD4eW1XIm-zMAkNzel6YLRxSZ7C7wV4WkOua6Lro,2705
