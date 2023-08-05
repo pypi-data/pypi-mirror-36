@@ -1,0 +1,75 @@
+Metadata-Version: 1.1
+Name: rekon
+Version: 0.1.2
+Summary: rekon provides a suite of reconciliation tools for operations and finance
+Home-page: https://github.com/rjdscott/rekon
+Author: Rob Scott
+Author-email: rob@rjdscott.com
+License: MIT license
+Description: =====
+        rekon
+        =====
+        
+        
+        .. image:: https://img.shields.io/pypi/v/rekon.svg
+                :target: https://pypi.python.org/pypi/rekon
+        
+        .. image:: https://img.shields.io/travis/rjdscott/rekon.svg
+                :target: https://travis-ci.org/rjdscott/rekon
+        
+        .. image:: https://readthedocs.org/projects/rekon/badge/?version=latest
+                :target: https://rekon.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        
+        
+        
+        rekon provides a suite of reconciliation tools for operations and finance
+        
+        
+        * Free software: MIT license
+        * Documentation: https://rekon.readthedocs.io.
+        
+        
+        
+        How to use this library
+        ----------------------
+        
+        Set-up virtualenv and import `rekon`::
+        
+            pip install --user virtualenv
+            virtualenv .env
+            pip install rekon
+        
+        Reconciliation inputs::
+        
+            # instantiate reconciliation class object
+            rec = Reconciliation(sys1_df, sys2_df, system_labels, col_mapping, row_mapping)
+        
+            # to run a reconciliation, call the reconcile method
+            rec.reconcile(rec_col=1, sqlite_db=":memory:")
+        
+        
+        
+        =======
+        History
+        =======
+        
+        0.1.0 (2018-09-13)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: rekon
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
