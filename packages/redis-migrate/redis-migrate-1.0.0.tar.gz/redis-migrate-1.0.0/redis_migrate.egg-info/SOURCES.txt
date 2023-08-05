@@ -1,0 +1,10 @@
+README.md
+setup.py
+migrator/__init__.py
+migrator/main.py
+redis_migrate.egg-info/PKG-INFO
+redis_migrate.egg-info/SOURCES.txt
+redis_migrate.egg-info/dependency_links.txt
+redis_migrate.egg-info/entry_points.txt
+redis_migrate.egg-info/requires.txt
+redis_migrate.egg-info/top_level.txt

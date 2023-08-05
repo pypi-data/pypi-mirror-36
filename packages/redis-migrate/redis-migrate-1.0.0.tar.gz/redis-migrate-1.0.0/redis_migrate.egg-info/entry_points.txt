@@ -1,0 +1,3 @@
+[console_scripts]
+redis-migrate = migrator.main:main
+
