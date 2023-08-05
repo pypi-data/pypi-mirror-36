@@ -1,0 +1,10 @@
+
+        [ckan.plugins]
+        odi_certificates_store=ckanext.odi_certificates_store.plugin:Odi_Certificates_StorePlugin
+
+        [babel.extractors]
+        ckan = ckan.lib.extract:extract_ckan
+        
+        [paste.paster_command]
+        odi-certificate = ckanext.odi_certificates_store.command:OdiCertificatesCommand
+    
