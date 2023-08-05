@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: microservice
+Version: 0.3.1
+Summary: Powerful REST API microservice on Tornado
+Home-page: https://github.com/pasaranax/microservice
+Author: Mikhail Bulygin
+Author-email: pasaranax@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Internet :: WWW/HTTP :: HTTP Servers
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
