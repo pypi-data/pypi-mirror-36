@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: onapsmsclient
+Version: 0.0.4
+Summary: ONAP python SMS client library
+Home-page: https://gerrit.onap.org/r/gitweb?p=aaf%2Fsms.git;a=summary
+Author: Kiran Kamineni
+Author-email: kiran.k.kamineni@intel.com
+License: Apache 2
+Description-Content-Type: UNKNOWN
+Description: python-package onapsmsclient client library for using Secret Management Service (SMS) inside ONAP. Refer https://wiki.onap.org/display/DW/Secret+Management+Service for more details.
+Keywords: secret,consul,onap
+Platform: all
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
