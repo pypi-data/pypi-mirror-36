@@ -1,0 +1,17 @@
+dh_testers/__init__.py,sha256=Bb2bETPqmUF1bTSQ3Bw26saGEpjAewjxaZK1Cp1m0bg,306
+dh_testers/common.py,sha256=h08KHA7pbS280DOYtupleRV2Rcb5My5HGA78QdIMkp0,3032
+dh_testers/commonTest.py,sha256=fBI3qKAqIsTLetIHlRpeZez60bgJ7uJjR4MOWqoMyhQ,12318
+dh_testers/coverageProject.py,sha256=RF309R6kwAWA1p-ETW_ygsCcThQb5mlmOqUB4zeZZPU,1417
+dh_testers/externalAll.py,sha256=XV3rE4a78MK9JTjGT-mfqRtbFP6vqotLbHIoeoqQomU,825
+dh_testers/findNonUTF8.py,sha256=Ur7H8ILUakm8FwJeDn__6JK4km-23ec6qBAO2Uw4RNE,566
+dh_testers/memoryUsage.py,sha256=QPcdWu6zTfQJ-1rsQebt2xIcrSevFcxxeSb1TK-wy0c,302
+dh_testers/multiprocess.py,sha256=Dk6yOZeBZnZkl3l3n8vmhGCT1X6ZbTM6FInDPFEO8-g,11834
+dh_testers/singleCore.py,sha256=SOsfxuyErWLBWWPCgNYYRSCPcExeFXBrhFI4C4YhNxc,4979
+dh_testers/testLint.py,sha256=QZnoatp4xqMI32_aU7_r1V3oUMc-dFt3wbxPJ7hDCz8,9929
+dh_testers/testRunner.py,sha256=vp-uj-X39wiMdu4N5x1Ub7oSYaYOry03cU5KaRRe9Ro,9284
+dh_testers/treeYield.py,sha256=V_ylJ3jY81UPxPgqnJ_P7QIhGoZHtiokYQeZ0SeCVj0,4807
+dh_testers/warningMultiprocess.py,sha256=8gHLUcJwaMK-GwchKsRXlbbepnSJr685_7zRSF0r6LM,688
+dh_testers-0.1.0.dist-info/METADATA,sha256=09yFhTwVmYZeRHhwy60IbiSUFNkRMWAlRDT3_1ma4_8,475
+dh_testers-0.1.0.dist-info/RECORD,,
+dh_testers-0.1.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+dh_testers-0.1.0.dist-info/top_level.txt,sha256=3HwfA_qUIizwODYd3ieUNx2UlpPHoTFVTCadLHYIP3c,11
