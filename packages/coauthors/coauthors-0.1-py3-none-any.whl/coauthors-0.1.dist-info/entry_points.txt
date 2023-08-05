@@ -1,0 +1,3 @@
+[console_scripts]
+coauthors = coauthors.coauthors:main
+
