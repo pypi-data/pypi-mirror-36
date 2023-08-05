@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+tendril/__init__.py
+tendril/devtooling/__init__.py
+tendril/devtooling/profiler.py
+tendril/devtooling/stacktracer.py
+tendril_devtooling.egg-info/PKG-INFO
+tendril_devtooling.egg-info/SOURCES.txt
+tendril_devtooling.egg-info/dependency_links.txt
+tendril_devtooling.egg-info/not-zip-safe
+tendril_devtooling.egg-info/requires.txt
+tendril_devtooling.egg-info/top_level.txt
