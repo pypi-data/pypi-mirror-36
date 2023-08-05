@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: http://avwx.rest/api/metar/KFAKE?options=info,translate
+  response:
+    body: {string: "{\n  \"Error\": \"KFAKE is not a valid ICAO station ident\", \n\
+        \  \"Help\": \"ICAO station ID or coord pair. Ex: KJFK or \\\"12.34,-12.34\\\
+        \"\", \n  \"Param\": \"station\"\n}\n"}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Length: ['154']
+      Content-Type: [application/json]
+      Date: ['Sat, 16 Jun 2018 03:04:11 GMT']
+      Server: [gunicorn/19.8.1]
+      X-Robots-Tag: [noindex]
+    status: {code: 400, message: BAD REQUEST}
+version: 1
