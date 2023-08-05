@@ -1,0 +1,3 @@
+[console_scripts]
+gitops = gitops.command_line:entrypoint
+
