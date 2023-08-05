@@ -1,0 +1,10 @@
+README.md
+setup.py
+coinhandler/__init__.py
+coinhandler/coinhandler.py
+coinhandler/coins.py
+coinhandler/collections.py
+coinhandler.egg-info/PKG-INFO
+coinhandler.egg-info/SOURCES.txt
+coinhandler.egg-info/dependency_links.txt
+coinhandler.egg-info/top_level.txt
