@@ -1,0 +1,14 @@
+statsbomb/__init__.py,sha256=7aNGfDBXpmp6kjMUfkkM8RdHDGIrBSmBKES1BNsMSVQ,68
+statsbomb/base.py,sha256=JX50ACqGAIQgD8Y6UEluuDKAMFMySRv6P8auOdP2KIg,480
+statsbomb/parser.py,sha256=JiP6Cm9dJDlD8hRfPT29xRbRnrQR7jK1Co6LbyeXYCU,3375
+statsbomb/utils.py,sha256=BTxsWWykbFWMiaYlar-XRRsgNUJzFOQjwBku--twqqg,317
+statsbomb-0.1.1.dist-info/METADATA,sha256=LyAHSFQpYyp0iSswpJ3JZml3YpmjYozRZgyrs7mJaLY,1282
+statsbomb-0.1.1.dist-info/RECORD,,
+statsbomb-0.1.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+statsbomb-0.1.1.dist-info/top_level.txt,sha256=wlVvxM-5vwrA9fbNq0ZKpZToMXql20-oHtoJ2j56wrE,16
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_competitions.py,sha256=PEYsLFCWw5eXKgwhdeCmEmwPBiGS5Cy9pH7fvfF1W8Q,1135
+tests/test_events.py,sha256=eG8QcS_eXuBawCgREPl1o9F9N4GA-0Ejb26p4rYr9u0,9477
+tests/test_lineups.py,sha256=mNoE-pBRhXUvAt-1f0QayWHVoaxM2me9dYMKNMZgweE,5125
+tests/test_matches.py,sha256=UpM9cAoVR6VjTL2vL3vP3hW_rLy-wyK8ih_nMBZjfr0,4793
+tests/test_utils.py,sha256=uf7mYUjdha_KO46Z1-mj1RqdAn-wJbucCJ87J-_GgPw,343
