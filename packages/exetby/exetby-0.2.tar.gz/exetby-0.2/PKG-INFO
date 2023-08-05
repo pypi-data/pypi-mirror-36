@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: exetby
+Version: 0.2
+Summary: Nothing Special
+Home-page: https://github.com/Aponace
+Author: Bogdan Kortnov
+Author-email: bogdankortnov@gmail.com
+License: MIT
+Download-URL: https://github.com/Aponace/ExetBy/archive/0.2.tar.gz
+Description: UNKNOWN
+Keywords: Nothing,Special
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
