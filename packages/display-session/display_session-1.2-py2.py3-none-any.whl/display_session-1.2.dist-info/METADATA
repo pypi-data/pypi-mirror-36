@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: display-session
+Version: 1.2
+Summary: Convenient formatting, coloring, and utility for user-facing print statements. 
+Home-page: http://github.com/kdggavkc/display-session/
+Author: Nicholas Lawrence
+Author-email: nickclawrence@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+
+# display-session
+
+
