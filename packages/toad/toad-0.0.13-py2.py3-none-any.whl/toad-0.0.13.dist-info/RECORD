@@ -1,0 +1,11 @@
+toad/__init__.py,sha256=Z9jwPRwpZD5GIMGyX_DokGPeU_dAswYsqxjHSQPx48Q,233
+toad/detector.py,sha256=UqCK4DPWqJ6YVylGfhvAVY3-N3cq-dqmoimwSbdKm6c,4114
+toad/merge.py,sha256=h3KxAMcwJM9TWb4ri9jXS1TrAPYSyLl32y1gwpGT4x0,5728
+toad/selection.py,sha256=WNPHd26MypTuUCX_L895x_aaoXY8xZCCOcTFlBdlQ0k,4920
+toad/stats.py,sha256=L02yFfq9dM9jDztla9b0gRERn-Tj57ygf4lWJnqd4_k,6447
+toad/transform.py,sha256=SLaEufZMeuHZKSA0Itpvfelq7swfP-nD05aUK1UsTCE,2230
+toad/utils.py,sha256=ZcZp7vY3QtHITkWwj6cbnMe_ecD8LjkQflkcVTnrKjc,5214
+toad-0.0.13.dist-info/METADATA,sha256=Rjsrst43qbV1RPGUC3h3p3bjwtAF2MfTceHmkfVjcUk,1524
+toad-0.0.13.dist-info/RECORD,,
+toad-0.0.13.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+toad-0.0.13.dist-info/top_level.txt,sha256=9K8YWnYbjxSnRVWtXAhxWzYlfmM1qbOrNQvAobxIDG4,5
