@@ -1,0 +1,5 @@
+include neuropycon_data/data/data_con/*.txt
+include neuropycon_data/data/data_con/*.npy
+include neuropycon_data/data/data_con/data_graph/*
+
+include neuropycon_data/data/data_nii/*.nii
