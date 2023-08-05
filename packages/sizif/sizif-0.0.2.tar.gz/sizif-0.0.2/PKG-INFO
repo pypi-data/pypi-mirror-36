@@ -1,0 +1,94 @@
+Metadata-Version: 2.1
+Name: sizif
+Version: 0.0.2
+Summary: Deep learning Keras models lifecycle management backup/restore nano framework
+Home-page: https://github.com/aristofun/sizif
+Author: Michael Butlitsky
+Author-email: aristofun@yandex.ru
+License: UNKNOWN
+Description: 
+        <image src="https://github.com/aristofun/sizif/raw/master/pic.png" align="right" width=240 />
+        
+        # DL backup/restore nano framework
+        
+        Makes it easy to start/stop/resume deep learning models training. 
+        
+        Current version supports only for Keras >= 2.2 models. You're welcome to contribute.
+        
+        
+        # Usage
+        
+        ```commandline
+        pip3 install sizif
+        ```
+        
+        Local filesystem Keras checkpoints backup: 
+        
+        ```python
+        from sizif.keras import KerasModelWrapper
+        from sizif.storage import FileCheckpointsMonitor
+        
+        # your compiled Keras Model instance
+        model = build_model()  
+        
+        
+        # Snapshots monitor
+        # Different model architectures should have different version parameter
+        # other parameters similar to Keras ModelCheckpoint
+        cpm = FileCheckpointsMonitor(version=1,
+                                    file_template='weights.{epoch:03d}-vl{val_loss:.3f}.hdf5',
+                                    folder='./checkpoints',
+                                    rotate_number=5,
+                                    monitor='val_acc',
+                                    verbose=1,
+                                    save_best_only=False,
+                                    save_weights_only=True,
+                                    mode='auto',
+                                    period=1)
+        
+        # Keras wrapper, proxies all calls to the model
+        # except fit and fit_generator — which are surrounded 
+        # by automated model state backup/recovery   
+        km = KerasModelWrapper(model, cpm)
+        
+        # all method parameters ar proxied to Keras as is except callbacks
+        km.fit_generator(training_set_generator,
+                         epochs=25,
+                         validation_data=test_set_generator,
+                         callbacks=[tboard])
+        ``` 
+        
+        See sources for detailed docstrings
+        
+        ## TODO: 
+        - FTP/S3/SFTP/Dropbox uploading monitors
+        - Tensorflow/Pytorch models support
+        
+        ## Tests
+        
+        ```commandline
+        python3 -m unittest 
+        ```
+        
+        ## Dependencies
+        - numpy ~> 1.15
+        - Keras ~> 2.2
+        
+        ## License
+        
+        This project is released under the MIT license.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Environment :: Console
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
