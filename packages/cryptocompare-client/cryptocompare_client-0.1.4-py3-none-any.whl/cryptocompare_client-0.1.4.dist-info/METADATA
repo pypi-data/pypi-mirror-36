@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: cryptocompare-client
+Version: 0.1.4
+Summary: Client Wrapper for CryptoCompare API
+Home-page: https://github.com/timo-stoettner/cryptocompare-client
+Author: Timo Stöttner
+Author-email: mail@timo-stoettner.de
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: requests
+Requires-Dist: pymongo
+Requires-Dist: socketIO-client
+Requires-Dist: six
+
+UNKNOWN
+
+
