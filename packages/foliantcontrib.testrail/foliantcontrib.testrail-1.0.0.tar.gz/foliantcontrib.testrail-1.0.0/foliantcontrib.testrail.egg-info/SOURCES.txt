@@ -1,0 +1,9 @@
+README.md
+setup.py
+foliant/preprocessors/__init__.py
+foliant/preprocessors/testrail.py
+foliantcontrib.testrail.egg-info/PKG-INFO
+foliantcontrib.testrail.egg-info/SOURCES.txt
+foliantcontrib.testrail.egg-info/dependency_links.txt
+foliantcontrib.testrail.egg-info/requires.txt
+foliantcontrib.testrail.egg-info/top_level.txt
