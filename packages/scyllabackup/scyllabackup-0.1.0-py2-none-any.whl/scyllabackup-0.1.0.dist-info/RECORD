@@ -1,0 +1,10 @@
+scyllabackup/__init__.py,sha256=d4miex0Ds1eOn7_-_yBtpbSIuRuGY-CmB2b_kVM9o8Q,176
+scyllabackup/cli.py,sha256=u0MJ59_m4wrr3Tzdl_o0zon7TWV_Sv1xh8B535BRwX8,15846
+scyllabackup/db.py,sha256=1PDXbXNSG_2Jqx74en-TSan6IWvJYQMp5cYXUlRXprU,11246
+scyllabackup/migrate.py,sha256=-QGT275EGwNmy4uG8AOKuIO3brba-4SHY1Cu2mOy1_s,1273
+scyllabackup/snapshot.py,sha256=evY7fOP1O32bAUfLGc8aQcEMw5rt8a197ev49qqXhqc,23909
+scyllabackup-0.1.0.dist-info/METADATA,sha256=2nSheZp8B1zpqVg0jBd-qVsi_-Wqb8k09BDjyaWYDq8,12297
+scyllabackup-0.1.0.dist-info/RECORD,,
+scyllabackup-0.1.0.dist-info/WHEEL,sha256=_V8uWu5F_h-lvAz5Mbq4oZqV_uCfL4cHgm4IIlDevzU,92
+scyllabackup-0.1.0.dist-info/entry_points.txt,sha256=dNYZy4FKklDwoJrLS7PsW1dBFt5QLbCKE8y4nL0xjmo,118
+scyllabackup-0.1.0.dist-info/top_level.txt,sha256=L9K5LBmBIEDOC25mX_epoygh4CW0RBQzIx4GWjEgbRo,13
