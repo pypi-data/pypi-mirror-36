@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: dynn
+Version: 0.0.12
+Summary: Neural networks routines for DyNet
+Home-page: https://github.com/pmichel31415/dynn
+Author: Paul Michel
+Author-email: pmichel1@cs.cmu.edu
+License: MIT License
+Description: # DyNN: Neural Network routines for DyNet
+        
+        [![Build Status](https://travis-ci.org/pmichel31415/dynn.svg?branch=master)](https://travis-ci.org/pmichel31415/dynn) [![Documentation Status](https://readthedocs.org/projects/dynn/badge/?version=latest)](https://dynn.readthedocs.io/en/latest/?badge=latest)
+        
+        A bunch of useful functions and syntactic sugar to make writing neural networks in [DyNet](http://dynet.io/) easier.
+        
+        ## Prerequisite
+        
+        You will need to install DyNet as explained [here](http://dynet.readthedocs.io/en/latest/python.html)
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
