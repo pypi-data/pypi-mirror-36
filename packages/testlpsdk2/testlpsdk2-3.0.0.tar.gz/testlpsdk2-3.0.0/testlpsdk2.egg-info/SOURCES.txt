@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+testlpsdk2/__init__.py
+testlpsdk2/basic.py
+testlpsdk2/generated_list.py
+testlpsdk2/testlpsdk2.py
+testlpsdk2.egg-info/PKG-INFO
+testlpsdk2.egg-info/SOURCES.txt
+testlpsdk2.egg-info/dependency_links.txt
+testlpsdk2.egg-info/requires.txt
+testlpsdk2.egg-info/top_level.txt
