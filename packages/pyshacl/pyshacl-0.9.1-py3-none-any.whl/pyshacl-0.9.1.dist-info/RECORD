@@ -1,0 +1,17 @@
+pyshacl/__init__.py,sha256=lS0xjancpFJpiEi7yGRH874T-uShHt50Qgt9NnwOQxY,194
+pyshacl/consts.py,sha256=bo1NDRZTFock7XFf57mg8Y1UBG9JmYNWHyJ423c7zSI,1965
+pyshacl/errors.py,sha256=L1t_vpiDFPSjpqjwluaWmtvlbq20ueZK6b30_50Xw2o,1810
+pyshacl/shacl-shacl.pickle,sha256=SbFLDFrdaL29Zqtb6xje2pgDFXzHw5ywcU3HrxbbDDQ,32283
+pyshacl/shacl_graph.py,sha256=gLY0a01msR_kYqEKiX5HVBDoks45SdDrYc4_iCPEf_Q,10625
+pyshacl/shape.py,sha256=IbwlnZ9KBGje0_g76yZB05xoYYVGR2YSevBMitjXFek,16317
+pyshacl/validate.py,sha256=SAoJh-TwmGsAXU9wDCowWbe4nqRgAMS0LlU_hhrII40,14154
+pyshacl/constraints/__init__.py,sha256=Z8IGT6NJM8ZBGlvSojq8N_ODkX-EuA_CTNEGj9LbKm0,2788
+pyshacl/constraints/constraint_component.py,sha256=KHmruyVPgKzDZ1-GYRhnxmh24Um8NXIaXwJ9nPrQ56I,4745
+pyshacl/inference/__init__.py,sha256=WgmnxSf_EeTLIqp9U5LEKK71cRT6J_CQEzviWGXwKDE,103
+pyshacl/inference/custom_rdfs_closure.py,sha256=Z4cBree5oqiXxh3V5I0P32xKDZctPAMtXBomm2q76fU,4267
+pyshacl-0.9.1.data/scripts/pyshacl,sha256=62ct1g8RhNmtFEXim523wtudqabkjJ_EggeS_xBOMPI,3418
+pyshacl-0.9.1.dist-info/METADATA,sha256=CwCR5P2yU4Y2lnU9EkpZ0RGQbTEa2L299D9T_KssmXU,7352
+pyshacl-0.9.1.dist-info/RECORD,,
+pyshacl-0.9.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+pyshacl-0.9.1.dist-info/dependency_links.txt,sha256=2yTOEYpDHNTFfw7Cb2QLhCpPYsO5f68262nNdIOrYik,71
+pyshacl-0.9.1.dist-info/top_level.txt,sha256=9X8tprGgWErrSM8-_32SDdr1QK1QCdiYrCEydv6d1dk,8
