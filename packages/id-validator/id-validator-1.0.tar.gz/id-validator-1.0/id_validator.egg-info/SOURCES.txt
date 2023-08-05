@@ -1,0 +1,11 @@
+README.md
+setup.py
+id_validator/__init__.py
+id_validator/data.py
+id_validator/utils.py
+id_validator/validator.py
+id_validator.egg-info/PKG-INFO
+id_validator.egg-info/SOURCES.txt
+id_validator.egg-info/dependency_links.txt
+id_validator.egg-info/not-zip-safe
+id_validator.egg-info/top_level.txt
