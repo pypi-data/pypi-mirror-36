@@ -1,0 +1,12 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.py
+src/find_best_string/__init__.py
+src/find_best_string/main.py
+src/find_best_string/utils.py
+src/find_best_string.egg-info/PKG-INFO
+src/find_best_string.egg-info/SOURCES.txt
+src/find_best_string.egg-info/dependency_links.txt
+src/find_best_string.egg-info/not-zip-safe
+src/find_best_string.egg-info/top_level.txt
