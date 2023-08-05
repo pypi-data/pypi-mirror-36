@@ -1,0 +1,9 @@
+setup.py
+typedtensor/__init__.py
+typedtensor/tensor.py
+typedtensor/utils.py
+typedtensor.egg-info/PKG-INFO
+typedtensor.egg-info/SOURCES.txt
+typedtensor.egg-info/dependency_links.txt
+typedtensor.egg-info/requires.txt
+typedtensor.egg-info/top_level.txt
