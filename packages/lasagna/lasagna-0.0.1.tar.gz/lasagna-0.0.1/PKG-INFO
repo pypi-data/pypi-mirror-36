@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: lasagna
+Version: 0.0.1
+Summary: A Python web framework
+Home-page: https://github.com/pypa/lasagna
+Author: Neverik
+Author-email: adminr@neverik.com
+License: UNKNOWN
+Description: A Python web framework.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
