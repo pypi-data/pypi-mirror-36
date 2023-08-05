@@ -1,0 +1,13 @@
+django_orion_model/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_orion_model/admin.py,sha256=a085RfC19dn2pDBMUsFW7xSoUgOIBCMfEktbdQEt1WU,572
+django_orion_model/apps.py,sha256=3k9USJr2n-wKyzgDBRG4tcQp_uQxHkP4HpLnl8WkVtM,85
+django_orion_model/models.py,sha256=y_Uy7fA-abdxgy7zkgLhJuOxcfmf1UDW3wUpL7JCnFc,11003
+django_orion_model/tests.py,sha256=kyfvvWnOM1Mu3vLtjiVbC3Y_FxGAWazkIDXu2TQ-uto,1786
+django_orion_model/views.py,sha256=xc1IQHrsij7j33TUbo-_oewy3vs03pw_etpBWaMYJl0,63
+django_orion_model/migrations/0001_initial.py,sha256=QgN5TUvsFbXyM7f9FNS-c32nv0ppagMe13vaULZ8rf0,2604
+django_orion_model/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_orion_model-0.9.8.dist-info/LICENSE.txt,sha256=uwTAVJ6oMSMfeC1YwIlAn5UR5GzE3a3ifFAA4Ztflm8,665
+django_orion_model-0.9.8.dist-info/METADATA,sha256=z9fF_Xsx3Qc4JgAJyhzpcBBngcAlzLzrTlhjAKFWhdk,4480
+django_orion_model-0.9.8.dist-info/RECORD,,
+django_orion_model-0.9.8.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+django_orion_model-0.9.8.dist-info/top_level.txt,sha256=aTlTvU-gfXzm49jDPnm5BaZ1c6FFR8lywaFW6szH3O8,19
