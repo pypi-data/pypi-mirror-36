@@ -1,0 +1,95 @@
+Metadata-Version: 2.1
+Name: imd-handler
+Version: 0.0.422
+Summary: Set of stuff for ingesting, discovery, editing and storing DG IMD files
+Home-page: https://github.com/DigitalGlobe/IMDiddler
+Author: G to_tha K to_tha W
+Author-email: gewatson@digitalglobe.com
+License: UNKNOWN
+Description: # IMDiddler
+        A tool for editing IMD files either from local or s3
+        Can be deployed/invoked as a lambda or command line.
+        IMD file order is preserved. IMD edits can be in arbitrary order
+        
+        ### Editing Specifier
+        The edit to the imd is specified by a json string which maps the key/value pairs and simply replaces 
+        an existing key/value pair in the IMD file with the key/value pair in the json string. There's no limit on how
+        long you make the edit specifiers you can edit one or all the items in an IMD with a single specifier.
+        It is a simple overlaying operation. The one special consideration is for the 'BEGIN_GROUP/END_GROUP' pair, discussed below.
+        One can specify any of the types in the IMD. The following edits are for each of the individual types 
+        #####String
+         ```javascript
+        '{"version": "\\"28.4\\";"}'
+        ```
+        #####Integer
+         ```javascript
+        '{"numRows": 6932;"}'
+        ```
+        #####Date
+         ```javascript
+        '{"generationTime": 2017-08-01T03:39:53.000000Z;"}'
+        ```
+        You get the idea...
+        
+        ####Groups
+        IMDs contain a BEGIN_GROUP=<name> and END_GROUP=<name> for bands, images and products. The naming scheme is the disambiguator.
+        You can edit the contents of a group by specifying the name of the group within the IMD as a key and then a sub-dictionary
+        of key/value pairs to be applied within the group. The following edits the "IMAGE_1" group in the IMD, replacing the satellite name.
+        ```javascript
+        '"IMAGE_1": {"satId": "\\"WV09\\";"}}'
+        ```
+        
+        ### Invocation
+        The code can be invoked either via the command line or as a lambda. 
+        
+        #### Command line
+        ```commandline
+        python imd_handler.py <input file/s3 object> <edit[s]>
+        ```
+        The input file is a file URI, self explanatory (any valid path, read/write access required)
+        ```commandline
+        file:///Volumes/GKW/Sibinacocha2017/1cc99383-29fd-470a-a3ac-22431193b65a/103001006A803400/056848496010_01/056848496010_01_P001_MUL/17MAY12150511-M1BS-056848496010_01_P001.IMD
+        ```
+        
+        The s3 Object is an S3 URI specifying the bucket and path for the name ie:
+        ```commandline
+        s3://727281582563-deliveries/production/I00000070198_01/I00000070198_01_P001_MUL/18APR05102137-M1BS_R1C1-I00000070198_01_P001.IMD
+        ```
+        
+        #### As a lambda
+        It's deployed as IMDiddler. The event dictionary/payload should look like:
+        
+        ```json
+        {
+            "file_uri":  "<input file/s3 object>"
+            "edit" : 
+            {
+                "<edit tag>" : "<edit value>"
+            }
+        }
+        ```
+        
+        #####Lambda Example payload
+        ```json
+        {
+            "file_uri" :  "s3://727281582563-deliveries/production/I00000070198_01/I00000070198_01_P001_MUL/18APR05102137-M1BS_R1C1-I00000070198_01_P001.IMD"
+            "edit" : 
+            {
+                "version": "\"28.4\";",
+                "IMAGE_1": {"satId": "\"WV09;\""}
+            }
+        }
+        ```
+        
+        #####Nota Bene:
+         IMD Files contain quoted strings which means that the edits performed must also contain the quotes. 
+         This means that the JSON quote escapement mechanism must be used for string types. Other types (float, int, date) do not
+         need this.
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
