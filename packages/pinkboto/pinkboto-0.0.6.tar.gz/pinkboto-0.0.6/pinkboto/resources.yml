@@ -1,0 +1,33 @@
+# client: boto3.client(client)
+# list_method: boto3.client(client).list_method()
+# list_property: propriedade do retorno que contem os objetos
+# list_parameter: parâmetros padrão do método de listagem
+# next_property: propriedade do retorno que contém o token da paginação
+# next_parameter: parametro do método de listagem no qual é passado primeiro
+#     item que deve ser paginado
+
+aws_db_instance:
+  client: rds
+  list_method: describe_db_instances
+  list_property: DBInstances
+
+aws_cloudwatch_metric_alarm:
+  client: cloudwatch
+  list_method: describe_alarms
+  list_property: MetricAlarms
+  next_property: NextToken
+  next_parameter: NextToken
+
+aws_route53_record:
+  client: route53
+  list_method: list_resource_record_sets
+  list_property: ResourceRecordSets
+  list_parameters:
+    - HostedZoneId
+    - StartRecordName
+    - StartRecordType
+    - StartRecordIdentifier
+    - MaxItems
+  next_property: NextRecordName
+  next_parameter: StartRecordName
+
