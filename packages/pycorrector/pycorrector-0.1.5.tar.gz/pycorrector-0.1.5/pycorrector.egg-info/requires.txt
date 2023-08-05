@@ -1,0 +1,7 @@
+scipy
+scikit-learn
+pypinyin
+kenlm
+jieba
+tensorflow
+keras>=2.1.5
