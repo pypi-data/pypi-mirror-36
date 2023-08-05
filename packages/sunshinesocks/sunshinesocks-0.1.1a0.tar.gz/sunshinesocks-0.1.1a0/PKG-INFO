@@ -1,0 +1,39 @@
+Metadata-Version: 1.2
+Name: sunshinesocks
+Version: 0.1.1a0
+Summary: A fast and modern tunnel proxy that help you.
+Home-page: https://github.com/tcztzy/sunshinesocks
+Author: tcztzy
+Author-email: tcztzy@gmail.com
+License: https://www.gnu.org/licenses/gpl-3.0.en.html
+Description: SunshineSocks
+        =============
+        
+        A fast and modern tunnel proxy that help you.
+        
+        Server
+        ------
+        
+        Install
+        ~~~~~~~
+        
+        ::
+        
+            pip install sunshinesocks
+        
+        License
+        -------
+        
+        GPL-v3
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Framework :: AsyncIO
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Internet :: Proxy Servers
+Requires-Python: >=3.5
