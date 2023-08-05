@@ -1,0 +1,21 @@
+Metadata-Version: 2.0
+Name: CEFCIG
+Version: 1.0.1
+Summary: Computational Epigenetic Framework for Cell Identity Gene Discovery
+Home-page: UNKNOWN
+Author: Bo Xia
+Author-email: bxia@houstonmethodist.org
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: matplotlib
+Requires-Dist: numpy (>=1.13)
+Requires-Dist: pandas
+Requires-Dist: pickle
+Requires-Dist: rpy2
+Requires-Dist: scipy
+Requires-Dist: sklearn
+Requires-Dist: traceback
+
+UNKNOWN
+
+

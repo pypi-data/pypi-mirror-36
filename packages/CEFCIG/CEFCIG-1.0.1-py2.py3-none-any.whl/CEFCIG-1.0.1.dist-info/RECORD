@@ -1,0 +1,12 @@
+CEFCIG/__init__.py,sha256=LJQt2baP_mCU7DM3Ndze-gzED1Hsvv5Ed4eivmg_p2Q,218
+CEFCIG/_version.py,sha256=zaXd5xctB9UFkMvvhqzx452DeKiPavw74pYSkuESTWY,15763
+CEFCIG/cli.py,sha256=H04nT3KHgrX7-ITyoL9DhiZsmuVhJuLs81FsDov1riA,112
+CEFCIG-1.0.1.data/scripts/CEFCIG,sha256=cAQKRfs1-ii5cKjcxnE339L-1UGYP74VaPwOpyKyd2I,16351
+CEFCIG-1.0.1.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+CEFCIG-1.0.1.dist-info/METADATA,sha256=qMOmZQmJZM7bpXGT0mXVZAuGp-gpIbKC7KwKM6EWrsA,432
+CEFCIG-1.0.1.dist-info/RECORD,,
+CEFCIG-1.0.1.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+CEFCIG-1.0.1.dist-info/metadata.json,sha256=KUlomW4CtpEvwD6r8xWtAYCvUnuiTbM_aw0TNz_apYY,523
+CEFCIG-1.0.1.dist-info/top_level.txt,sha256=Zl1BTGnmAnzboQ301nNPh2yOPuw_ezShjVdjALPnlpU,13
+tests/__init__.py,sha256=iwhKnzeBJLKxpRVjvzwiRE63_zNpIBfaKLITauVph-0,24
+tests/test_CEFCIG.py,sha256=wIB12vJUieB6vbzX8U_IQ5pGncZpJODvjEBcqPrYbfE,340
