@@ -1,0 +1,8 @@
+#!python
+
+if __name__ == '__main__':
+    import sys
+    from roadrunner_tr import TestRunner
+    t = TestRunner()
+    t.run(*sys.argv[1:])
+    sys.exit(0)
