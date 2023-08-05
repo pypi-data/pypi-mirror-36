@@ -1,0 +1,10 @@
+future
+gevent
+graphviz
+IPython
+numpy
+six
+socketIO-client-nexus
+tornado
+ujson
+websocket-client
