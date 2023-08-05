@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: avro-gen-topkrabbensteam
+Version: 0.0.2
+Summary: Avro record class and specific record reader generator
+Home-page: https://github.com/YendiyarovSV/avro_gen
+Author: Sergei Yendiyarov (original author rbystrit/avro_gen)
+Author-email: s.endiyarov@gmail.com
+License: License :: OSI Approved :: Apache Software License
+Requires-Dist: six
+Requires-Dist: frozendict
+Requires-Dist: tzlocal
+Requires-Dist: pytz
+Requires-Dist: avro (>=1.8.0); python_version < "3.0"
+Requires-Dist: avro-python3 (>=1.8.0); python_version > "3.0"
+
+AVRO-GEN-TOPKRABBENSTEAM
+
+
