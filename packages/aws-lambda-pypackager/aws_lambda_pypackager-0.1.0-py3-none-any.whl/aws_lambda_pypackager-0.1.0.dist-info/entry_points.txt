@@ -1,0 +1,3 @@
+[console_scripts]
+pypackager = pypackager.shell:main
+
