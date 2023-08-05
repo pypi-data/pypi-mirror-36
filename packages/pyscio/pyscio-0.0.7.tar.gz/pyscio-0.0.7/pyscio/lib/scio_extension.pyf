@@ -1,0 +1,52 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module scio_extension ! in 
+    interface  ! in :scio_extension
+        subroutine solvecola(n,ic,s,b,rhocol,thr,maxit,niter) ! in :scio_extension:../../src/scio.f90
+            integer, optional,check(shape(s,0)==n),depend(s) :: n=shape(s,0)
+            integer :: ic
+            double precision dimension(n,n) :: s
+            double precision dimension(n),depend(n) :: b
+            double precision dimension(n),depend(n) :: rhocol
+            double precision :: thr
+            integer :: maxit
+            integer :: niter
+        end subroutine solvecola
+        subroutine scio(n,s,w,rhomat,thr,maxit,nniter,jerr,isym) ! in :scio_extension:../../src/scio.f90
+            integer, optional,check(shape(s,0)==n),depend(s) :: n=shape(s,0)
+            double precision dimension(n,n) :: s
+            double precision dimension(n,n),intent(inplace),depend(n,n) :: w
+            double precision dimension(n,n),depend(n,n) :: rhomat
+            double precision :: thr
+            integer :: maxit
+            integer :: nniter
+            integer :: jerr
+            integer :: isym
+        end subroutine scio
+        subroutine sciopath(wlist,n,s,w,rholist,nrho,thr,maxit,nniter,jerrlist,idiag,isym) ! in :scio_extension:../../src/scio.f90
+            double precision dimension(n,n,nrho),intent(inplace) :: wlist
+            integer, optional,check(shape(wlist,0)==n),depend(wlist) :: n=shape(wlist,0)
+            double precision dimension(n,n),depend(n,n) :: s
+            double precision dimension(n,n),depend(n,n) :: w
+            double precision dimension(nrho),depend(nrho) :: rholist
+            integer, optional,check(shape(wlist,2)==nrho),depend(wlist) :: nrho=shape(wlist,2)
+            double precision :: thr
+            integer :: maxit
+            integer :: nniter
+            integer dimension(nrho),depend(nrho) :: jerrlist
+            integer :: idiag
+            integer :: isym
+        end subroutine sciopath
+        subroutine assignw(wlist,jrho,nrho,w,n) ! in :scio_extension:../../src/scio.f90
+            double precision dimension(n,n,nrho) :: wlist
+            integer :: jrho
+            integer, optional,check(shape(wlist,2)==nrho),depend(wlist) :: nrho=shape(wlist,2)
+            double precision dimension(n,n),depend(n,n) :: w
+            integer, optional,check(shape(wlist,0)==n),depend(wlist) :: n=shape(wlist,0)
+        end subroutine assignw
+    end interface 
+end python module scio_extension
+
+! This file was auto-generated with f2py (version:2).
+! See http://cens.ioc.ee/projects/f2py2e/
