@@ -1,0 +1,12 @@
+json_api/__init__.py,sha256=yXueYNp_LiHPz57HaBIK09JsErVHf9iRqW4uWWhkl9A,74
+json_api/errors.py,sha256=HEFXYKicVFQSNl1d8fRO-Xe9YLrnTAHKYb3kxaYMe4s,292
+json_api/magic.py,sha256=6e4lpD6tMWIOOj4rej7U7oFcblYSBwJtdflCEjyYam8,7949
+json_api/magic_django.py,sha256=ClCuVF5IrPeU0hwK6zVFzkkIke0-3TQhHNTsLacpS7o,757
+json_api/magic_sanic.py,sha256=GhCus6HPpWpXIZP1_APE2a7A9cosoe84njhV1LTf93Y,928
+json_api/middleware.py,sha256=F6WsnGe6UK_qqBaTkXCOwory54xBGp7ew8mg22HDSE8,96
+json_api/signature.py,sha256=xOszYu54SAGXqApUl5oIVUO0s9gS1m_EtcJPR9bX0y0,554
+json_api/validate.py,sha256=8hZrQbo43zB87dlbJNKZ16eEPTifiYgIftTMR0gQA1w,1091
+json_api-0.1.9.dist-info/METADATA,sha256=VtRqEi3MMQhov_zLIBPidVO6y7_ercJ9pcu3HFUz__s,786
+json_api-0.1.9.dist-info/RECORD,,
+json_api-0.1.9.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+json_api-0.1.9.dist-info/top_level.txt,sha256=A5O5khxHCvMFSEFKaqE_k_UoqAYUKX9qeJJTv8CLU-Q,9
