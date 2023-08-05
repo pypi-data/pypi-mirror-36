@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: termchart
+Version: 0.0.1
+Summary: A tool to draw ascii line chart in terminal
+Home-page: https://github.com/Tazeg/termchart
+Author: @JeffProd
+Author-email: termchart@jeffprod.com
+License: UNKNOWN
+Project-URL: Funding, https://en.jeffprod.com/donate/
+Project-URL: Twitter, https://twitter.com/jeffprod
+Project-URL: Web, https://jeffprod.com
+Keywords: terminal line chart graph
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+### TermChart
+
+Draw ascii line charts in terminal.
+
+![termchart_screenshot](termchart_screenshot.png)
+
+### Install
+
+```bash
+pip3 install termchart
+```
+
+### USage
+
+Create a Python file :
+
+```python
+import termchart
+
+graph = termchart.Graph([1,2,3,2,5,1,-1,-5,-3])
+graph.draw()
+```
+
+You can change the plot (default is `+`):
+
+```python
+graph.setDot('|')
+```
+
+Change the width and height (default cols is 160x50)
+```python
+graph.setCols(200)
+graph.setRows(40)
+```
+
+### Donate
+
+<https://en.jeffprod.com/donate/>
+
+
