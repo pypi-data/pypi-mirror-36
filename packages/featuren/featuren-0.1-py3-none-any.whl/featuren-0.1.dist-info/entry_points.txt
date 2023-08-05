@@ -1,0 +1,3 @@
+[console_scripts]
+featuren = featuren.cli:cli
+

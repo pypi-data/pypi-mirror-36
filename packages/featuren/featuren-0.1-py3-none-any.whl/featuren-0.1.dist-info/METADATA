@@ -1,0 +1,109 @@
+Metadata-Version: 2.1
+Name: featuren
+Version: 0.1
+Summary: A simple application for managing your features in production.
+Home-page: https://github.com/jairojair/featuren
+Author: Jairo Jair
+Author-email: jairojair@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: apistar (==0.5.41)
+Requires-Dist: pytest-cov (==2.5.1)
+Requires-Dist: pycodestyle (==2.3.1)
+Requires-Dist: gunicorn (==19.7.1)
+Requires-Dist: black (==18.6b4)
+Requires-Dist: orator (==0.9.7)
+Requires-Dist: psycopg2 (==2.7.3)
+Requires-Dist: wsgicors (==0.7.0)
+Requires-Dist: python-decouple (==3.1.0)
+Requires-Dist: PyJWT (==1.6.4)
+Requires-Dist: passlib (==1.7.1)
+
+<H1 align='center'> Featuren </H1>
+<p align="center">
+<a href="https://travis-ci.org/jairojair/featuren">
+    <img src="https://travis-ci.org/jairojair/featuren.svg?branch=master" alt="Build Status">
+</a>
+<a href='https://coveralls.io/github/jairojair/featuren?branch=master'><img src='https://coveralls.io/repos/github/jairojair/featuren/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
+</p>
+<p align="center">
+    <em>A simple application for managing your features in production.</em>
+</p>
+
+### Introduction
+
+Feature flags give a software organization the power to reduce risk, iterate quicker, and gain more control. Feature flags allow you to decouple feature rollout from code deployment. This separation allows you unprecedented control of who sees what when, independent of release. And the “you” can be anyone in your organization – from developers, ops, designers, product managers, or marketers. Allowing control over a release unlocks the true power of your software.
+
+More details about: http://featureflags.io
+
+
+The main goal for this project is to create a simple and open source application for managing your features in production.
+
+### Getting Started
+
+*Requirement*
+
+- [Docker](https://www.docker.com/products/docker-desktop)
+
+
+##### Project setup
+
+	docker-compose build
+	docker-compose run app make migrate
+
+##### Run standalone
+
+	docker-compose up
+
+Access: http://0.0.0.0:8000
+
+
+### Development tips
+
+- REST API Framework we're use [APIStar](https://github.com/encode/apistar)
+
+- Database management we're use [Orator ORM](https://orator-orm.com)
+
+- Test we're use [Pytest](https://docs.pytest.org/en/latest/)
+
+---
+
+
+Firstly, run the command below to go inside the container.
+
+	docker-compose run --service-ports app /bin/sh
+
+##### Run in migrations
+
+	make migrate
+
+##### Run tests
+
+	make tests
+
+##### Python code linter
+
+	make lint
+
+
+##### Python format code.
+
+	make fmt
+
+
+##### Run application
+
+	make
+
+
+##### Install new Python dependency
+
+This way you can install a new Python dependency without rebuild docker image.
+
+	make deps
+
+##### Project clean
+
+	make clean
+
+
