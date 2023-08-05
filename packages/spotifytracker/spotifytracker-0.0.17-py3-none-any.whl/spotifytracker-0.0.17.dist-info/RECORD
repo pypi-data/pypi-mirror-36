@@ -1,0 +1,12 @@
+spotify_tracker/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+spotify_tracker/config.py,sha256=pUmsa5b5_fJ4oHWlaxXXyxDzPHIJKeDRH9DbwDQkFuc,947
+spotify_tracker/current_track.py,sha256=nWpWhVAvAO1uXHNEpXdbBR-g-z_lt7a7XASm0TCSPk4,986
+spotify_tracker/favorites_client.py,sha256=12hCXAaTafXPlRJ75wGV3zam7fMsoDFU2vAyNO9coJo,2567
+spotify_tracker/runner.py,sha256=k4EwsdI5Yl62nlfNOzuO8tdKurA-tDeLmdBfxnD48PM,2544
+spotify_tracker/spotify_client.py,sha256=ZVDY-B5xbGKZhiH0LC-lSG7cH23SNpqOmKSQlsH4miw,6982
+spotify_tracker/watcher_client.py,sha256=naGZkuPCA1MkBLZ_Ab4TGivj2AiZfjWvu8wPTRv2rbk,1651
+spotifytracker-0.0.17.dist-info/METADATA,sha256=gQmKHFplAcT7UpqYjmKvWLWs99KCod51xOTZby56WUM,3005
+spotifytracker-0.0.17.dist-info/RECORD,,
+spotifytracker-0.0.17.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+spotifytracker-0.0.17.dist-info/entry_points.txt,sha256=hozNR0djlnBhsfUww540IZhDbtGHKfDmqcPoqr948aY,76
+spotifytracker-0.0.17.dist-info/top_level.txt,sha256=VIDMMmQ8dlaQJB6RB-77WXG3eCH0W3dAv25-vzEVD08,16
