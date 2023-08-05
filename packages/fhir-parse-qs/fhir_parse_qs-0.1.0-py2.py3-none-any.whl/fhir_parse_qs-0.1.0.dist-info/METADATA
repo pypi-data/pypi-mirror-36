@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: fhir-parse-qs
+Version: 0.1.0
+Summary: Parse FHIR query string
+Home-page: https://github.com/teffalump/fhir_parse_qs
+Author: teffalump
+Author-email: chris@teffalump.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Requires-Dist: pendulum
+
+A library to parse FHIR query strings.
+
+-  Validates type and returns correct object
+-  Parses modifiers and prefixes
+
+Generally only have included Resources with maturity greater than 3.
+Some exceptions.
+
+Usage
+^^^^^
+
+::
+
+   from fhir_parse_qs import Search
+   search = Search('Patient', 'name=bob') # Search(<endpoint>, <query_string>)
+
+   # what endpoint
+   print(search.endpoint) --> 'Patient'
+
+   # each parameter/value pair gets parsed into a namedtuple
+   search.parsed[0] --> FHIRSearch
+
+   # all the namedtuples
+   search.parsed --> [FHIRSearch]
+
+   # get FHIRSearch with parameter as key
+   search['name'] --> FHIRSearch
+
+   search.parsed[0].modifier --> None
+   search.parsed[0].prefix --> None
+   search.parsed[0].value --> 'bob'
+   search.parsed[0].paramater --> 'name'
+
+   # can iterate over the paramater/value pairs
+   for x in search:
+       print(x) --> FHIRSearch
+
+
