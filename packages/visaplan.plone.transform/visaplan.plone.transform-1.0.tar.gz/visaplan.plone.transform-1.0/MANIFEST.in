@@ -1,0 +1,7 @@
+graft src/visaplan
+graft docs
+include *.rst
+include VERSION
+global-exclude *.pyc
+global-exclude .comments
+prune src/visaplan/plone/transform/forks.py
