@@ -1,0 +1,19 @@
+<div class="row"> <!-- Widget Row {{ row }}-->
+{%if sidebar_visible %}
+    <div class="legend-sidebar">
+    {% for content in sidebar_content %}
+            {{ content.html|safe }}
+            <div class="clear-sep"></div>
+    {% endfor %}
+    </div>
+    <div style="margin-left:240px;">
+{% endif %}
+    {% for content in main_content %}
+        <div id="widget_{{content.widget.pk}}" class="widget {{ content.widget.css_class}}"> <!-- {{ widget.title }} -->
+            {{ content.html|safe }}
+        </div>
+    {% endfor %}
+{%if sidebar_visible %}
+    </div>
+{% endif %}
+</div>
