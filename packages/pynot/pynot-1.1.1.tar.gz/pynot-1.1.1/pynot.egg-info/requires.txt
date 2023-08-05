@@ -1,0 +1,8 @@
+django
+djangorestframework
+drf-writable-nested
+django-filter
+factory-boy
+Faker
+django-rest-assured
+celery
