@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: DriverPower
+Version: 1.0.2
+Summary: Combined burden and functional test for coding and noncoding cancer drivers
+Home-page: https://github.com/smshuai/DriverPower
+Author: Shimin Shuai
+Author-email: sshuai@oicr.on.ca
+License: GPL
+Platform: UNKNOWN
+Requires-Python: >= 3.5.2
+Requires-Dist: numpy (>=1.13.0)
+Requires-Dist: scipy (>=0.18.1)
+Requires-Dist: pandas (>=0.18.1)
+Requires-Dist: scikit-learn (>=0.18)
+Requires-Dist: statsmodels (>=0.6.1)
+Requires-Dist: xgboost (>=0.6a)
+Requires-Dist: pybedtools (>=0.7.10)
+Requires-Dist: pytables (>=3.4.4)
+
+UNKNOWN
+
+
