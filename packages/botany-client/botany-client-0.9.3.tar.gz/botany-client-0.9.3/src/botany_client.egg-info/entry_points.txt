@@ -1,0 +1,4 @@
+
+            [console_scripts]
+            botany=botany_client.client:cli
+        

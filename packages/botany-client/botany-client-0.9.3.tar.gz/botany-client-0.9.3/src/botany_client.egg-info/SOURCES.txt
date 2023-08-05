@@ -1,0 +1,11 @@
+setup.cfg
+setup.py
+src/botany_client/__init__.py
+src/botany_client/client.py
+src/botany_client/utils.py
+src/botany_client.egg-info/PKG-INFO
+src/botany_client.egg-info/SOURCES.txt
+src/botany_client.egg-info/dependency_links.txt
+src/botany_client.egg-info/entry_points.txt
+src/botany_client.egg-info/requires.txt
+src/botany_client.egg-info/top_level.txt
