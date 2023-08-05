@@ -1,0 +1,11 @@
+aioisotp/__init__.py,sha256=3w-kbq87WVWHqoK3kAkmHbkOuZ2UelT1qcALvQODQuo,140
+aioisotp/constants.py,sha256=zyTYjhFQcoiLqaEX-zauWL1VoydDGJL9du_ldideTEM,123
+aioisotp/exceptions.py,sha256=CEELMbPb-iZhyGMBFeTsfu5Pvi4pHRUf7JullZ5S5kk,40
+aioisotp/network.py,sha256=h0w_feuywlE0CdDUtY-jyUr3QON_UnfhV1ROFzBnxl8,5443
+aioisotp/socketcan.py,sha256=AKgL2ycHTO8qbLy-RDkvzWV5GiDxjrvEFCVF3n6UBJw,795
+aioisotp/transport.py,sha256=GNIqI2ac8yZkbWm-Ue5WOqNWwYxn9m4mkM3fC4MzVb0,8617
+aioisotp/version.py,sha256=RyzVK4LKMfaCdcvpqdmHyffNf9UmbwzE6y-96wl45oA,27
+aioisotp-0.1.0.dev0.dist-info/METADATA,sha256=GKmZSJye5TMgynSNEzwPNrYt-P85u5VkpP7NpGITxX8,3816
+aioisotp-0.1.0.dev0.dist-info/RECORD,,
+aioisotp-0.1.0.dev0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+aioisotp-0.1.0.dev0.dist-info/top_level.txt,sha256=HXTycfX6xXfAQL1bcXpB3uDSDMW_t_2UUfwToDh9erU,9
