@@ -1,0 +1,4 @@
+numpy
+scipy
+scikit-learn
+metric-learn>=0.4
