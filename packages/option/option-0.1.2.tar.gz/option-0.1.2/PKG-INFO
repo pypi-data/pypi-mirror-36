@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: option
+Version: 0.1.2
+Summary: Rust like Option type in Python
+Home-page: None
+Author: Peijun Ma
+Author-email: peijun.ma@protonmail.com
+Requires-Python: >=3.6
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries
