@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: pydropbox
+Version: 0.1.0
+Summary: Simple Wrapper for Dropbox Python API
+Home-page: https://github.com/j-min/pydropbox
+Author: Jaemin Cho
+Author-email: heythisischo@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+
+# PyDropbox
+
+Simple Wrapper for Dropbox Python API
+
+## Requirements
+- Python 3
+- [Dropbox SDK](https://github.com/dropbox/dropbox-sdk-python)
+
+## Install
+
+```
+pip install pydropbox
+```
+
+
