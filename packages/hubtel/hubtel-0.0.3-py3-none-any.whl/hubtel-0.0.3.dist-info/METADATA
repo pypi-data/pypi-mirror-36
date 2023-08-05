@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: hubtel
+Version: 0.0.3
+Summary: python interface for Hubtel's Payment Gateway
+Home-page: https://github.com/mcroni/hubtel
+Author: joey daniel darko
+Author-email: joeydanieldarko@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+A Python interface for the Hubtel Payment API.
+Contributed by JOey Daniel Darko 
+
+Enjoy!
+
