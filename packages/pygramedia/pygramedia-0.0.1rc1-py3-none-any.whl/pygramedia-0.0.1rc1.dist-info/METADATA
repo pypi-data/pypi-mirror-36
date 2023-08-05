@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: pygramedia
+Version: 0.0.1rc1
+Summary: UNKNOWN
+Home-page: https://github.com/Keda87/PyGramedia
+Author: Adiyat Mubarak
+Author-email: adiyatmubarak@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Utilities
+Requires-Dist: aiohttp (==3.4.4)
+
+Unofficial API wrapper for Gramedia, the biggest bookstore in Indonesia and based on coroutine python 3.
+
+
