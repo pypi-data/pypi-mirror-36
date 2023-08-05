@@ -1,0 +1,6 @@
+# linear_congruences_riyadk
+This is a al inear congrruences code
+
+TEST PUSHING...
+...
+"# linear_congruences_riyadk" 
