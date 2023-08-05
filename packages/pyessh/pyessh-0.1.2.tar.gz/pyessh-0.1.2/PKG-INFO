@@ -1,0 +1,46 @@
+Metadata-Version: 1.0
+Name: pyessh
+Version: 0.1.2
+Summary: A tool for easy to execute commands at multiserver
+Home-page: https://github.com/Leviathan1995/pyessh
+Author: leviathan1995
+Author-email: leviathan0992@gmail.com
+License: MIT
+Description: # Pyessh
+        A tool for easy to use SSH execute commands at multi-server.
+        
+        
+        
+        ## Usage
+        
+        #### Installation
+        
+        ```shell
+        pip3 install pyessh
+        ```
+        
+        #### Editing the Configuration File
+        
+        ```shell
+        vim /etc/local/pyessh.conf
+        ```
+        
+        add remote server IP addresses at pyessh.conf
+        
+        ```toml
+        127.0.0.1
+        ...
+        ```
+        
+        #### Get Started
+        
+        ```python
+        pyessh
+        ```
+        
+        
+        
+        ## License
+        
+        MIT
+Platform: UNKNOWN
