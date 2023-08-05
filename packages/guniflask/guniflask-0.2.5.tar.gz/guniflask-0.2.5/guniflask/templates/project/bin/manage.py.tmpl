@@ -1,0 +1,265 @@
+# coding=utf-8
+
+import sys
+import os
+from os.path import isfile, join
+import argparse
+import signal
+import time
+
+from sqlalchemy.engine import create_engine
+from sqlalchemy.schema import MetaData
+
+from guniflask.utils.config import load_config, walk_modules, load_app_config
+from guniflask.modelgen import SqlToModelGenerator
+from guniflask.errors import UsageError
+
+home_dir = os.environ['GUNIFLASK_HOME']
+if home_dir not in sys.path:
+    sys.path.append(home_dir)
+
+
+class Command:
+    def __init__(self):
+        self.exitcode = 0
+
+    @property
+    def name(self):
+        return ""
+
+    @property
+    def syntax(self):
+        return ""
+
+    @property
+    def short_desc(self):
+        return ""
+
+    @property
+    def long_desc(self):
+        return self.short_desc
+
+    def add_arguments(self, parser):
+        pass
+
+    def process_arguments(self, args):
+        pass
+
+    def run(self, args):
+        raise NotImplementedError
+
+
+class InitDb(Command):
+    @property
+    def name(self):
+        return 'initdb'
+
+    @property
+    def syntax(self):
+        return '[options]'
+
+    @property
+    def short_desc(self):
+        return 'Initialize database from definition of models'
+
+    def add_arguments(self, parser):
+        parser.add_argument('-f', '--force', dest='force', action='store_true', default=False,
+                            help='force creating all tables')
+
+    def run(self, args):
+        from {{project_name}} import create_app, db
+
+        settings = load_app_config('{{project_name}}')
+        if not settings['SQLALCHEMY_DATABASE_URI']:
+            raise UsageError("Please set 'SQLALCHEMY_DATABASE_URI' in configuration.")
+        walk_modules('{{project_name}}.models')
+        app = create_app()
+        with app.app_context():
+            if args.force:
+                db.drop_all()
+            else:
+                print("\033[33;40mThe tables already exist will be skipped.\033[0m")
+                print("\033[33;40mYou can try '-f' option to force creating all tables.\033[0m")
+            db.create_all()
+
+
+class TableToModel(Command):
+    @property
+    def name(self):
+        return 'table2model'
+
+    @property
+    def syntax(self):
+        return '[options]'
+
+    @property
+    def short_desc(self):
+        return 'Convert database tables to definition of models'
+
+    def add_arguments(self, parser):
+        parser.add_argument('--tables', dest='tables',
+                            help='tables to process (comma-separated, default: all)')
+
+    def process_arguments(self, args):
+        if args.tables is not None:
+            args.tables = args.tables.split(',')
+
+    def run(self, args):
+        settings = load_app_config('{{project_name}}')
+        database_uri = settings['SQLALCHEMY_DATABASE_URI']
+        if not database_uri:
+            raise UsageError("Please set 'SQLALCHEMY_DATABASE_URI' in configuration.")
+        engine = create_engine(database_uri)
+        metadata = MetaData(engine)
+        metadata.reflect(only=args.tables)
+        gen = SqlToModelGenerator('{{project_name}}', metadata)
+        dest = settings.get('table2model_dest', join('{{project_name}}', 'models'))
+        gen.render(join(home_dir, dest))
+
+
+class Debug(Command):
+    @property
+    def name(self):
+        return 'debug'
+
+    @property
+    def short_desc(self):
+        return 'Debug {{project_name}}'
+
+    def run(self, args):
+        os.environ['GUNIFLASK_DEBUG'] = '1'
+        c = load_config(join(os.environ['GUNIFLASK_CONF_DIR'], 'wsgi.py'))
+        app = c['application']
+        pid = get_pid(app.options)
+        if pid is not None and is_started(pid):
+            print('{{project_name}} is already started')
+            self.exitcode = 1
+        else:
+            app.run()
+
+
+class Start(Command):
+    @property
+    def name(self):
+        return 'start'
+
+    @property
+    def short_desc(self):
+        return 'Start {{project_name}}'
+
+    def run(self, args):
+        c = load_config(join(os.environ['GUNIFLASK_CONF_DIR'], 'wsgi.py'))
+        app = c['application']
+        pid = get_pid(app.options)
+        if pid is not None and is_started(pid):
+            print('{{project_name}} is already started')
+            self.exitcode = 1
+        else:
+            app.run()
+
+
+class Stop(Command):
+    @property
+    def name(self):
+        return 'stop'
+
+    @property
+    def short_desc(self):
+        return 'Stop {{project_name}}'
+
+    def run(self, args):
+        c = load_config(join(os.environ['GUNIFLASK_CONF_DIR'], 'wsgi.py'))
+        app = c['application']
+        pid = get_pid(app.options)
+        if pid is None or not is_started(pid):
+            print('No {{project_name}} to stop')
+            self.exitcode = 1
+        else:
+            print('kill {}'.format(pid))
+            os.kill(pid, signal.SIGTERM)
+            time.sleep(3)
+            try:
+                os.kill(pid, 0)
+            except OSError:
+                pass
+            else:
+                print('{{project_name}} did not stop gracefully after 3 seconds')
+                print('kill -9 {}'.format(pid))
+                os.kill(pid, signal.SIGKILL)
+
+
+def get_pid(options):
+    pidfile = options.get('pidfile')
+    if isfile(pidfile):
+        with open(pidfile, 'r') as f:
+            line = f.readline()
+            if line:
+                pid = line.strip()
+                if pid:
+                    return int(pid)
+
+
+def is_started(pid):
+    try:
+        os.kill(pid, 0)
+    except OSError:
+        return False
+    return True
+
+
+def _get_commands_from_module():
+    d = {}
+    for cmd in globals().values():
+        if isinstance(cmd, type) and issubclass(cmd, Command) and cmd is not Command:
+            o = cmd()
+            if o.name:
+                d[o.name] = o
+    return d
+
+
+def _print_commands():
+    print("usage: manage <command> [options] [args]\n")
+    print("available commands:")
+    cmds = _get_commands_from_module()
+    for cmdname, cmdclass in sorted(cmds.items()):
+        print("   {:<13} {}".format(cmdname, cmdclass.short_desc))
+    print()
+    print('Use "manage <command> -h" to see more info about a command')
+
+
+def _print_unknown_command(cmdname):
+    print("Unknown command: %s\n" % cmdname, file=sys.stderr)
+    print('Use "manage" to see available commands', file=sys.stderr)
+
+
+def main(argv=None):
+    if argv is None:
+        argv = sys.argv
+    cmds = _get_commands_from_module()
+    cmdname = argv[1] if len(argv) > 1 else None
+    if not cmdname or cmdname in ('-h', '--help'):
+        _print_commands()
+        sys.exit(0)
+    elif cmdname not in cmds:
+        _print_unknown_command(cmdname)
+        sys.exit(2)
+    del argv[1]
+    cmd = cmds[cmdname]
+    parser = argparse.ArgumentParser()
+    parser.usage = "manage {} {}".format(cmdname, cmd.syntax)
+    parser.description = cmd.long_desc
+    cmd.add_arguments(parser)
+    try:
+        args = parser.parse_args(args=argv[1:])
+        cmd.process_arguments(args)
+        cmd.run(args)
+    except UsageError as e:
+        print('Error: {}'.format(e), file=sys.stderr)
+        sys.exit(2)
+    else:
+        if cmd.exitcode:
+            sys.exit(cmd.exitcode)
+
+
+if __name__ == '__main__':
+    main()
