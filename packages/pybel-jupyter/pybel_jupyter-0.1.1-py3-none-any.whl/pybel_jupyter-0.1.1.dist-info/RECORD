@@ -1,0 +1,12 @@
+pybel_jupyter/__init__.py,sha256=vf08w4GLiD1dMgmXJQwehlbMKWV8i2ixhPkJ9nQPYmg,697
+pybel_jupyter/constants.py,sha256=NNL5isBzX09MMl0qPiUtyBRBEHM-VcxEghfDX_zgC7U,522
+pybel_jupyter/inline.py,sha256=0AdbfsBVoonpzgMMSoDvASRxZiaT91aNQFVyo-0CGxU,2400
+pybel_jupyter/utils.py,sha256=JCZa7ZoNAT0dEucg57yZCb9i6pQsMpXtMbYiP2281us,1735
+pybel_jupyter/visualization.py,sha256=Ww47zrZy8VQhVAb9rCjDUUlGu86hPzi_HUO26f2ixfw,2837
+pybel_jupyter/templates/graph_template.html,sha256=NaXn4wbEatOb1WrBHrzAUmcPV47WSNqt4LgDgi4FRnU,880
+pybel_jupyter/templates/pybel_jupyter.js,sha256=EJxDdG3XYAbCpvb-hSgiuWJxMBvm_0rvWiJ4dzUOOzk,364
+pybel_jupyter/templates/pybel_vis.js,sha256=0H_ua8-goViF9bZKbgHMT-QwCTkmUxBIawyve0GUzOI,9132
+pybel_jupyter-0.1.1.dist-info/METADATA,sha256=o-uq9nGT5HRqaKf4CF36whDOx80197rXGfrI5PQZzVk,2060
+pybel_jupyter-0.1.1.dist-info/RECORD,,
+pybel_jupyter-0.1.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+pybel_jupyter-0.1.1.dist-info/top_level.txt,sha256=_v0sstsj5H8yA3_rQH1QZM5PExp4p64Q24z1LM6-srI,14
