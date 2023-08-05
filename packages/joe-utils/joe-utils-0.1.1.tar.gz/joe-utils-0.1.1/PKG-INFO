@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: joe-utils
+Version: 0.1.1
+Summary: Joe Utils - A collection of reusable Python3 utilities by Joe Flack (joeflack4@gmail.com).
+Home-page: http://www.joeflack.net/
+Author: Joe Flack
+Author-email: joeflack4@gmail.com
+License: MIT
+Description: Joefuncs - A collection of reusable Python3 functions by Joe Flack
+        (joeflack4@gmail.com).
+        
+Keywords: joeflack4,utilities
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Environment :: Other Environment
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Environment :: MacOS X
+Classifier: Environment :: Plugins
