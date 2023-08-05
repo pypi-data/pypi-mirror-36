@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: rastersmith
+Version: 0.0.1
+Summary: RasterSmith is a package to preprocess different NASA Earth observing satellite data products into common resolution, spatial reference, and format for easy analysis and processing across sensors.
+Home-page: http://github.com/kmarkert/rastersmith
+Author: Kel Markert
+Author-email: kel.markert@gmail.com
+License: MIT
+Description: # RasterSmith
+        RasterSmith is a Python package aimed at making the analysis of satellite remote sensing data products easier.
+        
+        ## Installing RasterSmith
+        Currently, RasterSmith is in active development. The package is 
+        
+        ## Why RasterSmith
+        Many satellite data products provided come in different (1) data formats, (2) number of bands, (3) spatial resolution/extent, and (4) geographic projections making the combined use of the data product often difficult to handle and use for non-experts. RasterSmith is used to take the differing data product and make a common format with a set of helper functions for use in analysis.
+        
+        Take two commonly used remote sensing data products from [LandSat](https://landsat.usgs.gov/) and the [Visible Infrared Imaging Radiometer Suite](https://jointmission.gsfc.nasa.gov/viirs.html) (VIIRS). LandSat is distributed as GeoTIFF files, one file for each band, along with associated metadata in a separate file, where as VIIRS data is distributed as a single HDF5 file with embedded metadata. While individual LandSat GeoTIFF files can be easily used in GIS software, preprocessing is needed to use multiple bands together as a single variable. On the other hand, VIIRS data distributed as HDF5 data is difficult to read in and use within traditional GIS software. Ultimately, using the two datasets in conjunction with ArcGIS or QGIS has proven difficult due to the varying formats that the data is distributed in.
+        
+        Furthermore, many satellite data products are provided to users as level-2 swath data (i.e. un-gridded data arrays) with varying levels of geographic information making the use of such data even more difficult to use within a GIS environment. For example, the [Advanced Technology Microwave Sounder](https://jointmission.gsfc.nasa.gov/atms.html) (ATMS) is provided by NOAA as swath data with
+        
+        ## RasterSmith data structure
+        RasterSmith is built upon the [xarray](http://xarray.pydata.org/en/stable/) package<sup>1</sup> and uses the already existing N-D labled array functionality from xarray to assist in harmonizing satellite data products. Thus, the satellite data products read in using RasterSmith adhere to the xarray philosophy with labeled dimensions.
+        
+        The over arching data structure of a RasterSmith xarray object is a 5-dimensional array of
+        
+        
+        
+        <sup>1</sup> *Technically the core RasterSmith raster class is an [accessor](http://xarray.pydata.org/en/latest/generated/xarray.register_dataset_accessor.html#xarray.register_dataset_accessor) to the xarray DataArray class allowing access to the RasterSmith class methods directly from xarray objects.*
+        
+        
+        
+        
+        
+        ## Using RasterSmith
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
