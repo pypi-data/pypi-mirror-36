@@ -1,0 +1,12 @@
+django_minimal_user-0.9.1.dist-info/METADATA,sha256=6VQWuQ76g7UOnPocpOnv-GwS58V1cO5SLL35CV-3KyU,1062
+django_minimal_user-0.9.1.dist-info/RECORD,,
+django_minimal_user-0.9.1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+django_minimal_user-0.9.1.dist-info/top_level.txt,sha256=dTyqiPCf_Tlswc62vrod5fR-i0YykCFhhu08RNlziUo,13
+minimal_user/__init__.py,sha256=1L5YRR61_9CLIYv9bxfTbvefkaa9mEEPFRjvl19URsU,107
+minimal_user/admin.py,sha256=udJ-kjpc_3UiHw1Sx9QU2QA1cWi3rzZSKB-tggTVX30,2401
+minimal_user/managers.py,sha256=UPZUEUCv1T1cjA_FsDUzRVRc5QR-HoiKBRH1F_4XRZ0,1412
+minimal_user/models.py,sha256=XPbA_nNY-bb-d8JgqLNvo1D5eh0dJyLvFc9EcPzgBDg,1791
+minimal_user/drf/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+minimal_user/drf/serializers.py,sha256=QK2vjyyC4lT6CGY2Kl1sY4iln__WVwotJqE9WKEP8OU,1859
+minimal_user/migrations/0001_initial.py,sha256=4gddaJ3A64F35zz1u9bgfSf3NPKP1qX0soomj4dYVQs,2281
+minimal_user/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
