@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: python-utopian-rocks
+Version: 0.0.1
+Summary: An API wrapper for utopian.rocks
+Home-page: https://github.com/yucealiosman/python-utopian-rocks
+Author: Ali Osman Yuce
+Author-email: aliosmanyuce@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
