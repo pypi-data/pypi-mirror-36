@@ -1,0 +1,16 @@
+importlib_metadata/__init__.py,sha256=7jF_SKS6a1ZV1QCWFhRQ4R9hlIGGzo-GS5e4uazqB94,1331
+importlib_metadata/_py2.py,sha256=8Cm7wwijqOU0PJ1RMwOazas9W74LNuU2cJ_M5qgFtHc,2442
+importlib_metadata/_py3.py,sha256=NZJbYPrBUWZ-pYRcI4tguIxdolVEbIQNTD_wmFP3rH4,2144
+importlib_metadata/api.py,sha256=_TljU2UVNjimCiTNkiugI4q34TniI0EnrD8auX5hz1w,1902
+importlib_metadata/version.txt,sha256=iJML0FHSFKlzWBuUkqXKEQrqP91dxlpovERLYXOHe70,4
+importlib_metadata/docs/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+importlib_metadata/docs/changelog.rst,sha256=rztqM0Cs_k-YfF1hBVQNOefFctSoi5Z3rllM0kRJ1iw,375
+importlib_metadata/docs/conf.py,sha256=5c33hAsOaGb3XXTYI2bMTVcPsyGAV6jvUNTca3Yy2xo,5543
+importlib_metadata/docs/index.rst,sha256=uqWuI_l8vNxgzI59C4qjScNVzPaCaKAASv4fZZsxAmY,605
+importlib_metadata/tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+importlib_metadata/tests/test_api.py,sha256=2F2qHJ-vNJr8L51lBiDLyzIzABGB8hDlWAfi3OwUjAE,1416
+importlib_metadata/tests/test_main.py,sha256=E_DsbbqG2vIcHX1a3PqHC74Me7aw2el1RBdT8PZVE1M,1709
+importlib_metadata-0.2.dist-info/METADATA,sha256=Y5sJvDNoIhEgUjNu7KRwogZ2I_3qL16xfNcWNa0WiIg,3983
+importlib_metadata-0.2.dist-info/RECORD,,
+importlib_metadata-0.2.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+importlib_metadata-0.2.dist-info/top_level.txt,sha256=CO3fD9yylANiXkrMo4qHLV_mqXL2sC5JFKgt1yWAT-A,19
