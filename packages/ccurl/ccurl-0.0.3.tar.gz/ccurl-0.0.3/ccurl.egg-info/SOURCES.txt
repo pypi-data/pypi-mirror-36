@@ -1,0 +1,11 @@
+README.md
+setup.py
+ccurl/__init__.py
+ccurl/__main__.py
+ccurl/ccurl.py
+ccurl/version.py
+ccurl.egg-info/PKG-INFO
+ccurl.egg-info/SOURCES.txt
+ccurl.egg-info/dependency_links.txt
+ccurl.egg-info/entry_points.txt
+ccurl.egg-info/top_level.txt
