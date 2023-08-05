@@ -1,0 +1,10 @@
+setup.cfg
+setup.py
+src/flake8_spellcheck/__init__.py
+src/flake8_spellcheck/words.txt
+src/flake8_spellcheck.egg-info/PKG-INFO
+src/flake8_spellcheck.egg-info/SOURCES.txt
+src/flake8_spellcheck.egg-info/dependency_links.txt
+src/flake8_spellcheck.egg-info/entry_points.txt
+src/flake8_spellcheck.egg-info/requires.txt
+src/flake8_spellcheck.egg-info/top_level.txt
