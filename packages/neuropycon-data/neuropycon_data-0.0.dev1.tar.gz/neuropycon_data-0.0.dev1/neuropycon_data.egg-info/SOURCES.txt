@@ -1,0 +1,8 @@
+README.md
+setup.py
+neuropycon_data/__init__.py
+neuropycon_data.egg-info/PKG-INFO
+neuropycon_data.egg-info/SOURCES.txt
+neuropycon_data.egg-info/dependency_links.txt
+neuropycon_data.egg-info/top_level.txt
+neuropycon_data/data/__init__.py
