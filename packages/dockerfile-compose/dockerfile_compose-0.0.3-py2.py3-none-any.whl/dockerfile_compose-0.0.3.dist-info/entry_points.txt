@@ -1,0 +1,3 @@
+[console_scripts]
+dockerfile-compose = dockerfile_compose.cli:main
+
