@@ -1,0 +1,11 @@
+README.md
+setup.py
+koios/__init__.py
+koios/datagen.py
+koios/perceptron.py
+koios.egg-info/PKG-INFO
+koios.egg-info/SOURCES.txt
+koios.egg-info/dependency_links.txt
+koios.egg-info/not-zip-safe
+koios.egg-info/top_level.txt
+koios.egg-info/.ipynb_checkpoints/SOURCES-checkpoint.txt
