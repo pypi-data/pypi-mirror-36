@@ -1,0 +1,11 @@
+README.rst
+setup.cfg
+setup.py
+characterentities/__init__.py
+characterentities/core.py
+characterentities.egg-info/PKG-INFO
+characterentities.egg-info/SOURCES.txt
+characterentities.egg-info/dependency_links.txt
+characterentities.egg-info/not-zip-safe
+characterentities.egg-info/requires.txt
+characterentities.egg-info/top_level.txt
