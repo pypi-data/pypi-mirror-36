@@ -1,0 +1,12 @@
+gsheetsdb/__init__.py,sha256=whgCVQiDm0ZXBR7JT8ffdIXTFJHdXS5UegfJuYE5tZA,650
+gsheetsdb/__version__.py,sha256=ls1camlIoMxEZz9gSkZ1OJo-MXqHWwKPtdPbZJmwp7E,22
+gsheetsdb/console.py,sha256=m_U2P3Pmwx0JPk4xuIan7tXznLyvEDKgpcd8tM4KG1U,3070
+gsheetsdb/db.py,sha256=OUrhP-yltzWfB_dnCKwd7Zcj1OgadxMWJetzHQiPe64,8661
+gsheetsdb/exceptions.py,sha256=SpgRbLSGtoCo6TmWqcu3uZMNl4CaTTSr-Iiugo_a1kY,589
+gsheetsdb/sqla.py,sha256=De4rEuZPDprD9md_9l87XAmKaxi8y6IQ-U9vvROc7mk,5489
+gsheetsdb/translator.py,sha256=GlZOP3KBKFz_HQBrVzP9Zduqi0iv5PBVccwKQkXXOfg,2042
+gsheetsdb-0.1.1.dist-info/METADATA,sha256=Uoq1AlU0Qx1_0wt0DvimNZYxW2H_sOf6ITu-pC1K0B8,1368
+gsheetsdb-0.1.1.dist-info/RECORD,,
+gsheetsdb-0.1.1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+gsheetsdb-0.1.1.dist-info/entry_points.txt,sha256=4pHhZUYgjjKbkCnjfIFDFXPLdFXjalZ1GJE_-oc9F6c,117
+gsheetsdb-0.1.1.dist-info/top_level.txt,sha256=pcHPTCI25L-b1B1pmjoBxh1mE-RDvIvzjW--TUBWwCY,10
