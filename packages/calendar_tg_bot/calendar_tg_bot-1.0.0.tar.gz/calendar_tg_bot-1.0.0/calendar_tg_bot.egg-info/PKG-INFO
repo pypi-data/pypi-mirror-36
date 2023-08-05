@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: calendar-tg-bot
+Version: 1.0.0
+Summary: pyTelegramApiBot module for calendar in telegram
+Home-page: https://github.com/prohi8bitme/calendar_tg_bot.git
+Author: prohibitme
+Author-email: prohibitme@ya.ru
+License: UNKNOWN
+Description: # Python3 module for pyTelegramApiBot to make calendar in telegram bot
+        
+        ## Installation
+         
+         pip install calendar_tg_bot
+        
+        ## How to use in your project
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
