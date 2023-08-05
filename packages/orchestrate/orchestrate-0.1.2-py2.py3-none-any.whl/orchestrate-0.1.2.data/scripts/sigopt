@@ -1,0 +1,4 @@
+#!/Users/alexandra/src/sigopt/orchestrate/venv/bin/python
+from orchestrate.core.main import main
+
+main()
