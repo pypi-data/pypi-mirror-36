@@ -1,0 +1,5 @@
+Flask==1.0.2
+python-socketio==2.0.0
+flask-socketio==3.0.1
+jsonrpcserver==3.5.6
+gunicorn==19.9.0
