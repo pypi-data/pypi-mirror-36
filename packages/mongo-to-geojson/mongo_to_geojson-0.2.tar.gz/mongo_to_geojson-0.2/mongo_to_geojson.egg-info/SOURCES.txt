@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+mongo_to_geojson/__init__.py
+mongo_to_geojson/command_line.py
+mongo_to_geojson.egg-info/PKG-INFO
+mongo_to_geojson.egg-info/SOURCES.txt
+mongo_to_geojson.egg-info/dependency_links.txt
+mongo_to_geojson.egg-info/entry_points.txt
+mongo_to_geojson.egg-info/not-zip-safe
+mongo_to_geojson.egg-info/requires.txt
+mongo_to_geojson.egg-info/top_level.txt
