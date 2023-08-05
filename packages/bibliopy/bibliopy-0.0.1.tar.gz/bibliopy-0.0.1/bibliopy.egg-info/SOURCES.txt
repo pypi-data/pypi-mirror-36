@@ -1,0 +1,8 @@
+README.md
+setup.py
+bibliopy/__init__.py
+bibliopy.egg-info/PKG-INFO
+bibliopy.egg-info/SOURCES.txt
+bibliopy.egg-info/dependency_links.txt
+bibliopy.egg-info/top_level.txt
+tests/__init__.py

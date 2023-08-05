@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: bibliopy
+Version: 0.0.1
+Summary: A small example package
+Home-page: UNKNOWN
+Author: BiblioPyTeam
+Author-email: BiblioPyTeam@gmail.com
+License: UNKNOWN
+Description: # Example Package
+        
+        This is a simple example package.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
