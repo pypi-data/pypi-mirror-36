@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: vbx-vk
+Version: 0.0.7
+Summary: vk_api for retards
+Home-page: https://github.com/vbxx3/vbx_vk
+Author: Valentine Bobrovsky
+Author-email: vbabrouski@outlook.com
+License: GNU GPLv3
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: vk-api
+
+UNKNOWN
+
+
