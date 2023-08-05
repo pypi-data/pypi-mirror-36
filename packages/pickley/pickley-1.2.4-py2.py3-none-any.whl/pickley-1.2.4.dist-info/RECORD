@@ -1,0 +1,12 @@
+pickley/__init__.py,sha256=kVFjnpsitloTSdvwYCZ375AHO8VvzmVfCa2X0w_c4lE,30880
+pickley/cli.py,sha256=b9wDr3NGE6W9E348aZxWT_Xc64YT_EFwYJn4Du5Q7R4,10436
+pickley/install.py,sha256=WXVrknc92IZf5UTOVXvdOk8DYaVP2ZF0SrT_Ungj0JI,5383
+pickley/package.py,sha256=5XhXCqsFgVuTIpozGey0pEc3DD9aT0W0uAC7FN6fxyA,25300
+pickley/pypi.py,sha256=wYKqU0r1844NGmor-2xNdXVJtu7JAjV17VwJ4BlJxI0,3042
+pickley/settings.py,sha256=MOudpeu7sE9naInV33_x3LLLqYp6cqy8eX4SqIe0AtE,20248
+pickley/uninstall.py,sha256=5Su6BxihgHVV8-SMOW1aV7pxyJGVDtJuKrHgCkCd3KA,2574
+pickley-1.2.4.dist-info/METADATA,sha256=Kc3QD8ghkAygNvwSTmJi-74YZQNIP_ienLbe08kfDA8,8311
+pickley-1.2.4.dist-info/RECORD,,
+pickley-1.2.4.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+pickley-1.2.4.dist-info/entry_points.txt,sha256=wEGs6Pu8JtqtkSfP3K7CnkQbnRX1Pgcx-SC2-fjEGhQ,44
+pickley-1.2.4.dist-info/top_level.txt,sha256=WqF9O026KmjRFWMsE_TexOGwH55_tfkFf8KqpOak2LM,8
