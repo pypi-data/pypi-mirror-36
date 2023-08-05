@@ -1,0 +1,10 @@
+README.md
+setup.cfg
+setup.py
+tjpybot/__init__.py
+tjpybot/tjbot.py
+tjpybot/utils.py
+tjpybot.egg-info/PKG-INFO
+tjpybot.egg-info/SOURCES.txt
+tjpybot.egg-info/dependency_links.txt
+tjpybot.egg-info/top_level.txt
