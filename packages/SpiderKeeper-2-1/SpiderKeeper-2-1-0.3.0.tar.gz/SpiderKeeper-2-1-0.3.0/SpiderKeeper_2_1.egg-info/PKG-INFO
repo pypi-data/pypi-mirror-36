@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: SpiderKeeper-2-1
+Version: 0.3.0
+Summary: Admin ui for spider service
+Home-page: https://github.com/shiaukuan/SpiderKeeper/
+Author: shiaukuan
+Author-email: kuan60508@gmail.com
+License: MIT
+Description: Go to https://github.com/kalombos/SpiderKeeper/ for more information.
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
