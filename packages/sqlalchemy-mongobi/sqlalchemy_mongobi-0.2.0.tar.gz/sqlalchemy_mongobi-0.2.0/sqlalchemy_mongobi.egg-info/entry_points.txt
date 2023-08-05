@@ -1,0 +1,5 @@
+[sqlalchemy.dialects]
+mongobi = sqlalchemy_mongobi.dialect:MongoBIDialect_mysqldb
+mongobi.mysqldb = sqlalchemy_mongobi.dialect:MongoBIDialect_mysqldb
+mongobi.pymysql = sqlalchemy_mongobi.dialect:MongoBIDialect_pymysql
+
