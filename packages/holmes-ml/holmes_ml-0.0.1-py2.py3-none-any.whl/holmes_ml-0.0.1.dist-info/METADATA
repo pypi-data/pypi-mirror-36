@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: holmes-ml
+Version: 0.0.1
+Summary: Holmes
+Home-page: https://github.com/D3-AI/Holmes
+Author: MIT Data To AI Lab
+Author-email: dailabmit@gmail.com
+License: MIT license
+Keywords: holmes
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3.4
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Provides-Extra: test
+Requires-Dist: coverage (>=4.5.1); extra == 'test'
+Requires-Dist: pytest (>=3.4.2); extra == 'test'
+Requires-Dist: tox (>=2.9.1); extra == 'test'
+
+# Holmes
+Using Machine learning to predict fraud in banking transactions.
+
+
+# History
+
+## 0.0.1
+
+* First release on PyPI.
+
+
