@@ -1,0 +1,16 @@
+neoepiscope/__init__.py,sha256=sDSpVv48pecx84UsP9BMUK5pzZeOqShDcpps6WOKV1M,29588
+neoepiscope/__main__.py,sha256=mIfgCAtmZxYoz2ceWCG-Z1_M3OtUe7fGkz9v_ccgr4w,103
+neoepiscope/availableAlleles.pickle,sha256=hCb4B5cKexn9FdNvgndsQbEXJ3MxM9v88A3SqHYNQ_Q,401442
+neoepiscope/binding_scores.py,sha256=9RdRmCKTfbAOHyHcn7_u2I8EW8StAzkVFDvKGTLSu6E,22110
+neoepiscope/bowtie_index.py,sha256=C4sFBRS0-G9RX74OfCocYxmQcpzaTaAUCgYQ_NTDBHY,14846
+neoepiscope/download.py,sha256=GJpRjnMvF_gn2ajz_paIyy0wOFubCkRVGZ3xlSWcrkQ,28199
+neoepiscope/file_processing.py,sha256=K87dwERTXayZMs7CYhBGxPVJSa-3Gd1cAlVvaoCh60o,16183
+neoepiscope/paths.py,sha256=0b-lpBUJe-z2xDzlobnP7qjOu70vlF2eKJLEt13Ijaw,1537
+neoepiscope/transcript.py,sha256=2kolbeKPX0_nQCkUbp9g1a4EnayhTfdnFunZjOHIkGk,122951
+neoepiscope/version.py,sha256=WGyxgMXfP-HpRuy_XFv7oP0QnPBEvGJ-lVSLDTJDutc,62
+neoepiscope-0.2.0.dist-info/METADATA,sha256=m-4WIx4tnyWsrU0WP3nczcIgJTRTOq0gneyL2mL6dHM,1494
+neoepiscope-0.2.0.dist-info/RECORD,,
+neoepiscope-0.2.0.dist-info/WHEEL,sha256=_V8uWu5F_h-lvAz5Mbq4oZqV_uCfL4cHgm4IIlDevzU,92
+neoepiscope-0.2.0.dist-info/entry_points.txt,sha256=M1YNHyEvaJiQi0wfXH5m3V3ObsHSn_hEQem7nvC52Tc,50
+neoepiscope-0.2.0.dist-info/top_level.txt,sha256=fZ63hkpI9zrvyXB5J-npED0KIwssiXi9OpLm_edKX0o,12
+neoepiscope-0.2.0.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
