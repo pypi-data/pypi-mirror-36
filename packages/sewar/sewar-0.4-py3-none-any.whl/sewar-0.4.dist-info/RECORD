@@ -1,0 +1,11 @@
+sewar/__init__.py,sha256=aXT7HP-spFX8qjhDrJSyNR1qnEvQvRiJdllCBpfP-vc,552
+sewar/command_line.py,sha256=0e47uqTtMgJU7BTiAJkAL88GPwdrNTuZc-lkg1RtccQ,2083
+sewar/full_ref.py,sha256=6sN7Uj5u45_pUoS8FBRqNTWOLTue6mpc7DNvvDvaguk,9853
+sewar/metrics.py,sha256=DbaNJ5kG4wjChmRdFoLwezJLJG6eFjRpmLgcokM3lIw,8172
+sewar/no_ref.py,sha256=pT9lse-vLNWTPREkoHjiNjGNTKww9t7kGDI9AE_ksuM,2427
+sewar/utils.py,sha256=cIc4jHitTgkWA10O6kfKHsIFcDonHuh7qjKm-jeyzQ8,2096
+sewar-0.4.dist-info/METADATA,sha256=rPayp8RNkWmjiii86lMVUueuRnhxk6Hhq-zXe1PJP-A,4165
+sewar-0.4.dist-info/RECORD,,
+sewar-0.4.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+sewar-0.4.dist-info/entry_points.txt,sha256=H5pfgjk7RZ_VShWvZOdJdZgaITZIglp-bUo1H907MdA,63
+sewar-0.4.dist-info/top_level.txt,sha256=RlIAZ2dEyHwoipiRarg4NmkTDyqYWZVax8TrAVkIEXg,6
