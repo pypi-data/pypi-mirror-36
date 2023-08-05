@@ -1,0 +1,175 @@
+Metadata-Version: 2.1
+Name: remote-sge
+Version: 0.2.8
+Summary: Utilities for remote submission and collection of GridEngine jobs.
+Home-page: https://github.com/tylergannon/remote_sge
+Author: Tyler Gannon
+Author-email: tyler.gannon@interxinc.com
+License: Apache2
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Provides-Extra: testing
+Requires-Dist: requests (==2.18.4)
+Requires-Dist: filelock (>=2.0)
+Requires-Dist: falcon (>=1.4.0rc2)
+Requires-Dist: gunicorn (>=19.7.1)
+Requires-Dist: configobj (>=5.0.6)
+Provides-Extra: testing
+Requires-Dist: pytest (==3.6.0); extra == 'testing'
+Requires-Dist: pytest-mock; extra == 'testing'
+Requires-Dist: pytest-bdd; extra == 'testing'
+Requires-Dist: pytest-timeout; extra == 'testing'
+Requires-Dist: twine; extra == 'testing'
+Requires-Dist: vcrpy; extra == 'testing'
+Requires-Dist: pylint; extra == 'testing'
+Requires-Dist: setuptools; extra == 'testing'
+Requires-Dist: wheel; extra == 'testing'
+Requires-Dist: requests-unixsocket; extra == 'testing'
+
+# remote_sge: Remotely submit jobs to GridEngine
+
+* Remotely submit jobs to a GridEngine cluster.
+* Retrieve job results.
+* Automated transfer of jobs from one cluster to another.
+
+Remote SGE is a tool for transferring queued jobs to a remote SGE cluster,
+as well as for submitting jobs to SGE from a machine other than the cluster's
+master host.
+
+* [See here](https://bitbucket.org/tyler_gannon/remote_sge/wiki/Configuration%20Common%20Issues) for common configuration problems.
+
+# Usage
+
+```bash
+# Holds jobs with ids in the given range, collects all the required data, and
+# sends them to the configured remote.
+remote_sge shuttle 12300-12399
+
+# Later...
+# Downloads results from any remote jobs that have finished, and unpacks the
+# results in the working directory of the local jobs.
+# Finally, terminates (deletes) the original jobs from the local queue.
+remote_sge collect
+```
+
+# Installation
+
+The installation utility targets Centos 6.x and Amazon Linux 1 (cfncluster).
+
+## Install Base Packages (Client AND Server)
+
+```bash
+#  Feel free to change PY_VERSION to the latest, or to pypy or your favorite
+#   version available within pyenv.
+curl -o install.sh \
+    -L https://gist.githubusercontent.com/tylergannon/edf45c882b9459ac4c13cfcf0f581d1d/raw \
+    && chmod +x install.sh
+./install.sh <path to wheel file>
+
+#  Restart your shell, you can log out and log in again, or else:
+$SHELL
+```
+
+This will:
+
+* Install YUM packages required for pyenv.
+* Install latest version of pyenv.
+* Install Python 3.6.4 and create a virtualenv called `remote_sge`, based on that version.
+
+## Install the Remote SGE package. (Client AND Server)
+
+You can also type `pyenv activate remote_sge` and then `pip` and other executables will be added
+to your path.
+
+First, download the latest wheel from https://bitbucket.org/tyler_gannon/remote_sge
+
+```bash
+# Activate your virtualenv:
+pyenv activate remote_sge
+# Install the package:
+pip install /path/to/remote-sge-xxx.whl
+```
+
+## Install the Remote SGE Server Components.
+
+```bash
+#
+# Activate your virtualenv if not already active:
+pyenv activate remote_sge
+# Type remote_sge install_server -h for a full list of command-line options.
+# The below assumes that vim is installed and you know how to use it.
+remote_sge install_server -i
+```
+
+The installer will ask you to edit a number of configuration files.  Make changes as needed,
+save and quit the editor, and the file will be copied into place.
+
+
+Here are the particular settings to pay attention to:
+
+### Main Config File:
+
+* Client Section:
+    * You can safely remove this section from the server component; won't be used.
+* Server Section:
+    * `work_root` should reflect the location where each job's working directory should run.
+        Each job will be given a randomly-named working directory within this location.
+    * `completed_files_root` should reflect the location where job results will be placed.
+    * `nginx_listen` can be a port number, or an `ip_address:port` assignment.
+* Command Environment Section:
+    * A list of environment variables.  Use this section to configure locations of any resources
+        your jobs might use, which are located outside of the job's working directory.
+
+## Test the function of the server component:
+
+```bash
+# Change the location of the config dir, if you changed the default for config files.
+remote_sge test_server ~/.config/remote_sge -P 443 -h localhost
+```
+
+If the server is configured correctly and running, you'll see `It works!`, and you should continue.
+
+## Configure the client component:
+
+The server install will have placed the required client certificates in a tgz file at
+`~/remote_sge_client_certs.tgz`.
+
+```bash
+# Copy the certificate files to the client machine
+ssh <client_machine>
+scp me@server_machine:~/remote_sge_client_certs.tgz .
+
+# Do the base install (see Install Base Packages above):
+curl -L https://goo.gl/CszXDP | PY_VERSION=3.6.4 bash
+
+# Restart your shell:
+$SHELL
+
+pyenv activate remote_sge
+# Ensure that the wheel file has been downloaded to this machine, and then:
+pip install /path/to/remote-sge-xxx.whl
+
+remote_sge install_client -i -c /path/to/remote_sge_client_certs.tgz
+```
+
+You'll be prompted to correct the hostname and port number of your server instance.
+The other settings can likely be left alone.
+
+## Test client connectivity
+
+Just to make sure that you have connectivity to the server:
+
+```bash
+remote_sge test_server ~/.config/remote_sge -P 443 -h mysge.mycompany.com
+```
+
+# Set up for development:
+
+
+``pip install -e .[testing]``
+
+
+
