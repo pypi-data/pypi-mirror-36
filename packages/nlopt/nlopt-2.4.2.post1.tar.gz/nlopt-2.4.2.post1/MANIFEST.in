@@ -1,0 +1,30 @@
+# Include the license file
+include COPYRIGHT
+include COPYING
+include AUTHORS
+
+recursive-include . *
+
+prune ./.git
+prune ./dist
+
+
+exclude *.tar.gz
+exclude *.exe
+exclude *.dll
+exclude *.do
+exclude *.o
+exclude *.lo
+exclude *.la
+exclude *.dylib
+exclude *.dSYM
+exclude *.mex*
+exclude *.oct
+exclude *.zip
+
+# executables
+exclude test/testopt
+exclude util/redblack_test
+
+
+
