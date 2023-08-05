@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: mdx-google-map
+Version: 1.0.0
+Summary: A python Markdown extension providing Google Maps syntax
+Home-page: https://github.com/tictocs/markdown-google-map/
+Author: Tom Manterfield @ Tic Tocs Tech
+Author-email: tom@tictocs.com
+License: UNKNOWN
+Description: A python Markdown extension providing Google Maps syntax. For more details visit https://github.com/tictocs/markdown-google-map
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
