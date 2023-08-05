@@ -1,0 +1,14 @@
+Metadata-Version: 1.0
+Name: NoHotEncoder
+Version: 0.1
+Summary: Converts One Hot Encoding to Integer encoding
+Home-page: UNKNOWN
+Author: Karishnu Poddar
+Author-email: karishnu@gmail.com
+License: MIT
+Description: ===================
+        NoHotEncoder Module
+        ===================
+        
+        **Converts One-Hot Encoding to Normal integer coding**
+Platform: UNKNOWN
