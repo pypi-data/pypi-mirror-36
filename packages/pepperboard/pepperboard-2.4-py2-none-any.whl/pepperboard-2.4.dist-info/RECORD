@@ -1,0 +1,14 @@
+pepperboard/__init__.py,sha256=jJ-bA1Uqvcomc6TSpFAkNP1zNCr2Ekm-Vmqzyr9gueI,44
+pepperboard/core/__init__.py,sha256=EE89hnBuPkcIqUT4aq5t6gePtITaYnapgycwCjh0zm8,10215
+pepperboard/dashboards/__init__.py,sha256=UAg0nM5aUYQNkByO02iLjfotMrWSmW65hJr6XaLsLhY,2732
+pepperboard/dashboards/dellwarranty.py,sha256=7Bhx6lgrEPU2faPGNp-UNu-ZTT9E5LjYHtI3vuEw_ks,1730
+pepperboard/dashboards/highstates.py,sha256=po1tMBSetzf3DEaJLggM1qznmDAc2TXKLqdbOYg4SN8,5479
+pepperboard/dashboards/mgrains.py,sha256=7bp-YubM99cKnASpqnVOyLPwNmwenpiapsdk7cHhbt0,1197
+pepperboard/dashboards/upgrades.py,sha256=nP__spjsNuWtfLgEwEmY7qESQv84ITU1Oz5ytt-qBHM,5209
+pepperboard-2.4.data/scripts/pepperboard,sha256=E9KvwE6Gc5WPhvAyaK9NofZ1QwIYTUqV4asabWhRNMg,113
+pepperboard-2.4.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+pepperboard-2.4.dist-info/METADATA,sha256=SWUPvvc7Cr8A_mjgoDBbS2ctNJdUmtveLvmfV77rAs0,778
+pepperboard-2.4.dist-info/RECORD,,
+pepperboard-2.4.dist-info/WHEEL,sha256=hZvi-8L6mc2COqhOUWREM_h2lvnJbaHycZt8eohtmso,92
+pepperboard-2.4.dist-info/metadata.json,sha256=ihYWJx545ubmUHi2Ypx9Bdep8BwtbiIKPb5lt_HQqIg,925
+pepperboard-2.4.dist-info/top_level.txt,sha256=rs1rpwyOFXscQx7ULabujL1Exm4F4VnRIrrooa1XhV0,12
