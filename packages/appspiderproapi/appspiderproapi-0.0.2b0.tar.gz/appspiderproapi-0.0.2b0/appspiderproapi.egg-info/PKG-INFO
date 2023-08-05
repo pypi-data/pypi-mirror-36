@@ -1,0 +1,53 @@
+Metadata-Version: 1.1
+Name: appspiderproapi
+Version: 0.0.2b0
+Summary: Python library for AppSpider Professional RESTFul API endpoints.
+Home-page: https://github.com/xolian/appspiderproapi
+Author: Brandon Spruth
+Author-email: brandon@spruth.co
+License: MIT
+Download-URL: https://github.com/xolian/appspiderproapi/tarball/0.0.2b
+Description: AppSpider Professional API
+        **************************
+        
+        A Python module to assist with `AppSpider Professional <https://www.rapid7.com/try/appspider/>`__ RESTFul API to administer scans.
+        
+        Quick Start
+        ~~~~~~~~~~~
+        
+        Several quick start options are available:
+        
+        - Install with pip: ``pip install appspiderproapi``
+        - Build locally: ``python setup.py build``
+        - Latest release will be comming soon!
+        
+        Example
+        ~~~~~~~
+        
+        ::
+        
+        
+            # import the package
+            from appspiderproapi import appspiderpro
+        
+            # COMMING SOON!!
+        
+        
+        Bugs and Feature Requests
+        ~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        Found something that doesn't seem right or have a feature request? `Please open a new issue <https://github.com/xolian/appspiderproapi/issues/new/>`__.
+        
+        License
+        ~~~~~~~~~~~~~~~~~~~~~
+        .. image:: https://img.shields.io/github/license/xolian/appspiderproapi.svg?style=flat-square
+Keywords: appspider,api,security,software,rapid7,appspiderpro,ntobjectives,dast
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 3.0
+Classifier: Programming Language :: Python :: 3.7
