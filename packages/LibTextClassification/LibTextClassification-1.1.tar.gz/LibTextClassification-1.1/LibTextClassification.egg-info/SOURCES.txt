@@ -1,0 +1,17 @@
+README.md
+setup.py
+LibTextClassification.egg-info/PKG-INFO
+LibTextClassification.egg-info/SOURCES.txt
+LibTextClassification.egg-info/dependency_links.txt
+LibTextClassification.egg-info/requires.txt
+LibTextClassification.egg-info/top_level.txt
+data_util/__init__.py
+data_util/data.py
+data_util/preprocess_data.py
+data_util/pretrain.py
+model/__init__.py
+model/averagePooling.py
+model/predict.py
+model/textCNN.py
+model/textRNN.py
+model/train.py
