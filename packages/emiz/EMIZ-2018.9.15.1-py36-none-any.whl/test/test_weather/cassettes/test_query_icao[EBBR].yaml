@@ -1,0 +1,64 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: https://avwx.rest/api/metar/EBBR?options=info%2Cspeech%2Csummary%2Ctranslate&format=json&onfail=cache
+  response:
+    body: {string: '{"Altimeter":"1024","Cloud-List":[],"Dewpoint":"09","Flight-Rules":"VFR","Info":{"City":"Brussels","Country":"BEL","Elevation":55.0,"Iata":"BRU","Icao":"EBBR","Latitude":50.9,"Longitude":4.533333333,"Name":"National
+        Airport","Priority":6,"State":"VLG"},"Meta":{"Cache-Timestamp":"Sat, 15 Sep
+        2018 18:05:24 GMT","Timestamp":"Sat, 15 Sep 2018 18:07:15 GMT"},"Other-List":[],"Raw-Report":"EBBR
+        151750Z 03001KT CAVOK 17/09 Q1024 NOSIG","Remarks":"NOSIG","Remarks-Info":{"Dew-Decimal":"","Temp-Decimal":""},"Runway-Vis-List":[],"Sanitized":"EBBR
+        151750Z 03001KT CAVOK 17/09 Q1024 NOSIG","Speech":"Winds zero three zero at
+        1kt. Visibility one zero kilometers. Temperature one seven degrees Celsius.
+        Dew point nine degrees Celsius. Altimeter one zero two four. Sky clear","Station":"EBBR","Summary":"Winds
+        NNE-030 at 1kt, Vis 10km, Temp 17\u00b0C, Dew 9\u00b0C, Alt 1024 hPa, Sky
+        clear","Temperature":"17","Time":"151750Z","Translate":{"Altimeter":"1024
+        hPa (30.24 inHg)","Cloud-List":"Sky clear","Dewpoint":"9\u00b0C (48\u00b0F)","Other-List":"","Remarks":{},"Temperature":"17\u00b0C
+        (63\u00b0F)","Visibility":"10km (6.2sm)","Wind":"NNE-030 at 1kt"},"Units":{"Altimeter":"hPa","Altitude":"ft","Temperature":"C","Visibility":"m","Wind-Speed":"kt"},"Visibility":"CAVOK","Wind-Direction":"030","Wind-Gust":"","Wind-Speed":"01","Wind-Variable-Dir":[]}
+
+'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Length: ['1342']
+      Content-Type: [application/json]
+      Date: ['Sat, 15 Sep 2018 18:07:15 GMT']
+      Server: [gunicorn/19.9.0]
+      X-Robots-Tag: [noindex]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: https://avwx.rest/api/metar/EBBR?options=info%2Cspeech%2Csummary%2Ctranslate&format=json&onfail=cache
+  response:
+    body: {string: '{"Altimeter":"1024","Cloud-List":[],"Dewpoint":"09","Flight-Rules":"VFR","Info":{"City":"Brussels","Country":"BEL","Elevation":55.0,"Iata":"BRU","Icao":"EBBR","Latitude":50.9,"Longitude":4.533333333,"Name":"National
+        Airport","Priority":6,"State":"VLG"},"Meta":{"Cache-Timestamp":"Sat, 15 Sep
+        2018 18:17:47 GMT","Timestamp":"Sat, 15 Sep 2018 18:18:15 GMT"},"Other-List":[],"Raw-Report":"EBBR
+        151750Z 03001KT CAVOK 17/09 Q1024 NOSIG","Remarks":"NOSIG","Remarks-Info":{"Dew-Decimal":"","Temp-Decimal":""},"Runway-Vis-List":[],"Sanitized":"EBBR
+        151750Z 03001KT CAVOK 17/09 Q1024 NOSIG","Speech":"Winds zero three zero at
+        1kt. Visibility one zero kilometers. Temperature one seven degrees Celsius.
+        Dew point nine degrees Celsius. Altimeter one zero two four. Sky clear","Station":"EBBR","Summary":"Winds
+        NNE-030 at 1kt, Vis 10km, Temp 17\u00b0C, Dew 9\u00b0C, Alt 1024 hPa, Sky
+        clear","Temperature":"17","Time":"151750Z","Translate":{"Altimeter":"1024
+        hPa (30.24 inHg)","Cloud-List":"Sky clear","Dewpoint":"9\u00b0C (48\u00b0F)","Other-List":"","Remarks":{},"Temperature":"17\u00b0C
+        (63\u00b0F)","Visibility":"10km (6.2sm)","Wind":"NNE-030 at 1kt"},"Units":{"Altimeter":"hPa","Altitude":"ft","Temperature":"C","Visibility":"m","Wind-Speed":"kt"},"Visibility":"CAVOK","Wind-Direction":"030","Wind-Gust":"","Wind-Speed":"01","Wind-Variable-Dir":[]}
+
+'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Length: ['1342']
+      Content-Type: [application/json]
+      Date: ['Sat, 15 Sep 2018 18:18:14 GMT']
+      Server: [gunicorn/19.9.0]
+      X-Robots-Tag: [noindex]
+    status: {code: 200, message: OK}
+version: 1
