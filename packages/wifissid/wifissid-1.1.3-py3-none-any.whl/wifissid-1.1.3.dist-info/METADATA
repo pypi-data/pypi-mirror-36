@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: wifissid
+Version: 1.1.3
+Summary: A small example package
+Home-page: https://pypi.org/project/wifissid/
+Author: luxun
+Author-email: author@example.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Microsoft :: Windows
+Description-Content-Type: text/markdown
+
+# Introduction #
+This package simply offers a module that returns Windows WiFi SSID :)
+
+# Usage #
+    >>import wifissid
+    >>ssid=wifissid.showssid()
+    >>print(ssid)
+
