@@ -1,0 +1,11 @@
+NALU-0.0.4.dist-info/METADATA,sha256=-iH_BQJb7nhzG5HxbjDgZCoyBPyzpnUdjPBeizk2sBw,1172
+NALU-0.0.4.dist-info/RECORD,,
+NALU-0.0.4.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+NALU-0.0.4.dist-info/top_level.txt,sha256=EGpT22gz4c0gCIFJPrCXEPmONSiUuyu86ZUve-qbd_c,11
+nalu/__init__.py,sha256=uGAKsAk7QawHIOCKtwFyGm0Xsp3voUnYKrl2hX6sVN4,65
+nalu/core/__init__.py,sha256=yX6pZVaR1tyIwKUQd1vtr7c8X1vGlLi3ZGZ7z2cBzJI,62
+nalu/core/nac_cell.py,sha256=lvVJn4FFW6_Y-uFWDH1JwiSeIRr_ItwY80ZIP8idP70,898
+nalu/core/nalu_cell.py,sha256=qXo1WAIuBqO9gHGL0GwDc870GbIlAi7yN-viOB92s30,1052
+nalu/layers/__init__.py,sha256=Gkiv1gL6KJXvVjz4d9dM1Wn3eGGyIO7ICavUREum9Mg,34
+nalu/layers/nalu_layer.py,sha256=N9T0u-c6DBrCGpSiv6AqbiisagVdD1RFJMLIP2Ishxs,655
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
