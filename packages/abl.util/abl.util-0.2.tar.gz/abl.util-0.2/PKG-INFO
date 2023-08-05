@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: abl.util
+Version: 0.2
+Summary: A package that contains various helpful classes and functions used widely in the Ableton Python code base.
+Home-page: https://github.com/AbletonAG/abl.util
+Author: Diez B. Roggisch
+Author-email: diez.roggisch@ableton.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Utilities
+Provides-Extra: testing
