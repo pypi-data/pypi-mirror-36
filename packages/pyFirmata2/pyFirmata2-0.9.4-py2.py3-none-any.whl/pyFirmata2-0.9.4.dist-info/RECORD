@@ -1,0 +1,16 @@
+pyFirmata2-0.9.4.dist-info/DESCRIPTION.rst,sha256=wXTVj-a7bxloXh2C1K0EMluGbDLXdhaJL7IJlsX9uoY,5681
+pyFirmata2-0.9.4.dist-info/METADATA,sha256=LSVZlPHNWuX2gk8gu29qPGYel3m10g5lEjbH-svWeT8,6603
+pyFirmata2-0.9.4.dist-info/RECORD,,
+pyFirmata2-0.9.4.dist-info/WHEEL,sha256=kdsN-5OJAZIiHN-iO4Rhl82KyS0bDWf4uBwMbkNafr8,110
+pyFirmata2-0.9.4.dist-info/metadata.json,sha256=KwYOlENhtGWD-3HtiQsxHAmtugEwyQ4mhGgia2Y0zY0,1013
+pyFirmata2-0.9.4.dist-info/top_level.txt,sha256=9WBdImpMUnhE217VJtKqDQpnfhvg7ibdgYQQn65_CgY,11
+pyfirmata/__init__.py,sha256=kZXoeM-zwnv_8S6btbzmNDLivgqVnRiWDIv6S2Yd_Bw,1673
+pyfirmata/boards.py,sha256=vG7QKeuO296i-IhHP-KNor7YkKY66lBkv0_m8I9WsLo,960
+pyfirmata/mockup.py,sha256=hhpCd6OPKLDQ-Ryc0VTRb24t_dbQK9bPGa6J4Wd8nI4,4033
+pyfirmata/pyfirmata.py,sha256=Nx9Hll-W6m03KWJ2fEZWc7iHuWBkzFwWj_HMZK7aaRU,21061
+pyfirmata/util.py,sha256=3opSKU4kRUcaJ3zjtctucspTF-8Pyf1Nwdok1M9XQ2s,6538
+pyfirmata2/__init__.py,sha256=qX64aYs4Q_5k3hPkcwwVIpm6Alzjh0hfg947EDzljPA,1654
+pyfirmata2/boards.py,sha256=vG7QKeuO296i-IhHP-KNor7YkKY66lBkv0_m8I9WsLo,960
+pyfirmata2/mockup.py,sha256=szzoqnNHcrXBPUzwAiv9XlkkSnavq34ZJxWmgju2ueY,4040
+pyfirmata2/pyfirmata2.py,sha256=jZo8NdCi6VfsanoixoWFMxDLsU-MqM_Zy_m7A3JFlXA,21055
+pyfirmata2/util.py,sha256=7t8pCxmNjLcj9N6DIiyZPEMGULZu_h6s7EuNat2l1-k,6539
