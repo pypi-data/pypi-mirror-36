@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: lifetime
+Version: 0.2.dev0
+Summary: Measure my day
+Home-page: UNKNOWN
+Author: reehc
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: flask (>=1.0.2)
+Requires-Dist: requests (>=2.19.1)
+Requires-Dist: pynput (>=1.4)
+
+# Lifetime
+
+Measure daily inputs.
+
