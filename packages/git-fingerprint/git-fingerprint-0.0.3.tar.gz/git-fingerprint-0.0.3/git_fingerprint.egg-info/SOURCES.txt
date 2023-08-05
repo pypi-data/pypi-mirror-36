@@ -1,0 +1,13 @@
+README.md
+setup.py
+git_fingerprint/__init__.py
+git_fingerprint/__main__.py
+git_fingerprint/exceptions.py
+git_fingerprint/helpers.py
+git_fingerprint/scanner.py
+git_fingerprint.egg-info/PKG-INFO
+git_fingerprint.egg-info/SOURCES.txt
+git_fingerprint.egg-info/dependency_links.txt
+git_fingerprint.egg-info/entry_points.txt
+git_fingerprint.egg-info/requires.txt
+git_fingerprint.egg-info/top_level.txt
