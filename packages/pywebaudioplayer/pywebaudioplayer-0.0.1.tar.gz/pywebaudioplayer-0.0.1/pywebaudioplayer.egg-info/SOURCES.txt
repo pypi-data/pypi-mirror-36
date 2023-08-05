@@ -1,0 +1,13 @@
+README.md
+setup.py
+pywebaudioplayer/__init__.py
+pywebaudioplayer.egg-info/PKG-INFO
+pywebaudioplayer.egg-info/SOURCES.txt
+pywebaudioplayer.egg-info/dependency_links.txt
+pywebaudioplayer.egg-info/requires.txt
+pywebaudioplayer.egg-info/top_level.txt
+pywebaudioplayer/trackswitch.js/css/trackswitch.css
+pywebaudioplayer/trackswitch.js/js/trackswitch.js
+pywebaudioplayer/waveform-playlist/dist/waveform-playlist/css/main.css
+pywebaudioplayer/waveform-playlist/dist/waveform-playlist/js/waveform-playlist.var.js
+pywebaudioplayer/wavesurfer.js/src/wavesurfer.js
