@@ -1,0 +1,6 @@
+colorlog
+django-object-actions
+django<2.1,>=1.9
+psycopg2>=2.5
+pygments
+schedule
