@@ -1,0 +1,13 @@
+Metadata-Version: 1.0
+Name: loxone_websocket_client
+Version: 0.3
+Summary: Loxone Websocket Client Library
+Home-page: https://github.com/escalate/python-loxone-ws-client
+Author: Felix Börner
+Author-email: github@felix-boerner.de
+License: MIT
+Description: # python-loxone-ws-client
+        
+        Python Client for Loxone WebSocket API
+        
+Platform: UNKNOWN
