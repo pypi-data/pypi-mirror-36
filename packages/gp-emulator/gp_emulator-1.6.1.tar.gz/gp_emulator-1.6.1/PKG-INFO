@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: gp_emulator
+Version: 1.6.1
+Summary: A Python GaussianProcess emulator software package
+Home-page: http://github.com/jgomezdans/gp_emulator
+Author: J Gomez-Dans
+Author-email: j.gomez-dans@ucl.ac.uk
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: Environment :: Console
