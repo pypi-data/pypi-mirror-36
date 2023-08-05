@@ -1,0 +1,14 @@
+CONTRIBUTORS.txt
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+empirical_distribution/__init__.py
+empirical_distribution/version.py
+empirical_distribution.egg-info/PKG-INFO
+empirical_distribution.egg-info/SOURCES.txt
+empirical_distribution.egg-info/dependency_links.txt
+empirical_distribution.egg-info/not-zip-safe
+empirical_distribution.egg-info/requires.txt
+empirical_distribution.egg-info/top_level.txt
