@@ -1,0 +1,10 @@
+README.md
+setup.py
+ruword_frequency/__init__.py
+ruword_frequency/frequency.py
+ruword_frequency/source_reader.py
+ruword_frequency.egg-info/PKG-INFO
+ruword_frequency.egg-info/SOURCES.txt
+ruword_frequency.egg-info/dependency_links.txt
+ruword_frequency.egg-info/requires.txt
+ruword_frequency.egg-info/top_level.txt
