@@ -1,0 +1,10 @@
+setup.py
+segment_sync/__init__.py
+segment_sync/main.py
+segment_sync/mainwindow.py
+segment_sync.egg-info/PKG-INFO
+segment_sync.egg-info/SOURCES.txt
+segment_sync.egg-info/dependency_links.txt
+segment_sync.egg-info/entry_points.txt
+segment_sync.egg-info/requires.txt
+segment_sync.egg-info/top_level.txt
