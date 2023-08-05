@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} | multidocs</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+
+<div class="container">
+    {% if sidebar_html is defined %}
+        {{ sidebar_html | safe }}
+    {% else %}
+        {% include "sidebar.html.j2" %}
+    {% endif %}
+
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+</div>
+
+<script type="text/javascript" src="/static/collapsible-lists.js"></script>
+
+{% block js_body %}{% endblock %}
+
+</body>
+</html>
