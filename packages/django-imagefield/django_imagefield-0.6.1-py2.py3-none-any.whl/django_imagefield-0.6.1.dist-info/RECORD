@@ -1,0 +1,15 @@
+django_imagefield-0.6.1.dist-info/DESCRIPTION.rst,sha256=rv9bIfSv2NITp8WRdMG0kvQ4D2lZpdP8ksgzrnfaK0I,6890
+django_imagefield-0.6.1.dist-info/METADATA,sha256=kXGRN2oNAZEdycZXtg33qHPyiGIsRfd1hUUduTlIqQU,7760
+django_imagefield-0.6.1.dist-info/RECORD,,
+django_imagefield-0.6.1.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+django_imagefield-0.6.1.dist-info/metadata.json,sha256=7uQcShqt3_0VHH-MCUdnWZtV8ETHfqIRu0PVRzbgTqw,1024
+django_imagefield-0.6.1.dist-info/top_level.txt,sha256=pYlp1kLaJjVwQBnFe09OpUOmgqsBo5KwgeLmSTIpsLU,11
+imagefield/__init__.py,sha256=IU9X3TrBrCitguokT3-TII89o5DeQVt7J74Nf4pJIf8,62
+imagefield/fields.py,sha256=popV9VWzS7N3TQ-8D5HaKqVD4Pbwl8OCR3S5VGfldZY,9717
+imagefield/processing.py,sha256=t-p21BrDKXO1OXx1DqctdQbsM-mzo2jyMGNOn3GbVAM,5423
+imagefield/widgets.py,sha256=wpiG6Pa5dsPyP5PqHpiQn328IYhrYW0tjIICTZM23zo,2571
+imagefield/management/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+imagefield/management/commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+imagefield/management/commands/process_imagefields.py,sha256=xdGxSNB11rFS4ZUvBus31c9nrW0R92a9eVNYdPEY0ro,3777
+imagefield/static/imagefield/ppoi.css,sha256=qOy3ijSxTyPl2iGnpMbdeKiRVqQwgglGs7ikld5QAuw,515
+imagefield/static/imagefield/ppoi.js,sha256=orQ6RBm5gmF-O9KIVCC2f-G2_NOboBW8ROL3dW_Mhno,1835
