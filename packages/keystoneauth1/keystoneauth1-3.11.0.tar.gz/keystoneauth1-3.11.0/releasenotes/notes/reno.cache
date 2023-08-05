@@ -1,0 +1,39 @@
+---
+file-contents:
+  releasenotes/notes/bug-1733052-1b4af3b3fe1b05bb.yaml:
+    fixes: ['[`bug 1733052 <https://bugs.launchpad.net/keystoneauth/+bug/1733052>`_]
+        Now the version discovery mechanism only fetches the version info from server
+        side if the versioned url has been overrode. So that the request url''s path
+        won''t be changed completely.
+
+        ']
+  releasenotes/notes/filter-versions-service-type-763af68092344b7a.yaml:
+    features: ['Added ability to filter the results of ``get_all_version_data`` by
+
+        service-type.
+
+        ', 'Added ``get_all_version_data`` to ``adapter.Adapter`` that uses the
+
+        adapter''s ``service_type`` to filter the version data fetched.
+
+        ']
+  releasenotes/notes/ironic-microversions-a69bf92ab21f0cf5.yaml:
+    fixes: ['Fixed support for detecting microversion ranges on older Ironic
+
+        installations.
+
+        ']
+notes:
+- files:
+  - - releasenotes/notes/filter-versions-service-type-763af68092344b7a.yaml
+    - !!binary |
+      ODNiZTc0NTNmYTBjZDM2YjUwNGI5ZWMyNjhiZDA5NTI1Mzc2Yjk0NA==
+  - - releasenotes/notes/ironic-microversions-a69bf92ab21f0cf5.yaml
+    - !!binary |
+      YzQwZWIyOTUxZDVjZjI0NTg5ZWEzNTdhMTFhYTI1Mjk3ODYzNjAyMA==
+  version: 3.11.0
+- files:
+  - - releasenotes/notes/bug-1733052-1b4af3b3fe1b05bb.yaml
+    - !!binary |
+      MzIzZjRlNGJjNDcxMGQ0MmU0OTNlYjU2ZTQwYmExMzlhODRkNjdiMw==
+  version: 3.10.0
