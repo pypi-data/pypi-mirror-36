@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: wechat-exporter
+Version: 0.1.1
+Summary: Wechat data export tool
+Home-page: https://github.com/jieyaoke/wechat-exporter
+Author: jieyaoke
+Author-email: jieyao.ke@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: any
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
