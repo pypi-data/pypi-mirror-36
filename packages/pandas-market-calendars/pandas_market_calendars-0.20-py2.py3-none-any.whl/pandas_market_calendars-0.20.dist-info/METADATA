@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: pandas-market-calendars
+Version: 0.20
+Summary: Market and exchange trading calendars for pandas
+Home-page: https://github.com/rsheftel/pandas_market_calendars
+Author: Ryan Sheftel
+Author-email: rsheftel@alumni.upenn.edu
+License: MIT
+Requires-Dist: pandas (>=0.18)
+Requires-Dist: six
+Requires-Dist: pytz
+
+pandas_market_calendars
+
+
