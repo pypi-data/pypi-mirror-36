@@ -1,0 +1,20 @@
+{% import 'playneta' as playneta with context %}
+
+{{ playneta.file('Entrypoint.php', info.title|classname + 'Entrypoint.php') }}
+{{ playneta.file('CoreInterface.php', info.title|classname + 'CoreInterface.php') }}
+{{ playneta.file('RequestHandler.php', 'RequestHandler.php') }}
+
+{% for resource in paths|resources %}
+    {{ playneta.file('ResourceInterface.php',
+                     '' + info.title|classname + '/' + resource|classname + 'ResourceInterface.php', resource) }}
+
+    {{ playneta.file('ResourceWrapper.php',
+                     info.title|classname + '/' + resource|classname + 'ResourceWrapper.php', resource) }}
+{% endfor %}
+
+{% if definitions %}
+    {% for class, data in definitions.iteritems() %}
+        {{ playneta.file('Definition/Object.php',
+                         info.title|classname + '/Definition/' + class + 'Definition.php', class) }}
+    {% endfor %}
+{% endif %}

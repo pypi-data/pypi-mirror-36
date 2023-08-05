@@ -1,0 +1,93 @@
+{%- import 'playneta.js' as playneta with context -%}
+
+namespace {{ meta.namespace }} {
+
+    {%- if model -%}
+    {%- for class, data in model|dictsort %}
+
+  export interface {{ class|classname }} {
+      {%- for name, schema in data.properties|dictsort %}
+    readonly {{ name|methodname }}?: {{ playneta.type(schema) }};
+      {%- endfor %}
+  }
+    {%- endfor -%}
+    {%- endif -%}
+
+    {%- for resource in paths|resources|sort %}
+
+  export interface I{{ resource|classname }}Service {
+      {%- for method, data in paths|methods(resource)|sort %}
+      {{ method|methodname }}(
+              {%- if data.input is defined -%}
+          input: {{ playneta.type(data.input) }}, req: IncomingMessage
+              {%- else -%}
+          input: any, req: IncomingMessage
+              {%- endif -%}
+      ): Promise<
+              {%- if data.output is defined -%}
+              {{ playneta.type(data.output) }}
+              {%- else -%}
+          void
+              {%- endif -%}
+          >;
+      {%- endfor %}
+  }
+    {%- endfor %}
+
+  export type Router = (path: string, args: any, req: IncomingMessage) => Promise<any>;
+  export type Kernel = {
+      {%- for resource in paths|resources|sort %}
+      {{ resource|methodname }}: I{{ resource|classname }}Service,
+      {%- endfor %}
+  };
+
+  function createRouter(kernel: Kernel): Router {
+    return (path, args, req) => {
+      {% for path in paths -%}
+      if (path === '{{ path }}') {
+        return kernel.{{ path|path_resource|methodname }}.{{ path|path_method }}(args, req);
+      }
+
+      {% endfor -%}
+
+      return Promise.reject(`Unknown path ${path}.`);
+    };
+  }
+
+  export function serve(port: Port, kernel: Kernel): Promise<void> {
+    const router: Router = createRouter(kernel);
+
+    function route(req: IncomingMessage, res: ServerResponse): void {
+      const uri: url.Url = url.parse(req.url || '', true);
+
+      function reject(reason: any): void {
+        if (req.method === 'OPTIONS') {
+          res.writeHead(204, OPTIONS_HEADERS);
+          res.end();
+        } else {
+          res.writeHead(500);
+          res.end(String(reason));
+        }
+      }
+
+      function complete(result: any): void {
+        res.writeHead(200, JSON_RESPONSE_HEADERS);
+
+        json.encode(result)
+          .iterate((json) => res.end(json))
+          .orElse(() => res.end());
+      }
+
+      json.read(req)
+        .then(base.id, base.producer(uri.query || {}))
+        .then((arg) => router(uri.pathname || '', arg, req))
+        .then(complete, reject);
+    }
+
+    return new Promise<void>((complete, cancel) => {
+      http.createServer(route)
+        .addListener('error', cancel)
+        .listen(port, complete);
+    });
+  }
+}

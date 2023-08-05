@@ -1,0 +1,5 @@
+{% import 'playneta' as playneta with context %}
+
+{% set name = info.title|classname|lower %}
+
+{{ playneta.file('package.ts', name + '.ts') }}

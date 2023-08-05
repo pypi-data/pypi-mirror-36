@@ -1,0 +1,15 @@
+<?php namespace {{ info.title|namespace('php')|join('\\') }};
+
+{% for resource in paths|resources|sort -%}
+use {{ info.title|namespace('php', True)|join('\\') }}\{{ resource|classname }}ResourceInterface;
+{% endfor %}
+
+interface {{ info.title|classname }}CoreInterface
+{
+{% for resource in paths|resources|sort %}
+    /**
+     * @return {{ resource|classname }}ResourceInterface
+     */
+    public function get{{ resource|classname }}Resource(): {{ resource|classname }}ResourceInterface;
+{% endfor %}
+}
