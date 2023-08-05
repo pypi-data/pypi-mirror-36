@@ -1,0 +1,17 @@
+budou/__init__.py,sha256=36e6CcHPNM5eguWjE9a-Ql9PopENrPcJU0wbRPcL0vE,926
+budou/__version__.py,sha256=cNmssmu2hY6QwW_nYEG5t3aTvHhUyiFMlIKcwWsRJbo,62
+budou/budou.py,sha256=SNp1fUD0yq3X_1WkYnRl6UQ9jse-m2nNNAKYvjhzaYo,3287
+budou/cachefactory.py,sha256=u6GafIdTJvhumj_LfHFOvbC9D0gcV9IUXksBVtk6MKY,3926
+budou/chunk.py,sha256=XLkBkwwgMOUOHXEfcnE9Tq3sXcZYiwiJm77vJiExM0E,9418
+budou/mecabsegmenter.py,sha256=VQ-fIc5DL2dVsADboWXsaGlo2F23KXzfM7j8WErnCKU,3636
+budou/nlapisegmenter.py,sha256=qkmbysJVbPHRrOkJd1F0o5mHkDlvyowoyPOkNwDnCjQ,9707
+budou/parser.py,sha256=f9JmN0SOZG4n1OsRx9xeCSDl6oqBq0UzKUtzGIShi24,5249
+budou/segmenter.py,sha256=1DMsxY6ziqG59t2bTXFqqqMx5vqZF3ij9q-0qGZ0L_s,1162
+budou/tinysegmentersegmenter.py,sha256=3fbOrrd3IZR-0BrN2uJmXMQxJ6zLheyuN0UDlYCwmUk,3521
+budou-0.9.3.dist-info/DESCRIPTION.rst,sha256=ZhJdhtcHcJIdly_KObwJzgw_beDEs3NuJ_QBGexbAKU,13463
+budou-0.9.3.dist-info/METADATA,sha256=qkCqgb0S2B3JlLeUFDcJJ3_JcEucMsdcDWY84mG3OcI,14238
+budou-0.9.3.dist-info/RECORD,,
+budou-0.9.3.dist-info/WHEEL,sha256=kdsN-5OJAZIiHN-iO4Rhl82KyS0bDWf4uBwMbkNafr8,110
+budou-0.9.3.dist-info/entry_points.txt,sha256=zkir8C_EEqeQxweLSBoA_BMnjMY5A3n4fk6RIe1uUFY,44
+budou-0.9.3.dist-info/metadata.json,sha256=g4RgkvN0FAeNtQw0KQA5ZFUqYA6Tq3gM2lqOnHWSkU4,1042
+budou-0.9.3.dist-info/top_level.txt,sha256=B6uYekL-KDA4h2aSiqiFbGeYXgmLDJ5nif7IazatjS8,6
