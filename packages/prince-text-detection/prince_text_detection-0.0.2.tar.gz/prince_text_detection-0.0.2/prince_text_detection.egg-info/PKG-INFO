@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: prince-text-detection
+Version: 0.0.2
+Summary: A Python library for detecting text on images
+Home-page: https://github.com/TarzanWonder
+Author: Prince Bhatia
+Author-email: princebhatia09@example.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: text_detector
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
