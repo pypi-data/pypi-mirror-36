@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<registry>
+
+  <!-- layout widget -->
+  <records prefix="plone.resources/faceted-widgets-layout-view"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+    <value key="css">
+      <element>++resource++collective.eeafaceted.layoutwidget.view.css</element>
+    </value>
+    <value key="js">++resource++collective.eeafaceted.layoutwidget.view.js</value>
+  </records>
+
+  <records prefix="plone.resources/faceted-widgets-layout-edit"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+    <value key="css">
+      <element>++resource++collective.eeafaceted.layoutwidget.edit.css</element>
+    </value>
+    <value key="js">++resource++collective.eeafaceted.layoutwidget.edit.js</value>
+  </records>
+
+  <records prefix="plone.bundles/faceted-view"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources" purge="false">
+      <element>faceted-widgets-layout-view</element>
+    </value>
+  </records>
+
+  <records prefix="plone.bundles/faceted-edit"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources" purge="false">
+      <element>faceted-widgets-layout-edit</element>
+    </value>
+  </records>
+
+</registry>

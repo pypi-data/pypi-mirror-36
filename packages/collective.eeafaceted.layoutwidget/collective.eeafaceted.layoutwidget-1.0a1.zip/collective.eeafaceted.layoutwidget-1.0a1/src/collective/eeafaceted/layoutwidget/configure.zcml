@@ -1,0 +1,106 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:faceted="http://namespaces.zope.org/faceted"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="collective.eeafaceted.layoutwidget">
+
+  <i18n:registerTranslations directory="locales" />
+
+  <include package="eea.facetednavigation" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.eeafaceted.layoutwidget"
+      directory="profiles/default"
+      description="Installs the collective.eeafaceted.layoutwidget add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.post_install"
+      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="collective.eeafaceted.layoutwidget (uninstall)"
+      directory="profiles/uninstall"
+      description="Uninstalls the collective.eeafaceted.layoutwidget add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.uninstall"
+      />
+
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="collective.eeafaceted.layoutwidget-hiddenprofiles"
+      />
+
+  <utility
+      name="collective.eeafaceted.layoutwidget.Layouts"
+      provides="zope.schema.interfaces.IVocabularyFactory"
+      factory=".vocabulary.FacetedLayoutVocabulary"
+      />
+
+  <!-- layout widget -->
+  <faceted:widget
+      factory=".layout.Widget"
+      schema=".layout.ILayoutSchema"
+      />
+
+  <browser:resource
+      name="collective.eeafaceted.layoutwidget.view.js"
+      file="./resources/layout-view.js"
+      />
+
+  <browser:resource
+      name="collective.eeafaceted.layoutwidget.edit.js"
+      file="./resources/layout-edit.js"
+      />
+
+  <browser:resource
+      name="collective.eeafaceted.layoutwidget.view.css"
+      file="./resources/layout-view.css"
+      />
+
+  <browser:resource
+      name="collective.eeafaceted.layoutwidget.edit.css"
+      file="./resources/layout-edit.css"
+      />
+
+  <!-- Faceted adaptations -->
+
+  <adapter
+      for=".interfaces.IMultiLayoutFacetedNavigable"
+      provides="eea.facetednavigation.interfaces.ICriteria"
+      factory=".faceted.CriteriaHandler"
+      />
+
+  <adapter
+      factory=".faceted.FacetedMultipleLayout"
+      for=".interfaces.IMultiLayoutPossibleFacetedNavigable"
+      />
+
+  <!-- Make faceted navigable -->
+  <class class="plone.dexterity.content.Container"
+    zcml:condition="installed plone.app.dexterity">
+    <implements interface="collective.eeafaceted.layoutwidget.interfaces.IMultiLayoutPossibleFacetedNavigable" />
+  </class>
+
+  <class class="plone.app.collection.collection.Collection"
+    zcml:condition="installed plone.app.collection">
+    <implements interface="collective.eeafaceted.layoutwidget.interfaces.IMultiLayoutPossibleFacetedNavigable" />
+  </class>
+
+  <subscriber
+    for="eea.facetednavigation.interfaces.IPossibleFacetedNavigable
+         eea.facetednavigation.interfaces.IFacetedEnabledEvent"
+    handler=".events.faceted_enabled"
+    />
+
+  <subscriber
+    for="eea.facetednavigation.interfaces.IPossibleFacetedNavigable
+         eea.facetednavigation.interfaces.IFacetedDisabledEvent"
+    handler=".events.faceted_disabled"
+    />
+
+</configure>
