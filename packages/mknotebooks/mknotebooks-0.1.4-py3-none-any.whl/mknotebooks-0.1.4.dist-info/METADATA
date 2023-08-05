@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: mknotebooks
+Version: 0.1.4
+Summary: Plugin for mkdocs to generate markdown documents from jupyter notebooks.
+Home-page: https://github.com/greenape/mknotebooks
+Author: Jonathan Gray
+Author-email: jonathan.gray@nanosheep.net
+License: MIT
+Keywords: mkdocs documentation markdown
+Platform: MacOS X
+Platform: Linux
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: Linux
+Requires-Dist: nbconvert
+Requires-Dist: nbconvert-utils
+Requires-Dist: mkdocs
+Requires-Dist: jupyter-client
+
+UNKNOWN
+
+
