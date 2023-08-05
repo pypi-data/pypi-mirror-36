@@ -1,0 +1,15 @@
+*.pyc
+*.pyc
+*.swo
+*.swp
+*.swn
+*.gpg
+*~
+tmp
+pip-log.txt
+build
+dist
+*.egg-info
+.eggs
+.tox
+__pycache__
