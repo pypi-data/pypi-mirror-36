@@ -1,0 +1,12 @@
+Metadata-Version: 1.0
+Name: tronapi
+Version: 1.0.2
+Summary: A Python API for interacting with Tron (TRX)
+Home-page: https://github.com/iexbase/tron-api-python
+Author: Shamsudin Serderov
+Author-email: steein.shamsudin@gmail.com
+License: MIT
+Description: # tron-api-python
+        
+Keywords: tron-api,tron-api-python,iexbase
+Platform: UNKNOWN
