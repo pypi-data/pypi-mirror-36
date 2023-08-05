@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+dockerfile_compose/__init__.py
+dockerfile_compose/__version__.py
+dockerfile_compose/cli.py
+dockerfile_compose/dockerfile_compose.py
+dockerfile_compose.egg-info/PKG-INFO
+dockerfile_compose.egg-info/SOURCES.txt
+dockerfile_compose.egg-info/dependency_links.txt
+dockerfile_compose.egg-info/entry_points.txt
+dockerfile_compose.egg-info/top_level.txt
