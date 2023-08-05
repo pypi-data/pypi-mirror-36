@@ -1,0 +1,10 @@
+setup.py
+uperations/__init__.py
+uperations/documentable.py
+uperations/event.py
+uperations/library.py
+uperations/operation.py
+uperations_kernel.egg-info/PKG-INFO
+uperations_kernel.egg-info/SOURCES.txt
+uperations_kernel.egg-info/dependency_links.txt
+uperations_kernel.egg-info/top_level.txt
