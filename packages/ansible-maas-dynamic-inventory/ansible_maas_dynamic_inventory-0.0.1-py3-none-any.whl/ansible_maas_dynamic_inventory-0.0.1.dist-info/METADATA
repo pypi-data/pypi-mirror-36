@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: ansible-maas-dynamic-inventory
+Version: 0.0.1
+Summary: dynamic inventory from maas
+Home-page: https://github.com/jsaguiar/ansible-maas-dynamic-inventories
+Author: jsaguiar
+Author-email: jsaguiar@me.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+
+UNKNOWN
+
+
