@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: muchbettermoments
+Version: 1.0.0
+Summary: A 2d version of https://github.com/richteague/bettermoments
+Home-page: https://github.com/mirca/muchbettermoments
+Author: MIRCA & DFM
+Author-email: UNKNOWN
+License: MIT
+Description-Content-Type: text/markdown
+Description: # muchbettermoments
+        A 2d version of https://github.com/richteague/bettermoments
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
