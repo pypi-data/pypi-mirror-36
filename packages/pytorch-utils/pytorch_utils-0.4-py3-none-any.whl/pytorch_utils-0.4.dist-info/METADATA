@@ -1,0 +1,18 @@
+Metadata-Version: 2.0
+Name: pytorch-utils
+Version: 0.4
+Summary: Utilities for training and building models in pytorch
+Home-page: https://github.com/rajatvd/PytorchUtils
+Author: Rajat Vadiraj Dwaraknath
+Author-email: rajatvd@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: ipython
+Requires-Dist: sacred
+
+
+A bunch of utilities for making training models easier. Also contains useful
+modules to make building models easier. Can be used in a jupyter notebook. Also
+contains a module which integrates with the package `sacred`.
+
+
