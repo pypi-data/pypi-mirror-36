@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: simplemathfun
+Version: 0.0.3
+Summary: A small math package for tests
+Home-page: https://github.com/sOBrien/simplemathfun
+Author: sOBrien
+Author-email: sobrien@elliottmgmt.com
+License: UNKNOWN
+Description: Just a readme for a fake package test
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
