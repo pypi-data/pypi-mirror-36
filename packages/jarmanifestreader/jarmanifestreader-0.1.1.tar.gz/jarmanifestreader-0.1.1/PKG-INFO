@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: jarmanifestreader
+Version: 0.1.1
+Summary: Returns the contents of the manifest file of a given jar file in the dictionary format
+Home-page: https://github.com/badari412/jarmanifestreader
+Author: BADARI NARAYANA
+Author-email: badari412@gmail.com
+License: MIT
+Download-URL: https://github.com/badari412/jarmanifestreader/archive/v0.1.1.tar.gz
+Description: UNKNOWN
+Keywords: PYTHON,JAR,MANIFEST,MANIFESTREADER,READER
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
