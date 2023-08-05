@@ -1,0 +1,9 @@
+README.md
+setup.py
+bbrest/__init__.py
+bbrest/bbrest.py
+bbrest.egg-info/PKG-INFO
+bbrest.egg-info/SOURCES.txt
+bbrest.egg-info/dependency_links.txt
+bbrest.egg-info/requires.txt
+bbrest.egg-info/top_level.txt
