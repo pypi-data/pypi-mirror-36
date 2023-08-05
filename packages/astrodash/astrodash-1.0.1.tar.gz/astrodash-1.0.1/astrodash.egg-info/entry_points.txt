@@ -1,0 +1,5 @@
+[console_scripts]
+astrodash = dash:run_gui
+dash = dash:run_gui
+sample = dash:main
+
