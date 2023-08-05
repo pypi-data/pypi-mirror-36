@@ -1,0 +1,18 @@
+Metadata-Version: 1.2
+Name: sysmonitor
+Version: 1.0
+Summary: System Monitor Daemon
+Home-page: https://git.hugorodrigues.net/hugorodrigues/sysmonitor
+Author: Hugo Rodrigues
+Author-email: me@hugorodrigues.net
+License: BSD-3-Clause
+Description: Daemon used to gather agents information
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: No Input/Output (Daemon)
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Operating System :: Unix
+Classifier: Topic :: System :: Monitoring
+Requires-Python: >=3.5
