@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: leaderboarddata
+Version: 0.0.1
+Summary: Back end service for SC2 ladder ranking leaderboard
+Home-page: https://github.com/frugs/allin-data
+Author: Hugo Wainwright
+Author-email: wainwrighthugo@gmail.com
+License: UNKNOWN
+Keywords: sc2,MMR
+Platform: UNKNOWN
+Requires-Dist: sc2gamedata
+Requires-Dist: retryfallback
+Requires-Dist: pyrebase
+Requires-Dist: flask
+Requires-Dist: google-cloud-datastore
+
+UNKNOWN
+
+
