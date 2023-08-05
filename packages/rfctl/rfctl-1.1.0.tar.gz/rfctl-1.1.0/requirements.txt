@@ -1,0 +1,4 @@
+# required packages one package per line
+refunc>=1.0.29
+Click
+pyyaml
