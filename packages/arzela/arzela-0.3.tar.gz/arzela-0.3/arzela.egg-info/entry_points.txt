@@ -1,0 +1,3 @@
+[console_scripts]
+arzela = arzela:run_main
+
