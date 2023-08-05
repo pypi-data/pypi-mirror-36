@@ -1,0 +1,9 @@
+DarkMute-0.1.7.dist-info/METADATA,sha256=NY0qs6-_wDzrseBKcvPRDltS14x0tVBt8joLiPR3PHY,1384
+DarkMute-0.1.7.dist-info/RECORD,,
+DarkMute-0.1.7.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+DarkMute-0.1.7.dist-info/entry_points.txt,sha256=uWS7o3ApkvIs0rb13DC6mvOieEItqb3uiZ0gQ9gflgI,49
+DarkMute-0.1.7.dist-info/top_level.txt,sha256=gdRzwzjVGDLQytQdL4RtlrEdBAmci9MxTh-_XeTPwrw,9
+darkmute/__init__.py,sha256=WMqBi7pIHw9Sm-b3Pg0F-FRw4cfHAOJ_Rl2u7fFTK1Y,33
+darkmute/__main__.py,sha256=Q7wUsCrpg_d_1lxkqUwyJh0EuL0OIRYZsV0adMQ8qaQ,77
+darkmute/dark_mute.py,sha256=72APVCC39AEPfmArmU4EZR25mOkS9IAS_66H7Zx5NpA,1530
+darkmute/snap.py,sha256=HZ7Kmsq8tznm81WyttwMUSvNRPLQuNoG441umHoMlU0,2353
