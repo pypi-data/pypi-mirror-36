@@ -1,0 +1,16 @@
+requests
+six
+
+[cli]
+docopt
+pygments
+prompt_toolkit
+tabulate
+
+[dev]
+nose
+pipreqs
+twine
+
+[sqlalchemy]
+sqlalchemy

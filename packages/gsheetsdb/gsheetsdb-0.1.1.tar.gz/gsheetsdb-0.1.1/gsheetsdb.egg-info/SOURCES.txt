@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+gsheetsdb/__init__.py
+gsheetsdb/__version__.py
+gsheetsdb/console.py
+gsheetsdb/db.py
+gsheetsdb/exceptions.py
+gsheetsdb/sqla.py
+gsheetsdb/translator.py
+gsheetsdb.egg-info/PKG-INFO
+gsheetsdb.egg-info/SOURCES.txt
+gsheetsdb.egg-info/dependency_links.txt
+gsheetsdb.egg-info/entry_points.txt
+gsheetsdb.egg-info/requires.txt
+gsheetsdb.egg-info/top_level.txt
