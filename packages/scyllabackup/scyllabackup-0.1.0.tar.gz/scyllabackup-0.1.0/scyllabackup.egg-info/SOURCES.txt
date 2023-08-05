@@ -1,0 +1,13 @@
+README.md
+setup.py
+scyllabackup/__init__.py
+scyllabackup/cli.py
+scyllabackup/db.py
+scyllabackup/migrate.py
+scyllabackup/snapshot.py
+scyllabackup.egg-info/PKG-INFO
+scyllabackup.egg-info/SOURCES.txt
+scyllabackup.egg-info/dependency_links.txt
+scyllabackup.egg-info/entry_points.txt
+scyllabackup.egg-info/requires.txt
+scyllabackup.egg-info/top_level.txt
