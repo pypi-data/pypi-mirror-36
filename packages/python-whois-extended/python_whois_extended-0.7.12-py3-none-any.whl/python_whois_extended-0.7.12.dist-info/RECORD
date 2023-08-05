@@ -1,0 +1,9 @@
+python_whois_extended-0.7.12.dist-info/METADATA,sha256=azMsqqLp0XlpvPf3ZepSL-Qe1Rb2h9IZLw4vo8ag9R4,2410
+python_whois_extended-0.7.12.dist-info/RECORD,,
+python_whois_extended-0.7.12.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+python_whois_extended-0.7.12.dist-info/top_level.txt,sha256=yCaPM-2Osc56mYnRJ41S1XWNb9943Z4lqZ0lc0pAX3k,6
+whois/_1_query.py,sha256=E77qy2n0mULhbv0MddzTrXdiXUw4IDyGDSGxV7ddylw,1593
+whois/_2_parse.py,sha256=fIXBjokA6dvgwcbep9lwUUeaZzlOmUywKYStgllXmHI,1373
+whois/_3_adjust.py,sha256=PEG0wXn-EQLyzG1FY5_m4mRS3GN10BjOU8Xxkrwmk1s,3656
+whois/__init__.py,sha256=s0zJkBuIphzzvl2BoFWr9oIqw5w6olCFRSF5QcKzU6I,1417
+whois/tld_regexpr.py,sha256=9XZeg909kX8WdZz7fmVUA8m-T9JZomxX_mZvVEnFrRw,12352
