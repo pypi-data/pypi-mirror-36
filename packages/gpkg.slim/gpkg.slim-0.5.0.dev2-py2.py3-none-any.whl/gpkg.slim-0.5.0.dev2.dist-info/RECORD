@@ -1,0 +1,15 @@
+gpkg.slim-0.5.0.dev2-py2.7-nspkg.pth,sha256=3xb90dBivDFXdtzoeCL9KXHrd-f6F3608fOH6f5Ond0,529
+gpkg/slim/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+gpkg/slim/_custom_dataset.py,sha256=XS6QFEbec6L9jDIRM-gCKe9AlSzu9N2KgWTdLzSNaus,3005
+gpkg/slim/_util.py,sha256=JMSV2w4sHug7-flRcMnlUz3PuXaL68xBUQ6q-RQr53Y,2966
+gpkg/slim/guild.yml,sha256=COJ8f5Sp4V7TDWaz_JpwAVq6ibIpdU43m2H3OsjmthU,12750
+gpkg/slim/slim_eval.py,sha256=IR0EOf_AZEv2wEeMgkI5ZfchBYrJratnhBtKoVpa8GI,2011
+gpkg/slim/slim_export_and_freeze.py,sha256=zd0FiG0rJ6EG4WSnXdpz91akrHFn4258xFCokjMnhUQ,3390
+gpkg/slim/slim_train.py,sha256=810lsFTOu9F6eUykGe5eIlTWmz60lM10dM88XWw4S_U,1509
+gpkg/slim/tfrecord_prepare.py,sha256=30JIWPB3u1lTIBInWep2rOoT2lcF-zS9ih50mE2MssI,9960
+gpkg.slim-0.5.0.dev2.dist-info/METADATA,sha256=VVOFYiUIvES_hFOkmsJw5LPTqo4ToDllHV8U6sy8rBM,260
+gpkg.slim-0.5.0.dev2.dist-info/PACKAGE,sha256=Cy-mEAVTFf5zeKigwVm1dLRaIW57x_XEa5DE6N79iL4,215
+gpkg.slim-0.5.0.dev2.dist-info/RECORD,,
+gpkg.slim-0.5.0.dev2.dist-info/WHEEL,sha256=J3CsTk7Mf2JNUyhImI-mjX-fmI4oDjyiXgWT4qgZiCE,110
+gpkg.slim-0.5.0.dev2.dist-info/namespace_packages.txt,sha256=VrTSvcvxGXQd3LAVUBekNvO1L5FXEzrCdpdy7XtwqRc,5
+gpkg.slim-0.5.0.dev2.dist-info/top_level.txt,sha256=VrTSvcvxGXQd3LAVUBekNvO1L5FXEzrCdpdy7XtwqRc,5
