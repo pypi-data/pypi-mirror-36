@@ -1,0 +1,12 @@
+sudo: false
+
+language: python
+
+python:
+  - 3.5
+
+install:
+  - pip install pytest coverage pytest-cov
+
+script:
+  - py.test --cov=pyrpm.spec tests
