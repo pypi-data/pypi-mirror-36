@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: ovitoclient
+Version: 0.3.0
+Summary: Ovito Client is a command-line utility with some basic rendering capabilities for trajectory files using Ovito.
+Home-page: https://github.com/benlindsay/ovitoclient
+Author: Ben Lindsay
+Author-email: benjlindsay@gmail.com
+License: MIT license
+Keywords: ovitoclient
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+
+============
+Ovito Client
+============
+
+
+.. image:: https://img.shields.io/pypi/v/ovitoclient.svg
+        :target: https://pypi.python.org/pypi/ovitoclient
+
+.. image:: https://img.shields.io/travis/benlindsay/ovitoclient.svg
+        :target: https://travis-ci.org/benlindsay/ovitoclient
+
+.. image:: https://readthedocs.org/projects/ovitoclient/badge/?version=latest
+        :target: https://ovitoclient.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+
+.. image:: https://pyup.io/repos/github/benlindsay/ovitoclient/shield.svg
+     :target: https://pyup.io/repos/github/benlindsay/ovitoclient/
+     :alt: Updates
+
+
+
+Ovito Client is a command-line utility with some basic rendering capabilities for trajectory files using Ovito.
+
+
+* Free software: MIT license
+* Documentation: https://ovitoclient.readthedocs.io.
+
+
+Features
+--------
+
+* TODO
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+
+0.1.0 (2018-09-10)
+------------------
+
+* First release on PyPI.
+
+
