@@ -1,0 +1,125 @@
+Metadata-Version: 2.1
+Name: torch-salad
+Version: 0.1.4a0
+Summary: Semi-supervised Adaptive Learning Across Domains
+Home-page: http://salad.domainadaptation.org
+Author: Steffen Schneider
+Author-email: steffen.schneider@tum.de
+License: UNKNOWN
+Description: # 🥗 salad 🥗 (dummy package)
+        ## **S**emi-supervised **A**daptive **L**earning **A**cross **D**omains
+        
+        ![](img/domainshift.png)
+        
+        `salad` is a library to easily setup experiments using the current state-of-the art techniques in domain adaptation.
+        It features several of recent approaches, with the goal of being able to run fair comparisons between algorithms and transfer them to real-world use cases.
+        The toolbox is under active development and will extended when new approaches are published.
+        
+        Currently implements the following techniques (in `salad.solver.da`)
+        
+        - VADA
+            (`VADASolver`),
+            [arxiv:1802.08735](https://arxiv.org/abs/1802.08735)
+        - DIRT-T
+            (`DIRTTSolver`),
+            [arxiv:1802.08735](https://arxiv.org/abs/1802.08735)
+        - Self-Ensembling for Visual Domain Adaptation
+            (`SelfEnsemblingSolver`)
+            [arxiv:1706.05208](https://arxiv.org/abs/1706.05208)
+        - Associative Domain Adaptation
+            (`AssociativeSolver`),
+            [arxiv:1708.00938](https://arxiv.org/pdf/1708.00938.pdf)
+        - Domain Adversarial Training
+            (`DANNSolver`), 
+            [jmlr:v17/15-239.html](http://jmlr.org/papers/v17/15-239.html)
+        - Generalizing Across Domains via Cross-Gradient Training
+            (`CrossGradSolver`),
+            [arxiv:1708.00938](http://arxiv.org/abs/1804.10745)
+        
+        Implements the following features (in `salad.layers`):
+        
+        - Weights Ensembling using Exponential Moving Averages or Stored Weights
+        - WalkerLoss and Visit Loss ([arxiv:1708.00938](https://arxiv.org/pdf/1708.00938.pdf))
+        - Virtual Adversarial Training ([arxiv:1704.03976](https://arxiv.org/abs/1704.03976))
+        
+        Coming soon:
+        
+        - Deep Joint Optimal Transport
+            (`DJDOTSolver`),
+            [arxiv:1803.10081](https://arxiv.org/abs/1803.10081)
+        - Translation based approaches
+        
+        ## 💻 Installation
+        
+        Requirements can be found in `requirement.txt` and can be installed via
+        
+        ```
+        pip install -r requirements.txt
+        ```
+        
+        Install the package via
+        
+        ``` bash
+        pip install torch-salad
+        ```
+        
+        For the latest development version, install via
+        
+        ``` bash
+        pip install git+https://github.com/bethgelab/domainadaptation
+        ```
+        
+        ## 📚 Using this library
+        
+        Along with the implementation of domain adaptation routines, this library comprises code to easily set up deep learning experiments in general.
+        Experiments are specified using the classes defined in `solver.py`.
+        
+        This section will be extended upon pre-release.
+        
+        ## 💡 Domain Adaptation Problems
+        
+        Legend: Implemented (✓), Under Construction (🚧)
+        
+        ### 📷 Vision
+        
+        - Digits: MNIST ↔ SVHN ↔ USPS ↔ SYNTH (✓)
+        - [VisDA 2018 Openset and Detection](http://ai.bu.edu/visda-2018) (✓)
+        - Synthetic (GAN) ↔ Real (🚧)
+        - CIFAR ↔ STL (🚧)
+        - ImageNet to [iCubWorld](https://robotology.github.io/iCubWorld/#datasets) (🚧)
+        
+        ### 🎤 Audio
+        
+        - [Mozilla Common Voice Dataset](https://voice.mozilla.org/) (🚧)
+        
+        ### ፨ Neuroscience
+        
+        - White Noise ↔ Gratings ↔ Natural Images (🚧)
+        - [Deep Lab Cut Tracking](https://github.com/AlexEMG/DeepLabCut) (🚧)
+        
+        ## 🔗 References to open source software
+        
+        Part of the code in this repository is inspired or borrowed from original implementations, especially:
+        
+        - https://github.com/Britefury/self-ensemble-visual-domain-adapt
+        - https://github.com/Britefury/self-ensemble-visual-domain-adapt-photo/
+        - https://github.com/RuiShu/dirt-t
+        - https://github.com/gpascualg/CrossGrad
+        - https://github.com/stes/torch-associative
+        - https://github.com/haeusser/learning_by_association
+        
+        Excellent list of domain adaptation ressources:
+        - https://github.com/artix41/awesome-transfer-learning
+        
+        ## 👤 Contact
+        
+        Maintained by [Steffen Schneider](https://code.stes.io).
+        Work is part of my thesis project at the [Bethge Lab](http://bethgelab.org).
+        This README is also available as a webpage at [salad.domainadaptation.org](http://salad.domainadaptation.org). We welcome issues and pull requests [to the official github repository](https://github.com/bethgelab/domainadaptation).
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Description-Content-Type: text/markdown
