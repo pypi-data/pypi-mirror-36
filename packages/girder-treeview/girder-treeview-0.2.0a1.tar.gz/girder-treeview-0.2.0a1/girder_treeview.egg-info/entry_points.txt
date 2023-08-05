@@ -1,0 +1,3 @@
+[girder.plugin]
+treeview = girder_treeview:TreeviewPlugin
+
