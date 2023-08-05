@@ -1,0 +1,17 @@
+odoo10_addon_l10n_fi_business_code_validate-10.0.1.2.5.99.dev1-py2.7-nspkg.pth,sha256=BRP8mvEvEhIFmA57wbSTfAVbaAesjZh6WbtWMKUVv1c,1118
+odoo/addons/l10n_fi_business_code_validate/README.rst,sha256=EJUngKUpToE11dma5nMY-xcVH5uaXyDn6yFtS4PfAoA,1547
+odoo/addons/l10n_fi_business_code_validate/__init__.py,sha256=4ARDkgdO_vjw7yrKWWf2hcqmm3uGDr0NsOfmBAP76ek,159
+odoo/addons/l10n_fi_business_code_validate/__manifest__.py,sha256=Nm64RkMq4gaefjoCiq1EP1tbfUhSljPk7T3Ow4J8n9c,1525
+odoo/addons/l10n_fi_business_code_validate/data/res_partner_id_category.xml,sha256=w823KqIZUVoVSpLg2FfwyB5H7o2361BKRlOxxks9jeU,284
+odoo/addons/l10n_fi_business_code_validate/i18n/fi.po,sha256=37hNamjZKmhZq3UE3SzaNbLbZThC6MTZybVSp8sv-Hs,1445
+odoo/addons/l10n_fi_business_code_validate/i18n/l10n_fi_business_code_validate.pot,sha256=WQ6boJE_Nu5eZgxIjwnnXm79JXlSOU1AMJB7VD2jbeo,1171
+odoo/addons/l10n_fi_business_code_validate/models/__init__.py,sha256=ICc07XTpZNe3YC_zyCEOVav_0ObsYjh8EZE5-PdDQEM,176
+odoo/addons/l10n_fi_business_code_validate/models/res_partner_id_category.py,sha256=MugnEKE_c5EPeuQms94E20VN6gmpjbAFoKw2FrQylbA,3128
+odoo/addons/l10n_fi_business_code_validate/static/description/icon.png,sha256=6xBPJauaFOF0KDHfHgQopSc28kKvxMaeoQFQWZtfZDo,9455
+odoo/addons/l10n_fi_business_code_validate/tests/__init__.py,sha256=LzUOvV1LAfhzW6WjclUX6TprEqLwLAuxvAON5C24qb4,64
+odoo/addons/l10n_fi_business_code_validate/tests/test_business_id_validate.py,sha256=f8RaR9_VOdZNRHCosHHrRaYhDoqw3tGXlYjB8lQhkpU,2490
+odoo10_addon_l10n_fi_business_code_validate-10.0.1.2.5.99.dev1.dist-info/METADATA,sha256=1C2G4W9RshvUX2doq68zTj0pM0zhzrj-opOw-DrdUWQ,2146
+odoo10_addon_l10n_fi_business_code_validate-10.0.1.2.5.99.dev1.dist-info/RECORD,,
+odoo10_addon_l10n_fi_business_code_validate-10.0.1.2.5.99.dev1.dist-info/WHEEL,sha256=_V8uWu5F_h-lvAz5Mbq4oZqV_uCfL4cHgm4IIlDevzU,92
+odoo10_addon_l10n_fi_business_code_validate-10.0.1.2.5.99.dev1.dist-info/namespace_packages.txt,sha256=igDP6S4ywc6jzcMqzrKZpRtAUXrS-iYaA_Hu1EtlI48,17
+odoo10_addon_l10n_fi_business_code_validate-10.0.1.2.5.99.dev1.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
