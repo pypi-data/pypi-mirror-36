@@ -1,0 +1,4 @@
+[console_scripts]
+cldls = cloudless.cli.main:main
+cloudless-test = cloudless.testutils.cli:main
+
