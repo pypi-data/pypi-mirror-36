@@ -1,0 +1,9 @@
+README.rst
+setup.cfg
+setup.py
+zzzutils/__init__.py
+zzzutils/zzzutils.py
+zzzutils.egg-info/PKG-INFO
+zzzutils.egg-info/SOURCES.txt
+zzzutils.egg-info/dependency_links.txt
+zzzutils.egg-info/top_level.txt
