@@ -1,0 +1,185 @@
+{
+  "_comment": "This file is part of PyRQA. Copyright 2015 Tobias Rawald, Mike Sips.",
+  "config_data": [
+    {
+      "operator_module": "pyrqa.operators.create_matrix.fixed_radius.brute_force.column_materialisation_uncompressed_bit",
+      "kernel_file_names": [
+        "column_materialisation_uncompressed_bit.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_matrix.fixed_radius.brute_force.column_materialisation_uncompressed_byte",
+      "kernel_file_names": [
+        "column_materialisation_uncompressed_byte.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_matrix.fixed_radius.brute_force.row_materialisation_uncompressed_bit",
+      "kernel_file_names": [
+        "row_materialisation_uncompressed_bit.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_matrix.fixed_radius.brute_force.row_materialisation_uncompressed_byte",
+      "kernel_file_names": [
+        "row_materialisation_uncompressed_byte.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_matrix.fixed_radius.uniform_grid.atomic_operations_column_materialisation_uncompressed_bit",
+      "kernel_file_names": [
+        "atomic_operations_column_materialisation_uncompressed_bit.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_matrix.fixed_radius.uniform_grid.atomic_operations_column_materialisation_uncompressed_byte",
+      "kernel_file_names": [
+        "atomic_operations_column_materialisation_uncompressed_byte.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_matrix.fixed_radius.uniform_grid.atomic_operations_row_materialisation_uncompressed_bit",
+      "kernel_file_names": [
+        "atomic_operations_row_materialisation_uncompressed_bit.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_matrix.fixed_radius.uniform_grid.atomic_operations_row_materialisation_uncompressed_byte",
+      "kernel_file_names": [
+        "atomic_operations_row_materialisation_uncompressed_byte.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_matrix.fixed_radius.uniform_grid.sorting_column_materialisation_uncompressed_bit",
+      "kernel_file_names": [
+        "sorting_column_materialisation_uncompressed_bit.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_matrix.fixed_radius.uniform_grid.sorting_column_materialisation_uncompressed_byte",
+      "kernel_file_names": [
+        "sorting_column_materialisation_uncompressed_byte.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_matrix.fixed_radius.uniform_grid.sorting_row_materialisation_uncompressed_bit",
+      "kernel_file_names": [
+        "sorting_row_materialisation_uncompressed_bit.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_matrix.fixed_radius.uniform_grid.sorting_row_materialisation_uncompressed_byte",
+      "kernel_file_names": [
+        "sorting_row_materialisation_uncompressed_byte.cl"
+      ]
+    },
+        {
+      "operator_module": "pyrqa.operators.create_uniform_grid.atomic_operations_column",
+      "kernel_file_names": [
+        "atomic_operations_column.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_uniform_grid.atomic_operations_row",
+      "kernel_file_names": [
+        "atomic_operations_row.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_uniform_grid.sorting_column",
+      "kernel_file_names": [
+        "sorting_column.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.create_uniform_grid.sorting_row",
+      "kernel_file_names": [
+        "sorting_row.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_diagonal_lines.fixed_radius.brute_force.column_no_materialisation",
+      "kernel_file_names": [
+        "column_no_materialisation.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_diagonal_lines.fixed_radius.brute_force.row_no_materialisation",
+      "kernel_file_names": [
+        "row_no_materialisation.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_diagonal_lines.materialisation_compressed",
+      "kernel_file_names": [
+        "materialisation_compressed.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_diagonal_lines.materialisation_uncompressed_bit",
+      "kernel_file_names": [
+        "materialisation_uncompressed_bit.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_diagonal_lines.materialisation_uncompressed_byte",
+      "kernel_file_names": [
+        "materialisation_uncompressed_byte.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_vertical_lines.fixed_radius.brute_force.column_materialisation_uncompressed_bit_recycling",
+      "kernel_file_names": [
+        "column_materialisation_uncompressed_bit_recycling.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_vertical_lines.fixed_radius.brute_force.column_materialisation_uncompressed_byte_recycling",
+      "kernel_file_names": [
+        "column_materialisation_uncompressed_byte_recycling.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_vertical_lines.fixed_radius.brute_force.column_no_materialisation",
+      "kernel_file_names": [
+        "column_no_materialisation.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_vertical_lines.fixed_radius.brute_force.row_materialisation_uncompressed_bit_recycling",
+      "kernel_file_names": [
+        "row_materialisation_uncompressed_bit_recycling.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_vertical_lines.fixed_radius.brute_force.row_materialisation_uncompressed_byte_recycling",
+      "kernel_file_names": [
+        "row_materialisation_uncompressed_byte_recycling.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_vertical_lines.fixed_radius.brute_force.row_no_materialisation",
+      "kernel_file_names": [
+        "row_no_materialisation.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_vertical_lines.materialisation_compressed_no_recycling",
+      "kernel_file_names": [
+        "materialisation_compressed_no_recycling.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_vertical_lines.materialisation_uncompressed_byte_no_recycling",
+      "kernel_file_names": [
+        "materialisation_uncompressed_byte_no_recycling.cl"
+      ]
+    },
+    {
+      "operator_module": "pyrqa.operators.detect_vertical_lines.materialisation_uncompressed_bit_no_recycling",
+      "kernel_file_names": [
+        "materialisation_uncompressed_bit_no_recycling.cl"
+      ]
+    }
+  ]
+}
