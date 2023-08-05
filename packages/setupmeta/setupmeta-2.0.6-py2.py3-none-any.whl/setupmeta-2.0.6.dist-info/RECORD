@@ -1,0 +1,14 @@
+setupmeta/__init__.py,sha256=qMokObr1PqluR0y42RZ5OYHS1ko_fkkxt6-kZhZRbKw,11476
+setupmeta/commands.py,sha256=HZXsJ6YOFY3vy6_1Sj5OZRmQKtgdmMT9wUeMxb-CfvQ,12452
+setupmeta/content.py,sha256=6eFzscqY3Mnw-SmmVJGMVsski2r_qmnnhlUS1NqD3tQ,4300
+setupmeta/hook.py,sha256=u1jeCNP8gMcCewBRMr6DyoiJgi7cUswBHJymLE9RlOQ,1306
+setupmeta/license.py,sha256=q46W83N2ADGpWWvCQ92pYlhKbmVC1mfGsw4NKERtON0,2502
+setupmeta/model.py,sha256=a44_G6d9lg4zeWmUKwpLYokenm5-fvoOF6bmNy3xshk,25994
+setupmeta/scm.py,sha256=SZTMzvDr2KkyC21ohGyVoYH-PBBRSr8Jq5AyLMkcH58,8998
+setupmeta/versioning.py,sha256=a24z7-qTLSFtu7thEdK55V6QHu-N_5sTzAoVZ45eWho,17153
+setupmeta-2.0.6.dist-info/METADATA,sha256=Y1aZj1-u80m2LJvwpRDxELM7BgKUqUeS7jR01vTHk5M,11438
+setupmeta-2.0.6.dist-info/RECORD,,
+setupmeta-2.0.6.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+setupmeta-2.0.6.dist-info/entry_points.txt,sha256=8aRMvBSmRyYz1uZPOSYksun_hgAy2p8qd4F8_jKb2IM,391
+setupmeta-2.0.6.dist-info/top_level.txt,sha256=zLTZEt1OQhDeKIh0qGq5QlyvPbJK4WNCHtttrYpxR9A,10
+setupmeta-2.0.6.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
