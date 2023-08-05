@@ -1,0 +1,2285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>coherence.upnp.devices (package) &mdash; Cohen3 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="coherence.upnp.services (package)" href="coherence.upnp.services.html" />
+    <link rel="prev" title="coherence.upnp.core (package)" href="coherence.upnp.core.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Cohen3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends (plugins)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="coherence.html">Coherence (package)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="modules.html">coherence.backend (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.base">coherence.base (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.dbus_constants">coherence.dbus_constants (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.dbus_service">coherence.dbus_service (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.dispatcher">coherence.dispatcher (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.json_service">coherence.json_service (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.log">coherence.log (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.transcoder">coherence.transcoder (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.tube_service">coherence.tube_service (module)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="coherence.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="coherence.backends.html">coherence.backends (package)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coherence.extern.html">coherence.extern (package)</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="coherence.upnp.html">coherence.upnp (package)</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="coherence.upnp.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="coherence.web.html">coherence.web (package)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributor_code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Cohen3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="coherence.html">Coherence (package)</a> &raquo;</li>
+        
+          <li><a href="coherence.upnp.html">coherence.upnp (package)</a> &raquo;</li>
+        
+      <li>coherence.upnp.devices (package)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/source/coherence.upnp.devices.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <blockquote>
+<div></div></blockquote>
+<div class="section" id="coherence-upnp-devices-package">
+<span id="upnp-devices"></span><h1>coherence.upnp.devices (package)<a class="headerlink" href="#coherence-upnp-devices-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-coherence.upnp.devices.basics">
+<span id="coherence-upnp-devices-basics-module"></span><h2>coherence.upnp.devices.basics (module)<a class="headerlink" href="#module-coherence.upnp.devices.basics" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot">
+<em class="property">class </em><code class="descname">DeviceHttpRoot</code><span class="sig-paren">(</span><em>server</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/basics.html#DeviceHttpRoot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">twisted.web.resource.Resource</span></code>, <a class="reference internal" href="modules.html#coherence.log.LogAble" title="coherence.log.LogAble"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.log.LogAble</span></code></a></p>
+<dl class="attribute">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.logCategory">
+<code class="descname">logCategory</code><em class="property"> = 'basicdevice'</em><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.logCategory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.server">
+<code class="descname">server</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.server" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.getChildWithDefault">
+<code class="descname">getChildWithDefault</code><span class="sig-paren">(</span><em>path</em>, <em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/basics.html#DeviceHttpRoot.getChildWithDefault"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.getChildWithDefault" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a static or dynamically generated child resource from me.</p>
+<p>First checks if a resource was added manually by putChild, and then
+call getChild to check for dynamic resources. Only override if you want
+to affect behaviour of all child lookups, rather than just dynamic
+ones.</p>
+<p>This will check to see if I have a pre-registered child resource of the
+given name, and call getChild if I do not.</p>
+<p>&#64;see: L{IResource.getChildWithDefault}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.getChild">
+<code class="descname">getChild</code><span class="sig-paren">(</span><em>name</em>, <em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/basics.html#DeviceHttpRoot.getChild"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.getChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a ‘child’ resource from me.</p>
+<p>Implement this to create dynamic resource generation – resources which
+are always available may be registered with self.putChild().</p>
+<p>This will not be called if the class-level variable ‘isLeaf’ is set in
+your subclass; instead, the ‘postpath’ attribute of the request will be
+left as a list of the remaining path elements.</p>
+<p>For example, the URL /foo/bar/baz will normally be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">site</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;baz&#39;</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>However, if the resource returned by ‘bar’ has isLeaf set to true, then
+the getChild call will never be made on it.</p>
+<p>Parameters and return value have the same meaning and requirements as
+those defined by L{IResource.getChildWithDefault}.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.listchilds">
+<code class="descname">listchilds</code><span class="sig-paren">(</span><em>uri</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/basics.html#DeviceHttpRoot.listchilds"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.listchilds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/basics.html#DeviceHttpRoot.render"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render a given resource. See L{IResource}’s render method.</p>
+<p>I delegate to methods of self with the form ‘render_METHOD’
+where METHOD is the HTTP that was used to make the
+request. Examples: render_GET, render_HEAD, render_POST, and
+so on. Generally you should implement those methods instead of
+overriding this one.</p>
+<p>render_METHOD methods are expected to return a byte string which will be
+the rendered page, unless the return value is C{server.NOT_DONE_YET}, in
+which case it is this class’s responsibility to write the results using
+C{request.write(data)} and then call C{request.finish()}.</p>
+<p>Old code that overrides render() directly is likewise expected
+to return a byte string or NOT_DONE_YET.</p>
+<p>&#64;see: L{IResource.render}</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.COLOR_FORMAT">
+<code class="descname">COLOR_FORMAT</code><em class="property"> = '[%(levelname)-18s][\x1b[1m%(name)-15s\x1b[0m]  %(message)s    (\x1b[1m%(filename)s\x1b[0m:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.COLOR_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.FORMAT">
+<code class="descname">FORMAT</code><em class="property"> = '[%(levelname)-18s][$BOLD%(name)-15s$RESET]  %(message)s    ($BOLD%(filename)s$RESET:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot._Loggable__logger">
+<code class="descname">_Loggable__logger</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot._Loggable__logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.critical">
+<code class="descname">critical</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.debug">
+<code class="descname">debug</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.delEntity">
+<code class="descname">delEntity</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.delEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.entityType">
+<code class="descname">entityType</code><em class="property"> = &lt;InterfaceClass twisted.web.resource.IResource&gt;</em><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.entityType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.fatal">
+<code class="descname">fatal</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.getChildForRequest">
+<code class="descname">getChildForRequest</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.getChildForRequest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.getDynamicEntity">
+<code class="descname">getDynamicEntity</code><span class="sig-paren">(</span><em>name</em>, <em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.getDynamicEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.getStaticEntity">
+<code class="descname">getStaticEntity</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.getStaticEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.isLeaf">
+<code class="descname">isLeaf</code><em class="property"> = 0</em><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.isLeaf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.listDynamicEntities">
+<code class="descname">listDynamicEntities</code><span class="sig-paren">(</span><em>request=None</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.listDynamicEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.listDynamicNames">
+<code class="descname">listDynamicNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.listDynamicNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.listEntities">
+<code class="descname">listEntities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.listEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.listNames">
+<code class="descname">listNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.listNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.listStaticEntities">
+<code class="descname">listStaticEntities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.listStaticEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.listStaticNames">
+<code class="descname">listStaticNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.listStaticNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.putChild">
+<code class="descname">putChild</code><span class="sig-paren">(</span><em>path</em>, <em>child</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.putChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a static child.</p>
+<p>You almost certainly don’t want ‘/’ in your path. If you
+intended to have the root of a folder, e.g. /foo/, you want
+path to be ‘’.</p>
+<p>&#64;see: L{IResource.putChild}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.reallyPutEntity">
+<code class="descname">reallyPutEntity</code><span class="sig-paren">(</span><em>name</em>, <em>entity</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.reallyPutEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.render_HEAD">
+<code class="descname">render_HEAD</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.render_HEAD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default handling of HEAD method.</p>
+<p>I just return self.render_GET(request). When method is HEAD,
+the framework will handle this correctly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.DeviceHttpRoot.warning">
+<code class="descname">warning</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.basics.DeviceHttpRoot.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="coherence.upnp.devices.basics.BasicDeviceMixin">
+<em class="property">class </em><code class="descname">BasicDeviceMixin</code><span class="sig-paren">(</span><em>coherence</em>, <em>backend</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/basics.html#BasicDeviceMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.basics.BasicDeviceMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.BasicDeviceMixin.init_failed">
+<code class="descname">init_failed</code><span class="sig-paren">(</span><em>backend</em>, <em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/basics.html#BasicDeviceMixin.init_failed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.basics.BasicDeviceMixin.init_failed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.BasicDeviceMixin.register">
+<code class="descname">register</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/basics.html#BasicDeviceMixin.register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.basics.BasicDeviceMixin.register" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.basics.BasicDeviceMixin.unregister">
+<code class="descname">unregister</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/basics.html#BasicDeviceMixin.unregister"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.basics.BasicDeviceMixin.unregister" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.devices.control_point">
+<span id="coherence-upnp-devices-control-point-module"></span><h2>coherence.upnp.devices.control_point (module)<a class="headerlink" href="#module-coherence.upnp.devices.control_point" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.devices.control_point.DeviceQuery">
+<em class="property">class </em><code class="descname">DeviceQuery</code><span class="sig-paren">(</span><em>type</em>, <em>pattern</em>, <em>callback</em>, <em>timeout=0</em>, <em>oneshot=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#DeviceQuery"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.DeviceQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.DeviceQuery.fire">
+<code class="descname">fire</code><span class="sig-paren">(</span><em>device</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#DeviceQuery.fire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.DeviceQuery.fire" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.DeviceQuery.check">
+<code class="descname">check</code><span class="sig-paren">(</span><em>device</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#DeviceQuery.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.DeviceQuery.check" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="coherence.upnp.devices.control_point.ControlPoint">
+<em class="property">class </em><code class="descname">ControlPoint</code><span class="sig-paren">(</span><em>coherence</em>, <em>auto_client=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="modules.html#coherence.log.LogAble" title="coherence.log.LogAble"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.log.LogAble</span></code></a></p>
+<dl class="attribute">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.logCategory">
+<code class="descname">logCategory</code><em class="property"> = 'controlpoint'</em><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.logCategory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.shutdown">
+<code class="descname">shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.shutdown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.auto_client_append">
+<code class="descname">auto_client_append</code><span class="sig-paren">(</span><em>device_type</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.auto_client_append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.auto_client_append" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.browse">
+<code class="descname">browse</code><span class="sig-paren">(</span><em>device</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.browse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.browse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.process_queries">
+<code class="descname">process_queries</code><span class="sig-paren">(</span><em>device</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.process_queries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.process_queries" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.add_query">
+<code class="descname">add_query</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.add_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.add_query" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.connect">
+<code class="descname">connect</code><span class="sig-paren">(</span><em>receiver</em>, <em>signal=&lt;class 'coherence.extern.louie.All'&gt;</em>, <em>sender=&lt;class 'coherence.extern.louie.Any'&gt;</em>, <em>weak=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.connect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>wrapper method around louie.connect</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.disconnect">
+<code class="descname">disconnect</code><span class="sig-paren">(</span><em>receiver</em>, <em>signal=&lt;class 'coherence.extern.louie.All'&gt;</em>, <em>sender=&lt;class 'coherence.extern.louie.Any'&gt;</em>, <em>weak=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.disconnect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.disconnect" title="Permalink to this definition">¶</a></dt>
+<dd><p>wrapper method around louie.disconnect</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.get_devices">
+<code class="descname">get_devices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.get_devices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.get_devices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.get_device_with_id">
+<code class="descname">get_device_with_id</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.get_device_with_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.get_device_with_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.get_device_by_host">
+<code class="descname">get_device_by_host</code><span class="sig-paren">(</span><em>host</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.get_device_by_host"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.get_device_by_host" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.check_device">
+<code class="descname">check_device</code><span class="sig-paren">(</span><em>device</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.check_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.check_device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.completed">
+<code class="descname">completed</code><span class="sig-paren">(</span><em>client</em>, <em>udn</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.completed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.completed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.remove_client">
+<code class="descname">remove_client</code><span class="sig-paren">(</span><em>udn</em>, <em>client</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.remove_client"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.remove_client" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.propagate">
+<code class="descname">propagate</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.propagate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.propagate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.put_resource">
+<code class="descname">put_resource</code><span class="sig-paren">(</span><em>url</em>, <em>path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#ControlPoint.put_resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.put_resource" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.COLOR_FORMAT">
+<code class="descname">COLOR_FORMAT</code><em class="property"> = '[%(levelname)-18s][\x1b[1m%(name)-15s\x1b[0m]  %(message)s    (\x1b[1m%(filename)s\x1b[0m:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.COLOR_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.FORMAT">
+<code class="descname">FORMAT</code><em class="property"> = '[%(levelname)-18s][$BOLD%(name)-15s$RESET]  %(message)s    ($BOLD%(filename)s$RESET:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.control_point.ControlPoint._Loggable__logger">
+<code class="descname">_Loggable__logger</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint._Loggable__logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.critical">
+<code class="descname">critical</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.debug">
+<code class="descname">debug</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.fatal">
+<code class="descname">fatal</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.ControlPoint.warning">
+<code class="descname">warning</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.ControlPoint.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="coherence.upnp.devices.control_point.XMLRPC">
+<em class="property">class </em><code class="descname">XMLRPC</code><span class="sig-paren">(</span><em>control_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">twisted.web.xmlrpc.XMLRPC</span></code></p>
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_list_devices">
+<code class="descname">xmlrpc_list_devices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_list_devices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_list_devices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_mute_device">
+<code class="descname">xmlrpc_mute_device</code><span class="sig-paren">(</span><em>device_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_mute_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_mute_device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_unmute_device">
+<code class="descname">xmlrpc_unmute_device</code><span class="sig-paren">(</span><em>device_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_unmute_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_unmute_device" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_set_volume">
+<code class="descname">xmlrpc_set_volume</code><span class="sig-paren">(</span><em>device_id</em>, <em>volume</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_set_volume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_set_volume" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_play">
+<code class="descname">xmlrpc_play</code><span class="sig-paren">(</span><em>device_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_play" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_pause">
+<code class="descname">xmlrpc_pause</code><span class="sig-paren">(</span><em>device_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_pause"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_pause" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_stop">
+<code class="descname">xmlrpc_stop</code><span class="sig-paren">(</span><em>device_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_stop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_next">
+<code class="descname">xmlrpc_next</code><span class="sig-paren">(</span><em>device_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_next" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_previous">
+<code class="descname">xmlrpc_previous</code><span class="sig-paren">(</span><em>device_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_previous"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_previous" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_set_av_transport_uri">
+<code class="descname">xmlrpc_set_av_transport_uri</code><span class="sig-paren">(</span><em>device_id</em>, <em>uri</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_set_av_transport_uri"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_set_av_transport_uri" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_create_object">
+<code class="descname">xmlrpc_create_object</code><span class="sig-paren">(</span><em>device_id</em>, <em>container_id</em>, <em>arguments</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_create_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_create_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_import_resource">
+<code class="descname">xmlrpc_import_resource</code><span class="sig-paren">(</span><em>device_id</em>, <em>source_uri</em>, <em>destination_uri</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_import_resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_import_resource" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_put_resource">
+<code class="descname">xmlrpc_put_resource</code><span class="sig-paren">(</span><em>url</em>, <em>path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_put_resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_put_resource" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.xmlrpc_ping">
+<code class="descname">xmlrpc_ping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#XMLRPC.xmlrpc_ping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.xmlrpc_ping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.FAILURE">
+<code class="descname">FAILURE</code><em class="property"> = 8002</em><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.FAILURE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.NOT_FOUND">
+<code class="descname">NOT_FOUND</code><em class="property"> = 8001</em><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.NOT_FOUND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC._cbRender">
+<code class="descname">_cbRender</code><span class="sig-paren">(</span><em>result</em>, <em>request</em>, <em>responseFailed=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/twisted/web/xmlrpc.html#XMLRPC._cbRender"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC._cbRender" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC._ebRender">
+<code class="descname">_ebRender</code><span class="sig-paren">(</span><em>failure</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/twisted/web/xmlrpc.html#XMLRPC._ebRender"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC._ebRender" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.control_point.XMLRPC._log">
+<code class="descname">_log</code><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC._log" title="Permalink to this definition">¶</a></dt>
+<dd><p>A L{Logger} emits log messages to an observer.  You should instantiate it
+as a class or module attribute, as documented in L{this module’s
+documentation &lt;twisted.logger&gt;}.</p>
+<p>&#64;type namespace: L{str}
+&#64;ivar namespace: the namespace for this logger</p>
+<p>&#64;type source: L{object}
+&#64;ivar source: The object which is emitting events via this logger</p>
+<p>&#64;type: L{ILogObserver}
+&#64;ivar observer: The observer that this logger will send events to.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.allowedMethods">
+<code class="descname">allowedMethods</code><em class="property"> = (b'POST',)</em><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.allowedMethods" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.delEntity">
+<code class="descname">delEntity</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.delEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.entityType">
+<code class="descname">entityType</code><em class="property"> = &lt;InterfaceClass twisted.web.resource.IResource&gt;</em><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.entityType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.getChild">
+<code class="descname">getChild</code><span class="sig-paren">(</span><em>path</em>, <em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.getChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a ‘child’ resource from me.</p>
+<p>Implement this to create dynamic resource generation – resources which
+are always available may be registered with self.putChild().</p>
+<p>This will not be called if the class-level variable ‘isLeaf’ is set in
+your subclass; instead, the ‘postpath’ attribute of the request will be
+left as a list of the remaining path elements.</p>
+<p>For example, the URL /foo/bar/baz will normally be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">site</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;baz&#39;</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>However, if the resource returned by ‘bar’ has isLeaf set to true, then
+the getChild call will never be made on it.</p>
+<p>Parameters and return value have the same meaning and requirements as
+those defined by L{IResource.getChildWithDefault}.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.getChildForRequest">
+<code class="descname">getChildForRequest</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.getChildForRequest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.getChildWithDefault">
+<code class="descname">getChildWithDefault</code><span class="sig-paren">(</span><em>path</em>, <em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.getChildWithDefault" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a static or dynamically generated child resource from me.</p>
+<p>First checks if a resource was added manually by putChild, and then
+call getChild to check for dynamic resources. Only override if you want
+to affect behaviour of all child lookups, rather than just dynamic
+ones.</p>
+<p>This will check to see if I have a pre-registered child resource of the
+given name, and call getChild if I do not.</p>
+<p>&#64;see: L{IResource.getChildWithDefault}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.getDynamicEntity">
+<code class="descname">getDynamicEntity</code><span class="sig-paren">(</span><em>name</em>, <em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.getDynamicEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.getStaticEntity">
+<code class="descname">getStaticEntity</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.getStaticEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.getSubHandler">
+<code class="descname">getSubHandler</code><span class="sig-paren">(</span><em>prefix</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/twisted/web/xmlrpc.html#XMLRPC.getSubHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.getSubHandler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.getSubHandlerPrefixes">
+<code class="descname">getSubHandlerPrefixes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/twisted/web/xmlrpc.html#XMLRPC.getSubHandlerPrefixes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.getSubHandlerPrefixes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.isLeaf">
+<code class="descname">isLeaf</code><em class="property"> = 1</em><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.isLeaf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.listDynamicEntities">
+<code class="descname">listDynamicEntities</code><span class="sig-paren">(</span><em>request=None</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.listDynamicEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.listDynamicNames">
+<code class="descname">listDynamicNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.listDynamicNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.listEntities">
+<code class="descname">listEntities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.listEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.listNames">
+<code class="descname">listNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.listNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.listProcedures">
+<code class="descname">listProcedures</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/twisted/web/xmlrpc.html#XMLRPC.listProcedures"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.listProcedures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of the names of all xmlrpc procedures.</p>
+<p>&#64;since: 11.1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.listStaticEntities">
+<code class="descname">listStaticEntities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.listStaticEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.listStaticNames">
+<code class="descname">listStaticNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.listStaticNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.lookupProcedure">
+<code class="descname">lookupProcedure</code><span class="sig-paren">(</span><em>procedurePath</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/twisted/web/xmlrpc.html#XMLRPC.lookupProcedure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.lookupProcedure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a string naming a procedure, return a callable object for that
+procedure or raise NoSuchFunction.</p>
+<p>The returned object will be called, and should return the result of the
+procedure, a Deferred, or a Fault instance.</p>
+<p>Override in subclasses if you want your own policy.  The base
+implementation that given C{‘foo’}, C{self.xmlrpc_foo} will be returned.
+If C{procedurePath} contains C{self.separator}, the sub-handler for the
+initial prefix is used to search for the remaining path.</p>
+<p>If you override C{lookupProcedure}, you may also want to override
+C{listProcedures} to accurately report the procedures supported by your
+resource, so that clients using the I{system.listMethods} procedure
+receive accurate results.</p>
+<p>&#64;since: 11.1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.putChild">
+<code class="descname">putChild</code><span class="sig-paren">(</span><em>path</em>, <em>child</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.putChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a static child.</p>
+<p>You almost certainly don’t want ‘/’ in your path. If you
+intended to have the root of a folder, e.g. /foo/, you want
+path to be ‘’.</p>
+<p>&#64;see: L{IResource.putChild}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.putSubHandler">
+<code class="descname">putSubHandler</code><span class="sig-paren">(</span><em>prefix</em>, <em>handler</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/twisted/web/xmlrpc.html#XMLRPC.putSubHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.putSubHandler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.reallyPutEntity">
+<code class="descname">reallyPutEntity</code><span class="sig-paren">(</span><em>name</em>, <em>entity</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.reallyPutEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render a given resource. See L{IResource}’s render method.</p>
+<p>I delegate to methods of self with the form ‘render_METHOD’
+where METHOD is the HTTP that was used to make the
+request. Examples: render_GET, render_HEAD, render_POST, and
+so on. Generally you should implement those methods instead of
+overriding this one.</p>
+<p>render_METHOD methods are expected to return a byte string which will be
+the rendered page, unless the return value is C{server.NOT_DONE_YET}, in
+which case it is this class’s responsibility to write the results using
+C{request.write(data)} and then call C{request.finish()}.</p>
+<p>Old code that overrides render() directly is likewise expected
+to return a byte string or NOT_DONE_YET.</p>
+<p>&#64;see: L{IResource.render}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.render_HEAD">
+<code class="descname">render_HEAD</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.render_HEAD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default handling of HEAD method.</p>
+<p>I just return self.render_GET(request). When method is HEAD,
+the framework will handle this correctly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.render_POST">
+<code class="descname">render_POST</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/twisted/web/xmlrpc.html#XMLRPC.render_POST"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.render_POST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.separator">
+<code class="descname">separator</code><em class="property"> = '.'</em><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.separator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.control_point.XMLRPC.server">
+<code class="descname">server</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.control_point.XMLRPC.server" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="coherence.upnp.devices.control_point.startXMLRPC">
+<code class="descname">startXMLRPC</code><span class="sig-paren">(</span><em>control_point</em>, <em>port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/control_point.html#startXMLRPC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.control_point.startXMLRPC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.devices.internet_gateway_device_client">
+<span id="coherence-upnp-devices-internet-gateway-device-client-module"></span><h2>coherence.upnp.devices.internet_gateway_device_client (module)<a class="headerlink" href="#module-coherence.upnp.devices.internet_gateway_device_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient">
+<em class="property">class </em><code class="descname">InternetGatewayDeviceClient</code><span class="sig-paren">(</span><em>device</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/internet_gateway_device_client.html#InternetGatewayDeviceClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="modules.html#coherence.log.LogAble" title="coherence.log.LogAble"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.log.LogAble</span></code></a></p>
+<dl class="attribute">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.logCategory">
+<code class="descname">logCategory</code><em class="property"> = 'igd_client'</em><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.logCategory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/internet_gateway_device_client.html#InternetGatewayDeviceClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.COLOR_FORMAT">
+<code class="descname">COLOR_FORMAT</code><em class="property"> = '[%(levelname)-18s][\x1b[1m%(name)-15s\x1b[0m]  %(message)s    (\x1b[1m%(filename)s\x1b[0m:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.COLOR_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.FORMAT">
+<code class="descname">FORMAT</code><em class="property"> = '[%(levelname)-18s][$BOLD%(name)-15s$RESET]  %(message)s    ($BOLD%(filename)s$RESET:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient._Loggable__logger">
+<code class="descname">_Loggable__logger</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient._Loggable__logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.critical">
+<code class="descname">critical</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.debug">
+<code class="descname">debug</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.embedded_device_notified">
+<code class="descname">embedded_device_notified</code><span class="sig-paren">(</span><em>device</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/internet_gateway_device_client.html#InternetGatewayDeviceClient.embedded_device_notified"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.embedded_device_notified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.fatal">
+<code class="descname">fatal</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.warning">
+<code class="descname">warning</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.internet_gateway_device_client.InternetGatewayDeviceClient.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.devices.media_renderer">
+<span id="coherence-upnp-devices-media-renderer-module"></span><h2>coherence.upnp.devices.media_renderer (module)<a class="headerlink" href="#module-coherence.upnp.devices.media_renderer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot">
+<em class="property">class </em><code class="descname">HttpRoot</code><span class="sig-paren">(</span><em>server</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_renderer.html#HttpRoot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#coherence.upnp.devices.basics.DeviceHttpRoot" title="coherence.upnp.devices.basics.DeviceHttpRoot"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.upnp.devices.basics.DeviceHttpRoot</span></code></a></p>
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.logCategory">
+<code class="descname">logCategory</code><em class="property"> = 'mediarenderer'</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.logCategory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.COLOR_FORMAT">
+<code class="descname">COLOR_FORMAT</code><em class="property"> = '[%(levelname)-18s][\x1b[1m%(name)-15s\x1b[0m]  %(message)s    (\x1b[1m%(filename)s\x1b[0m:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.COLOR_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.FORMAT">
+<code class="descname">FORMAT</code><em class="property"> = '[%(levelname)-18s][$BOLD%(name)-15s$RESET]  %(message)s    ($BOLD%(filename)s$RESET:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot._Loggable__logger">
+<code class="descname">_Loggable__logger</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot._Loggable__logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.critical">
+<code class="descname">critical</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.debug">
+<code class="descname">debug</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.delEntity">
+<code class="descname">delEntity</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.delEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.entityType">
+<code class="descname">entityType</code><em class="property"> = &lt;InterfaceClass twisted.web.resource.IResource&gt;</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.entityType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.fatal">
+<code class="descname">fatal</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.getChild">
+<code class="descname">getChild</code><span class="sig-paren">(</span><em>name</em>, <em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.getChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a ‘child’ resource from me.</p>
+<p>Implement this to create dynamic resource generation – resources which
+are always available may be registered with self.putChild().</p>
+<p>This will not be called if the class-level variable ‘isLeaf’ is set in
+your subclass; instead, the ‘postpath’ attribute of the request will be
+left as a list of the remaining path elements.</p>
+<p>For example, the URL /foo/bar/baz will normally be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">site</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;baz&#39;</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>However, if the resource returned by ‘bar’ has isLeaf set to true, then
+the getChild call will never be made on it.</p>
+<p>Parameters and return value have the same meaning and requirements as
+those defined by L{IResource.getChildWithDefault}.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.getChildForRequest">
+<code class="descname">getChildForRequest</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.getChildForRequest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.getChildWithDefault">
+<code class="descname">getChildWithDefault</code><span class="sig-paren">(</span><em>path</em>, <em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.getChildWithDefault" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a static or dynamically generated child resource from me.</p>
+<p>First checks if a resource was added manually by putChild, and then
+call getChild to check for dynamic resources. Only override if you want
+to affect behaviour of all child lookups, rather than just dynamic
+ones.</p>
+<p>This will check to see if I have a pre-registered child resource of the
+given name, and call getChild if I do not.</p>
+<p>&#64;see: L{IResource.getChildWithDefault}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.getDynamicEntity">
+<code class="descname">getDynamicEntity</code><span class="sig-paren">(</span><em>name</em>, <em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.getDynamicEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.getStaticEntity">
+<code class="descname">getStaticEntity</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.getStaticEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.isLeaf">
+<code class="descname">isLeaf</code><em class="property"> = 0</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.isLeaf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.listDynamicEntities">
+<code class="descname">listDynamicEntities</code><span class="sig-paren">(</span><em>request=None</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.listDynamicEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.listDynamicNames">
+<code class="descname">listDynamicNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.listDynamicNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.listEntities">
+<code class="descname">listEntities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.listEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.listNames">
+<code class="descname">listNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.listNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.listStaticEntities">
+<code class="descname">listStaticEntities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.listStaticEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.listStaticNames">
+<code class="descname">listStaticNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.listStaticNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.listchilds">
+<code class="descname">listchilds</code><span class="sig-paren">(</span><em>uri</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.listchilds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.putChild">
+<code class="descname">putChild</code><span class="sig-paren">(</span><em>path</em>, <em>child</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.putChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a static child.</p>
+<p>You almost certainly don’t want ‘/’ in your path. If you
+intended to have the root of a folder, e.g. /foo/, you want
+path to be ‘’.</p>
+<p>&#64;see: L{IResource.putChild}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.reallyPutEntity">
+<code class="descname">reallyPutEntity</code><span class="sig-paren">(</span><em>name</em>, <em>entity</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.reallyPutEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render a given resource. See L{IResource}’s render method.</p>
+<p>I delegate to methods of self with the form ‘render_METHOD’
+where METHOD is the HTTP that was used to make the
+request. Examples: render_GET, render_HEAD, render_POST, and
+so on. Generally you should implement those methods instead of
+overriding this one.</p>
+<p>render_METHOD methods are expected to return a byte string which will be
+the rendered page, unless the return value is C{server.NOT_DONE_YET}, in
+which case it is this class’s responsibility to write the results using
+C{request.write(data)} and then call C{request.finish()}.</p>
+<p>Old code that overrides render() directly is likewise expected
+to return a byte string or NOT_DONE_YET.</p>
+<p>&#64;see: L{IResource.render}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.render_HEAD">
+<code class="descname">render_HEAD</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.render_HEAD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default handling of HEAD method.</p>
+<p>I just return self.render_GET(request). When method is HEAD,
+the framework will handle this correctly.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.server">
+<code class="descname">server</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.server" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.HttpRoot.warning">
+<code class="descname">warning</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.HttpRoot.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer">
+<em class="property">class </em><code class="descname">MediaRenderer</code><span class="sig-paren">(</span><em>coherence</em>, <em>backend</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_renderer.html#MediaRenderer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="modules.html#coherence.log.LogAble" title="coherence.log.LogAble"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.log.LogAble</span></code></a>, <a class="reference internal" href="#coherence.upnp.devices.basics.BasicDeviceMixin" title="coherence.upnp.devices.basics.BasicDeviceMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.upnp.devices.basics.BasicDeviceMixin</span></code></a></p>
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.logCategory">
+<code class="descname">logCategory</code><em class="property"> = 'mediarenderer'</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.logCategory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.device_type">
+<code class="descname">device_type</code><em class="property"> = 'MediaRenderer'</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.device_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.fire">
+<code class="descname">fire</code><span class="sig-paren">(</span><em>backend</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_renderer.html#MediaRenderer.fire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.fire" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.init_complete">
+<code class="descname">init_complete</code><span class="sig-paren">(</span><em>backend</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_renderer.html#MediaRenderer.init_complete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.init_complete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.COLOR_FORMAT">
+<code class="descname">COLOR_FORMAT</code><em class="property"> = '[%(levelname)-18s][\x1b[1m%(name)-15s\x1b[0m]  %(message)s    (\x1b[1m%(filename)s\x1b[0m:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.COLOR_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.FORMAT">
+<code class="descname">FORMAT</code><em class="property"> = '[%(levelname)-18s][$BOLD%(name)-15s$RESET]  %(message)s    ($BOLD%(filename)s$RESET:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer._Loggable__logger">
+<code class="descname">_Loggable__logger</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer._Loggable__logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.critical">
+<code class="descname">critical</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.debug">
+<code class="descname">debug</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.fatal">
+<code class="descname">fatal</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.init_failed">
+<code class="descname">init_failed</code><span class="sig-paren">(</span><em>backend</em>, <em>msg</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.init_failed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.register">
+<code class="descname">register</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.register" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.unregister">
+<code class="descname">unregister</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.unregister" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer.MediaRenderer.warning">
+<code class="descname">warning</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer.MediaRenderer.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.devices.media_renderer_client">
+<span id="coherence-upnp-devices-media-renderer-client-module"></span><h2>coherence.upnp.devices.media_renderer_client (module)<a class="headerlink" href="#module-coherence.upnp.devices.media_renderer_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient">
+<em class="property">class </em><code class="descname">MediaRendererClient</code><span class="sig-paren">(</span><em>device</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_renderer_client.html#MediaRendererClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="modules.html#coherence.log.LogAble" title="coherence.log.LogAble"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.log.LogAble</span></code></a></p>
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.logCategory">
+<code class="descname">logCategory</code><em class="property"> = 'mr_client'</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.logCategory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.COLOR_FORMAT">
+<code class="descname">COLOR_FORMAT</code><em class="property"> = '[%(levelname)-18s][\x1b[1m%(name)-15s\x1b[0m]  %(message)s    (\x1b[1m%(filename)s\x1b[0m:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.COLOR_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.FORMAT">
+<code class="descname">FORMAT</code><em class="property"> = '[%(levelname)-18s][$BOLD%(name)-15s$RESET]  %(message)s    ($BOLD%(filename)s$RESET:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient._Loggable__logger">
+<code class="descname">_Loggable__logger</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient._Loggable__logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.critical">
+<code class="descname">critical</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.debug">
+<code class="descname">debug</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.fatal">
+<code class="descname">fatal</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_renderer_client.html#MediaRendererClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.warning">
+<code class="descname">warning</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.service_notified">
+<code class="descname">service_notified</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_renderer_client.html#MediaRendererClient.service_notified"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.service_notified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_renderer_client.MediaRendererClient.state_variable_change">
+<code class="descname">state_variable_change</code><span class="sig-paren">(</span><em>variable</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_renderer_client.html#MediaRendererClient.state_variable_change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_renderer_client.MediaRendererClient.state_variable_change" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.devices.media_server">
+<span id="coherence-upnp-devices-media-server-module"></span><h2>coherence.upnp.devices.media_server (module)<a class="headerlink" href="#module-coherence.upnp.devices.media_server" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.devices.media_server.MSRoot">
+<em class="property">class </em><code class="descname">MSRoot</code><span class="sig-paren">(</span><em>server</em>, <em>store</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MSRoot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">twisted.web.resource.Resource</span></code>, <a class="reference internal" href="modules.html#coherence.log.LogAble" title="coherence.log.LogAble"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.log.LogAble</span></code></a></p>
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.MSRoot.logCategory">
+<code class="descname">logCategory</code><em class="property"> = 'mediaserver'</em><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.logCategory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.MSRoot.server">
+<code class="descname">server</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.server" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.getChildWithDefault">
+<code class="descname">getChildWithDefault</code><span class="sig-paren">(</span><em>path</em>, <em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MSRoot.getChildWithDefault"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.getChildWithDefault" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a static or dynamically generated child resource from me.</p>
+<p>First checks if a resource was added manually by putChild, and then
+call getChild to check for dynamic resources. Only override if you want
+to affect behaviour of all child lookups, rather than just dynamic
+ones.</p>
+<p>This will check to see if I have a pre-registered child resource of the
+given name, and call getChild if I do not.</p>
+<p>&#64;see: L{IResource.getChildWithDefault}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.requestFinished">
+<code class="descname">requestFinished</code><span class="sig-paren">(</span><em>result</em>, <em>id</em>, <em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MSRoot.requestFinished"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.requestFinished" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.import_file">
+<code class="descname">import_file</code><span class="sig-paren">(</span><em>name</em>, <em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MSRoot.import_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.import_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.prepare_connection">
+<code class="descname">prepare_connection</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MSRoot.prepare_connection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.prepare_connection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.prepare_headers">
+<code class="descname">prepare_headers</code><span class="sig-paren">(</span><em>ch</em>, <em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MSRoot.prepare_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.prepare_headers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.process_child">
+<code class="descname">process_child</code><span class="sig-paren">(</span><em>ch</em>, <em>name</em>, <em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MSRoot.process_child"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.process_child" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.getChild">
+<code class="descname">getChild</code><span class="sig-paren">(</span><em>name</em>, <em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MSRoot.getChild"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.getChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a ‘child’ resource from me.</p>
+<p>Implement this to create dynamic resource generation – resources which
+are always available may be registered with self.putChild().</p>
+<p>This will not be called if the class-level variable ‘isLeaf’ is set in
+your subclass; instead, the ‘postpath’ attribute of the request will be
+left as a list of the remaining path elements.</p>
+<p>For example, the URL /foo/bar/baz will normally be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">site</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;baz&#39;</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>However, if the resource returned by ‘bar’ has isLeaf set to true, then
+the getChild call will never be made on it.</p>
+<p>Parameters and return value have the same meaning and requirements as
+those defined by L{IResource.getChildWithDefault}.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.list_content">
+<code class="descname">list_content</code><span class="sig-paren">(</span><em>name</em>, <em>item</em>, <em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MSRoot.list_content"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.list_content" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.listchilds">
+<code class="descname">listchilds</code><span class="sig-paren">(</span><em>uri</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MSRoot.listchilds"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.listchilds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.import_response">
+<code class="descname">import_response</code><span class="sig-paren">(</span><em>result</em>, <em>id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MSRoot.import_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.import_response" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MSRoot.render"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render a given resource. See L{IResource}’s render method.</p>
+<p>I delegate to methods of self with the form ‘render_METHOD’
+where METHOD is the HTTP that was used to make the
+request. Examples: render_GET, render_HEAD, render_POST, and
+so on. Generally you should implement those methods instead of
+overriding this one.</p>
+<p>render_METHOD methods are expected to return a byte string which will be
+the rendered page, unless the return value is C{server.NOT_DONE_YET}, in
+which case it is this class’s responsibility to write the results using
+C{request.write(data)} and then call C{request.finish()}.</p>
+<p>Old code that overrides render() directly is likewise expected
+to return a byte string or NOT_DONE_YET.</p>
+<p>&#64;see: L{IResource.render}</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.MSRoot.COLOR_FORMAT">
+<code class="descname">COLOR_FORMAT</code><em class="property"> = '[%(levelname)-18s][\x1b[1m%(name)-15s\x1b[0m]  %(message)s    (\x1b[1m%(filename)s\x1b[0m:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.COLOR_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.MSRoot.FORMAT">
+<code class="descname">FORMAT</code><em class="property"> = '[%(levelname)-18s][$BOLD%(name)-15s$RESET]  %(message)s    ($BOLD%(filename)s$RESET:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.MSRoot._Loggable__logger">
+<code class="descname">_Loggable__logger</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot._Loggable__logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.critical">
+<code class="descname">critical</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.debug">
+<code class="descname">debug</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.delEntity">
+<code class="descname">delEntity</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.delEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.MSRoot.entityType">
+<code class="descname">entityType</code><em class="property"> = &lt;InterfaceClass twisted.web.resource.IResource&gt;</em><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.entityType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.fatal">
+<code class="descname">fatal</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.getChildForRequest">
+<code class="descname">getChildForRequest</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.getChildForRequest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.getDynamicEntity">
+<code class="descname">getDynamicEntity</code><span class="sig-paren">(</span><em>name</em>, <em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.getDynamicEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.getStaticEntity">
+<code class="descname">getStaticEntity</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.getStaticEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.MSRoot.isLeaf">
+<code class="descname">isLeaf</code><em class="property"> = 0</em><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.isLeaf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.listDynamicEntities">
+<code class="descname">listDynamicEntities</code><span class="sig-paren">(</span><em>request=None</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.listDynamicEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.listDynamicNames">
+<code class="descname">listDynamicNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.listDynamicNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.listEntities">
+<code class="descname">listEntities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.listEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.listNames">
+<code class="descname">listNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.listNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.listStaticEntities">
+<code class="descname">listStaticEntities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.listStaticEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.listStaticNames">
+<code class="descname">listStaticNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.listStaticNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.putChild">
+<code class="descname">putChild</code><span class="sig-paren">(</span><em>path</em>, <em>child</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.putChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a static child.</p>
+<p>You almost certainly don’t want ‘/’ in your path. If you
+intended to have the root of a folder, e.g. /foo/, you want
+path to be ‘’.</p>
+<p>&#64;see: L{IResource.putChild}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.reallyPutEntity">
+<code class="descname">reallyPutEntity</code><span class="sig-paren">(</span><em>name</em>, <em>entity</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.reallyPutEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.render_HEAD">
+<code class="descname">render_HEAD</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.render_HEAD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default handling of HEAD method.</p>
+<p>I just return self.render_GET(request). When method is HEAD,
+the framework will handle this correctly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MSRoot.warning">
+<code class="descname">warning</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MSRoot.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML">
+<em class="property">class </em><code class="descname">RootDeviceXML</code><span class="sig-paren">(</span><em>hostname</em>, <em>uuid</em>, <em>urlbase</em>, <em>device_type='MediaServer'</em>, <em>version=2</em>, <em>friendly_name='Coherence UPnP A/V MediaServer'</em>, <em>xbox_hack=False</em>, <em>services=None</em>, <em>devices=None</em>, <em>icons=None</em>, <em>presentation_url=None</em>, <em>dlna_caps=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#RootDeviceXML"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">twisted.web.static.Data</span></code></p>
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.delEntity">
+<code class="descname">delEntity</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.delEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.entityType">
+<code class="descname">entityType</code><em class="property"> = &lt;InterfaceClass twisted.web.resource.IResource&gt;</em><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.entityType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.getChild">
+<code class="descname">getChild</code><span class="sig-paren">(</span><em>path</em>, <em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.getChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a ‘child’ resource from me.</p>
+<p>Implement this to create dynamic resource generation – resources which
+are always available may be registered with self.putChild().</p>
+<p>This will not be called if the class-level variable ‘isLeaf’ is set in
+your subclass; instead, the ‘postpath’ attribute of the request will be
+left as a list of the remaining path elements.</p>
+<p>For example, the URL /foo/bar/baz will normally be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">site</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="s1">&#39;baz&#39;</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>However, if the resource returned by ‘bar’ has isLeaf set to true, then
+the getChild call will never be made on it.</p>
+<p>Parameters and return value have the same meaning and requirements as
+those defined by L{IResource.getChildWithDefault}.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.getChildForRequest">
+<code class="descname">getChildForRequest</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.getChildForRequest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.getChildWithDefault">
+<code class="descname">getChildWithDefault</code><span class="sig-paren">(</span><em>path</em>, <em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.getChildWithDefault" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a static or dynamically generated child resource from me.</p>
+<p>First checks if a resource was added manually by putChild, and then
+call getChild to check for dynamic resources. Only override if you want
+to affect behaviour of all child lookups, rather than just dynamic
+ones.</p>
+<p>This will check to see if I have a pre-registered child resource of the
+given name, and call getChild if I do not.</p>
+<p>&#64;see: L{IResource.getChildWithDefault}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.getDynamicEntity">
+<code class="descname">getDynamicEntity</code><span class="sig-paren">(</span><em>name</em>, <em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.getDynamicEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.getStaticEntity">
+<code class="descname">getStaticEntity</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.getStaticEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.isLeaf">
+<code class="descname">isLeaf</code><em class="property"> = 0</em><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.isLeaf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.listDynamicEntities">
+<code class="descname">listDynamicEntities</code><span class="sig-paren">(</span><em>request=None</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.listDynamicEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.listDynamicNames">
+<code class="descname">listDynamicNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.listDynamicNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.listEntities">
+<code class="descname">listEntities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.listEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.listNames">
+<code class="descname">listNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.listNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.listStaticEntities">
+<code class="descname">listStaticEntities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.listStaticEntities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.listStaticNames">
+<code class="descname">listStaticNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.listStaticNames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.putChild">
+<code class="descname">putChild</code><span class="sig-paren">(</span><em>path</em>, <em>child</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.putChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a static child.</p>
+<p>You almost certainly don’t want ‘/’ in your path. If you
+intended to have the root of a folder, e.g. /foo/, you want
+path to be ‘’.</p>
+<p>&#64;see: L{IResource.putChild}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.reallyPutEntity">
+<code class="descname">reallyPutEntity</code><span class="sig-paren">(</span><em>name</em>, <em>entity</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.reallyPutEntity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.render">
+<code class="descname">render</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render a given resource. See L{IResource}’s render method.</p>
+<p>I delegate to methods of self with the form ‘render_METHOD’
+where METHOD is the HTTP that was used to make the
+request. Examples: render_GET, render_HEAD, render_POST, and
+so on. Generally you should implement those methods instead of
+overriding this one.</p>
+<p>render_METHOD methods are expected to return a byte string which will be
+the rendered page, unless the return value is C{server.NOT_DONE_YET}, in
+which case it is this class’s responsibility to write the results using
+C{request.write(data)} and then call C{request.finish()}.</p>
+<p>Old code that overrides render() directly is likewise expected
+to return a byte string or NOT_DONE_YET.</p>
+<p>&#64;see: L{IResource.render}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.render_GET">
+<code class="descname">render_GET</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.render_GET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.render_HEAD">
+<code class="descname">render_HEAD</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.render_HEAD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.RootDeviceXML.server">
+<code class="descname">server</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.media_server.RootDeviceXML.server" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="coherence.upnp.devices.media_server.MediaServer">
+<em class="property">class </em><code class="descname">MediaServer</code><span class="sig-paren">(</span><em>coherence</em>, <em>backend</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MediaServer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="modules.html#coherence.log.LogAble" title="coherence.log.LogAble"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.log.LogAble</span></code></a>, <a class="reference internal" href="#coherence.upnp.devices.basics.BasicDeviceMixin" title="coherence.upnp.devices.basics.BasicDeviceMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.upnp.devices.basics.BasicDeviceMixin</span></code></a></p>
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.MediaServer.logCategory">
+<code class="descname">logCategory</code><em class="property"> = 'mediaserver'</em><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.logCategory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.MediaServer.device_type">
+<code class="descname">device_type</code><em class="property"> = 'MediaServer'</em><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.device_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.MediaServer.presentationURL">
+<code class="descname">presentationURL</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.presentationURL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.fire">
+<code class="descname">fire</code><span class="sig-paren">(</span><em>backend</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MediaServer.fire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.fire" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.init_complete">
+<code class="descname">init_complete</code><span class="sig-paren">(</span><em>backend</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server.html#MediaServer.init_complete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.init_complete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.MediaServer.COLOR_FORMAT">
+<code class="descname">COLOR_FORMAT</code><em class="property"> = '[%(levelname)-18s][\x1b[1m%(name)-15s\x1b[0m]  %(message)s    (\x1b[1m%(filename)s\x1b[0m:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.COLOR_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.MediaServer.FORMAT">
+<code class="descname">FORMAT</code><em class="property"> = '[%(levelname)-18s][$BOLD%(name)-15s$RESET]  %(message)s    ($BOLD%(filename)s$RESET:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server.MediaServer._Loggable__logger">
+<code class="descname">_Loggable__logger</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer._Loggable__logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.critical">
+<code class="descname">critical</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.debug">
+<code class="descname">debug</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.fatal">
+<code class="descname">fatal</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.init_failed">
+<code class="descname">init_failed</code><span class="sig-paren">(</span><em>backend</em>, <em>msg</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.init_failed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.register">
+<code class="descname">register</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.register" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.unregister">
+<code class="descname">unregister</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.unregister" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server.MediaServer.warning">
+<code class="descname">warning</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server.MediaServer.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.devices.media_server_client">
+<span id="coherence-upnp-devices-media-server-client-module"></span><h2>coherence.upnp.devices.media_server_client (module)<a class="headerlink" href="#module-coherence.upnp.devices.media_server_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient">
+<em class="property">class </em><code class="descname">MediaServerClient</code><span class="sig-paren">(</span><em>device</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server_client.html#MediaServerClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="modules.html#coherence.log.LogAble" title="coherence.log.LogAble"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.log.LogAble</span></code></a></p>
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.logCategory">
+<code class="descname">logCategory</code><em class="property"> = 'ms_client'</em><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.logCategory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server_client.html#MediaServerClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.service_notified">
+<code class="descname">service_notified</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server_client.html#MediaServerClient.service_notified"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.service_notified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.COLOR_FORMAT">
+<code class="descname">COLOR_FORMAT</code><em class="property"> = '[%(levelname)-18s][\x1b[1m%(name)-15s\x1b[0m]  %(message)s    (\x1b[1m%(filename)s\x1b[0m:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.COLOR_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.FORMAT">
+<code class="descname">FORMAT</code><em class="property"> = '[%(levelname)-18s][$BOLD%(name)-15s$RESET]  %(message)s    ($BOLD%(filename)s$RESET:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient._Loggable__logger">
+<code class="descname">_Loggable__logger</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient._Loggable__logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.critical">
+<code class="descname">critical</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.debug">
+<code class="descname">debug</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.fatal">
+<code class="descname">fatal</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.state_variable_change">
+<code class="descname">state_variable_change</code><span class="sig-paren">(</span><em>variable</em>, <em>usn</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server_client.html#MediaServerClient.state_variable_change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.state_variable_change" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.warning">
+<code class="descname">warning</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.print_results">
+<code class="descname">print_results</code><span class="sig-paren">(</span><em>results</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server_client.html#MediaServerClient.print_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.print_results" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.media_server_client.MediaServerClient.process_meta">
+<code class="descname">process_meta</code><span class="sig-paren">(</span><em>results</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/media_server_client.html#MediaServerClient.process_meta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.media_server_client.MediaServerClient.process_meta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.devices.wan_connection_device_client">
+<span id="coherence-upnp-devices-wan-connection-device-client-module"></span><h2>coherence.upnp.devices.wan_connection_device_client (module)<a class="headerlink" href="#module-coherence.upnp.devices.wan_connection_device_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient">
+<em class="property">class </em><code class="descname">WANConnectionDeviceClient</code><span class="sig-paren">(</span><em>device</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/wan_connection_device_client.html#WANConnectionDeviceClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="modules.html#coherence.log.LogAble" title="coherence.log.LogAble"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.log.LogAble</span></code></a></p>
+<dl class="attribute">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.logCategory">
+<code class="descname">logCategory</code><em class="property"> = 'igd_client'</em><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.logCategory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.COLOR_FORMAT">
+<code class="descname">COLOR_FORMAT</code><em class="property"> = '[%(levelname)-18s][\x1b[1m%(name)-15s\x1b[0m]  %(message)s    (\x1b[1m%(filename)s\x1b[0m:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.COLOR_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.FORMAT">
+<code class="descname">FORMAT</code><em class="property"> = '[%(levelname)-18s][$BOLD%(name)-15s$RESET]  %(message)s    ($BOLD%(filename)s$RESET:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient._Loggable__logger">
+<code class="descname">_Loggable__logger</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient._Loggable__logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.critical">
+<code class="descname">critical</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.debug">
+<code class="descname">debug</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.fatal">
+<code class="descname">fatal</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/wan_connection_device_client.html#WANConnectionDeviceClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.warning">
+<code class="descname">warning</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.service_notified">
+<code class="descname">service_notified</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/wan_connection_device_client.html#WANConnectionDeviceClient.service_notified"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.wan_connection_device_client.WANConnectionDeviceClient.service_notified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.devices.wan_device_client">
+<span id="coherence-upnp-devices-wan-device-client-module"></span><h2>coherence.upnp.devices.wan_device_client (module)<a class="headerlink" href="#module-coherence.upnp.devices.wan_device_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient">
+<em class="property">class </em><code class="descname">WANDeviceClient</code><span class="sig-paren">(</span><em>device</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/wan_device_client.html#WANDeviceClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="modules.html#coherence.log.LogAble" title="coherence.log.LogAble"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.log.LogAble</span></code></a></p>
+<dl class="attribute">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.logCategory">
+<code class="descname">logCategory</code><em class="property"> = 'wan_device_client'</em><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.logCategory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/wan_device_client.html#WANDeviceClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.COLOR_FORMAT">
+<code class="descname">COLOR_FORMAT</code><em class="property"> = '[%(levelname)-18s][\x1b[1m%(name)-15s\x1b[0m]  %(message)s    (\x1b[1m%(filename)s\x1b[0m:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.COLOR_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.FORMAT">
+<code class="descname">FORMAT</code><em class="property"> = '[%(levelname)-18s][$BOLD%(name)-15s$RESET]  %(message)s    ($BOLD%(filename)s$RESET:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient._Loggable__logger">
+<code class="descname">_Loggable__logger</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient._Loggable__logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.critical">
+<code class="descname">critical</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.debug">
+<code class="descname">debug</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.embedded_device_notified">
+<code class="descname">embedded_device_notified</code><span class="sig-paren">(</span><em>device</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/wan_device_client.html#WANDeviceClient.embedded_device_notified"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.embedded_device_notified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.fatal">
+<code class="descname">fatal</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.warning">
+<code class="descname">warning</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.devices.wan_device_client.WANDeviceClient.service_notified">
+<code class="descname">service_notified</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/devices/wan_device_client.html#WANDeviceClient.service_notified"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.devices.wan_device_client.WANDeviceClient.service_notified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="coherence.upnp.services.html" class="btn btn-neutral float-right" title="coherence.upnp.services (package)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="coherence.upnp.core.html" class="btn btn-neutral" title="coherence.upnp.core (package)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pol Canelles.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

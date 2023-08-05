@@ -1,0 +1,1339 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>twisted.spread.jelly &mdash; Cohen3 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cohen3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backends.html">Backends (plugins)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/coherence.html">Coherence (package)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor_code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cohen3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>twisted.spread.jelly</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for twisted.spread.jelly</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- test-case-name: twisted.spread.test.test_jelly -*-</span>
+<span class="c1"># Copyright (c) Twisted Matrix Laboratories.</span>
+<span class="c1"># See LICENSE for details.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">S-expression-based persistence of python objects.</span>
+
+<span class="sd">It does something very much like L{Pickle&lt;pickle&gt;}; however, pickle&#39;s main goal</span>
+<span class="sd">seems to be efficiency (both in space and time); jelly&#39;s main goals are</span>
+<span class="sd">security, human readability, and portability to other environments.</span>
+
+<span class="sd">This is how Jelly converts various objects to s-expressions.</span>
+
+<span class="sd">Boolean::</span>
+<span class="sd">    True --&gt; [&#39;boolean&#39;, &#39;true&#39;]</span>
+
+<span class="sd">Integer::</span>
+<span class="sd">    1 --&gt; 1</span>
+
+<span class="sd">List::</span>
+<span class="sd">    [1, 2] --&gt; [&#39;list&#39;, 1, 2]</span>
+
+<span class="sd">String::</span>
+<span class="sd">    \&quot;hello\&quot; --&gt; \&quot;hello\&quot;</span>
+
+<span class="sd">Float::</span>
+<span class="sd">    2.3 --&gt; 2.3</span>
+
+<span class="sd">Dictionary::</span>
+<span class="sd">    {&#39;a&#39;: 1, &#39;b&#39;: &#39;c&#39;} --&gt; [&#39;dictionary&#39;, [&#39;b&#39;, &#39;c&#39;], [&#39;a&#39;, 1]]</span>
+
+<span class="sd">Module::</span>
+<span class="sd">    UserString --&gt; [&#39;module&#39;, &#39;UserString&#39;]</span>
+
+<span class="sd">Class::</span>
+<span class="sd">    UserString.UserString --&gt; [&#39;class&#39;, [&#39;module&#39;, &#39;UserString&#39;], &#39;UserString&#39;]</span>
+
+<span class="sd">Function::</span>
+<span class="sd">    string.join --&gt; [&#39;function&#39;, &#39;join&#39;, [&#39;module&#39;, &#39;string&#39;]]</span>
+
+<span class="sd">Instance: s is an instance of UserString.UserString, with a __dict__</span>
+<span class="sd">{&#39;data&#39;: &#39;hello&#39;}::</span>
+<span class="sd">    [\&quot;UserString.UserString\&quot;, [&#39;dictionary&#39;, [&#39;data&#39;, &#39;hello&#39;]]]</span>
+
+<span class="sd">Class Method: UserString.UserString.center::</span>
+<span class="sd">    [&#39;method&#39;, &#39;center&#39;, [&#39;None&#39;], [&#39;class&#39;, [&#39;module&#39;, &#39;UserString&#39;],</span>
+<span class="sd">     &#39;UserString&#39;]]</span>
+
+<span class="sd">Instance Method: s.center, where s is an instance of UserString.UserString::</span>
+<span class="sd">    [&#39;method&#39;, &#39;center&#39;, [&#39;instance&#39;, [&#39;reference&#39;, 1, [&#39;class&#39;,</span>
+<span class="sd">    [&#39;module&#39;, &#39;UserString&#39;], &#39;UserString&#39;]], [&#39;dictionary&#39;, [&#39;data&#39;, &#39;d&#39;]]],</span>
+<span class="sd">    [&#39;dereference&#39;, 1]]</span>
+
+<span class="sd">The C{set} builtin and the C{sets.Set} class are serialized to the same</span>
+<span class="sd">thing, and unserialized to C{set} if available, else to C{sets.Set}. It means</span>
+<span class="sd">that there&#39;s a possibility of type switching in the serialization process. The</span>
+<span class="sd">solution is to always use C{set}.</span>
+
+<span class="sd">The same rule applies for C{frozenset} and C{sets.ImmutableSet}.</span>
+
+<span class="sd">@author: Glyph Lefkowitz</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># System Imports</span>
+<span class="kn">import</span> <span class="nn">types</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">decimal</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">reduce</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">types</span> <span class="k">import</span> <span class="p">(</span><span class="n">ClassType</span> <span class="k">as</span> <span class="n">_OldStyleClass</span><span class="p">,</span>
+                       <span class="n">InstanceType</span> <span class="k">as</span> <span class="n">_OldStyleInstance</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c1"># On Python 3 and higher, ClassType and InstanceType</span>
+    <span class="c1"># are gone.  Use an empty tuple to pass to isinstance()</span>
+    <span class="c1"># tests without throwing an exception.</span>
+    <span class="n">_OldStyleClass</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">_OldStyleInstance</span> <span class="o">=</span> <span class="p">()</span>
+
+<span class="n">_SetTypes</span> <span class="o">=</span> <span class="p">[</span><span class="nb">set</span><span class="p">]</span>
+<span class="n">_ImmutableSetTypes</span> <span class="o">=</span> <span class="p">[</span><span class="nb">frozenset</span><span class="p">]</span>
+
+<span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">sets</span> <span class="k">as</span> <span class="nn">_sets</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="c1"># sets module is deprecated in Python 2.6, and gone in</span>
+        <span class="c1"># Python 3</span>
+        <span class="n">_sets</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_SetTypes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_sets</span><span class="o">.</span><span class="n">Set</span><span class="p">)</span>
+        <span class="n">_ImmutableSetTypes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_sets</span><span class="o">.</span><span class="n">ImmutableSet</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">zope.interface</span> <span class="k">import</span> <span class="n">implementer</span>
+
+<span class="c1"># Twisted Imports</span>
+<span class="kn">from</span> <span class="nn">twisted.python.compat</span> <span class="k">import</span> <span class="n">unicode</span><span class="p">,</span> <span class="n">long</span><span class="p">,</span> <span class="n">nativeString</span>
+<span class="kn">from</span> <span class="nn">twisted.python.reflect</span> <span class="k">import</span> <span class="n">namedObject</span><span class="p">,</span> <span class="n">qual</span><span class="p">,</span> <span class="n">namedAny</span>
+<span class="kn">from</span> <span class="nn">twisted.persisted.crefutil</span> <span class="k">import</span> <span class="n">NotKnown</span><span class="p">,</span> <span class="n">_Tuple</span><span class="p">,</span> <span class="n">_InstanceMethod</span>
+<span class="kn">from</span> <span class="nn">twisted.persisted.crefutil</span> <span class="k">import</span> <span class="n">_DictKeyAndValue</span><span class="p">,</span> <span class="n">_Dereference</span>
+<span class="kn">from</span> <span class="nn">twisted.persisted.crefutil</span> <span class="k">import</span> <span class="n">_Container</span>
+
+<span class="kn">from</span> <span class="nn">twisted.spread.interfaces</span> <span class="k">import</span> <span class="n">IJellyable</span><span class="p">,</span> <span class="n">IUnjellyable</span>
+
+<span class="kn">from</span> <span class="nn">twisted.python.compat</span> <span class="k">import</span> <span class="n">_PY3</span>
+<span class="kn">from</span> <span class="nn">twisted.python.deprecate</span> <span class="k">import</span> <span class="n">deprecatedModuleAttribute</span>
+<span class="kn">from</span> <span class="nn">incremental</span> <span class="k">import</span> <span class="n">Version</span>
+
+<span class="n">DictTypes</span> <span class="o">=</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,)</span>
+
+<span class="n">None_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;None&quot;</span>                  <span class="c1"># N</span>
+<span class="c1"># code</span>
+<span class="n">class_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;class&quot;</span>                <span class="c1"># c</span>
+<span class="n">module_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;module&quot;</span>              <span class="c1"># m</span>
+<span class="n">function_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;function&quot;</span>          <span class="c1"># f</span>
+
+<span class="c1"># references</span>
+<span class="n">dereference_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;dereference&#39;</span>    <span class="c1"># D</span>
+<span class="n">persistent_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;persistent&#39;</span>      <span class="c1"># p</span>
+<span class="n">reference_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;reference&#39;</span>        <span class="c1"># r</span>
+
+<span class="c1"># mutable collections</span>
+<span class="n">dictionary_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;dictionary&quot;</span>      <span class="c1"># d</span>
+<span class="n">list_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;list&#39;</span>                  <span class="c1"># l</span>
+<span class="n">set_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;set&#39;</span>
+
+<span class="c1"># immutable collections</span>
+<span class="c1">#   (assignment to __dict__ and __class__ still might go away!)</span>
+<span class="n">tuple_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;tuple&quot;</span>                <span class="c1"># t</span>
+<span class="n">instance_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;instance&#39;</span>          <span class="c1"># i</span>
+<span class="n">frozenset_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;frozenset&#39;</span>
+
+
+<span class="n">deprecatedModuleAttribute</span><span class="p">(</span>
+    <span class="n">Version</span><span class="p">(</span><span class="s2">&quot;Twisted&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;instance_atom is unused within Twisted.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;twisted.spread.jelly&quot;</span><span class="p">,</span> <span class="s2">&quot;instance_atom&quot;</span><span class="p">)</span>
+
+<span class="c1"># errors</span>
+<span class="n">unpersistable_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;unpersistable&quot;</span><span class="c1"># u</span>
+<span class="n">unjellyableRegistry</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">unjellyableFactoryRegistry</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+
+<span class="k">def</span> <span class="nf">_createBlank</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given an object, if that object is a type (or a legacy old-style class),</span>
+<span class="sd">    return a new, blank instance of that type which has not had C{__init__}</span>
+<span class="sd">    called on it.  If the object is not a type, return C{None}.</span>
+
+<span class="sd">    @param cls: The type (or class) to create an instance of.</span>
+<span class="sd">    @type cls: L{_OldStyleClass}, L{type}, or something else that cannot be</span>
+<span class="sd">        instantiated.</span>
+
+<span class="sd">    @return: a new blank instance or L{None} if C{cls} is not a class or type.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_PY3</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">_OldStyleClass</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_OldStyleInstance</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+
+
+
+<span class="k">def</span> <span class="nf">_newInstance</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make a new instance of a class without calling its __init__ method.</span>
+<span class="sd">    Supports both new- and old-style classes.</span>
+
+<span class="sd">    @param state: A C{dict} used to update C{inst.__dict__} either directly or</span>
+<span class="sd">        via C{__setstate__}, if available.</span>
+
+<span class="sd">    @return: A new instance of C{cls}.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="n">_createBlank</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">defaultSetter</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">instance</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">state</span>
+    <span class="n">setter</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="s2">&quot;__setstate__&quot;</span><span class="p">,</span> <span class="n">defaultSetter</span><span class="p">)</span>
+    <span class="n">setter</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">instance</span>
+
+
+
+<span class="k">def</span> <span class="nf">_maybeClass</span><span class="p">(</span><span class="n">classnamep</span><span class="p">):</span>
+    <span class="n">isObject</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">classnamep</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">isObject</span> <span class="ow">or</span> <span class="p">((</span><span class="ow">not</span> <span class="n">_PY3</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">classnamep</span><span class="p">,</span> <span class="n">_OldStyleClass</span><span class="p">)):</span>
+        <span class="n">classnamep</span> <span class="o">=</span> <span class="n">qual</span><span class="p">(</span><span class="n">classnamep</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">classnamep</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+        <span class="n">classnamep</span> <span class="o">=</span> <span class="n">classnamep</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">classnamep</span>
+
+
+
+<span class="k">def</span> <span class="nf">setUnjellyableForClass</span><span class="p">(</span><span class="n">classname</span><span class="p">,</span> <span class="n">unjellyable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set which local class will represent a remote type.</span>
+
+<span class="sd">    If you have written a Copyable class that you expect your client to be</span>
+<span class="sd">    receiving, write a local &quot;copy&quot; class to represent it, then call::</span>
+
+<span class="sd">        jellier.setUnjellyableForClass(&#39;module.package.Class&#39;, MyCopier).</span>
+
+<span class="sd">    Call this at the module level immediately after its class</span>
+<span class="sd">    definition. MyCopier should be a subclass of RemoteCopy.</span>
+
+<span class="sd">    The classname may be a special tag returned by</span>
+<span class="sd">    &#39;Copyable.getTypeToCopyFor&#39; rather than an actual classname.</span>
+
+<span class="sd">    This call is also for cached classes, since there will be no</span>
+<span class="sd">    overlap.  The rules are the same.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">global</span> <span class="n">unjellyableRegistry</span>
+    <span class="n">classname</span> <span class="o">=</span> <span class="n">_maybeClass</span><span class="p">(</span><span class="n">classname</span><span class="p">)</span>
+    <span class="n">unjellyableRegistry</span><span class="p">[</span><span class="n">classname</span><span class="p">]</span> <span class="o">=</span> <span class="n">unjellyable</span>
+    <span class="n">globalSecurity</span><span class="o">.</span><span class="n">allowTypes</span><span class="p">(</span><span class="n">classname</span><span class="p">)</span>
+
+
+
+<span class="k">def</span> <span class="nf">setUnjellyableFactoryForClass</span><span class="p">(</span><span class="n">classname</span><span class="p">,</span> <span class="n">copyFactory</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set the factory to construct a remote instance of a type::</span>
+
+<span class="sd">      jellier.setUnjellyableFactoryForClass(&#39;module.package.Class&#39;, MyFactory)</span>
+
+<span class="sd">    Call this at the module level immediately after its class definition.</span>
+<span class="sd">    C{copyFactory} should return an instance or subclass of</span>
+<span class="sd">    L{RemoteCopy&lt;pb.RemoteCopy&gt;}.</span>
+
+<span class="sd">    Similar to L{setUnjellyableForClass} except it uses a factory instead</span>
+<span class="sd">    of creating an instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">global</span> <span class="n">unjellyableFactoryRegistry</span>
+    <span class="n">classname</span> <span class="o">=</span> <span class="n">_maybeClass</span><span class="p">(</span><span class="n">classname</span><span class="p">)</span>
+    <span class="n">unjellyableFactoryRegistry</span><span class="p">[</span><span class="n">classname</span><span class="p">]</span> <span class="o">=</span> <span class="n">copyFactory</span>
+    <span class="n">globalSecurity</span><span class="o">.</span><span class="n">allowTypes</span><span class="p">(</span><span class="n">classname</span><span class="p">)</span>
+
+
+
+<span class="k">def</span> <span class="nf">setUnjellyableForClassTree</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">baseClass</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set all classes in a module derived from C{baseClass} as copiers for</span>
+<span class="sd">    a corresponding remote class.</span>
+
+<span class="sd">    When you have a hierarchy of Copyable (or Cacheable) classes on one</span>
+<span class="sd">    side, and a mirror structure of Copied (or RemoteCache) classes on the</span>
+<span class="sd">    other, use this to setUnjellyableForClass all your Copieds for the</span>
+<span class="sd">    Copyables.</span>
+
+<span class="sd">    Each copyTag (the \&quot;classname\&quot; argument to getTypeToCopyFor, and</span>
+<span class="sd">    what the Copyable&#39;s getTypeToCopyFor returns) is formed from</span>
+<span class="sd">    adding a prefix to the Copied&#39;s class name.  The prefix defaults</span>
+<span class="sd">    to module.__name__.  If you wish the copy tag to consist of solely</span>
+<span class="sd">    the classname, pass the empty string \&#39;\&#39;.</span>
+
+<span class="sd">    @param module: a module object from which to pull the Copied classes.</span>
+<span class="sd">        (passing sys.modules[__name__] might be useful)</span>
+
+<span class="sd">    @param baseClass: the base class from which all your Copied classes derive.</span>
+
+<span class="sd">    @param prefix: the string prefixed to classnames to form the</span>
+<span class="sd">        unjellyableRegistry.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="vm">__name__</span>
+
+    <span class="k">if</span> <span class="n">prefix</span><span class="p">:</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="n">prefix</span>
+
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">module</span><span class="p">):</span>
+        <span class="n">loaded</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">yes</span> <span class="o">=</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">loaded</span><span class="p">,</span> <span class="n">baseClass</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="s2">&quot;It&#39;s not a class.&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">yes</span><span class="p">:</span>
+                <span class="n">setUnjellyableForClass</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span> <span class="n">loaded</span><span class="p">)</span>
+
+
+
+<span class="k">def</span> <span class="nf">getInstanceState</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">jellier</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Utility method to default to &#39;normal&#39; state rules in serialization.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="s2">&quot;__getstate__&quot;</span><span class="p">):</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">inst</span><span class="o">.</span><span class="n">__getstate__</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">inst</span><span class="o">.</span><span class="vm">__dict__</span>
+    <span class="n">sxp</span> <span class="o">=</span> <span class="n">jellier</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span>
+    <span class="n">sxp</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">qual</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">jellier</span><span class="o">.</span><span class="n">jelly</span><span class="p">(</span><span class="n">state</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="n">jellier</span><span class="o">.</span><span class="n">preserve</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">sxp</span><span class="p">)</span>
+
+
+
+<span class="k">def</span> <span class="nf">setInstanceState</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">unjellier</span><span class="p">,</span> <span class="n">jellyList</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Utility method to default to &#39;normal&#39; state rules in unserialization.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">unjellier</span><span class="o">.</span><span class="n">unjelly</span><span class="p">(</span><span class="n">jellyList</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="s2">&quot;__setstate__&quot;</span><span class="p">):</span>
+        <span class="n">inst</span><span class="o">.</span><span class="n">__setstate__</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">inst</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">state</span>
+    <span class="k">return</span> <span class="n">inst</span>
+
+
+
+<span class="k">class</span> <span class="nc">Unpersistable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is an instance of a class that comes back when something couldn&#39;t be</span>
+<span class="sd">    unpersisted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize an unpersistable object with a descriptive C{reason} string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reason</span> <span class="o">=</span> <span class="n">reason</span>
+
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Unpersistable(</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reason</span><span class="p">)</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">IJellyable</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Jellyable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inherit from me to Jelly yourself directly with the `getStateFor&#39;</span>
+<span class="sd">    convenience method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">getStateFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jellier</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
+
+
+    <span class="k">def</span> <span class="nf">jellyFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jellier</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @see: L{twisted.spread.interfaces.IJellyable.jellyFor}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sxp</span> <span class="o">=</span> <span class="n">jellier</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">sxp</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+            <span class="n">qual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+            <span class="n">jellier</span><span class="o">.</span><span class="n">jelly</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getStateFor</span><span class="p">(</span><span class="n">jellier</span><span class="p">))])</span>
+        <span class="k">return</span> <span class="n">jellier</span><span class="o">.</span><span class="n">preserve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sxp</span><span class="p">)</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">IUnjellyable</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Unjellyable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inherit from me to Unjelly yourself directly with the</span>
+<span class="sd">    C{setStateFor} convenience method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">setStateFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unjellier</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">state</span>
+
+
+    <span class="k">def</span> <span class="nf">unjellyFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unjellier</span><span class="p">,</span> <span class="n">jellyList</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform the inverse operation of L{Jellyable.jellyFor}.</span>
+
+<span class="sd">        @see: L{twisted.spread.interfaces.IUnjellyable.unjellyFor}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">unjellier</span><span class="o">.</span><span class="n">unjelly</span><span class="p">(</span><span class="n">jellyList</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setStateFor</span><span class="p">(</span><span class="n">unjellier</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+
+
+<span class="k">class</span> <span class="nc">_Jellier</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    (Internal) This class manages state for a call to jelly()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taster</span><span class="p">,</span> <span class="n">persistentStore</span><span class="p">,</span> <span class="n">invoker</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">taster</span> <span class="o">=</span> <span class="n">taster</span>
+        <span class="c1"># `preserved&#39; is a dict of previously seen instances.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preserved</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># `cooked&#39; is a dict of previously backreferenced instances to their</span>
+        <span class="c1"># `ref&#39; lists.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cooked</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cooker</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ref_id</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persistentStore</span> <span class="o">=</span> <span class="n">persistentStore</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invoker</span> <span class="o">=</span> <span class="n">invoker</span>
+
+
+    <span class="k">def</span> <span class="nf">_cook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">object</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        (internal) Backreference an object.</span>
+
+<span class="sd">        Notes on this method for the hapless future maintainer: If I&#39;ve already</span>
+<span class="sd">        gone through the prepare/preserve cycle on the specified object (it is</span>
+<span class="sd">        being referenced after the serializer is \&quot;done with\&quot; it, e.g. this</span>
+<span class="sd">        reference is NOT circular), the copy-in-place of aList is relevant,</span>
+<span class="sd">        since the list being modified is the actual, pre-existing jelly</span>
+<span class="sd">        expression that was returned for that object. If not, it&#39;s technically</span>
+<span class="sd">        superfluous, since the value in self.preserved didn&#39;t need to be set,</span>
+<span class="sd">        but the invariant that self.preserved[id(object)] is a list is</span>
+<span class="sd">        convenient because that means we don&#39;t have to test and create it or</span>
+<span class="sd">        not create it here, creating fewer code-paths.  that&#39;s why</span>
+<span class="sd">        self.preserved is always set to a list.</span>
+
+<span class="sd">        Sorry that this code is so hard to follow, but Python objects are</span>
+<span class="sd">        tricky to persist correctly. -glyph</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">aList</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">preserved</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="nb">object</span><span class="p">)]</span>
+        <span class="n">newList</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">aList</span><span class="p">)</span>
+        <span class="c1"># make a new reference ID</span>
+        <span class="n">refid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ref_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ref_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ref_id</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="c1"># replace the old list in-place, so that we don&#39;t have to track the</span>
+        <span class="c1"># previous reference to it.</span>
+        <span class="n">aList</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">[</span><span class="n">reference_atom</span><span class="p">,</span> <span class="n">refid</span><span class="p">,</span> <span class="n">newList</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cooked</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="nb">object</span><span class="p">)]</span> <span class="o">=</span> <span class="p">[</span><span class="n">dereference_atom</span><span class="p">,</span> <span class="n">refid</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">aList</span>
+
+
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">object</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        (internal) Create a list for persisting an object to.  This will allow</span>
+<span class="sd">        backreferences to be made internal to the object. (circular</span>
+<span class="sd">        references).</span>
+
+<span class="sd">        The reason this needs to happen is that we don&#39;t generate an ID for</span>
+<span class="sd">        every object, so we won&#39;t necessarily know which ID the object will</span>
+<span class="sd">        have in the future.  When it is &#39;cooked&#39; ( see _cook ), it will be</span>
+<span class="sd">        assigned an ID, and the temporary placeholder list created here will be</span>
+<span class="sd">        modified in-place to create an expression that gives this object an ID:</span>
+<span class="sd">        [reference id# [object-jelly]].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># create a placeholder list to be preserved</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preserved</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="nb">object</span><span class="p">)]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># keep a reference to this object around, so it doesn&#39;t disappear!</span>
+        <span class="c1"># (This isn&#39;t always necessary, but for cases where the objects are</span>
+        <span class="c1"># dynamically generated by __getstate__ or getStateToCopyFor calls, it</span>
+        <span class="c1"># is; id() will return the same value for a different object if it gets</span>
+        <span class="c1"># garbage collected.  This may be optimized later.)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cooker</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="nb">object</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">object</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+
+    <span class="k">def</span> <span class="nf">preserve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">object</span><span class="p">,</span> <span class="n">sexp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        (internal) Mark an object&#39;s persistent list for later referral.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># if I&#39;ve been cooked in the meanwhile,</span>
+        <span class="k">if</span> <span class="nb">id</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cooked</span><span class="p">:</span>
+            <span class="c1"># replace the placeholder empty list with the real one</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">preserved</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="nb">object</span><span class="p">)][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">sexp</span>
+            <span class="c1"># but give this one back.</span>
+            <span class="n">sexp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">preserved</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="nb">object</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">preserved</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="nb">object</span><span class="p">)]</span> <span class="o">=</span> <span class="n">sexp</span>
+        <span class="k">return</span> <span class="n">sexp</span>
+
+    <span class="n">constantTypes</span> <span class="o">=</span> <span class="p">{</span><span class="nb">bytes</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">unicode</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">float</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">long</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+
+
+    <span class="k">def</span> <span class="nf">_checkMutable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">):</span>
+        <span class="n">objId</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">objId</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cooked</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cooked</span><span class="p">[</span><span class="n">objId</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">objId</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">preserved</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cook</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cooked</span><span class="p">[</span><span class="n">objId</span><span class="p">]</span>
+
+
+    <span class="k">def</span> <span class="nf">jelly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Jellyable</span><span class="p">):</span>
+            <span class="n">preRef</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_checkMutable</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">preRef</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">preRef</span>
+            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">jellyFor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">objType</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">taster</span><span class="o">.</span><span class="n">isTypeAllowed</span><span class="p">(</span><span class="n">qual</span><span class="p">(</span><span class="n">objType</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)):</span>
+            <span class="c1"># &quot;Immutable&quot; Types</span>
+            <span class="k">if</span> <span class="p">((</span><span class="n">objType</span> <span class="ow">is</span> <span class="nb">bytes</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="p">(</span><span class="n">objType</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="p">(</span><span class="n">objType</span> <span class="ow">is</span> <span class="n">long</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="p">(</span><span class="n">objType</span> <span class="ow">is</span> <span class="nb">float</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="n">obj</span>
+            <span class="k">elif</span> <span class="n">objType</span> <span class="ow">is</span> <span class="n">types</span><span class="o">.</span><span class="n">MethodType</span><span class="p">:</span>
+                <span class="n">aSelf</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__self__</span> <span class="k">if</span> <span class="n">_PY3</span> <span class="k">else</span> <span class="n">obj</span><span class="o">.</span><span class="n">im_self</span>
+                <span class="n">aFunc</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__func__</span> <span class="k">if</span> <span class="n">_PY3</span> <span class="k">else</span> <span class="n">obj</span><span class="o">.</span><span class="n">im_func</span>
+                <span class="n">aClass</span> <span class="o">=</span> <span class="n">aSelf</span><span class="o">.</span><span class="vm">__class__</span> <span class="k">if</span> <span class="n">_PY3</span> <span class="k">else</span> <span class="n">obj</span><span class="o">.</span><span class="n">im_class</span>
+                <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s2">&quot;method&quot;</span><span class="p">,</span> <span class="n">aFunc</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jelly</span><span class="p">(</span><span class="n">aSelf</span><span class="p">),</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">jelly</span><span class="p">(</span><span class="n">aClass</span><span class="p">)]</span>
+            <span class="k">elif</span> <span class="n">objType</span> <span class="ow">is</span> <span class="n">unicode</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;unicode&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)]</span>
+            <span class="k">elif</span> <span class="n">objType</span> <span class="ow">is</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">):</span>
+                <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;None&#39;</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">objType</span> <span class="ow">is</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;function&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span>
+                        <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="k">if</span> <span class="n">_PY3</span> <span class="k">else</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)]</span>
+            <span class="k">elif</span> <span class="n">objType</span> <span class="ow">is</span> <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;module&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">objType</span> <span class="ow">is</span> <span class="nb">bool</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;boolean&#39;</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">and</span> <span class="sa">b</span><span class="s1">&#39;true&#39;</span> <span class="ow">or</span> <span class="sa">b</span><span class="s1">&#39;false&#39;</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">objType</span> <span class="ow">is</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">tzinfo</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                        <span class="s2">&quot;Currently can&#39;t jelly datetime objects with tzinfo&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">unicode</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span>
+                    <span class="n">obj</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span>
+                    <span class="n">obj</span><span class="o">.</span><span class="n">minute</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">second</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">microsecond</span><span class="p">)]</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)]</span>
+            <span class="k">elif</span> <span class="n">objType</span> <span class="ow">is</span> <span class="n">datetime</span><span class="o">.</span><span class="n">time</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">tzinfo</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                        <span class="s2">&quot;Currently can&#39;t jelly datetime objects with tzinfo&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">minute</span><span class="p">,</span>
+                                                 <span class="n">obj</span><span class="o">.</span><span class="n">second</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">microsecond</span><span class="p">)]</span>
+            <span class="k">elif</span> <span class="n">objType</span> <span class="ow">is</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">day</span><span class="p">)]</span>
+            <span class="k">elif</span> <span class="n">objType</span> <span class="ow">is</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;timedelta&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">days</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">seconds</span><span class="p">,</span>
+                                                   <span class="n">obj</span><span class="o">.</span><span class="n">microseconds</span><span class="p">)]</span>
+            <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">objType</span><span class="p">,</span> <span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">_OldStyleClass</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">qual</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)]</span>
+            <span class="k">elif</span> <span class="n">objType</span> <span class="ow">is</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jelly_decimal</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">preRef</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_checkMutable</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">preRef</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">preRef</span>
+                <span class="c1"># &quot;Mutable&quot; Types</span>
+                <span class="n">sxp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">objType</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+                    <span class="n">sxp</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jellyIterable</span><span class="p">(</span><span class="n">list_atom</span><span class="p">,</span> <span class="n">obj</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">objType</span> <span class="ow">is</span> <span class="nb">tuple</span><span class="p">:</span>
+                    <span class="n">sxp</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jellyIterable</span><span class="p">(</span><span class="n">tuple_atom</span><span class="p">,</span> <span class="n">obj</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">objType</span> <span class="ow">in</span> <span class="n">DictTypes</span><span class="p">:</span>
+                    <span class="n">sxp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dictionary_atom</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                        <span class="n">sxp</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">jelly</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">jelly</span><span class="p">(</span><span class="n">val</span><span class="p">)])</span>
+                <span class="k">elif</span> <span class="n">objType</span> <span class="ow">in</span> <span class="n">_SetTypes</span><span class="p">:</span>
+                    <span class="n">sxp</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jellyIterable</span><span class="p">(</span><span class="n">set_atom</span><span class="p">,</span> <span class="n">obj</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">objType</span> <span class="ow">in</span> <span class="n">_ImmutableSetTypes</span><span class="p">:</span>
+                    <span class="n">sxp</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jellyIterable</span><span class="p">(</span><span class="n">frozenset_atom</span><span class="p">,</span> <span class="n">obj</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">className</span> <span class="o">=</span> <span class="n">qual</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+                    <span class="n">persistent</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistentStore</span><span class="p">:</span>
+                        <span class="n">persistent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistentStore</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">persistent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">sxp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">persistent_atom</span><span class="p">)</span>
+                        <span class="n">sxp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">persistent</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">taster</span><span class="o">.</span><span class="n">isClassAllowed</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+                        <span class="n">sxp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">className</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;__getstate__&quot;</span><span class="p">):</span>
+                            <span class="n">state</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">__getstate__</span><span class="p">()</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">state</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span>
+                        <span class="n">sxp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jelly</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">unpersistable</span><span class="p">(</span>
+                            <span class="s2">&quot;instance of class </span><span class="si">%s</span><span class="s2"> deemed insecure&quot;</span> <span class="o">%</span>
+                            <span class="n">qual</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="p">),</span> <span class="n">sxp</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">preserve</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">sxp</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">objType</span> <span class="ow">is</span> <span class="n">_OldStyleInstance</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">InsecureJelly</span><span class="p">(</span><span class="s2">&quot;Class not allowed for instance: </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                                    <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">obj</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="n">InsecureJelly</span><span class="p">(</span><span class="s2">&quot;Type not allowed for object: </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                                <span class="p">(</span><span class="n">objType</span><span class="p">,</span> <span class="n">obj</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="nf">_jellyIterable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Jelly an iterable object.</span>
+
+<span class="sd">        @param atom: the identifier atom of the object.</span>
+<span class="sd">        @type atom: C{str}</span>
+
+<span class="sd">        @param obj: any iterable object.</span>
+<span class="sd">        @type obj: C{iterable}</span>
+
+<span class="sd">        @return: a generator of jellied data.</span>
+<span class="sd">        @rtype: C{generator}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">yield</span> <span class="n">atom</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">jelly</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">jelly_decimal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Jelly a decimal object.</span>
+
+<span class="sd">        @param d: a decimal object to serialize.</span>
+<span class="sd">        @type d: C{decimal.Decimal}</span>
+
+<span class="sd">        @return: jelly for the decimal object.</span>
+<span class="sd">        @rtype: C{list}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sign</span><span class="p">,</span> <span class="n">guts</span><span class="p">,</span> <span class="n">exponent</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">as_tuple</span><span class="p">()</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">:</span> <span class="n">left</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">right</span><span class="p">,</span> <span class="n">guts</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sign</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="o">-</span><span class="n">value</span>
+        <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;decimal&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">exponent</span><span class="p">]</span>
+
+
+    <span class="k">def</span> <span class="nf">unpersistable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">,</span> <span class="n">sxp</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        (internal) Returns an sexp: (unpersistable &quot;reason&quot;).  Utility method</span>
+<span class="sd">        for making note that a particular object could not be serialized.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">sxp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sxp</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">sxp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">unpersistable_atom</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reason</span><span class="p">,</span> <span class="n">unicode</span><span class="p">):</span>
+            <span class="n">reason</span> <span class="o">=</span> <span class="n">reason</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="n">sxp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sxp</span>
+
+
+
+<span class="k">class</span> <span class="nc">_Unjellier</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taster</span><span class="p">,</span> <span class="n">persistentLoad</span><span class="p">,</span> <span class="n">invoker</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">taster</span> <span class="o">=</span> <span class="n">taster</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persistentLoad</span> <span class="o">=</span> <span class="n">persistentLoad</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">references</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">postCallbacks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invoker</span> <span class="o">=</span> <span class="n">invoker</span>
+
+
+    <span class="k">def</span> <span class="nf">unjellyFull</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unjelly</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">postCallbacks</span><span class="p">:</span>
+            <span class="n">m</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">o</span>
+
+
+    <span class="k">def</span> <span class="nf">_maybePostUnjelly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unjellied</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If the given object has support for the C{postUnjelly} hook, set it up</span>
+<span class="sd">        to be called at the end of deserialization.</span>
+
+<span class="sd">        @param unjellied: an object that has already been unjellied.</span>
+
+<span class="sd">        @return: C{unjellied}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">unjellied</span><span class="p">,</span> <span class="s1">&#39;postUnjelly&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">postCallbacks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">unjellied</span><span class="o">.</span><span class="n">postUnjelly</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">unjellied</span>
+
+
+    <span class="k">def</span> <span class="nf">unjelly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">obj</span>
+        <span class="n">jelTypeBytes</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">taster</span><span class="o">.</span><span class="n">isTypeAllowed</span><span class="p">(</span><span class="n">jelTypeBytes</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InsecureJelly</span><span class="p">(</span><span class="n">jelTypeBytes</span><span class="p">)</span>
+        <span class="n">regClass</span> <span class="o">=</span> <span class="n">unjellyableRegistry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">jelTypeBytes</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">regClass</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">_createBlank</span><span class="p">(</span><span class="n">regClass</span><span class="p">),</span> <span class="s2">&quot;unjellyFor&quot;</span><span class="p">,</span> <span class="n">regClass</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybePostUnjelly</span><span class="p">(</span><span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">))</span>
+        <span class="n">regFactory</span> <span class="o">=</span> <span class="n">unjellyableFactoryRegistry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">jelTypeBytes</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">regFactory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybePostUnjelly</span><span class="p">(</span><span class="n">regFactory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unjelly</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+
+        <span class="n">jelTypeText</span> <span class="o">=</span> <span class="n">nativeString</span><span class="p">(</span><span class="n">jelTypeBytes</span><span class="p">)</span>
+        <span class="n">thunk</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_unjelly_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">jelTypeText</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">thunk</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">thunk</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nameSplit</span> <span class="o">=</span> <span class="n">jelTypeText</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+            <span class="n">modName</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nameSplit</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">taster</span><span class="o">.</span><span class="n">isModuleAllowed</span><span class="p">(</span><span class="n">modName</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">InsecureJelly</span><span class="p">(</span>
+                    <span class="s2">&quot;Module </span><span class="si">%s</span><span class="s2"> not allowed (in type </span><span class="si">%s</span><span class="s2">).&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">modName</span><span class="p">,</span> <span class="n">jelTypeText</span><span class="p">))</span>
+            <span class="n">clz</span> <span class="o">=</span> <span class="n">namedObject</span><span class="p">(</span><span class="n">jelTypeText</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">taster</span><span class="o">.</span><span class="n">isClassAllowed</span><span class="p">(</span><span class="n">clz</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">InsecureJelly</span><span class="p">(</span><span class="s2">&quot;Class </span><span class="si">%s</span><span class="s2"> not allowed.&quot;</span> <span class="o">%</span> <span class="n">jelTypeText</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genericUnjelly</span><span class="p">(</span><span class="n">clz</span><span class="p">,</span> <span class="n">obj</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+
+    <span class="k">def</span> <span class="nf">_genericUnjelly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Unjelly a type for which no specific unjellier is registered, but which</span>
+<span class="sd">        is nonetheless allowed.</span>
+
+<span class="sd">        @param cls: the class of the instance we are unjellying.</span>
+<span class="sd">        @type cls: L{_OldStyleClass} or L{type}</span>
+
+<span class="sd">        @param state: The jellied representation of the object&#39;s state; its</span>
+<span class="sd">            C{__dict__} unless it has a C{__setstate__} that takes something</span>
+<span class="sd">            else.</span>
+<span class="sd">        @type state: L{list}</span>
+
+<span class="sd">        @return: the new, unjellied instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybePostUnjelly</span><span class="p">(</span><span class="n">_newInstance</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">unjelly</span><span class="p">(</span><span class="n">state</span><span class="p">)))</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_None</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exp</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_unicode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exp</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">unicode</span><span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_decimal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Unjelly decimal objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">exp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">exponent</span> <span class="o">=</span> <span class="n">exp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">sign</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sign</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">guts</span> <span class="o">=</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">as_tuple</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">((</span><span class="n">sign</span><span class="p">,</span> <span class="n">guts</span><span class="p">,</span> <span class="n">exponent</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_boolean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exp</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">exp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="sa">b</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;false&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">exp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;true&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Unpersistable</span><span class="p">(</span><span class="s2">&quot;Could not unpersist boolean: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="mi">0</span><span class="p">],))</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exp</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">exp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exp</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">exp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exp</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">exp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_timedelta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exp</span><span class="p">):</span>
+        <span class="n">days</span><span class="p">,</span> <span class="n">seconds</span><span class="p">,</span> <span class="n">microseconds</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">exp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span>
+            <span class="n">days</span><span class="o">=</span><span class="n">days</span><span class="p">,</span> <span class="n">seconds</span><span class="o">=</span><span class="n">seconds</span><span class="p">,</span> <span class="n">microseconds</span><span class="o">=</span><span class="n">microseconds</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">unjellyInto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">jel</span><span class="p">):</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unjelly</span><span class="p">(</span><span class="n">jel</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">NotKnown</span><span class="p">):</span>
+            <span class="n">o</span><span class="o">.</span><span class="n">addDependant</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">loc</span><span class="p">)</span>
+        <span class="n">obj</span><span class="p">[</span><span class="n">loc</span><span class="p">]</span> <span class="o">=</span> <span class="n">o</span>
+        <span class="k">return</span> <span class="n">o</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_dereference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lst</span><span class="p">):</span>
+        <span class="n">refid</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">references</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">refid</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span>
+        <span class="n">der</span> <span class="o">=</span> <span class="n">_Dereference</span><span class="p">(</span><span class="n">refid</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">references</span><span class="p">[</span><span class="n">refid</span><span class="p">]</span> <span class="o">=</span> <span class="n">der</span>
+        <span class="k">return</span> <span class="n">der</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_reference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lst</span><span class="p">):</span>
+        <span class="n">refid</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">exp</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unjelly</span><span class="p">(</span><span class="n">exp</span><span class="p">)</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">references</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">refid</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">ref</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">references</span><span class="p">[</span><span class="n">refid</span><span class="p">]</span> <span class="o">=</span> <span class="n">o</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ref</span><span class="p">,</span> <span class="n">NotKnown</span><span class="p">):</span>
+            <span class="n">ref</span><span class="o">.</span><span class="n">resolveDependants</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">references</span><span class="p">[</span><span class="n">refid</span><span class="p">]</span> <span class="o">=</span> <span class="n">o</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Multiple references with same ID!&quot;</span>
+        <span class="k">return</span> <span class="n">o</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lst</span><span class="p">):</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)))</span>
+        <span class="n">finished</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">l</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unjellyInto</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">lst</span><span class="p">[</span><span class="n">elem</span><span class="p">]),</span> <span class="n">NotKnown</span><span class="p">):</span>
+                <span class="n">finished</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">finished</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_Tuple</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lst</span><span class="p">):</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">l</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unjellyInto</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">lst</span><span class="p">[</span><span class="n">elem</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">l</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjellySetOrFrozenset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lst</span><span class="p">,</span> <span class="n">containerType</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Helper method to unjelly set or frozenset.</span>
+
+<span class="sd">        @param lst: the content of the set.</span>
+<span class="sd">        @type lst: C{list}</span>
+
+<span class="sd">        @param containerType: the type of C{set} to use.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)))</span>
+        <span class="n">finished</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">l</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unjellyInto</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">lst</span><span class="p">[</span><span class="n">elem</span><span class="p">])</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">NotKnown</span><span class="p">):</span>
+                <span class="n">finished</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">finished</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_Container</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">containerType</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">containerType</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lst</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Unjelly set using the C{set} builtin.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unjellySetOrFrozenset</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="nb">set</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_frozenset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lst</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Unjelly frozenset using the C{frozenset} builtin.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unjellySetOrFrozenset</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="nb">frozenset</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lst</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
+            <span class="n">kvd</span> <span class="o">=</span> <span class="n">_DictKeyAndValue</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unjellyInto</span><span class="p">(</span><span class="n">kvd</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unjellyInto</span><span class="p">(</span><span class="n">kvd</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rest</span><span class="p">):</span>
+        <span class="n">moduleName</span> <span class="o">=</span> <span class="n">nativeString</span><span class="p">(</span><span class="n">rest</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">moduleName</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InsecureJelly</span><span class="p">(</span>
+                <span class="s2">&quot;Attempted to unjelly a module with a non-string name.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">taster</span><span class="o">.</span><span class="n">isModuleAllowed</span><span class="p">(</span><span class="n">moduleName</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InsecureJelly</span><span class="p">(</span>
+                <span class="s2">&quot;Attempted to unjelly module named </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">moduleName</span><span class="p">,))</span>
+        <span class="n">mod</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="n">moduleName</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{},</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mod</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rest</span><span class="p">):</span>
+        <span class="n">cname</span> <span class="o">=</span> <span class="n">nativeString</span><span class="p">(</span><span class="n">rest</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">clist</span> <span class="o">=</span> <span class="n">cname</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">nativeString</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
+        <span class="n">modName</span> <span class="o">=</span> <span class="n">nativeString</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">clist</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">taster</span><span class="o">.</span><span class="n">isModuleAllowed</span><span class="p">(</span><span class="n">modName</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InsecureJelly</span><span class="p">(</span><span class="s2">&quot;module </span><span class="si">%s</span><span class="s2"> not allowed&quot;</span> <span class="o">%</span> <span class="n">modName</span><span class="p">)</span>
+        <span class="n">klaus</span> <span class="o">=</span> <span class="n">namedObject</span><span class="p">(</span><span class="n">cname</span><span class="p">)</span>
+        <span class="n">objType</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">klaus</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">objType</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">_OldStyleClass</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InsecureJelly</span><span class="p">(</span>
+                <span class="s2">&quot;class </span><span class="si">%r</span><span class="s2"> unjellied to something that isn&#39;t a class: </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">cname</span><span class="p">,</span> <span class="n">klaus</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">taster</span><span class="o">.</span><span class="n">isClassAllowed</span><span class="p">(</span><span class="n">klaus</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InsecureJelly</span><span class="p">(</span><span class="s2">&quot;class not allowed: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">qual</span><span class="p">(</span><span class="n">klaus</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">klaus</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rest</span><span class="p">):</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="n">nativeString</span><span class="p">(</span><span class="n">rest</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">modSplit</span> <span class="o">=</span> <span class="n">fname</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">nativeString</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
+        <span class="n">modName</span> <span class="o">=</span> <span class="n">nativeString</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">modSplit</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">taster</span><span class="o">.</span><span class="n">isModuleAllowed</span><span class="p">(</span><span class="n">modName</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InsecureJelly</span><span class="p">(</span><span class="s2">&quot;Module not allowed: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">modName</span><span class="p">)</span>
+        <span class="c1"># XXX do I need an isFunctionAllowed?</span>
+        <span class="n">function</span> <span class="o">=</span> <span class="n">namedAny</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">function</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_persistent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rest</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistentLoad</span><span class="p">:</span>
+            <span class="n">pload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistentLoad</span><span class="p">(</span><span class="n">rest</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">pload</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Unpersistable</span><span class="p">(</span><span class="s2">&quot;Persistent callback not found&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rest</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        (internal) Unjelly an instance.</span>
+
+<span class="sd">        Called to handle the deprecated I{instance} token.</span>
+
+<span class="sd">        @param rest: The s-expression representing the instance.</span>
+
+<span class="sd">        @return: The unjellied instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn_explicit</span><span class="p">(</span>
+            <span class="s2">&quot;Unjelly support for the instance atom is deprecated since &quot;</span>
+            <span class="s2">&quot;Twisted 15.0.0.  Upgrade peer for modern instance support.&quot;</span><span class="p">,</span>
+            <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">lineno</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">clz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unjelly</span><span class="p">(</span><span class="n">rest</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">_PY3</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">clz</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_OldStyleClass</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InsecureJelly</span><span class="p">(</span><span class="s2">&quot;Legacy &#39;instance&#39; found with new-style class&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genericUnjelly</span><span class="p">(</span><span class="n">clz</span><span class="p">,</span> <span class="n">rest</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_unpersistable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rest</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Unpersistable</span><span class="p">(</span><span class="s2">&quot;Unpersistable data: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">rest</span><span class="p">[</span><span class="mi">0</span><span class="p">],))</span>
+
+
+    <span class="k">def</span> <span class="nf">_unjelly_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rest</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        (internal) Unjelly a method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">im_name</span> <span class="o">=</span> <span class="n">rest</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">im_self</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unjelly</span><span class="p">(</span><span class="n">rest</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">im_class</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unjelly</span><span class="p">(</span><span class="n">rest</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">im_class</span><span class="p">,</span> <span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">_OldStyleClass</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="n">InsecureJelly</span><span class="p">(</span><span class="s2">&quot;Method found with non-class class.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">im_name</span> <span class="ow">in</span> <span class="n">im_class</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">im_self</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">im</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">im_class</span><span class="p">,</span> <span class="n">im_name</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">im_self</span><span class="p">,</span> <span class="n">NotKnown</span><span class="p">):</span>
+                <span class="n">im</span> <span class="o">=</span> <span class="n">_InstanceMethod</span><span class="p">(</span><span class="n">im_name</span><span class="p">,</span> <span class="n">im_self</span><span class="p">,</span> <span class="n">im_class</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">im</span> <span class="o">=</span> <span class="n">types</span><span class="o">.</span><span class="n">MethodType</span><span class="p">(</span><span class="n">im_class</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">im_name</span><span class="p">],</span> <span class="n">im_self</span><span class="p">,</span>
+                                      <span class="o">*</span><span class="p">([</span><span class="n">im_class</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="ow">not</span> <span class="n">_PY3</span><span class="p">)))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;instance method changed&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">im</span>
+
+
+
+<span class="c1">#### Published Interface.</span>
+
+
+<span class="k">class</span> <span class="nc">InsecureJelly</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This exception will be raised when a jelly is deemed `insecure&#39;; e.g. it</span>
+<span class="sd">    contains a type, class, or module disallowed by the specified `taster&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+<span class="k">class</span> <span class="nc">DummySecurityOptions</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DummySecurityOptions() -&gt; insecure security options</span>
+<span class="sd">    Dummy security options -- this class will allow anything.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">isModuleAllowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">moduleName</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DummySecurityOptions.isModuleAllowed(moduleName) -&gt; boolean</span>
+<span class="sd">        returns 1 if a module by that name is allowed, 0 otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">isClassAllowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">klass</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DummySecurityOptions.isClassAllowed(class) -&gt; boolean</span>
+<span class="sd">        Assumes the module has already been allowed.  Returns 1 if the given</span>
+<span class="sd">        class is allowed, 0 otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">isTypeAllowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">typeName</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DummySecurityOptions.isTypeAllowed(typeName) -&gt; boolean</span>
+<span class="sd">        Returns 1 if the given type is allowed, 0 otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+
+
+<span class="k">class</span> <span class="nc">SecurityOptions</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This will by default disallow everything, except for &#39;none&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">basicTypes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dictionary&quot;</span><span class="p">,</span> <span class="s2">&quot;list&quot;</span><span class="p">,</span> <span class="s2">&quot;tuple&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;reference&quot;</span><span class="p">,</span> <span class="s2">&quot;dereference&quot;</span><span class="p">,</span> <span class="s2">&quot;unpersistable&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;persistent&quot;</span><span class="p">,</span> <span class="s2">&quot;long_int&quot;</span><span class="p">,</span> <span class="s2">&quot;long&quot;</span><span class="p">,</span> <span class="s2">&quot;dict&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        SecurityOptions() initialize.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># I don&#39;t believe any of these types can ever pose a security hazard,</span>
+        <span class="c1"># except perhaps &quot;reference&quot;...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowedTypes</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sa">b</span><span class="s2">&quot;None&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;bool&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;boolean&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;string&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;str&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="sa">b</span><span class="s2">&quot;int&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;float&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;datetime&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="sa">b</span><span class="s2">&quot;timedelta&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;NoneType&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;unicode&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;decimal&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="sa">b</span><span class="s1">&#39;set&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;frozenset&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowedModules</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowedClasses</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+    <span class="k">def</span> <span class="nf">allowBasicTypes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Allow all `basic&#39; types.  (Dictionary and list.  Int, string, and float</span>
+<span class="sd">        are implicitly allowed.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowTypes</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">basicTypes</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">allowTypes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">types</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        SecurityOptions.allowTypes(typeString): Allow a particular type, by its</span>
+<span class="sd">        name.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">typ</span> <span class="ow">in</span> <span class="n">types</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="n">unicode</span><span class="p">):</span>
+                <span class="n">typ</span> <span class="o">=</span> <span class="n">typ</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+                <span class="n">typ</span> <span class="o">=</span> <span class="n">qual</span><span class="p">(</span><span class="n">typ</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">allowedTypes</span><span class="p">[</span><span class="n">typ</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">allowInstancesOf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">classes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        SecurityOptions.allowInstances(klass, klass, ...): allow instances</span>
+<span class="sd">        of the specified classes</span>
+
+<span class="sd">        This will also allow the &#39;instance&#39;, &#39;class&#39; (renamed &#39;classobj&#39; in</span>
+<span class="sd">        Python 2.3), and &#39;module&#39; types, as well as basic types.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowBasicTypes</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowTypes</span><span class="p">(</span><span class="s2">&quot;instance&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;classobj&quot;</span><span class="p">,</span> <span class="s2">&quot;module&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">klass</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">allowTypes</span><span class="p">(</span><span class="n">qual</span><span class="p">(</span><span class="n">klass</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">allowModules</span><span class="p">(</span><span class="n">klass</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">allowedClasses</span><span class="p">[</span><span class="n">klass</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">allowModules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">modules</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        SecurityOptions.allowModules(module, module, ...): allow modules by</span>
+<span class="sd">        name. This will also allow the &#39;module&#39; type.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">module</span><span class="p">)</span> <span class="o">==</span> <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">:</span>
+                <span class="n">module</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="vm">__name__</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+                <span class="n">module</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">allowedModules</span><span class="p">[</span><span class="n">module</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">isModuleAllowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">moduleName</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        SecurityOptions.isModuleAllowed(moduleName) -&gt; boolean</span>
+<span class="sd">        returns 1 if a module by that name is allowed, 0 otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">moduleName</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="n">moduleName</span> <span class="o">=</span> <span class="n">moduleName</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">moduleName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowedModules</span>
+
+
+    <span class="k">def</span> <span class="nf">isClassAllowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">klass</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        SecurityOptions.isClassAllowed(class) -&gt; boolean</span>
+<span class="sd">        Assumes the module has already been allowed.  Returns 1 if the given</span>
+<span class="sd">        class is allowed, 0 otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">klass</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowedClasses</span>
+
+
+    <span class="k">def</span> <span class="nf">isTypeAllowed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">typeName</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        SecurityOptions.isTypeAllowed(typeName) -&gt; boolean</span>
+<span class="sd">        Returns 1 if the given type is allowed, 0 otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">typeName</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="n">typeName</span> <span class="o">=</span> <span class="n">typeName</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">typeName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowedTypes</span> <span class="ow">or</span> <span class="sa">b</span><span class="s1">&#39;.&#39;</span> <span class="ow">in</span> <span class="n">typeName</span><span class="p">)</span>
+
+
+<span class="n">globalSecurity</span> <span class="o">=</span> <span class="n">SecurityOptions</span><span class="p">()</span>
+<span class="n">globalSecurity</span><span class="o">.</span><span class="n">allowBasicTypes</span><span class="p">()</span>
+
+
+
+<span class="k">def</span> <span class="nf">jelly</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">taster</span><span class="o">=</span><span class="n">DummySecurityOptions</span><span class="p">(),</span> <span class="n">persistentStore</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+          <span class="n">invoker</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Serialize to s-expression.</span>
+
+<span class="sd">    Returns a list which is the serialized representation of an object.  An</span>
+<span class="sd">    optional &#39;taster&#39; argument takes a SecurityOptions and will mark any</span>
+<span class="sd">    insecure objects as unpersistable rather than serializing them.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_Jellier</span><span class="p">(</span><span class="n">taster</span><span class="p">,</span> <span class="n">persistentStore</span><span class="p">,</span> <span class="n">invoker</span><span class="p">)</span><span class="o">.</span><span class="n">jelly</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+
+
+
+<span class="k">def</span> <span class="nf">unjelly</span><span class="p">(</span><span class="n">sexp</span><span class="p">,</span> <span class="n">taster</span><span class="o">=</span><span class="n">DummySecurityOptions</span><span class="p">(),</span> <span class="n">persistentLoad</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">invoker</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Unserialize from s-expression.</span>
+
+<span class="sd">    Takes a list that was the result from a call to jelly() and unserializes</span>
+<span class="sd">    an arbitrary object from it.  The optional &#39;taster&#39; argument, an instance</span>
+<span class="sd">    of SecurityOptions, will cause an InsecureJelly exception to be raised if a</span>
+<span class="sd">    disallowed type, module, or class attempted to unserialize.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_Unjellier</span><span class="p">(</span><span class="n">taster</span><span class="p">,</span> <span class="n">persistentLoad</span><span class="p">,</span> <span class="n">invoker</span><span class="p">)</span><span class="o">.</span><span class="n">unjellyFull</span><span class="p">(</span><span class="n">sexp</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pol Canelles.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,483 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>twisted.logger._logger &mdash; Cohen3 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cohen3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backends.html">Backends (plugins)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/coherence.html">Coherence (package)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor_code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cohen3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>twisted.logger._logger</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for twisted.logger._logger</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- test-case-name: twisted.logger.test.test_logger -*-</span>
+<span class="c1"># Copyright (c) Twisted Matrix Laboratories.</span>
+<span class="c1"># See LICENSE for details.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Logger class.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">time</span>
+
+<span class="kn">from</span> <span class="nn">twisted.python.compat</span> <span class="k">import</span> <span class="n">currentframe</span>
+<span class="kn">from</span> <span class="nn">twisted.python.failure</span> <span class="k">import</span> <span class="n">Failure</span>
+<span class="kn">from</span> <span class="nn">._levels</span> <span class="k">import</span> <span class="n">InvalidLogLevelError</span><span class="p">,</span> <span class="n">LogLevel</span>
+
+
+
+<span class="k">class</span> <span class="nc">Logger</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A L{Logger} emits log messages to an observer.  You should instantiate it</span>
+<span class="sd">    as a class or module attribute, as documented in L{this module&#39;s</span>
+<span class="sd">    documentation &lt;twisted.logger&gt;}.</span>
+
+<span class="sd">    @type namespace: L{str}</span>
+<span class="sd">    @ivar namespace: the namespace for this logger</span>
+
+<span class="sd">    @type source: L{object}</span>
+<span class="sd">    @ivar source: The object which is emitting events via this logger</span>
+
+<span class="sd">    @type: L{ILogObserver}</span>
+<span class="sd">    @ivar observer: The observer that this logger will send events to.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_namespaceFromCallingContext</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Derive a namespace from the module containing the caller&#39;s caller.</span>
+
+<span class="sd">        @return: the fully qualified python name of a module.</span>
+<span class="sd">        @rtype: L{str} (native string)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">currentframe</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">f_globals</span><span class="p">[</span><span class="s2">&quot;__name__&quot;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&lt;unknown&gt;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param namespace: The namespace for this logger.  Uses a dotted</span>
+<span class="sd">            notation, as used by python modules.  If not L{None}, then the name</span>
+<span class="sd">            of the module of the caller is used.</span>
+<span class="sd">        @type namespace: L{str} (native string)</span>
+
+<span class="sd">        @param source: The object which is emitting events via this</span>
+<span class="sd">            logger; this is automatically set on instances of a class</span>
+<span class="sd">            if this L{Logger} is an attribute of that class.</span>
+<span class="sd">        @type source: L{object}</span>
+
+<span class="sd">        @param observer: The observer that this logger will send events to.</span>
+<span class="sd">            If L{None}, use the L{global log publisher &lt;globalLogPublisher&gt;}.</span>
+<span class="sd">        @type observer: L{ILogObserver}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">namespace</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">namespace</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_namespaceFromCallingContext</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span> <span class="o">=</span> <span class="n">namespace</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">source</span>
+
+        <span class="k">if</span> <span class="n">observer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">._global</span> <span class="k">import</span> <span class="n">globalLogPublisher</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">observer</span> <span class="o">=</span> <span class="n">globalLogPublisher</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">observer</span> <span class="o">=</span> <span class="n">observer</span>
+
+
+    <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oself</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        When used as a descriptor, i.e.::</span>
+
+<span class="sd">            # File: athing.py</span>
+<span class="sd">            class Something(object):</span>
+<span class="sd">                log = Logger()</span>
+<span class="sd">                def hello(self):</span>
+<span class="sd">                    self.log.info(&quot;Hello&quot;)</span>
+
+<span class="sd">        a L{Logger}&#39;s namespace will be set to the name of the class it is</span>
+<span class="sd">        declared on.  In the above example, the namespace would be</span>
+<span class="sd">        C{athing.Something}.</span>
+
+<span class="sd">        Additionally, its source will be set to the actual object referring to</span>
+<span class="sd">        the L{Logger}.  In the above example, C{Something.log.source} would be</span>
+<span class="sd">        C{Something}, and C{Something().log.source} would be an instance of</span>
+<span class="sd">        C{Something}.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">oself</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="nb">type</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">oself</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span>
+            <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">type</span><span class="o">.</span><span class="vm">__module__</span><span class="p">,</span> <span class="nb">type</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]),</span>
+            <span class="n">source</span><span class="p">,</span>
+            <span class="n">observer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">observer</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%r</span><span class="s2">&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">emit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Emit a log event to all log observers at the given level.</span>
+
+<span class="sd">        @param level: a L{LogLevel}</span>
+
+<span class="sd">        @param format: a message format using new-style (PEP 3101)</span>
+<span class="sd">            formatting.  The logging event (which is a L{dict}) is</span>
+<span class="sd">            used to render this format string.</span>
+
+<span class="sd">        @param kwargs: additional key/value pairs to include in the event.</span>
+<span class="sd">            Note that values which are later mutated may result in</span>
+<span class="sd">            non-deterministic behavior from observers that schedule work for</span>
+<span class="sd">            later execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">level</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">iterconstants</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span>
+                <span class="s2">&quot;Got invalid log level </span><span class="si">{invalidLevel!r}</span><span class="s2"> in </span><span class="si">{logger}</span><span class="s2">.emit().&quot;</span><span class="p">,</span>
+                <span class="n">Failure</span><span class="p">(</span><span class="n">InvalidLogLevelError</span><span class="p">(</span><span class="n">level</span><span class="p">)),</span>
+                <span class="n">invalidLevel</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
+                <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">event</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="n">log_logger</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">log_namespace</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">namespace</span><span class="p">,</span>
+            <span class="n">log_source</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">log_format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span> <span class="n">log_time</span><span class="o">=</span><span class="n">time</span><span class="p">(),</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;log_trace&quot;</span> <span class="ow">in</span> <span class="n">event</span><span class="p">:</span>
+            <span class="n">event</span><span class="p">[</span><span class="s2">&quot;log_trace&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">observer</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">observer</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">failure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="n">failure</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">critical</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Log a failure and emit a traceback.</span>
+
+<span class="sd">        For example::</span>
+
+<span class="sd">            try:</span>
+<span class="sd">                frob(knob)</span>
+<span class="sd">            except Exception:</span>
+<span class="sd">                log.failure(&quot;While frobbing {knob}&quot;, knob=knob)</span>
+
+<span class="sd">        or::</span>
+
+<span class="sd">            d = deferredFrob(knob)</span>
+<span class="sd">            d.addErrback(lambda f: log.failure, &quot;While frobbing {knob}&quot;,</span>
+<span class="sd">                         f, knob=knob)</span>
+
+<span class="sd">        This method is generally meant to capture unexpected exceptions in</span>
+<span class="sd">        code; an exception that is caught and handled somehow should be logged,</span>
+<span class="sd">        if appropriate, via L{Logger.error} instead.  If some unknown exception</span>
+<span class="sd">        occurs and your code doesn&#39;t know how to handle it, as in the above</span>
+<span class="sd">        example, then this method provides a means to describe the failure in</span>
+<span class="sd">        nerd-speak.  This is done at L{LogLevel.critical} by default, since no</span>
+<span class="sd">        corrective guidance can be offered to an user/administrator, and the</span>
+<span class="sd">        impact of the condition is unknown.</span>
+
+<span class="sd">        @param format: a message format using new-style (PEP 3101) formatting.</span>
+<span class="sd">            The logging event (which is a L{dict}) is used to render this</span>
+<span class="sd">            format string.</span>
+
+<span class="sd">        @param failure: a L{Failure} to log.  If L{None}, a L{Failure} is</span>
+<span class="sd">            created from the exception in flight.</span>
+
+<span class="sd">        @param level: a L{LogLevel} to use.</span>
+
+<span class="sd">        @param kwargs: additional key/value pairs to include in the event.</span>
+<span class="sd">            Note that values which are later mutated may result in</span>
+<span class="sd">            non-deterministic behavior from observers that schedule work for</span>
+<span class="sd">            later execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">failure</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">failure</span> <span class="o">=</span> <span class="n">Failure</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="n">log_failure</span><span class="o">=</span><span class="n">failure</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Emit a log event at log level L{LogLevel.debug}.</span>
+
+<span class="sd">        @param format: a message format using new-style (PEP 3101) formatting.</span>
+<span class="sd">            The logging event (which is a L{dict}) is used to render this</span>
+<span class="sd">            format string.</span>
+
+<span class="sd">        @param kwargs: additional key/value pairs to include in the event.</span>
+<span class="sd">            Note that values which are later mutated may result in</span>
+<span class="sd">            non-deterministic behavior from observers that schedule work for</span>
+<span class="sd">            later execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Emit a log event at log level L{LogLevel.info}.</span>
+
+<span class="sd">        @param format: a message format using new-style (PEP 3101) formatting.</span>
+<span class="sd">            The logging event (which is a L{dict}) is used to render this</span>
+<span class="sd">            format string.</span>
+
+<span class="sd">        @param kwargs: additional key/value pairs to include in the event.</span>
+<span class="sd">            Note that values which are later mutated may result in</span>
+<span class="sd">            non-deterministic behavior from observers that schedule work for</span>
+<span class="sd">            later execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">warn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Emit a log event at log level L{LogLevel.warn}.</span>
+
+<span class="sd">        @param format: a message format using new-style (PEP 3101) formatting.</span>
+<span class="sd">            The logging event (which is a L{dict}) is used to render this</span>
+<span class="sd">            format string.</span>
+
+<span class="sd">        @param kwargs: additional key/value pairs to include in the event.</span>
+<span class="sd">            Note that values which are later mutated may result in</span>
+<span class="sd">            non-deterministic behavior from observers that schedule work for</span>
+<span class="sd">            later execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">warn</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Emit a log event at log level L{LogLevel.error}.</span>
+
+<span class="sd">        @param format: a message format using new-style (PEP 3101) formatting.</span>
+<span class="sd">            The logging event (which is a L{dict}) is used to render this</span>
+<span class="sd">            format string.</span>
+
+<span class="sd">        @param kwargs: additional key/value pairs to include in the event.</span>
+<span class="sd">            Note that values which are later mutated may result in</span>
+<span class="sd">            non-deterministic behavior from observers that schedule work for</span>
+<span class="sd">            later execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">error</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">critical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Emit a log event at log level L{LogLevel.critical}.</span>
+
+<span class="sd">        @param format: a message format using new-style (PEP 3101) formatting.</span>
+<span class="sd">            The logging event (which is a L{dict}) is used to render this</span>
+<span class="sd">            format string.</span>
+
+<span class="sd">        @param kwargs: additional key/value pairs to include in the event.</span>
+<span class="sd">            Note that values which are later mutated may result in</span>
+<span class="sd">            non-deterministic behavior from observers that schedule work for</span>
+<span class="sd">            later execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">critical</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+
+<span class="n">_log</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">()</span>
+<span class="n">_loggerFor</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span><span class="n">_log</span><span class="o">.</span><span class="fm">__get__</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pol Canelles.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

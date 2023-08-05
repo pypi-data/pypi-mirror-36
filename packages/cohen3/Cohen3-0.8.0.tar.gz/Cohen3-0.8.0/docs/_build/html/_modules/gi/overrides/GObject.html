@@ -1,0 +1,939 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>gi.overrides.GObject &mdash; Cohen3 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cohen3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backends.html">Backends (plugins)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/coherence.html">Coherence (package)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor_code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cohen3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>gi.overrides.GObject</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for gi.overrides.GObject</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- Mode: Python; py-indent-offset: 4 -*-</span>
+<span class="c1"># vim: tabstop=4 shiftwidth=4 expandtab</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (C) 2012 Canonical Ltd.</span>
+<span class="c1"># Author: Martin Pitt &lt;martin.pitt@ubuntu.com&gt;</span>
+<span class="c1"># Copyright (C) 2012-2013 Simon Feltman &lt;sfeltman@src.gnome.org&gt;</span>
+<span class="c1"># Copyright (C) 2012 Bastian Winkler &lt;buz@netbuz.org&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># This library is free software; you can redistribute it and/or</span>
+<span class="c1"># modify it under the terms of the GNU Lesser General Public</span>
+<span class="c1"># License as published by the Free Software Foundation; either</span>
+<span class="c1"># version 2.1 of the License, or (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This library is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</span>
+<span class="c1"># Lesser General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU Lesser General Public</span>
+<span class="c1"># License along with this library; if not, write to the Free Software</span>
+<span class="c1"># Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301</span>
+<span class="c1"># USA</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">namedtuple</span>
+
+<span class="kn">import</span> <span class="nn">gi.overrides</span>
+<span class="kn">import</span> <span class="nn">gi.module</span>
+<span class="kn">from</span> <span class="nn">gi.overrides</span> <span class="k">import</span> <span class="n">override</span><span class="p">,</span> <span class="n">deprecated_attr</span>
+<span class="kn">from</span> <span class="nn">gi.repository</span> <span class="k">import</span> <span class="n">GLib</span>
+<span class="kn">from</span> <span class="nn">gi</span> <span class="k">import</span> <span class="n">PyGIDeprecationWarning</span>
+<span class="kn">from</span> <span class="nn">gi._compat</span> <span class="k">import</span> <span class="n">PY2</span><span class="p">,</span> <span class="n">text_type</span>
+
+<span class="kn">from</span> <span class="nn">gi</span> <span class="k">import</span> <span class="n">_propertyhelper</span> <span class="k">as</span> <span class="n">propertyhelper</span>
+<span class="kn">from</span> <span class="nn">gi</span> <span class="k">import</span> <span class="n">_signalhelper</span> <span class="k">as</span> <span class="n">signalhelper</span>
+<span class="kn">from</span> <span class="nn">gi</span> <span class="k">import</span> <span class="n">_gi</span>
+
+
+<span class="n">GObjectModule</span> <span class="o">=</span> <span class="n">gi</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">get_introspection_module</span><span class="p">(</span><span class="s1">&#39;GObject&#39;</span><span class="p">)</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+<span class="kn">from</span> <span class="nn">gi</span> <span class="k">import</span> <span class="n">_option</span> <span class="k">as</span> <span class="n">option</span>
+<span class="n">option</span> <span class="o">=</span> <span class="n">option</span>
+
+
+<span class="c1"># API aliases for backwards compatibility</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;markup_escape_text&#39;</span><span class="p">,</span> <span class="s1">&#39;get_application_name&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;set_application_name&#39;</span><span class="p">,</span> <span class="s1">&#39;get_prgname&#39;</span><span class="p">,</span> <span class="s1">&#39;set_prgname&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;main_depth&#39;</span><span class="p">,</span> <span class="s1">&#39;filename_display_basename&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;filename_display_name&#39;</span><span class="p">,</span> <span class="s1">&#39;filename_from_utf8&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;uri_list_extract_uris&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;MainLoop&#39;</span><span class="p">,</span> <span class="s1">&#39;MainContext&#39;</span><span class="p">,</span> <span class="s1">&#39;main_context_default&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;source_remove&#39;</span><span class="p">,</span> <span class="s1">&#39;Source&#39;</span><span class="p">,</span> <span class="s1">&#39;Idle&#39;</span><span class="p">,</span> <span class="s1">&#39;Timeout&#39;</span><span class="p">,</span> <span class="s1">&#39;PollFD&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;idle_add&#39;</span><span class="p">,</span> <span class="s1">&#39;timeout_add&#39;</span><span class="p">,</span> <span class="s1">&#39;timeout_add_seconds&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;io_add_watch&#39;</span><span class="p">,</span> <span class="s1">&#39;child_watch_add&#39;</span><span class="p">,</span> <span class="s1">&#39;get_current_time&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;spawn_async&#39;</span><span class="p">]:</span>
+    <span class="nb">globals</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">GLib</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">deprecated_attr</span><span class="p">(</span><span class="s2">&quot;GObject&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;GLib.&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># deprecated constants</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;PRIORITY_DEFAULT&#39;</span><span class="p">,</span> <span class="s1">&#39;PRIORITY_DEFAULT_IDLE&#39;</span><span class="p">,</span> <span class="s1">&#39;PRIORITY_HIGH&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;PRIORITY_HIGH_IDLE&#39;</span><span class="p">,</span> <span class="s1">&#39;PRIORITY_LOW&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;IO_IN&#39;</span><span class="p">,</span> <span class="s1">&#39;IO_OUT&#39;</span><span class="p">,</span> <span class="s1">&#39;IO_PRI&#39;</span><span class="p">,</span> <span class="s1">&#39;IO_ERR&#39;</span><span class="p">,</span> <span class="s1">&#39;IO_HUP&#39;</span><span class="p">,</span> <span class="s1">&#39;IO_NVAL&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;IO_STATUS_ERROR&#39;</span><span class="p">,</span> <span class="s1">&#39;IO_STATUS_NORMAL&#39;</span><span class="p">,</span> <span class="s1">&#39;IO_STATUS_EOF&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;IO_STATUS_AGAIN&#39;</span><span class="p">,</span> <span class="s1">&#39;IO_FLAG_APPEND&#39;</span><span class="p">,</span> <span class="s1">&#39;IO_FLAG_NONBLOCK&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;IO_FLAG_IS_READABLE&#39;</span><span class="p">,</span> <span class="s1">&#39;IO_FLAG_IS_WRITEABLE&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;IO_FLAG_IS_SEEKABLE&#39;</span><span class="p">,</span> <span class="s1">&#39;IO_FLAG_MASK&#39;</span><span class="p">,</span> <span class="s1">&#39;IO_FLAG_GET_MASK&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;IO_FLAG_SET_MASK&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;SPAWN_LEAVE_DESCRIPTORS_OPEN&#39;</span><span class="p">,</span> <span class="s1">&#39;SPAWN_DO_NOT_REAP_CHILD&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;SPAWN_SEARCH_PATH&#39;</span><span class="p">,</span> <span class="s1">&#39;SPAWN_STDOUT_TO_DEV_NULL&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;SPAWN_STDERR_TO_DEV_NULL&#39;</span><span class="p">,</span> <span class="s1">&#39;SPAWN_CHILD_INHERITS_STDIN&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;SPAWN_FILE_AND_ARGV_ZERO&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;OPTION_FLAG_HIDDEN&#39;</span><span class="p">,</span> <span class="s1">&#39;OPTION_FLAG_IN_MAIN&#39;</span><span class="p">,</span> <span class="s1">&#39;OPTION_FLAG_REVERSE&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;OPTION_FLAG_NO_ARG&#39;</span><span class="p">,</span> <span class="s1">&#39;OPTION_FLAG_FILENAME&#39;</span><span class="p">,</span> <span class="s1">&#39;OPTION_FLAG_OPTIONAL_ARG&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;OPTION_FLAG_NOALIAS&#39;</span><span class="p">,</span> <span class="s1">&#39;OPTION_ERROR_UNKNOWN_OPTION&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;OPTION_ERROR_BAD_VALUE&#39;</span><span class="p">,</span> <span class="s1">&#39;OPTION_ERROR_FAILED&#39;</span><span class="p">,</span> <span class="s1">&#39;OPTION_REMAINING&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;glib_version&#39;</span><span class="p">]:</span>
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+        <span class="c1"># TODO: this uses deprecated Glib attributes, silence for now</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">PyGIDeprecationWarning</span><span class="p">)</span>
+        <span class="nb">globals</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">GLib</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">deprecated_attr</span><span class="p">(</span><span class="s2">&quot;GObject&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;GLib.&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;G_MININT8&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXINT8&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXUINT8&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MININT16&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;G_MAXINT16&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXUINT16&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MININT32&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXINT32&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;G_MAXUINT32&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MININT64&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXINT64&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXUINT64&#39;</span><span class="p">]:</span>
+    <span class="n">new_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">globals</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">GLib</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+    <span class="n">deprecated_attr</span><span class="p">(</span><span class="s2">&quot;GObject&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;GLib.&quot;</span> <span class="o">+</span> <span class="n">new_name</span><span class="p">)</span>
+    <span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># these are not currently exported in GLib gir, presumably because they are</span>
+<span class="c1"># platform dependent; so get them from our static bindings</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;G_MINFLOAT&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXFLOAT&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MINDOUBLE&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXDOUBLE&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;G_MINSHORT&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXSHORT&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXUSHORT&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MININT&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXINT&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;G_MAXUINT&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MINLONG&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXLONG&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXULONG&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXSIZE&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;G_MINSSIZE&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXSSIZE&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MINOFFSET&#39;</span><span class="p">,</span> <span class="s1">&#39;G_MAXOFFSET&#39;</span><span class="p">]:</span>
+    <span class="n">new_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">globals</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">GLib</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+    <span class="n">deprecated_attr</span><span class="p">(</span><span class="s2">&quot;GObject&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;GLib.&quot;</span> <span class="o">+</span> <span class="n">new_name</span><span class="p">)</span>
+    <span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+
+<span class="n">TYPE_INVALID</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;invalid&#39;</span><span class="p">)</span>
+<span class="n">TYPE_NONE</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;void&#39;</span><span class="p">)</span>
+<span class="n">TYPE_INTERFACE</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;GInterface&#39;</span><span class="p">)</span>
+<span class="n">TYPE_CHAR</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;gchar&#39;</span><span class="p">)</span>
+<span class="n">TYPE_UCHAR</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;guchar&#39;</span><span class="p">)</span>
+<span class="n">TYPE_BOOLEAN</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;gboolean&#39;</span><span class="p">)</span>
+<span class="n">TYPE_INT</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;gint&#39;</span><span class="p">)</span>
+<span class="n">TYPE_UINT</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;guint&#39;</span><span class="p">)</span>
+<span class="n">TYPE_LONG</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;glong&#39;</span><span class="p">)</span>
+<span class="n">TYPE_ULONG</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;gulong&#39;</span><span class="p">)</span>
+<span class="n">TYPE_INT64</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;gint64&#39;</span><span class="p">)</span>
+<span class="n">TYPE_UINT64</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;guint64&#39;</span><span class="p">)</span>
+<span class="n">TYPE_ENUM</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;GEnum&#39;</span><span class="p">)</span>
+<span class="n">TYPE_FLAGS</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;GFlags&#39;</span><span class="p">)</span>
+<span class="n">TYPE_FLOAT</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;gfloat&#39;</span><span class="p">)</span>
+<span class="n">TYPE_DOUBLE</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;gdouble&#39;</span><span class="p">)</span>
+<span class="n">TYPE_STRING</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;gchararray&#39;</span><span class="p">)</span>
+<span class="n">TYPE_POINTER</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;gpointer&#39;</span><span class="p">)</span>
+<span class="n">TYPE_BOXED</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;GBoxed&#39;</span><span class="p">)</span>
+<span class="n">TYPE_PARAM</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;GParam&#39;</span><span class="p">)</span>
+<span class="n">TYPE_OBJECT</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;GObject&#39;</span><span class="p">)</span>
+<span class="n">TYPE_PYOBJECT</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;PyObject&#39;</span><span class="p">)</span>
+<span class="n">TYPE_GTYPE</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;GType&#39;</span><span class="p">)</span>
+<span class="n">TYPE_STRV</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;GStrv&#39;</span><span class="p">)</span>
+<span class="n">TYPE_VARIANT</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;GVariant&#39;</span><span class="p">)</span>
+<span class="n">TYPE_GSTRING</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="s1">&#39;GString&#39;</span><span class="p">)</span>
+<span class="n">TYPE_VALUE</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">Value</span><span class="o">.</span><span class="n">__gtype__</span>
+<span class="n">TYPE_UNICHAR</span> <span class="o">=</span> <span class="n">TYPE_UINT</span>
+<span class="n">__all__</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;TYPE_INVALID&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_NONE&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_INTERFACE&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_CHAR&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;TYPE_UCHAR&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_BOOLEAN&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_INT&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_UINT&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_LONG&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;TYPE_ULONG&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_INT64&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_UINT64&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_ENUM&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_FLAGS&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;TYPE_FLOAT&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_DOUBLE&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_STRING&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_POINTER&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;TYPE_BOXED&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_PARAM&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_OBJECT&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_PYOBJECT&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;TYPE_GTYPE&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_STRV&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_VARIANT&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_GSTRING&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;TYPE_UNICHAR&#39;</span><span class="p">,</span> <span class="s1">&#39;TYPE_VALUE&#39;</span><span class="p">]</span>
+
+
+<span class="c1"># Deprecated, use GLib directly</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Pid&#39;</span><span class="p">,</span> <span class="s1">&#39;GError&#39;</span><span class="p">,</span> <span class="s1">&#39;OptionGroup&#39;</span><span class="p">,</span> <span class="s1">&#39;OptionContext&#39;</span><span class="p">]:</span>
+    <span class="nb">globals</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">GLib</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">deprecated_attr</span><span class="p">(</span><span class="s2">&quot;GObject&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;GLib.&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+
+<span class="c1"># Deprecated, use: GObject.ParamFlags.* directly</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;PARAM_CONSTRUCT&#39;</span><span class="p">,</span> <span class="s1">&#39;PARAM_CONSTRUCT_ONLY&#39;</span><span class="p">,</span> <span class="s1">&#39;PARAM_LAX_VALIDATION&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;PARAM_READABLE&#39;</span><span class="p">,</span> <span class="s1">&#39;PARAM_WRITABLE&#39;</span><span class="p">]:</span>
+    <span class="n">new_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">globals</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">GObjectModule</span><span class="o">.</span><span class="n">ParamFlags</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+    <span class="n">deprecated_attr</span><span class="p">(</span><span class="s2">&quot;GObject&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;GObject.ParamFlags.&quot;</span> <span class="o">+</span> <span class="n">new_name</span><span class="p">)</span>
+    <span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># PARAM_READWRITE should come from the gi module but cannot due to:</span>
+<span class="c1"># https://bugzilla.gnome.org/show_bug.cgi?id=687615</span>
+<span class="n">PARAM_READWRITE</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">ParamFlags</span><span class="o">.</span><span class="n">READABLE</span> <span class="o">|</span> \
+    <span class="n">GObjectModule</span><span class="o">.</span><span class="n">ParamFlags</span><span class="o">.</span><span class="n">WRITABLE</span>
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;PARAM_READWRITE&quot;</span><span class="p">)</span>
+
+<span class="c1"># READWRITE is part of ParamFlags since glib 2.42. Only mark PARAM_READWRITE as</span>
+<span class="c1"># deprecated in case ParamFlags.READWRITE is available. Also include the glib</span>
+<span class="c1"># version in the warning so it&#39;s clear that this needs a newer glib, unlike</span>
+<span class="c1"># the other ParamFlags related deprecations.</span>
+<span class="c1"># https://bugzilla.gnome.org/show_bug.cgi?id=726037</span>
+<span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">GObjectModule</span><span class="o">.</span><span class="n">ParamFlags</span><span class="p">,</span> <span class="s2">&quot;READWRITE&quot;</span><span class="p">):</span>
+    <span class="n">deprecated_attr</span><span class="p">(</span><span class="s2">&quot;GObject&quot;</span><span class="p">,</span> <span class="s2">&quot;PARAM_READWRITE&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;GObject.ParamFlags.READWRITE (glib 2.42+)&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Deprecated, use: GObject.SignalFlags.* directly</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;SIGNAL_ACTION&#39;</span><span class="p">,</span> <span class="s1">&#39;SIGNAL_DETAILED&#39;</span><span class="p">,</span> <span class="s1">&#39;SIGNAL_NO_HOOKS&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;SIGNAL_NO_RECURSE&#39;</span><span class="p">,</span> <span class="s1">&#39;SIGNAL_RUN_CLEANUP&#39;</span><span class="p">,</span> <span class="s1">&#39;SIGNAL_RUN_FIRST&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;SIGNAL_RUN_LAST&#39;</span><span class="p">]:</span>
+    <span class="n">new_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">globals</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">GObjectModule</span><span class="o">.</span><span class="n">SignalFlags</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+    <span class="n">deprecated_attr</span><span class="p">(</span><span class="s2">&quot;GObject&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;GObject.SignalFlags.&quot;</span> <span class="o">+</span> <span class="n">new_name</span><span class="p">)</span>
+    <span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># Static types</span>
+<span class="n">GBoxed</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GBoxed</span>
+<span class="n">GEnum</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GEnum</span>
+<span class="n">GFlags</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GFlags</span>
+<span class="n">GInterface</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GInterface</span>
+<span class="n">GObject</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span>
+<span class="n">GObjectWeakRef</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObjectWeakRef</span>
+<span class="n">GParamSpec</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GParamSpec</span>
+<span class="n">GPointer</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GPointer</span>
+<span class="n">GType</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GType</span>
+<span class="ne">Warning</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">Warning</span>
+<span class="n">__all__</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;GBoxed&#39;</span><span class="p">,</span> <span class="s1">&#39;GEnum&#39;</span><span class="p">,</span> <span class="s1">&#39;GFlags&#39;</span><span class="p">,</span> <span class="s1">&#39;GInterface&#39;</span><span class="p">,</span> <span class="s1">&#39;GObject&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;GObjectWeakRef&#39;</span><span class="p">,</span> <span class="s1">&#39;GParamSpec&#39;</span><span class="p">,</span> <span class="s1">&#39;GPointer&#39;</span><span class="p">,</span> <span class="s1">&#39;GType&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Warning&#39;</span><span class="p">]</span>
+
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;generic-c-marshaller&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<span class="n">list_properties</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">list_properties</span>
+<span class="n">new</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">new</span>
+<span class="n">pygobject_version</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">pygobject_version</span>
+<span class="n">threads_init</span> <span class="o">=</span> <span class="n">GLib</span><span class="o">.</span><span class="n">threads_init</span>
+<span class="n">type_register</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">type_register</span>
+<span class="n">__all__</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">,</span> <span class="s1">&#39;list_properties&#39;</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;pygobject_version&#39;</span><span class="p">,</span> <span class="s1">&#39;threads_init&#39;</span><span class="p">,</span> <span class="s1">&#39;type_register&#39;</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">Value</span><span class="p">(</span><span class="n">GObjectModule</span><span class="o">.</span><span class="n">Value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">py_value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">GObjectModule</span><span class="o">.</span><span class="n">Value</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">value_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">value_type</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">py_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_free_on_dealloc</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">g_type</span> <span class="o">!=</span> <span class="n">TYPE_INVALID</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">unset</span><span class="p">()</span>
+
+        <span class="c1"># We must call base class __del__() after unset.</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Value</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__del__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">set_boxed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">boxed</span><span class="p">):</span>
+        <span class="c1"># Workaround the introspection marshalers inability to know</span>
+        <span class="c1"># these methods should be marshaling boxed types. This is because</span>
+        <span class="c1"># the type information is stored on the GValue.</span>
+        <span class="n">_gi</span><span class="o">.</span><span class="n">_gvalue_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">boxed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_boxed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_gi</span><span class="o">.</span><span class="n">_gvalue_get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">py_value</span><span class="p">):</span>
+        <span class="n">gtype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">g_type</span>
+
+        <span class="k">if</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">_gi</span><span class="o">.</span><span class="n">TYPE_INVALID</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;GObject.Value needs to be initialized first&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_BOOLEAN</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_boolean</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_CHAR</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_char</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_UCHAR</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_uchar</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_INT</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_int</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_UINT</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_uint</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_LONG</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_long</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_ULONG</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_ulong</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_INT64</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_int64</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_UINT64</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_uint64</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_FLOAT</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_float</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_DOUBLE</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_double</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_STRING</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">py_value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">py_value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">PY2</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">py_value</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
+                    <span class="n">py_value</span> <span class="o">=</span> <span class="n">py_value</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Expected string or unicode but got </span><span class="si">%s%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                                     <span class="p">(</span><span class="n">py_value</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">py_value</span><span class="p">)))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Expected string but got </span><span class="si">%s%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                                 <span class="p">(</span><span class="n">py_value</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">py_value</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_string</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_PARAM</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_param</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span><span class="o">.</span><span class="n">is_a</span><span class="p">(</span><span class="n">TYPE_ENUM</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_enum</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span><span class="o">.</span><span class="n">is_a</span><span class="p">(</span><span class="n">TYPE_FLAGS</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span><span class="o">.</span><span class="n">is_a</span><span class="p">(</span><span class="n">TYPE_BOXED</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_boxed</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_POINTER</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_pointer</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span><span class="o">.</span><span class="n">is_a</span><span class="p">(</span><span class="n">TYPE_OBJECT</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_object</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_UNICHAR</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_uint</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">py_value</span><span class="p">))</span>
+        <span class="c1"># elif gtype == TYPE_OVERRIDE:</span>
+        <span class="c1">#     pass</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_GTYPE</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_gtype</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_VARIANT</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_variant</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_PYOBJECT</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_boxed</span><span class="p">(</span><span class="n">py_value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Unknown value type </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">gtype</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">gtype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">g_type</span>
+
+        <span class="k">if</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_BOOLEAN</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_boolean</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_CHAR</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_char</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_UCHAR</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uchar</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_INT</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_int</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_UINT</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uint</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_LONG</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_long</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_ULONG</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ulong</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_INT64</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_int64</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_UINT64</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uint64</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_FLOAT</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_float</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_DOUBLE</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_double</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_STRING</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_string</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_PARAM</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_param</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span><span class="o">.</span><span class="n">is_a</span><span class="p">(</span><span class="n">TYPE_ENUM</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_enum</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span><span class="o">.</span><span class="n">is_a</span><span class="p">(</span><span class="n">TYPE_FLAGS</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_flags</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span><span class="o">.</span><span class="n">is_a</span><span class="p">(</span><span class="n">TYPE_BOXED</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_boxed</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_POINTER</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_pointer</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span><span class="o">.</span><span class="n">is_a</span><span class="p">(</span><span class="n">TYPE_OBJECT</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_UNICHAR</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uint</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_GTYPE</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_gtype</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_VARIANT</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_variant</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">gtype</span> <span class="o">==</span> <span class="n">TYPE_PYOBJECT</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;&lt;Value (</span><span class="si">%s</span><span class="s1">) </span><span class="si">%s</span><span class="s1">&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">g_type</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_value</span><span class="p">())</span>
+
+
+<span class="n">Value</span> <span class="o">=</span> <span class="n">override</span><span class="p">(</span><span class="n">Value</span><span class="p">)</span>
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">type_from_name</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">type_</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_from_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">type_</span> <span class="o">==</span> <span class="n">TYPE_INVALID</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;unknown type name: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">type_</span>
+
+
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;type_from_name&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">type_parent</span><span class="p">(</span><span class="n">type_</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">type_parent</span><span class="p">(</span><span class="n">type_</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parent</span> <span class="o">==</span> <span class="n">TYPE_INVALID</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;no parent for type&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parent</span>
+
+
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;type_parent&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_validate_type_for_signal_method</span><span class="p">(</span><span class="n">type_</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">type_</span><span class="p">,</span> <span class="s1">&#39;__gtype__&#39;</span><span class="p">):</span>
+        <span class="n">type_</span> <span class="o">=</span> <span class="n">type_</span><span class="o">.</span><span class="n">__gtype__</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">type_</span><span class="o">.</span><span class="n">is_instantiatable</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">type_</span><span class="o">.</span><span class="n">is_interface</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;type must be instantiable or an interface, got </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">type_</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">signal_list_ids</span><span class="p">(</span><span class="n">type_</span><span class="p">):</span>
+    <span class="n">_validate_type_for_signal_method</span><span class="p">(</span><span class="n">type_</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">signal_list_ids</span><span class="p">(</span><span class="n">type_</span><span class="p">)</span>
+
+
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;signal_list_ids&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">signal_list_names</span><span class="p">(</span><span class="n">type_</span><span class="p">):</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="n">signal_list_ids</span><span class="p">(</span><span class="n">type_</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">GObjectModule</span><span class="o">.</span><span class="n">signal_name</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">)</span>
+
+
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;signal_list_names&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">signal_lookup</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">type_</span><span class="p">):</span>
+    <span class="n">_validate_type_for_signal_method</span><span class="p">(</span><span class="n">type_</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">signal_lookup</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">type_</span><span class="p">)</span>
+
+
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;signal_lookup&#39;</span><span class="p">)</span>
+
+
+<span class="n">SignalQuery</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;SignalQuery&#39;</span><span class="p">,</span>
+                         <span class="p">[</span><span class="s1">&#39;signal_id&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;signal_name&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;itype&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;signal_flags&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;return_type&#39;</span><span class="p">,</span>
+                          <span class="c1"># n_params&#39;,</span>
+                          <span class="s1">&#39;param_types&#39;</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">signal_query</span><span class="p">(</span><span class="n">id_or_name</span><span class="p">,</span> <span class="n">type_</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">type_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">id_or_name</span> <span class="o">=</span> <span class="n">signal_lookup</span><span class="p">(</span><span class="n">id_or_name</span><span class="p">,</span> <span class="n">type_</span><span class="p">)</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">signal_query</span><span class="p">(</span><span class="n">id_or_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">signal_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># Return a named tuple to allows indexing which is compatible with the</span>
+    <span class="c1"># static bindings along with field like access of the gi struct.</span>
+    <span class="c1"># Note however that the n_params was not returned from the static bindings</span>
+    <span class="c1"># so we must skip over it.</span>
+    <span class="k">return</span> <span class="n">SignalQuery</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">signal_id</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">signal_name</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">itype</span><span class="p">,</span>
+                       <span class="n">res</span><span class="o">.</span><span class="n">signal_flags</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">return_type</span><span class="p">,</span>
+                       <span class="nb">tuple</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">param_types</span><span class="p">))</span>
+
+
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;signal_query&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">_HandlerBlockManager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">handler_id</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">handler_id</span> <span class="o">=</span> <span class="n">handler_id</span>
+
+    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+        <span class="n">GObjectModule</span><span class="o">.</span><span class="n">signal_handler_unblock</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">handler_id</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">signal_handler_block</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">handler_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Blocks the signal handler from being invoked until</span>
+<span class="sd">    handler_unblock() is called.</span>
+
+<span class="sd">    :param GObject.Object obj:</span>
+<span class="sd">        Object instance to block handlers for.</span>
+<span class="sd">    :param int handler_id:</span>
+<span class="sd">        Id of signal to block.</span>
+<span class="sd">    :returns:</span>
+<span class="sd">        A context manager which optionally can be used to</span>
+<span class="sd">        automatically unblock the handler:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        with GObject.signal_handler_block(obj, id):</span>
+<span class="sd">            pass</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">GObjectModule</span><span class="o">.</span><span class="n">signal_handler_block</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">handler_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_HandlerBlockManager</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">handler_id</span><span class="p">)</span>
+
+
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;signal_handler_block&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">signal_parse_name</span><span class="p">(</span><span class="n">detailed_signal</span><span class="p">,</span> <span class="n">itype</span><span class="p">,</span> <span class="n">force_detail_quark</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parse a detailed signal name into (signal_id, detail).</span>
+
+<span class="sd">    :param str detailed_signal:</span>
+<span class="sd">        Signal name which can include detail.</span>
+<span class="sd">        For example: &quot;notify:prop_name&quot;</span>
+<span class="sd">    :returns:</span>
+<span class="sd">        Tuple of (signal_id, detail)</span>
+<span class="sd">    :raises ValueError:</span>
+<span class="sd">        If the given signal is unknown.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">res</span><span class="p">,</span> <span class="n">signal_id</span><span class="p">,</span> <span class="n">detail</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">signal_parse_name</span><span class="p">(</span><span class="n">detailed_signal</span><span class="p">,</span> <span class="n">itype</span><span class="p">,</span>
+                                                             <span class="n">force_detail_quark</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">signal_id</span><span class="p">,</span> <span class="n">detail</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: unknown signal name: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">itype</span><span class="p">,</span> <span class="n">detailed_signal</span><span class="p">))</span>
+
+
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;signal_parse_name&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">remove_emission_hook</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">detailed_signal</span><span class="p">,</span> <span class="n">hook_id</span><span class="p">):</span>
+    <span class="n">signal_id</span><span class="p">,</span> <span class="n">detail</span> <span class="o">=</span> <span class="n">signal_parse_name</span><span class="p">(</span><span class="n">detailed_signal</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">GObjectModule</span><span class="o">.</span><span class="n">signal_remove_emission_hook</span><span class="p">(</span><span class="n">signal_id</span><span class="p">,</span> <span class="n">hook_id</span><span class="p">)</span>
+
+
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;remove_emission_hook&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># GObject accumulators with pure Python implementations</span>
+<span class="c1"># These return a tuple of (continue_emission, accumulation_result)</span>
+
+<span class="k">def</span> <span class="nf">signal_accumulator_first_wins</span><span class="p">(</span><span class="n">ihint</span><span class="p">,</span> <span class="n">return_accu</span><span class="p">,</span> <span class="n">handler_return</span><span class="p">,</span> <span class="n">user_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Stop emission but return the result of the last handler</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">handler_return</span><span class="p">)</span>
+
+
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;signal_accumulator_first_wins&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">signal_accumulator_true_handled</span><span class="p">(</span><span class="n">ihint</span><span class="p">,</span> <span class="n">return_accu</span><span class="p">,</span> <span class="n">handler_return</span><span class="p">,</span> <span class="n">user_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Stop emission if the last handler returns True</span>
+    <span class="k">return</span> <span class="p">(</span><span class="ow">not</span> <span class="n">handler_return</span><span class="p">,</span> <span class="n">handler_return</span><span class="p">)</span>
+
+
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;signal_accumulator_true_handled&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Statically bound signal functions which need to clobber GI (for now)</span>
+
+<span class="n">add_emission_hook</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">add_emission_hook</span>
+<span class="n">signal_new</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">signal_new</span>
+
+<span class="n">__all__</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;add_emission_hook&#39;</span><span class="p">,</span> <span class="s1">&#39;signal_new&#39;</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">_FreezeNotifyManager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span>
+
+    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">thaw_notify</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">_signalmethod</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="c1"># Function wrapper for signal functions used as instance methods.</span>
+    <span class="c1"># This is needed when the signal functions come directly from GI.</span>
+    <span class="c1"># (they are not already wrapped)</span>
+    <span class="nd">@gi</span><span class="o">.</span><span class="n">overrides</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">meth</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">meth</span>
+
+
+<span class="k">class</span> <span class="nc">Object</span><span class="p">(</span><span class="n">GObjectModule</span><span class="o">.</span><span class="n">Object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_unsupported_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;This method is currently unsupported.&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_unsupported_data_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kargs</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Data access methods are unsupported. &#39;</span>
+                           <span class="s1">&#39;Use normal Python attributes instead&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Generic data methods are not needed in python as it can be handled</span>
+    <span class="c1"># with standard attribute access: https://bugzilla.gnome.org/show_bug.cgi?id=641944</span>
+    <span class="n">get_data</span> <span class="o">=</span> <span class="n">_unsupported_data_method</span>
+    <span class="n">get_qdata</span> <span class="o">=</span> <span class="n">_unsupported_data_method</span>
+    <span class="n">set_data</span> <span class="o">=</span> <span class="n">_unsupported_data_method</span>
+    <span class="n">steal_data</span> <span class="o">=</span> <span class="n">_unsupported_data_method</span>
+    <span class="n">steal_qdata</span> <span class="o">=</span> <span class="n">_unsupported_data_method</span>
+    <span class="n">replace_data</span> <span class="o">=</span> <span class="n">_unsupported_data_method</span>
+    <span class="n">replace_qdata</span> <span class="o">=</span> <span class="n">_unsupported_data_method</span>
+
+    <span class="c1"># The following methods as unsupported until we verify</span>
+    <span class="c1"># they work as gi methods.</span>
+    <span class="n">bind_property_full</span> <span class="o">=</span> <span class="n">_unsupported_method</span>
+    <span class="n">compat_control</span> <span class="o">=</span> <span class="n">_unsupported_method</span>
+    <span class="n">interface_find_property</span> <span class="o">=</span> <span class="n">_unsupported_method</span>
+    <span class="n">interface_install_property</span> <span class="o">=</span> <span class="n">_unsupported_method</span>
+    <span class="n">interface_list_properties</span> <span class="o">=</span> <span class="n">_unsupported_method</span>
+    <span class="n">notify_by_pspec</span> <span class="o">=</span> <span class="n">_unsupported_method</span>
+    <span class="n">run_dispose</span> <span class="o">=</span> <span class="n">_unsupported_method</span>
+    <span class="n">watch_closure</span> <span class="o">=</span> <span class="n">_unsupported_method</span>
+
+    <span class="c1"># Make all reference management methods private but still accessible.</span>
+    <span class="n">_ref</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">Object</span><span class="o">.</span><span class="n">ref</span>
+    <span class="n">_ref_sink</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">Object</span><span class="o">.</span><span class="n">ref_sink</span>
+    <span class="n">_unref</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">Object</span><span class="o">.</span><span class="n">unref</span>
+    <span class="n">_force_floating</span> <span class="o">=</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">Object</span><span class="o">.</span><span class="n">force_floating</span>
+
+    <span class="n">ref</span> <span class="o">=</span> <span class="n">_unsupported_method</span>
+    <span class="n">ref_sink</span> <span class="o">=</span> <span class="n">_unsupported_method</span>
+    <span class="n">unref</span> <span class="o">=</span> <span class="n">_unsupported_method</span>
+    <span class="n">force_floating</span> <span class="o">=</span> <span class="n">_unsupported_method</span>
+
+    <span class="c1"># The following methods are static APIs which need to leap frog the</span>
+    <span class="c1"># gi methods until we verify the gi methods can replace them.</span>
+    <span class="n">get_property</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">get_property</span>
+    <span class="n">get_properties</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">get_properties</span>
+    <span class="n">set_property</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">set_property</span>
+    <span class="n">set_properties</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">set_properties</span>
+    <span class="n">bind_property</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">bind_property</span>
+    <span class="n">connect</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">connect</span>
+    <span class="n">connect_after</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">connect_after</span>
+    <span class="n">connect_object</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">connect_object</span>
+    <span class="n">connect_object_after</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">connect_object_after</span>
+    <span class="n">disconnect_by_func</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">disconnect_by_func</span>
+    <span class="n">handler_block_by_func</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">handler_block_by_func</span>
+    <span class="n">handler_unblock_by_func</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">handler_unblock_by_func</span>
+    <span class="n">emit</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">emit</span>
+    <span class="n">chain</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">chain</span>
+    <span class="n">weak_ref</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">weak_ref</span>
+    <span class="n">__copy__</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">__copy__</span>
+    <span class="n">__deepcopy__</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">__deepcopy__</span>
+
+    <span class="k">def</span> <span class="nf">freeze_notify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Freezes the object&#39;s property-changed notification queue.</span>
+
+<span class="sd">        :returns:</span>
+<span class="sd">            A context manager which optionally can be used to</span>
+<span class="sd">            automatically thaw notifications.</span>
+
+<span class="sd">        This will freeze the object so that &quot;notify&quot; signals are blocked until</span>
+<span class="sd">        the thaw_notify() method is called.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            with obj.freeze_notify():</span>
+<span class="sd">                pass</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Object</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">freeze_notify</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">_FreezeNotifyManager</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">connect_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detailed_signal</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Connect a callback to the given signal with optional user data.</span>
+
+<span class="sd">        :param str detailed_signal:</span>
+<span class="sd">            A detailed signal to connect to.</span>
+<span class="sd">        :param callable handler:</span>
+<span class="sd">            Callback handler to connect to the signal.</span>
+<span class="sd">        :param *data:</span>
+<span class="sd">            Variable data which is passed through to the signal handler.</span>
+<span class="sd">        :param GObject.ConnectFlags connect_flags:</span>
+<span class="sd">            Flags used for connection options.</span>
+<span class="sd">        :returns:</span>
+<span class="sd">            A signal id which can be used with disconnect.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">flags</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;connect_flags&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">flags</span> <span class="o">&amp;</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">ConnectFlags</span><span class="o">.</span><span class="n">AFTER</span><span class="p">:</span>
+            <span class="n">connect_func</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">connect_after</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">connect_func</span> <span class="o">=</span> <span class="n">_gi</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">connect</span>
+
+        <span class="k">if</span> <span class="n">flags</span> <span class="o">&amp;</span> <span class="n">GObjectModule</span><span class="o">.</span><span class="n">ConnectFlags</span><span class="o">.</span><span class="n">SWAPPED</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Using GObject.ConnectFlags.SWAPPED requires exactly &#39;</span>
+                                 <span class="s1">&#39;one argument for user data, got: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">[</span><span class="n">data</span><span class="p">])</span>
+
+            <span class="k">def</span> <span class="nf">new_handler</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+                <span class="c1"># Swap obj with the last element in args which will be the user</span>
+                <span class="c1"># data passed to the connect function.</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+                <span class="n">swap</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="n">args</span> <span class="o">+</span> <span class="p">[</span><span class="n">obj</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">handler</span><span class="p">(</span><span class="n">swap</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_handler</span> <span class="o">=</span> <span class="n">handler</span>
+
+        <span class="k">return</span> <span class="n">connect_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detailed_signal</span><span class="p">,</span> <span class="n">new_handler</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1">#</span>
+    <span class="c1"># Aliases</span>
+    <span class="c1">#</span>
+
+    <span class="n">handler_block</span> <span class="o">=</span> <span class="n">signal_handler_block</span>
+    <span class="n">handler_unblock</span> <span class="o">=</span> <span class="n">_signalmethod</span><span class="p">(</span><span class="n">GObjectModule</span><span class="o">.</span><span class="n">signal_handler_unblock</span><span class="p">)</span>
+    <span class="n">disconnect</span> <span class="o">=</span> <span class="n">_signalmethod</span><span class="p">(</span><span class="n">GObjectModule</span><span class="o">.</span><span class="n">signal_handler_disconnect</span><span class="p">)</span>
+    <span class="n">handler_disconnect</span> <span class="o">=</span> <span class="n">_signalmethod</span><span class="p">(</span><span class="n">GObjectModule</span><span class="o">.</span><span class="n">signal_handler_disconnect</span><span class="p">)</span>
+    <span class="n">handler_is_connected</span> <span class="o">=</span> <span class="n">_signalmethod</span><span class="p">(</span><span class="n">GObjectModule</span><span class="o">.</span><span class="n">signal_handler_is_connected</span><span class="p">)</span>
+    <span class="n">stop_emission_by_name</span> <span class="o">=</span> <span class="n">_signalmethod</span><span class="p">(</span><span class="n">GObjectModule</span><span class="o">.</span><span class="n">signal_stop_emission_by_name</span><span class="p">)</span>
+
+    <span class="c1">#</span>
+    <span class="c1"># Deprecated Methods</span>
+    <span class="c1">#</span>
+
+    <span class="k">def</span> <span class="nf">stop_emission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detailed_signal</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Deprecated, please use stop_emission_by_name.&quot;&quot;&quot;</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stop_emission</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">PyGIDeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop_emission_by_name</span><span class="p">(</span><span class="n">detailed_signal</span><span class="p">)</span>
+
+    <span class="n">emit_stop_by_name</span> <span class="o">=</span> <span class="n">stop_emission</span>
+
+
+<span class="n">Object</span> <span class="o">=</span> <span class="n">override</span><span class="p">(</span><span class="n">Object</span><span class="p">)</span>
+<span class="n">GObject</span> <span class="o">=</span> <span class="n">Object</span>
+<span class="n">__all__</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;Object&#39;</span><span class="p">,</span> <span class="s1">&#39;GObject&#39;</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">Binding</span><span class="p">(</span><span class="n">GObjectModule</span><span class="o">.</span><span class="n">Binding</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Using parentheses (binding()) to retrieve the Binding object is no &#39;</span>
+                      <span class="s1">&#39;longer needed because the binding is returned directly from &quot;bind_property.&#39;</span><span class="p">,</span>
+                      <span class="n">PyGIDeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">unbind</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Fixed in newer glib</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">GLib</span><span class="o">.</span><span class="n">MAJOR_VERSION</span><span class="p">,</span> <span class="n">GLib</span><span class="o">.</span><span class="n">MINOR_VERSION</span><span class="p">,</span> <span class="n">GLib</span><span class="o">.</span><span class="n">MICRO_VERSION</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Binding</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">unbind</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_unbound&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;binding has already been cleared out&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_unbound&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">Binding</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">unbind</span><span class="p">()</span>
+
+
+<span class="n">Binding</span> <span class="o">=</span> <span class="n">override</span><span class="p">(</span><span class="n">Binding</span><span class="p">)</span>
+<span class="n">__all__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Binding&#39;</span><span class="p">)</span>
+
+
+<span class="n">Property</span> <span class="o">=</span> <span class="n">propertyhelper</span><span class="o">.</span><span class="n">Property</span>
+<span class="n">Signal</span> <span class="o">=</span> <span class="n">signalhelper</span><span class="o">.</span><span class="n">Signal</span>
+<span class="n">SignalOverride</span> <span class="o">=</span> <span class="n">signalhelper</span><span class="o">.</span><span class="n">SignalOverride</span>
+<span class="c1"># Deprecated naming &quot;property&quot; available for backwards compatibility.</span>
+<span class="c1"># Keep this at the end of the file to avoid clobbering the builtin.</span>
+<span class="nb">property</span> <span class="o">=</span> <span class="n">Property</span>
+<span class="n">deprecated_attr</span><span class="p">(</span><span class="s2">&quot;GObject&quot;</span><span class="p">,</span> <span class="s2">&quot;property&quot;</span><span class="p">,</span> <span class="s2">&quot;GObject.Property&quot;</span><span class="p">)</span>
+<span class="n">__all__</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;Property&#39;</span><span class="p">,</span> <span class="s1">&#39;Signal&#39;</span><span class="p">,</span> <span class="s1">&#39;SignalOverride&#39;</span><span class="p">,</span> <span class="s1">&#39;property&#39;</span><span class="p">]</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pol Canelles.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

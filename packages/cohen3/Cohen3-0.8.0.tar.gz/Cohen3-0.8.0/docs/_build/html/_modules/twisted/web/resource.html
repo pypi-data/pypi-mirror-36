@@ -1,0 +1,615 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>twisted.web.resource &mdash; Cohen3 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cohen3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backends.html">Backends (plugins)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/coherence.html">Coherence (package)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor_code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cohen3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>twisted.web.resource</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for twisted.web.resource</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- test-case-name: twisted.web.test.test_web -*-</span>
+<span class="c1"># Copyright (c) Twisted Matrix Laboratories.</span>
+<span class="c1"># See LICENSE for details.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Implementation of the lowest-level Resource class.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">absolute_import</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;IResource&#39;</span><span class="p">,</span> <span class="s1">&#39;getChildForRequest&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Resource&#39;</span><span class="p">,</span> <span class="s1">&#39;ErrorPage&#39;</span><span class="p">,</span> <span class="s1">&#39;NoResource&#39;</span><span class="p">,</span> <span class="s1">&#39;ForbiddenResource&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;EncodingResourceWrapper&#39;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">zope.interface</span> <span class="k">import</span> <span class="n">Attribute</span><span class="p">,</span> <span class="n">Interface</span><span class="p">,</span> <span class="n">implementer</span>
+
+<span class="kn">from</span> <span class="nn">twisted.python.compat</span> <span class="k">import</span> <span class="n">nativeString</span><span class="p">,</span> <span class="n">unicode</span>
+<span class="kn">from</span> <span class="nn">twisted.python.reflect</span> <span class="k">import</span> <span class="n">prefixedMethodNames</span>
+<span class="kn">from</span> <span class="nn">twisted.python.components</span> <span class="k">import</span> <span class="n">proxyForInterface</span>
+
+<span class="kn">from</span> <span class="nn">twisted.web._responses</span> <span class="k">import</span> <span class="n">FORBIDDEN</span><span class="p">,</span> <span class="n">NOT_FOUND</span>
+<span class="kn">from</span> <span class="nn">twisted.web.error</span> <span class="k">import</span> <span class="n">UnsupportedMethod</span>
+
+
+
+<span class="k">class</span> <span class="nc">IResource</span><span class="p">(</span><span class="n">Interface</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A web resource.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">isLeaf</span> <span class="o">=</span> <span class="n">Attribute</span><span class="p">(</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Signal if this IResource implementor is a &quot;leaf node&quot; or not. If True,</span>
+<span class="sd">        getChildWithDefault will not be called on this Resource.</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">getChildWithDefault</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a child with the given name for the given request.</span>
+<span class="sd">        This is the external interface used by the Resource publishing</span>
+<span class="sd">        machinery. If implementing IResource without subclassing</span>
+<span class="sd">        Resource, it must be provided. However, if subclassing Resource,</span>
+<span class="sd">        getChild overridden instead.</span>
+
+<span class="sd">        @param name: A single path component from a requested URL.  For example,</span>
+<span class="sd">            a request for I{http://example.com/foo/bar} will result in calls to</span>
+<span class="sd">            this method with C{b&quot;foo&quot;} and C{b&quot;bar&quot;} as values for this</span>
+<span class="sd">            argument.</span>
+<span class="sd">        @type name: C{bytes}</span>
+
+<span class="sd">        @param request: A representation of all of the information about the</span>
+<span class="sd">            request that is being made for this child.</span>
+<span class="sd">        @type request: L{twisted.web.server.Request}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">putChild</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Put a child IResource implementor at the given path.</span>
+
+<span class="sd">        @param path: A single path component, to be interpreted relative to the</span>
+<span class="sd">            path this resource is found at, at which to put the given child.</span>
+<span class="sd">            For example, if resource A can be found at I{http://example.com/foo}</span>
+<span class="sd">            then a call like C{A.putChild(b&quot;bar&quot;, B)} will make resource B</span>
+<span class="sd">            available at I{http://example.com/foo/bar}.</span>
+<span class="sd">        @type path: C{bytes}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Render a request. This is called on the leaf resource for a request.</span>
+
+<span class="sd">        @return: Either C{server.NOT_DONE_YET} to indicate an asynchronous or a</span>
+<span class="sd">            C{bytes} instance to write as the response to the request.  If</span>
+<span class="sd">            C{NOT_DONE_YET} is returned, at some point later (for example, in a</span>
+<span class="sd">            Deferred callback) call C{request.write(b&quot;&lt;html&gt;&quot;)} to write data to</span>
+<span class="sd">            the request, and C{request.finish()} to send the data to the</span>
+<span class="sd">            browser.</span>
+
+<span class="sd">        @raise twisted.web.error.UnsupportedMethod: If the HTTP verb</span>
+<span class="sd">            requested is not supported by this resource.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+
+<span class="k">def</span> <span class="nf">getChildForRequest</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Traverse resource tree to find who will handle the request.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="n">request</span><span class="o">.</span><span class="n">postpath</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">resource</span><span class="o">.</span><span class="n">isLeaf</span><span class="p">:</span>
+        <span class="n">pathElement</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">postpath</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">prepath</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pathElement</span><span class="p">)</span>
+        <span class="n">resource</span> <span class="o">=</span> <span class="n">resource</span><span class="o">.</span><span class="n">getChildWithDefault</span><span class="p">(</span><span class="n">pathElement</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">resource</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">IResource</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Resource</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Define a web-accessible resource.</span>
+
+<span class="sd">    This serves 2 main purposes; one is to provide a standard representation</span>
+<span class="sd">    for what HTTP specification calls an &#39;entity&#39;, and the other is to provide</span>
+<span class="sd">    an abstract directory structure for URL retrieval.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">entityType</span> <span class="o">=</span> <span class="n">IResource</span>
+
+    <span class="n">server</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">isLeaf</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1">### Abstract Collection Interface</span>
+
+    <span class="k">def</span> <span class="nf">listStaticNames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">listStaticEntities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">listNames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">listStaticNames</span><span class="p">())</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">listDynamicNames</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">listEntities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">listStaticEntities</span><span class="p">())</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">listDynamicEntities</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">listDynamicNames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">listDynamicEntities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">getStaticEntity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getDynamicEntity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">delEntity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">reallyPutEntity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">entity</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">entity</span>
+
+    <span class="c1"># Concrete HTTP interface</span>
+
+    <span class="k">def</span> <span class="nf">getChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve a &#39;child&#39; resource from me.</span>
+
+<span class="sd">        Implement this to create dynamic resource generation -- resources which</span>
+<span class="sd">        are always available may be registered with self.putChild().</span>
+
+<span class="sd">        This will not be called if the class-level variable &#39;isLeaf&#39; is set in</span>
+<span class="sd">        your subclass; instead, the &#39;postpath&#39; attribute of the request will be</span>
+<span class="sd">        left as a list of the remaining path elements.</span>
+
+<span class="sd">        For example, the URL /foo/bar/baz will normally be::</span>
+
+<span class="sd">          | site.resource.getChild(&#39;foo&#39;).getChild(&#39;bar&#39;).getChild(&#39;baz&#39;).</span>
+
+<span class="sd">        However, if the resource returned by &#39;bar&#39; has isLeaf set to true, then</span>
+<span class="sd">        the getChild call will never be made on it.</span>
+
+<span class="sd">        Parameters and return value have the same meaning and requirements as</span>
+<span class="sd">        those defined by L{IResource.getChildWithDefault}.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">NoResource</span><span class="p">(</span><span class="s2">&quot;No such child resource.&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">getChildWithDefault</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve a static or dynamically generated child resource from me.</span>
+
+<span class="sd">        First checks if a resource was added manually by putChild, and then</span>
+<span class="sd">        call getChild to check for dynamic resources. Only override if you want</span>
+<span class="sd">        to affect behaviour of all child lookups, rather than just dynamic</span>
+<span class="sd">        ones.</span>
+
+<span class="sd">        This will check to see if I have a pre-registered child resource of the</span>
+<span class="sd">        given name, and call getChild if I do not.</span>
+
+<span class="sd">        @see: L{IResource.getChildWithDefault}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">path</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">getChildForRequest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Please use module level getChildForRequest.&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">getChildForRequest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">putChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Register a static child.</span>
+
+<span class="sd">        You almost certainly don&#39;t want &#39;/&#39; in your path. If you</span>
+<span class="sd">        intended to have the root of a folder, e.g. /foo/, you want</span>
+<span class="sd">        path to be &#39;&#39;.</span>
+
+<span class="sd">        @see: L{IResource.putChild}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">path</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span>
+        <span class="n">child</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span>
+
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Render a given resource. See L{IResource}&#39;s render method.</span>
+
+<span class="sd">        I delegate to methods of self with the form &#39;render_METHOD&#39;</span>
+<span class="sd">        where METHOD is the HTTP that was used to make the</span>
+<span class="sd">        request. Examples: render_GET, render_HEAD, render_POST, and</span>
+<span class="sd">        so on. Generally you should implement those methods instead of</span>
+<span class="sd">        overriding this one.</span>
+
+<span class="sd">        render_METHOD methods are expected to return a byte string which will be</span>
+<span class="sd">        the rendered page, unless the return value is C{server.NOT_DONE_YET}, in</span>
+<span class="sd">        which case it is this class&#39;s responsibility to write the results using</span>
+<span class="sd">        C{request.write(data)} and then call C{request.finish()}.</span>
+
+<span class="sd">        Old code that overrides render() directly is likewise expected</span>
+<span class="sd">        to return a byte string or NOT_DONE_YET.</span>
+
+<span class="sd">        @see: L{IResource.render}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;render_&#39;</span> <span class="o">+</span> <span class="n">nativeString</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">m</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">allowedMethods</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowedMethods</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="n">allowedMethods</span> <span class="o">=</span> <span class="n">_computeAllowedMethods</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">UnsupportedMethod</span><span class="p">(</span><span class="n">allowedMethods</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">m</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">render_HEAD</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Default handling of HEAD method.</span>
+
+<span class="sd">        I just return self.render_GET(request). When method is HEAD,</span>
+<span class="sd">        the framework will handle this correctly.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_GET</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+
+
+<span class="k">def</span> <span class="nf">_computeAllowedMethods</span><span class="p">(</span><span class="n">resource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the allowed methods on a C{Resource} based on defined render_FOO</span>
+<span class="sd">    methods. Used when raising C{UnsupportedMethod} but C{Resource} does</span>
+<span class="sd">    not define C{allowedMethods} attribute.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">allowedMethods</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">prefixedMethodNames</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="s2">&quot;render_&quot;</span><span class="p">):</span>
+        <span class="c1"># Potentially there should be an API for encode(&#39;ascii&#39;) in this</span>
+        <span class="c1"># situation - an API for taking a Python native string (bytes on Python</span>
+        <span class="c1"># 2, text on Python 3) and returning a socket-compatible string type.</span>
+        <span class="n">allowedMethods</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">allowedMethods</span>
+
+
+
+<span class="k">class</span> <span class="nc">ErrorPage</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    L{ErrorPage} is a resource which responds with a particular</span>
+<span class="sd">    (parameterized) status and a body consisting of HTML containing some</span>
+<span class="sd">    descriptive text.  This is useful for rendering simple error pages.</span>
+
+<span class="sd">    @ivar template: A native string which will have a dictionary interpolated</span>
+<span class="sd">        into it to generate the response body.  The dictionary has the following</span>
+<span class="sd">        keys:</span>
+
+<span class="sd">          - C{&quot;code&quot;}: The status code passed to L{ErrorPage.__init__}.</span>
+<span class="sd">          - C{&quot;brief&quot;}: The brief description passed to L{ErrorPage.__init__}.</span>
+<span class="sd">          - C{&quot;detail&quot;}: The detailed description passed to</span>
+<span class="sd">            L{ErrorPage.__init__}.</span>
+
+<span class="sd">    @ivar code: An integer status code which will be used for the response.</span>
+<span class="sd">    @type code: C{int}</span>
+
+<span class="sd">    @ivar brief: A short string which will be included in the response body as</span>
+<span class="sd">        the page title.</span>
+<span class="sd">    @type brief: C{str}</span>
+
+<span class="sd">    @ivar detail: A longer string which will be included in the response body.</span>
+<span class="sd">    @type detail: C{str}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;html&gt;</span>
+<span class="s2">  &lt;head&gt;&lt;title&gt;</span><span class="si">%(code)s</span><span class="s2"> - </span><span class="si">%(brief)s</span><span class="s2">&lt;/title&gt;&lt;/head&gt;</span>
+<span class="s2">  &lt;body&gt;</span>
+<span class="s2">    &lt;h1&gt;</span><span class="si">%(brief)s</span><span class="s2">&lt;/h1&gt;</span>
+<span class="s2">    &lt;p&gt;</span><span class="si">%(detail)s</span><span class="s2">&lt;/p&gt;</span>
+<span class="s2">  &lt;/body&gt;</span>
+<span class="s2">&lt;/html&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">brief</span><span class="p">,</span> <span class="n">detail</span><span class="p">):</span>
+        <span class="n">Resource</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">status</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">brief</span> <span class="o">=</span> <span class="n">brief</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">detail</span> <span class="o">=</span> <span class="n">detail</span>
+
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">setResponseCode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;content-type&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;text/html; charset=utf-8&quot;</span><span class="p">)</span>
+        <span class="n">interpolated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">%</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">code</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">brief</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">brief</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">detail</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">interpolated</span><span class="p">,</span> <span class="n">unicode</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">interpolated</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">interpolated</span>
+
+
+    <span class="k">def</span> <span class="nf">getChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chnam</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+
+
+<span class="k">class</span> <span class="nc">NoResource</span><span class="p">(</span><span class="n">ErrorPage</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    L{NoResource} is a specialization of L{ErrorPage} which returns the HTTP</span>
+<span class="sd">    response code I{NOT FOUND}.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Sorry. No luck finding that resource.&quot;</span><span class="p">):</span>
+        <span class="n">ErrorPage</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">NOT_FOUND</span><span class="p">,</span> <span class="s2">&quot;No Such Resource&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+
+
+
+<span class="k">class</span> <span class="nc">ForbiddenResource</span><span class="p">(</span><span class="n">ErrorPage</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    L{ForbiddenResource} is a specialization of L{ErrorPage} which returns the</span>
+<span class="sd">    I{FORBIDDEN} HTTP response code.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Sorry, resource is forbidden.&quot;</span><span class="p">):</span>
+        <span class="n">ErrorPage</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">FORBIDDEN</span><span class="p">,</span> <span class="s2">&quot;Forbidden Resource&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+
+
+
+<span class="k">class</span> <span class="nc">_IEncodingResource</span><span class="p">(</span><span class="n">Interface</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A resource which knows about L{_IRequestEncoderFactory}.</span>
+
+<span class="sd">    @since: 12.3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">getEncoder</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse the request and return an encoder if applicable, using</span>
+<span class="sd">        L{_IRequestEncoderFactory.encoderForRequest}.</span>
+
+<span class="sd">        @return: A L{_IRequestEncoder}, or L{None}.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">_IEncodingResource</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">EncodingResourceWrapper</span><span class="p">(</span><span class="n">proxyForInterface</span><span class="p">(</span><span class="n">IResource</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wrap a L{IResource}, potentially applying an encoding to the response body</span>
+<span class="sd">    generated.</span>
+
+<span class="sd">    Note that the returned children resources won&#39;t be wrapped, so you have to</span>
+<span class="sd">    explicitly wrap them if you want the encoding to be applied.</span>
+
+<span class="sd">    @ivar encoders: A list of</span>
+<span class="sd">        L{_IRequestEncoderFactory&lt;twisted.web.iweb._IRequestEncoderFactory&gt;}</span>
+<span class="sd">        returning L{_IRequestEncoder&lt;twisted.web.iweb._IRequestEncoder&gt;} that</span>
+<span class="sd">        may transform the data passed to C{Request.write}. The list must be</span>
+<span class="sd">        sorted in order of priority: the first encoder factory handling the</span>
+<span class="sd">        request will prevent the others from doing the same.</span>
+<span class="sd">    @type encoders: C{list}.</span>
+
+<span class="sd">    @since: 12.3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original</span><span class="p">,</span> <span class="n">encoders</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">EncodingResourceWrapper</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_encoders</span> <span class="o">=</span> <span class="n">encoders</span>
+
+
+    <span class="k">def</span> <span class="nf">getEncoder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Browser the list of encoders looking for one applicable encoder.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">encoderFactory</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encoders</span><span class="p">:</span>
+            <span class="n">encoder</span> <span class="o">=</span> <span class="n">encoderFactory</span><span class="o">.</span><span class="n">encoderForRequest</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">encoder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">encoder</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pol Canelles.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
