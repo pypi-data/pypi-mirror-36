@@ -1,0 +1,10 @@
+beeminder_sync/__init__.py,sha256=UbmZHiWUO8YtT8gwb6rw4vRK8M8xLds-ms2OK35eDx0,449
+beeminder_sync/beeminder_sync.py,sha256=-ZOn5tYaSwJzsfh7cgOKNpQVxZr90lMHh001i_CzHGM,7997
+beeminder_sync/cli.py,sha256=CiO21ZFwC8XysGPx-3zjdNJoEo_PobZN9RSsu_jfV48,2787
+beeminder_sync/logger.py,sha256=KgltmKLcEQ3OOE3Ff4nu2t24wJpWiougazDpkfDobNU,408
+beeminder_sync/config/config_template.ini,sha256=QrWCxseTwghKlm608wHPfZzjbs5AI4YGdWjFXSlblIU,230
+beeminder_sync-0.2.0.dist-info/METADATA,sha256=izL9z6IgnrrFR4QKlPC_Ufk5YKNS_lFxnWwK7_68Ank,2094
+beeminder_sync-0.2.0.dist-info/RECORD,,
+beeminder_sync-0.2.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+beeminder_sync-0.2.0.dist-info/entry_points.txt,sha256=UXEqpgXRtmqjBJ7W2TP3-jOIkqmUSmD8fPf9i92BjfM,60
+beeminder_sync-0.2.0.dist-info/top_level.txt,sha256=LHzeaY2NY_zM6o24DIW5X-PWqLSirF7EuQwNsj_bQds,15
