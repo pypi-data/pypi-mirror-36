@@ -1,0 +1,15 @@
+pytorch_models-0.1.6.dist-info/METADATA,sha256=GwqDFGzkfTyod2bhYE47QQ7jftaX2u1p7e3vWolxlI4,502
+pytorch_models-0.1.6.dist-info/RECORD,,
+pytorch_models-0.1.6.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+pytorch_models-0.1.6.dist-info/top_level.txt,sha256=rMzCcFcvnleWIQdNwTfnIilTnBOvE2iV-1RxKLj5py0,12
+torchmodels/__init__.py,sha256=pO__zo1EdKVytiVXeROZj1R9OaquNabA4Wj8QMQykmM,1920
+torchmodels/__main__.py,sha256=jaOjCRVXoesHtu9uy6qG9J5F31fgC7hSXmiz4EnzEd0,1274
+torchmodels/common.py,sha256=qo6a6fTU0DHQ3ovwQCciJZH3kDM98AOS_BEGVAXBLTM,8055
+torchmodels/manager.py,sha256=fvqXzSTrYaVEkm6YFqySgltmTaOiLSc82Cgrse4niqw,1715
+torchmodels/utils.py,sha256=ZU38QQ4WTQtmVK8Hzz76rDT1cDART_3SuUd0cX09054,2278
+torchmodels/modules/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+torchmodels/modules/activation.py,sha256=S29-fjGRuSKq1EtotIse_3juJdkhVsUJ-R_mdwzat8Y,575
+torchmodels/modules/embedding.py,sha256=WI1TwypMpZHCHimTjQvNaapcCfoiXl7WegCPFKYJSXY,5648
+torchmodels/modules/gaussian.py,sha256=z2GIBxCqSCPV2a8RuDbqdsVdCv83DycQ6D7xzJ_dAAE,1752
+torchmodels/modules/pooling.py,sha256=htFNM02LrzHGYf3eKBzZaIDMFUXoSBEbMyMiHNBQVCU,1860
+torchmodels/modules/rnn.py,sha256=8Xq1487LKPPNqX83LcVJ7IyoFQqpSRW9pGz7kIKDusk,5334
