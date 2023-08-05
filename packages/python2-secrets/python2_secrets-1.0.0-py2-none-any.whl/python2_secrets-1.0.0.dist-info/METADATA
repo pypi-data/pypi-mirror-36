@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: python2-secrets
+Version: 1.0.0
+Summary: Backport of secrets for python2
+Home-page: https://github.com/scaleway/python2-secrets
+Author: Scaleway
+Author-email: opensource@scaleway.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Security
+Requires-Python: >= 2.7, != 3.*.*
+
+# Secrets backport
+
+Backported python3 [secrets](https://hg.python.org/cpython/file/3.6/Lib/secrets.py) module for python2.7
+
+
+
