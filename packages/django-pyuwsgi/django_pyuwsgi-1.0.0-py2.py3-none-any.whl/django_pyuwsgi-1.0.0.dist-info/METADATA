@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: django-pyuwsgi
+Version: 1.0.0
+Summary: uWSGI as a Django management command
+Home-page: UNKNOWN
+License: MIT
+Keywords: uwsgi,django,pyuwsgi
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Requires-Dist: pyuwsgi
+Requires-Dist: Django
+Provides-Extra: test
+Requires-Dist: pytest; extra == 'test'
+
+# django-pyuwsgi
+
+Run pyuwsgi (aka uWSGI) as a Django management command.
+
+----
+
+[![build status](https://travis-ci.org/lincolnloop/django-pyuwsgi.svg?branch=master)](https://travis-ci.org/lincolnloop/django-pyuwsgi)
+
+## Usage
+
+1. Install:
+
+    ```
+    pip install django-pyuwsgi
+    ```
+
+2. Add to `INSTALLED_APPS`:
+
+    ```python
+    INSTALLED_APPS = [
+       # ...
+       "django_pyuwsgi",
+       # ...
+    ]
+    ```
+3. Run:
+
+    ```
+    manage.py pyuwsgi --socket=:8000 ...
+    ```
+
+Don't worry about setting the module you want to run or virtualenv/home, that will already be handled for you via the `WSGI_APPLICATION` setting and your current Python interpreter. If you've configured your static files to be served from a local URL, they'll be setup too.
+
+## Motivation
+
+In some scenarios, it is beneficial to distribute a Django project with a single entrypoint for command-line interaction. This can come in handy when building Docker containers or self-contained Python apps with something like [shiv](https://github.com/linkedin/shiv).
+
+
