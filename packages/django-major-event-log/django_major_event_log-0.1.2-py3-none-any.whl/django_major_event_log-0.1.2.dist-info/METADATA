@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: django-major-event-log
+Version: 0.1.2
+Summary: Django app for keeping track of major premis events.
+Home-page: https://github.com/unt-libraries/django-major-event-log
+Author: University of North Texas Libraries
+Author-email: mark.phillips@unt.edu
+License: BSD
+Keywords: django,premis,event,log
+Platform: UNKNOWN
+Classifier: Natural Language :: English
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django :: 1.8
+Classifier: Framework :: Django :: 1.9
+Classifier: Framework :: Django :: 1.10
+Classifier: Framework :: Django :: 1.11
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+
+See the home page for more information.
+
+
