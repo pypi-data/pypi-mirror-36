@@ -1,0 +1,3 @@
+[console_scripts]
+parquet-metadata = parquet_metadata.parquet_metadata:main
+
