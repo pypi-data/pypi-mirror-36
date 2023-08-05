@@ -1,0 +1,13 @@
+CHANGES.txt
+MANIFEST.in
+README.txt
+latex2markdown-bbsmp.py
+setup.py
+bin/converted_latex_sample.md
+bin/latex_sample.tex
+config/__init__.py
+latex2markdown_bbsmp.egg-info/PKG-INFO
+latex2markdown_bbsmp.egg-info/SOURCES.txt
+latex2markdown_bbsmp.egg-info/dependency_links.txt
+latex2markdown_bbsmp.egg-info/requires.txt
+latex2markdown_bbsmp.egg-info/top_level.txt
