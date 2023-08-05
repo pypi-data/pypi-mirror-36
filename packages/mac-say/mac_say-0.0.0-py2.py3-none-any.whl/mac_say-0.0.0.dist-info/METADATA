@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: mac-say
+Version: 0.0.0
+Summary: MacOS say python wrapper
+Home-page: https://github.com/looking-for-a-job/mac-say.py
+License: UNKNOWN
+Keywords: say
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: MacOS X
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development
+Description-Content-Type: text/markdown
+Requires-Dist: public
+Requires-Dist: runcmd
+Requires-Dist: setuptools
+
+[![](https://img.shields.io/badge/OS-MacOS-blue.svg?longCache=True)]()
+[![](https://img.shields.io/pypi/pyversions/mac-say.svg?longCache=True)](https://pypi.org/pypi/mac-say/)
+
+### Install
+```bash
+$ [sudo] pip install mac-say
+```
+
+### Examples
+```python
+>>> import mac_say
+>>> import mac_say.string("hello world")
+>>> import mac_say.file("file.txt")
+```
+
+custom arguments
+```python
+>>> import mac_say.run(["hello world","-v","Agnes"])
+```
+
+background - add `background=True`
+```python
+>>> import mac_say
+>>> import mac_say.string("hello world",background=True)
+>>> import mac_say.file("file.txt",background=True)
+>>> import mac_say.run(["hello world","-v","Agnes"],background=True)
+```
+
