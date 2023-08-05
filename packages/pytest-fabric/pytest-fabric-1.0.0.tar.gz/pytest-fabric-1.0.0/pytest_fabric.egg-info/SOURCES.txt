@@ -1,0 +1,17 @@
+AUTHORS.txt
+Changelog
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+pytest_fabric/__init__.py
+pytest_fabric/fixtures.py
+pytest_fabric/plugin.py
+pytest_fabric.egg-info/PKG-INFO
+pytest_fabric.egg-info/SOURCES.txt
+pytest_fabric.egg-info/dependency_links.txt
+pytest_fabric.egg-info/entry_points.txt
+pytest_fabric.egg-info/requires.txt
+pytest_fabric.egg-info/top_level.txt
+pytest_fabric.egg-info/zip-safe

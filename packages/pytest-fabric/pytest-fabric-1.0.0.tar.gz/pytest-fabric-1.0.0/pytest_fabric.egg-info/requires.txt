@@ -1,0 +1,7 @@
+pytest>=2.9
+docker>=3.5.0
+fabric==1.14.0
+six
+mock
+pytest-cov
+pytest-xdist
