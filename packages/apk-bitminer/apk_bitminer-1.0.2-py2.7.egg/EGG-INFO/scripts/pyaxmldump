@@ -1,0 +1,8 @@
+#!/home/jrusnak/workspace/mdl-integration_trunk/build/mdl-integration/venv/bin/python
+
+# Main entry point for axmldump, used to dump an android manifest file from an apk
+
+from apk_bitminer import parsing
+
+if __name__ == "__main__":
+    parsing.main_axml()
