@@ -1,0 +1,54 @@
+# coding=utf-8
+
+import os
+from os.path import join
+import multiprocessing
+
+from gunicorn.config import KNOWN_SETTINGS
+
+from guniflask.utils.config import load_config, load_profile_config, walk_files, load_app_config
+
+_conf_dir = os.environ['GUNIFLASK_CONF_DIR']
+_pid_dir = os.environ['GUNIFLASK_PID_DIR']
+_log_dir = os.environ['GUNIFLASK_LOG_DIR']
+_id_string = os.environ['GUNIFLASK_ID_STRING']
+
+
+def _make_profile_settings(active_profiles):
+    gc = load_config(join(_conf_dir, 'gunicorn.py'))
+    gc.update(load_profile_config(_conf_dir, 'gunicorn', profiles=active_profiles))
+    snames = set([i.name for i in KNOWN_SETTINGS])
+    for name in gc:
+        if name in snames:
+            globals()[name] = gc[name]
+
+
+def _make_debug_settings():
+    debug_settings = {
+        'pidfile': None,
+        'accesslog': '-',
+        'errorlog': '-',
+        'loglevel': 'debug',
+        'disable_redirect_access_to_syslog': True,
+        'reload': True,
+        'reload_extra_files': walk_files(_conf_dir),
+        'workers': 1,
+        'daemon': False
+    }
+    for k, v in debug_settings.items():
+        globals()[k] = v
+
+
+daemon = True
+workers = multiprocessing.cpu_count()
+worker_class = 'gevent'
+
+pidfile = join(_pid_dir, '{{project__name}}-' + _id_string + '.pid')
+accesslog = join(_log_dir, '{{project__name}}-' + _id_string + '.access.log')
+errorlog = join(_log_dir, '{{project__name}}-' + _id_string + '.error.log')
+
+_settings = load_app_config('{{project_name}}')
+_make_profile_settings(_settings['active_profiles'])
+# if debug
+if _settings['debug']:
+    _make_debug_settings()
