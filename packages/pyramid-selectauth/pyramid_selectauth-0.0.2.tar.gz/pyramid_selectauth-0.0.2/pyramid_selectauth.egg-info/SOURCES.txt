@@ -1,0 +1,16 @@
+CHANGES.txt
+CONTRIBUTORS.txt
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+tox.ini
+pyramid_selectauth/__init__.py
+pyramid_selectauth/tests.py
+pyramid_selectauth.egg-info/PKG-INFO
+pyramid_selectauth.egg-info/SOURCES.txt
+pyramid_selectauth.egg-info/dependency_links.txt
+pyramid_selectauth.egg-info/not-zip-safe
+pyramid_selectauth.egg-info/requires.txt
+pyramid_selectauth.egg-info/top_level.txt
