@@ -1,0 +1,9 @@
+mpoints/__init__.py,sha256=1J96_ZdFZ_KHvyPKdXSUmB-7OXNNyXm0rOgUO__A4ew,16
+mpoints/hybrid_hawkes_exp.py,sha256=RqQ8jONhNx8UjShz2JrNVCP_UmJ05hi4gEvn2icyG6M,40578
+mpoints/hybrid_hawkes_exp_cython.cpython-36m-darwin.so,sha256=Jt1i-lI1VkaBwsZCJGkUJsmDXSXMTU-a7dw7yRzcmZM,227756
+mpoints/plot_tools.py,sha256=rXXcErNQwI9gsPprM8sTIYtT5MIjmKi8R1SPGVOA8Gs,25214
+mpoints/setup.py,sha256=ZJMbbT_mR9o3x8xlaMaQ1Wz3U8VmZbEBrnR8SmjYMB8,715
+mpoints-0.0.2.dist-info/METADATA,sha256=NOeqYyuD_r--rNQKBMqU_YRmNEBmd-VVrZ4zXZoXJDU,622
+mpoints-0.0.2.dist-info/RECORD,,
+mpoints-0.0.2.dist-info/WHEEL,sha256=eXhezAGFSydxXsP-w3mB3uCqyg1QWS2cPWJdPcd3KUY,110
+mpoints-0.0.2.dist-info/top_level.txt,sha256=Esff3Yt1rM7OligTZxNeShXARDg6opSuNURi-pGy3nc,8

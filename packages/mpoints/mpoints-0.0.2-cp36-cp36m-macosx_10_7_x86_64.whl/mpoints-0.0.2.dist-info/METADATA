@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: mpoints
+Version: 0.0.2
+Summary: Simulate and estimate state-dependent Hawkes processes.
+Home-page: https://www.maximemorariu.com
+Author: Maxime Morariu-Patrichi
+Author-email: maximemorariu@me.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# The mpoints package
+
+This is a simple example package. You can use
+[Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+to write your content.
+
