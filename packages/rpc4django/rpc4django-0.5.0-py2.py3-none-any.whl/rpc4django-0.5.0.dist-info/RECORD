@@ -1,0 +1,16 @@
+rpc4django/__init__.py,sha256=K1wGKn1xB3svWRiOqjpSPunbefHGiAuofq4QNoWSoe8,401
+rpc4django/jsonrpcdispatcher.py,sha256=T2eGRCeKbnaGKMD7ON88kWmyIfeaGVKZnz0p6pjFu3M,6021
+rpc4django/models.py,sha256=0xeQhBIbxmzsQ7tQehX4F6grqDpBEd3N7R0njDesdMo,149
+rpc4django/rpcdispatcher.py,sha256=cAFVmUJSbVnINn0cpoQvvssSjMtGCorP_8eOR5ud9oc,17233
+rpc4django/utils.py,sha256=q4p3XMty5B7gAif110D8YJD7de6_EAx3GZvHet5ehWc,1323
+rpc4django/views.py,sha256=c055GeUREqGtXs7B_YODp6tvzQyC2mLHKqbuSNKRAwE,8356
+rpc4django/xmlrpcdispatcher.py,sha256=D7Dmhlo-1LKfaXyhik8JFn702x7v729XNpwAmsgMQfs,3960
+rpc4django/templates/rpc4django/rpcmethod_summary.html,sha256=oL1JFtaUIqBgxu9oBbzwez7h-G8ULyPGy1GRk92On30,3518
+rpc4django/templatetags/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+rpc4django/templatetags/rpctags.py,sha256=kYi07AV46OZsP5MfzjUtzXVYSksqQ3aoZdFVa3V_D4o,1299
+rpc4django-0.5.0.dist-info/DESCRIPTION.rst,sha256=zxN4rJjIS1AvZrL22v1LNegaOFsLx4a77vyT9fd82XI,1799
+rpc4django-0.5.0.dist-info/METADATA,sha256=F7HYTm3ezLD9GIfOzrdFKrBuYlh8WywYpe-Sb-iDPts,2895
+rpc4django-0.5.0.dist-info/RECORD,,
+rpc4django-0.5.0.dist-info/WHEEL,sha256=kdsN-5OJAZIiHN-iO4Rhl82KyS0bDWf4uBwMbkNafr8,110
+rpc4django-0.5.0.dist-info/metadata.json,sha256=pSX4KtHPS76h4WplaUrUw2vEosj43NuxUmu0MVSiwBk,1188
+rpc4django-0.5.0.dist-info/top_level.txt,sha256=qmQcw4xq9t_l8Nrjx6wwQJol0CUCb0Ninnkk8ysdVXA,11
