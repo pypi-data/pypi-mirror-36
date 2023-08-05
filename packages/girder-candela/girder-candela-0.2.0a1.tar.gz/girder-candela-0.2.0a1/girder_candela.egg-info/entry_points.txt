@@ -1,0 +1,3 @@
+[girder.plugin]
+candela = girder_candela:CandelaPlugin
+
