@@ -1,0 +1,12 @@
+Metadata-Version: 1.0
+Name: more-or-less
+Version: 0.1.1
+Summary: Library for adding 'more' like paging functionality to your Python application
+Home-page: https://github.com/jeroen-dhollander/python-more-or-less
+Author: Jeroen Dhollander
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: # python-more-or-less
+        Library for adding bash 'more' like functionality to your Python application
+        
+Platform: UNKNOWN
