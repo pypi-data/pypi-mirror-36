@@ -1,0 +1,4 @@
+menpo
+tensorflow-gpu
+Keras>=2.2.2
+keras-contrib>=2.0.8
