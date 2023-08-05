@@ -1,0 +1,10 @@
+spongeblob/__init__.py,sha256=4xufEVxZp6MmncIMZfDRvYXqiYpO2u9xryHMzzZPtd0,1408
+spongeblob/retriable_storage.py,sha256=dppgQPApgjSb-BwJEWirjETKHCEOhFNxK4eRzurbJyE,4014
+spongeblob/storage/__init__.py,sha256=YupC1Ctncd3fgp2N4qy7XzLELrg4Acbv5Gimq6YUJ5s,42
+spongeblob/storage/s3.py,sha256=rYAGp_Z8pURVMXjKbgvS4i2co7-YmjHMmy7yzcX5zas,7776
+spongeblob/storage/storage.py,sha256=VlTyB-jsvjmtoUH4DbNo5tdy_F0NujFmZsiqCPsgIb4,5488
+spongeblob/storage/wabs.py,sha256=ousflOUnRe2hZeqYqE0esT8CbsYmHZm5FrF8092vMfU,8320
+spongeblob-0.1.1.dist-info/METADATA,sha256=mMedn6-F-7wonUgkvZmxZCLiCNYxVN8O5gzALHj4g7Y,1331
+spongeblob-0.1.1.dist-info/RECORD,,
+spongeblob-0.1.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+spongeblob-0.1.1.dist-info/top_level.txt,sha256=_3Vj_CtHCo9LLz45B25SeRzR5salmousETwVA1rJhXY,11
