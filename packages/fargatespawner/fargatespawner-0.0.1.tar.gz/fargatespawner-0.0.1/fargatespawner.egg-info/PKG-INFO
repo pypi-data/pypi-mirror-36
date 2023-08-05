@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: fargatespawner
+Version: 0.0.1
+Summary: Spawns JupyterHub single user servers in Docker containers running in AWS Fargate
+Home-page: https://github.com/uktrade/fargatespawner
+Author: Department for International Trade - WebOps
+Author-email: webops@digital.trade.gov.uk
+License: UNKNOWN
+Description: # fargatespawner
+        Spawns JupyterHub single user servers in Docker containers running in AWS Fargate
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
