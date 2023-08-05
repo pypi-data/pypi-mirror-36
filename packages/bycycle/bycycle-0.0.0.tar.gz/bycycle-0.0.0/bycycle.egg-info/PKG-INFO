@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: bycycle
+Version: 0.0.0
+Summary: cycle-by-cycle analysis of neural oscillations
+Home-page: https://github.com/voytekresearch/bycycle
+Author: The Voytek Lab
+Author-email: voyteklab@gmail.com
+License: Apache License, 2.0
+Download-URL: https://github.com/voytekresearch/bycycle/releases
+Description: 
+        =======================================================
+        bycycle: cycle-by-cycle analysis of neural oscillations
+        =======================================================
+        
+        bycycle description coming soon
+        
+        If you use this code in your project, please cite:
+        
+        Cole SR & Voytek B (2018) Cycle-by-cycle analysis of neural oscillations. bioRxiv, 302000.
+        doi: https://doi.org/10.1101/302000
+        
+        Paper Link: https://www.biorxiv.org/content/early/2018/04/16/302000
+        
+Keywords: neuroscience,neural oscillations,waveform,shape,electrophysiology
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Provides-Extra: plot
+Provides-Extra: tests
+Provides-Extra: all
