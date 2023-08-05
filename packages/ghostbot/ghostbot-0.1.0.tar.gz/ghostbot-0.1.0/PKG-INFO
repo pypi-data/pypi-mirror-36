@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: ghostbot
+Version: 0.1.0
+Summary: UI Testing Framework
+Home-page: http://metaworks.io/ghostbot/
+Author: ORITA Takemi
+Author-email: orita@metaworks.io
+License: BSD
+Description-Content-Type: UNKNOWN
+Description: UNKNOWN
+Keywords: ui test testing framework automation crawler scraper
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3 :: Only
