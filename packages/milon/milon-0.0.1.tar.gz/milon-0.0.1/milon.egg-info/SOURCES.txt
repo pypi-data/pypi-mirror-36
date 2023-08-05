@@ -1,0 +1,12 @@
+README.rst
+setup.py
+milon/__init__.py
+milon/dictionaries.py
+milon/transliteration.py
+milon.egg-info/PKG-INFO
+milon.egg-info/SOURCES.txt
+milon.egg-info/dependency_links.txt
+milon.egg-info/requires.txt
+milon.egg-info/top_level.txt
+milon/data/enhe.json
+milon/data/heen.json
