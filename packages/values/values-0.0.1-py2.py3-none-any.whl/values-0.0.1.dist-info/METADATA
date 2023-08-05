@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: values
+Version: 0.0.1
+Summary: values.get(input) - create list from input
+Home-page: https://github.com/looking-for-a-job/values.py
+License: UNKNOWN
+Keywords: list values
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development
+Description-Content-Type: text/markdown
+Requires-Dist: public
+Requires-Dist: setuptools
+Requires-Dist: this-is
+
+[![](https://img.shields.io/pypi/pyversions/values.svg?longCache=True)](https://pypi.org/pypi/values/)
+
+### Install
+```bash
+$ [sudo] pip install values
+```
+
+### Examples
+```python
+>>> import values
+>>> values.get(1)
+[1]
+
+>>> values.get("string")
+["string"]
+
+>>> values.get(filter(None,[1,2]))
+[1,2]
+
+>>> values.get(map(int,[1,2]))
+[1,2]
+
+>>> values.get([1,2])
+[1,2]
+```
+
