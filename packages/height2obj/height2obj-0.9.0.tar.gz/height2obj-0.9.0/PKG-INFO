@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: height2obj
+Version: 0.9.0
+Summary: Converts heightmap to 3d mesh.
+Home-page: https://bitbucket.org/sgeorg_htw/height2obj
+Author: Sebastian Georg
+Author-email: sebastian.georg@htwsaar.de
+License: Apache License 2.0
+Description: # hight2obj
+        
+        Converts a heightmap to a 3d mesh.
+        
+        **Usage**
+        
+        hight2obj SOURCE DESTINATION SCALE
+        
+        **Parameters**
+        
+        * SOURCE: Filename of the source hightmap. This must be a 8 bpp greyscale bitmap-type image. PNG is tested an recommended.
+        * DESTINATION: Filename of the destination file into which the 3d data is written.
+        * SCALE: Scale factor for the z-coordinate. This value is the maximum height of the resulting mesh relative to the short side side of the SOURCE image.
+        
+        **Remarks**
+        
+        This script uses the pillow library to load the image. Output format Wavefront OBJ.
+        
+        This only creates a 3d surface, no solid block.
+        
+        Make shure to install this package via pip to allow comfortable use in console.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Multimedia :: Graphics :: 3D Modeling
+Requires-Python: >=3
+Description-Content-Type: text/markdown
