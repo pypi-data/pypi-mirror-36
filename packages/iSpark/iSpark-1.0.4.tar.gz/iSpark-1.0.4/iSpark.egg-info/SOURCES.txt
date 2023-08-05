@@ -1,0 +1,9 @@
+README.md
+setup.py
+iSpark.egg-info/PKG-INFO
+iSpark.egg-info/SOURCES.txt
+iSpark.egg-info/dependency_links.txt
+iSpark.egg-info/requires.txt
+iSpark.egg-info/top_level.txt
+ispark/SparkStarter.py
+ispark/__init__.py
