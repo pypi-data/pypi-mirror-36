@@ -1,0 +1,10 @@
+setup.cfg
+setup.py
+src/botany_noughtsandcrosses/__init__.py
+src/botany_noughtsandcrosses/__main__.py
+src/botany_noughtsandcrosses/game.py
+src/botany_noughtsandcrosses.egg-info/PKG-INFO
+src/botany_noughtsandcrosses.egg-info/SOURCES.txt
+src/botany_noughtsandcrosses.egg-info/dependency_links.txt
+src/botany_noughtsandcrosses.egg-info/requires.txt
+src/botany_noughtsandcrosses.egg-info/top_level.txt
