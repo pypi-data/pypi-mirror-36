@@ -1,0 +1,14 @@
+README.md
+setup.cfg
+setup.py
+botw_duplicator_tools/__init__.py
+botw_duplicator_tools/__main__.py
+botw_duplicator_tools/actorinfo_tool.py
+botw_duplicator_tools/actorpack_tool.py
+botw_duplicator_tools/bfres_duplicator.py
+botw_duplicator_tools.egg-info/PKG-INFO
+botw_duplicator_tools.egg-info/SOURCES.txt
+botw_duplicator_tools.egg-info/dependency_links.txt
+botw_duplicator_tools.egg-info/entry_points.txt
+botw_duplicator_tools.egg-info/requires.txt
+botw_duplicator_tools.egg-info/top_level.txt
