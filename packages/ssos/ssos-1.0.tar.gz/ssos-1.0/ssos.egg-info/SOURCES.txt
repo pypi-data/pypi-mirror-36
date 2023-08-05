@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+ssos/__init__.py
+ssos/__main__.py
+ssos/core.py
+ssos/filt.py
+ssos/opt.py
+ssos/utils.py
+ssos.egg-info/PKG-INFO
+ssos.egg-info/SOURCES.txt
+ssos.egg-info/dependency_links.txt
+ssos.egg-info/entry_points.txt
+ssos.egg-info/requires.txt
+ssos.egg-info/top_level.txt
