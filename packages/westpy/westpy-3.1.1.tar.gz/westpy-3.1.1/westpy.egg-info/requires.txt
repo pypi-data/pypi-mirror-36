@@ -1,0 +1,13 @@
+numpy
+scipy
+matplotlib
+pyyaml
+datetime
+requests
+mendeleev
+signac
+setuptools
+urllib3
+prompt-toolkit<2.0.0
+sphinx
+sphinx_rtd_theme
