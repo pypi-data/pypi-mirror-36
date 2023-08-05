@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: tankerkoenig-api
+Version: 0.1.1
+Summary: tankerkoenig API
+Home-page: https://gitlab.com/smartesthome.blog/libraries/python/tankerkoenig_api
+Author: Iulius Gutberlet
+Author-email: iulius@sniggle.me
+License: Apache Software License
+Description: Tankerkoenig API
+        ================
+        
+        This library provides easy access to gas station prices and all functionality offered by tankerkoenig.de API.
+        
+        tbd Link to Gitlab Pipeline status
+        
+        ## LICENSE
+        __Short__ Apache 2.0
+        
+        __Long__ See [License](LICENSE.md)
+        
+        ## Quickstart
+        tbd
+        
+        ## Issue
+        tbd - Link to gitlab issues
+        
+        ## Documentation
+        tbd - Link to Read the docs
+Platform: any
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 4 - Beta
+Classifier: Natural Language :: English
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries
+Provides-Extra: testing
