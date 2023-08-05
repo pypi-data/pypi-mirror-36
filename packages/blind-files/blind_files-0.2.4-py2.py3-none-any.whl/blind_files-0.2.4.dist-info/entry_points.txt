@@ -1,0 +1,3 @@
+[console_scripts]
+blind_files = blind_files.cli:main
+
