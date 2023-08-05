@@ -1,0 +1,36 @@
+Metadata-Version: 1.2
+Name: pyGeoPressure
+Version: 0.1.6
+Summary: pyGeoPressure: Tools for geopressure prediction
+Home-page: https://github.com/whimian/pyGeoPressure
+Author: Yu Hao
+Author-email: yuhao@live.cn
+License: MIT
+Download-URL: https://github.com/whimian/pyGeoPressure
+Description: Tools for pore pressure prediction using well log data and seismic velocity data.
+        
+        Features:
+        1. Hydrostatic Pressure Calculation
+        2. Overburden (or Lithostatic) Pressure Calculation
+        3. Eaton's method
+        4. Bowers' method
+Keywords: pore pressure prediction
+Platform: Windows
+Platform: Linux
+Platform: Solaris
+Platform: Mac OS-X
+Platform: Unix
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Natural Language :: English
+Requires-Python: >=2.7, <3.7
