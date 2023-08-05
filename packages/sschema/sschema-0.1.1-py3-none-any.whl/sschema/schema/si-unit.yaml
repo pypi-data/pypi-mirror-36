@@ -1,0 +1,22 @@
+---
+$schema: http://json-schema.org/draft-06/schema#
+description: A data unit
+type: string
+enum:
+  # Please keep this list sorted to avoid accidental duplicates.
+  - byte
+  # For most angle measurements, use radians (which are SI). When it's awkward
+  # to do otherwise (e.g. latitude and longitude), degrees are OK:
+  # (https://en.wikipedia.org/wiki/Non-SI_units_mentioned_in_the_SI)
+  - degree
+  - K
+  - kg/s
+  - m
+  - m/s
+  - m/s^2
+  - none
+  - Pa
+  - percent
+  - rad
+  - rad/s
+  - s
