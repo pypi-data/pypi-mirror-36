@@ -1,0 +1,114 @@
+Metadata-Version: 2.1
+Name: setuptools-lint
+Version: 0.6.0
+Summary: Setuptools command for pylint
+Home-page: https://github.com/johnnoone/setuptools-pylint
+Author: Xavier Barbosa
+Author-email: UNKNOWN
+License: BSD
+Keywords: pylint setuptools command
+Platform: UNKNOWN
+Classifier: Topic :: Documentation
+Classifier: Framework :: Setuptools Plugin
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Software Development :: Documentation
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: pylint
+
+Setuptools lint command
+=======================
+
+
+This package expose `pylint`_ as a lint command into setup.py.
+
+
+Installation
+------------
+
+This package is published on pypi. You can use pip to install it.
+
+::
+
+    pip install setuptools-lint
+
+
+Usage
+-----
+
+::
+
+    python setup.py lint
+
+
+For a full list of options, do
+
+::
+
+  python setup.py lint --help
+
+.. _`pylint` : http://pypi.python.org/pypi/pylint
+
+
+News
+====
+
+0.6.0
+-----
+
+*Release date: 14-Sept-2018*
+
+* make python 2 & 3 explicit, thanks @cclauss
+* fixed pylint > 1.9 dependencies
+
+0.5.2
+-----
+
+*Release date: 21-Aug-2016*
+
+* fix outfile parameter
+
+0.5
+---
+
+*Release date: 12-Aug-2016*
+
+* fix creating dirs on outfile
+
+0.4
+---
+
+*Release date: 18-Nov-2015*
+
+* allow to pipe commands like ``python setup.py lint install``
+
+0.3
+---
+
+*Release date: 14-Jun-2014*
+
+* Adding dependency handeling, similar to that of setuptools's test command,
+  such that required dependencies get fetched and added to the path prior to
+  running the lint
+
+0.2
+---
+
+*Release date: 7-Apr-2014*
+
+* Better support for packages
+* Allow specification of PyLint config file either on commandline or as setup
+  keyword arg
+
+0.1
+---
+
+*Release date: 5-Jun-2012*
+
+* First release
+
+
