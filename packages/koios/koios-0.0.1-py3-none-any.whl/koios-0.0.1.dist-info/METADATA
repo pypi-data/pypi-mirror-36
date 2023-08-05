@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: koios
+Version: 0.0.1
+Summary: Machine learning in Python!
+Home-page: http://github.com/somapaul/koios
+Author: Paul A. Soma, Jr.
+Author-email: somapaul@msu.edu
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# koios
+This project is a machine learning module for Python. The primary purpose of the 
+project is to provide a portable implementation of a neural network.
+
+In Greek mythology, Koios (or Coeus) is the Titan god of intelligence and farsight.
+
+
