@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+bin/deepbrain-extractor
+deepbrain/__init__.py
+deepbrain/extractor.py
+deepbrain.egg-info/PKG-INFO
+deepbrain.egg-info/SOURCES.txt
+deepbrain.egg-info/dependency_links.txt
+deepbrain.egg-info/requires.txt
+deepbrain.egg-info/top_level.txt
+deepbrain/models/.DS_Store
+deepbrain/models/graph.pb
