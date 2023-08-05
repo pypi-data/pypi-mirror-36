@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h5>Navigation</h5>
+        <hr>
+        {% for link, class in nav_links.items() %}
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation">
+                    <a href="{{ class.url }}">{{ class.display }}</a>
+                </li>
+            </ul>
+        {% endfor %}
+    </div>
+</div>

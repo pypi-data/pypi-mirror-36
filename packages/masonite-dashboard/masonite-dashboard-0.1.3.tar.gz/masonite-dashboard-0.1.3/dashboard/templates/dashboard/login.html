@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+
+{% block sidebar %}{% endblock %}
+
+{% block content %}
+<div class="col-xs-6 col-xs-offset-3">
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <form action="/dashboard/login" method="POST">
+                {{ csrf_field|safe }}
+                <h4>Login</h4><hr>
+                {% if session().has('danger') %}
+                    <div class="alert alert-danger">{{ session().get('danger') }} </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="">Username</label>
+                    <input type="text" name="username" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="">Password</label>
+                    <input type="password" name="password" class="form-control">
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-success"> Login </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

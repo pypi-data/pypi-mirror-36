@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block content %}
+<!-- CONTENT START -->
+<div class="user-dashboard">
+
+    <h1>{{ model.__class__.__name__ }} Model <a href="#" class="add-project" data-toggle="modal">
+        <span class="fa fa-plus"></span> Save Model </a></h1>
+    {% if session().has('message') %}
+        <div class="alert alert-success">
+            {{ session().get('message') }}
+        </div>
+    {% endif %}
+    <div class="row">
+        <form action="/dashboard/{{ model.__class__.__name__.lower() }}/{{ model.id }}" method="POST">
+            {{ csrf_field|safe }}
+        {% for key, value in model_schema %}
+            <div class="col-md-12 col-sm-12 col-xs-12 gutter">
+            
+                <div class="sales">
+                    <h2>{{ key }}</h2>
+            
+                    {% if value.get_type() == 'string' %}
+                    <div class="search">
+                        <input type="text" name="{{ key }}" value="{{ getattr(model, key) }}">
+                    </div>
+                    {% elif value.get_type() in ('integer', 'id') %}
+                    <div class="search">
+                        <input type="number" name="{{ key }}" value="{{ getattr(model, key) }}">
+                    </div>
+                    {% else %}
+                     {{ value.get_type() }} not supported
+                    {% endif %}
+
+                </div>
+                <br>
+                <br>
+            </div>
+        {% endfor %}
+
+        <input type="submit" class="btn btn-success" value="Update Model">
+        </form>
+    </div>
+</div>
+{% endblock %}
