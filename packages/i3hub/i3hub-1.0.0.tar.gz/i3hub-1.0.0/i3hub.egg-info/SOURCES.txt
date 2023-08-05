@@ -1,0 +1,11 @@
+README.rst
+i3hub.py
+setup.py
+i3hub.egg-info/PKG-INFO
+i3hub.egg-info/SOURCES.txt
+i3hub.egg-info/dependency_links.txt
+i3hub.egg-info/entry_points.txt
+i3hub.egg-info/requires.txt
+i3hub.egg-info/top_level.txt
+test/test_i3hub.py
+test/test_ipc_protocol.py
