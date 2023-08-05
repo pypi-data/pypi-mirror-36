@@ -1,0 +1,6 @@
+click
+tqdm
+bokeh>=0.13.0
+numpy
+python-box
+pyfaidx>=0.5.4.2
