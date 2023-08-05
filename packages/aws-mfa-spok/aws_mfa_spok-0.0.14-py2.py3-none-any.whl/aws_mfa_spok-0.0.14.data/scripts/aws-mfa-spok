@@ -1,0 +1,6 @@
+#!/Users/jason.baker/miniconda3/envs/mfa/bin/python
+
+import awsmfa
+
+if __name__ == "__main__":
+    awsmfa.main()
