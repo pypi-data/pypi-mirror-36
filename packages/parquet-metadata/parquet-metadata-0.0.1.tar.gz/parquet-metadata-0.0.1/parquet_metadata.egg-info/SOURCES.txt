@@ -1,0 +1,11 @@
+README.md
+setup.py
+parquet_metadata/__init__.py
+parquet_metadata/__main__.py
+parquet_metadata/parquet_metadata.py
+parquet_metadata/test_parquet_metadata.py
+parquet_metadata.egg-info/PKG-INFO
+parquet_metadata.egg-info/SOURCES.txt
+parquet_metadata.egg-info/dependency_links.txt
+parquet_metadata.egg-info/entry_points.txt
+parquet_metadata.egg-info/top_level.txt
