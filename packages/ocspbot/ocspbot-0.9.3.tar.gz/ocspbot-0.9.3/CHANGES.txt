@@ -1,0 +1,24 @@
+New in v0.9.3
+=============
+
+Release on Spetember 16, 2018
+
+* Added support for OpenSSL 1.1.1 (or in general versions without letter).
+* Allows to specify OCSP responder URI
+  (see [Recommendation 9](https://gist.github.com/sleevi/5efe9ef98961ecfb4da8))
+
+
+New in v0.9.2
+=============
+
+Release on April 28, 2017
+
+* Added support for OpenSSL 1.1.
+* Added OpenSSL version detection. 
+
+
+Older versions
+==============
+
+The initial release was v0.9.0, with a bugfix release v0.9.1 soon after.
+They were released on April 23 and 24, 2017.

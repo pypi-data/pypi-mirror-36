@@ -1,0 +1,17 @@
+CHANGES.txt
+LICENSE
+MANIFEST.in
+README.rst
+how-to-release.txt
+requirements.txt
+setup.cfg
+setup.py
+tox.ini
+ocspbot/__init__.py
+ocspbot/__main__.py
+ocspbot.egg-info/PKG-INFO
+ocspbot.egg-info/SOURCES.txt
+ocspbot.egg-info/dependency_links.txt
+ocspbot.egg-info/entry_points.txt
+ocspbot.egg-info/requires.txt
+ocspbot.egg-info/top_level.txt

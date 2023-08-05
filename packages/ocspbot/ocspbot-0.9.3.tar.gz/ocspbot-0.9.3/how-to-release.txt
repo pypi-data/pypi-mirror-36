@@ -1,0 +1,6 @@
+rm -rf .tox
+tox
+
+python setup.py sdist bdist_wheel
+
+twine upload --repository-url https://test.pypi.org/legacy/ dist/ocspbot-0.9.3.tar.gz
