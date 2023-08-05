@@ -1,0 +1,13 @@
+squid_py/__init__.py,sha256=lc6nf4zk-jwYqqQPt-eNoaUpcZJdsbx7-BtP4DLIhlw,54
+squid_py/acl.py,sha256=xHo3VxBNJCLhIM5C8Paby48ZeV_XBXjlrjvFBauuo6A,956
+squid_py/config_parser.py,sha256=suyt0o2hG0IBxhuyFM200HoNn84h9GQQMEMwQzI4zmI,1419
+squid_py/constants.py,sha256=1VRZ14uXUqyK5WW3XJnLB4KIjH0bBmVXlWe26_lu0NI,279
+squid_py/consumer.py,sha256=rUmpu4Pdezu3ffQBIBc9XJ27Sm5Ej7ECCJBU5bMMATE,5396
+squid_py/log.py,sha256=3Suorm0HrWiqsCaBuZBLWGJmLYRpVjpu6th4_ceH1cA,994
+squid_py/ocean_contracts.py,sha256=ZQdNBP2NrK-Z207Xe30CF9ggT3szMHUm1at2LHDPS0o,6019
+squid_py-0.0.1.dist-info/DESCRIPTION.rst,sha256=AexjXr9EBI4NOt-vgryzmoFGaOA5Y9IdxejQSdT__2g,3674
+squid_py-0.0.1.dist-info/METADATA,sha256=oQGP-8o-XYN5Jt3CqyfK8-BTKW43P1ePLMUkiKlFTn0,4264
+squid_py-0.0.1.dist-info/RECORD,,
+squid_py-0.0.1.dist-info/WHEEL,sha256=kdsN-5OJAZIiHN-iO4Rhl82KyS0bDWf4uBwMbkNafr8,110
+squid_py-0.0.1.dist-info/metadata.json,sha256=yQTIHIQjAmS7ea9dTVZPIZaJkviVZsUy2qGl9Q6g764,849
+squid_py-0.0.1.dist-info/top_level.txt,sha256=c0qqZKRZarRC8CvDPHR1CN8ZsttkfU0Dw6jiXDyMKr8,9
