@@ -1,0 +1,236 @@
+Metadata-Version: 2.1
+Name: anyblok-bus
+Version: 1.1.0
+Summary: Bus for anyblok
+Home-page: http://docs.anyblok-bus.anyblok.org/1.1.0
+Author: jssuzanne
+Author-email: jssuzanne@anybox.fr
+License: UNKNOWN
+Keywords: bus
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: anyblok
+Requires-Dist: pika
+Requires-Dist: marshmallow (>=3.0.0b8)
+Requires-Dist: furl
+
+.. This file is a part of the AnyBlok / Bus project
+..
+..    Copyright (C) 2018 Jean-Sebastien SUZANNE <jssuzanne@anybox.fr>
+..
+.. This Source Code Form is subject to the terms of the Mozilla Public License,
+.. v. 2.0. If a copy of the MPL was not distributed with this file,You can
+.. obtain one at http://mozilla.org/MPL/2.0/.
+
+.. image:: https://travis-ci.org/AnyBlok/anyblok_bus.svg?branch=master
+    :target: https://travis-ci.org/AnyBlok/anyblok_bus
+    :alt: Build status
+
+.. image:: https://coveralls.io/repos/github/AnyBlok/anyblok_bus/badge.svg?branch=master
+    :target: https://coveralls.io/github/AnyBlok/anyblok_bus?branch=master
+    :alt: Coverage
+
+.. image:: https://img.shields.io/pypi/v/anyblok_bus.svg
+   :target: https://pypi.python.org/pypi/anyblok_bus/
+   :alt: Version status
+
+.. image:: https://readthedocs.org/projects/anyblok-bus/badge/?version=latest
+    :alt: Documentation Status
+    :scale: 100%
+    :target: https://doc.anyblok-bus.anyblok.org/?badge=latest
+
+
+AnyBlok / bus
+=============
+
+Improve `AnyBlok <http://doc.anyblok.org>`_ to add comunication with bus.
+
++---------+--------------+------------------------------------------------------------------+
+| Blok    | Dependancies | Description                                                      |
++=========+==============+==================================================================+
+| **bus** |              | Consume and publish message with                                 |
+|         |              | `pika <https://pika.readthedocs.io>`_ and                        |
+|         |              | `marshmallow <https://github.com/marshmallow-code/marshmallow>`_ |
++---------+--------------+------------------------------------------------------------------+
+
+AnyBlok / Bus is released under the terms of the `Mozilla Public License`.
+
+See the `latest documentation <http://doc.anyblok-bus.anyblok.org/>`_
+
+.. This file is a part of the AnyBlok / Bus project
+..
+..    Copyright (C) 2018 Jean-Sebastien SUZANNE <jssuzanne@anybox.fr>
+..
+.. This Source Code Form is subject to the terms of the Mozilla Public License,
+.. v. 2.0. If a copy of the MPL was not distributed with this file,You can
+.. obtain one at http://mozilla.org/MPL/2.0/.
+
+.. contents::
+
+Usage
+=====
+
+Declare a new consumer
+----------------------
+
+In an AnyBlok Model you have to decorate a method with **bus_consumer**
+
+::
+
+    from  anyblok_bus import bus_consumer
+    from anyblok import Declarations
+    from .schema import MySchema
+
+    @Declarations.register(Declarations.Model)
+    class MyModel:
+
+        @bus_consumer(queue_name='name of the queue', schema=MySchema())
+        def my_consumer(cls, body):
+            # do something
+
+
+The schema must be an instance of marshmallow.Schema, `see the marshmallow documentation <http://marshmallow.readthedocs.io/en/latest/>`_
+
+.. note:: 
+
+    The decorated method become a classmethod with always the same prototype (cls, body)
+    body is the desarialization of the message from the queue by the schema.
+
+
+Publish a message through rabbitmq
+----------------------------------
+
+The publication is done by **registry.Bus.publish** method::
+
+    registry.Bus.publish('exchange', 'routing_key', message, mimestype)
+
+if the message have not be send, then an exception is raised
+
+..warning::
+
+    A profile must be defined and selected by the AnyBlok configuration **bus_profile**
+
+.. This file is a part of the AnyBlok / Bus project
+..
+..    Copyright (C) 2017 Jean-Sebastien SUZANNE <jssuzanne@anybox.fr>
+..    Copyright (C) 2018 Jean-Sebastien SUZANNE <jssuzanne@anybox.fr>
+..
+.. This Source Code Form is subject to the terms of the Mozilla Public License,
+.. v. 2.0. If a copy of the MPL was not distributed with this file,You can
+.. obtain one at http://mozilla.org/MPL/2.0/.
+
+Front Matter
+============
+
+Information about the AnyBlok / Bus project.
+
+Project Homepage
+----------------
+
+AnyBlok is hosted on `github <http://github.com>`_ - the main project
+page is at https://github.com/AnyBlok/anyblok_bus. Source code is
+tracked here using `GIT <https://git-scm.com>`_.
+
+Releases and project status are available on Pypi at
+http://pypi.python.org/pypi/anyblok_bus.
+
+The most recent published version of this documentation should be at
+http://doc.anyblok-bus.anyblok.org.
+
+Installation
+------------
+
+Install released versions of AnyBlok from the Python package index with
+`pip <http://pypi.python.org/pypi/pip>`_ or a similar tool::
+
+    pip install anyblok_bus
+
+Installation via source distribution is via the ``setup.py`` script::
+
+    python setup.py install
+
+Installation will add the ``anyblok`` commands to the environment.
+
+Unit Test
+---------
+
+Run the test with ``nose``::
+
+    pip install nose
+    nosetests anyblok_bus/tests
+
+Script
+------
+
+anyblok_bus add ``console_script`` to launch worker. A worker consume a queue defined
+by the decorator **anyblok_bus.bus_consumer**::
+
+    anyblok_bus -c anyblok_config_file.cfg
+
+..note:: The profile name in the configuration is used to find the correct url to connect to rabbitmq
+
+Dependencies
+------------
+
+AnyBlok / Bus works with **Python 3.3** and later and `pika <https://pika.readthedocs.io>`_. The install process will
+ensure that `AnyBlok <http://doc.anyblok.org>`_ is installed, in addition to other 
+dependencies. The latest version of them is strongly recommended.
+
+Author
+------
+
+Jean-Sébastien Suzanne
+
+Contributors
+------------
+
+`Anybox <http://anybox.fr>`_ team:
+
+* Jean-Sébastien Suzanne
+* Florent Jouatte
+
+`Sensee <http://sensee.com>`_ team:
+
+* Julien SZKUDLAPSKI
+
+Bugs
+----
+
+Bugs and feature enhancements to AnyBlok should be reported on the `Issue
+tracker <https://github.com/AnyBlok/anyblok_bus/issues>`_.
+
+.. This file is a part of the AnyBlok / Bus project
+..
+..    Copyright (C) 2018 Jean-Sebastien SUZANNE <jssuzanne@anybox.fr>
+..
+.. This Source Code Form is subject to the terms of the Mozilla Public License,
+.. v. 2.0. If a copy of the MPL was not distributed with this file,You can
+.. obtain one at http://mozilla.org/MPL/2.0/.
+
+.. contents::
+
+CHANGELOG
+=========
+
+1.1.0 (2018-09-15)
+------------------
+
+* Improved logging: for helping to debug the messages
+* Added create and update date columns
+* fixed ``consume_all`` method. now the method does not stop when an exception is raised
+* Used marsmallow version >= 3.0.0
+
+1.0.0 (2018-06-05)
+------------------
+
+* add Worker to consume the message from rabbitmq
+* add publish method to publish a message to rabbitmq
+* add **anyblok_bus.bus_consumer** add decorator to défine the consumer
+
+
