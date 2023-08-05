@@ -1,0 +1,5 @@
+hopcroftkarp<2.0,>=1.2
+multiset<3.0,>=2.0
+
+[graphs]
+graphviz<0.6,>=0.5
