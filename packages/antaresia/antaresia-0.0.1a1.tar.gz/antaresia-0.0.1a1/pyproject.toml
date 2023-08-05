@@ -1,0 +1,32 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "antaresia"
+author = "João Santos"
+author-email = "jmcs@jsantos.eu"
+home-page = "https://gitlab.com/jmcs/antaresia"
+requires-python = ">=3.6"
+classifiers=[
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[tool.flit.metadata.requires-extra]
+yaml = ['pyyaml']
+
+[tool.flit.scripts]
+antaresia = "antaresia.cli:main"
+
+[tool.poetry]
+name = "antaresia"
+version = "0.0.1a1"
+description = ""
+authors = ["João Santos <jmcs@jsantos.eu>"]
+
+[tool.poetry.dependencies]
+python = ">3.6"
