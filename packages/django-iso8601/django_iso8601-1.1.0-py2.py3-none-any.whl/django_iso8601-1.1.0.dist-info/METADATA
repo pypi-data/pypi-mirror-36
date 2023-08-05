@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: django-iso8601
+Version: 1.1.0
+Summary: Django tools for working with ISO 8601
+Home-page: http://github.com/k0001/django-iso8601
+Author: Renzo Carbonara
+Author-email: gnuk0001@gmail.com
+License: BSD
+Keywords: django iso8601 dates times datetime fields validation
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/plain
+Requires-Dist: Django (>=1.10)
+Requires-Dist: isodate (>=0.4)
+
+django-iso8601 provides Django tools for working with ISO 8601.
+
+You can find the latest version at http://github.com/k0001/django-iso8601
+
+Along with this project, you should have recieved a file named LICENSE with the
+licensing terms.
+
+
+Installation
+============
+
+    pip install django-iso8601
+
+
+Django utils
+============
+
+Form Fields:
+
+ - django_iso8601.ISO8601DateField
+ - django_iso8601.ISO8601DatetimeField
+ - django_iso8601.ISO8601TimeField
+
+Form Widgets:
+
+ - django_iso8601.ISO8601DateInput
+ - django_iso8601.ISO8601DatetimeInput
+ - django_iso8601.ISO8601TimeInput
+
+
+Tests
+=====
+
+You can run them with:
+
+    python setup.py test
+
+
+Thanks
+======
+
+Thanks to Gerhard Weis for his work on the 'isodate' library. You can find it
+at http://pypi.python.org/pypi/isodate
+
+
