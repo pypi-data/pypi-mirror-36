@@ -1,0 +1,9 @@
+MANIFEST.in
+README.md
+setup.py
+galiboo/__init__.py
+galiboo.egg-info/PKG-INFO
+galiboo.egg-info/SOURCES.txt
+galiboo.egg-info/dependency_links.txt
+galiboo.egg-info/requires.txt
+galiboo.egg-info/top_level.txt
