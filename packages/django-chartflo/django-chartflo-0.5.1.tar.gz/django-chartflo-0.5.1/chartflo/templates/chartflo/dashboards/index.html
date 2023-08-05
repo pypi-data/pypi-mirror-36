@@ -1,0 +1,22 @@
+{% extends "chartflo/dashboards/base.html" %}
+{% load vv_tags chartflo_tags %}
+
+{% block header %}
+	{% include dashboard_header_template %}
+{% endblock %}
+{% block content %}
+	{% include dashboard_content_template %}
+{% endblock %}
+{% block vues %}
+	{% getVvapps as apps %}
+	{% include "vv/app.js" %}
+{% endblock %}
+{% block end %}
+{% if altair is True %}
+	{% get_altair_scripts dashboard_slug as scripts %}
+	{% for script in scripts %}
+		S{{ script }}
+		{% include script %}
+	{% endfor %}
+{% endif %}
+{% endblock %}
