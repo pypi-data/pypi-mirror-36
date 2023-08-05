@@ -1,0 +1,11 @@
+Cython
+pyjnius
+numpy
+
+[tests]
+pytest
+pytest-pep8
+mock
+
+[visualize]
+pydot-ng
