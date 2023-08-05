@@ -1,0 +1,10 @@
+MANIFEST.in
+README.md
+pipini.py
+setup.py
+pipini.egg-info/PKG-INFO
+pipini.egg-info/SOURCES.txt
+pipini.egg-info/dependency_links.txt
+pipini.egg-info/entry_points.txt
+pipini.egg-info/requires.txt
+pipini.egg-info/top_level.txt
