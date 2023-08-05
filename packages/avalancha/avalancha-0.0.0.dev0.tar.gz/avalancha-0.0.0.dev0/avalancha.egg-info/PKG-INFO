@@ -1,0 +1,16 @@
+Metadata-Version: 1.2
+Name: avalancha
+Version: 0.0.0.dev0
+Summary: avalancha
+Home-page: UNKNOWN
+Author: Sylvain Bellemare
+Author-email: sbellem@gmail.com
+License: UNKNOWN
+Description: avalancha
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires-Python: >=3.7.0

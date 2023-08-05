@@ -1,0 +1,10 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+avalancha/__init__.py
+avalancha/__version__.py
+avalancha.egg-info/PKG-INFO
+avalancha.egg-info/SOURCES.txt
+avalancha.egg-info/dependency_links.txt
+avalancha.egg-info/top_level.txt
