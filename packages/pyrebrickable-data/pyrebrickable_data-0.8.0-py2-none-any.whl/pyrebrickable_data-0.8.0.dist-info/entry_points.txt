@@ -1,0 +1,3 @@
+[console_scripts]
+rebrickable-data = rebrickable_data.cli:main
+
