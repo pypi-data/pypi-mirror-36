@@ -1,0 +1,60 @@
+Metadata-Version: 1.1
+Name: flake8-import-graph
+Version: 0.1.0
+Summary: A flake8 lint to enforce that some modules can't be imported from other modules.
+Home-page: http://github.com/tailhook/flake8-import-graph
+Author: Paul Colomiets
+Author-email: paul@colomiets.name
+License: UNKNOWN
+Description: Flake8 Import Graph
+        ===================
+        
+        A flake8 lint to enforce that some modules can't be imported from other
+        modules.
+        
+        
+        ::
+        
+            pip install flake8-import-graph==0.1.0
+        
+        
+        Configure it, by putting ``.flake8`` file in the package root:
+        
+        ::
+        
+            [flake8]
+            deny-imports =
+                # Don't allow models importing controllers
+                myapp.models=myapp.controllers
+                # Don't allow controllers to import sqlalchemy directly
+                myapp.controllers=sqlalchemy
+        
+        
+        License
+        =======
+        
+        Licensed under either of
+        
+        * Apache License, Version 2.0,
+          (./LICENSE-APACHE or http://www.apache.org/licenses/LICENSE-2.0)
+        * MIT license (./LICENSE-MIT or http://opensource.org/licenses/MIT)
+          at your option.
+        
+        ------------
+        Contribution
+        ------------
+        
+        Unless you explicitly state otherwise, any contribution intentionally
+        submitted for inclusion in the work by you, as defined in the Apache-2.0
+        license, shall be dual licensed as above, without any additional terms or
+        conditions.
+        
+Platform: UNKNOWN
+Classifier: Framework :: Flake8
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Quality Assurance
