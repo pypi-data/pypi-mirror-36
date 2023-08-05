@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: web-auth-ssh
+Version: 0.5
+Summary: Tools for authenticating to ssh via keys given out with a web service
+Home-page: http://github.com/NitorCreations/web-auth-ssh
+Author: Pasi Niemi
+Author-email: pasi.niemi@nitor.com
+License: Apache 2.0
+Download-URL: https://github.com/NitorCreations/web-auth-ssh/tarball/0.5
+Description: UNKNOWN
+Platform: UNKNOWN
