@@ -1,0 +1,14 @@
+altwistendpy/__init__.py,sha256=OgCeFRcWkx1lzQ70Mqy9DTyUiBMvw5WighKw5qqaYZM,115
+altwistendpy/_version.py,sha256=E2ryLluaMCqhwGijW2U413UeO9D862agSfo2AybDPP0,497
+altwistendpy/core.py,sha256=bcp9Ug6muhSk17TljKIF6Q1ixxfqbs3gcfgoi4054l4,324
+altwistendpy/examples/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+altwistendpy/examples/amp/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+altwistendpy/examples/amp/cli.py,sha256=6Q1zu-m7lXOFLUW9dwSDB7M3uzM90BKvL-CGiuawyfs,905
+altwistendpy/examples/amp/client.py,sha256=mcAR5VVq2lDQyacNc63ys3nl0dH_EpOgfQ2Z4kY4AgA,807
+altwistendpy/examples/amp/commands.py,sha256=ibhmy_kbuJShvmUccnG_M6LcPjN5LTOLgFcNT9y1FM4,515
+altwistendpy/examples/amp/server.py,sha256=ziZY3kbzIN522U8A03kRiTwg5c7AqDZp9V09yst7CPc,444
+altwistendpy-0.0.2.dist-info/METADATA,sha256=heAOH6zX8X1Ek2MspMtdc4gmgYdLj2Zbesl-9HS0dJc,631
+altwistendpy-0.0.2.dist-info/RECORD,,
+altwistendpy-0.0.2.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+altwistendpy-0.0.2.dist-info/entry_points.txt,sha256=DYHVKk0RJVDqYHg3YeRrs6dYsoCWVCt88vtCTUb5LqI,59
+altwistendpy-0.0.2.dist-info/top_level.txt,sha256=nZzdIznmJr1OofH61_HnnujNeo2l2u0SVrmw1WZ6jY0,13
