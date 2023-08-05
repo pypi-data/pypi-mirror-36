@@ -1,0 +1,284 @@
+- at one point, there seemed to be an issue with this:
+
+    # TODO: why does this not work as expected???
+    #   @expose(ext=(None,) + ENDPOINT_FORMATS)
+    @expose(name='myendpoint', ext=(None,) + ENDPOINT_FORMATS)
+    # /TODO
+    @validate(MySchema)
+    def myendpoint(self, request):
+      ...
+
+  ==> determine if this is still an issue...
+
+- make the REST method resolver enforce synchronicity between
+  `Request.method` and Controller method name...
+  ==> (this is to allow generic non-local method permissioning)
+
+- it would be interesting to associate a specific armor fortifier to
+  a set of methods... eg
+    class ActionSchema(armor.Schema):
+      action = armor.OneOf(LIST)
+    @`all_mkactivity_methods_must_obey_this_schema`...
+
+- add an option to "auto-dash-to-underbar" a URL component... e.g.:
+
+    /path/to-this-resource/sub-resource
+
+  would first attempt to match "path",
+  then in that controller to match "to-this-resource",
+  if that failed it would try "to_this_resource",
+  then in that controller to match "sub-resource",
+  if that failed it would try "sub_resource"
+  etc.
+
+  that would be before @default and @lookup were tried.
+
+- perhaps make dispatcher configuration an INI thing, eg:
+    [app:main]
+    controllers.dispatcher.class     = pyramid_controllers.Dispatcher
+    controllers.dispatcher.raiseType = pyramid.httpexceptions.HTTPServerError
+
+- if @lookup handles N args and returns a Controller (instead of a tuple),
+  pop N components from path... i.e. enable this use case:
+
+    @lookup
+    def lookup(self, request, object_id):
+      # decorate `request` with something about `object_id`
+      return ObjectController
+
+  but also:
+
+    @lookup
+    def lookup(self, request, partial_id, other_id):
+      # decorate `request` with something about `partial_id` + `other_id`
+      return ObjectController
+
+  also, make @lookup handle scenario where it returns a Response
+
+  => BETTER YET, merge @lookup and @default, and make it inspect the
+     response and support any of:
+     - Controller, tuple(Controller, PATH)
+       => @lookup behaviour
+          NOTE: if not-tuple, then at least one path component must be consumed
+     - other
+       => @default behaviour
+          NOTE: all path components must have been consumed
+
+- in this meta-code context:
+
+  RootController:
+    sub = SubController()
+
+  SubController(RestController)
+    @expose
+    def post(...):
+      doSomething()
+
+  it is unspecified whether `doSomething` is in the URL context
+  "/sub" or "/sub/"... it *should*:
+
+  1) by default, internally redirect to "/sub/" (i.e. there is no
+     external 301/302, but all the internal machinery thinks that the
+     request was for "/sub/" and thus a HTTPFound(location='foo')
+     should redirect to "/sub/foo", NOT "/foo")
+
+  2) allow this internal redirect to be overriden to either:
+
+     a) make the redirect external
+     b) not do any form of redirection
+     c) ? is there any value in this being method-dependent?...
+
+
+- during the handling of a @default:
+
+    @default
+    def default(self, request, *rem):
+      ...
+
+  `rem` will be ``(None,)`` if the @default is handling the @index
+  request (i.e. a tuple with exactly one ``None`` element)... it
+  should prolly send in an empty tuple...
+
+  ==> @lookup prolly has the same issue.
+
+- the controller walking needs a "trace" mode so that debugging
+  which fiddle/wrap/lookup/etc caused the issue is easier...
+
+- when an exposed Controller method is referenced *WITH* additional
+  path components, this should result in a 404... eg:
+
+    class RootController(Controller):
+      @expose
+      def foo(...): ...
+
+  currently, a request to '/foo/bar' does NOT 404... oops.
+  or, ideally, this should be an expose option, e.g. something like:
+
+      @expose(terminate=False)
+      def foo(...): ...
+
+  and then the handler would receive the additional path components
+  as arguments.
+
+  ==> or perhaps always do this? and let the python interpreter check
+      and re-write the error if there is one?
+
+- enable a RestController method to NOT be listed as a verb, but
+  instead as an endpoint... example:
+
+    @expose()
+    def search(self, request): pass
+
+  gets listed as a method by pyramid-describe...
+  perhaps:
+
+    @expose(verb=False)
+
+  conversely, a method by default should not be accessible as a
+  path segment... i *think* that currently, given the RootController
+
+    class RootController(...):
+      @expose
+      def post(self, request): pass
+
+  exposes the `RootController.post` method to both of the following
+  requests:
+
+    - POST /
+    - GET /post
+
+  oops. the latter should, by default, not be possible, but it would
+  be interesting to be *able* to explicitly allow it... and perhaps
+  even be able to control a global default. eg:
+
+    @expose(verb=True)
+    # means *ONLY* verb-based access is allowed
+
+    @expose(verb=None)
+    # means use default handling
+
+  and in the ini file (note: pyramid_controllers does not currently
+  use *any* ini configs, so this is new):
+
+    pyramid_controllers.{ROOTNAME}.expose.verb.default = True
+
+
+- merge @default and @lookup: make the dispatcher look at the result -
+  if it's a Response, assume @default behavior. otherwise, if it is a
+  two-element tuple where the first parameter is a Controller, and the
+  second parameter a list, assume @lookup behavior. then fallback to
+  @default behavior, and assume that the returned data structure is
+  intended for the renderer...
+
+- RestController should use @lookup instead of @index...
+
+- RestController should inspect all exposed methods, look at
+  the "method" parameter, and use that. for example, these two
+  should be equivalent:
+
+    class C(RestController):
+      @expose
+      def put(self, request): return 'ok!'
+      @expose
+      def post(self, request): return self.put(request)
+
+    class C(RestController):
+      @expose(method=('put', 'post'))
+      def put(self, request): return 'ok!'
+
+- add support for OPTIONS request ==> should return which methods
+  are supported for a given URL... i.e. implement a default
+  ``def options(self, request)`` (but overrideable).
+  ==> see gripe about github in:
+      http://docs.python-requests.org/en/latest/user/advanced/#http-verbs
+
+- if an @expose, @index, or @default limits the methods, and a request
+  comes in for a different method which does not match, it should
+  result in 405, not 404 (as it does currently). note that it should
+  do this IFF all attributes match *except* method...
+
+- what about supporting 'ext' with RestControllers...
+
+- allow both 'method' and 'methods' parameter to @expose/@index/etc.
+
+- consider using venusian for the decorators
+  http://docs.pylonsproject.org/projects/venusian/en/latest/
+
+- support @index(expose=True), which is equivalent to specifying
+  both @index *and* @expose, ie. it makes the following method:
+    @index(expose=True)
+    def index(...): ...
+  be accessible at both /path/ and /path/index.
+
+- support @expose(method=...) and @expose_defaults(method=...) which
+  limits what methods this function will support
+
+- does pyramid_handlers not pollute the class namespace... how does
+  it achieve that????
+  the unit test from
+    https://github.com/Pylons/pyramid_handlers/blob/master/pyramid_handlers/tests.py
+  sort of implies that:
+    def test_add_handler_doesnt_mutate_expose_dict(self):
+        config = self._makeOne()
+        views = []
+        def dummy_add_view(**kw):
+            views.append(kw)
+        config.add_view = dummy_add_view
+        exposed = [{'name':'^action3000$'}]
+        class MyView(object):
+            def action(self): # pragma: no cover
+                return 'response'
+            action.__exposed__ = exposed
+        config.add_handler('name', '/{action}', MyView)
+        self.assertEqual(exposed[0], {'name':'^action3000$'}) # not mutated
+
+- perhaps change Controller.__init__(expose) to Controller.__init__(indirect)
+  which is more in tune with how the rest of the framework interprets the
+  attribute.
+
+- add an `autoexpose` attribute to @expose_defaults
+
+- create a command-line program that detects RootControllers and displays
+  their hierarchy tree...
+
+- implement a method name transformation logic. eg. if a request comes
+  in for "such & such", then look up "such_and_such"... ok, that might
+  be a bit too much, but perhaps something like 'such___such'?
+  another example:
+    /foo/bar/file.ext => Class Root > Class Bar > method 'file_ext'
+
+- currently the @lookup inspection done by the describer is a little
+  'odd':
+
+    class Foo(Controller):
+      USER_ID = UserController(expose=False)
+      @lookup
+      def lookup(self, request, uid, ...):
+        request.uid = uid
+        return (self.USER_ID, ...)
+
+  it should pull the info directly from the lookup, eg:
+
+    uc = UserController()
+    class Foo(Controller):
+      @lookup
+      def lookup(self, request, USER_ID, ...):
+        request.uid = USER_ID
+        return (uc, ...)
+
+  in both cases, the resulting dpath will be '.../foo/{USER_ID}/...'
+  **** the problem with this is: how does the framework then continue
+  the inspection of UserController?...
+
+- the unit test `test_expose_defaults_does_not_pollute` is currently
+  disabled as it fails... fix it!
+
+- REST controllers do not limit direct access (e.g. "PUT /object" and
+  "GET /object/put") invoke the same handler... is that ok?
+
+- REST controllers should allow easy method aliasing, eg:
+
+  class C(RestController):
+    @expose(name=('put', 'post'))
+    def put(self, request):
+      # ...
