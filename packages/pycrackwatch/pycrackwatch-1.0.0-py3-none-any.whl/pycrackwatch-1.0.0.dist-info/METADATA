@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: pycrackwatch
+Version: 1.0.0
+Summary: A Python wrapper for the CrackWatch API
+Home-page: UNKNOWN
+Author: cominixo
+Author-email: lucasdutraluza@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+
+# pycrackwatch
+
+A simple wrapper for the crackwatch API (https://crackwatch.com/api)
+
+
+## Installing
+
+To install pycrackwatch just run
+
+```
+pip install pycrackwatch
+```
+
+## Testing
+
+The tests are located inside the tests folder, to run them with pytest use
+
+```
+py.test tests
+```
+
+
