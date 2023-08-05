@@ -1,0 +1,4 @@
+numpy
+pymatgen>=v2017.10.16
+coverage
+codeclimate-test-reporter
