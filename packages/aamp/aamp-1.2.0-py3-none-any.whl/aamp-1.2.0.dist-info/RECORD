@@ -1,0 +1,15 @@
+aamp/__init__.py,sha256=HNISlKrlacNk-mIiFAAZHNZFbeUzjbIo8LAuZWTNH20,54
+aamp/__main__.py,sha256=TZLS52GwFtkXjSwq-eECxYQWGwJxn49X4bFK44EBFmo,1861
+aamp/aamp.py,sha256=wzNAbWQxX9reA72tBBUV0kTMCcv00ygSgI2DShy-7dw,14984
+aamp/botw_hashed_names.py,sha256=lg1DIpF4fjmOdFqUu238raWrSO4qoBoZzoV6QH2sjSI,269
+aamp/botw_hashed_names.txt,sha256=Y3465Q5VZtklTh_3plg7rAOzOpzQSbbT0jK5Fte6fYA,1065900
+aamp/botw_numbered_names.py,sha256=mxeDlh1bSIP5L1bohzvOQQS6EjNfguWpOMUqeu3JBVY,225
+aamp/botw_numbered_names.txt,sha256=uO_9Ca6UtexZ6Z1rYdeoFMQ9blP7v-ABzfpiedKw1c0,4084
+aamp/parameters.py,sha256=Y0jZwGrgZdUFQfpidfAjLuejCv7JfF8xp_URWg0m7Fw,6460
+aamp/util.py,sha256=xgiyct-ZgMVmzDb7rBNl_95sCZ5JzybzEQkdHwKURqI,2487
+aamp/yaml_util.py,sha256=vkYMyhH-Osu9MYJCw9sSFJ2hhEV20zo11-KEI9qWO2c,8079
+aamp-1.2.0.dist-info/METADATA,sha256=y9bn2HK3UvyNNtKlX5qjWTY3eCQdgd9g27QhOKKQXX4,2883
+aamp-1.2.0.dist-info/RECORD,,
+aamp-1.2.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+aamp-1.2.0.dist-info/entry_points.txt,sha256=z0riu9fXOG7GP_KqQjHdmpHvEwaZsF9atn09OCyLbjI,111
+aamp-1.2.0.dist-info/top_level.txt,sha256=eu831h4oCml0A0FSpOvvuSsmmXUUTyxXG1-DfyMo71I,5
