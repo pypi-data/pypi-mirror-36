@@ -1,0 +1,10 @@
+README.md
+setup.cfg
+setup.py
+bb_django_library/__init__.py
+bb_django_library/models.py
+bb_django_library/utils.py
+bb_django_library.egg-info/PKG-INFO
+bb_django_library.egg-info/SOURCES.txt
+bb_django_library.egg-info/dependency_links.txt
+bb_django_library.egg-info/top_level.txt

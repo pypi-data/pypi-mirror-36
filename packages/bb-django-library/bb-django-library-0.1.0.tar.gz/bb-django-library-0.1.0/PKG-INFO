@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: bb-django-library
+Version: 0.1.0
+Summary: This is an example repository for a simple Django library.
+Home-page: https://github.com/openbox/bb-django-library
+Author: Bigbox S.A.
+Author-email: innovation@bigbox.com.ar
+License: MIT
+Description: # bb-django-library
+        
+        [![build status](https://img.shields.io/travis/openbox/bb-django-library.svg)](https://travis-ci.org/openbox/bb-django-library)
+        [![coverage](https://img.shields.io/codecov/c/github/openbox/bb-django-library.svg)](https://codecov.io/gh/openbox/bb-django-library)
+        [![PyPI version](https://img.shields.io/pypi/v/bb-django-library.svg)](https://pypi.org/project/bb-django-library/)
+        ![python version](https://img.shields.io/pypi/pyversions/bb-django-library.svg)
+        ![django version](https://img.shields.io/pypi/djversions/bb-django-library.svg)
+        
+        This is an example repository for a simple Django library.
+        
+        
+        ## Install
+        
+        ```bash
+        pip install bb-django-library
+        ```
+        
+        
+        ## Usage
+        
+        ```py
+        from bb_django_library.models import Foo
+        
+        Foo.objects.create(bar='foobar')
+        ```
+        
+Keywords: bigbox django python library
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.8
+Classifier: Framework :: Django :: 1.9
+Classifier: Framework :: Django :: 1.10
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Description-Content-Type: text/markdown
