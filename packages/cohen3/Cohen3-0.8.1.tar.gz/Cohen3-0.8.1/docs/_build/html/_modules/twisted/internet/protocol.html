@@ -1,0 +1,1141 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>twisted.internet.protocol &mdash; Cohen3 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cohen3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backends.html">Backends (plugins)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/coherence.html">Coherence (package)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor_code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cohen3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>twisted.internet.protocol</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for twisted.internet.protocol</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- test-case-name: twisted.test.test_factories,twisted.internet.test.test_protocol -*-</span>
+<span class="c1"># Copyright (c) Twisted Matrix Laboratories.</span>
+<span class="c1"># See LICENSE for details.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Standard implementations of Twisted protocol-related interfaces.</span>
+
+<span class="sd">Start here if you are looking to write a new protocol implementation for</span>
+<span class="sd">Twisted.  The Protocol class contains some introductory material.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">absolute_import</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">zope.interface</span> <span class="k">import</span> <span class="n">implementer</span>
+
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="k">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">failure</span><span class="p">,</span> <span class="n">components</span>
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="k">import</span> <span class="n">interfaces</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">defer</span>
+<span class="kn">from</span> <span class="nn">twisted.logger</span> <span class="k">import</span> <span class="n">_loggerFor</span>
+<span class="kn">from</span> <span class="nn">twisted.python._oldstyle</span> <span class="k">import</span> <span class="n">_oldStyle</span>
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">interfaces</span><span class="o">.</span><span class="n">IProtocolFactory</span><span class="p">,</span> <span class="n">interfaces</span><span class="o">.</span><span class="n">ILoggingContext</span><span class="p">)</span>
+<span class="nd">@_oldStyle</span>
+<span class="k">class</span> <span class="nc">Factory</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a factory which produces protocols.</span>
+
+<span class="sd">    By default, buildProtocol will create a protocol of the class given in</span>
+<span class="sd">    self.protocol.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Put a subclass of Protocol here:</span>
+    <span class="n">protocol</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">numPorts</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">noisy</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">forProtocol</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a factory for the given protocol.</span>
+
+<span class="sd">        It sets the C{protocol} attribute and returns the constructed factory</span>
+<span class="sd">        instance.</span>
+
+<span class="sd">        @param protocol: A L{Protocol} subclass</span>
+
+<span class="sd">        @param args: Positional arguments for the factory.</span>
+
+<span class="sd">        @param kwargs: Keyword arguments for the factory.</span>
+
+<span class="sd">        @return: A L{Factory} instance wired up to C{protocol}.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">factory</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">factory</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span>
+        <span class="k">return</span> <span class="n">factory</span>
+
+
+    <span class="k">def</span> <span class="nf">logPrefix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Describe this factory for log messages.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+
+
+    <span class="k">def</span> <span class="nf">doStart</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make sure startFactory is called.</span>
+
+<span class="sd">        Users should not call this function themselves!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">noisy</span><span class="p">:</span>
+                <span class="n">_loggerFor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting factory </span><span class="si">{factory!r}</span><span class="s2">&quot;</span><span class="p">,</span>
+                                      <span class="n">factory</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">startFactory</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span> <span class="o">+</span> <span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">doStop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make sure stopFactory is called.</span>
+
+<span class="sd">        Users should not call this function themselves!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># This shouldn&#39;t happen, but does sometimes and this is better</span>
+            <span class="c1"># than blowing up in assert as we did previously.</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">noisy</span><span class="p">:</span>
+                <span class="n">_loggerFor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Stopping factory </span><span class="si">{factory!r}</span><span class="s2">&quot;</span><span class="p">,</span>
+                                      <span class="n">factory</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stopFactory</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">startFactory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This will be called before I begin listening on a Port or Connector.</span>
+
+<span class="sd">        It will only be called once, even if the factory is connected</span>
+<span class="sd">        to multiple ports.</span>
+
+<span class="sd">        This can be used to perform &#39;unserialization&#39; tasks that</span>
+<span class="sd">        are best put off until things are actually running, such</span>
+<span class="sd">        as connecting to a database, opening files, etcetera.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">stopFactory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This will be called before I stop listening on all Ports/Connectors.</span>
+
+<span class="sd">        This can be overridden to perform &#39;shutdown&#39; tasks such as disconnecting</span>
+<span class="sd">        database connections, closing files, etc.</span>
+
+<span class="sd">        It will be called, for example, before an application shuts down,</span>
+<span class="sd">        if it was connected to a port. User code should not call this function</span>
+<span class="sd">        directly.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">buildProtocol</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addr</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create an instance of a subclass of Protocol.</span>
+
+<span class="sd">        The returned instance will handle input on an incoming server</span>
+<span class="sd">        connection, and an attribute &quot;factory&quot; pointing to the creating</span>
+<span class="sd">        factory.</span>
+
+<span class="sd">        Alternatively, L{None} may be returned to immediately close the</span>
+<span class="sd">        new connection.</span>
+
+<span class="sd">        Override this method to alter how Protocol instances get created.</span>
+
+<span class="sd">        @param addr: an object implementing L{twisted.internet.interfaces.IAddress}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span><span class="p">()</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">factory</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">return</span> <span class="n">p</span>
+
+
+
+<span class="k">class</span> <span class="nc">ClientFactory</span><span class="p">(</span><span class="n">Factory</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Protocol factory for clients.</span>
+
+<span class="sd">    This can be used together with the various connectXXX methods in</span>
+<span class="sd">    reactors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">startedConnecting</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connector</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when a connection has been started.</span>
+
+<span class="sd">        You can call connector.stopConnecting() to stop the connection attempt.</span>
+
+<span class="sd">        @param connector: a Connector object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">clientConnectionFailed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connector</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when a connection has failed to connect.</span>
+
+<span class="sd">        It may be useful to call connector.connect() - this will reconnect.</span>
+
+<span class="sd">        @type reason: L{twisted.python.failure.Failure}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">clientConnectionLost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connector</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when an established connection is lost.</span>
+
+<span class="sd">        It may be useful to call connector.connect() - this will reconnect.</span>
+
+<span class="sd">        @type reason: L{twisted.python.failure.Failure}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+
+<span class="k">class</span> <span class="nc">_InstanceFactory</span><span class="p">(</span><span class="n">ClientFactory</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Factory used by ClientCreator.</span>
+
+<span class="sd">    @ivar deferred: The L{Deferred} which represents this connection attempt and</span>
+<span class="sd">        which will be fired when it succeeds or fails.</span>
+
+<span class="sd">    @ivar pending: After a connection attempt succeeds or fails, a delayed call</span>
+<span class="sd">        which will fire the L{Deferred} representing this connection attempt.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">noisy</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">pending</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reactor</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">deferred</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactor</span> <span class="o">=</span> <span class="n">reactor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance</span> <span class="o">=</span> <span class="n">instance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deferred</span> <span class="o">=</span> <span class="n">deferred</span>
+
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;ClientCreator factory: </span><span class="si">%r</span><span class="s2">&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instance</span><span class="p">,</span> <span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">buildProtocol</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addr</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the pre-constructed protocol instance and arrange to fire the</span>
+<span class="sd">        waiting L{Deferred} to indicate success establishing the connection.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pending</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactor</span><span class="o">.</span><span class="n">callLater</span><span class="p">(</span>
+            <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fire</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">deferred</span><span class="o">.</span><span class="n">callback</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">instance</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deferred</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">instance</span>
+
+
+    <span class="k">def</span> <span class="nf">clientConnectionFailed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connector</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Arrange to fire the waiting L{Deferred} with the given failure to</span>
+<span class="sd">        indicate the connection could not be established.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pending</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactor</span><span class="o">.</span><span class="n">callLater</span><span class="p">(</span>
+            <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fire</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">deferred</span><span class="o">.</span><span class="n">errback</span><span class="p">,</span> <span class="n">reason</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deferred</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+    <span class="k">def</span> <span class="nf">fire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clear C{self.pending} to avoid a reference cycle and then invoke func</span>
+<span class="sd">        with the value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pending</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">func</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+
+
+<span class="nd">@_oldStyle</span>
+<span class="k">class</span> <span class="nc">ClientCreator</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Client connections that do not require a factory.</span>
+
+<span class="sd">    The various connect* methods create a protocol instance using the given</span>
+<span class="sd">    protocol class and arguments, and connect it, returning a Deferred of the</span>
+<span class="sd">    resulting protocol instance.</span>
+
+<span class="sd">    Useful for cases when we don&#39;t really need a factory.  Mainly this</span>
+<span class="sd">    is when there is no shared state between protocol instances, and no need</span>
+<span class="sd">    to reconnect.</span>
+
+<span class="sd">    The C{connectTCP}, C{connectUNIX}, and C{connectSSL} methods each return a</span>
+<span class="sd">    L{Deferred} which will fire with an instance of the protocol class passed to</span>
+<span class="sd">    L{ClientCreator.__init__}.  These Deferred can be cancelled to abort the</span>
+<span class="sd">    connection attempt (in a very unlikely case, cancelling the Deferred may not</span>
+<span class="sd">    prevent the protocol from being instantiated and connected to a transport;</span>
+<span class="sd">    if this happens, it will be disconnected immediately afterwards and the</span>
+<span class="sd">    Deferred will still errback with L{CancelledError}).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reactor</span><span class="p">,</span> <span class="n">protocolClass</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactor</span> <span class="o">=</span> <span class="n">reactor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">protocolClass</span> <span class="o">=</span> <span class="n">protocolClass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+
+
+    <span class="k">def</span> <span class="nf">_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initiate a connection attempt.</span>
+
+<span class="sd">        @param method: A callable which will actually start the connection</span>
+<span class="sd">            attempt.  For example, C{reactor.connectTCP}.</span>
+
+<span class="sd">        @param *args: Positional arguments to pass to C{method}, excluding the</span>
+<span class="sd">            factory.</span>
+
+<span class="sd">        @param **kwargs: Keyword arguments to pass to C{method}.</span>
+
+<span class="sd">        @return: A L{Deferred} which fires with an instance of the protocol</span>
+<span class="sd">            class passed to this L{ClientCreator}&#39;s initializer or fails if the</span>
+<span class="sd">            connection cannot be set up for some reason.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">cancelConnect</span><span class="p">(</span><span class="n">deferred</span><span class="p">):</span>
+            <span class="n">connector</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">pending</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">pending</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">defer</span><span class="o">.</span><span class="n">Deferred</span><span class="p">(</span><span class="n">cancelConnect</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">_InstanceFactory</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reactor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">protocolClass</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">),</span> <span class="n">d</span><span class="p">)</span>
+        <span class="n">connector</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">factory</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span>
+
+
+    <span class="k">def</span> <span class="nf">connectTCP</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">bindAddress</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Connect to a TCP server.</span>
+
+<span class="sd">        The parameters are all the same as to L{IReactorTCP.connectTCP} except</span>
+<span class="sd">        that the factory parameter is omitted.</span>
+
+<span class="sd">        @return: A L{Deferred} which fires with an instance of the protocol</span>
+<span class="sd">            class passed to this L{ClientCreator}&#39;s initializer or fails if the</span>
+<span class="sd">            connection cannot be set up for some reason.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reactor</span><span class="o">.</span><span class="n">connectTCP</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+            <span class="n">bindAddress</span><span class="o">=</span><span class="n">bindAddress</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">connectUNIX</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">checkPID</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Connect to a Unix socket.</span>
+
+<span class="sd">        The parameters are all the same as to L{IReactorUNIX.connectUNIX} except</span>
+<span class="sd">        that the factory parameter is omitted.</span>
+
+<span class="sd">        @return: A L{Deferred} which fires with an instance of the protocol</span>
+<span class="sd">            class passed to this L{ClientCreator}&#39;s initializer or fails if the</span>
+<span class="sd">            connection cannot be set up for some reason.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reactor</span><span class="o">.</span><span class="n">connectUNIX</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+            <span class="n">checkPID</span><span class="o">=</span><span class="n">checkPID</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">connectSSL</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">contextFactory</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">bindAddress</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Connect to an SSL server.</span>
+
+<span class="sd">        The parameters are all the same as to L{IReactorSSL.connectSSL} except</span>
+<span class="sd">        that the factory parameter is omitted.</span>
+
+<span class="sd">        @return: A L{Deferred} which fires with an instance of the protocol</span>
+<span class="sd">            class passed to this L{ClientCreator}&#39;s initializer or fails if the</span>
+<span class="sd">            connection cannot be set up for some reason.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reactor</span><span class="o">.</span><span class="n">connectSSL</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span>
+            <span class="n">contextFactory</span><span class="o">=</span><span class="n">contextFactory</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+            <span class="n">bindAddress</span><span class="o">=</span><span class="n">bindAddress</span><span class="p">)</span>
+
+
+
+<span class="k">class</span> <span class="nc">ReconnectingClientFactory</span><span class="p">(</span><span class="n">ClientFactory</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Factory which auto-reconnects clients with an exponential back-off.</span>
+
+<span class="sd">    Note that clients should call my resetDelay method after they have</span>
+<span class="sd">    connected successfully.</span>
+
+<span class="sd">    @ivar maxDelay: Maximum number of seconds between connection attempts.</span>
+<span class="sd">    @ivar initialDelay: Delay for the first reconnection attempt.</span>
+<span class="sd">    @ivar factor: A multiplicitive factor by which the delay grows</span>
+<span class="sd">    @ivar jitter: Percentage of randomness to introduce into the delay length</span>
+<span class="sd">        to prevent stampeding.</span>
+<span class="sd">    @ivar clock: The clock used to schedule reconnection. It&#39;s mainly useful to</span>
+<span class="sd">        be parametrized in tests. If the factory is serialized, this attribute</span>
+<span class="sd">        will not be serialized, and the default value (the reactor) will be</span>
+<span class="sd">        restored when deserialized.</span>
+<span class="sd">    @type clock: L{IReactorTime}</span>
+<span class="sd">    @ivar maxRetries: Maximum number of consecutive unsuccessful connection</span>
+<span class="sd">        attempts, after which no further connection attempts will be made. If</span>
+<span class="sd">        this is not explicitly set, no maximum is applied.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">maxDelay</span> <span class="o">=</span> <span class="mi">3600</span>
+    <span class="n">initialDelay</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="c1"># Note: These highly sensitive factors have been precisely measured by</span>
+    <span class="c1"># the National Institute of Science and Technology.  Take extreme care</span>
+    <span class="c1"># in altering them, or you may damage your Internet!</span>
+    <span class="c1"># (Seriously: &lt;http://physics.nist.gov/cuu/Constants/index.html&gt;)</span>
+    <span class="n">factor</span> <span class="o">=</span> <span class="mf">2.7182818284590451</span> <span class="c1"># (math.e)</span>
+    <span class="c1"># Phi = 1.6180339887498948 # (Phi is acceptable for use as a</span>
+    <span class="c1"># factor if e is too large for your application.)</span>
+
+    <span class="c1"># This is the value of the molar Planck constant times c, joule</span>
+    <span class="c1"># meter/mole.  The value is attributable to</span>
+    <span class="c1"># https://physics.nist.gov/cgi-bin/cuu/Value?nahc|search_for=molar+planck+constant+times+c</span>
+    <span class="n">jitter</span> <span class="o">=</span> <span class="mf">0.119626565582</span>
+
+    <span class="n">delay</span> <span class="o">=</span> <span class="n">initialDelay</span>
+    <span class="n">retries</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">maxRetries</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_callID</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">connector</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">clock</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">continueTrying</span> <span class="o">=</span> <span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">clientConnectionFailed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connector</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">continueTrying</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connector</span> <span class="o">=</span> <span class="n">connector</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">retry</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">clientConnectionLost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connector</span><span class="p">,</span> <span class="n">unused_reason</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">continueTrying</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connector</span> <span class="o">=</span> <span class="n">connector</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">retry</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connector</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Have this connector connect again, after a suitable delay.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">continueTrying</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">noisy</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Abandoning </span><span class="si">%s</span><span class="s2"> on explicit request&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">connector</span><span class="p">,))</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">connector</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">connector</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;no connector to retry&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">connector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connector</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">retries</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxRetries</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">retries</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxRetries</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">noisy</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Abandoning </span><span class="si">%s</span><span class="s2"> after </span><span class="si">%d</span><span class="s2"> retries.&quot;</span> <span class="o">%</span>
+                        <span class="p">(</span><span class="n">connector</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">retries</span><span class="p">))</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">factor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxDelay</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">jitter</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">,</span>
+                                              <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">jitter</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">noisy</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> will retry in </span><span class="si">%d</span><span class="s2"> seconds&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">connector</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">,))</span>
+
+        <span class="k">def</span> <span class="nf">reconnector</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_callID</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">clock</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="k">import</span> <span class="n">reactor</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clock</span> <span class="o">=</span> <span class="n">reactor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_callID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clock</span><span class="o">.</span><span class="n">callLater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">,</span> <span class="n">reconnector</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">stopTrying</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Put a stop to any attempt to reconnect in progress.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># ??? Is this function really stopFactory?</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callID</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_callID</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_callID</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">continueTrying</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">connector</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">stopConnecting</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">NotConnectingError</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+
+    <span class="k">def</span> <span class="nf">resetDelay</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Call this method after a successful connection: it resets the delay and</span>
+<span class="sd">        the retry counter.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialDelay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retries</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_callID</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">continueTrying</span> <span class="o">=</span> <span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove all of the state which is mutated by connection attempts and</span>
+<span class="sd">        failures, returning just the state which describes how reconnections</span>
+<span class="sd">        should be attempted.  This will make the unserialized instance</span>
+<span class="sd">        behave just as this one did when it was first instantiated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;connector&#39;</span><span class="p">,</span> <span class="s1">&#39;retries&#39;</span><span class="p">,</span> <span class="s1">&#39;delay&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;continueTrying&#39;</span><span class="p">,</span> <span class="s1">&#39;_callID&#39;</span><span class="p">,</span> <span class="s1">&#39;clock&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">state</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">state</span>
+
+
+
+<span class="k">class</span> <span class="nc">ServerFactory</span><span class="p">(</span><span class="n">Factory</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Subclass this to indicate that your protocol.Factory is only usable for servers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+<span class="nd">@_oldStyle</span>
+<span class="k">class</span> <span class="nc">BaseProtocol</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the abstract superclass of all protocols.</span>
+
+<span class="sd">    Some methods have helpful default implementations here so that they can</span>
+<span class="sd">    easily be shared, but otherwise the direct subclasses of this class are more</span>
+<span class="sd">    interesting, L{Protocol} and L{ProcessProtocol}.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">connected</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">transport</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">makeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transport</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make a connection to a transport and a server.</span>
+
+<span class="sd">        This sets the &#39;transport&#39; attribute of this Protocol, and calls the</span>
+<span class="sd">        connectionMade() callback.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connected</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transport</span> <span class="o">=</span> <span class="n">transport</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connectionMade</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">connectionMade</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when a connection is made.</span>
+
+<span class="sd">        This may be considered the initializer of the protocol, because</span>
+<span class="sd">        it is called when the connection is completed.  For clients,</span>
+<span class="sd">        this is called once the connection to the server has been</span>
+<span class="sd">        established; for servers, this is called after an accept() call</span>
+<span class="sd">        stops blocking and a socket has been received.  If you need to</span>
+<span class="sd">        send any greeting or initial message, do it here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<span class="n">connectionDone</span> <span class="o">=</span> <span class="n">failure</span><span class="o">.</span><span class="n">Failure</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">ConnectionDone</span><span class="p">())</span>
+<span class="n">connectionDone</span><span class="o">.</span><span class="n">cleanFailure</span><span class="p">()</span>
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">interfaces</span><span class="o">.</span><span class="n">IProtocol</span><span class="p">,</span> <span class="n">interfaces</span><span class="o">.</span><span class="n">ILoggingContext</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Protocol</span><span class="p">(</span><span class="n">BaseProtocol</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the base class for streaming connection-oriented protocols.</span>
+
+<span class="sd">    If you are going to write a new connection-oriented protocol for Twisted,</span>
+<span class="sd">    start here.  Any protocol implementation, either client or server, should</span>
+<span class="sd">    be a subclass of this class.</span>
+
+<span class="sd">    The API is quite simple.  Implement L{dataReceived} to handle both</span>
+<span class="sd">    event-based and synchronous input; output can be sent through the</span>
+<span class="sd">    &#39;transport&#39; attribute, which is to be an instance that implements</span>
+<span class="sd">    L{twisted.internet.interfaces.ITransport}.  Override C{connectionLost} to be</span>
+<span class="sd">    notified when the connection ends.</span>
+
+<span class="sd">    Some subclasses exist already to help you write common types of protocols:</span>
+<span class="sd">    see the L{twisted.protocols.basic} module for a few of them.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">logPrefix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a prefix matching the class name, to identify log messages</span>
+<span class="sd">        related to this protocol instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+
+
+    <span class="k">def</span> <span class="nf">dataReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called whenever data is received.</span>
+
+<span class="sd">        Use this method to translate to a higher-level message.  Usually, some</span>
+<span class="sd">        callback will be made upon the receipt of each complete protocol</span>
+<span class="sd">        message.</span>
+
+<span class="sd">        @param data: a string of indeterminate length.  Please keep in mind</span>
+<span class="sd">            that you will probably need to buffer some data, as partial</span>
+<span class="sd">            (or multiple) protocol messages may be received!  I recommend</span>
+<span class="sd">            that unit tests for protocols call through to this method with</span>
+<span class="sd">            differing chunk sizes, down to one byte at a time.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">connectionLost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="o">=</span><span class="n">connectionDone</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when the connection is shut down.</span>
+
+<span class="sd">        Clear any circular references here, and any external references</span>
+<span class="sd">        to this Protocol.  The connection has been closed.</span>
+
+<span class="sd">        @type reason: L{twisted.python.failure.Failure}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">interfaces</span><span class="o">.</span><span class="n">IConsumer</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ProtocolToConsumerAdapter</span><span class="p">(</span><span class="n">components</span><span class="o">.</span><span class="n">Adapter</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original</span><span class="o">.</span><span class="n">dataReceived</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">registerProducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">producer</span><span class="p">,</span> <span class="n">streaming</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+    <span class="k">def</span> <span class="nf">unregisterProducer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+<span class="n">components</span><span class="o">.</span><span class="n">registerAdapter</span><span class="p">(</span><span class="n">ProtocolToConsumerAdapter</span><span class="p">,</span> <span class="n">interfaces</span><span class="o">.</span><span class="n">IProtocol</span><span class="p">,</span>
+                           <span class="n">interfaces</span><span class="o">.</span><span class="n">IConsumer</span><span class="p">)</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">interfaces</span><span class="o">.</span><span class="n">IProtocol</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ConsumerToProtocolAdapter</span><span class="p">(</span><span class="n">components</span><span class="o">.</span><span class="n">Adapter</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">dataReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">connectionLost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+    <span class="k">def</span> <span class="nf">makeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transport</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+    <span class="k">def</span> <span class="nf">connectionMade</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+<span class="n">components</span><span class="o">.</span><span class="n">registerAdapter</span><span class="p">(</span><span class="n">ConsumerToProtocolAdapter</span><span class="p">,</span> <span class="n">interfaces</span><span class="o">.</span><span class="n">IConsumer</span><span class="p">,</span>
+                           <span class="n">interfaces</span><span class="o">.</span><span class="n">IProtocol</span><span class="p">)</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">interfaces</span><span class="o">.</span><span class="n">IProcessProtocol</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ProcessProtocol</span><span class="p">(</span><span class="n">BaseProtocol</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base process protocol implementation which does simple dispatching for</span>
+<span class="sd">    stdin, stdout, and stderr file descriptors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">childDataReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">childFD</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">childFD</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">outReceived</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">childFD</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">errReceived</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">outReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Some data was received from stdout.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">errReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Some data was received from stderr.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">childConnectionLost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">childFD</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">childFD</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inConnectionLost</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">childFD</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">outConnectionLost</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">childFD</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">errConnectionLost</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">inConnectionLost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This will be called when stdin is closed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">outConnectionLost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This will be called when stdout is closed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">errConnectionLost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This will be called when stderr is closed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">processExited</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This will be called when the subprocess exits.</span>
+
+<span class="sd">        @type reason: L{twisted.python.failure.Failure}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">processEnded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when the child process exits and all file descriptors</span>
+<span class="sd">        associated with it have been closed.</span>
+
+<span class="sd">        @type reason: L{twisted.python.failure.Failure}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+
+<span class="nd">@_oldStyle</span>
+<span class="k">class</span> <span class="nc">AbstractDatagramProtocol</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract protocol for datagram-oriented transports, e.g. IP, ICMP, ARP, UDP.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">transport</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">numPorts</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">noisy</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;transport&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">d</span>
+
+
+    <span class="k">def</span> <span class="nf">doStart</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make sure startProtocol is called.</span>
+
+<span class="sd">        This will be called by makeConnection(), users should not call it.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">noisy</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Starting protocol </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">startProtocol</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span> <span class="o">+</span> <span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">doStop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make sure stopProtocol is called.</span>
+
+<span class="sd">        This will be called by the port, users should not call it.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transport</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">numPorts</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">noisy</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Stopping protocol </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stopProtocol</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">startProtocol</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when a transport is connected to this protocol.</span>
+
+<span class="sd">        Will only be called once, even if multiple ports are connected.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">stopProtocol</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when the transport is disconnected.</span>
+
+<span class="sd">        Will only be called once, after all ports are disconnected.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">makeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transport</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make a connection to a transport and a server.</span>
+
+<span class="sd">        This sets the &#39;transport&#39; attribute of this DatagramProtocol, and calls the</span>
+<span class="sd">        doStart() callback.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">transport</span> <span class="o">==</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transport</span> <span class="o">=</span> <span class="n">transport</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doStart</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">datagramReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datagram</span><span class="p">,</span> <span class="n">addr</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when a datagram is received.</span>
+
+<span class="sd">        @param datagram: the string received from the transport.</span>
+<span class="sd">        @param addr: tuple of source of datagram.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">interfaces</span><span class="o">.</span><span class="n">ILoggingContext</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">DatagramProtocol</span><span class="p">(</span><span class="n">AbstractDatagramProtocol</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Protocol for datagram-oriented transport, e.g. UDP.</span>
+
+<span class="sd">    @type transport: L{None} or</span>
+<span class="sd">        L{IUDPTransport&lt;twisted.internet.interfaces.IUDPTransport&gt;} provider</span>
+<span class="sd">    @ivar transport: The transport with which this protocol is associated,</span>
+<span class="sd">        if it is associated with one.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">logPrefix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a prefix matching the class name, to identify log messages</span>
+<span class="sd">        related to this protocol instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+
+
+    <span class="k">def</span> <span class="nf">connectionRefused</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called due to error from write in connected mode.</span>
+
+<span class="sd">        Note this is a result of ICMP message generated by *previous*</span>
+<span class="sd">        write.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+
+<span class="k">class</span> <span class="nc">ConnectedDatagramProtocol</span><span class="p">(</span><span class="n">DatagramProtocol</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Protocol for connected datagram-oriented transport.</span>
+
+<span class="sd">    No longer necessary for UDP.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">datagramReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datagram</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when a datagram is received.</span>
+
+<span class="sd">        @param datagram: the string received from the transport.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">connectionFailed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">failure</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called if connecting failed.</span>
+
+<span class="sd">        Usually this will be due to a DNS lookup failure.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">interfaces</span><span class="o">.</span><span class="n">ITransport</span><span class="p">)</span>
+<span class="nd">@_oldStyle</span>
+<span class="k">class</span> <span class="nc">FileWrapper</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A wrapper around a file-like object to make it behave as a Transport.</span>
+
+<span class="sd">    This doesn&#39;t actually stream the file to the attached protocol,</span>
+<span class="sd">    and is thus useful mainly as a utility for debugging protocols.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">closed</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">disconnecting</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">producer</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">streamingProducer</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span>
+
+
+    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">handleException</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">_checkProducer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Cheating; this is called at &quot;idle&quot; times to allow producers to be</span>
+        <span class="c1"># found and dealt with</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">producer</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">producer</span><span class="o">.</span><span class="n">resumeProducing</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">registerProducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">producer</span><span class="p">,</span> <span class="n">streaming</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        From abstract.FileDescriptor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">producer</span> <span class="o">=</span> <span class="n">producer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">streamingProducer</span> <span class="o">=</span> <span class="n">streaming</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">streaming</span><span class="p">:</span>
+            <span class="n">producer</span><span class="o">.</span><span class="n">resumeProducing</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">unregisterProducer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">producer</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+    <span class="k">def</span> <span class="nf">stopConsuming</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unregisterProducer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loseConnection</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">writeSequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iovec</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">iovec</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="nf">loseConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">closed</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">IOError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">handleException</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">getPeer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># FIXME: https://twistedmatrix.com/trac/ticket/7820</span>
+        <span class="c1"># According to ITransport, this should return an IAddress!</span>
+        <span class="k">return</span> <span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="s1">&#39;file&#39;</span>
+
+
+    <span class="k">def</span> <span class="nf">getHost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># FIXME: https://twistedmatrix.com/trac/ticket/7820</span>
+        <span class="c1"># According to ITransport, this should return an IAddress!</span>
+        <span class="k">return</span> <span class="s1">&#39;file&#39;</span>
+
+
+    <span class="k">def</span> <span class="nf">handleException</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+    <span class="k">def</span> <span class="nf">resumeProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Never sends data anyways</span>
+        <span class="k">pass</span>
+
+
+    <span class="k">def</span> <span class="nf">pauseProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Never sends data anyways</span>
+        <span class="k">pass</span>
+
+
+    <span class="k">def</span> <span class="nf">stopProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loseConnection</span><span class="p">()</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Factory&quot;</span><span class="p">,</span> <span class="s2">&quot;ClientFactory&quot;</span><span class="p">,</span> <span class="s2">&quot;ReconnectingClientFactory&quot;</span><span class="p">,</span> <span class="s2">&quot;connectionDone&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;Protocol&quot;</span><span class="p">,</span> <span class="s2">&quot;ProcessProtocol&quot;</span><span class="p">,</span> <span class="s2">&quot;FileWrapper&quot;</span><span class="p">,</span> <span class="s2">&quot;ServerFactory&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;AbstractDatagramProtocol&quot;</span><span class="p">,</span> <span class="s2">&quot;DatagramProtocol&quot;</span><span class="p">,</span> <span class="s2">&quot;ConnectedDatagramProtocol&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;ClientCreator&quot;</span><span class="p">]</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pol Canelles.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

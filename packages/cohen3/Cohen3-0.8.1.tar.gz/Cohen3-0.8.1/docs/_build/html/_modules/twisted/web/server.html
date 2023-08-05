@@ -1,0 +1,1064 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>twisted.web.server &mdash; Cohen3 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cohen3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backends.html">Backends (plugins)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/coherence.html">Coherence (package)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor_code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cohen3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>twisted.web.server</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for twisted.web.server</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- test-case-name: twisted.web.test.test_web -*-</span>
+<span class="c1"># Copyright (c) Twisted Matrix Laboratories.</span>
+<span class="c1"># See LICENSE for details.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This is a web server which integrates with the twisted.internet infrastructure.</span>
+
+<span class="sd">@var NOT_DONE_YET: A token value which L{twisted.web.resource.IResource.render}</span>
+<span class="sd">    implementations can return to indicate that the application will later call</span>
+<span class="sd">    C{.write} and C{.finish} to complete the request, and that the HTTP</span>
+<span class="sd">    connection should be left open.</span>
+<span class="sd">@type NOT_DONE_YET: Opaque; do not depend on any particular type for this</span>
+<span class="sd">    value.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">absolute_import</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib</span> <span class="k">import</span> <span class="n">quote</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">quote</span> <span class="k">as</span> <span class="n">_quote</span>
+
+    <span class="k">def</span> <span class="nf">quote</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_quote</span><span class="p">(</span>
+            <span class="n">string</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;charmap&#39;</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;charmap&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">zlib</span>
+<span class="kn">from</span> <span class="nn">binascii</span> <span class="k">import</span> <span class="n">hexlify</span>
+
+<span class="kn">from</span> <span class="nn">zope.interface</span> <span class="k">import</span> <span class="n">implementer</span>
+
+<span class="kn">from</span> <span class="nn">twisted.python.compat</span> <span class="k">import</span> <span class="n">networkString</span><span class="p">,</span> <span class="n">nativeString</span><span class="p">,</span> <span class="n">intToBytes</span>
+<span class="kn">from</span> <span class="nn">twisted.spread.pb</span> <span class="k">import</span> <span class="n">Copyable</span><span class="p">,</span> <span class="n">ViewPoint</span>
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="k">import</span> <span class="n">address</span><span class="p">,</span> <span class="n">interfaces</span>
+<span class="kn">from</span> <span class="nn">twisted.web</span> <span class="k">import</span> <span class="n">iweb</span><span class="p">,</span> <span class="n">http</span><span class="p">,</span> <span class="n">util</span>
+<span class="kn">from</span> <span class="nn">twisted.web.http</span> <span class="k">import</span> <span class="n">unquote</span>
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="k">import</span> <span class="n">reflect</span><span class="p">,</span> <span class="n">failure</span><span class="p">,</span> <span class="n">components</span>
+<span class="kn">from</span> <span class="nn">twisted</span> <span class="k">import</span> <span class="n">copyright</span>
+<span class="kn">from</span> <span class="nn">twisted.web</span> <span class="k">import</span> <span class="n">resource</span>
+<span class="kn">from</span> <span class="nn">twisted.web.error</span> <span class="k">import</span> <span class="n">UnsupportedMethod</span>
+
+<span class="kn">from</span> <span class="nn">incremental</span> <span class="k">import</span> <span class="n">Version</span>
+<span class="kn">from</span> <span class="nn">twisted.python.deprecate</span> <span class="k">import</span> <span class="n">deprecatedModuleAttribute</span>
+<span class="kn">from</span> <span class="nn">twisted.python.compat</span> <span class="k">import</span> <span class="n">escape</span>
+<span class="kn">from</span> <span class="nn">twisted.logger</span> <span class="k">import</span> <span class="n">Logger</span>
+
+<span class="n">NOT_DONE_YET</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;supportedMethods&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Request&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Session&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Site&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;version&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;NOT_DONE_YET&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;GzipEncoderFactory&#39;</span>
+<span class="p">]</span>
+
+
+<span class="c1"># backwards compatibility</span>
+<span class="n">deprecatedModuleAttribute</span><span class="p">(</span>
+    <span class="n">Version</span><span class="p">(</span><span class="s2">&quot;Twisted&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;Please use twisted.web.http.datetimeToString instead&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;twisted.web.server&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;date_time_string&quot;</span><span class="p">)</span>
+<span class="n">deprecatedModuleAttribute</span><span class="p">(</span>
+    <span class="n">Version</span><span class="p">(</span><span class="s2">&quot;Twisted&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="s2">&quot;Please use twisted.web.http.stringToDatetime instead&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;twisted.web.server&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;string_date_time&quot;</span><span class="p">)</span>
+<span class="n">date_time_string</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">datetimeToString</span>
+<span class="n">string_date_time</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">stringToDatetime</span>
+
+<span class="c1"># Support for other methods may be implemented on a per-resource basis.</span>
+<span class="n">supportedMethods</span> <span class="o">=</span> <span class="p">(</span><span class="sa">b</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;HEAD&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;POST&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_addressToTuple</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">address</span><span class="o">.</span><span class="n">IPv4Address</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;INET&#39;</span><span class="p">,</span> <span class="n">addr</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">addr</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">address</span><span class="o">.</span><span class="n">UNIXAddress</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;UNIX&#39;</span><span class="p">,</span> <span class="n">addr</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">iweb</span><span class="o">.</span><span class="n">IRequest</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Request</span><span class="p">(</span><span class="n">Copyable</span><span class="p">,</span> <span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="p">,</span> <span class="n">components</span><span class="o">.</span><span class="n">Componentized</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An HTTP request.</span>
+
+<span class="sd">    @ivar defaultContentType: A C{bytes} giving the default I{Content-Type}</span>
+<span class="sd">        value to send in responses if no other value is set.  L{None} disables</span>
+<span class="sd">        the default.</span>
+
+<span class="sd">    @ivar _insecureSession: The L{Session} object representing state that will</span>
+<span class="sd">        be transmitted over plain-text HTTP.</span>
+
+<span class="sd">    @ivar _secureSession: The L{Session} object representing the state that</span>
+<span class="sd">        will be transmitted only over HTTPS.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">defaultContentType</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;text/html&quot;</span>
+
+    <span class="n">site</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">appRootURL</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">__pychecker__</span> <span class="o">=</span> <span class="s1">&#39;unusednames=issuer&#39;</span>
+    <span class="n">_inFakeHead</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">_encoder</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_log</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="n">components</span><span class="o">.</span><span class="n">Componentized</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Request.getStateToCopyFor"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.getStateToCopyFor">[docs]</a>    <span class="k">def</span> <span class="nf">getStateToCopyFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">issuer</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">del</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;transport&#39;</span><span class="p">]</span>
+        <span class="c1"># XXX refactor this attribute out; it&#39;s from protocol</span>
+        <span class="c1"># del x[&#39;server&#39;]</span>
+        <span class="k">del</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;channel&#39;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;site&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">x</span><span class="p">[</span><span class="s1">&#39;content_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">x</span><span class="p">[</span><span class="s1">&#39;remote&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ViewPoint</span><span class="p">(</span><span class="n">issuer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+        <span class="c1"># Address objects aren&#39;t jellyable</span>
+        <span class="n">x</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_addressToTuple</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">])</span>
+        <span class="n">x</span><span class="p">[</span><span class="s1">&#39;client&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_addressToTuple</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;client&#39;</span><span class="p">])</span>
+
+        <span class="c1"># Header objects also aren&#39;t jellyable.</span>
+        <span class="n">x</span><span class="p">[</span><span class="s1">&#39;requestHeaders&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;requestHeaders&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">getAllRawHeaders</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="n">x</span></div>
+
+    <span class="c1"># HTML generation helpers</span>
+
+
+<div class="viewcode-block" id="Request.sibLink"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.sibLink">[docs]</a>    <span class="k">def</span> <span class="nf">sibLink</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the text that links to a sibling of the requested resource.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">postpath</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">postpath</span><span class="p">)</span><span class="o">*</span><span class="sa">b</span><span class="s2">&quot;../&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">name</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">name</span></div>
+
+
+<div class="viewcode-block" id="Request.childLink"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.childLink">[docs]</a>    <span class="k">def</span> <span class="nf">childLink</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the text that links to a child of the requested resource.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lpp</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">postpath</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">lpp</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">((</span><span class="n">lpp</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="sa">b</span><span class="s2">&quot;../&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">name</span>
+        <span class="k">elif</span> <span class="n">lpp</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">name</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># lpp == 0</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prepath</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepath</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepath</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">name</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">name</span></div>
+
+
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Process a request.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># get site from channel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">site</span>
+
+        <span class="c1"># set various default headers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;server&#39;</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">http</span><span class="o">.</span><span class="n">datetimeToString</span><span class="p">())</span>
+
+        <span class="c1"># Resource Identification</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prepath</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">postpath</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">unquote</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/&#39;</span><span class="p">)))</span>
+
+        <span class="c1"># Short-circuit for requests whose path is &#39;*&#39;.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;*&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handleStar</span><span class="p">()</span>
+            <span class="k">return</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">resrc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">getResourceFor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">resource</span><span class="o">.</span><span class="n">_IEncodingResource</span><span class="o">.</span><span class="n">providedBy</span><span class="p">(</span><span class="n">resrc</span><span class="p">):</span>
+                <span class="n">encoder</span> <span class="o">=</span> <span class="n">resrc</span><span class="o">.</span><span class="n">getEncoder</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">encoder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_encoder</span> <span class="o">=</span> <span class="n">encoder</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">resrc</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">processingFailed</span><span class="p">(</span><span class="n">failure</span><span class="o">.</span><span class="n">Failure</span><span class="p">())</span>
+
+
+<div class="viewcode-block" id="Request.write"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write data to the transport (if not responding to a HEAD request).</span>
+
+<span class="sd">        @param data: A string to write to the response.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">startedWriting</span><span class="p">:</span>
+            <span class="c1"># Before doing the first write, check to see if a default</span>
+            <span class="c1"># Content-Type header should be supplied. We omit it on</span>
+            <span class="c1"># NOT_MODIFIED and NO_CONTENT responses. We also omit it if there</span>
+            <span class="c1"># is a Content-Length header set to 0, as empty bodies don&#39;t need</span>
+            <span class="c1"># a content-type.</span>
+            <span class="n">needsCT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">NOT_MODIFIED</span><span class="p">,</span> <span class="n">http</span><span class="o">.</span><span class="n">NO_CONTENT</span><span class="p">)</span>
+            <span class="n">contentType</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">responseHeaders</span><span class="o">.</span><span class="n">getRawHeaders</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;content-type&#39;</span><span class="p">)</span>
+            <span class="n">contentLength</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">responseHeaders</span><span class="o">.</span><span class="n">getRawHeaders</span><span class="p">(</span>
+                <span class="sa">b</span><span class="s1">&#39;content-length&#39;</span>
+            <span class="p">)</span>
+            <span class="n">contentLengthZero</span> <span class="o">=</span> <span class="n">contentLength</span> <span class="ow">and</span> <span class="p">(</span><span class="n">contentLength</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">needsCT</span> <span class="ow">and</span> <span class="n">contentType</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">defaultContentType</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span>
+                <span class="ow">not</span> <span class="n">contentLengthZero</span>
+                    <span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">responseHeaders</span><span class="o">.</span><span class="n">setRawHeaders</span><span class="p">(</span>
+                    <span class="sa">b</span><span class="s1">&#39;content-type&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">defaultContentType</span><span class="p">])</span>
+
+        <span class="c1"># Only let the write happen if we&#39;re not generating a HEAD response by</span>
+        <span class="c1"># faking out the request method.  Note, if we are doing that,</span>
+        <span class="c1"># startedWriting will never be true, and the above logic may run</span>
+        <span class="c1"># multiple times.  It will only actually change the responseHeaders</span>
+        <span class="c1"># once though, so it&#39;s still okay.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inFakeHead</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encoder</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Request.finish"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.finish">[docs]</a>    <span class="k">def</span> <span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Override C{http.Request.finish} for possible encoding.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encoder</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encoder</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="o">.</span><span class="n">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Request.render"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.render">[docs]</a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resrc</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ask a resource to render itself.</span>
+
+<span class="sd">        @param resrc: a L{twisted.web.resource.IResource}.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">body</span> <span class="o">=</span> <span class="n">resrc</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">UnsupportedMethod</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">allowedMethods</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">allowedMethods</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;HEAD&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="sa">b</span><span class="s2">&quot;GET&quot;</span> <span class="ow">in</span> <span class="n">allowedMethods</span><span class="p">):</span>
+                <span class="c1"># We must support HEAD (RFC 2616, 5.1.1).  If the</span>
+                <span class="c1"># resource doesn&#39;t, fake it by giving the resource</span>
+                <span class="c1"># a &#39;GET&#39; request and then return only the headers,</span>
+                <span class="c1"># not the body.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="s2">&quot;Using GET to fake a HEAD request for </span><span class="si">{resrc}</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="n">resrc</span><span class="o">=</span><span class="n">resrc</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;GET&quot;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_inFakeHead</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">body</span> <span class="o">=</span> <span class="n">resrc</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">body</span> <span class="ow">is</span> <span class="n">NOT_DONE_YET</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                        <span class="s2">&quot;Tried to fake a HEAD request for </span><span class="si">{resrc}</span><span class="s2">, but &quot;</span>
+                        <span class="s2">&quot;it got away from me.&quot;</span><span class="p">,</span> <span class="n">resrc</span><span class="o">=</span><span class="n">resrc</span>
+                    <span class="p">)</span>
+                    <span class="c1"># Oh well, I guess we won&#39;t include the content length.</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;content-length&#39;</span><span class="p">,</span> <span class="n">intToBytes</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">body</span><span class="p">)))</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">_inFakeHead</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;HEAD&quot;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+                <span class="k">return</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="ow">in</span> <span class="p">(</span><span class="n">supportedMethods</span><span class="p">):</span>
+                <span class="c1"># We MUST include an Allow header</span>
+                <span class="c1"># (RFC 2616, 10.4.6 and 14.7)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Allow&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">allowedMethods</span><span class="p">))</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;&#39;&#39;Your browser approached me (at </span><span class="si">%(URI)s</span><span class="s1">) with&#39;&#39;&#39;</span>
+                     <span class="sd">&#39;&#39;&#39; the method &quot;%(method)s&quot;.  I only allow&#39;&#39;&#39;</span>
+                     <span class="sd">&#39;&#39;&#39; the method%(plural)s %(allowed)s here.&#39;&#39;&#39;</span> <span class="o">%</span> <span class="p">{</span>
+                         <span class="s1">&#39;URI&#39;</span><span class="p">:</span> <span class="n">escape</span><span class="p">(</span><span class="n">nativeString</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uri</span><span class="p">)),</span>
+                         <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="n">nativeString</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">),</span>
+                         <span class="s1">&#39;plural&#39;</span><span class="p">:</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">allowedMethods</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;allowed&#39;</span><span class="p">:</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                            <span class="p">[</span><span class="n">nativeString</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">allowedMethods</span><span class="p">])</span>
+                     <span class="p">})</span>
+                <span class="n">epage</span> <span class="o">=</span> <span class="n">resource</span><span class="o">.</span><span class="n">ErrorPage</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">NOT_ALLOWED</span><span class="p">,</span>
+                                           <span class="s2">&quot;Method Not Allowed&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+                <span class="n">body</span> <span class="o">=</span> <span class="n">epage</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">epage</span> <span class="o">=</span> <span class="n">resource</span><span class="o">.</span><span class="n">ErrorPage</span><span class="p">(</span>
+                    <span class="n">http</span><span class="o">.</span><span class="n">NOT_IMPLEMENTED</span><span class="p">,</span> <span class="s2">&quot;Huh?&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;I don&#39;t know how to treat a </span><span class="si">%s</span><span class="s2"> request.&quot;</span> <span class="o">%</span>
+                    <span class="p">(</span><span class="n">escape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;charmap&quot;</span><span class="p">)),))</span>
+                <span class="n">body</span> <span class="o">=</span> <span class="n">epage</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># end except UnsupportedMethod</span>
+
+        <span class="k">if</span> <span class="n">body</span> <span class="o">==</span> <span class="n">NOT_DONE_YET</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="n">body</span> <span class="o">=</span> <span class="n">resource</span><span class="o">.</span><span class="n">ErrorPage</span><span class="p">(</span>
+                <span class="n">http</span><span class="o">.</span><span class="n">INTERNAL_SERVER_ERROR</span><span class="p">,</span>
+                <span class="s2">&quot;Request did not return bytes&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Request: &quot;</span> <span class="o">+</span> <span class="n">util</span><span class="o">.</span><span class="n">_PRE</span><span class="p">(</span><span class="n">reflect</span><span class="o">.</span><span class="n">safe_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;&lt;br /&gt;&quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;Resource: &quot;</span> <span class="o">+</span> <span class="n">util</span><span class="o">.</span><span class="n">_PRE</span><span class="p">(</span><span class="n">reflect</span><span class="o">.</span><span class="n">safe_repr</span><span class="p">(</span><span class="n">resrc</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;&lt;br /&gt;&quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;Value: &quot;</span> <span class="o">+</span> <span class="n">util</span><span class="o">.</span><span class="n">_PRE</span><span class="p">(</span><span class="n">reflect</span><span class="o">.</span><span class="n">safe_repr</span><span class="p">(</span><span class="n">body</span><span class="p">)))</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;HEAD&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">body</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># This is a Bad Thing (RFC 2616, 9.4)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="s2">&quot;Warning: HEAD request </span><span class="si">{slf}</span><span class="s2"> for resource </span><span class="si">{resrc}</span><span class="s2"> is&quot;</span>
+                    <span class="s2">&quot; returning a message body. I think I&#39;ll eat it.&quot;</span><span class="p">,</span>
+                    <span class="n">slf</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+                    <span class="n">resrc</span><span class="o">=</span><span class="n">resrc</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;content-length&#39;</span><span class="p">,</span>
+                               <span class="n">intToBytes</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">body</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;content-length&#39;</span><span class="p">,</span>
+                           <span class="n">intToBytes</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">body</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Request.processingFailed"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.processingFailed">[docs]</a>    <span class="k">def</span> <span class="nf">processingFailed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Finish this request with an indication that processing failed and</span>
+<span class="sd">        possibly display a traceback.</span>
+
+<span class="sd">        @param reason: Reason this request has failed.</span>
+<span class="sd">        @type reason: L{twisted.python.failure.Failure}</span>
+
+<span class="sd">        @return: The reason passed to this method.</span>
+<span class="sd">        @rtype: L{twisted.python.failure.Failure}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">failure</span><span class="o">=</span><span class="n">reason</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">displayTracebacks</span><span class="p">:</span>
+            <span class="n">body</span> <span class="o">=</span> <span class="p">(</span><span class="sa">b</span><span class="s2">&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;web.Server Traceback&quot;</span>
+                    <span class="sa">b</span><span class="s2">&quot; (most recent call last)&lt;/title&gt;&lt;/head&gt;&quot;</span>
+                    <span class="sa">b</span><span class="s2">&quot;&lt;body&gt;&lt;b&gt;web.Server Traceback&quot;</span>
+                    <span class="sa">b</span><span class="s2">&quot; (most recent call last):&lt;/b&gt;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span>
+                    <span class="n">util</span><span class="o">.</span><span class="n">formatFailure</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span> <span class="o">+</span>
+                    <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&lt;/body&gt;&lt;/html&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">body</span> <span class="o">=</span> <span class="p">(</span><span class="sa">b</span><span class="s2">&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Processing Failed&quot;</span>
+                    <span class="sa">b</span><span class="s2">&quot;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&quot;</span>
+                    <span class="sa">b</span><span class="s2">&quot;&lt;b&gt;Processing Failed&lt;/b&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">setResponseCode</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">INTERNAL_SERVER_ERROR</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;content-type&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;text/html&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;content-length&#39;</span><span class="p">,</span> <span class="n">intToBytes</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">body</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">reason</span></div>
+
+
+<div class="viewcode-block" id="Request.view_write"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.view_write">[docs]</a>    <span class="k">def</span> <span class="nf">view_write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">issuer</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remote version of write; same interface.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Request.view_finish"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.view_finish">[docs]</a>    <span class="k">def</span> <span class="nf">view_finish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">issuer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remote version of finish; same interface.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Request.view_addCookie"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.view_addCookie">[docs]</a>    <span class="k">def</span> <span class="nf">view_addCookie</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">issuer</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remote version of addCookie; same interface.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addCookie</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Request.view_setHeader"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.view_setHeader">[docs]</a>    <span class="k">def</span> <span class="nf">view_setHeader</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">issuer</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remote version of setHeader; same interface.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Request.view_setLastModified"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.view_setLastModified">[docs]</a>    <span class="k">def</span> <span class="nf">view_setLastModified</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">issuer</span><span class="p">,</span> <span class="n">when</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remote version of setLastModified; same interface.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setLastModified</span><span class="p">(</span><span class="n">when</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Request.view_setETag"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.view_setETag">[docs]</a>    <span class="k">def</span> <span class="nf">view_setETag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">issuer</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remote version of setETag; same interface.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setETag</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Request.view_setResponseCode"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.view_setResponseCode">[docs]</a>    <span class="k">def</span> <span class="nf">view_setResponseCode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">issuer</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remote version of setResponseCode; same interface.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setResponseCode</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Request.view_registerProducer"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.view_registerProducer">[docs]</a>    <span class="k">def</span> <span class="nf">view_registerProducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">issuer</span><span class="p">,</span> <span class="n">producer</span><span class="p">,</span> <span class="n">streaming</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remote version of registerProducer; same interface.</span>
+<span class="sd">        (requires a remote producer.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">registerProducer</span><span class="p">(</span><span class="n">_RemoteProducerWrapper</span><span class="p">(</span><span class="n">producer</span><span class="p">),</span> <span class="n">streaming</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Request.view_unregisterProducer"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.view_unregisterProducer">[docs]</a>    <span class="k">def</span> <span class="nf">view_unregisterProducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">issuer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unregisterProducer</span><span class="p">()</span></div>
+
+    <span class="c1">### these calls remain local</span>
+
+    <span class="n">_secureSession</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_insecureSession</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If a session has already been created or looked up with</span>
+<span class="sd">        L{Request.getSession}, this will return that object.  (This will always</span>
+<span class="sd">        be the session that matches the security of the request; so if</span>
+<span class="sd">        C{forceNotSecure} is used on a secure request, this will not return</span>
+<span class="sd">        that session.)</span>
+
+<span class="sd">        @return: the session attribute</span>
+<span class="sd">        @rtype: L{Session} or L{None}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSecure</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_secureSession</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_insecureSession</span>
+
+
+<div class="viewcode-block" id="Request.getSession"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.getSession">[docs]</a>    <span class="k">def</span> <span class="nf">getSession</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sessionInterface</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">forceNotSecure</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if there is a session cookie, and if not, create it.</span>
+
+<span class="sd">        By default, the cookie with be secure for HTTPS requests and not secure</span>
+<span class="sd">        for HTTP requests.  If for some reason you need access to the insecure</span>
+<span class="sd">        cookie from a secure request you can set C{forceNotSecure = True}.</span>
+
+<span class="sd">        @param forceNotSecure: Should we retrieve a session that will be</span>
+<span class="sd">            transmitted over HTTP, even if this L{Request} was delivered over</span>
+<span class="sd">            HTTPS?</span>
+<span class="sd">        @type forceNotSecure: L{bool}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Make sure we aren&#39;t creating a secure session on a non-secure page</span>
+        <span class="n">secure</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSecure</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">forceNotSecure</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">secure</span><span class="p">:</span>
+            <span class="n">cookieString</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;TWISTED_SESSION&quot;</span>
+            <span class="n">sessionAttribute</span> <span class="o">=</span> <span class="s2">&quot;_insecureSession&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cookieString</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;TWISTED_SECURE_SESSION&quot;</span>
+            <span class="n">sessionAttribute</span> <span class="o">=</span> <span class="s2">&quot;_secureSession&quot;</span>
+
+        <span class="n">session</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sessionAttribute</span><span class="p">)</span>
+
+        <span class="c1"># Session management</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">session</span><span class="p">:</span>
+            <span class="n">cookiename</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">cookieString</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sitepath</span><span class="p">)</span>
+            <span class="n">sessionCookie</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getCookie</span><span class="p">(</span><span class="n">cookiename</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">sessionCookie</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">getSession</span><span class="p">(</span><span class="n">sessionCookie</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="k">pass</span>
+            <span class="c1"># if it still hasn&#39;t been set, fix it up.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">session</span><span class="p">:</span>
+                <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">makeSession</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">addCookie</span><span class="p">(</span><span class="n">cookiename</span><span class="p">,</span> <span class="n">session</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;/&quot;</span><span class="p">,</span>
+                               <span class="n">secure</span><span class="o">=</span><span class="n">secure</span><span class="p">)</span>
+
+        <span class="n">session</span><span class="o">.</span><span class="n">touch</span><span class="p">()</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sessionAttribute</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">sessionInterface</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">getComponent</span><span class="p">(</span><span class="n">sessionInterface</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">session</span></div>
+
+
+<div class="viewcode-block" id="Request._prePathURL"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request._prePathURL">[docs]</a>    <span class="k">def</span> <span class="nf">_prePathURL</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prepath</span><span class="p">):</span>
+        <span class="n">port</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHost</span><span class="p">()</span><span class="o">.</span><span class="n">port</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSecure</span><span class="p">():</span>
+            <span class="n">default</span> <span class="o">=</span> <span class="mi">443</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">default</span> <span class="o">=</span> <span class="mi">80</span>
+        <span class="k">if</span> <span class="n">port</span> <span class="o">==</span> <span class="n">default</span><span class="p">:</span>
+            <span class="n">hostport</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hostport</span> <span class="o">=</span> <span class="s1">&#39;:</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">port</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="n">networkString</span><span class="p">(</span><span class="s1">&#39;http</span><span class="si">%s</span><span class="s1">://</span><span class="si">%s%s</span><span class="s1">/&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">isSecure</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;s&#39;</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">nativeString</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getRequestHostname</span><span class="p">()),</span>
+            <span class="n">hostport</span><span class="p">))</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">quote</span><span class="p">(</span><span class="n">segment</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="n">prepath</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">prefix</span> <span class="o">+</span> <span class="n">path</span></div>
+
+
+<div class="viewcode-block" id="Request.prePathURL"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.prePathURL">[docs]</a>    <span class="k">def</span> <span class="nf">prePathURL</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prePathURL</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prepath</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Request.URLPath"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.URLPath">[docs]</a>    <span class="k">def</span> <span class="nf">URLPath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">twisted.python</span> <span class="k">import</span> <span class="n">urlpath</span>
+        <span class="k">return</span> <span class="n">urlpath</span><span class="o">.</span><span class="n">URLPath</span><span class="o">.</span><span class="n">fromRequest</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Request.rememberRootURL"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.rememberRootURL">[docs]</a>    <span class="k">def</span> <span class="nf">rememberRootURL</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remember the currently-processed part of the URL for later</span>
+<span class="sd">        recalling.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prePathURL</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prepath</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">appRootURL</span> <span class="o">=</span> <span class="n">url</span></div>
+
+
+<div class="viewcode-block" id="Request.getRootURL"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request.getRootURL">[docs]</a>    <span class="k">def</span> <span class="nf">getRootURL</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a previously-remembered URL.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">appRootURL</span></div>
+
+
+<div class="viewcode-block" id="Request._handleStar"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Request._handleStar">[docs]</a>    <span class="k">def</span> <span class="nf">_handleStar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle receiving a request whose path is &#39;*&#39;.</span>
+
+<span class="sd">        RFC 7231 defines an OPTIONS * request as being something that a client</span>
+<span class="sd">        can send as a low-effort way to probe server capabilities or readiness.</span>
+<span class="sd">        Rather than bother the user with this, we simply fast-path it back to</span>
+<span class="sd">        an empty 200 OK. Any non-OPTIONS verb gets a 405 Method Not Allowed</span>
+<span class="sd">        telling the client they can only use OPTIONS.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setResponseCode</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">OK</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setResponseCode</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">NOT_ALLOWED</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Allow&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;OPTIONS&#39;</span><span class="p">)</span>
+
+        <span class="c1"># RFC 7231 says we MUST set content-length 0 when responding to this</span>
+        <span class="c1"># with no body.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Content-Length&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span></div>
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">iweb</span><span class="o">.</span><span class="n">_IRequestEncoderFactory</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">GzipEncoderFactory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    @cvar compressLevel: The compression level used by the compressor, default</span>
+<span class="sd">        to 9 (highest).</span>
+
+<span class="sd">    @since: 12.3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_gzipCheckRegex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">br</span><span class="s1">&#39;(:?^|[\s,])gzip(:?$|[\s,])&#39;</span><span class="p">)</span>
+    <span class="n">compressLevel</span> <span class="o">=</span> <span class="mi">9</span>
+
+    <span class="k">def</span> <span class="nf">encoderForRequest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check the headers if the client accepts gzip encoding, and encodes the</span>
+<span class="sd">        request if so.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">acceptHeaders</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">requestHeaders</span><span class="o">.</span><span class="n">getRawHeaders</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;accept-encoding&#39;</span><span class="p">,</span> <span class="p">[]))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gzipCheckRegex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">acceptHeaders</span><span class="p">):</span>
+            <span class="n">encoding</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">responseHeaders</span><span class="o">.</span><span class="n">getRawHeaders</span><span class="p">(</span>
+                <span class="sa">b</span><span class="s1">&#39;content-encoding&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">encoding</span><span class="p">:</span>
+                <span class="n">encoding</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">encoding</span> <span class="o">+</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;gzip&#39;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">encoding</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;gzip&#39;</span>
+
+            <span class="n">request</span><span class="o">.</span><span class="n">responseHeaders</span><span class="o">.</span><span class="n">setRawHeaders</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;content-encoding&#39;</span><span class="p">,</span>
+                                                  <span class="p">[</span><span class="n">encoding</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">_GzipEncoder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compressLevel</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">iweb</span><span class="o">.</span><span class="n">_IRequestEncoder</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">_GzipEncoder</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An encoder which supports gzip.</span>
+
+<span class="sd">    @ivar _zlibCompressor: The zlib compressor instance used to compress the</span>
+<span class="sd">        stream.</span>
+
+<span class="sd">    @ivar _request: A reference to the originating request.</span>
+
+<span class="sd">    @since: 12.3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_zlibCompressor</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">compressLevel</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_zlibCompressor</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">compressobj</span><span class="p">(</span>
+            <span class="n">compressLevel</span><span class="p">,</span> <span class="n">zlib</span><span class="o">.</span><span class="n">DEFLATED</span><span class="p">,</span> <span class="mi">16</span> <span class="o">+</span> <span class="n">zlib</span><span class="o">.</span><span class="n">MAX_WBITS</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_request</span> <span class="o">=</span> <span class="n">request</span>
+
+
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write to the request, automatically compressing data on the fly.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="o">.</span><span class="n">startedWriting</span><span class="p">:</span>
+            <span class="c1"># Remove the content-length header, we can&#39;t honor it</span>
+            <span class="c1"># because we compress on the fly.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="o">.</span><span class="n">responseHeaders</span><span class="o">.</span><span class="n">removeHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;content-length&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zlibCompressor</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Finish handling the request request, flushing any data from the zlib</span>
+<span class="sd">        buffer.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">remain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zlibCompressor</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_zlibCompressor</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">remain</span>
+
+
+
+<span class="k">class</span> <span class="nc">_RemoteProducerWrapper</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">remote</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resumeProducing</span> <span class="o">=</span> <span class="n">remote</span><span class="o">.</span><span class="n">remoteMethod</span><span class="p">(</span><span class="s2">&quot;resumeProducing&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pauseProducing</span> <span class="o">=</span> <span class="n">remote</span><span class="o">.</span><span class="n">remoteMethod</span><span class="p">(</span><span class="s2">&quot;pauseProducing&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stopProducing</span> <span class="o">=</span> <span class="n">remote</span><span class="o">.</span><span class="n">remoteMethod</span><span class="p">(</span><span class="s2">&quot;stopProducing&quot;</span><span class="p">)</span>
+
+
+
+<span class="k">class</span> <span class="nc">Session</span><span class="p">(</span><span class="n">components</span><span class="o">.</span><span class="n">Componentized</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A user&#39;s session with a system.</span>
+
+<span class="sd">    This utility class contains no functionality, but is used to</span>
+<span class="sd">    represent a session.</span>
+
+<span class="sd">    @ivar uid: A unique identifier for the session.</span>
+<span class="sd">    @type uid: L{bytes}</span>
+
+<span class="sd">    @ivar _reactor: An object providing L{IReactorTime} to use for scheduling</span>
+<span class="sd">        expiration.</span>
+<span class="sd">    @ivar sessionTimeout: timeout of a session, in seconds.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sessionTimeout</span> <span class="o">=</span> <span class="mi">900</span>
+
+    <span class="n">_expireCall</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">reactor</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a session with a unique ID for that session.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">components</span><span class="o">.</span><span class="n">Componentized</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">reactor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="k">import</span> <span class="n">reactor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reactor</span> <span class="o">=</span> <span class="n">reactor</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">site</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">uid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expireCallbacks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">touch</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sessionNamespaces</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+    <span class="k">def</span> <span class="nf">startCheckingExpiration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Start expiration tracking.</span>
+
+<span class="sd">        @return: L{None}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_expireCall</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reactor</span><span class="o">.</span><span class="n">callLater</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sessionTimeout</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">expire</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">notifyOnExpire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Call this callback when the session expires or logs out.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expireCallbacks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">expire</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Expire/logout of the session.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">sessions</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">expireCallbacks</span><span class="p">:</span>
+            <span class="n">c</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expireCallbacks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expireCall</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expireCall</span><span class="o">.</span><span class="n">active</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_expireCall</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+            <span class="c1"># Break reference cycle.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_expireCall</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+    <span class="k">def</span> <span class="nf">touch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Notify session modification.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lastModified</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reactor</span><span class="o">.</span><span class="n">seconds</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expireCall</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_expireCall</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sessionTimeout</span><span class="p">)</span>
+
+
+<span class="n">version</span> <span class="o">=</span> <span class="n">networkString</span><span class="p">(</span><span class="s2">&quot;TwistedWeb/</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">copyright</span><span class="o">.</span><span class="n">version</span><span class="p">,))</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">interfaces</span><span class="o">.</span><span class="n">IProtocolNegotiationFactory</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Site</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">HTTPFactory</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A web site: manage log, sessions, and resources.</span>
+
+<span class="sd">    @ivar counter: increment value used for generating unique sessions ID.</span>
+<span class="sd">    @ivar requestFactory: A factory which is called with (channel)</span>
+<span class="sd">        and creates L{Request} instances. Default to L{Request}.</span>
+<span class="sd">    @ivar displayTracebacks: if set, Twisted internal errors are displayed on</span>
+<span class="sd">        rendered pages. Default to C{True}.</span>
+<span class="sd">    @ivar sessionFactory: factory for sessions objects. Default to L{Session}.</span>
+<span class="sd">    @ivar sessionCheckTime: Deprecated.  See L{Session.sessionTimeout} instead.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">requestFactory</span> <span class="o">=</span> <span class="n">Request</span>
+    <span class="n">displayTracebacks</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">sessionFactory</span> <span class="o">=</span> <span class="n">Session</span>
+    <span class="n">sessionCheckTime</span> <span class="o">=</span> <span class="mi">1800</span>
+    <span class="n">_entropy</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span>
+
+<div class="viewcode-block" id="Site.__init__"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Site.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource</span><span class="p">,</span> <span class="n">requestFactory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param resource: The root of the resource hierarchy.  All request</span>
+<span class="sd">            traversal for requests received by this factory will begin at this</span>
+<span class="sd">            resource.</span>
+<span class="sd">        @type resource: L{IResource} provider</span>
+<span class="sd">        @param requestFactory: Overwrite for default requestFactory.</span>
+<span class="sd">        @type requestFactory: C{callable} or C{class}.</span>
+
+<span class="sd">        @see: L{twisted.web.http.HTTPFactory.__init__}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">HTTPFactory</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sessions</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="n">resource</span>
+        <span class="k">if</span> <span class="n">requestFactory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">requestFactory</span> <span class="o">=</span> <span class="n">requestFactory</span></div>
+
+
+<div class="viewcode-block" id="Site._openLogFile"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Site._openLogFile">[docs]</a>    <span class="k">def</span> <span class="nf">_openLogFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">twisted.python</span> <span class="k">import</span> <span class="n">logfile</span>
+        <span class="k">return</span> <span class="n">logfile</span><span class="o">.</span><span class="n">LogFile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">))</span></div>
+
+
+    <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;sessions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">d</span>
+
+
+<div class="viewcode-block" id="Site._mkuid"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Site._mkuid">[docs]</a>    <span class="k">def</span> <span class="nf">_mkuid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        (internal) Generate an opaque, unique ID for a user&#39;s session.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">hexlify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_entropy</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Site.makeSession"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Site.makeSession">[docs]</a>    <span class="k">def</span> <span class="nf">makeSession</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a new Session instance, and store it for future reference.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">uid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mkuid</span><span class="p">()</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sessions</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sessionFactory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uid</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">startCheckingExpiration</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">session</span></div>
+
+
+<div class="viewcode-block" id="Site.getSession"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Site.getSession">[docs]</a>    <span class="k">def</span> <span class="nf">getSession</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a previously generated session.</span>
+
+<span class="sd">        @param uid: Unique ID of the session.</span>
+<span class="sd">        @type uid: L{bytes}.</span>
+
+<span class="sd">        @raise: L{KeyError} if the session is not found.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sessions</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Site.buildProtocol"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Site.buildProtocol">[docs]</a>    <span class="k">def</span> <span class="nf">buildProtocol</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addr</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a channel attached to this site.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">channel</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">HTTPFactory</span><span class="o">.</span><span class="n">buildProtocol</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span>
+        <span class="n">channel</span><span class="o">.</span><span class="n">requestFactory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requestFactory</span>
+        <span class="n">channel</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">return</span> <span class="n">channel</span></div>
+
+    <span class="n">isLeaf</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="Site.render"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Site.render">[docs]</a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Redirect because a Site is always a directory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">prePathURL</span><span class="p">()</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Site.getChildWithDefault"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Site.getChildWithDefault">[docs]</a>    <span class="k">def</span> <span class="nf">getChildWithDefault</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathEl</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Emulate a resource&#39;s getChild method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">getChildWithDefault</span><span class="p">(</span><span class="n">pathEl</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Site.getResourceFor"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Site.getResourceFor">[docs]</a>    <span class="k">def</span> <span class="nf">getResourceFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a resource for a request.</span>
+
+<span class="sd">        This iterates through the resource hierarchy, calling</span>
+<span class="sd">        getChildWithDefault on each resource it finds for a path element,</span>
+<span class="sd">        stopping when it hits an element where isLeaf is true.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="c1"># Sitepath is used to determine cookie names between distributed</span>
+        <span class="c1"># servers and disconnected sites.</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">sitepath</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">prepath</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resource</span><span class="o">.</span><span class="n">getChildForRequest</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span></div>
+
+    <span class="c1"># IProtocolNegotiationFactory</span>
+<div class="viewcode-block" id="Site.acceptableProtocols"><a class="viewcode-back" href="../../../source/coherence.upnp.core.html#coherence.upnp.core.utils.Site.acceptableProtocols">[docs]</a>    <span class="k">def</span> <span class="nf">acceptableProtocols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Protocols this server can speak.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">baseProtocols</span> <span class="o">=</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;http/1.1&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">http</span><span class="o">.</span><span class="n">H2_ENABLED</span><span class="p">:</span>
+            <span class="n">baseProtocols</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;h2&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">baseProtocols</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pol Canelles.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

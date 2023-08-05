@@ -1,0 +1,1161 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>twisted.protocols.basic &mdash; Cohen3 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cohen3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backends.html">Backends (plugins)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/coherence.html">Coherence (package)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor_code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cohen3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>twisted.protocols.basic</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for twisted.protocols.basic</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- test-case-name: twisted.protocols.test.test_basic -*-</span>
+<span class="c1"># Copyright (c) Twisted Matrix Laboratories.</span>
+<span class="c1"># See LICENSE for details.</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Basic protocols, such as line-oriented, netstring, and int prefixed strings.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="c1"># System imports</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">struct</span> <span class="k">import</span> <span class="n">pack</span><span class="p">,</span> <span class="n">unpack</span><span class="p">,</span> <span class="n">calcsize</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="k">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">from</span> <span class="nn">zope.interface</span> <span class="k">import</span> <span class="n">implementer</span>
+
+<span class="c1"># Twisted imports</span>
+<span class="kn">from</span> <span class="nn">twisted.python.compat</span> <span class="k">import</span> <span class="n">_PY3</span>
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="k">import</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">defer</span><span class="p">,</span> <span class="n">interfaces</span>
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="k">import</span> <span class="n">log</span>
+
+
+<span class="c1"># Unfortunately we cannot use regular string formatting on Python 3; see</span>
+<span class="c1"># http://bugs.python.org/issue3982 for details.</span>
+<span class="k">if</span> <span class="n">_PY3</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_formatNetstring</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">),</span> <span class="sa">b</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;,&#39;</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_formatNetstring</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">:</span><span class="si">%s</span><span class="s1">,&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">_formatNetstring</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Convert some C</span><span class="si">{bytes}</span><span class="s2"> into netstring format.</span>
+
+<span class="s2">@param data: C</span><span class="si">{bytes}</span><span class="s2"> that will be reformatted.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+
+<span class="n">DEBUG</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">class</span> <span class="nc">NetstringParseError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The incoming data is not in valid Netstring format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+<span class="k">class</span> <span class="nc">IncompleteNetstring</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Not enough data to complete a netstring.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">NetstringReceiver</span><span class="p">(</span><span class="n">protocol</span><span class="o">.</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A protocol that sends and receives netstrings.</span>
+
+<span class="sd">    See U{http://cr.yp.to/proto/netstrings.txt} for the specification of</span>
+<span class="sd">    netstrings. Every netstring starts with digits that specify the length</span>
+<span class="sd">    of the data. This length specification is separated from the data by</span>
+<span class="sd">    a colon. The data is terminated with a comma.</span>
+
+<span class="sd">    Override L{stringReceived} to handle received netstrings. This</span>
+<span class="sd">    method is called with the netstring payload as a single argument</span>
+<span class="sd">    whenever a complete netstring is received.</span>
+
+<span class="sd">    Security features:</span>
+<span class="sd">        1. Messages are limited in size, useful if you don&#39;t want</span>
+<span class="sd">           someone sending you a 500MB netstring (change C{self.MAX_LENGTH}</span>
+<span class="sd">           to the maximum length you wish to accept).</span>
+<span class="sd">        2. The connection is lost if an illegal message is received.</span>
+
+<span class="sd">    @ivar MAX_LENGTH: Defines the maximum length of netstrings that can be</span>
+<span class="sd">        received.</span>
+<span class="sd">    @type MAX_LENGTH: C{int}</span>
+
+<span class="sd">    @ivar _LENGTH: A pattern describing all strings that contain a netstring</span>
+<span class="sd">        length specification. Examples for length specifications are C{b&#39;0:&#39;},</span>
+<span class="sd">        C{b&#39;12:&#39;}, and C{b&#39;179:&#39;}. C{b&#39;007:&#39;} is not a valid length</span>
+<span class="sd">        specification, since leading zeros are not allowed.</span>
+<span class="sd">    @type _LENGTH: C{re.Match}</span>
+
+<span class="sd">    @ivar _LENGTH_PREFIX: A pattern describing all strings that contain</span>
+<span class="sd">        the first part of a netstring length specification (without the</span>
+<span class="sd">        trailing comma). Examples are &#39;0&#39;, &#39;12&#39;, and &#39;179&#39;. &#39;007&#39; does not</span>
+<span class="sd">        start a netstring length specification, since leading zeros are</span>
+<span class="sd">        not allowed.</span>
+<span class="sd">    @type _LENGTH_PREFIX: C{re.Match}</span>
+
+<span class="sd">    @ivar _PARSING_LENGTH: Indicates that the C{NetstringReceiver} is in</span>
+<span class="sd">        the state of parsing the length portion of a netstring.</span>
+<span class="sd">    @type _PARSING_LENGTH: C{int}</span>
+
+<span class="sd">    @ivar _PARSING_PAYLOAD: Indicates that the C{NetstringReceiver} is in</span>
+<span class="sd">        the state of parsing the payload portion (data and trailing comma)</span>
+<span class="sd">        of a netstring.</span>
+<span class="sd">    @type _PARSING_PAYLOAD: C{int}</span>
+
+<span class="sd">    @ivar brokenPeer: Indicates if the connection is still functional</span>
+<span class="sd">    @type brokenPeer: C{int}</span>
+
+<span class="sd">    @ivar _state: Indicates if the protocol is consuming the length portion</span>
+<span class="sd">        (C{PARSING_LENGTH}) or the payload (C{PARSING_PAYLOAD}) of a netstring</span>
+<span class="sd">    @type _state: C{int}</span>
+
+<span class="sd">    @ivar _remainingData: Holds the chunk of data that has not yet been consumed</span>
+<span class="sd">    @type _remainingData: C{string}</span>
+
+<span class="sd">    @ivar _payload: Holds the payload portion of a netstring including the</span>
+<span class="sd">        trailing comma</span>
+<span class="sd">    @type _payload: C{BytesIO}</span>
+
+<span class="sd">    @ivar _expectedPayloadSize: Holds the payload size plus one for the trailing</span>
+<span class="sd">        comma.</span>
+<span class="sd">    @type _expectedPayloadSize: C{int}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">99999</span>
+    <span class="n">_LENGTH</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;(0|[1-9]\d*)(:)&#39;</span><span class="p">)</span>
+
+    <span class="n">_LENGTH_PREFIX</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;(0|[1-9]\d*)$&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Some error information for NetstringParseError instances.</span>
+    <span class="n">_MISSING_LENGTH</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;The received netstring does not start with a &quot;</span>
+                                <span class="s2">&quot;length specification.&quot;</span><span class="p">)</span>
+    <span class="n">_OVERFLOW</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;The length specification of the received netstring &quot;</span>
+                          <span class="s2">&quot;cannot be represented in Python - it causes an &quot;</span>
+                          <span class="s2">&quot;OverflowError!&quot;</span><span class="p">)</span>
+    <span class="n">_TOO_LONG</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;The received netstring is longer than the maximum </span><span class="si">%s</span><span class="s2"> &quot;</span>
+                          <span class="s2">&quot;specified by self.MAX_LENGTH&quot;</span><span class="p">)</span>
+    <span class="n">_MISSING_COMMA</span> <span class="o">=</span> <span class="s2">&quot;The received netstring is not terminated by a comma.&quot;</span>
+
+    <span class="c1"># The following constants are used for determining if the NetstringReceiver</span>
+    <span class="c1"># is parsing the length portion of a netstring, or the payload.</span>
+    <span class="n">_PARSING_LENGTH</span><span class="p">,</span> <span class="n">_PARSING_PAYLOAD</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">makeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transport</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the protocol.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">protocol</span><span class="o">.</span><span class="n">Protocol</span><span class="o">.</span><span class="n">makeConnection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transport</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_currentPayloadSize</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_payload</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_PARSING_LENGTH</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_expectedPayloadSize</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">brokenPeer</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+    <span class="k">def</span> <span class="nf">sendString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sends a netstring.</span>
+
+<span class="sd">        Wraps up C{string} by adding length information and a</span>
+<span class="sd">        trailing comma; writes the result to the transport.</span>
+
+<span class="sd">        @param string: The string to send.  The necessary framing (length</span>
+<span class="sd">            prefix, etc) will be added.</span>
+<span class="sd">        @type string: C{bytes}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">_formatNetstring</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="nf">dataReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Receives some characters of a netstring.</span>
+
+<span class="sd">        Whenever a complete netstring is received, this method extracts</span>
+<span class="sd">        its payload and calls L{stringReceived} to process it.</span>
+
+<span class="sd">        @param data: A chunk of data representing a (possibly partial)</span>
+<span class="sd">            netstring</span>
+<span class="sd">        @type data: C{bytes}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span> <span class="o">+=</span> <span class="n">data</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_consumeData</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">IncompleteNetstring</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">except</span> <span class="n">NetstringParseError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_handleParseError</span><span class="p">()</span>
+                <span class="k">break</span>
+
+
+    <span class="k">def</span> <span class="nf">stringReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Override this for notification when each complete string is received.</span>
+
+<span class="sd">        @param string: The complete string which was received with all</span>
+<span class="sd">            framing (length prefix, etc) removed.</span>
+<span class="sd">        @type string: C{bytes}</span>
+
+<span class="sd">        @raise NotImplementedError: because the method has to be implemented</span>
+<span class="sd">            by the child class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">_maxLengthSize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate and return the string size of C{self.MAX_LENGTH}.</span>
+
+<span class="sd">        @return: The size of the string representation for C{self.MAX_LENGTH}</span>
+<span class="sd">        @rtype: C{float}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MAX_LENGTH</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">_consumeData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Consumes the content of C{self._remainingData}.</span>
+
+<span class="sd">        @raise IncompleteNetstring: if C{self._remainingData} does not</span>
+<span class="sd">            contain enough data to complete the current netstring.</span>
+<span class="sd">        @raise NetstringParseError: if the received data do not</span>
+<span class="sd">            form a valid netstring.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_PARSING_LENGTH</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_consumeLength</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_prepareForPayloadConsumption</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_PARSING_PAYLOAD</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_consumePayload</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">_consumeLength</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Consumes the length portion of C{self._remainingData}.</span>
+
+<span class="sd">        @raise IncompleteNetstring: if C{self._remainingData} contains</span>
+<span class="sd">            a partial length specification (digits without trailing</span>
+<span class="sd">            comma).</span>
+<span class="sd">        @raise NetstringParseError: if the received data do not form a valid</span>
+<span class="sd">            netstring.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lengthMatch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_LENGTH</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">lengthMatch</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_checkPartialLengthSpecification</span><span class="p">()</span>
+            <span class="k">raise</span> <span class="n">IncompleteNetstring</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_processLength</span><span class="p">(</span><span class="n">lengthMatch</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_checkPartialLengthSpecification</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Makes sure that the received data represents a valid number.</span>
+
+<span class="sd">        Checks if C{self._remainingData} represents a number smaller or</span>
+<span class="sd">        equal to C{self.MAX_LENGTH}.</span>
+
+<span class="sd">        @raise NetstringParseError: if C{self._remainingData} is no</span>
+<span class="sd">            number or is too big (checked by L{_extractLength}).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">partialLengthMatch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_LENGTH_PREFIX</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">partialLengthMatch</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NetstringParseError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_MISSING_LENGTH</span><span class="p">)</span>
+        <span class="n">lengthSpecification</span> <span class="o">=</span> <span class="p">(</span><span class="n">partialLengthMatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_extractLength</span><span class="p">(</span><span class="n">lengthSpecification</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_processLength</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lengthMatch</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Processes the length definition of a netstring.</span>
+
+<span class="sd">        Extracts and stores in C{self._expectedPayloadSize} the number</span>
+<span class="sd">        representing the netstring size.  Removes the prefix</span>
+<span class="sd">        representing the length specification from</span>
+<span class="sd">        C{self._remainingData}.</span>
+
+<span class="sd">        @raise NetstringParseError: if the received netstring does not</span>
+<span class="sd">            start with a number or the number is bigger than</span>
+<span class="sd">            C{self.MAX_LENGTH}.</span>
+<span class="sd">        @param lengthMatch: A regular expression match object matching</span>
+<span class="sd">            a netstring length specification</span>
+<span class="sd">        @type lengthMatch: C{re.Match}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">endOfNumber</span> <span class="o">=</span> <span class="n">lengthMatch</span><span class="o">.</span><span class="n">end</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">startOfData</span> <span class="o">=</span> <span class="n">lengthMatch</span><span class="o">.</span><span class="n">end</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">lengthString</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span><span class="p">[:</span><span class="n">endOfNumber</span><span class="p">]</span>
+        <span class="c1"># Expect payload plus trailing comma:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_expectedPayloadSize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extractLength</span><span class="p">(</span><span class="n">lengthString</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span><span class="p">[</span><span class="n">startOfData</span><span class="p">:]</span>
+
+
+    <span class="k">def</span> <span class="nf">_extractLength</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lengthAsString</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Attempts to extract the length information of a netstring.</span>
+
+<span class="sd">        @raise NetstringParseError: if the number is bigger than</span>
+<span class="sd">            C{self.MAX_LENGTH}.</span>
+<span class="sd">        @param lengthAsString: A chunk of data starting with a length</span>
+<span class="sd">            specification</span>
+<span class="sd">        @type lengthAsString: C{bytes}</span>
+<span class="sd">        @return: The length of the netstring</span>
+<span class="sd">        @rtype: C{int}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_checkStringSize</span><span class="p">(</span><span class="n">lengthAsString</span><span class="p">)</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">lengthAsString</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_LENGTH</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NetstringParseError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_TOO_LONG</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MAX_LENGTH</span><span class="p">,))</span>
+        <span class="k">return</span> <span class="n">length</span>
+
+
+    <span class="k">def</span> <span class="nf">_checkStringSize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lengthAsString</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks the sanity of lengthAsString.</span>
+
+<span class="sd">        Checks if the size of the length specification exceeds the</span>
+<span class="sd">        size of the string representing self.MAX_LENGTH. If this is</span>
+<span class="sd">        not the case, the number represented by lengthAsString is</span>
+<span class="sd">        certainly bigger than self.MAX_LENGTH, and a</span>
+<span class="sd">        NetstringParseError can be raised.</span>
+
+<span class="sd">        This method should make sure that netstrings with extremely</span>
+<span class="sd">        long length specifications are refused before even attempting</span>
+<span class="sd">        to convert them to an integer (which might trigger a</span>
+<span class="sd">        MemoryError).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lengthAsString</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxLengthSize</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">NetstringParseError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_TOO_LONG</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MAX_LENGTH</span><span class="p">,))</span>
+
+
+    <span class="k">def</span> <span class="nf">_prepareForPayloadConsumption</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets up variables necessary for consuming the payload of a netstring.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_PARSING_PAYLOAD</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_currentPayloadSize</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_payload</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_payload</span><span class="o">.</span><span class="n">truncate</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">_consumePayload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Consumes the payload portion of C{self._remainingData}.</span>
+
+<span class="sd">        If the payload is complete, checks for the trailing comma and</span>
+<span class="sd">        processes the payload. If not, raises an L{IncompleteNetstring}</span>
+<span class="sd">        exception.</span>
+
+<span class="sd">        @raise IncompleteNetstring: if the payload received so far</span>
+<span class="sd">            contains fewer characters than expected.</span>
+<span class="sd">        @raise NetstringParseError: if the payload does not end with a</span>
+<span class="sd">        comma.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_extractPayload</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_currentPayloadSize</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expectedPayloadSize</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">IncompleteNetstring</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_checkForTrailingComma</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_PARSING_LENGTH</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_processPayload</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">_extractPayload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extracts payload information from C{self._remainingData}.</span>
+
+<span class="sd">        Splits C{self._remainingData} at the end of the netstring.  The</span>
+<span class="sd">        first part becomes C{self._payload}, the second part is stored</span>
+<span class="sd">        in C{self._remainingData}.</span>
+
+<span class="sd">        If the netstring is not yet complete, the whole content of</span>
+<span class="sd">        C{self._remainingData} is moved to C{self._payload}.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_payloadComplete</span><span class="p">():</span>
+            <span class="n">remainingPayloadSize</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_expectedPayloadSize</span> <span class="o">-</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_currentPayloadSize</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_payload</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span><span class="p">[:</span><span class="n">remainingPayloadSize</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span><span class="p">[</span><span class="n">remainingPayloadSize</span><span class="p">:]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_currentPayloadSize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expectedPayloadSize</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_payload</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_currentPayloadSize</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">_payloadComplete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if enough data have been received to complete the netstring.</span>
+
+<span class="sd">        @return: C{True} iff the received data contain at least as many</span>
+<span class="sd">            characters as specified in the length section of the</span>
+<span class="sd">            netstring</span>
+<span class="sd">        @rtype: C{bool}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_remainingData</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_currentPayloadSize</span> <span class="o">&gt;=</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_expectedPayloadSize</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_processPayload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Processes the actual payload with L{stringReceived}.</span>
+
+<span class="sd">        Strips C{self._payload} of the trailing comma and calls</span>
+<span class="sd">        L{stringReceived} with the result.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stringReceived</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_payload</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+
+    <span class="k">def</span> <span class="nf">_checkForTrailingComma</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if the netstring has a trailing comma at the expected position.</span>
+
+<span class="sd">        @raise NetstringParseError: if the last payload character is</span>
+<span class="sd">            anything but a comma.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_payload</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span> <span class="o">!=</span> <span class="sa">b</span><span class="s2">&quot;,&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NetstringParseError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_MISSING_COMMA</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_handleParseError</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Terminates the connection and sets the flag C{self.brokenPeer}.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">loseConnection</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">brokenPeer</span> <span class="o">=</span> <span class="mi">1</span>
+
+
+
+<span class="k">class</span> <span class="nc">LineOnlyReceiver</span><span class="p">(</span><span class="n">protocol</span><span class="o">.</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A protocol that receives only lines.</span>
+
+<span class="sd">    This is purely a speed optimisation over LineReceiver, for the</span>
+<span class="sd">    cases that raw mode is known to be unnecessary.</span>
+
+<span class="sd">    @cvar delimiter: The line-ending delimiter to use. By default this is</span>
+<span class="sd">                     C{b&#39;\\r\\n&#39;}.</span>
+<span class="sd">    @cvar MAX_LENGTH: The maximum length of a line to allow (If a</span>
+<span class="sd">                      sent line is longer than this, the connection is dropped).</span>
+<span class="sd">                      Default is 16384.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_buffer</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+    <span class="n">delimiter</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\r\n</span><span class="s1">&#39;</span>
+    <span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">16384</span>
+
+    <span class="k">def</span> <span class="nf">dataReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Translates bytes into lines, and calls lineReceived.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lines</span>  <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="o">+</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">disconnecting</span><span class="p">:</span>
+                <span class="c1"># this is necessary because the transport may be told to lose</span>
+                <span class="c1"># the connection by a line within a larger packet, and it is</span>
+                <span class="c1"># important to disregard all the lines in that packet following</span>
+                <span class="c1"># the one that told it to close.</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_LENGTH</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lineLengthExceeded</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">lineReceived</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_LENGTH</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lineLengthExceeded</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">lineReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Override this for when each line is received.</span>
+
+<span class="sd">        @param line: The line which was received with the delimiter removed.</span>
+<span class="sd">        @type line: C{bytes}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+
+    <span class="k">def</span> <span class="nf">sendLine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sends a line to the other end of the connection.</span>
+
+<span class="sd">        @param line: The line to send, not including the delimiter.</span>
+<span class="sd">        @type line: C{bytes}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">writeSequence</span><span class="p">((</span><span class="n">line</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="nf">lineLengthExceeded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when the maximum line length has been reached.</span>
+<span class="sd">        Override if it needs to be dealt with in some special way.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">loseConnection</span><span class="p">()</span>
+
+
+
+<span class="k">class</span> <span class="nc">_PauseableMixin</span><span class="p">:</span>
+    <span class="n">paused</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">pauseProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">pauseProducing</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">resumeProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">resumeProducing</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataReceived</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">stopProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paused</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">stopProducing</span><span class="p">()</span>
+
+
+
+<span class="k">class</span> <span class="nc">LineReceiver</span><span class="p">(</span><span class="n">protocol</span><span class="o">.</span><span class="n">Protocol</span><span class="p">,</span> <span class="n">_PauseableMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A protocol that receives lines and/or raw data, depending on mode.</span>
+
+<span class="sd">    In line mode, each line that&#39;s received becomes a callback to</span>
+<span class="sd">    L{lineReceived}.  In raw data mode, each chunk of raw data becomes a</span>
+<span class="sd">    callback to L{LineReceiver.rawDataReceived}.</span>
+<span class="sd">    The L{setLineMode} and L{setRawMode} methods switch between the two modes.</span>
+
+<span class="sd">    This is useful for line-oriented protocols such as IRC, HTTP, POP, etc.</span>
+
+<span class="sd">    @cvar delimiter: The line-ending delimiter to use. By default this is</span>
+<span class="sd">                     C{b&#39;\\r\\n&#39;}.</span>
+<span class="sd">    @cvar MAX_LENGTH: The maximum length of a line to allow (If a</span>
+<span class="sd">                      sent line is longer than this, the connection is dropped).</span>
+<span class="sd">                      Default is 16384.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">line_mode</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">_buffer</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+    <span class="n">_busyReceiving</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">delimiter</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\r\n</span><span class="s1">&#39;</span>
+    <span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">16384</span>
+
+    <span class="k">def</span> <span class="nf">clearLineBuffer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clear buffered data.</span>
+
+<span class="sd">        @return: All of the cleared buffered data.</span>
+<span class="sd">        @rtype: C{bytes}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">b</span>
+
+
+    <span class="k">def</span> <span class="nf">dataReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Protocol.dataReceived.</span>
+<span class="sd">        Translates bytes into lines, and calls lineReceived (or</span>
+<span class="sd">        rawDataReceived, depending on mode.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_busyReceiving</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span> <span class="o">+=</span> <span class="n">data</span>
+            <span class="k">return</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_busyReceiving</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span> <span class="o">+=</span> <span class="n">data</span>
+            <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">paused</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">line_mode</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">line</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MAX_LENGTH</span>
+                                                 <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="p">)):</span>
+                            <span class="n">line</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+                            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lineLengthExceeded</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                        <span class="k">return</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">lineLength</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">lineLength</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_LENGTH</span><span class="p">:</span>
+                            <span class="n">exceeded</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+                            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lineLengthExceeded</span><span class="p">(</span><span class="n">exceeded</span><span class="p">)</span>
+                        <span class="n">why</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lineReceived</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">why</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">transport</span> <span class="ow">and</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">disconnecting</span><span class="p">):</span>
+                            <span class="k">return</span> <span class="n">why</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+                    <span class="n">why</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rawDataReceived</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">why</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="n">why</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_busyReceiving</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+    <span class="k">def</span> <span class="nf">setLineMode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the line-mode of this receiver.</span>
+
+<span class="sd">        If you are calling this from a rawDataReceived callback,</span>
+<span class="sd">        you can pass in extra unhandled data, and that data will</span>
+<span class="sd">        be parsed for lines.  Further data received will be sent</span>
+<span class="sd">        to lineReceived rather than rawDataReceived.</span>
+
+<span class="sd">        Do not pass extra data if calling this function from</span>
+<span class="sd">        within a lineReceived callback.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">line_mode</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">extra</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataReceived</span><span class="p">(</span><span class="n">extra</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">setRawMode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the raw mode of this receiver.</span>
+<span class="sd">        Further data received will be sent to rawDataReceived rather</span>
+<span class="sd">        than lineReceived.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">line_mode</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+    <span class="k">def</span> <span class="nf">rawDataReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Override this for when raw data is received.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+
+    <span class="k">def</span> <span class="nf">lineReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Override this for when each line is received.</span>
+
+<span class="sd">        @param line: The line which was received with the delimiter removed.</span>
+<span class="sd">        @type line: C{bytes}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+
+    <span class="k">def</span> <span class="nf">sendLine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sends a line to the other end of the connection.</span>
+
+<span class="sd">        @param line: The line to send, not including the delimiter.</span>
+<span class="sd">        @type line: C{bytes}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">lineLengthExceeded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when the maximum line length has been reached.</span>
+<span class="sd">        Override if it needs to be dealt with in some special way.</span>
+
+<span class="sd">        The argument &#39;line&#39; contains the remainder of the buffer, starting</span>
+<span class="sd">        with (at least some part) of the line which is too long. This may</span>
+<span class="sd">        be more than one line, or may be only the initial portion of the</span>
+<span class="sd">        line.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">loseConnection</span><span class="p">()</span>
+
+
+
+<span class="k">class</span> <span class="nc">StringTooLongError</span><span class="p">(</span><span class="ne">AssertionError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Raised when trying to send a string too long for a length prefixed</span>
+<span class="sd">    protocol.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+
+<span class="k">class</span> <span class="nc">_RecvdCompatHack</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Emulates the to-be-deprecated C{IntNStringReceiver.recvd} attribute.</span>
+
+<span class="sd">    The C{recvd} attribute was where the working buffer for buffering and</span>
+<span class="sd">    parsing netstrings was kept.  It was updated each time new data arrived and</span>
+<span class="sd">    each time some of that data was parsed and delivered to application code.</span>
+<span class="sd">    The piecemeal updates to its string value were expensive and have been</span>
+<span class="sd">    removed from C{IntNStringReceiver} in the normal case.  However, for</span>
+<span class="sd">    applications directly reading this attribute, this descriptor restores that</span>
+<span class="sd">    behavior.  It only copies the working buffer when necessary (ie, when</span>
+<span class="sd">    accessed).  This avoids the cost for applications not using the data.</span>
+
+<span class="sd">    This is a custom descriptor rather than a property, because we still need</span>
+<span class="sd">    the default __set__ behavior in both new-style and old-style subclasses.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oself</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">oself</span><span class="o">.</span><span class="n">_unprocessed</span><span class="p">[</span><span class="n">oself</span><span class="o">.</span><span class="n">_compatibilityOffset</span><span class="p">:]</span>
+
+
+
+<span class="k">class</span> <span class="nc">IntNStringReceiver</span><span class="p">(</span><span class="n">protocol</span><span class="o">.</span><span class="n">Protocol</span><span class="p">,</span> <span class="n">_PauseableMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generic class for length prefixed protocols.</span>
+
+<span class="sd">    @ivar _unprocessed: bytes received, but not yet broken up into messages /</span>
+<span class="sd">        sent to stringReceived.  _compatibilityOffset must be updated when this</span>
+<span class="sd">        value is updated so that the C{recvd} attribute can be generated</span>
+<span class="sd">        correctly.</span>
+<span class="sd">    @type _unprocessed: C{bytes}</span>
+
+<span class="sd">    @ivar structFormat: format used for struct packing/unpacking. Define it in</span>
+<span class="sd">        subclass.</span>
+<span class="sd">    @type structFormat: C{str}</span>
+
+<span class="sd">    @ivar prefixLength: length of the prefix, in bytes. Define it in subclass,</span>
+<span class="sd">        using C{struct.calcsize(structFormat)}</span>
+<span class="sd">    @type prefixLength: C{int}</span>
+
+<span class="sd">    @ivar _compatibilityOffset: the offset within C{_unprocessed} to the next</span>
+<span class="sd">        message to be parsed. (used to generate the recvd attribute)</span>
+<span class="sd">    @type _compatibilityOffset: C{int}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">99999</span>
+    <span class="n">_unprocessed</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+    <span class="n">_compatibilityOffset</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Backwards compatibility support for applications which directly touch the</span>
+    <span class="c1"># &quot;internal&quot; parse buffer.</span>
+    <span class="n">recvd</span> <span class="o">=</span> <span class="n">_RecvdCompatHack</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">stringReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Override this for notification when each complete string is received.</span>
+
+<span class="sd">        @param string: The complete string which was received with all</span>
+<span class="sd">            framing (length prefix, etc) removed.</span>
+<span class="sd">        @type string: C{bytes}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+
+    <span class="k">def</span> <span class="nf">lengthLimitExceeded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback invoked when a length prefix greater than C{MAX_LENGTH} is</span>
+<span class="sd">        received.  The default implementation disconnects the transport.</span>
+<span class="sd">        Override this.</span>
+
+<span class="sd">        @param length: The length prefix which was received.</span>
+<span class="sd">        @type length: C{int}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">loseConnection</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">dataReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert int prefixed strings into calls to stringReceived.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Try to minimize string copying (via slices) by keeping one buffer</span>
+        <span class="c1"># containing all the data we have so far and a separate offset into that</span>
+        <span class="c1"># buffer.</span>
+        <span class="n">alldata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unprocessed</span> <span class="o">+</span> <span class="n">data</span>
+        <span class="n">currentOffset</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">prefixLength</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefixLength</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">structFormat</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_unprocessed</span> <span class="o">=</span> <span class="n">alldata</span>
+
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">alldata</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">currentOffset</span> <span class="o">+</span> <span class="n">prefixLength</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">paused</span><span class="p">:</span>
+            <span class="n">messageStart</span> <span class="o">=</span> <span class="n">currentOffset</span> <span class="o">+</span> <span class="n">prefixLength</span>
+            <span class="n">length</span><span class="p">,</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="n">fmt</span><span class="p">,</span> <span class="n">alldata</span><span class="p">[</span><span class="n">currentOffset</span><span class="p">:</span><span class="n">messageStart</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_LENGTH</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_unprocessed</span> <span class="o">=</span> <span class="n">alldata</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_compatibilityOffset</span> <span class="o">=</span> <span class="n">currentOffset</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">lengthLimitExceeded</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="n">messageEnd</span> <span class="o">=</span> <span class="n">messageStart</span> <span class="o">+</span> <span class="n">length</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">alldata</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">messageEnd</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="c1"># Here we have to slice the working buffer so we can send just the</span>
+            <span class="c1"># netstring into the stringReceived callback.</span>
+            <span class="n">packet</span> <span class="o">=</span> <span class="n">alldata</span><span class="p">[</span><span class="n">messageStart</span><span class="p">:</span><span class="n">messageEnd</span><span class="p">]</span>
+            <span class="n">currentOffset</span> <span class="o">=</span> <span class="n">messageEnd</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_compatibilityOffset</span> <span class="o">=</span> <span class="n">currentOffset</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stringReceived</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
+
+            <span class="c1"># Check to see if the backwards compat &quot;recvd&quot; attribute got written</span>
+            <span class="c1"># to by application code.  If so, drop the current data buffer and</span>
+            <span class="c1"># switch to the new buffer given by that attribute&#39;s value.</span>
+            <span class="k">if</span> <span class="s1">&#39;recvd&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+                <span class="n">alldata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;recvd&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_unprocessed</span> <span class="o">=</span> <span class="n">alldata</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_compatibilityOffset</span> <span class="o">=</span> <span class="n">currentOffset</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">if</span> <span class="n">alldata</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">return</span>
+
+        <span class="c1"># Slice off all the data that has been processed, avoiding holding onto</span>
+        <span class="c1"># memory to store it, and update the compatibility attributes to reflect</span>
+        <span class="c1"># that change.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_unprocessed</span> <span class="o">=</span> <span class="n">alldata</span><span class="p">[</span><span class="n">currentOffset</span><span class="p">:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compatibilityOffset</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+    <span class="k">def</span> <span class="nf">sendString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Send a prefixed string to the other end of the connection.</span>
+
+<span class="sd">        @param string: The string to send.  The necessary framing (length</span>
+<span class="sd">            prefix, etc) will be added.</span>
+<span class="sd">        @type string: C{bytes}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefixLength</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">StringTooLongError</span><span class="p">(</span>
+                <span class="s2">&quot;Try to send </span><span class="si">%s</span><span class="s2"> bytes whereas maximum is </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">),</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefixLength</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+            <span class="n">pack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">structFormat</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">))</span> <span class="o">+</span> <span class="n">string</span><span class="p">)</span>
+
+
+
+<span class="k">class</span> <span class="nc">Int32StringReceiver</span><span class="p">(</span><span class="n">IntNStringReceiver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A receiver for int32-prefixed strings.</span>
+
+<span class="sd">    An int32 string is a string prefixed by 4 bytes, the 32-bit length of</span>
+<span class="sd">    the string encoded in network byte order.</span>
+
+<span class="sd">    This class publishes the same interface as NetstringReceiver.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">structFormat</span> <span class="o">=</span> <span class="s2">&quot;!I&quot;</span>
+    <span class="n">prefixLength</span> <span class="o">=</span> <span class="n">calcsize</span><span class="p">(</span><span class="n">structFormat</span><span class="p">)</span>
+
+
+
+<span class="k">class</span> <span class="nc">Int16StringReceiver</span><span class="p">(</span><span class="n">IntNStringReceiver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A receiver for int16-prefixed strings.</span>
+
+<span class="sd">    An int16 string is a string prefixed by 2 bytes, the 16-bit length of</span>
+<span class="sd">    the string encoded in network byte order.</span>
+
+<span class="sd">    This class publishes the same interface as NetstringReceiver.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">structFormat</span> <span class="o">=</span> <span class="s2">&quot;!H&quot;</span>
+    <span class="n">prefixLength</span> <span class="o">=</span> <span class="n">calcsize</span><span class="p">(</span><span class="n">structFormat</span><span class="p">)</span>
+
+
+
+<span class="k">class</span> <span class="nc">Int8StringReceiver</span><span class="p">(</span><span class="n">IntNStringReceiver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A receiver for int8-prefixed strings.</span>
+
+<span class="sd">    An int8 string is a string prefixed by 1 byte, the 8-bit length of</span>
+<span class="sd">    the string.</span>
+
+<span class="sd">    This class publishes the same interface as NetstringReceiver.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">structFormat</span> <span class="o">=</span> <span class="s2">&quot;!B&quot;</span>
+    <span class="n">prefixLength</span> <span class="o">=</span> <span class="n">calcsize</span><span class="p">(</span><span class="n">structFormat</span><span class="p">)</span>
+
+
+
+<span class="k">class</span> <span class="nc">StatefulStringProtocol</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A stateful string protocol.</span>
+
+<span class="sd">    This is a mixin for string protocols (L{Int32StringReceiver},</span>
+<span class="sd">    L{NetstringReceiver}) which translates L{stringReceived} into a callback</span>
+<span class="sd">    (prefixed with C{&#39;proto_&#39;}) depending on state.</span>
+
+<span class="sd">    The state C{&#39;done&#39;} is special; if a C{proto_*} method returns it, the</span>
+<span class="sd">    connection will be closed immediately.</span>
+
+<span class="sd">    @ivar state: Current state of the protocol. Defaults to C{&#39;init&#39;}.</span>
+<span class="sd">    @type state: C{str}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;init&#39;</span>
+
+    <span class="k">def</span> <span class="nf">stringReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Choose a protocol phase function and call it.</span>
+
+<span class="sd">        Call back to the appropriate protocol phase; this begins with</span>
+<span class="sd">        the function C{proto_init} and moves on to C{proto_*} depending on</span>
+<span class="sd">        what each C{proto_*} function returns.  (For example, if</span>
+<span class="sd">        C{self.proto_init} returns &#39;foo&#39;, then C{self.proto_foo} will be the</span>
+<span class="sd">        next function called when a protocol message is received.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">pto</span> <span class="o">=</span> <span class="s1">&#39;proto_&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+            <span class="n">statehandler</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pto</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s1">&#39;callback&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="s1">&#39;not found&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">statehandler</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="s1">&#39;done&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">loseConnection</span><span class="p">()</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">interfaces</span><span class="o">.</span><span class="n">IProducer</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">FileSender</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A producer that sends the contents of a file to a consumer.</span>
+
+<span class="sd">    This is a helper for protocols that, at some point, will take a</span>
+<span class="sd">    file-like object, read its contents, and write them out to the network,</span>
+<span class="sd">    optionally performing some transformation on the bytes in between.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CHUNK_SIZE</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">14</span>
+
+    <span class="n">lastSent</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">deferred</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">beginFileTransfer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">consumer</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Begin transferring a file</span>
+
+<span class="sd">        @type file: Any file-like object</span>
+<span class="sd">        @param file: The file object to read data from</span>
+
+<span class="sd">        @type consumer: Any implementor of IConsumer</span>
+<span class="sd">        @param consumer: The object to write data to</span>
+
+<span class="sd">        @param transform: A callable taking one string argument and returning</span>
+<span class="sd">        the same.  All bytes read from the file are passed through this before</span>
+<span class="sd">        being written to the consumer.</span>
+
+<span class="sd">        @rtype: C{Deferred}</span>
+<span class="sd">        @return: A deferred whose callback will be invoked when the file has</span>
+<span class="sd">        been completely written to the consumer. The last byte written to the</span>
+<span class="sd">        consumer is passed to the callback.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">consumer</span> <span class="o">=</span> <span class="n">consumer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">deferred</span> <span class="o">=</span> <span class="n">deferred</span> <span class="o">=</span> <span class="n">defer</span><span class="o">.</span><span class="n">Deferred</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">consumer</span><span class="o">.</span><span class="n">registerProducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">deferred</span>
+
+
+    <span class="k">def</span> <span class="nf">resumeProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">chunk</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
+            <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CHUNK_SIZE</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">chunk</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">consumer</span><span class="o">.</span><span class="n">unregisterProducer</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">deferred</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">deferred</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lastSent</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">deferred</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">:</span>
+            <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">consumer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lastSent</span> <span class="o">=</span> <span class="n">chunk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
+
+
+    <span class="k">def</span> <span class="nf">pauseProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+    <span class="k">def</span> <span class="nf">stopProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">deferred</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">deferred</span><span class="o">.</span><span class="n">errback</span><span class="p">(</span>
+                <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Consumer asked us to stop producing&quot;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">deferred</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pol Canelles.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

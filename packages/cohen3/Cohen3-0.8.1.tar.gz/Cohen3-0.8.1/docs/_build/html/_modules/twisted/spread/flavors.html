@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>twisted.spread.flavors &mdash; Cohen3 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cohen3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backends.html">Backends (plugins)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/coherence.html">Coherence (package)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor_code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cohen3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>twisted.spread.flavors</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for twisted.spread.flavors</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- test-case-name: twisted.spread.test.test_pb -*-</span>
+<span class="c1"># Copyright (c) Twisted Matrix Laboratories.</span>
+<span class="c1"># See LICENSE for details.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module represents flavors of remotely accessible objects.</span>
+
+<span class="sd">Currently this is only objects accessible through Perspective Broker, but will</span>
+<span class="sd">hopefully encompass all forms of remote access which can emulate subsets of PB</span>
+<span class="sd">(such as XMLRPC or SOAP).</span>
+
+<span class="sd">Future Plans: Optimization.  Exploitation of new-style object model.</span>
+<span class="sd">Optimizations to this module should not affect external-use semantics at all,</span>
+<span class="sd">but may have a small impact on users who subclass and override methods.</span>
+
+<span class="sd">@author: Glyph Lefkowitz</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="c1"># NOTE: this module should NOT import pb; it is supposed to be a module which</span>
+<span class="c1"># abstractly defines remotely accessible types.  Many of these types expect to</span>
+<span class="c1"># be serialized by Jelly, but they ought to be accessible through other</span>
+<span class="c1"># mechanisms (like XMLRPC)</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">zope.interface</span> <span class="k">import</span> <span class="n">implementer</span><span class="p">,</span> <span class="n">Interface</span>
+
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="k">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">reflect</span>
+<span class="kn">from</span> <span class="nn">twisted.python.compat</span> <span class="k">import</span> <span class="n">_PY3</span><span class="p">,</span> <span class="n">unicode</span><span class="p">,</span> <span class="n">comparable</span><span class="p">,</span> <span class="nb">cmp</span>
+<span class="kn">from</span> <span class="nn">.jelly</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">setUnjellyableForClass</span><span class="p">,</span> <span class="n">setUnjellyableForClassTree</span><span class="p">,</span>
+    <span class="n">setUnjellyableFactoryForClass</span><span class="p">,</span> <span class="n">unjellyableRegistry</span><span class="p">,</span> <span class="n">Jellyable</span><span class="p">,</span> <span class="n">Unjellyable</span><span class="p">,</span>
+    <span class="n">setInstanceState</span><span class="p">,</span> <span class="n">getInstanceState</span><span class="p">,</span> <span class="n">_createBlank</span>
+<span class="p">)</span>
+
+<span class="c1"># compatibility</span>
+<span class="n">setCopierForClass</span> <span class="o">=</span> <span class="n">setUnjellyableForClass</span>
+<span class="n">setCopierForClassTree</span> <span class="o">=</span> <span class="n">setUnjellyableForClassTree</span>
+<span class="n">setFactoryForClass</span> <span class="o">=</span> <span class="n">setUnjellyableFactoryForClass</span>
+<span class="n">copyTags</span> <span class="o">=</span> <span class="n">unjellyableRegistry</span>
+
+<span class="n">copy_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;copy&quot;</span>
+<span class="n">cache_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;cache&quot;</span>
+<span class="n">cached_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;cached&quot;</span>
+<span class="n">remote_atom</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;remote&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">NoSuchMethod</span><span class="p">(</span><span class="ne">AttributeError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Raised if there is no such remote method&quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">IPBRoot</span><span class="p">(</span><span class="n">Interface</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Factory for root Referenceable objects for PB servers.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">rootObject</span><span class="p">(</span><span class="n">broker</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return root Referenceable for broker.&quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">Serializable</span><span class="p">(</span><span class="n">Jellyable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;An object that can be passed remotely.</span>
+
+<span class="sd">    I am a style of object which can be serialized by Perspective</span>
+<span class="sd">    Broker.  Objects which wish to be referenceable or copied remotely</span>
+<span class="sd">    have to subclass Serializable.  However, clients of Perspective</span>
+<span class="sd">    Broker will probably not want to directly subclass Serializable; the</span>
+<span class="sd">    Flavors of transferable objects are listed below.</span>
+
+<span class="sd">    What it means to be \&quot;Serializable\&quot; is that an object can be</span>
+<span class="sd">    passed to or returned from a remote method.  Certain basic types</span>
+<span class="sd">    (dictionaries, lists, tuples, numbers, strings) are serializable by</span>
+<span class="sd">    default; however, classes need to choose a specific serialization</span>
+<span class="sd">    style: L{Referenceable}, L{Viewable}, L{Copyable} or L{Cacheable}.</span>
+
+<span class="sd">    You may also pass C{[lists, dictionaries, tuples]} of L{Serializable}</span>
+<span class="sd">    instances to or return them from remote methods, as many levels deep</span>
+<span class="sd">    as you like.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">processUniqueID</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return an ID which uniquely represents this object for this process.</span>
+
+<span class="sd">        By default, this uses the &#39;id&#39; builtin, but can be overridden to</span>
+<span class="sd">        indicate that two values are identity-equivalent (such as proxies</span>
+<span class="sd">        for the same object).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Referenceable</span><span class="p">(</span><span class="n">Serializable</span><span class="p">):</span>
+    <span class="n">perspective</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;I am an object sent remotely as a direct reference.</span>
+
+<span class="sd">    When one of my subclasses is sent as an argument to or returned</span>
+<span class="sd">    from a remote method call, I will be serialized by default as a</span>
+<span class="sd">    direct reference.</span>
+
+<span class="sd">    This means that the peer will be able to call methods on me;</span>
+<span class="sd">    a method call xxx() from my peer will be resolved to methods</span>
+<span class="sd">    of the name remote_xxx.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">remoteMessageReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">broker</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A remote message has been received.  Dispatch it appropriately.</span>
+
+<span class="sd">        The default implementation is to dispatch to a method called</span>
+<span class="sd">        &#39;remote_messagename&#39; and call it with the same arguments.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">broker</span><span class="o">.</span><span class="n">unserialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">kw</span> <span class="o">=</span> <span class="n">broker</span><span class="o">.</span><span class="n">unserialize</span><span class="p">(</span><span class="n">kw</span><span class="p">)</span>
+        <span class="c1"># Need this to interoperate with Python 2 clients</span>
+        <span class="c1"># which may try to send use keywords where keys are of type</span>
+        <span class="c1"># bytes.</span>
+        <span class="k">if</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kw</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">)]:</span>
+            <span class="n">kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">k</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">),</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kw</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;remote_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">message</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoSuchMethod</span><span class="p">(</span><span class="s2">&quot;No such method: remote_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">message</span><span class="p">,))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> didn&#39;t accept </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">))</span>
+            <span class="k">raise</span>
+        <span class="k">return</span> <span class="n">broker</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">jellyFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jellier</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(internal)</span>
+
+<span class="sd">        Return a tuple which will be used as the s-expression to</span>
+<span class="sd">        serialize this to a peer.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="sa">b</span><span class="s2">&quot;remote&quot;</span><span class="p">,</span> <span class="n">jellier</span><span class="o">.</span><span class="n">invoker</span><span class="o">.</span><span class="n">registerReference</span><span class="p">(</span><span class="bp">self</span><span class="p">)]</span>
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">IPBRoot</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Root</span><span class="p">(</span><span class="n">Referenceable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;I provide a root object to L{pb.Broker}s for a L{pb.PBClientFactory} or</span>
+<span class="sd">    L{pb.PBServerFactory}.</span>
+
+<span class="sd">    When a factory produces a L{pb.Broker}, it supplies that</span>
+<span class="sd">    L{pb.Broker} with an object named \&quot;root\&quot;.  That object is obtained</span>
+<span class="sd">    by calling my rootObject method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">rootObject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">broker</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A factory is requesting to publish me as a root object.</span>
+
+<span class="sd">        When a factory is sending me as the root object, this</span>
+<span class="sd">        method will be invoked to allow per-broker versions of an</span>
+<span class="sd">        object.  By default I return myself.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+
+<span class="k">class</span> <span class="nc">ViewPoint</span><span class="p">(</span><span class="n">Referenceable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    I act as an indirect reference to an object accessed through a</span>
+<span class="sd">    L{pb.IPerspective}.</span>
+
+<span class="sd">    Simply put, I combine an object with a perspective so that when a</span>
+<span class="sd">    peer calls methods on the object I refer to, the method will be</span>
+<span class="sd">    invoked with that perspective as a first argument, so that it can</span>
+<span class="sd">    know who is calling it.</span>
+
+<span class="sd">    While L{Viewable} objects will be converted to ViewPoints by default</span>
+<span class="sd">    when they are returned from or sent as arguments to a remote</span>
+<span class="sd">    method, any object may be manually proxied as well. (XXX: Now that</span>
+<span class="sd">    this class is no longer named C{Proxy}, this is the only occurrence</span>
+<span class="sd">    of the term &#39;proxied&#39; in this docstring, and may be unclear.)</span>
+
+<span class="sd">    This can be useful when dealing with L{pb.IPerspective}s, L{Copyable}s,</span>
+<span class="sd">    and L{Cacheable}s.  It is legal to implement a method as such on</span>
+<span class="sd">    a perspective::</span>
+
+<span class="sd">     | def perspective_getViewPointForOther(self, name):</span>
+<span class="sd">     |     defr = self.service.getPerspectiveRequest(name)</span>
+<span class="sd">     |     defr.addCallbacks(lambda x, self=self: ViewPoint(self, x), log.msg)</span>
+<span class="sd">     |     return defr</span>
+
+<span class="sd">    This will allow you to have references to Perspective objects in two</span>
+<span class="sd">    different ways.  One is through the initial &#39;attach&#39; call -- each</span>
+<span class="sd">    peer will have a L{pb.RemoteReference} to their perspective directly.  The</span>
+<span class="sd">    other is through this method; each peer can get a L{pb.RemoteReference} to</span>
+<span class="sd">    all other perspectives in the service; but that L{pb.RemoteReference} will</span>
+<span class="sd">    be to a L{ViewPoint}, not directly to the object.</span>
+
+<span class="sd">    The practical offshoot of this is that you can implement 2 varieties</span>
+<span class="sd">    of remotely callable methods on this Perspective; view_xxx and</span>
+<span class="sd">    C{perspective_xxx}. C{view_xxx} methods will follow the rules for</span>
+<span class="sd">    ViewPoint methods (see ViewPoint.L{remoteMessageReceived}), and</span>
+<span class="sd">    C{perspective_xxx} methods will follow the rules for Perspective</span>
+<span class="sd">    methods.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perspective</span><span class="p">,</span> <span class="nb">object</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize me with a Perspective and an Object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span> <span class="o">=</span> <span class="n">perspective</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object</span> <span class="o">=</span> <span class="nb">object</span>
+
+    <span class="k">def</span> <span class="nf">processUniqueID</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return an ID unique to a proxy for this perspective+object combination.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">remoteMessageReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">broker</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A remote message has been received.  Dispatch it appropriately.</span>
+
+<span class="sd">        The default implementation is to dispatch to a method called</span>
+<span class="sd">        &#39;C{view_messagename}&#39; to my Object and call it on my object with</span>
+<span class="sd">        the same arguments, modified by inserting my Perspective as</span>
+<span class="sd">        the first argument.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">broker</span><span class="o">.</span><span class="n">unserialize</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">)</span>
+        <span class="n">kw</span> <span class="o">=</span> <span class="n">broker</span><span class="o">.</span><span class="n">unserialize</span><span class="p">(</span><span class="n">kw</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="p">,</span> <span class="s2">&quot;view_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">message</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">,)</span><span class="o">+</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> didn&#39;t accept </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">))</span>
+            <span class="k">raise</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="n">broker</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">rv</span>
+
+
+<span class="k">class</span> <span class="nc">Viewable</span><span class="p">(</span><span class="n">Serializable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;I will be converted to a L{ViewPoint} when passed to or returned from a remote method.</span>
+
+<span class="sd">    The beginning of a peer&#39;s interaction with a PB Service is always</span>
+<span class="sd">    through a perspective.  However, if a C{perspective_xxx} method returns</span>
+<span class="sd">    a Viewable, it will be serialized to the peer as a response to that</span>
+<span class="sd">    method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">jellyFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jellier</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Serialize a L{ViewPoint} for me and the perspective of the given broker.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ViewPoint</span><span class="p">(</span><span class="n">jellier</span><span class="o">.</span><span class="n">invoker</span><span class="o">.</span><span class="n">serializingPerspective</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">jellyFor</span><span class="p">(</span><span class="n">jellier</span><span class="p">)</span>
+
+
+
+<span class="k">class</span> <span class="nc">Copyable</span><span class="p">(</span><span class="n">Serializable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Subclass me to get copied each time you are returned from or passed to a remote method.</span>
+
+<span class="sd">    When I am returned from or passed to a remote method call, I will be</span>
+<span class="sd">    converted into data via a set of callbacks (see my methods for more</span>
+<span class="sd">    info).  That data will then be serialized using Jelly, and sent to</span>
+<span class="sd">    the peer.</span>
+
+<span class="sd">    The peer will then look up the type to represent this with; see</span>
+<span class="sd">    L{RemoteCopy} for details.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">getStateToCopy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gather state to send when I am serialized for a peer.</span>
+
+<span class="sd">        I will default to returning self.__dict__.  Override this to</span>
+<span class="sd">        customize this behavior.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
+
+    <span class="k">def</span> <span class="nf">getStateToCopyFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perspective</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gather state to send when I am serialized for a particular</span>
+<span class="sd">        perspective.</span>
+
+<span class="sd">        I will default to calling L{getStateToCopy}.  Override this to</span>
+<span class="sd">        customize this behavior.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getStateToCopy</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">getTypeToCopy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determine what type tag to send for me.</span>
+
+<span class="sd">        By default, send the string representation of my class</span>
+<span class="sd">        (package.module.Class); normally this is adequate, but</span>
+<span class="sd">        you may override this to change it.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">reflect</span><span class="o">.</span><span class="n">qual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getTypeToCopyFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perspective</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determine what type tag to send for me.</span>
+
+<span class="sd">        By default, defer to self.L{getTypeToCopy}() normally this is</span>
+<span class="sd">        adequate, but you may override this to change it.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getTypeToCopy</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">jellyFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jellier</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Assemble type tag and state to copy for this broker.</span>
+
+<span class="sd">        This will call L{getTypeToCopyFor} and L{getStateToCopy}, and</span>
+<span class="sd">        return an appropriate s-expression to represent me.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">jellier</span><span class="o">.</span><span class="n">invoker</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">getInstanceState</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jellier</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">jellier</span><span class="o">.</span><span class="n">invoker</span><span class="o">.</span><span class="n">serializingPerspective</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getTypeToCopyFor</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getStateToCopyFor</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">sxp</span> <span class="o">=</span> <span class="n">jellier</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">sxp</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">jellier</span><span class="o">.</span><span class="n">jelly</span><span class="p">(</span><span class="n">state</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="n">jellier</span><span class="o">.</span><span class="n">preserve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sxp</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Cacheable</span><span class="p">(</span><span class="n">Copyable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A cached instance.</span>
+
+<span class="sd">    This means that it&#39;s copied; but there is some logic to make sure</span>
+<span class="sd">    that it&#39;s only copied once.  Additionally, when state is retrieved,</span>
+<span class="sd">    it is passed a &quot;proto-reference&quot; to the state as it will exist on</span>
+<span class="sd">    the client.</span>
+
+<span class="sd">    XXX: The documentation for this class needs work, but it&#39;s the most</span>
+<span class="sd">    complex part of PB and it is inherently difficult to explain.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">getStateToCacheAndObserveFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perspective</span><span class="p">,</span> <span class="n">observer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get state to cache on the client and client-cache reference</span>
+<span class="sd">        to observe locally.</span>
+
+<span class="sd">        This is similar to getStateToCopyFor, but it additionally</span>
+<span class="sd">        passes in a reference to the client-side RemoteCache instance</span>
+<span class="sd">        that will be created when it is unserialized.  This allows</span>
+<span class="sd">        Cacheable instances to keep their RemoteCaches up to date when</span>
+<span class="sd">        they change, such that no changes can occur between the point</span>
+<span class="sd">        at which the state is initially copied and the client receives</span>
+<span class="sd">        it that are not propagated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getStateToCopyFor</span><span class="p">(</span><span class="n">perspective</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">jellyFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jellier</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return an appropriate tuple to serialize me.</span>
+
+<span class="sd">        Depending on whether this broker has cached me or not, this may</span>
+<span class="sd">        return either a full state or a reference to an existing cache.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">jellier</span><span class="o">.</span><span class="n">invoker</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">getInstanceState</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jellier</span><span class="p">)</span>
+        <span class="n">luid</span> <span class="o">=</span> <span class="n">jellier</span><span class="o">.</span><span class="n">invoker</span><span class="o">.</span><span class="n">cachedRemotelyAs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">luid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">luid</span> <span class="o">=</span> <span class="n">jellier</span><span class="o">.</span><span class="n">invoker</span><span class="o">.</span><span class="n">cacheRemotely</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">jellier</span><span class="o">.</span><span class="n">invoker</span><span class="o">.</span><span class="n">serializingPerspective</span>
+            <span class="n">type_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getTypeToCopyFor</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">observer</span> <span class="o">=</span> <span class="n">RemoteCacheObserver</span><span class="p">(</span><span class="n">jellier</span><span class="o">.</span><span class="n">invoker</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getStateToCacheAndObserveFor</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">observer</span><span class="p">)</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="n">jellier</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">jstate</span> <span class="o">=</span> <span class="n">jellier</span><span class="o">.</span><span class="n">jelly</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+            <span class="n">l</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">type_</span><span class="p">,</span> <span class="n">luid</span><span class="p">,</span> <span class="n">jstate</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">jellier</span><span class="o">.</span><span class="n">preserve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cached_atom</span><span class="p">,</span> <span class="n">luid</span>
+
+    <span class="k">def</span> <span class="nf">stoppedObserving</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perspective</span><span class="p">,</span> <span class="n">observer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is called when a client has stopped observing me.</span>
+
+<span class="sd">        The &#39;observer&#39; argument is the same as that passed in to</span>
+<span class="sd">        getStateToCacheAndObserveFor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+
+<span class="k">class</span> <span class="nc">RemoteCopy</span><span class="p">(</span><span class="n">Unjellyable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;I am a remote copy of a Copyable object.</span>
+
+<span class="sd">    When the state from a L{Copyable} object is received, an instance will</span>
+<span class="sd">    be created based on the copy tags table (see setUnjellyableForClass) and</span>
+<span class="sd">    sent the L{setCopyableState} message.  I provide a reasonable default</span>
+<span class="sd">    implementation of that message; subclass me if you wish to serve as</span>
+<span class="sd">    a copier for remote data.</span>
+
+<span class="sd">    NOTE: copiers are invoked with no arguments.  Do not implement a</span>
+<span class="sd">    constructor which requires args in a subclass of L{RemoteCopy}!</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">setCopyableState</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;I will be invoked with the state to copy locally.</span>
+
+<span class="sd">        &#39;state&#39; is the data returned from the remote object&#39;s</span>
+<span class="sd">        &#39;getStateToCopyFor&#39; method, which will often be the remote</span>
+<span class="sd">        object&#39;s dictionary (or a filtered approximation of it depending</span>
+<span class="sd">        on my peer&#39;s perspective).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">_PY3</span><span class="p">:</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">)</span>
+                     <span class="k">else</span> <span class="n">x</span><span class="p">:</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">state</span>
+
+    <span class="k">def</span> <span class="nf">unjellyFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unjellier</span><span class="p">,</span> <span class="n">jellyList</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">unjellier</span><span class="o">.</span><span class="n">invoker</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">setInstanceState</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unjellier</span><span class="p">,</span> <span class="n">jellyList</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setCopyableState</span><span class="p">(</span><span class="n">unjellier</span><span class="o">.</span><span class="n">unjelly</span><span class="p">(</span><span class="n">jellyList</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+
+
+<span class="k">class</span> <span class="nc">RemoteCache</span><span class="p">(</span><span class="n">RemoteCopy</span><span class="p">,</span> <span class="n">Serializable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A cache is a local representation of a remote L{Cacheable} object.</span>
+
+<span class="sd">    This represents the last known state of this object.  It may</span>
+<span class="sd">    also have methods invoked on it -- in order to update caches,</span>
+<span class="sd">    the cached class generates a L{pb.RemoteReference} to this object as</span>
+<span class="sd">    it is originally sent.</span>
+
+<span class="sd">    Much like copy, I will be invoked with no arguments.  Do not</span>
+<span class="sd">    implement a constructor that requires arguments in one of my</span>
+<span class="sd">    subclasses.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">remoteMessageReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">broker</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A remote message has been received.  Dispatch it appropriately.</span>
+
+<span class="sd">        The default implementation is to dispatch to a method called</span>
+<span class="sd">        &#39;C{observe_messagename}&#39; and call it on my  with the same arguments.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+
+        <span class="n">args</span> <span class="o">=</span> <span class="n">broker</span><span class="o">.</span><span class="n">unserialize</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">kw</span> <span class="o">=</span> <span class="n">broker</span><span class="o">.</span><span class="n">unserialize</span><span class="p">(</span><span class="n">kw</span><span class="p">)</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;observe_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">message</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> didn&#39;t accept </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">))</span>
+            <span class="k">raise</span>
+        <span class="k">return</span> <span class="n">broker</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">jellyFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jellier</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;serialize me (only for the broker I&#39;m for) as the original cached reference</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">jellier</span><span class="o">.</span><span class="n">invoker</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">getInstanceState</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jellier</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">jellier</span><span class="o">.</span><span class="n">invoker</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">broker</span><span class="p">,</span> <span class="s2">&quot;You cannot exchange cached proxies between brokers.&quot;</span>
+        <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;lcache&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">luid</span>
+
+
+    <span class="k">def</span> <span class="nf">unjellyFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unjellier</span><span class="p">,</span> <span class="n">jellyList</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">unjellier</span><span class="o">.</span><span class="n">invoker</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">setInstanceState</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unjellier</span><span class="p">,</span> <span class="n">jellyList</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">broker</span> <span class="o">=</span> <span class="n">unjellier</span><span class="o">.</span><span class="n">invoker</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">luid</span> <span class="o">=</span> <span class="n">jellyList</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">borgCopy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_borgify</span><span class="p">()</span>
+        <span class="c1"># XXX questionable whether this was a good design idea...</span>
+        <span class="n">init</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">borgCopy</span><span class="p">,</span> <span class="s2">&quot;__init__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">init</span><span class="p">:</span>
+            <span class="n">init</span><span class="p">()</span>
+        <span class="n">unjellier</span><span class="o">.</span><span class="n">invoker</span><span class="o">.</span><span class="n">cacheLocally</span><span class="p">(</span><span class="n">jellyList</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="n">borgCopy</span><span class="o">.</span><span class="n">setCopyableState</span><span class="p">(</span><span class="n">unjellier</span><span class="o">.</span><span class="n">unjelly</span><span class="p">(</span><span class="n">jellyList</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="c1"># Might have changed due to setCopyableState method; we&#39;ll assume that</span>
+        <span class="c1"># it&#39;s bad form to do so afterwards.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">borgCopy</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="c1"># chomp, chomp -- some existing code uses &quot;self.__dict__ =&quot;, some uses</span>
+        <span class="c1"># &quot;__dict__.update&quot;.  This is here in order to handle both cases.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">broker</span> <span class="o">=</span> <span class="n">unjellier</span><span class="o">.</span><span class="n">invoker</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">luid</span> <span class="o">=</span> <span class="n">jellyList</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">borgCopy</span>
+
+<span class="c1">##     def __really_del__(self):</span>
+<span class="c1">##         &quot;&quot;&quot;Final finalization call, made after all remote references have been lost.</span>
+<span class="c1">##         &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__cmp__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compare me [to another RemoteCache.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">cmp</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">cmp</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">),</span> <span class="n">other</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Hash me.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span> <span class="o">%</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span><span class="p">)</span>
+
+    <span class="n">broker</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">luid</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Do distributed reference counting on finalize.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># log.msg( &#39; --- decache: %s %s&#39; % (self, self.luid) )</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">broker</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">broker</span><span class="o">.</span><span class="n">decCacheRef</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">luid</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">deferr</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">_borgify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new object that shares its state (i.e. its C{__dict__}) and</span>
+<span class="sd">        type with this object, but does not share its identity.</span>
+
+<span class="sd">        This is an instance of U{the Borg design pattern</span>
+<span class="sd">        &lt;https://code.activestate.com/recipes/66531/&gt;} originally described by</span>
+<span class="sd">        Alex Martelli, but unlike the example given there, this is not a</span>
+<span class="sd">        replacement for a Singleton.  Instead, it is for lifecycle tracking</span>
+<span class="sd">        (and distributed garbage collection).  The purpose of these separate</span>
+<span class="sd">        objects is to have a separate object tracking each application-level</span>
+<span class="sd">        reference to the root L{RemoteCache} object being tracked by the</span>
+<span class="sd">        broker, and to have their C{__del__} methods be invoked.</span>
+
+<span class="sd">        This may be achievable via a weak value dictionary to track the root</span>
+<span class="sd">        L{RemoteCache} instances instead, but this implementation strategy</span>
+<span class="sd">        predates the availability of weak references in Python.</span>
+
+<span class="sd">        @return: The new instance.</span>
+<span class="sd">        @rtype: C{self.__class__}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">blank</span> <span class="o">=</span> <span class="n">_createBlank</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+        <span class="n">blank</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="k">return</span> <span class="n">blank</span>
+
+
+
+<span class="k">def</span> <span class="nf">unjellyCached</span><span class="p">(</span><span class="n">unjellier</span><span class="p">,</span> <span class="n">unjellyList</span><span class="p">):</span>
+    <span class="n">luid</span> <span class="o">=</span> <span class="n">unjellyList</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">unjellier</span><span class="o">.</span><span class="n">invoker</span><span class="o">.</span><span class="n">cachedLocallyAs</span><span class="p">(</span><span class="n">luid</span><span class="p">)</span><span class="o">.</span><span class="n">_borgify</span><span class="p">()</span>
+
+<span class="n">setUnjellyableForClass</span><span class="p">(</span><span class="s2">&quot;cached&quot;</span><span class="p">,</span> <span class="n">unjellyCached</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">unjellyLCache</span><span class="p">(</span><span class="n">unjellier</span><span class="p">,</span> <span class="n">unjellyList</span><span class="p">):</span>
+    <span class="n">luid</span> <span class="o">=</span> <span class="n">unjellyList</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">unjellier</span><span class="o">.</span><span class="n">invoker</span><span class="o">.</span><span class="n">remotelyCachedForLUID</span><span class="p">(</span><span class="n">luid</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">obj</span>
+
+<span class="n">setUnjellyableForClass</span><span class="p">(</span><span class="s2">&quot;lcache&quot;</span><span class="p">,</span> <span class="n">unjellyLCache</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">unjellyLocal</span><span class="p">(</span><span class="n">unjellier</span><span class="p">,</span> <span class="n">unjellyList</span><span class="p">):</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">unjellier</span><span class="o">.</span><span class="n">invoker</span><span class="o">.</span><span class="n">localObjectForID</span><span class="p">(</span><span class="n">unjellyList</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">obj</span>
+
+<span class="n">setUnjellyableForClass</span><span class="p">(</span><span class="s2">&quot;local&quot;</span><span class="p">,</span> <span class="n">unjellyLocal</span><span class="p">)</span>
+
+<span class="nd">@comparable</span>
+<span class="k">class</span> <span class="nc">RemoteCacheMethod</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A method on a reference to a L{RemoteCache}.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">broker</span><span class="p">,</span> <span class="n">cached</span><span class="p">,</span> <span class="n">perspective</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(internal) initialize.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">broker</span> <span class="o">=</span> <span class="n">broker</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span> <span class="o">=</span> <span class="n">perspective</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cached</span> <span class="o">=</span> <span class="n">cached</span>
+
+    <span class="k">def</span> <span class="nf">__cmp__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">cmp</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">broker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cached</span><span class="p">),</span> <span class="n">other</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">broker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cached</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(internal) action method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cacheID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">broker</span><span class="o">.</span><span class="n">cachedRemotelyAs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cached</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cacheID</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">pb</span> <span class="k">import</span> <span class="n">ProtocolError</span>
+            <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">&quot;You can&#39;t call a cached method when the object hasn&#39;t been given to the peer yet.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">broker</span><span class="o">.</span><span class="n">_sendMessage</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;cache&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">,</span> <span class="n">cacheID</span><span class="p">,</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">)</span>
+
+
+
+<span class="nd">@comparable</span>
+<span class="k">class</span> <span class="nc">RemoteCacheObserver</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;I am a reverse-reference to the peer&#39;s L{RemoteCache}.</span>
+
+<span class="sd">    I am generated automatically when a cache is serialized.  I</span>
+<span class="sd">    represent a reference to the client&#39;s L{RemoteCache} object that</span>
+<span class="sd">    will represent a particular L{Cacheable}; I am the additional</span>
+<span class="sd">    object passed to getStateToCacheAndObserveFor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">broker</span><span class="p">,</span> <span class="n">cached</span><span class="p">,</span> <span class="n">perspective</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(internal) Initialize me.</span>
+
+<span class="sd">        @param broker: a L{pb.Broker} instance.</span>
+
+<span class="sd">        @param cached: a L{Cacheable} instance that this L{RemoteCacheObserver}</span>
+<span class="sd">            corresponds to.</span>
+
+<span class="sd">        @param perspective: a reference to the perspective who is observing this.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">broker</span> <span class="o">=</span> <span class="n">broker</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cached</span> <span class="o">=</span> <span class="n">cached</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span> <span class="o">=</span> <span class="n">perspective</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;RemoteCacheObserver(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">) at </span><span class="si">%s</span><span class="s2">&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">broker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cached</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate a hash unique to all L{RemoteCacheObserver}s for this broker/perspective/cached triplet</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">(</span>  <span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">broker</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span><span class="p">)</span>
+                <span class="o">+</span> <span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span><span class="p">)</span>
+                <span class="o">+</span> <span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cached</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span><span class="o">**</span><span class="mi">10</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__cmp__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compare me to another L{RemoteCacheObserver}.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">cmp</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">broker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cached</span><span class="p">),</span> <span class="n">other</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">callRemote</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(internal) action method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cacheID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">broker</span><span class="o">.</span><span class="n">cachedRemotelyAs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cached</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_name</span><span class="p">,</span> <span class="n">unicode</span><span class="p">):</span>
+            <span class="n">_name</span> <span class="o">=</span> <span class="n">_name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cacheID</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">pb</span> <span class="k">import</span> <span class="n">ProtocolError</span>
+            <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">&quot;You can&#39;t call a cached method when the &quot;</span>
+                                <span class="s2">&quot;object hasn&#39;t been given to the peer yet.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">broker</span><span class="o">.</span><span class="n">_sendMessage</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;cache&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">,</span> <span class="n">cacheID</span><span class="p">,</span>
+                                        <span class="n">_name</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kw</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">remoteMethod</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a L{pb.RemoteMethod} for this key.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">RemoteCacheMethod</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">broker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cached</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">perspective</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pol Canelles.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1043 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dbus.service &mdash; Cohen3 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Cohen3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../backends.html">Backends (plugins)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/coherence.html">Coherence (package)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributor_code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Cohen3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>dbus.service</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for dbus.service</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (C) 2003-2006 Red Hat Inc. &lt;http://www.redhat.com/&gt;</span>
+<span class="c1"># Copyright (C) 2003 David Zeuthen</span>
+<span class="c1"># Copyright (C) 2004 Rob Taylor</span>
+<span class="c1"># Copyright (C) 2005-2006 Collabora Ltd. &lt;http://www.collabora.co.uk/&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># Permission is hereby granted, free of charge, to any person</span>
+<span class="c1"># obtaining a copy of this software and associated documentation</span>
+<span class="c1"># files (the &quot;Software&quot;), to deal in the Software without</span>
+<span class="c1"># restriction, including without limitation the rights to use, copy,</span>
+<span class="c1"># modify, merge, publish, distribute, sublicense, and/or sell copies</span>
+<span class="c1"># of the Software, and to permit persons to whom the Software is</span>
+<span class="c1"># furnished to do so, subject to the following conditions:</span>
+<span class="c1">#</span>
+<span class="c1"># The above copyright notice and this permission notice shall be</span>
+<span class="c1"># included in all copies or substantial portions of the Software.</span>
+<span class="c1">#</span>
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
+<span class="c1"># EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF</span>
+<span class="c1"># MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<span class="c1"># NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
+<span class="c1"># HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
+<span class="c1"># WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="c1"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER</span>
+<span class="c1"># DEALINGS IN THE SOFTWARE.</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;BusName&#39;</span><span class="p">,</span> <span class="s1">&#39;Object&#39;</span><span class="p">,</span> <span class="s1">&#39;FallbackObject&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;signal&#39;</span><span class="p">)</span>
+<span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Sequence</span>
+
+<span class="kn">import</span> <span class="nn">_dbus_bindings</span>
+<span class="kn">from</span> <span class="nn">dbus</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">INTROSPECTABLE_IFACE</span><span class="p">,</span> <span class="n">ObjectPath</span><span class="p">,</span> <span class="n">SessionBus</span><span class="p">,</span> <span class="n">Signature</span><span class="p">,</span> <span class="n">Struct</span><span class="p">,</span>
+    <span class="n">validate_bus_name</span><span class="p">,</span> <span class="n">validate_object_path</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">dbus.decorators</span> <span class="k">import</span> <span class="n">method</span><span class="p">,</span> <span class="n">signal</span>
+<span class="kn">from</span> <span class="nn">dbus.exceptions</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">DBusException</span><span class="p">,</span> <span class="n">NameExistsException</span><span class="p">,</span> <span class="n">UnknownMethodException</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">dbus.lowlevel</span> <span class="k">import</span> <span class="n">ErrorMessage</span><span class="p">,</span> <span class="n">MethodReturnMessage</span><span class="p">,</span> <span class="n">MethodCallMessage</span>
+<span class="kn">from</span> <span class="nn">dbus.proxies</span> <span class="k">import</span> <span class="n">LOCAL_PATH</span>
+<span class="kn">from</span> <span class="nn">dbus._compat</span> <span class="k">import</span> <span class="n">is_py2</span>
+
+
+<span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;dbus.service&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">_VariantSignature</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A fake method signature which, when iterated, yields an endless stream</span>
+<span class="sd">    of &#39;v&#39; characters representing variants (handy with zip()).</span>
+
+<span class="sd">    It has no string representation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return self.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return &#39;v&#39; whenever called.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s1">&#39;v&#39;</span>
+
+    <span class="k">if</span> <span class="n">is_py2</span><span class="p">:</span>
+        <span class="nb">next</span> <span class="o">=</span> <span class="fm">__next__</span>
+
+
+<span class="k">class</span> <span class="nc">BusName</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A base class for exporting your own Named Services across the Bus.</span>
+
+<span class="sd">    When instantiated, objects of this class attempt to claim the given</span>
+<span class="sd">    well-known name on the given bus for the current process. The name is</span>
+<span class="sd">    released when the BusName object becomes unreferenced.</span>
+
+<span class="sd">    If a well-known name is requested multiple times, multiple references</span>
+<span class="sd">    to the same BusName object will be returned.</span>
+
+<span class="sd">    :Caveats:</span>
+
+<span class="sd">        - Assumes that named services are only ever requested using this class -</span>
+<span class="sd">          if you request names from the bus directly, confusion may occur.</span>
+<span class="sd">        - Does not handle queueing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allow_replacement</span><span class="o">=</span><span class="kc">False</span> <span class="p">,</span> <span class="n">replace_existing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">do_not_queue</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor, which may either return an existing cached object</span>
+<span class="sd">        or a new object.</span>
+
+<span class="sd">        :Parameters:</span>
+<span class="sd">            `name` : str</span>
+<span class="sd">                The well-known name to be advertised</span>
+<span class="sd">            `bus` : dbus.Bus</span>
+<span class="sd">                A Bus on which this service will be advertised.</span>
+
+<span class="sd">                Omitting this parameter or setting it to None has been</span>
+<span class="sd">                deprecated since version 0.82.1. For backwards compatibility,</span>
+<span class="sd">                if this is done, the global shared connection to the session</span>
+<span class="sd">                bus will be used.</span>
+
+<span class="sd">            `allow_replacement` : bool</span>
+<span class="sd">                If True, other processes trying to claim the same well-known</span>
+<span class="sd">                name will take precedence over this one.</span>
+<span class="sd">            `replace_existing` : bool</span>
+<span class="sd">                If True, this process can take over the well-known name</span>
+<span class="sd">                from other processes already holding it.</span>
+<span class="sd">            `do_not_queue` : bool</span>
+<span class="sd">                If True, this service will not be placed in the queue of</span>
+<span class="sd">                services waiting for the requested name if another service</span>
+<span class="sd">                already holds it.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">validate_bus_name</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">allow_well_known</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_unique</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># if necessary, get default bus (deprecated)</span>
+        <span class="k">if</span> <span class="n">bus</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">warnings</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Omitting the &quot;bus&quot; parameter to &#39;</span>
+                          <span class="s1">&#39;dbus.service.BusName.__init__ is deprecated&#39;</span><span class="p">,</span>
+                          <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">bus</span> <span class="o">=</span> <span class="n">SessionBus</span><span class="p">()</span>
+
+        <span class="c1"># see if this name is already defined, return it if so</span>
+        <span class="c1"># FIXME: accessing internals of Bus</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">bus</span><span class="o">.</span><span class="n">_bus_names</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">bus</span><span class="o">.</span><span class="n">_bus_names</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+
+        <span class="c1"># otherwise register the name</span>
+        <span class="n">name_flags</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">allow_replacement</span> <span class="ow">and</span> <span class="n">_dbus_bindings</span><span class="o">.</span><span class="n">NAME_FLAG_ALLOW_REPLACEMENT</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span>
+            <span class="p">(</span><span class="n">replace_existing</span> <span class="ow">and</span> <span class="n">_dbus_bindings</span><span class="o">.</span><span class="n">NAME_FLAG_REPLACE_EXISTING</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span>
+            <span class="p">(</span><span class="n">do_not_queue</span> <span class="ow">and</span> <span class="n">_dbus_bindings</span><span class="o">.</span><span class="n">NAME_FLAG_DO_NOT_QUEUE</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">))</span>
+
+        <span class="n">retval</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">request_name</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">name_flags</span><span class="p">)</span>
+
+        <span class="c1"># TODO: more intelligent tracking of bus name states?</span>
+        <span class="k">if</span> <span class="n">retval</span> <span class="o">==</span> <span class="n">_dbus_bindings</span><span class="o">.</span><span class="n">REQUEST_NAME_REPLY_PRIMARY_OWNER</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">retval</span> <span class="o">==</span> <span class="n">_dbus_bindings</span><span class="o">.</span><span class="n">REQUEST_NAME_REPLY_IN_QUEUE</span><span class="p">:</span>
+            <span class="c1"># queueing can happen by default, maybe we should</span>
+            <span class="c1"># track this better or let the user know if they&#39;re</span>
+            <span class="c1"># queued or not?</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">retval</span> <span class="o">==</span> <span class="n">_dbus_bindings</span><span class="o">.</span><span class="n">REQUEST_NAME_REPLY_EXISTS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NameExistsException</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">retval</span> <span class="o">==</span> <span class="n">_dbus_bindings</span><span class="o">.</span><span class="n">REQUEST_NAME_REPLY_ALREADY_OWNER</span><span class="p">:</span>
+            <span class="c1"># if this is a shared bus which is being used by someone</span>
+            <span class="c1"># else in this process, this can happen legitimately</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;requesting bus name </span><span class="si">%s</span><span class="s1"> returned unexpected value </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">retval</span><span class="p">))</span>
+
+        <span class="c1"># and create the object</span>
+        <span class="n">bus_name</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="n">bus_name</span><span class="o">.</span><span class="n">_bus</span> <span class="o">=</span> <span class="n">bus</span>
+        <span class="n">bus_name</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+
+        <span class="c1"># cache instance (weak ref only)</span>
+        <span class="c1"># FIXME: accessing Bus internals again</span>
+        <span class="n">bus</span><span class="o">.</span><span class="n">_bus_names</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">bus_name</span>
+
+        <span class="k">return</span> <span class="n">bus_name</span>
+
+    <span class="c1"># do nothing because this is called whether or not the bus name</span>
+    <span class="c1"># object was retrieved from the cache or created new</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">keywords</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># we can delete the low-level name here because these objects</span>
+    <span class="c1"># are guaranteed to exist only once for each bus name</span>
+    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bus</span><span class="o">.</span><span class="n">release_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">get_bus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the Bus this Service is on&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bus</span>
+
+    <span class="k">def</span> <span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the name of this service&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;&lt;dbus.service.BusName </span><span class="si">%s</span><span class="s1"> on </span><span class="si">%r</span><span class="s1"> at </span><span class="si">%#x</span><span class="s1">&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bus</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+    <span class="fm">__str__</span> <span class="o">=</span> <span class="fm">__repr__</span>
+
+
+<span class="k">def</span> <span class="nf">_method_lookup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">dbus_interface</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Walks the Python MRO of the given class to find the method to invoke.</span>
+
+<span class="sd">    Returns two methods, the one to call, and the one it inherits from which</span>
+<span class="sd">    defines its D-Bus interface name, signature, and attributes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parent_method</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">candidate_class</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">successful</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># split up the cases when we do and don&#39;t have an interface because the</span>
+    <span class="c1"># latter is much simpler</span>
+    <span class="k">if</span> <span class="n">dbus_interface</span><span class="p">:</span>
+        <span class="c1"># search through the class hierarchy in python MRO order</span>
+        <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__mro__</span><span class="p">:</span>
+            <span class="c1"># if we haven&#39;t got a candidate class yet, and we find a class with a</span>
+            <span class="c1"># suitably named member, save this as a candidate class</span>
+            <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">candidate_class</span> <span class="ow">and</span> <span class="n">method_name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;_dbus_is_method&quot;</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span><span class="o">.</span><span class="vm">__dict__</span>
+                    <span class="ow">and</span> <span class="s2">&quot;_dbus_interface&quot;</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">):</span>
+                    <span class="c1"># however if it is annotated for a different interface</span>
+                    <span class="c1"># than we are looking for, it cannot be a candidate</span>
+                    <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span><span class="o">.</span><span class="n">_dbus_interface</span> <span class="o">==</span> <span class="n">dbus_interface</span><span class="p">:</span>
+                        <span class="n">candidate_class</span> <span class="o">=</span> <span class="bp">cls</span>
+                        <span class="n">parent_method</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span>
+                        <span class="n">successful</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">break</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">candidate_class</span> <span class="o">=</span> <span class="bp">cls</span>
+
+            <span class="c1"># if we have a candidate class, carry on checking this and all</span>
+            <span class="c1"># superclasses for a method annoated as a dbus method</span>
+            <span class="c1"># on the correct interface</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">candidate_class</span> <span class="ow">and</span> <span class="n">method_name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span>
+                <span class="ow">and</span> <span class="s2">&quot;_dbus_is_method&quot;</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span><span class="o">.</span><span class="vm">__dict__</span>
+                <span class="ow">and</span> <span class="s2">&quot;_dbus_interface&quot;</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span><span class="o">.</span><span class="vm">__dict__</span>
+                <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span><span class="o">.</span><span class="n">_dbus_interface</span> <span class="o">==</span> <span class="n">dbus_interface</span><span class="p">):</span>
+                <span class="c1"># the candidate class has a dbus method on the correct interface,</span>
+                <span class="c1"># or overrides a method that is, success!</span>
+                <span class="n">parent_method</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span>
+                <span class="n">successful</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">break</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># simpler version of above</span>
+        <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__mro__</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">candidate_class</span> <span class="ow">and</span> <span class="n">method_name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">):</span>
+                <span class="n">candidate_class</span> <span class="o">=</span> <span class="bp">cls</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">candidate_class</span> <span class="ow">and</span> <span class="n">method_name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span>
+                <span class="ow">and</span> <span class="s2">&quot;_dbus_is_method&quot;</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">):</span>
+                <span class="n">parent_method</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span>
+                <span class="n">successful</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">break</span>
+
+    <span class="k">if</span> <span class="n">successful</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">candidate_class</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">method_name</span><span class="p">],</span> <span class="n">parent_method</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dbus_interface</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UnknownMethodException</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is not a valid method of interface </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">dbus_interface</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UnknownMethodException</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is not a valid method&#39;</span> <span class="o">%</span> <span class="n">method_name</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_method_reply_return</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="o">*</span><span class="n">retval</span><span class="p">):</span>
+    <span class="n">reply</span> <span class="o">=</span> <span class="n">MethodReturnMessage</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">reply</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span> <span class="o">*</span><span class="n">retval</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">signature</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">signature</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">guess_signature</span><span class="p">(</span><span class="n">retval</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; (guessed)&#39;</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Unable to guess signature for arguments </span><span class="si">%r</span><span class="s1">: &#39;</span>
+                              <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">retval</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+                <span class="k">raise</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Unable to append </span><span class="si">%r</span><span class="s1"> to message with signature </span><span class="si">%s</span><span class="s1">: &#39;</span>
+                      <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">retval</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+        <span class="k">raise</span>
+
+    <span class="n">connection</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">reply</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_method_reply_error</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">exception</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">exception</span><span class="p">,</span> <span class="s1">&#39;_dbus_error_name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">elif</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">exception</span><span class="p">,</span> <span class="s1">&#39;__module__&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;__main__&#39;</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;org.freedesktop.DBus.Python.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">exception</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;org.freedesktop.DBus.Python.</span><span class="si">%s</span><span class="s1">.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">exception</span><span class="o">.</span><span class="vm">__module__</span><span class="p">,</span> <span class="n">exception</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+    <span class="n">et</span><span class="p">,</span> <span class="n">ev</span><span class="p">,</span> <span class="n">etb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exception</span><span class="p">,</span> <span class="n">DBusException</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">exception</span><span class="o">.</span><span class="n">include_traceback</span><span class="p">:</span>
+        <span class="c1"># We don&#39;t actually want the traceback anyway</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="n">exception</span><span class="o">.</span><span class="n">get_dbus_message</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">ev</span> <span class="ow">is</span> <span class="n">exception</span><span class="p">:</span>
+        <span class="c1"># The exception was actually thrown, so we can get a traceback</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="n">et</span><span class="p">,</span> <span class="n">ev</span><span class="p">,</span> <span class="n">etb</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># We don&#39;t have any traceback for it, e.g.</span>
+        <span class="c1">#   async_err_cb(MyException(&#39;Failed to badger the mushroom&#39;))</span>
+        <span class="c1"># see also https://bugs.freedesktop.org/show_bug.cgi?id=12403</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exception_only</span><span class="p">(</span><span class="n">exception</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span>
+            <span class="n">exception</span><span class="p">))</span>
+    <span class="n">reply</span> <span class="o">=</span> <span class="n">ErrorMessage</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span>
+
+    <span class="n">connection</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">reply</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">InterfaceType</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
+        <span class="c1"># these attributes are shared between all instances of the Interface</span>
+        <span class="c1"># object, so this has to be a dictionary that maps class names to</span>
+        <span class="c1"># the per-class introspection/interface data</span>
+        <span class="n">class_table</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s1">&#39;_dbus_class_table&#39;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_dbus_class_table</span> <span class="o">=</span> <span class="n">class_table</span>
+        <span class="n">interface_table</span> <span class="o">=</span> <span class="n">class_table</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># merge all the name -&gt; method tables for all the interfaces</span>
+        <span class="c1"># implemented by our base classes into our own</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bases</span><span class="p">:</span>
+            <span class="n">base_name</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">b</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="s1">&#39;_dbus_class_table&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="k">for</span> <span class="p">(</span><span class="n">interface</span><span class="p">,</span> <span class="n">method_table</span><span class="p">)</span> <span class="ow">in</span> <span class="n">class_table</span><span class="p">[</span><span class="n">base_name</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">our_method_table</span> <span class="o">=</span> <span class="n">interface_table</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">interface</span><span class="p">,</span> <span class="p">{})</span>
+                    <span class="n">our_method_table</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">method_table</span><span class="p">)</span>
+
+        <span class="c1"># add in all the name -&gt; method entries for our own methods/signals</span>
+        <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">dct</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="s1">&#39;_dbus_interface&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="n">method_table</span> <span class="o">=</span> <span class="n">interface_table</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">_dbus_interface</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="n">method_table</span><span class="p">[</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">InterfaceType</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">dct</span><span class="p">)</span>
+
+    <span class="c1"># methods are different to signals, so we have two functions... :)</span>
+    <span class="k">def</span> <span class="nf">_reflect_on_method</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">_dbus_args</span>
+
+        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">_dbus_in_signature</span><span class="p">:</span>
+            <span class="c1"># convert signature into a tuple so length refers to number of</span>
+            <span class="c1"># types, not number of characters. the length is checked by</span>
+            <span class="c1"># the decorator to make sure it matches the length of args.</span>
+            <span class="n">in_sig</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">Signature</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">_dbus_in_signature</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># magic iterator which returns as many v&#39;s as we need</span>
+            <span class="n">in_sig</span> <span class="o">=</span> <span class="n">_VariantSignature</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">_dbus_out_signature</span><span class="p">:</span>
+            <span class="n">out_sig</span> <span class="o">=</span> <span class="n">Signature</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">_dbus_out_signature</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># its tempting to default to Signature(&#39;v&#39;), but</span>
+            <span class="c1"># for methods that return nothing, providing incorrect</span>
+            <span class="c1"># introspection data is worse than providing none at all</span>
+            <span class="n">out_sig</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">reflection_data</span> <span class="o">=</span> <span class="s1">&#39;    &lt;method name=&quot;</span><span class="si">%s</span><span class="s1">&quot;&gt;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">in_sig</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+            <span class="n">reflection_data</span> <span class="o">+=</span> <span class="s1">&#39;      &lt;arg direction=&quot;in&quot;  type=&quot;</span><span class="si">%s</span><span class="s1">&quot; name=&quot;</span><span class="si">%s</span><span class="s1">&quot; /&gt;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">pair</span>
+        <span class="k">for</span> <span class="nb">type</span> <span class="ow">in</span> <span class="n">out_sig</span><span class="p">:</span>
+            <span class="n">reflection_data</span> <span class="o">+=</span> <span class="s1">&#39;      &lt;arg direction=&quot;out&quot; type=&quot;</span><span class="si">%s</span><span class="s1">&quot; /&gt;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">type</span>
+        <span class="n">reflection_data</span> <span class="o">+=</span> <span class="s1">&#39;    &lt;/method&gt;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+        <span class="k">return</span> <span class="n">reflection_data</span>
+
+    <span class="k">def</span> <span class="nf">_reflect_on_signal</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">_dbus_args</span>
+
+        <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">_dbus_signature</span><span class="p">:</span>
+            <span class="c1"># convert signature into a tuple so length refers to number of</span>
+            <span class="c1"># types, not number of characters</span>
+            <span class="n">sig</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">Signature</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">_dbus_signature</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># magic iterator which returns as many v&#39;s as we need</span>
+            <span class="n">sig</span> <span class="o">=</span> <span class="n">_VariantSignature</span><span class="p">()</span>
+
+        <span class="n">reflection_data</span> <span class="o">=</span> <span class="s1">&#39;    &lt;signal name=&quot;</span><span class="si">%s</span><span class="s1">&quot;&gt;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+            <span class="n">reflection_data</span> <span class="o">=</span> <span class="n">reflection_data</span> <span class="o">+</span> <span class="s1">&#39;      &lt;arg type=&quot;</span><span class="si">%s</span><span class="s1">&quot; name=&quot;</span><span class="si">%s</span><span class="s1">&quot; /&gt;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">pair</span>
+        <span class="n">reflection_data</span> <span class="o">=</span> <span class="n">reflection_data</span> <span class="o">+</span> <span class="s1">&#39;    &lt;/signal&gt;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+        <span class="k">return</span> <span class="n">reflection_data</span>
+
+
+<span class="c1"># Define Interface as an instance of the metaclass InterfaceType, in a way</span>
+<span class="c1"># that is compatible across both Python 2 and Python 3.</span>
+<span class="n">Interface</span> <span class="o">=</span> <span class="n">InterfaceType</span><span class="p">(</span><span class="s1">&#39;Interface&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">object</span><span class="p">,),</span> <span class="p">{})</span>
+
+
+<span class="c1">#: A unique object used as the value of Object._object_path and</span>
+<span class="c1">#: Object._connection if it&#39;s actually in more than one place</span>
+<span class="n">_MANY</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">Object</span><span class="p">(</span><span class="n">Interface</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;A base class for exporting your own Objects across the Bus.</span>
+
+<span class="sd">    Just inherit from Object and mark exported methods with the</span>
+<span class="sd">    @\ `dbus.service.method` or @\ `dbus.service.signal` decorator.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        class Example(dbus.service.object):</span>
+<span class="sd">            def __init__(self, object_path):</span>
+<span class="sd">                dbus.service.Object.__init__(self, dbus.SessionBus(), path)</span>
+<span class="sd">                self._last_input = None</span>
+
+<span class="sd">            @dbus.service.method(interface=&#39;com.example.Sample&#39;,</span>
+<span class="sd">                                 in_signature=&#39;v&#39;, out_signature=&#39;s&#39;)</span>
+<span class="sd">            def StringifyVariant(self, var):</span>
+<span class="sd">                self.LastInputChanged(var)      # emits the signal</span>
+<span class="sd">                return str(var)</span>
+
+<span class="sd">            @dbus.service.signal(interface=&#39;com.example.Sample&#39;,</span>
+<span class="sd">                                 signature=&#39;v&#39;)</span>
+<span class="sd">            def LastInputChanged(self, var):</span>
+<span class="sd">                # run just before the signal is actually emitted</span>
+<span class="sd">                # just put &quot;pass&quot; if nothing should happen</span>
+<span class="sd">                self._last_input = var</span>
+
+<span class="sd">            @dbus.service.method(interface=&#39;com.example.Sample&#39;,</span>
+<span class="sd">                                 in_signature=&#39;&#39;, out_signature=&#39;v&#39;)</span>
+<span class="sd">            def GetLastInput(self):</span>
+<span class="sd">                return self._last_input</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">#: If True, this object can be made available at more than one object path.</span>
+    <span class="c1">#: If True but `SUPPORTS_MULTIPLE_CONNECTIONS` is False, the object may</span>
+    <span class="c1">#: handle more than one object path, but they must all be on the same</span>
+    <span class="c1">#: connection.</span>
+    <span class="n">SUPPORTS_MULTIPLE_OBJECT_PATHS</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1">#: If True, this object can be made available on more than one connection.</span>
+    <span class="c1">#: If True but `SUPPORTS_MULTIPLE_OBJECT_PATHS` is False, the object must</span>
+    <span class="c1">#: have the same object path on all its connections.</span>
+    <span class="n">SUPPORTS_MULTIPLE_CONNECTIONS</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">object_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bus_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor. Either conn or bus_name is required; object_path</span>
+<span class="sd">        is also required.</span>
+
+<span class="sd">        :Parameters:</span>
+<span class="sd">            `conn` : dbus.connection.Connection or None</span>
+<span class="sd">                The connection on which to export this object.</span>
+
+<span class="sd">                If None, use the Bus associated with the given ``bus_name``.</span>
+<span class="sd">                If there is no ``bus_name`` either, the object is not</span>
+<span class="sd">                initially available on any Connection.</span>
+
+<span class="sd">                For backwards compatibility, if an instance of</span>
+<span class="sd">                dbus.service.BusName is passed as the first parameter,</span>
+<span class="sd">                this is equivalent to passing its associated Bus as</span>
+<span class="sd">                ``conn``, and passing the BusName itself as ``bus_name``.</span>
+
+<span class="sd">            `object_path` : str or None</span>
+<span class="sd">                A D-Bus object path at which to make this Object available</span>
+<span class="sd">                immediately. If this is not None, a `conn` or `bus_name` must</span>
+<span class="sd">                also be provided.</span>
+
+<span class="sd">            `bus_name` : dbus.service.BusName or None</span>
+<span class="sd">                Represents a well-known name claimed by this process. A</span>
+<span class="sd">                reference to the BusName object will be held by this</span>
+<span class="sd">                Object, preventing the name from being released during this</span>
+<span class="sd">                Object&#39;s lifetime (unless it&#39;s released manually).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">object_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">validate_object_path</span><span class="p">(</span><span class="n">object_path</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">BusName</span><span class="p">):</span>
+            <span class="c1"># someone&#39;s using the old API; don&#39;t gratuitously break them</span>
+            <span class="n">bus_name</span> <span class="o">=</span> <span class="n">conn</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">bus_name</span><span class="o">.</span><span class="n">get_bus</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">conn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">bus_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># someone&#39;s using the old API but naming arguments, probably</span>
+                <span class="n">conn</span> <span class="o">=</span> <span class="n">bus_name</span><span class="o">.</span><span class="n">get_bus</span><span class="p">()</span>
+
+        <span class="c1">#: Either an object path, None or _MANY</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1">#: Either a dbus.connection.Connection, None or _MANY</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1">#: A list of tuples (Connection, object path, False) where the False</span>
+        <span class="c1">#: is for future expansion (to support fallback paths)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_locations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1">#: Lock protecting `_locations`, `_connection` and `_object_path`</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_locations_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+
+        <span class="c1">#: True if this is a fallback object handling a whole subtree.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fallback</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">bus_name</span>
+
+        <span class="k">if</span> <span class="n">conn</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">object_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;If object_path is given, either conn or bus_name &#39;</span>
+                            <span class="s1">&#39;is required&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">conn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">object_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_to_connection</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">object_path</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">__dbus_object_path__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The object-path at which this object is available.</span>
+<span class="sd">        Access raises AttributeError if there is no object path, or more than</span>
+<span class="sd">        one object path.</span>
+
+<span class="sd">        Changed in 0.82.0: AttributeError can be raised.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span> <span class="ow">is</span> <span class="n">_MANY</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;Object </span><span class="si">%r</span><span class="s1"> has more than one object path: &#39;</span>
+                                 <span class="s1">&#39;use Object.locations instead&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;Object </span><span class="si">%r</span><span class="s1"> has no object path yet&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The Connection on which this object is available.</span>
+<span class="sd">        Access raises AttributeError if there is no Connection, or more than</span>
+<span class="sd">        one Connection.</span>
+
+<span class="sd">        Changed in 0.82.0: AttributeError can be raised.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="ow">is</span> <span class="n">_MANY</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;Object </span><span class="si">%r</span><span class="s1"> is on more than one Connection: &#39;</span>
+                                 <span class="s1">&#39;use Object.locations instead&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;Object </span><span class="si">%r</span><span class="s1"> has no Connection yet&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">locations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;An iterable over tuples representing locations at which this</span>
+<span class="sd">        object is available.</span>
+
+<span class="sd">        Each tuple has at least two items, but may have more in future</span>
+<span class="sd">        versions of dbus-python, so do not rely on their exact length.</span>
+<span class="sd">        The first two items are the dbus.connection.Connection and the object</span>
+<span class="sd">        path.</span>
+
+<span class="sd">        :Since: 0.82.0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_locations</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_to_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make this object accessible via the given D-Bus connection and</span>
+<span class="sd">        object path.</span>
+
+<span class="sd">        :Parameters:</span>
+<span class="sd">            `connection` : dbus.connection.Connection</span>
+<span class="sd">                Export the object on this connection. If the class attribute</span>
+<span class="sd">                SUPPORTS_MULTIPLE_CONNECTIONS is False (default), this object</span>
+<span class="sd">                can only be made available on one connection; if the class</span>
+<span class="sd">                attribute is set True by a subclass, the object can be made</span>
+<span class="sd">                available on more than one connection.</span>
+
+<span class="sd">            `path` : dbus.ObjectPath or other str</span>
+<span class="sd">                Place the object at this object path. If the class attribute</span>
+<span class="sd">                SUPPORTS_MULTIPLE_OBJECT_PATHS is False (default), this object</span>
+<span class="sd">                can only be made available at one object path; if the class</span>
+<span class="sd">                attribute is set True by a subclass, the object can be made</span>
+<span class="sd">                available with more than one object path.</span>
+
+<span class="sd">        :Raises ValueError: if the object&#39;s class attributes do not allow the</span>
+<span class="sd">            object to be exported in the desired way.</span>
+<span class="sd">        :Since: 0.82.0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="o">==</span> <span class="n">LOCAL_PATH</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Objects may not be exported on the reserved &#39;</span>
+                             <span class="s1">&#39;path </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">LOCAL_PATH</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_locations_lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">connection</span> <span class="ow">and</span>
+                <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUPPORTS_MULTIPLE_CONNECTIONS</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%r</span><span class="s1"> is already exported on &#39;</span>
+                                 <span class="s1">&#39;connection </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span>
+                <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUPPORTS_MULTIPLE_OBJECT_PATHS</span> <span class="ow">and</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span> <span class="o">!=</span> <span class="n">path</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%r</span><span class="s1"> is already exported at object &#39;</span>
+                                 <span class="s1">&#39;path </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span><span class="p">))</span>
+
+            <span class="n">connection</span><span class="o">.</span><span class="n">_register_object_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_message_cb</span><span class="p">,</span>
+                                             <span class="bp">self</span><span class="o">.</span><span class="n">_unregister_cb</span><span class="p">,</span>
+                                             <span class="bp">self</span><span class="o">.</span><span class="n">_fallback</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">connection</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">connection</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">_MANY</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span> <span class="o">=</span> <span class="n">path</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span> <span class="o">!=</span> <span class="n">path</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span> <span class="o">=</span> <span class="n">_MANY</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_locations</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">connection</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fallback</span><span class="p">))</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_locations_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">remove_from_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make this object inaccessible via the given D-Bus connection</span>
+<span class="sd">        and object path. If no connection or path is specified,</span>
+<span class="sd">        the object ceases to be accessible via any connection or path.</span>
+
+<span class="sd">        :Parameters:</span>
+<span class="sd">            `connection` : dbus.connection.Connection or None</span>
+<span class="sd">                Only remove the object from this Connection. If None,</span>
+<span class="sd">                remove from all Connections on which it&#39;s exported.</span>
+<span class="sd">            `path` : dbus.ObjectPath or other str, or None</span>
+<span class="sd">                Only remove the object from this object path. If None,</span>
+<span class="sd">                remove from all object paths.</span>
+<span class="sd">        :Raises LookupError:</span>
+<span class="sd">            if the object was not exported on the requested connection</span>
+<span class="sd">            or path, or (if both are None) was not exported at all.</span>
+<span class="sd">        :Since: 0.81.1</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_locations_lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%r</span><span class="s1"> is not exported&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">connection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">dropped</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_locations</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="p">((</span><span class="n">connection</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="n">connection</span><span class="p">)</span> <span class="ow">and</span>
+                        <span class="p">(</span><span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">path</span><span class="p">)):</span>
+                        <span class="n">dropped</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dropped</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_locations</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_locations</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">dropped</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%r</span><span class="s1"> is not exported at a location matching &#39;</span>
+                                  <span class="s1">&#39;(</span><span class="si">%r</span><span class="s1">,</span><span class="si">%r</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span>
+
+            <span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">dropped</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_unregister_object_path</span><span class="p">(</span><span class="n">location</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">except</span> <span class="ne">LookupError</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_locations</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_locations</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_locations_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_unregister_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">):</span>
+        <span class="c1"># there&#39;s not really enough information to do anything useful here</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Unregistering exported object </span><span class="si">%r</span><span class="s1"> from some path &#39;</span>
+                     <span class="s1">&#39;on </span><span class="si">%r</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_message_cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">MethodCallMessage</span><span class="p">):</span>
+            <span class="k">return</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># lookup candidate method and parent method</span>
+            <span class="n">method_name</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get_member</span><span class="p">()</span>
+            <span class="n">interface_name</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get_interface</span><span class="p">()</span>
+            <span class="p">(</span><span class="n">candidate_method</span><span class="p">,</span> <span class="n">parent_method</span><span class="p">)</span> <span class="o">=</span> <span class="n">_method_lookup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">interface_name</span><span class="p">)</span>
+
+            <span class="c1"># set up method call parameters</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get_args_list</span><span class="p">(</span><span class="o">**</span><span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_get_args_options</span><span class="p">)</span>
+            <span class="n">keywords</span> <span class="o">=</span> <span class="p">{}</span>
+
+            <span class="k">if</span> <span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_out_signature</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">signature</span> <span class="o">=</span> <span class="n">Signature</span><span class="p">(</span><span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_out_signature</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">signature</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="c1"># set up async callback functions</span>
+            <span class="k">if</span> <span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_async_callbacks</span><span class="p">:</span>
+                <span class="p">(</span><span class="n">return_callback</span><span class="p">,</span> <span class="n">error_callback</span><span class="p">)</span> <span class="o">=</span> <span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_async_callbacks</span>
+                <span class="n">keywords</span><span class="p">[</span><span class="n">return_callback</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">retval</span><span class="p">:</span> <span class="n">_method_reply_return</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="o">*</span><span class="n">retval</span><span class="p">)</span>
+                <span class="n">keywords</span><span class="p">[</span><span class="n">error_callback</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">exception</span><span class="p">:</span> <span class="n">_method_reply_error</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">exception</span><span class="p">)</span>
+
+            <span class="c1"># include the sender etc. if desired</span>
+            <span class="k">if</span> <span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_sender_keyword</span><span class="p">:</span>
+                <span class="n">keywords</span><span class="p">[</span><span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_sender_keyword</span><span class="p">]</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get_sender</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_path_keyword</span><span class="p">:</span>
+                <span class="n">keywords</span><span class="p">[</span><span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_path_keyword</span><span class="p">]</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_rel_path_keyword</span><span class="p">:</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get_path</span><span class="p">()</span>
+                <span class="n">rel_path</span> <span class="o">=</span> <span class="n">path</span>
+                <span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_locations</span><span class="p">:</span>
+                    <span class="c1"># pathological case: if we&#39;re exported in two places,</span>
+                    <span class="c1"># one of which is a subtree of the other, then pick the</span>
+                    <span class="c1"># subtree by preference (i.e. minimize the length of</span>
+                    <span class="c1"># rel_path)</span>
+                    <span class="k">if</span> <span class="n">exp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="n">connection</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">path</span> <span class="o">==</span> <span class="n">exp</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                            <span class="n">rel_path</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span>
+                            <span class="k">break</span>
+                        <span class="k">if</span> <span class="n">exp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+                            <span class="c1"># we already have rel_path == path at the beginning</span>
+                            <span class="k">continue</span>
+                        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">):</span>
+                            <span class="c1"># yes we&#39;re in this exported subtree</span>
+                            <span class="n">suffix</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">exp</span><span class="p">[</span><span class="mi">1</span><span class="p">]):]</span>
+                            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">suffix</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">rel_path</span><span class="p">):</span>
+                                <span class="n">rel_path</span> <span class="o">=</span> <span class="n">suffix</span>
+                <span class="n">rel_path</span> <span class="o">=</span> <span class="n">ObjectPath</span><span class="p">(</span><span class="n">rel_path</span><span class="p">)</span>
+                <span class="n">keywords</span><span class="p">[</span><span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_rel_path_keyword</span><span class="p">]</span> <span class="o">=</span> <span class="n">rel_path</span>
+
+            <span class="k">if</span> <span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_destination_keyword</span><span class="p">:</span>
+                <span class="n">keywords</span><span class="p">[</span><span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_destination_keyword</span><span class="p">]</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get_destination</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_message_keyword</span><span class="p">:</span>
+                <span class="n">keywords</span><span class="p">[</span><span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_message_keyword</span><span class="p">]</span> <span class="o">=</span> <span class="n">message</span>
+            <span class="k">if</span> <span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_connection_keyword</span><span class="p">:</span>
+                <span class="n">keywords</span><span class="p">[</span><span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_connection_keyword</span><span class="p">]</span> <span class="o">=</span> <span class="n">connection</span>
+
+            <span class="c1"># call method</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="n">candidate_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">keywords</span><span class="p">)</span>
+
+            <span class="c1"># we&#39;re done - the method has got callback functions to reply with</span>
+            <span class="k">if</span> <span class="n">parent_method</span><span class="o">.</span><span class="n">_dbus_async_callbacks</span><span class="p">:</span>
+                <span class="k">return</span>
+
+            <span class="c1"># otherwise we send the return values in a reply. if we have a</span>
+            <span class="c1"># signature, use it to turn the return value into a tuple as</span>
+            <span class="c1"># appropriate</span>
+            <span class="k">if</span> <span class="n">signature</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">signature_tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">signature</span><span class="p">)</span>
+                <span class="c1"># if we have zero or one return values we want make a tuple</span>
+                <span class="c1"># for the _method_reply_return function, otherwise we need</span>
+                <span class="c1"># to check we&#39;re passing it a sequence</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">signature_tuple</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">retval</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">retval</span> <span class="o">=</span> <span class="p">()</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> has an empty output signature but did not return None&#39;</span> <span class="o">%</span>
+                            <span class="n">method_name</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">signature_tuple</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">retval</span> <span class="o">=</span> <span class="p">(</span><span class="n">retval</span><span class="p">,)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">retval</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">):</span>
+                        <span class="c1"># multi-value signature, multi-value return... proceed</span>
+                        <span class="c1"># unchanged</span>
+                        <span class="k">pass</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> has multiple output values in signature </span><span class="si">%s</span><span class="s1"> but did not return a sequence&#39;</span> <span class="o">%</span>
+                            <span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">signature</span><span class="p">))</span>
+
+            <span class="c1"># no signature, so just turn the return into a tuple and send it as normal</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">retval</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">retval</span> <span class="o">=</span> <span class="p">()</span>
+                <span class="k">elif</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">retval</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
+                      <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">retval</span><span class="p">,</span> <span class="n">Struct</span><span class="p">)):</span>
+                <span class="c1"># If the return is a tuple that is not a Struct, we use it</span>
+                <span class="c1"># as-is on the assumption that there are multiple return</span>
+                <span class="c1"># values - this is the usual Python idiom. (fd.o #10174)</span>
+                    <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">retval</span> <span class="o">=</span> <span class="p">(</span><span class="n">retval</span><span class="p">,)</span>
+
+            <span class="n">_method_reply_return</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="o">*</span><span class="n">retval</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+            <span class="c1"># send error reply</span>
+            <span class="n">_method_reply_error</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">exception</span><span class="p">)</span>
+
+    <span class="nd">@method</span><span class="p">(</span><span class="n">INTROSPECTABLE_IFACE</span><span class="p">,</span> <span class="n">in_signature</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">out_signature</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
+            <span class="n">path_keyword</span><span class="o">=</span><span class="s1">&#39;object_path&#39;</span><span class="p">,</span> <span class="n">connection_keyword</span><span class="o">=</span><span class="s1">&#39;connection&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">Introspect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_path</span><span class="p">,</span> <span class="n">connection</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a string of XML encoding this object&#39;s supported interfaces,</span>
+<span class="sd">        methods and signals.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">reflection_data</span> <span class="o">=</span> <span class="n">_dbus_bindings</span><span class="o">.</span><span class="n">DBUS_INTROSPECT_1_0_XML_DOCTYPE_DECL_NODE</span>
+        <span class="n">reflection_data</span> <span class="o">+=</span> <span class="s1">&#39;&lt;node name=&quot;</span><span class="si">%s</span><span class="s1">&quot;&gt;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">object_path</span>
+
+        <span class="n">interfaces</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dbus_class_table</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">funcs</span><span class="p">)</span> <span class="ow">in</span> <span class="n">interfaces</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">reflection_data</span> <span class="o">+=</span> <span class="s1">&#39;  &lt;interface name=&quot;</span><span class="si">%s</span><span class="s1">&quot;&gt;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">funcs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="s1">&#39;_dbus_is_method&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+                    <span class="n">reflection_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_reflect_on_method</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="s1">&#39;_dbus_is_signal&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+                    <span class="n">reflection_data</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_reflect_on_signal</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+
+            <span class="n">reflection_data</span> <span class="o">+=</span> <span class="s1">&#39;  &lt;/interface&gt;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">connection</span><span class="o">.</span><span class="n">list_exported_child_objects</span><span class="p">(</span><span class="n">object_path</span><span class="p">):</span>
+            <span class="n">reflection_data</span> <span class="o">+=</span> <span class="s1">&#39;  &lt;node name=&quot;</span><span class="si">%s</span><span class="s1">&quot;/&gt;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span>
+
+        <span class="n">reflection_data</span> <span class="o">+=</span> <span class="s1">&#39;&lt;/node&gt;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+        <span class="k">return</span> <span class="n">reflection_data</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">where</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_MANY</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">where</span> <span class="o">=</span> <span class="s1">&#39; at </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_object_path</span>
+        <span class="k">return</span> <span class="s1">&#39;&lt;</span><span class="si">%s</span><span class="s1">.</span><span class="si">%s%s</span><span class="s1"> at </span><span class="si">%#x</span><span class="s1">&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span><span class="p">,</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">where</span><span class="p">,</span>
+                                   <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+    <span class="fm">__str__</span> <span class="o">=</span> <span class="fm">__repr__</span>
+
+<span class="k">class</span> <span class="nc">FallbackObject</span><span class="p">(</span><span class="n">Object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;An object that implements an entire subtree of the object-path</span>
+<span class="sd">    tree.</span>
+
+<span class="sd">    :Since: 0.82.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">SUPPORTS_MULTIPLE_OBJECT_PATHS</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">object_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor.</span>
+
+<span class="sd">        Note that the superclass&#39; ``bus_name`` __init__ argument is not</span>
+<span class="sd">        supported here.</span>
+
+<span class="sd">        :Parameters:</span>
+<span class="sd">            `conn` : dbus.connection.Connection or None</span>
+<span class="sd">                The connection on which to export this object. If this is not</span>
+<span class="sd">                None, an `object_path` must also be provided.</span>
+
+<span class="sd">                If None, the object is not initially available on any</span>
+<span class="sd">                Connection.</span>
+
+<span class="sd">            `object_path` : str or None</span>
+<span class="sd">                A D-Bus object path at which to make this Object available</span>
+<span class="sd">                immediately. If this is not None, a `conn` must also be</span>
+<span class="sd">                provided.</span>
+
+<span class="sd">                This object will implements all object-paths in the subtree</span>
+<span class="sd">                starting at this object-path, except where a more specific</span>
+<span class="sd">                object has been added.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FallbackObject</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fallback</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="n">conn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">object_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;If object_path is given, conn is required&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">object_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;If conn is given, object_path is required&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_to_connection</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">object_path</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pol Canelles.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1311 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>twisted.web.static &mdash; Cohen3 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cohen3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backends.html">Backends (plugins)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/coherence.html">Coherence (package)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor_code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cohen3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>twisted.web.static</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for twisted.web.static</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- test-case-name: twisted.web.test.test_static -*-</span>
+<span class="c1"># Copyright (c) Twisted Matrix Laboratories.</span>
+<span class="c1"># See LICENSE for details.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Static resources for L{twisted.web}.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">absolute_import</span>
+
+<span class="kn">import</span> <span class="nn">errno</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">mimetypes</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">zope.interface</span> <span class="k">import</span> <span class="n">implementer</span>
+
+<span class="kn">from</span> <span class="nn">twisted.web</span> <span class="k">import</span> <span class="n">server</span>
+<span class="kn">from</span> <span class="nn">twisted.web</span> <span class="k">import</span> <span class="n">resource</span>
+<span class="kn">from</span> <span class="nn">twisted.web</span> <span class="k">import</span> <span class="n">http</span>
+<span class="kn">from</span> <span class="nn">twisted.web.util</span> <span class="k">import</span> <span class="n">redirectTo</span>
+
+<span class="kn">from</span> <span class="nn">twisted.python.compat</span> <span class="k">import</span> <span class="p">(</span><span class="n">_PY3</span><span class="p">,</span> <span class="n">intToBytes</span><span class="p">,</span> <span class="n">nativeString</span><span class="p">,</span>
+                                   <span class="n">networkString</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">twisted.python.compat</span> <span class="k">import</span> <span class="n">escape</span>
+
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="k">import</span> <span class="n">components</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="k">import</span> <span class="n">abstract</span><span class="p">,</span> <span class="n">interfaces</span>
+<span class="kn">from</span> <span class="nn">twisted.python.util</span> <span class="k">import</span> <span class="n">InsensitiveDict</span>
+<span class="kn">from</span> <span class="nn">twisted.python.runtime</span> <span class="k">import</span> <span class="n">platformType</span>
+<span class="kn">from</span> <span class="nn">twisted.python.url</span> <span class="k">import</span> <span class="n">URL</span>
+<span class="kn">from</span> <span class="nn">incremental</span> <span class="k">import</span> <span class="n">Version</span>
+<span class="kn">from</span> <span class="nn">twisted.python.deprecate</span> <span class="k">import</span> <span class="n">deprecated</span>
+
+<span class="k">if</span> <span class="n">_PY3</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">quote</span><span class="p">,</span> <span class="n">unquote</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib</span> <span class="k">import</span> <span class="n">quote</span><span class="p">,</span> <span class="n">unquote</span>
+
+<span class="n">dangerousPathError</span> <span class="o">=</span> <span class="n">resource</span><span class="o">.</span><span class="n">NoResource</span><span class="p">(</span><span class="s2">&quot;Invalid request URL.&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">isDangerous</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">path</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;..&#39;</span> <span class="ow">or</span> <span class="sa">b</span><span class="s1">&#39;/&#39;</span> <span class="ow">in</span> <span class="n">path</span> <span class="ow">or</span> <span class="n">networkString</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span> <span class="ow">in</span> <span class="n">path</span>
+
+
+<span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a static, in-memory resource.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param data: The bytes that make up this data resource.</span>
+<span class="sd">        @type data: L{bytes}</span>
+
+<span class="sd">        @param type: A native string giving the Internet media type for this</span>
+<span class="sd">            content.</span>
+<span class="sd">        @type type: L{str}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">resource</span><span class="o">.</span><span class="n">Resource</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
+
+
+    <span class="k">def</span> <span class="nf">render_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;content-type&quot;</span><span class="p">,</span> <span class="n">networkString</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">))</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;content-length&quot;</span><span class="p">,</span> <span class="n">intToBytes</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;HEAD&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">render_HEAD</span> <span class="o">=</span> <span class="n">render_GET</span>
+
+
+
+<span class="nd">@deprecated</span><span class="p">(</span><span class="n">Version</span><span class="p">(</span><span class="s2">&quot;Twisted&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">addSlash</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add a trailing slash to C{request}&#39;s URI. Deprecated, do not use.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_addSlash</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+
+
+<span class="k">def</span> <span class="nf">_addSlash</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add a trailing slash to C{request}&#39;s URI.</span>
+
+<span class="sd">    @param request: The incoming request to add the ending slash to.</span>
+<span class="sd">    @type request: An object conforming to L{twisted.web.iweb.IRequest}</span>
+
+<span class="sd">    @return: A URI with a trailing slash, with query and fragment preserved.</span>
+<span class="sd">    @rtype: L{bytes}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">URL</span><span class="o">.</span><span class="n">fromText</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">uri</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">))</span>
+    <span class="c1"># Add an empty path segment at the end, so that it adds a trailing slash</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="sa">u</span><span class="s2">&quot;&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">url</span><span class="o">.</span><span class="n">asText</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+
+
+
+<span class="k">class</span> <span class="nc">Redirect</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">resource</span><span class="o">.</span><span class="n">Resource</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">_addSlash</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">redirectTo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Registry</span><span class="p">(</span><span class="n">components</span><span class="o">.</span><span class="n">Componentized</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    I am a Componentized object that will be made available to internal Twisted</span>
+<span class="sd">    file-based dynamic web content such as .rpy and .epy scripts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">components</span><span class="o">.</span><span class="n">Componentized</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pathCache</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">cachePath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">rsrc</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pathCache</span><span class="p">[</span><span class="n">path</span><span class="p">]</span> <span class="o">=</span> <span class="n">rsrc</span>
+
+    <span class="k">def</span> <span class="nf">getCachedPath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pathCache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">loadMimeTypes</span><span class="p">(</span><span class="n">mimetype_locations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="n">mimetypes</span><span class="o">.</span><span class="n">init</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Produces a mapping of extensions (with leading dot) to MIME types.</span>
+
+<span class="sd">    It does this by calling the C{init} function of the L{mimetypes} module.</span>
+<span class="sd">    This will have the side effect of modifying the global MIME types cache</span>
+<span class="sd">    in that module.</span>
+
+<span class="sd">    Multiple file locations containing mime-types can be passed as a list.</span>
+<span class="sd">    The files will be sourced in that order, overriding mime-types from the</span>
+<span class="sd">    files sourced beforehand, but only if a new entry explicitly overrides</span>
+<span class="sd">    the current entry.</span>
+
+<span class="sd">    @param mimetype_locations: Optional. List of paths to C{mime.types} style</span>
+<span class="sd">        files that should be used.</span>
+<span class="sd">    @type mimetype_locations: iterable of paths or L{None}</span>
+<span class="sd">    @param init: The init function to call. Defaults to the global C{init}</span>
+<span class="sd">        function of the C{mimetypes} module. For internal use (testing) only.</span>
+<span class="sd">    @type init: callable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">init</span><span class="p">(</span><span class="n">mimetype_locations</span><span class="p">)</span>
+    <span class="n">mimetypes</span><span class="o">.</span><span class="n">types_map</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;.conf&#39;</span><span class="p">:</span>  <span class="s1">&#39;text/plain&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;.diff&#39;</span><span class="p">:</span>  <span class="s1">&#39;text/plain&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;.flac&#39;</span><span class="p">:</span>  <span class="s1">&#39;audio/x-flac&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;.java&#39;</span><span class="p">:</span>  <span class="s1">&#39;text/plain&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;.oz&#39;</span><span class="p">:</span>    <span class="s1">&#39;text/x-oz&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;.swf&#39;</span><span class="p">:</span>   <span class="s1">&#39;application/x-shockwave-flash&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;.wml&#39;</span><span class="p">:</span>   <span class="s1">&#39;text/vnd.wap.wml&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;.xul&#39;</span><span class="p">:</span>   <span class="s1">&#39;application/vnd.mozilla.xul+xml&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;.patch&#39;</span><span class="p">:</span> <span class="s1">&#39;text/plain&#39;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">mimetypes</span><span class="o">.</span><span class="n">types_map</span>
+
+
+<span class="k">def</span> <span class="nf">getTypeAndEncoding</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">encodings</span><span class="p">,</span> <span class="n">defaultType</span><span class="p">):</span>
+    <span class="n">p</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">filepath</span><span class="o">.</span><span class="n">FilePath</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">splitext</span><span class="p">()</span>
+    <span class="n">ext</span> <span class="o">=</span> <span class="n">filepath</span><span class="o">.</span><span class="n">_coerceToFilesystemEncoding</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ext</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">ext</span> <span class="ow">in</span> <span class="n">encodings</span><span class="p">:</span>
+        <span class="n">enc</span> <span class="o">=</span> <span class="n">encodings</span><span class="p">[</span><span class="n">ext</span><span class="p">]</span>
+        <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">p</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">enc</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">types</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ext</span><span class="p">,</span> <span class="n">defaultType</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">type</span><span class="p">,</span> <span class="n">enc</span>
+
+
+
+<span class="k">class</span> <span class="nc">File</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">Resource</span><span class="p">,</span> <span class="n">filepath</span><span class="o">.</span><span class="n">FilePath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    File is a resource that represents a plain non-interpreted file</span>
+<span class="sd">    (although it can look for an extension like .rpy or .cgi and hand the</span>
+<span class="sd">    file to a processor for interpretation if you wish). Its constructor</span>
+<span class="sd">    takes a file path.</span>
+
+<span class="sd">    Alternatively, you can give a directory path to the constructor. In this</span>
+<span class="sd">    case the resource will represent that directory, and its children will</span>
+<span class="sd">    be files underneath that directory. This provides access to an entire</span>
+<span class="sd">    filesystem tree with a single Resource.</span>
+
+<span class="sd">    If you map the URL &#39;http://server/FILE&#39; to a resource created as</span>
+<span class="sd">    File(&#39;/tmp&#39;), then http://server/FILE/ will return an HTML-formatted</span>
+<span class="sd">    listing of the /tmp/ directory, and http://server/FILE/foo/bar.html will</span>
+<span class="sd">    return the contents of /tmp/foo/bar.html .</span>
+
+<span class="sd">    @cvar childNotFound: L{Resource} used to render 404 Not Found error pages.</span>
+<span class="sd">    @cvar forbidden: L{Resource} used to render 403 Forbidden error pages.</span>
+
+<span class="sd">    @ivar contentTypes: a mapping of extensions to MIME types used to set the</span>
+<span class="sd">        default value for the Content-Type header.</span>
+<span class="sd">        It is initialized with the values returned by L{loadMimeTypes}.</span>
+<span class="sd">    @type contentTypes: C{dict}</span>
+
+<span class="sd">    @ivar contentEncodings: a mapping of extensions to encoding types used to</span>
+<span class="sd">        set default value for the Content-Encoding header.</span>
+<span class="sd">    @type contentEncodings: C{dict}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">contentTypes</span> <span class="o">=</span> <span class="n">loadMimeTypes</span><span class="p">()</span>
+
+    <span class="n">contentEncodings</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;.gz&quot;</span> <span class="p">:</span> <span class="s2">&quot;gzip&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.bz2&quot;</span><span class="p">:</span> <span class="s2">&quot;bzip2&quot;</span>
+        <span class="p">}</span>
+
+    <span class="n">processors</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">indexNames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="s2">&quot;index.html&quot;</span><span class="p">,</span> <span class="s2">&quot;index.htm&quot;</span><span class="p">,</span> <span class="s2">&quot;index.rpy&quot;</span><span class="p">]</span>
+
+    <span class="nb">type</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">defaultType</span><span class="o">=</span><span class="s2">&quot;text/html&quot;</span><span class="p">,</span> <span class="n">ignoredExts</span><span class="o">=</span><span class="p">(),</span> <span class="n">registry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allowExt</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a file with the given path.</span>
+
+<span class="sd">        @param path: The filename of the file from which this L{File} will</span>
+<span class="sd">            serve data.</span>
+<span class="sd">        @type path: C{str}</span>
+
+<span class="sd">        @param defaultType: A I{major/minor}-style MIME type specifier</span>
+<span class="sd">            indicating the I{Content-Type} with which this L{File}&#39;s data</span>
+<span class="sd">            will be served if a MIME type cannot be determined based on</span>
+<span class="sd">            C{path}&#39;s extension.</span>
+<span class="sd">        @type defaultType: C{str}</span>
+
+<span class="sd">        @param ignoredExts: A sequence giving the extensions of paths in the</span>
+<span class="sd">            filesystem which will be ignored for the purposes of child</span>
+<span class="sd">            lookup.  For example, if C{ignoredExts} is C{(&quot;.bar&quot;,)} and</span>
+<span class="sd">            C{path} is a directory containing a file named C{&quot;foo.bar&quot;}, a</span>
+<span class="sd">            request for the C{&quot;foo&quot;} child of this resource will succeed</span>
+<span class="sd">            with a L{File} pointing to C{&quot;foo.bar&quot;}.</span>
+
+<span class="sd">        @param registry: The registry object being used to handle this</span>
+<span class="sd">            request.  If L{None}, one will be created.</span>
+<span class="sd">        @type registry: L{Registry}</span>
+
+<span class="sd">        @param allowExt: Ignored parameter, only present for backwards</span>
+<span class="sd">            compatibility.  Do not pass a value for this parameter.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">resource</span><span class="o">.</span><span class="n">Resource</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">filepath</span><span class="o">.</span><span class="n">FilePath</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">defaultType</span> <span class="o">=</span> <span class="n">defaultType</span>
+        <span class="k">if</span> <span class="n">ignoredExts</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">allowExt</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;ignoredExts should receive a list, not a boolean&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ignoredExts</span> <span class="ow">or</span> <span class="n">allowExt</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ignoredExts</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ignoredExts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ignoredExts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ignoredExts</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">registry</span> <span class="o">=</span> <span class="n">registry</span> <span class="ow">or</span> <span class="n">Registry</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">ignoreExt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ext</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Ignore the given extension.</span>
+
+<span class="sd">        Serve file.ext if file is requested</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ignoredExts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span>
+
+    <span class="n">childNotFound</span> <span class="o">=</span> <span class="n">resource</span><span class="o">.</span><span class="n">NoResource</span><span class="p">(</span><span class="s2">&quot;File not found.&quot;</span><span class="p">)</span>
+    <span class="n">forbidden</span> <span class="o">=</span> <span class="n">resource</span><span class="o">.</span><span class="n">ForbiddenResource</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">directoryListing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a resource that generates an HTML listing of the</span>
+<span class="sd">        directory this path represents.</span>
+
+<span class="sd">        @return: A resource that renders the directory to HTML.</span>
+<span class="sd">        @rtype: L{DirectoryLister}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">_PY3</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">listNames</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># DirectoryLister works in terms of native strings, so on</span>
+            <span class="c1"># Python 2, ensure we have a bytes paths for this</span>
+            <span class="c1"># directory and its contents.  We use the asBytesMode</span>
+            <span class="c1"># method inherited from FilePath to ensure consistent</span>
+            <span class="c1"># encoding of the actual path.  This returns a FilePath</span>
+            <span class="c1"># instance even when called on subclasses, however, so we</span>
+            <span class="c1"># have to create a new File instance.</span>
+            <span class="n">nativeStringPath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">createSimilarFile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">asBytesMode</span><span class="p">()</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">nativeStringPath</span><span class="o">.</span><span class="n">path</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="n">nativeStringPath</span><span class="o">.</span><span class="n">listNames</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">DirectoryLister</span><span class="p">(</span><span class="n">path</span><span class="p">,</span>
+                               <span class="n">names</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">contentTypes</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">contentEncodings</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">defaultType</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">getChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If this L{File}&quot;s path refers to a directory, return a L{File}</span>
+<span class="sd">        referring to the file named C{path} in that directory.</span>
+
+<span class="sd">        If C{path} is the empty string, return a L{DirectoryLister}</span>
+<span class="sd">        instead.</span>
+
+<span class="sd">        @param path: The current path segment.</span>
+<span class="sd">        @type path: L{bytes}</span>
+
+<span class="sd">        @param request: The incoming request.</span>
+<span class="sd">        @type request: An that provides L{twisted.web.iweb.IRequest}.</span>
+
+<span class="sd">        @return: A resource representing the requested file or</span>
+<span class="sd">            directory, or L{NoResource} if the path cannot be</span>
+<span class="sd">            accessed.</span>
+<span class="sd">        @rtype: An object that provides L{resource.IResource}.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Request calls urllib.unquote on each path segment,</span>
+                <span class="c1"># leaving us with raw bytes.</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="s2">&quot;Could not decode path segment as utf-8: </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">path</span><span class="p">,))</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">childNotFound</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">restat</span><span class="p">(</span><span class="n">reraise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">isdir</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">childNotFound</span>
+
+        <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">fpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">filepath</span><span class="o">.</span><span class="n">InsecurePath</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">childNotFound</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">childSearchPreauth</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">indexNames</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fpath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">directoryListing</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">fpath</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">fpath</span> <span class="o">=</span> <span class="n">fpath</span><span class="o">.</span><span class="n">siblingExtensionSearch</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ignoredExts</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fpath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">childNotFound</span>
+
+        <span class="n">extension</span> <span class="o">=</span> <span class="n">fpath</span><span class="o">.</span><span class="n">splitext</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">platformType</span> <span class="o">==</span> <span class="s2">&quot;win32&quot;</span><span class="p">:</span>
+            <span class="c1"># don&#39;t want .RPY to be different than .rpy, since that would allow</span>
+            <span class="c1"># source disclosure.</span>
+            <span class="n">processor</span> <span class="o">=</span> <span class="n">InsensitiveDict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processors</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">extension</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">processor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">processors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">extension</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">processor</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">resource</span><span class="o">.</span><span class="n">IResource</span><span class="p">(</span><span class="n">processor</span><span class="p">(</span><span class="n">fpath</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">registry</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">createSimilarFile</span><span class="p">(</span><span class="n">fpath</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+
+    <span class="c1"># methods to allow subclasses to e.g. decrypt files on the fly:</span>
+    <span class="k">def</span> <span class="nf">openForReading</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Open a file and return it.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">getFileSize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return file size.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getsize</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">_parseRangeHeader</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">range</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse the value of a Range header into (start, stop) pairs.</span>
+
+<span class="sd">        In a given pair, either of start or stop can be None, signifying that</span>
+<span class="sd">        no value was provided, but not both.</span>
+
+<span class="sd">        @return: A list C{[(start, stop)]} of pairs of length at least one.</span>
+
+<span class="sd">        @raise ValueError: if the header is syntactically invalid or if the</span>
+<span class="sd">            Bytes-Unit is anything other than &quot;bytes&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">kind</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="nb">range</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing &#39;=&#39; separator&quot;</span><span class="p">)</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="n">kind</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="o">!=</span> <span class="sa">b</span><span class="s1">&#39;bytes&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unsupported Bytes-Unit: </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">kind</span><span class="p">,))</span>
+        <span class="n">unparsedRanges</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">strip</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;,&#39;</span><span class="p">))))</span>
+        <span class="n">parsedRanges</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">byteRange</span> <span class="ow">in</span> <span class="n">unparsedRanges</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">byteRange</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid Byte-Range: </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">byteRange</span><span class="p">,))</span>
+            <span class="k">if</span> <span class="n">start</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid Byte-Range: </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">byteRange</span><span class="p">,))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">end</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid Byte-Range: </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">byteRange</span><span class="p">,))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">end</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span>
+                    <span class="c1"># Start must be less than or equal to end or it is invalid.</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid Byte-Range: </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">byteRange</span><span class="p">,))</span>
+            <span class="k">elif</span> <span class="n">end</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># One or both of start and end must be specified.  Omitting</span>
+                <span class="c1"># both is invalid.</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid Byte-Range: </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">byteRange</span><span class="p">,))</span>
+            <span class="n">parsedRanges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">parsedRanges</span>
+
+
+    <span class="k">def</span> <span class="nf">_rangeToOffsetAndSize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert a start and end from a Range header to an offset and size.</span>
+
+<span class="sd">        This method checks that the resulting range overlaps with the resource</span>
+<span class="sd">        being served (and so has the value of C{getFileSize()} as an indirect</span>
+<span class="sd">        input).</span>
+
+<span class="sd">        Either but not both of start or end can be L{None}:</span>
+
+<span class="sd">         - Omitted start means that the end value is actually a start value</span>
+<span class="sd">           relative to the end of the resource.</span>
+
+<span class="sd">         - Omitted end means the end of the resource should be the end of</span>
+<span class="sd">           the range.</span>
+
+<span class="sd">        End is interpreted as inclusive, as per RFC 2616.</span>
+
+<span class="sd">        If this range doesn&#39;t overlap with any of this resource, C{(0, 0)} is</span>
+<span class="sd">        returned, which is not otherwise a value return value.</span>
+
+<span class="sd">        @param start: The start value from the header, or L{None} if one was</span>
+<span class="sd">            not present.</span>
+<span class="sd">        @param end: The end value from the header, or L{None} if one was not</span>
+<span class="sd">            present.</span>
+<span class="sd">        @return: C{(offset, size)} where offset is how far into this resource</span>
+<span class="sd">            this resource the range begins and size is how long the range is,</span>
+<span class="sd">            or C{(0, 0)} if the range does not overlap this resource.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFileSize</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">size</span> <span class="o">-</span> <span class="n">end</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="k">elif</span> <span class="n">end</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="k">elif</span> <span class="n">end</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+            <span class="n">end</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">end</span> <span class="o">&gt;</span> <span class="n">size</span><span class="p">:</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="p">:</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">end</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">start</span><span class="p">,</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_contentRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a string suitable for the value of a Content-Range header for a</span>
+<span class="sd">        range with the given offset and size.</span>
+
+<span class="sd">        The offset and size are not sanity checked in any way.</span>
+
+<span class="sd">        @param offset: How far into this resource the range begins.</span>
+<span class="sd">        @param size: How long the range is.</span>
+<span class="sd">        @return: The value as appropriate for the value of a Content-Range</span>
+<span class="sd">            header.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">networkString</span><span class="p">(</span><span class="s1">&#39;bytes </span><span class="si">%d</span><span class="s1">-</span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">offset</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFileSize</span><span class="p">()))</span>
+
+
+    <span class="k">def</span> <span class="nf">_doSingleRangeRequest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">startAndEnd</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set up the response for Range headers that specify a single range.</span>
+
+<span class="sd">        This method checks if the request is satisfiable and sets the response</span>
+<span class="sd">        code and Content-Range header appropriately.  The return value</span>
+<span class="sd">        indicates which part of the resource to return.</span>
+
+<span class="sd">        @param request: The Request object.</span>
+<span class="sd">        @param startAndEnd: A 2-tuple of start of the byte range as specified by</span>
+<span class="sd">            the header and the end of the byte range as specified by the header.</span>
+<span class="sd">            At most one of the start and end may be L{None}.</span>
+<span class="sd">        @return: A 2-tuple of the offset and size of the range to return.</span>
+<span class="sd">            offset == size == 0 indicates that the request is not satisfiable.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">startAndEnd</span>
+        <span class="n">offset</span><span class="p">,</span> <span class="n">size</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rangeToOffsetAndSize</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">offset</span> <span class="o">==</span> <span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># This range doesn&#39;t overlap with any of this resource, so the</span>
+            <span class="c1"># request is unsatisfiable.</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">setResponseCode</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">REQUESTED_RANGE_NOT_SATISFIABLE</span><span class="p">)</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span>
+                <span class="sa">b</span><span class="s1">&#39;content-range&#39;</span><span class="p">,</span> <span class="n">networkString</span><span class="p">(</span><span class="s1">&#39;bytes */</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getFileSize</span><span class="p">(),)))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">setResponseCode</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">PARTIAL_CONTENT</span><span class="p">)</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span>
+                <span class="sa">b</span><span class="s1">&#39;content-range&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contentRange</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">offset</span><span class="p">,</span> <span class="n">size</span>
+
+
+    <span class="k">def</span> <span class="nf">_doMultipleRangeRequest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">byteRanges</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set up the response for Range headers that specify a single range.</span>
+
+<span class="sd">        This method checks if the request is satisfiable and sets the response</span>
+<span class="sd">        code and Content-Type and Content-Length headers appropriately.  The</span>
+<span class="sd">        return value, which is a little complicated, indicates which parts of</span>
+<span class="sd">        the resource to return and the boundaries that should separate the</span>
+<span class="sd">        parts.</span>
+
+<span class="sd">        In detail, the return value is a tuple rangeInfo C{rangeInfo} is a</span>
+<span class="sd">        list of 3-tuples C{(partSeparator, partOffset, partSize)}.  The</span>
+<span class="sd">        response to this request should be, for each element of C{rangeInfo},</span>
+<span class="sd">        C{partSeparator} followed by C{partSize} bytes of the resource</span>
+<span class="sd">        starting at C{partOffset}.  Each C{partSeparator} includes the</span>
+<span class="sd">        MIME-style boundary and the part-specific Content-type and</span>
+<span class="sd">        Content-range headers.  It is convenient to return the separator as a</span>
+<span class="sd">        concrete string from this method, because this method needs to compute</span>
+<span class="sd">        the number of bytes that will make up the response to be able to set</span>
+<span class="sd">        the Content-Length header of the response accurately.</span>
+
+<span class="sd">        @param request: The Request object.</span>
+<span class="sd">        @param byteRanges: A list of C{(start, end)} values as specified by</span>
+<span class="sd">            the header.  For each range, at most one of C{start} and C{end}</span>
+<span class="sd">            may be L{None}.</span>
+<span class="sd">        @return: See above.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">matchingRangeFound</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">rangeInfo</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">contentLength</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">boundary</span> <span class="o">=</span> <span class="n">networkString</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%x%x</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">*</span><span class="mi">1000000</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
+            <span class="n">contentType</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">contentType</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;bytes&#39;</span> <span class="c1"># It&#39;s what Apache does...</span>
+        <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="n">byteRanges</span><span class="p">:</span>
+            <span class="n">partOffset</span><span class="p">,</span> <span class="n">partSize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rangeToOffsetAndSize</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">partOffset</span> <span class="o">==</span> <span class="n">partSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">contentLength</span> <span class="o">+=</span> <span class="n">partSize</span>
+            <span class="n">matchingRangeFound</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">partContentRange</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contentRange</span><span class="p">(</span><span class="n">partOffset</span><span class="p">,</span> <span class="n">partSize</span><span class="p">)</span>
+            <span class="n">partSeparator</span> <span class="o">=</span> <span class="n">networkString</span><span class="p">((</span>
+                <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;--</span><span class="si">%s</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;Content-type: </span><span class="si">%s</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;Content-range: </span><span class="si">%s</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">nativeString</span><span class="p">(</span><span class="n">boundary</span><span class="p">),</span> <span class="n">nativeString</span><span class="p">(</span><span class="n">contentType</span><span class="p">),</span> <span class="n">nativeString</span><span class="p">(</span><span class="n">partContentRange</span><span class="p">)))</span>
+            <span class="n">contentLength</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">partSeparator</span><span class="p">)</span>
+            <span class="n">rangeInfo</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">partSeparator</span><span class="p">,</span> <span class="n">partOffset</span><span class="p">,</span> <span class="n">partSize</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">matchingRangeFound</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">setResponseCode</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">REQUESTED_RANGE_NOT_SATISFIABLE</span><span class="p">)</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span>
+                <span class="sa">b</span><span class="s1">&#39;content-length&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span>
+                <span class="sa">b</span><span class="s1">&#39;content-range&#39;</span><span class="p">,</span> <span class="n">networkString</span><span class="p">(</span><span class="s1">&#39;bytes */</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getFileSize</span><span class="p">(),)))</span>
+            <span class="k">return</span> <span class="p">[],</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+        <span class="n">finalBoundary</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">--&quot;</span> <span class="o">+</span> <span class="n">boundary</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&quot;--</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+        <span class="n">rangeInfo</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">finalBoundary</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">setResponseCode</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">PARTIAL_CONTENT</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span>
+            <span class="sa">b</span><span class="s1">&#39;content-type&#39;</span><span class="p">,</span> <span class="n">networkString</span><span class="p">(</span><span class="s1">&#39;multipart/byteranges; boundary=&quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">nativeString</span><span class="p">(</span><span class="n">boundary</span><span class="p">),)))</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span>
+            <span class="sa">b</span><span class="s1">&#39;content-length&#39;</span><span class="p">,</span> <span class="n">intToBytes</span><span class="p">(</span><span class="n">contentLength</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">finalBoundary</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">rangeInfo</span>
+
+
+    <span class="k">def</span> <span class="nf">_setContentHeaders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the Content-length and Content-type headers for this request.</span>
+
+<span class="sd">        This method is not appropriate for requests for multiple byte ranges;</span>
+<span class="sd">        L{_doMultipleRangeRequest} will set these headers in that case.</span>
+
+<span class="sd">        @param request: The L{twisted.web.http.Request} object.</span>
+<span class="sd">        @param size: The size of the response.  If not specified, default to</span>
+<span class="sd">            C{self.getFileSize()}.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFileSize</span><span class="p">()</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;content-length&#39;</span><span class="p">,</span> <span class="n">intToBytes</span><span class="p">(</span><span class="n">size</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;content-type&#39;</span><span class="p">,</span> <span class="n">networkString</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;content-encoding&#39;</span><span class="p">,</span> <span class="n">networkString</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="nf">makeProducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">fileForReading</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make a L{StaticProducer} that will produce the body of this response.</span>
+
+<span class="sd">        This method will also set the response code and Content-* headers.</span>
+
+<span class="sd">        @param request: The L{twisted.web.http.Request} object.</span>
+<span class="sd">        @param fileForReading: The file object containing the resource.</span>
+<span class="sd">        @return: A L{StaticProducer}.  Calling C{.start()} on this will begin</span>
+<span class="sd">            producing the response.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">byteRange</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">getHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;range&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">byteRange</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_setContentHeaders</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">setResponseCode</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">OK</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">NoRangeStaticProducer</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">fileForReading</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">parsedRanges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parseRangeHeader</span><span class="p">(</span><span class="n">byteRange</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Ignoring malformed Range header </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">byteRange</span><span class="o">.</span><span class="n">decode</span><span class="p">(),))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_setContentHeaders</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">setResponseCode</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">OK</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">NoRangeStaticProducer</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">fileForReading</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsedRanges</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">offset</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_doSingleRangeRequest</span><span class="p">(</span>
+                <span class="n">request</span><span class="p">,</span> <span class="n">parsedRanges</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_setContentHeaders</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">SingleRangeStaticProducer</span><span class="p">(</span>
+                <span class="n">request</span><span class="p">,</span> <span class="n">fileForReading</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rangeInfo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_doMultipleRangeRequest</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">parsedRanges</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">MultipleRangeStaticProducer</span><span class="p">(</span>
+                <span class="n">request</span><span class="p">,</span> <span class="n">fileForReading</span><span class="p">,</span> <span class="n">rangeInfo</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">render_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Begin sending the contents of this L{File} (or a subset of the</span>
+<span class="sd">        contents, based on the &#39;range&#39; header) to the given request.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">restat</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="n">getTypeAndEncoding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basename</span><span class="p">(),</span>
+                                                          <span class="bp">self</span><span class="o">.</span><span class="n">contentTypes</span><span class="p">,</span>
+                                                          <span class="bp">self</span><span class="o">.</span><span class="n">contentEncodings</span><span class="p">,</span>
+                                                          <span class="bp">self</span><span class="o">.</span><span class="n">defaultType</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">childNotFound</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isdir</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;accept-ranges&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;bytes&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">fileForReading</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">openForReading</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">IOError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span> <span class="o">==</span> <span class="n">errno</span><span class="o">.</span><span class="n">EACCES</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">forbidden</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span>
+
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">setLastModified</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getModificationTime</span><span class="p">())</span> <span class="ow">is</span> <span class="n">http</span><span class="o">.</span><span class="n">CACHED</span><span class="p">:</span>
+            <span class="c1"># `setLastModified` also sets the response code for us, so if the</span>
+            <span class="c1"># request is cached, we close the file now that we&#39;ve made sure that</span>
+            <span class="c1"># the request would otherwise succeed and return an empty body.</span>
+            <span class="n">fileForReading</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;HEAD&#39;</span><span class="p">:</span>
+            <span class="c1"># Set the content headers here, rather than making a producer.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_setContentHeaders</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="c1"># We&#39;ve opened the file to make sure it&#39;s accessible, so close it</span>
+            <span class="c1"># now that we don&#39;t need it.</span>
+            <span class="n">fileForReading</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+
+        <span class="n">producer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">makeProducer</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">fileForReading</span><span class="p">)</span>
+        <span class="n">producer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="c1"># and make sure the connection doesn&#39;t get closed</span>
+        <span class="k">return</span> <span class="n">server</span><span class="o">.</span><span class="n">NOT_DONE_YET</span>
+    <span class="n">render_HEAD</span> <span class="o">=</span> <span class="n">render_GET</span>
+
+
+    <span class="k">def</span> <span class="nf">redirect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">redirectTo</span><span class="p">(</span><span class="n">_addSlash</span><span class="p">(</span><span class="n">request</span><span class="p">),</span> <span class="n">request</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">listNames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">isdir</span><span class="p">():</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">directory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+        <span class="n">directory</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">directory</span>
+
+    <span class="k">def</span> <span class="nf">listEntities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">fileName</span><span class="p">,</span> <span class="bp">self</span><span class="o">=</span><span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">createSimilarFile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">fileName</span><span class="p">)),</span> <span class="bp">self</span><span class="o">.</span><span class="n">listNames</span><span class="p">()))</span>
+
+
+    <span class="k">def</span> <span class="nf">createSimilarFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">defaultType</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignoredExts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">registry</span><span class="p">)</span>
+        <span class="c1"># refactoring by steps, here - constructor should almost certainly take these</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">processors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">processors</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">indexNames</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexNames</span><span class="p">[:]</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">childNotFound</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">childNotFound</span>
+        <span class="k">return</span> <span class="n">f</span>
+
+
+
+<span class="nd">@implementer</span><span class="p">(</span><span class="n">interfaces</span><span class="o">.</span><span class="n">IPullProducer</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">StaticProducer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Superclass for classes that implement the business of producing.</span>
+
+<span class="sd">    @ivar request: The L{IRequest} to write the contents of the file to.</span>
+<span class="sd">    @ivar fileObject: The file the contents of which to write to the request.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">bufferSize</span> <span class="o">=</span> <span class="n">abstract</span><span class="o">.</span><span class="n">FileDescriptor</span><span class="o">.</span><span class="n">bufferSize</span>
+
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">fileObject</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">request</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fileObject</span> <span class="o">=</span> <span class="n">fileObject</span>
+
+
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">resumeProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resumeProducing</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">stopProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stop producing data.</span>
+
+<span class="sd">        L{twisted.internet.interfaces.IProducer.stopProducing}</span>
+<span class="sd">        is called when our consumer has died, and subclasses also call this</span>
+<span class="sd">        method when they are done producing data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fileObject</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+
+<span class="k">class</span> <span class="nc">NoRangeStaticProducer</span><span class="p">(</span><span class="n">StaticProducer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A L{StaticProducer} that writes the entire file to the request.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">registerProducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">resumeProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fileObject</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bufferSize</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+            <span class="c1"># this .write will spin the reactor, calling .doWrite and then</span>
+            <span class="c1"># .resumeProducing again, so be prepared for a re-entrant call</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">unregisterProducer</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stopProducing</span><span class="p">()</span>
+
+
+
+<span class="k">class</span> <span class="nc">SingleRangeStaticProducer</span><span class="p">(</span><span class="n">StaticProducer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A L{StaticProducer} that writes a single chunk of a file to the request.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">fileObject</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the instance.</span>
+
+<span class="sd">        @param request: See L{StaticProducer}.</span>
+<span class="sd">        @param fileObject: See L{StaticProducer}.</span>
+<span class="sd">        @param offset: The offset into the file of the chunk to be written.</span>
+<span class="sd">        @param size: The size of the chunk to write.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">StaticProducer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">fileObject</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">offset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+
+
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fileObject</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bytesWritten</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">registerProducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">resumeProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fileObject</span><span class="o">.</span><span class="n">read</span><span class="p">(</span>
+            <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bufferSize</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytesWritten</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bytesWritten</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="c1"># this .write will spin the reactor, calling .doWrite and then</span>
+            <span class="c1"># .resumeProducing again, so be prepared for a re-entrant call</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">bytesWritten</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">unregisterProducer</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stopProducing</span><span class="p">()</span>
+
+
+
+<span class="k">class</span> <span class="nc">MultipleRangeStaticProducer</span><span class="p">(</span><span class="n">StaticProducer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A L{StaticProducer} that writes several chunks of a file to the request.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">fileObject</span><span class="p">,</span> <span class="n">rangeInfo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the instance.</span>
+
+<span class="sd">        @param request: See L{StaticProducer}.</span>
+<span class="sd">        @param fileObject: See L{StaticProducer}.</span>
+<span class="sd">        @param rangeInfo: A list of tuples C{[(boundary, offset, size)]}</span>
+<span class="sd">            where:</span>
+<span class="sd">             - C{boundary} will be written to the request first.</span>
+<span class="sd">             - C{offset} the offset into the file of chunk to write.</span>
+<span class="sd">             - C{size} the size of the chunk to write.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">StaticProducer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">fileObject</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rangeInfo</span> <span class="o">=</span> <span class="n">rangeInfo</span>
+
+
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rangeIter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rangeInfo</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nextRange</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">registerProducer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_nextRange</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">partBoundary</span><span class="p">,</span> <span class="n">partOffset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partSize</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rangeIter</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_partBytesWritten</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fileObject</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">partOffset</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">resumeProducing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dataLength</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">while</span> <span class="n">dataLength</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">bufferSize</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">partBoundary</span><span class="p">:</span>
+                <span class="n">dataLength</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">partBoundary</span><span class="p">)</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">partBoundary</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">partBoundary</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fileObject</span><span class="o">.</span><span class="n">read</span><span class="p">(</span>
+                <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bufferSize</span> <span class="o">-</span> <span class="n">dataLength</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_partSize</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partBytesWritten</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_partBytesWritten</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">dataLength</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partBytesWritten</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partSize</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_nextRange</span><span class="p">()</span>
+                <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                    <span class="n">done</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">break</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">done</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">unregisterProducer</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stopProducing</span><span class="p">()</span>
+
+
+
+<span class="k">class</span> <span class="nc">ASISProcessor</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Serve files exactly as responses without generating a status-line or any</span>
+<span class="sd">    headers.  Inspired by Apache&#39;s mod_asis.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">registry</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">resource</span><span class="o">.</span><span class="n">Resource</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">registry</span> <span class="o">=</span> <span class="n">registry</span> <span class="ow">or</span> <span class="n">Registry</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">startedWriting</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">registry</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">registry</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+
+
+<span class="k">def</span> <span class="nf">formatFileSize</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Format the given file size in bytes to human readable format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="mi">1024</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%i</span><span class="s1">B&#39;</span> <span class="o">%</span> <span class="n">size</span>
+    <span class="k">elif</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">**</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%i</span><span class="s1">K&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">**</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%i</span><span class="s1">M&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%i</span><span class="s1">G&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">**</span> <span class="mi">3</span><span class="p">))</span>
+
+
+
+<span class="k">class</span> <span class="nc">DirectoryLister</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Print the content of a directory.</span>
+
+<span class="sd">    @ivar template: page template used to render the content of the directory.</span>
+<span class="sd">        It must contain the format keys B{header} and B{tableContent}.</span>
+<span class="sd">    @type template: C{str}</span>
+
+<span class="sd">    @ivar linePattern: template used to render one line in the listing table.</span>
+<span class="sd">        It must contain the format keys B{class}, B{href}, B{text}, B{size},</span>
+<span class="sd">        B{type} and B{encoding}.</span>
+<span class="sd">    @type linePattern: C{str}</span>
+
+<span class="sd">    @ivar contentTypes: a mapping of extensions to MIME types used to populate</span>
+<span class="sd">        the information of a member of this directory.</span>
+<span class="sd">        It is initialized with the value L{File.contentTypes}.</span>
+<span class="sd">    @type contentTypes: C{dict}</span>
+
+<span class="sd">    @ivar contentEncodings: a mapping of extensions to encoding types.</span>
+<span class="sd">        It is initialized with the value L{File.contentEncodings}.</span>
+<span class="sd">    @type contentEncodings: C{dict}</span>
+
+<span class="sd">    @ivar defaultType: default type used when no mimetype is detected.</span>
+<span class="sd">    @type defaultType: C{str}</span>
+
+<span class="sd">    @ivar dirs: filtered content of C{path}, if the whole content should not be</span>
+<span class="sd">        displayed (default to L{None}, which means the actual content of</span>
+<span class="sd">        C{path} is printed).</span>
+<span class="sd">    @type dirs: L{None} or C{list}</span>
+
+<span class="sd">    @ivar path: directory which content should be listed.</span>
+<span class="sd">    @type path: C{str}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&lt;html&gt;</span>
+<span class="s2">&lt;head&gt;</span>
+<span class="s2">&lt;title&gt;</span><span class="si">%(header)s</span><span class="s2">&lt;/title&gt;</span>
+<span class="s2">&lt;style&gt;</span>
+<span class="s2">.even-dir { background-color: #efe0ef }</span>
+<span class="s2">.even { background-color: #eee }</span>
+<span class="s2">.odd-dir {background-color: #f0d0ef }</span>
+<span class="s2">.odd { background-color: #dedede }</span>
+<span class="s2">.icon { text-align: center }</span>
+<span class="s2">.listing {</span>
+<span class="s2">    margin-left: auto;</span>
+<span class="s2">    margin-right: auto;</span>
+<span class="s2">    width: 50</span><span class="si">%%</span><span class="s2">;</span>
+<span class="s2">    padding: 0.1em;</span>
+<span class="s2">    }</span>
+
+<span class="s2">body { border: 0; padding: 0; margin: 0; background-color: #efefef; }</span>
+<span class="s2">h1 {padding: 0.1em; background-color: #777; color: white; border-bottom: thin white dashed;}</span>
+
+<span class="s2">&lt;/style&gt;</span>
+<span class="s2">&lt;/head&gt;</span>
+
+<span class="s2">&lt;body&gt;</span>
+<span class="s2">&lt;h1&gt;</span><span class="si">%(header)s</span><span class="s2">&lt;/h1&gt;</span>
+
+<span class="s2">&lt;table&gt;</span>
+<span class="s2">    &lt;thead&gt;</span>
+<span class="s2">        &lt;tr&gt;</span>
+<span class="s2">            &lt;th&gt;Filename&lt;/th&gt;</span>
+<span class="s2">            &lt;th&gt;Size&lt;/th&gt;</span>
+<span class="s2">            &lt;th&gt;Content type&lt;/th&gt;</span>
+<span class="s2">            &lt;th&gt;Content encoding&lt;/th&gt;</span>
+<span class="s2">        &lt;/tr&gt;</span>
+<span class="s2">    &lt;/thead&gt;</span>
+<span class="s2">    &lt;tbody&gt;</span>
+<span class="si">%(tableContent)s</span><span class="s2"></span>
+<span class="s2">    &lt;/tbody&gt;</span>
+<span class="s2">&lt;/table&gt;</span>
+
+<span class="s2">&lt;/body&gt;</span>
+<span class="s2">&lt;/html&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+    <span class="n">linePattern</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&lt;tr class=&quot;</span><span class="si">%(class)s</span><span class="s2">&quot;&gt;</span>
+<span class="s2">    &lt;td&gt;&lt;a href=&quot;</span><span class="si">%(href)s</span><span class="s2">&quot;&gt;</span><span class="si">%(text)s</span><span class="s2">&lt;/a&gt;&lt;/td&gt;</span>
+<span class="s2">    &lt;td&gt;</span><span class="si">%(size)s</span><span class="s2">&lt;/td&gt;</span>
+<span class="s2">    &lt;td&gt;</span><span class="si">%(type)s</span><span class="s2">&lt;/td&gt;</span>
+<span class="s2">    &lt;td&gt;</span><span class="si">%(encoding)s</span><span class="s2">&lt;/td&gt;</span>
+<span class="s2">&lt;/tr&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathname</span><span class="p">,</span> <span class="n">dirs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">contentTypes</span><span class="o">=</span><span class="n">File</span><span class="o">.</span><span class="n">contentTypes</span><span class="p">,</span>
+                 <span class="n">contentEncodings</span><span class="o">=</span><span class="n">File</span><span class="o">.</span><span class="n">contentEncodings</span><span class="p">,</span>
+                 <span class="n">defaultType</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">):</span>
+        <span class="n">resource</span><span class="o">.</span><span class="n">Resource</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contentTypes</span> <span class="o">=</span> <span class="n">contentTypes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contentEncodings</span> <span class="o">=</span> <span class="n">contentEncodings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">defaultType</span> <span class="o">=</span> <span class="n">defaultType</span>
+        <span class="c1"># dirs allows usage of the File to specify what gets listed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dirs</span> <span class="o">=</span> <span class="n">dirs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">pathname</span>
+
+
+    <span class="k">def</span> <span class="nf">_getFilesAndDirectories</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Helper returning files and directories in given directory listing, with</span>
+<span class="sd">        attributes to be used to build a table content with</span>
+<span class="sd">        C{self.linePattern}.</span>
+
+<span class="sd">        @return: tuple of (directories, files)</span>
+<span class="sd">        @rtype: C{tuple} of C{list}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dirs</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">directory</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">_PY3</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+                    <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
+
+            <span class="n">url</span> <span class="o">=</span> <span class="n">quote</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span>
+            <span class="n">escapedPath</span> <span class="o">=</span> <span class="n">escape</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="n">childPath</span> <span class="o">=</span> <span class="n">filepath</span><span class="o">.</span><span class="n">FilePath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">childPath</span><span class="o">.</span><span class="n">isdir</span><span class="p">():</span>
+                <span class="n">dirs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">escapedPath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s1">&#39;href&#39;</span><span class="p">:</span> <span class="n">url</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span>
+                             <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;[Directory]&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;encoding&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">})</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mimetype</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="n">getTypeAndEncoding</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">contentTypes</span><span class="p">,</span>
+                                                        <span class="bp">self</span><span class="o">.</span><span class="n">contentEncodings</span><span class="p">,</span>
+                                                        <span class="bp">self</span><span class="o">.</span><span class="n">defaultType</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">size</span> <span class="o">=</span> <span class="n">childPath</span><span class="o">.</span><span class="n">getsize</span><span class="p">()</span>
+                <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">files</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">escapedPath</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
+                    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">mimetype</span><span class="p">,</span>
+                    <span class="s1">&#39;encoding&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">encoding</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+                    <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="n">formatFileSize</span><span class="p">(</span><span class="n">size</span><span class="p">)})</span>
+        <span class="k">return</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span>
+
+
+    <span class="k">def</span> <span class="nf">_buildTableContent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elements</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Build a table content using C{self.linePattern} and giving elements odd</span>
+<span class="sd">        and even classes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tableContent</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">rowClasses</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">([</span><span class="s1">&#39;odd&#39;</span><span class="p">,</span> <span class="s1">&#39;even&#39;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">rowClass</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">elements</span><span class="p">,</span> <span class="n">rowClasses</span><span class="p">):</span>
+            <span class="n">element</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rowClass</span>
+            <span class="n">tableContent</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linePattern</span> <span class="o">%</span> <span class="n">element</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tableContent</span>
+
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Render a listing of the content of C{self.path}.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">setHeader</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;content-type&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;text/html; charset=utf-8&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dirs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+            <span class="n">directory</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">directory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dirs</span>
+
+        <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getFilesAndDirectories</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+
+        <span class="n">tableContent</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buildTableContent</span><span class="p">(</span><span class="n">dirs</span> <span class="o">+</span> <span class="n">files</span><span class="p">))</span>
+
+        <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;Directory listing for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">escape</span><span class="p">(</span><span class="n">unquote</span><span class="p">(</span><span class="n">nativeString</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">uri</span><span class="p">))),)</span>
+
+        <span class="n">done</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">%</span> <span class="p">{</span><span class="s2">&quot;header&quot;</span><span class="p">:</span> <span class="n">header</span><span class="p">,</span> <span class="s2">&quot;tableContent&quot;</span><span class="p">:</span> <span class="n">tableContent</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">_PY3</span><span class="p">:</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="n">done</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">done</span>
+
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;&lt;DirectoryLister of </span><span class="si">%r</span><span class="s1">&gt;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
+
+    <span class="fm">__str__</span> <span class="o">=</span> <span class="fm">__repr__</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pol Canelles.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

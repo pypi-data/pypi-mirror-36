@@ -1,0 +1,838 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>coherence.upnp.services.clients (package) &mdash; Cohen3 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="coherence.upnp.services.servers (package)" href="coherence.upnp.services.servers.html" />
+    <link rel="prev" title="coherence.upnp.services (package)" href="coherence.upnp.services.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Cohen3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends (plugins)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="coherence.html">Coherence (package)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="modules.html">coherence.backend (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.base">coherence.base (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.dbus_constants">coherence.dbus_constants (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.dbus_service">coherence.dbus_service (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.dispatcher">coherence.dispatcher (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.json_service">coherence.json_service (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.log">coherence.log (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.transcoder">coherence.transcoder (module)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#module-coherence.tube_service">coherence.tube_service (module)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="coherence.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="coherence.backends.html">coherence.backends (package)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coherence.extern.html">coherence.extern (package)</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="coherence.upnp.html">coherence.upnp (package)</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="coherence.upnp.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="coherence.web.html">coherence.web (package)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributor_code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Cohen3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="coherence.html">Coherence (package)</a> &raquo;</li>
+        
+          <li><a href="coherence.upnp.html">coherence.upnp (package)</a> &raquo;</li>
+        
+          <li><a href="coherence.upnp.services.html">coherence.upnp.services (package)</a> &raquo;</li>
+        
+      <li>coherence.upnp.services.clients (package)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/source/coherence.upnp.services.clients.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <blockquote>
+<div></div></blockquote>
+<div class="section" id="coherence-upnp-services-clients-package">
+<span id="upnp-services-clients"></span><h1>coherence.upnp.services.clients (package)<a class="headerlink" href="#coherence-upnp-services-clients-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-coherence.upnp.services.clients.av_transport_client">
+<span id="coherence-upnp-services-clients-av-transport-client-module"></span><h2>coherence.upnp.services.clients.av_transport_client (module)<a class="headerlink" href="#module-coherence.upnp.services.clients.av_transport_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient">
+<em class="property">class </em><code class="descname">AVTransportClient</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="modules.html#coherence.log.LogAble" title="coherence.log.LogAble"><code class="xref py py-class docutils literal notranslate"><span class="pre">coherence.log.LogAble</span></code></a></p>
+<dl class="attribute">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.logCategory">
+<code class="descname">logCategory</code><em class="property"> = 'avtransportclient'</em><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.logCategory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.subscribe_for_variable">
+<code class="descname">subscribe_for_variable</code><span class="sig-paren">(</span><em>var_name</em>, <em>callback</em>, <em>signal=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.subscribe_for_variable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.subscribe_for_variable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.set_av_transport_uri">
+<code class="descname">set_av_transport_uri</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>current_uri=''</em>, <em>current_uri_metadata=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.set_av_transport_uri"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.set_av_transport_uri" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.set_next_av_transport_uri">
+<code class="descname">set_next_av_transport_uri</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>next_uri=''</em>, <em>next_uri_metadata=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.set_next_av_transport_uri"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.set_next_av_transport_uri" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_media_info">
+<code class="descname">get_media_info</code><span class="sig-paren">(</span><em>instance_id=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.get_media_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_media_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_media_info_ext">
+<code class="descname">get_media_info_ext</code><span class="sig-paren">(</span><em>instance_id=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.get_media_info_ext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_media_info_ext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_transport_info">
+<code class="descname">get_transport_info</code><span class="sig-paren">(</span><em>instance_id=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.get_transport_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_transport_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_position_info">
+<code class="descname">get_position_info</code><span class="sig-paren">(</span><em>instance_id=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.get_position_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_position_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_device_capabilities">
+<code class="descname">get_device_capabilities</code><span class="sig-paren">(</span><em>instance_id=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.get_device_capabilities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_device_capabilities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_transport_settings">
+<code class="descname">get_transport_settings</code><span class="sig-paren">(</span><em>instance_id=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.get_transport_settings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_transport_settings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.pause">
+<code class="descname">pause</code><span class="sig-paren">(</span><em>instance_id=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.pause"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.pause" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.play">
+<code class="descname">play</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>speed=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.play"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.play" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><em>instance_id=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.stop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.record">
+<code class="descname">record</code><span class="sig-paren">(</span><em>instance_id=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.record" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.seek">
+<code class="descname">seek</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>unit=''</em>, <em>target=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.seek"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.seek" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.next">
+<code class="descname">next</code><span class="sig-paren">(</span><em>instance_id=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.next" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.previous">
+<code class="descname">previous</code><span class="sig-paren">(</span><em>instance_id=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.previous"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.previous" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_current_transport_actions">
+<code class="descname">get_current_transport_actions</code><span class="sig-paren">(</span><em>instance_id=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/av_transport_client.html#AVTransportClient.get_current_transport_actions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.get_current_transport_actions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.COLOR_FORMAT">
+<code class="descname">COLOR_FORMAT</code><em class="property"> = '[%(levelname)-18s][\x1b[1m%(name)-15s\x1b[0m]  %(message)s    (\x1b[1m%(filename)s\x1b[0m:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.COLOR_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.FORMAT">
+<code class="descname">FORMAT</code><em class="property"> = '[%(levelname)-18s][$BOLD%(name)-15s$RESET]  %(message)s    ($BOLD%(filename)s$RESET:%(lineno)d)'</em><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient._Loggable__logger">
+<code class="descname">_Loggable__logger</code><em class="property"> = None</em><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient._Loggable__logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.critical">
+<code class="descname">critical</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.debug">
+<code class="descname">debug</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.fatal">
+<code class="descname">fatal</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.info">
+<code class="descname">info</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.log">
+<code class="descname">log</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.warn">
+<code class="descname">warn</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.warn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.av_transport_client.AVTransportClient.warning">
+<code class="descname">warning</code><span class="sig-paren">(</span><em>message</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#coherence.upnp.services.clients.av_transport_client.AVTransportClient.warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.services.clients.connection_manager_client">
+<span id="coherence-upnp-services-clients-connection-manager-client-module"></span><h2>coherence.upnp.services.clients.connection_manager_client (module)<a class="headerlink" href="#module-coherence.upnp.services.clients.connection_manager_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient">
+<em class="property">class </em><code class="descname">ConnectionManagerClient</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/connection_manager_client.html#ConnectionManagerClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.connection_manager_id">
+<code class="descname">connection_manager_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/connection_manager_client.html#ConnectionManagerClient.connection_manager_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.connection_manager_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/connection_manager_client.html#ConnectionManagerClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.subscribe_for_variable">
+<code class="descname">subscribe_for_variable</code><span class="sig-paren">(</span><em>var_name</em>, <em>callback</em>, <em>signal=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/connection_manager_client.html#ConnectionManagerClient.subscribe_for_variable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.subscribe_for_variable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.get_protocol_info">
+<code class="descname">get_protocol_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/connection_manager_client.html#ConnectionManagerClient.get_protocol_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.get_protocol_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.prepare_for_connection">
+<code class="descname">prepare_for_connection</code><span class="sig-paren">(</span><em>remote_protocol_info</em>, <em>peer_connection_manager</em>, <em>peer_connection_id</em>, <em>direction</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/connection_manager_client.html#ConnectionManagerClient.prepare_for_connection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.prepare_for_connection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.connection_complete">
+<code class="descname">connection_complete</code><span class="sig-paren">(</span><em>connection_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/connection_manager_client.html#ConnectionManagerClient.connection_complete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.connection_complete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.get_current_connection_ids">
+<code class="descname">get_current_connection_ids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/connection_manager_client.html#ConnectionManagerClient.get_current_connection_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.get_current_connection_ids" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.get_current_connection_info">
+<code class="descname">get_current_connection_info</code><span class="sig-paren">(</span><em>connection_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/connection_manager_client.html#ConnectionManagerClient.get_current_connection_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.connection_manager_client.ConnectionManagerClient.get_current_connection_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.services.clients.content_directory_client">
+<span id="coherence-upnp-services-clients-content-directory-client-module"></span><h2>coherence.upnp.services.clients.content_directory_client (module)<a class="headerlink" href="#module-coherence.upnp.services.clients.content_directory_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient">
+<em class="property">class </em><code class="descname">ContentDirectoryClient</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.subscribe_for_variable">
+<code class="descname">subscribe_for_variable</code><span class="sig-paren">(</span><em>var_name</em>, <em>callback</em>, <em>signal=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.subscribe_for_variable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.subscribe_for_variable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.get_search_capabilities">
+<code class="descname">get_search_capabilities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.get_search_capabilities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.get_search_capabilities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.get_sort_extension_capabilities">
+<code class="descname">get_sort_extension_capabilities</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.get_sort_extension_capabilities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.get_sort_extension_capabilities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.get_feature_list">
+<code class="descname">get_feature_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.get_feature_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.get_feature_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.get_system_update_id">
+<code class="descname">get_system_update_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.get_system_update_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.get_system_update_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.browse">
+<code class="descname">browse</code><span class="sig-paren">(</span><em>object_id=0</em>, <em>browse_flag='BrowseDirectChildren'</em>, <em>filter='*'</em>, <em>sort_criteria=''</em>, <em>starting_index=0</em>, <em>requested_count=0</em>, <em>process_result=True</em>, <em>backward_compatibility=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.browse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.browse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.search">
+<code class="descname">search</code><span class="sig-paren">(</span><em>container_id</em>, <em>criteria</em>, <em>starting_index=0</em>, <em>requested_count=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.search" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.dict2item">
+<code class="descname">dict2item</code><span class="sig-paren">(</span><em>elements</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.dict2item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.dict2item" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.create_object">
+<code class="descname">create_object</code><span class="sig-paren">(</span><em>container_id</em>, <em>elements</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.create_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.create_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.destroy_object">
+<code class="descname">destroy_object</code><span class="sig-paren">(</span><em>object_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.destroy_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.destroy_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.update_object">
+<code class="descname">update_object</code><span class="sig-paren">(</span><em>object_id</em>, <em>current_tag_value</em>, <em>new_tag_value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.update_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.update_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.move_object">
+<code class="descname">move_object</code><span class="sig-paren">(</span><em>object_id</em>, <em>new_parent_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.move_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.move_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.import_resource">
+<code class="descname">import_resource</code><span class="sig-paren">(</span><em>source_uri</em>, <em>destination_uri</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.import_resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.import_resource" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.export_resource">
+<code class="descname">export_resource</code><span class="sig-paren">(</span><em>source_uri</em>, <em>destination_uri</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.export_resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.export_resource" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.delete_resource">
+<code class="descname">delete_resource</code><span class="sig-paren">(</span><em>resource_uri</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.delete_resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.delete_resource" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.stop_transfer_resource">
+<code class="descname">stop_transfer_resource</code><span class="sig-paren">(</span><em>transfer_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.stop_transfer_resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.stop_transfer_resource" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.get_transfer_progress">
+<code class="descname">get_transfer_progress</code><span class="sig-paren">(</span><em>transfer_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.get_transfer_progress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.get_transfer_progress" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.create_reference">
+<code class="descname">create_reference</code><span class="sig-paren">(</span><em>container_id</em>, <em>object_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient.create_reference"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient.create_reference" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient._failure">
+<code class="descname">_failure</code><span class="sig-paren">(</span><em>error</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/content_directory_client.html#ContentDirectoryClient._failure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.content_directory_client.ContentDirectoryClient._failure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.services.clients.dimming_client">
+<span id="coherence-upnp-services-clients-dimming-client-module"></span><h2>coherence.upnp.services.clients.dimming_client (module)<a class="headerlink" href="#module-coherence.upnp.services.clients.dimming_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.services.clients.dimming_client.DimmingClient">
+<em class="property">class </em><code class="descname">DimmingClient</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/dimming_client.html#DimmingClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.dimming_client.DimmingClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="coherence.upnp.services.clients.dimming_client.DimmingClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/dimming_client.html#DimmingClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.dimming_client.DimmingClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.dimming_client.DimmingClient.subscribe_for_variable">
+<code class="descname">subscribe_for_variable</code><span class="sig-paren">(</span><em>var_name</em>, <em>callback</em>, <em>signal=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/dimming_client.html#DimmingClient.subscribe_for_variable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.dimming_client.DimmingClient.subscribe_for_variable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.dimming_client.DimmingClient.set_load_level_target">
+<code class="descname">set_load_level_target</code><span class="sig-paren">(</span><em>new_load_level_target=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/dimming_client.html#DimmingClient.set_load_level_target"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.dimming_client.DimmingClient.set_load_level_target" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.dimming_client.DimmingClient.get_load_level_target">
+<code class="descname">get_load_level_target</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/dimming_client.html#DimmingClient.get_load_level_target"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.dimming_client.DimmingClient.get_load_level_target" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.dimming_client.DimmingClient.get_load_level_status">
+<code class="descname">get_load_level_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/dimming_client.html#DimmingClient.get_load_level_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.dimming_client.DimmingClient.get_load_level_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.services.clients.rendering_control_client">
+<span id="coherence-upnp-services-clients-rendering-control-client-module"></span><h2>coherence.upnp.services.clients.rendering_control_client (module)<a class="headerlink" href="#module-coherence.upnp.services.clients.rendering_control_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient">
+<em class="property">class </em><code class="descname">RenderingControlClient</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.subscribe_for_variable">
+<code class="descname">subscribe_for_variable</code><span class="sig-paren">(</span><em>var_name</em>, <em>callback</em>, <em>signal=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient.subscribe_for_variable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.subscribe_for_variable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.list_presets">
+<code class="descname">list_presets</code><span class="sig-paren">(</span><em>instance_id=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient.list_presets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.list_presets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.select_presets">
+<code class="descname">select_presets</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>preset_name=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient.select_presets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.select_presets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.get_mute">
+<code class="descname">get_mute</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>channel='Master'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient.get_mute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.get_mute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.set_mute">
+<code class="descname">set_mute</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>channel='Master'</em>, <em>desired_mute=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient.set_mute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.set_mute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.get_volume">
+<code class="descname">get_volume</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>channel='Master'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient.get_volume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.get_volume" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.set_volume">
+<code class="descname">set_volume</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>channel='Master'</em>, <em>desired_volume=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient.set_volume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.set_volume" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.get_volume_db">
+<code class="descname">get_volume_db</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>channel='Master'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient.get_volume_db"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.get_volume_db" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.set_volume_db">
+<code class="descname">set_volume_db</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>channel='Master'</em>, <em>desired_volume=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient.set_volume_db"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.set_volume_db" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.get_volume_db_range">
+<code class="descname">get_volume_db_range</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>channel='Master'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient.get_volume_db_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.get_volume_db_range" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.get_loudness">
+<code class="descname">get_loudness</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>channel='Master'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient.get_loudness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.get_loudness" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.set_loudness">
+<code class="descname">set_loudness</code><span class="sig-paren">(</span><em>instance_id=0</em>, <em>channel='Master'</em>, <em>desired_loudness=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/rendering_control_client.html#RenderingControlClient.set_loudness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.rendering_control_client.RenderingControlClient.set_loudness" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.services.clients.switch_power_client">
+<span id="coherence-upnp-services-clients-switch-power-client-module"></span><h2>coherence.upnp.services.clients.switch_power_client (module)<a class="headerlink" href="#module-coherence.upnp.services.clients.switch_power_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.services.clients.switch_power_client.SwitchPowerClient">
+<em class="property">class </em><code class="descname">SwitchPowerClient</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/switch_power_client.html#SwitchPowerClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.switch_power_client.SwitchPowerClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="coherence.upnp.services.clients.switch_power_client.SwitchPowerClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/switch_power_client.html#SwitchPowerClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.switch_power_client.SwitchPowerClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.switch_power_client.SwitchPowerClient.subscribe_for_variable">
+<code class="descname">subscribe_for_variable</code><span class="sig-paren">(</span><em>var_name</em>, <em>callback</em>, <em>signal=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/switch_power_client.html#SwitchPowerClient.subscribe_for_variable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.switch_power_client.SwitchPowerClient.subscribe_for_variable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.switch_power_client.SwitchPowerClient.set_target">
+<code class="descname">set_target</code><span class="sig-paren">(</span><em>new_target_value=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/switch_power_client.html#SwitchPowerClient.set_target"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.switch_power_client.SwitchPowerClient.set_target" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.switch_power_client.SwitchPowerClient.get_target">
+<code class="descname">get_target</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/switch_power_client.html#SwitchPowerClient.get_target"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.switch_power_client.SwitchPowerClient.get_target" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.switch_power_client.SwitchPowerClient.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/switch_power_client.html#SwitchPowerClient.get_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.switch_power_client.SwitchPowerClient.get_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.services.clients.wan_common_interface_config_client">
+<span id="coherence-upnp-services-clients-wan-common-interface-config-client-module"></span><h2>coherence.upnp.services.clients.wan_common_interface_config_client (module)<a class="headerlink" href="#module-coherence.upnp.services.clients.wan_common_interface_config_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.services.clients.wan_common_interface_config_client.WANCommonInterfaceConfigClient">
+<em class="property">class </em><code class="descname">WANCommonInterfaceConfigClient</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_common_interface_config_client.html#WANCommonInterfaceConfigClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_common_interface_config_client.WANCommonInterfaceConfigClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_common_interface_config_client.WANCommonInterfaceConfigClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_common_interface_config_client.html#WANCommonInterfaceConfigClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_common_interface_config_client.WANCommonInterfaceConfigClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_common_interface_config_client.WANCommonInterfaceConfigClient.subscribe_for_variable">
+<code class="descname">subscribe_for_variable</code><span class="sig-paren">(</span><em>var_name</em>, <em>callback</em>, <em>signal=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_common_interface_config_client.html#WANCommonInterfaceConfigClient.subscribe_for_variable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_common_interface_config_client.WANCommonInterfaceConfigClient.subscribe_for_variable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.services.clients.wan_ip_connection_client">
+<span id="coherence-upnp-services-clients-wan-ip-connection-client-module"></span><h2>coherence.upnp.services.clients.wan_ip_connection_client (module)<a class="headerlink" href="#module-coherence.upnp.services.clients.wan_ip_connection_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient">
+<em class="property">class </em><code class="descname">WANIPConnectionClient</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ip_connection_client.html#WANIPConnectionClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ip_connection_client.html#WANIPConnectionClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.subscribe_for_variable">
+<code class="descname">subscribe_for_variable</code><span class="sig-paren">(</span><em>var_name</em>, <em>callback</em>, <em>signal=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ip_connection_client.html#WANIPConnectionClient.subscribe_for_variable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.subscribe_for_variable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.get_external_ip_address">
+<code class="descname">get_external_ip_address</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ip_connection_client.html#WANIPConnectionClient.get_external_ip_address"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.get_external_ip_address" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.get_all_port_mapping_entries">
+<code class="descname">get_all_port_mapping_entries</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ip_connection_client.html#WANIPConnectionClient.get_all_port_mapping_entries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.get_all_port_mapping_entries" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.get_generic_port_mapping_entry">
+<code class="descname">get_generic_port_mapping_entry</code><span class="sig-paren">(</span><em>port_mapping_index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ip_connection_client.html#WANIPConnectionClient.get_generic_port_mapping_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.get_generic_port_mapping_entry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.get_specific_port_mapping_entry">
+<code class="descname">get_specific_port_mapping_entry</code><span class="sig-paren">(</span><em>remote_host=''</em>, <em>external_port=0</em>, <em>protocol='TCP'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ip_connection_client.html#WANIPConnectionClient.get_specific_port_mapping_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.get_specific_port_mapping_entry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.add_port_mapping">
+<code class="descname">add_port_mapping</code><span class="sig-paren">(</span><em>remote_host=''</em>, <em>external_port=0</em>, <em>protocol='TCP'</em>, <em>internal_port=None</em>, <em>internal_client=None</em>, <em>enabled=False</em>, <em>port_mapping_description=''</em>, <em>lease_duration=60</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ip_connection_client.html#WANIPConnectionClient.add_port_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.add_port_mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.delete_port_mapping">
+<code class="descname">delete_port_mapping</code><span class="sig-paren">(</span><em>remote_host=''</em>, <em>external_port=0</em>, <em>protocol='TCP'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ip_connection_client.html#WANIPConnectionClient.delete_port_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ip_connection_client.WANIPConnectionClient.delete_port_mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-coherence.upnp.services.clients.wan_ppp_connection_client">
+<span id="coherence-upnp-services-clients-wan-ppp-connection-client-module"></span><h2>coherence.upnp.services.clients.wan_ppp_connection_client (module)<a class="headerlink" href="#module-coherence.upnp.services.clients.wan_ppp_connection_client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient">
+<em class="property">class </em><code class="descname">WANPPPConnectionClient</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ppp_connection_client.html#WANPPPConnectionClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ppp_connection_client.html#WANPPPConnectionClient.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.remove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.subscribe_for_variable">
+<code class="descname">subscribe_for_variable</code><span class="sig-paren">(</span><em>var_name</em>, <em>callback</em>, <em>signal=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ppp_connection_client.html#WANPPPConnectionClient.subscribe_for_variable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.subscribe_for_variable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.get_external_ip_address">
+<code class="descname">get_external_ip_address</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ppp_connection_client.html#WANPPPConnectionClient.get_external_ip_address"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.get_external_ip_address" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.get_all_port_mapping_entries">
+<code class="descname">get_all_port_mapping_entries</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ppp_connection_client.html#WANPPPConnectionClient.get_all_port_mapping_entries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.get_all_port_mapping_entries" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.get_generic_port_mapping_entry">
+<code class="descname">get_generic_port_mapping_entry</code><span class="sig-paren">(</span><em>port_mapping_index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ppp_connection_client.html#WANPPPConnectionClient.get_generic_port_mapping_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.get_generic_port_mapping_entry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.get_specific_port_mapping_entry">
+<code class="descname">get_specific_port_mapping_entry</code><span class="sig-paren">(</span><em>remote_host=''</em>, <em>external_port=0</em>, <em>protocol='TCP'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ppp_connection_client.html#WANPPPConnectionClient.get_specific_port_mapping_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.get_specific_port_mapping_entry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.add_port_mapping">
+<code class="descname">add_port_mapping</code><span class="sig-paren">(</span><em>remote_host=''</em>, <em>external_port=0</em>, <em>protocol='TCP'</em>, <em>internal_port=None</em>, <em>internal_client=None</em>, <em>enabled=False</em>, <em>port_mapping_description=''</em>, <em>lease_duration=60</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ppp_connection_client.html#WANPPPConnectionClient.add_port_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.add_port_mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.delete_port_mapping">
+<code class="descname">delete_port_mapping</code><span class="sig-paren">(</span><em>remote_host=''</em>, <em>external_port=0</em>, <em>protocol='TCP'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/coherence/upnp/services/clients/wan_ppp_connection_client.html#WANPPPConnectionClient.delete_port_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#coherence.upnp.services.clients.wan_ppp_connection_client.WANPPPConnectionClient.delete_port_mapping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="coherence.upnp.services.servers.html" class="btn btn-neutral float-right" title="coherence.upnp.services.servers (package)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="coherence.upnp.services.html" class="btn btn-neutral" title="coherence.upnp.services (package)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pol Canelles.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

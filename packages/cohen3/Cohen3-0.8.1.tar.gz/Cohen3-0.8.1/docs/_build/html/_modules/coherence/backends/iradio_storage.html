@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>coherence.backends.iradio_storage &mdash; Cohen3 0.8.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cohen3
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backends.html">Backends (plugins)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/coherence.html">Coherence (package)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributor_code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cohen3</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>coherence.backends.iradio_storage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for coherence.backends.iradio_storage</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Licensed under the MIT license</span>
+<span class="c1"># http://opensource.org/licenses/mit-license.php</span>
+
+<span class="c1"># a Shoutcast radio media server for the Coherence UPnP Framework</span>
+<span class="c1"># (heavily revamped from the existing IRadio plugin)</span>
+
+<span class="c1"># Copyright 2007, Frank Scholz &lt;coherence@beebits.net&gt;</span>
+<span class="c1"># Copyright 2009-2010, Jean-Michel Sizun &lt;jmDOTsizunATfreeDOTfr&gt;</span>
+
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">urlsplit</span>
+
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="k">import</span> <span class="n">reactor</span>
+<span class="kn">from</span> <span class="nn">twisted.python.failure</span> <span class="k">import</span> <span class="n">Failure</span>
+<span class="kn">from</span> <span class="nn">twisted.web</span> <span class="k">import</span> <span class="n">server</span>
+
+<span class="kn">from</span> <span class="nn">coherence</span> <span class="k">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">coherence.backend</span> <span class="k">import</span> <span class="n">BackendItem</span><span class="p">,</span> <span class="n">Container</span><span class="p">,</span> \
+    <span class="n">LazyContainer</span><span class="p">,</span> <span class="n">AbstractBackendStore</span>
+<span class="kn">from</span> <span class="nn">coherence.upnp.core</span> <span class="k">import</span> <span class="n">DIDLLite</span>
+<span class="kn">from</span> <span class="nn">coherence.upnp.core</span> <span class="k">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">coherence.upnp.core.DIDLLite</span> <span class="k">import</span> <span class="n">Resource</span>
+
+<span class="n">SHOUTCAST_WS_URL</span> <span class="o">=</span> <span class="s1">&#39;http://www.shoutcast.com/sbin/newxml.phtml&#39;</span>
+
+<span class="n">genre_families</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># genre hierarchy created from:</span>
+    <span class="c1">#     http://forums.winamp.com/showthread.php?s=&amp;threadid=303231</span>
+    <span class="s2">&quot;Alternative&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Adult Alternative&quot;</span><span class="p">,</span> <span class="s2">&quot;Britpop&quot;</span><span class="p">,</span> <span class="s2">&quot;Classic Alternative&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;College&quot;</span><span class="p">,</span> <span class="s2">&quot;Dancepunk&quot;</span><span class="p">,</span> <span class="s2">&quot;Dream Pop&quot;</span><span class="p">,</span> <span class="s2">&quot;Emo&quot;</span><span class="p">,</span> <span class="s2">&quot;Goth&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Grunge&quot;</span><span class="p">,</span> <span class="s2">&quot;Indie Pop&quot;</span><span class="p">,</span> <span class="s2">&quot;Indie Rock&quot;</span><span class="p">,</span> <span class="s2">&quot;Industrial&quot;</span><span class="p">,</span> <span class="s2">&quot;Lo-Fi&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Modern Rock&quot;</span><span class="p">,</span> <span class="s2">&quot;New Wave&quot;</span><span class="p">,</span> <span class="s2">&quot;Noise Pop&quot;</span><span class="p">,</span> <span class="s2">&quot;Post-Punk&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Power Pop&quot;</span><span class="p">,</span> <span class="s2">&quot;Punk&quot;</span><span class="p">,</span> <span class="s2">&quot;Ska&quot;</span><span class="p">,</span> <span class="s2">&quot;Xtreme&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Blues&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Acoustic Blues&quot;</span><span class="p">,</span> <span class="s2">&quot;Chicago Blues&quot;</span><span class="p">,</span> <span class="s2">&quot;Contemporary Blues&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Country Blues&quot;</span><span class="p">,</span> <span class="s2">&quot;Delta Blues&quot;</span><span class="p">,</span> <span class="s2">&quot;Electric Blues&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Cajun/Zydeco&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Classical&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Baroque&quot;</span><span class="p">,</span> <span class="s2">&quot;Chamber&quot;</span><span class="p">,</span> <span class="s2">&quot;Choral&quot;</span><span class="p">,</span> <span class="s2">&quot;Classical Period&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Early Classical&quot;</span><span class="p">,</span> <span class="s2">&quot;Impressionist&quot;</span><span class="p">,</span> <span class="s2">&quot;Modern&quot;</span><span class="p">,</span> <span class="s2">&quot;Opera&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Piano&quot;</span><span class="p">,</span> <span class="s2">&quot;Romantic&quot;</span><span class="p">,</span> <span class="s2">&quot;Symphony&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Country&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Alt-Country&quot;</span><span class="p">,</span> <span class="s2">&quot;Americana&quot;</span><span class="p">,</span> <span class="s2">&quot;Bluegrass&quot;</span><span class="p">,</span> <span class="s2">&quot;Classic Country&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Contemporary Bluegrass&quot;</span><span class="p">,</span> <span class="s2">&quot;Contemporary Country&quot;</span><span class="p">,</span> <span class="s2">&quot;Honky Tonk&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Hot Country Hits&quot;</span><span class="p">,</span> <span class="s2">&quot;Western&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Easy Listening&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Exotica&quot;</span><span class="p">,</span> <span class="s2">&quot;Light Rock&quot;</span><span class="p">,</span> <span class="s2">&quot;Lounge&quot;</span><span class="p">,</span> <span class="s2">&quot;Orchestral Pop&quot;</span><span class="p">,</span>
+                       <span class="s2">&quot;Polka&quot;</span><span class="p">,</span> <span class="s2">&quot;Space Age Pop&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Electronic&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Acid House&quot;</span><span class="p">,</span> <span class="s2">&quot;Ambient&quot;</span><span class="p">,</span> <span class="s2">&quot;Big Beat&quot;</span><span class="p">,</span> <span class="s2">&quot;Breakbeat&quot;</span><span class="p">,</span> <span class="s2">&quot;Dance&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Demo&quot;</span><span class="p">,</span> <span class="s2">&quot;Disco&quot;</span><span class="p">,</span> <span class="s2">&quot;Downtempo&quot;</span><span class="p">,</span> <span class="s2">&quot;Drum and Bass&quot;</span><span class="p">,</span> <span class="s2">&quot;Electro&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Garage&quot;</span><span class="p">,</span> <span class="s2">&quot;Hard House&quot;</span><span class="p">,</span> <span class="s2">&quot;House&quot;</span><span class="p">,</span> <span class="s2">&quot;IDM&quot;</span><span class="p">,</span> <span class="s2">&quot;Remixes&quot;</span><span class="p">,</span> <span class="s2">&quot;Jungle&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Progressive&quot;</span><span class="p">,</span> <span class="s2">&quot;Techno&quot;</span><span class="p">,</span> <span class="s2">&quot;Trance&quot;</span><span class="p">,</span> <span class="s2">&quot;Tribal&quot;</span><span class="p">,</span> <span class="s2">&quot;Trip Hop&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Folk&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Alternative Folk&quot;</span><span class="p">,</span> <span class="s2">&quot;Contemporary Folk&quot;</span><span class="p">,</span> <span class="s2">&quot;Folk Rock&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;New Acoustic&quot;</span><span class="p">,</span> <span class="s2">&quot;Traditional Folk&quot;</span><span class="p">,</span> <span class="s2">&quot;World Folk&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Themes&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Adult&quot;</span><span class="p">,</span> <span class="s2">&quot;Best Of&quot;</span><span class="p">,</span> <span class="s2">&quot;Chill&quot;</span><span class="p">,</span> <span class="s2">&quot;Experimental&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Heartache&quot;</span><span class="p">,</span> <span class="s2">&quot;LGBT&quot;</span><span class="p">,</span> <span class="s2">&quot;Love/Romance&quot;</span><span class="p">,</span> <span class="s2">&quot;Party Mix&quot;</span><span class="p">,</span> <span class="s2">&quot;Patriotic&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Rainy Day Mix&quot;</span><span class="p">,</span> <span class="s2">&quot;Reality&quot;</span><span class="p">,</span> <span class="s2">&quot;Sexy&quot;</span><span class="p">,</span> <span class="s2">&quot;Shuffle&quot;</span><span class="p">,</span> <span class="s2">&quot;Travel Mix&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Tribute&quot;</span><span class="p">,</span> <span class="s2">&quot;Trippy&quot;</span><span class="p">,</span> <span class="s2">&quot;Work Mix&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Rap&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Alternative Rap&quot;</span><span class="p">,</span> <span class="s2">&quot;Dirty South&quot;</span><span class="p">,</span> <span class="s2">&quot;East Coast Rap&quot;</span><span class="p">,</span> <span class="s2">&quot;Freestyle&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Hip Hop&quot;</span><span class="p">,</span> <span class="s2">&quot;Gangsta Rap&quot;</span><span class="p">,</span> <span class="s2">&quot;Mixtapes&quot;</span><span class="p">,</span> <span class="s2">&quot;Old School&quot;</span><span class="p">,</span> <span class="s2">&quot;Turntablism&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Underground Hip-Hop&quot;</span><span class="p">,</span> <span class="s2">&quot;West Coast Rap&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Inspirational&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Christian&quot;</span><span class="p">,</span> <span class="s2">&quot;Christian Metal&quot;</span><span class="p">,</span> <span class="s2">&quot;Christian Rap&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Christian Rock&quot;</span><span class="p">,</span> <span class="s2">&quot;Classic Christian&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Contemporary Gospel&quot;</span><span class="p">,</span> <span class="s2">&quot;Gospel&quot;</span><span class="p">,</span> <span class="s2">&quot;Praise/Worship&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Sermons/Services&quot;</span><span class="p">,</span> <span class="s2">&quot;Southern Gospel&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Traditional Gospel&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;International&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;African&quot;</span><span class="p">,</span> <span class="s2">&quot;Afrikaans&quot;</span><span class="p">,</span> <span class="s2">&quot;Arabic&quot;</span><span class="p">,</span> <span class="s2">&quot;Asian&quot;</span><span class="p">,</span> <span class="s2">&quot;Brazilian&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Caribbean&quot;</span><span class="p">,</span> <span class="s2">&quot;Celtic&quot;</span><span class="p">,</span> <span class="s2">&quot;European&quot;</span><span class="p">,</span> <span class="s2">&quot;Filipino&quot;</span><span class="p">,</span> <span class="s2">&quot;Greek&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Hawaiian/Pacific&quot;</span><span class="p">,</span> <span class="s2">&quot;Hindi&quot;</span><span class="p">,</span> <span class="s2">&quot;Indian&quot;</span><span class="p">,</span> <span class="s2">&quot;Japanese&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Jewish&quot;</span><span class="p">,</span> <span class="s2">&quot;Klezmer&quot;</span><span class="p">,</span> <span class="s2">&quot;Mediterranean&quot;</span><span class="p">,</span> <span class="s2">&quot;Middle Eastern&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;North American&quot;</span><span class="p">,</span> <span class="s2">&quot;Polskie&quot;</span><span class="p">,</span> <span class="s2">&quot;Polska&quot;</span><span class="p">,</span> <span class="s2">&quot;Soca&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;South American&quot;</span><span class="p">,</span> <span class="s2">&quot;Tamil&quot;</span><span class="p">,</span> <span class="s2">&quot;Worldbeat&quot;</span><span class="p">,</span> <span class="s2">&quot;Zouk&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Jazz&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Acid Jazz&quot;</span><span class="p">,</span> <span class="s2">&quot;Avant Garde&quot;</span><span class="p">,</span> <span class="s2">&quot;Big Band&quot;</span><span class="p">,</span> <span class="s2">&quot;Bop&quot;</span><span class="p">,</span> <span class="s2">&quot;Classic Jazz&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Cool Jazz&quot;</span><span class="p">,</span> <span class="s2">&quot;Fusion&quot;</span><span class="p">,</span> <span class="s2">&quot;Hard Bop&quot;</span><span class="p">,</span> <span class="s2">&quot;Latin Jazz&quot;</span><span class="p">,</span> <span class="s2">&quot;Smooth Jazz&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Swing&quot;</span><span class="p">,</span> <span class="s2">&quot;Vocal Jazz&quot;</span><span class="p">,</span> <span class="s2">&quot;World Fusion&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Latin&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Bachata&quot;</span><span class="p">,</span> <span class="s2">&quot;Banda&quot;</span><span class="p">,</span> <span class="s2">&quot;Bossa Nova&quot;</span><span class="p">,</span> <span class="s2">&quot;Cumbia&quot;</span><span class="p">,</span> <span class="s2">&quot;Latin Dance&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Latin Pop&quot;</span><span class="p">,</span> <span class="s2">&quot;Latin Rap/Hip-Hop&quot;</span><span class="p">,</span> <span class="s2">&quot;Latin Rock&quot;</span><span class="p">,</span> <span class="s2">&quot;Mariachi&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Merengue&quot;</span><span class="p">,</span> <span class="s2">&quot;Ranchera&quot;</span><span class="p">,</span> <span class="s2">&quot;Reggaeton&quot;</span><span class="p">,</span> <span class="s2">&quot;Regional Mexican&quot;</span><span class="p">,</span> <span class="s2">&quot;Salsa&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Tango&quot;</span><span class="p">,</span> <span class="s2">&quot;Tejano&quot;</span><span class="p">,</span> <span class="s2">&quot;Tropicalia&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Metal&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Black Metal&quot;</span><span class="p">,</span> <span class="s2">&quot;Classic Metal&quot;</span><span class="p">,</span> <span class="s2">&quot;Extreme Metal&quot;</span><span class="p">,</span> <span class="s2">&quot;Grindcore&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Hair Metal&quot;</span><span class="p">,</span> <span class="s2">&quot;Heavy Metal&quot;</span><span class="p">,</span> <span class="s2">&quot;Metalcore&quot;</span><span class="p">,</span> <span class="s2">&quot;Power Metal&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Progressive Metal&quot;</span><span class="p">,</span> <span class="s2">&quot;Rap Metal&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;New Age&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Environmental&quot;</span><span class="p">,</span> <span class="s2">&quot;Ethnic Fusion&quot;</span><span class="p">,</span> <span class="s2">&quot;Healing&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Meditation&quot;</span><span class="p">,</span> <span class="s2">&quot;Spiritual&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Decades&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;30s&quot;</span><span class="p">,</span> <span class="s2">&quot;40s&quot;</span><span class="p">,</span> <span class="s2">&quot;50s&quot;</span><span class="p">,</span> <span class="s2">&quot;60s&quot;</span><span class="p">,</span> <span class="s2">&quot;70s&quot;</span><span class="p">,</span> <span class="s2">&quot;80s&quot;</span><span class="p">,</span> <span class="s2">&quot;90s&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Pop&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Adult Contemporary&quot;</span><span class="p">,</span> <span class="s2">&quot;Barbershop&quot;</span><span class="p">,</span> <span class="s2">&quot;Bubblegum Pop&quot;</span><span class="p">,</span> <span class="s2">&quot;Dance Pop&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Idols&quot;</span><span class="p">,</span> <span class="s2">&quot;Oldies&quot;</span><span class="p">,</span> <span class="s2">&quot;JPOP&quot;</span><span class="p">,</span> <span class="s2">&quot;Soft Rock&quot;</span><span class="p">,</span> <span class="s2">&quot;Teen Pop&quot;</span><span class="p">,</span> <span class="s2">&quot;Top 40&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;World Pop&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;R&amp;B/Urban&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Classic R&amp;B&quot;</span><span class="p">,</span> <span class="s2">&quot;Contemporary R&amp;B&quot;</span><span class="p">,</span> <span class="s2">&quot;Doo Wop&quot;</span><span class="p">,</span> <span class="s2">&quot;Funk&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Motown&quot;</span><span class="p">,</span> <span class="s2">&quot;Neo-Soul&quot;</span><span class="p">,</span> <span class="s2">&quot;Quiet Storm&quot;</span><span class="p">,</span> <span class="s2">&quot;Soul&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Urban Contemporary&quot;</span><span class="p">,</span> <span class="s2">&quot;Reggae&quot;</span><span class="p">,</span> <span class="s2">&quot;Contemporary Reggae&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Dancehall&quot;</span><span class="p">,</span> <span class="s2">&quot;Dub&quot;</span><span class="p">,</span> <span class="s2">&quot;Pop-Reggae&quot;</span><span class="p">,</span> <span class="s2">&quot;Ragga&quot;</span><span class="p">,</span> <span class="s2">&quot;Rock Steady&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Reggae Roots&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Rock&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Adult Album Alternative&quot;</span><span class="p">,</span> <span class="s2">&quot;British Invasion&quot;</span><span class="p">,</span> <span class="s2">&quot;Classic Rock&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Garage Rock&quot;</span><span class="p">,</span> <span class="s2">&quot;Glam&quot;</span><span class="p">,</span> <span class="s2">&quot;Hard Rock&quot;</span><span class="p">,</span> <span class="s2">&quot;Jam Bands&quot;</span><span class="p">,</span> <span class="s2">&quot;Piano Rock&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Prog Rock&quot;</span><span class="p">,</span> <span class="s2">&quot;Psychedelic&quot;</span><span class="p">,</span> <span class="s2">&quot;Rock &amp; Roll&quot;</span><span class="p">,</span> <span class="s2">&quot;Rockabilly&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Singer/Songwriter&quot;</span><span class="p">,</span> <span class="s2">&quot;Surf&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Seasonal/Holiday&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Anniversary&quot;</span><span class="p">,</span> <span class="s2">&quot;Birthday&quot;</span><span class="p">,</span> <span class="s2">&quot;Christmas&quot;</span><span class="p">,</span> <span class="s2">&quot;Halloween&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Hanukkah&quot;</span><span class="p">,</span> <span class="s2">&quot;Honeymoon&quot;</span><span class="p">,</span> <span class="s2">&quot;Valentine&quot;</span><span class="p">,</span> <span class="s2">&quot;Wedding&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Winter&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Soundtracks&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Anime&quot;</span><span class="p">,</span> <span class="s2">&quot;Bollywood&quot;</span><span class="p">,</span> <span class="s2">&quot;Kids&quot;</span><span class="p">,</span> <span class="s2">&quot;Original Score&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Showtunes&quot;</span><span class="p">,</span> <span class="s2">&quot;Video Game Music&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Talk&quot;</span><span class="p">:</span>
+        <span class="p">[</span><span class="s2">&quot;Comedy&quot;</span><span class="p">,</span> <span class="s2">&quot;Community&quot;</span><span class="p">,</span> <span class="s2">&quot;Educational&quot;</span><span class="p">,</span> <span class="s2">&quot;Government&quot;</span><span class="p">,</span> <span class="s2">&quot;News&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Old Time Radio&quot;</span><span class="p">,</span> <span class="s2">&quot;Other Talk&quot;</span><span class="p">,</span> <span class="s2">&quot;Political&quot;</span><span class="p">,</span> <span class="s2">&quot;Public Radio&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Scanner&quot;</span><span class="p">,</span> <span class="s2">&quot;Spoken Word&quot;</span><span class="p">,</span> <span class="s2">&quot;Sports&quot;</span><span class="p">,</span> <span class="s2">&quot;Technology&quot;</span><span class="p">,</span> <span class="s2">&quot;Hardcore&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Eclectic&quot;</span><span class="p">,</span> <span class="s2">&quot;Instrumental&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Misc&quot;</span><span class="p">:</span> <span class="p">[],</span>
+<span class="p">}</span>
+
+<span class="n">synonym_genres</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># TODO: extend list with entries from &quot;Misc&quot; which are clearly the same</span>
+    <span class="s2">&quot;24h&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;24h&quot;</span><span class="p">,</span> <span class="s2">&quot;24hs&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;80s&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;80s&quot;</span><span class="p">,</span> <span class="s2">&quot;80er&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Acid Jazz&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Acid&quot;</span><span class="p">,</span> <span class="s2">&quot;Acid Jazz&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Adult&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Adult&quot;</span><span class="p">,</span> <span class="s2">&quot;Adulto&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Alternative&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Alt&quot;</span><span class="p">,</span> <span class="s2">&quot;Alternativa&quot;</span><span class="p">,</span> <span class="s2">&quot;Alternative&quot;</span><span class="p">,</span> <span class="s2">&quot;Alternativo&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Francais&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Francais&quot;</span><span class="p">,</span> <span class="s2">&quot;French&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Heavy Metal&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Heavy Metal&quot;</span><span class="p">,</span> <span class="s2">&quot;Heavy&quot;</span><span class="p">,</span> <span class="s2">&quot;Metal&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Hip Hop&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Hip&quot;</span><span class="p">,</span> <span class="s2">&quot;Hop&quot;</span><span class="p">,</span> <span class="s2">&quot;Hippop&quot;</span><span class="p">,</span> <span class="s2">&quot;Hip Hop&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Islam&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Islam&quot;</span><span class="p">,</span> <span class="s2">&quot;Islamic&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Italy&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Italia&quot;</span><span class="p">,</span> <span class="s2">&quot;Italian&quot;</span><span class="p">,</span> <span class="s2">&quot;Italiana&quot;</span><span class="p">,</span> <span class="s2">&quot;Italo&quot;</span><span class="p">,</span> <span class="s2">&quot;Italy&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Latina&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Latin&quot;</span><span class="p">,</span> <span class="s2">&quot;Latina&quot;</span><span class="p">,</span> <span class="s2">&quot;Latino&quot;</span><span class="p">],</span>
+<span class="p">}</span>
+<span class="n">useless_title_content</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># TODO: extend list with title expressions which are clearly useless</span>
+    <span class="s2">&quot; - [SHOUTcast.com]&quot;</span>
+<span class="p">]</span>
+<span class="n">useless_genres</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># TODO: extend list with entries from &quot;Misc&quot; which are clearly useless</span>
+    <span class="s2">&quot;genres&quot;</span><span class="p">,</span> <span class="s2">&quot;go&quot;</span><span class="p">,</span> <span class="s2">&quot;here&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Her&quot;</span><span class="p">,</span> <span class="s2">&quot;Hbwa&quot;</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="PlaylistStreamProxy"><a class="viewcode-back" href="../../../source/coherence.backends.html#coherence.backends.iradio_storage.PlaylistStreamProxy">[docs]</a><span class="k">class</span> <span class="nc">PlaylistStreamProxy</span><span class="p">(</span><span class="n">utils</span><span class="o">.</span><span class="n">ReverseProxyUriResource</span><span class="p">,</span> <span class="n">log</span><span class="o">.</span><span class="n">LogAble</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    proxies audio streams published as M3U playlists</span>
+<span class="sd">    (typically the case for shoutcast streams)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logCategory</span> <span class="o">=</span> <span class="s1">&#39;PlaylistStreamProxy&#39;</span>
+
+    <span class="n">stream_url</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">LogAble</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream_url</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">utils</span><span class="o">.</span><span class="n">ReverseProxyUriResource</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PlaylistStreamProxy.requestFinished"><a class="viewcode-back" href="../../../source/coherence.backends.html#coherence.backends.iradio_storage.PlaylistStreamProxy.requestFinished">[docs]</a>    <span class="k">def</span> <span class="nf">requestFinished</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; self.connection is set in utils.ReverseProxyResource.render &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ProxyStream requestFinished&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">transport</span><span class="o">.</span><span class="n">loseConnection</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="PlaylistStreamProxy.render"><a class="viewcode-back" href="../../../source/coherence.backends.html#coherence.backends.iradio_storage.PlaylistStreamProxy.render">[docs]</a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream_url</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">def</span> <span class="nf">got_playlist</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                        <span class="s1">&#39;Error to retrieve playlist - nothing retrieved&#39;</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">requestFinished</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;File1=&#39;</span><span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">stream_url</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">6</span><span class="p">:]</span>
+                        <span class="k">break</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream_url</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                        <span class="s1">&#39;Error to retrieve playlist - &#39;</span>
+                        <span class="s1">&#39;inconsistent playlist file&#39;</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">requestFinished</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                <span class="c1"># self.resetUri(self.stream_url)</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream_url</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">got_error</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s1">&#39;Error to retrieve playlist - unable to retrieve data&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">None</span>
+
+            <span class="n">playlist_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">uri</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="n">playlist_url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+            <span class="n">d</span><span class="o">.</span><span class="n">addCallbacks</span><span class="p">(</span><span class="n">got_playlist</span><span class="p">,</span> <span class="n">got_error</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">server</span><span class="o">.</span><span class="n">NOT_DONE_YET</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;this is our render method </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+                  <span class="n">request</span><span class="o">.</span><span class="n">uri</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">clientproto</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;render </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">getAllHeaders</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">clientproto</span> <span class="o">==</span> <span class="s1">&#39;HTTP/1.1&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">getHeader</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">:</span>
+                <span class="n">tokens</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)))</span>
+                <span class="k">if</span> <span class="s1">&#39;close&#39;</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+                    <span class="n">d</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">notifyFinish</span><span class="p">()</span>
+                    <span class="n">d</span><span class="o">.</span><span class="n">addBoth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">requestFinished</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">notifyFinish</span><span class="p">()</span>
+            <span class="n">d</span><span class="o">.</span><span class="n">addBoth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">requestFinished</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">utils</span><span class="o">.</span><span class="n">ReverseProxyUriResource</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="IRadioItem"><a class="viewcode-back" href="../../../source/coherence.backends.html#coherence.backends.iradio_storage.IRadioItem">[docs]</a><span class="k">class</span> <span class="nc">IRadioItem</span><span class="p">(</span><span class="n">BackendItem</span><span class="p">):</span>
+    <span class="n">logCategory</span> <span class="o">=</span> <span class="s1">&#39;iradio&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">station_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">stream_url</span><span class="p">,</span> <span class="n">mimetype</span><span class="p">):</span>
+        <span class="n">BackendItem</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">station_id</span> <span class="o">=</span> <span class="n">station_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mimetype</span> <span class="o">=</span> <span class="n">mimetype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream_url</span> <span class="o">=</span> <span class="n">stream_url</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">PlaylistStreamProxy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_url</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">item</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="IRadioItem.replace_by"><a class="viewcode-back" href="../../../source/coherence.backends.html#coherence.backends.iradio_storage.IRadioItem.replace_by">[docs]</a>    <span class="k">def</span> <span class="nf">replace_by</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="c1"># do nothing: we suppose the replacement item is the same</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="IRadioItem.get_item"><a class="viewcode-back" href="../../../source/coherence.backends.html#coherence.backends.iradio_storage.IRadioItem.get_item">[docs]</a>    <span class="k">def</span> <span class="nf">get_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">item</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">upnp_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">()</span>
+            <span class="n">upnp_parent_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">get_id</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">item</span> <span class="o">=</span> <span class="n">DIDLLite</span><span class="o">.</span><span class="n">AudioBroadcast</span><span class="p">(</span><span class="n">upnp_id</span><span class="p">,</span> <span class="n">upnp_parent_id</span><span class="p">,</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">Resource</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;http-get:*:</span><span class="si">%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">mimetype</span><span class="p">,</span>
+                    <span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                        <span class="p">(</span><span class="s1">&#39;DLNA.ORG_PN=MP3&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;DLNA.ORG_CI=0&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;DLNA.ORG_OP=01&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;DLNA.ORG_FLAGS=01700000000000000000000000000000&#39;</span><span class="p">))))</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">item</span></div>
+
+<div class="viewcode-block" id="IRadioItem.get_path"><a class="viewcode-back" href="../../../source/coherence.backends.html#coherence.backends.iradio_storage.IRadioItem.get_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="o">.</span><span class="n">urlbase</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span></div>
+
+<div class="viewcode-block" id="IRadioItem.get_id"><a class="viewcode-back" href="../../../source/coherence.backends.html#coherence.backends.iradio_storage.IRadioItem.get_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage_id</span></div></div>
+
+
+<div class="viewcode-block" id="IRadioStore"><a class="viewcode-back" href="../../../source/coherence.backends.html#coherence.backends.iradio_storage.IRadioStore">[docs]</a><span class="k">class</span> <span class="nc">IRadioStore</span><span class="p">(</span><span class="n">AbstractBackendStore</span><span class="p">):</span>
+    <span class="n">logCategory</span> <span class="o">=</span> <span class="s1">&#39;iradio&#39;</span>
+
+    <span class="n">implements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MediaServer&#39;</span><span class="p">]</span>
+
+    <span class="n">genre_parent_items</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># will list the parent genre for every given genre</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">AbstractBackendStore</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;iRadioStore&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;refresh&#39;</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span> <span class="o">*</span> <span class="mi">60</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">shoutcast_ws_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;genrelist&#39;</span><span class="p">,</span> <span class="n">SHOUTCAST_WS_URL</span><span class="p">)</span>
+
+        <span class="c1"># set root item</span>
+        <span class="n">root_item</span> <span class="o">=</span> <span class="n">Container</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_root_item</span><span class="p">(</span><span class="n">root_item</span><span class="p">)</span>
+
+        <span class="c1"># set root-level genre family containers and populate the genre_</span>
+        <span class="c1"># parent_items dict from the family hierarchy information</span>
+        <span class="k">for</span> <span class="n">family</span><span class="p">,</span> <span class="n">genres</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">genre_families</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="n">family_item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">append_genre</span><span class="p">(</span><span class="n">root_item</span><span class="p">,</span> <span class="n">family</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">family_item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">genre_parent_items</span><span class="p">[</span><span class="n">family</span><span class="p">]</span> <span class="o">=</span> <span class="n">root_item</span>
+                <span class="k">for</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">genres</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">genre_parent_items</span><span class="p">[</span><span class="n">genre</span><span class="p">]</span> <span class="o">=</span> <span class="n">family_item</span>
+
+        <span class="c1"># retrieve asynchronously the list of genres from</span>
+        <span class="c1"># the souhtcast server genres not already attached to</span>
+        <span class="c1"># a family will be attached to the &quot;Misc&quot; family</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retrieveGenreList_attemptCount</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">deferredRoot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieveGenreList</span><span class="p">()</span>
+
+        <span class="c1"># will be fired when the genre list is retrieved</span>
+        <span class="c1"># self.init_completed()</span>
+
+<div class="viewcode-block" id="IRadioStore.append_genre"><a class="viewcode-back" href="../../../source/coherence.backends.html#coherence.backends.iradio_storage.IRadioStore.append_genre">[docs]</a>    <span class="k">def</span> <span class="nf">append_genre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">genre</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">useless_genres</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">synonym_genres</span><span class="p">:</span>
+            <span class="n">same_genres</span> <span class="o">=</span> <span class="n">synonym_genres</span><span class="p">[</span><span class="n">genre</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">same_genres</span> <span class="o">=</span> <span class="p">[</span><span class="n">genre</span><span class="p">]</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">genre</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="n">family_item</span> <span class="o">=</span> <span class="n">LazyContainer</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">genre</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">,</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">retrieveItemsForGenre</span><span class="p">,</span>
+                                    <span class="n">genres</span><span class="o">=</span><span class="n">same_genres</span><span class="p">,</span> <span class="n">per_page</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># we will use a specific child items sorter</span>
+        <span class="c1"># in order to get the sub-genre containers first</span>
+        <span class="k">def</span> <span class="nf">childs_sort</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="n">y</span><span class="o">.</span><span class="vm">__class__</span><span class="p">:</span>
+                <span class="c1"># same class, we compare the names</span>
+                <span class="k">return</span> <span class="n">utils</span><span class="o">.</span><span class="n">cmp</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># the IRadioItem is deemed the lowest item class,</span>
+                <span class="c1"># other classes are compared by name (as usual)</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">IRadioItem</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">IRadioItem</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">utils</span><span class="o">.</span><span class="n">cmp</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">family_item</span><span class="o">.</span><span class="n">sorting_method</span> <span class="o">=</span> <span class="n">childs_sort</span>
+
+        <span class="n">parent</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">family_item</span><span class="p">,</span> <span class="n">external_id</span><span class="o">=</span><span class="n">genre</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">family_item</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+
+<div class="viewcode-block" id="IRadioStore.upnp_init"><a class="viewcode-back" href="../../../source/coherence.backends.html#coherence.backends.iradio_storage.IRadioStore.upnp_init">[docs]</a>    <span class="k">def</span> <span class="nf">upnp_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_connection_id</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">wmc_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;4&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_root_id</span><span class="p">()}</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">connection_manager_server</span><span class="o">.</span><span class="n">set_variable</span><span class="p">(</span>
+                <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SourceProtocolInfo&#39;</span><span class="p">,</span>
+                <span class="p">[</span><span class="s1">&#39;http-get:*:audio/mpeg:*&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;http-get:*:audio/x-scpls:*&#39;</span><span class="p">],</span>
+                <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+    <span class="c1"># populate a genre container (parent) with the sub-genre containers</span>
+    <span class="c1"># and corresponding IRadio (list retrieved from the shoutcast server)</span>
+<div class="viewcode-block" id="IRadioStore.retrieveItemsForGenre"><a class="viewcode-back" href="../../../source/coherence.backends.html#coherence.backends.iradio_storage.IRadioStore.retrieveItemsForGenre">[docs]</a>    <span class="k">def</span> <span class="nf">retrieveItemsForGenre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">genres</span><span class="p">,</span> <span class="n">per_page</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                              <span class="n">page</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">genre</span> <span class="o">=</span> <span class="n">genres</span><span class="p">[</span><span class="n">page</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">page</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">genres</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">parent</span><span class="o">.</span><span class="n">childrenRetrievingNeeded</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">?genre=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shoutcast_ws_url</span><span class="p">,</span> <span class="n">genre</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">genre_families</span><span class="p">:</span>
+            <span class="n">family_genres</span> <span class="o">=</span> <span class="n">genre_families</span><span class="p">[</span><span class="n">genre</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">family_genre</span> <span class="ow">in</span> <span class="n">family_genres</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">append_genre</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">family_genre</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">got_page</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s1">&#39;connection to ShoutCast service successful for genre </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="n">genre</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">parse_xml</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+            <span class="n">tunein</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;tunein&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">tunein</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">tunein</span> <span class="o">=</span> <span class="n">tunein</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;base&#39;</span><span class="p">,</span> <span class="s1">&#39;/sbin/tunein-station.pls&#39;</span><span class="p">)</span>
+            <span class="n">prot</span><span class="p">,</span> <span class="n">host_port</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">urlsplit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shoutcast_ws_url</span><span class="p">)</span>
+            <span class="n">tunein</span> <span class="o">=</span> <span class="n">prot</span> <span class="o">+</span> <span class="s1">&#39;://&#39;</span> <span class="o">+</span> <span class="n">host_port</span> <span class="o">+</span> <span class="n">tunein</span>
+
+            <span class="n">stations</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">stationResult</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;station&#39;</span><span class="p">):</span>
+                <span class="n">mimetype</span> <span class="o">=</span> <span class="n">stationResult</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mt&#39;</span><span class="p">)</span>
+                <span class="n">station_id</span> <span class="o">=</span> <span class="n">stationResult</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+                <span class="n">bitrate</span> <span class="o">=</span> <span class="n">stationResult</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;br&#39;</span><span class="p">)</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">stationResult</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+                <span class="c1"># remove useless substrings (eg. &#39;[Shoutcast.com]&#39; ) from title</span>
+                <span class="k">for</span> <span class="n">substring</span> <span class="ow">in</span> <span class="n">useless_title_content</span><span class="p">:</span>
+                    <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">substring</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">lower_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">?id=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">tunein</span><span class="p">,</span> <span class="n">stationResult</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span>
+
+                <span class="n">sameStation</span> <span class="o">=</span> <span class="n">stations</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">lower_name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">sameStation</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">bitrate</span> <span class="o">&gt;</span> <span class="n">sameStation</span><span class="p">[</span><span class="s1">&#39;bitrate&#39;</span><span class="p">]:</span>
+                    <span class="n">station</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+                               <span class="s1">&#39;station_id&#39;</span><span class="p">:</span> <span class="n">station_id</span><span class="p">,</span>
+                               <span class="s1">&#39;mimetype&#39;</span><span class="p">:</span> <span class="n">mimetype</span><span class="p">,</span>
+                               <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">station_id</span><span class="p">,</span>
+                               <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
+                               <span class="s1">&#39;bitrate&#39;</span><span class="p">:</span> <span class="n">bitrate</span><span class="p">}</span>
+                    <span class="n">stations</span><span class="p">[</span><span class="n">lower_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">station</span>
+
+            <span class="k">for</span> <span class="n">station</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">stations</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+                <span class="n">station_id</span> <span class="o">=</span> <span class="n">station</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;station_id&#39;</span><span class="p">)</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">station</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="n">station</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">)</span>
+                <span class="n">mimetype</span> <span class="o">=</span> <span class="n">station</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mimetype&#39;</span><span class="p">)</span>
+                <span class="n">item</span> <span class="o">=</span> <span class="n">IRadioItem</span><span class="p">(</span><span class="n">station_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">mimetype</span><span class="p">)</span>
+                <span class="n">parent</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">external_id</span><span class="o">=</span><span class="n">station_id</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">def</span> <span class="nf">got_error</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;connection to ShoutCast service failed: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">getTraceback</span><span class="p">())</span>
+            <span class="n">parent</span><span class="o">.</span><span class="n">childrenRetrievingNeeded</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># we retry</span>
+            <span class="k">return</span> <span class="n">Failure</span><span class="p">(</span><span class="s2">&quot;Unable to retrieve stations for genre </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">genre</span><span class="p">)</span>
+
+        <span class="n">d</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addCallbacks</span><span class="p">(</span><span class="n">got_page</span><span class="p">,</span> <span class="n">got_error</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span></div>
+
+    <span class="c1"># retrieve the whole list of genres from the shoutcast server</span>
+    <span class="c1"># to complete the population of the genre families classification</span>
+    <span class="c1"># (genres not previously classified are put into the &quot;Misc&quot; family)</span>
+    <span class="c1"># ...and fire mediaserver init completion</span>
+<div class="viewcode-block" id="IRadioStore.retrieveGenreList"><a class="viewcode-back" href="../../../source/coherence.backends.html#coherence.backends.iradio_storage.IRadioStore.retrieveGenreList">[docs]</a>    <span class="k">def</span> <span class="nf">retrieveGenreList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="nf">got_page</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieveGenreList_attemptCount</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connection to ShoutCast service &quot;</span>
+                          <span class="s2">&quot;successful for genre listing&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s2">&quot;Connection to ShoutCast service &quot;</span>
+                    <span class="s2">&quot;successful for genre listing after </span><span class="si">%d</span><span class="s2"> attempts.&quot;</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">retrieveGenreList_attemptCount</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">parse_xml</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+            <span class="n">genres</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">main_synonym_genre</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">main_genre</span><span class="p">,</span> <span class="n">sub_genres</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">synonym_genres</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+                <span class="n">genres</span><span class="p">[</span><span class="n">main_genre</span><span class="p">]</span> <span class="o">=</span> <span class="n">sub_genres</span>
+                <span class="k">for</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">sub_genres</span><span class="p">:</span>
+                    <span class="n">main_synonym_genre</span><span class="p">[</span><span class="n">genre</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_genre</span>
+
+            <span class="k">for</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;genre&#39;</span><span class="p">):</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">genre</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">main_synonym_genre</span><span class="p">:</span>
+                    <span class="n">genres</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="p">]</span>
+                    <span class="n">main_synonym_genre</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+
+            <span class="k">for</span> <span class="n">main_genre</span><span class="p">,</span> <span class="n">sub_genres</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">genres</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+                <span class="k">if</span> <span class="n">main_genre</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">genre_parent_items</span><span class="p">:</span>
+                    <span class="n">genre_families</span><span class="p">[</span><span class="s2">&quot;Misc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">main_genre</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">init_completed</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">got_error</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;connection to ShoutCast service &quot;</span>
+                         <span class="s2">&quot;for genre listing failed - Will retry! </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">getTraceback</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">retrieveGenreList_attemptCount</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">reactor</span><span class="o">.</span><span class="n">callLater</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieveGenreList</span><span class="p">)</span>
+
+        <span class="n">d</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shoutcast_ws_url</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="n">got_page</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addErrback</span><span class="p">(</span><span class="n">got_error</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pol Canelles.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.8.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
