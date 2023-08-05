@@ -1,0 +1,10 @@
+{
+    "VERSION": "v1.5.0b1",
+    "STATUS": "Release",
+    "RELEASE": "v1.5.0b1",
+    "AUTHOR": "Christian Kellner, Adrian Stoewer, Andrey Sobolev, Jan Grewe, Balint Morvai, Achilleas Koutsou",
+    "COPYRIGHT": "2014, German Neuroinformatics Node, Christian Kellner, Adrian Stoewer, Andrey Sobolev, Jan Grewe, Balint Morvai, Achilleas Koutsou",
+    "CONTACT": "dev@g-node.org",
+    "BRIEF": "Python bindings for NIX",
+    "HOMEPAGE": "https://github.com/G-Node/nixpy"
+}
