@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.py
+sizif/__init__.py
+sizif/keras.py
+sizif/storage.py
+sizif.egg-info/PKG-INFO
+sizif.egg-info/SOURCES.txt
+sizif.egg-info/dependency_links.txt
+sizif.egg-info/not-zip-safe
+sizif.egg-info/requires.txt
+sizif.egg-info/top_level.txt
