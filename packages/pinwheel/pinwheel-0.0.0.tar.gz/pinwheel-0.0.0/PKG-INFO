@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: pinwheel
+Version: 0.0.0
+Summary: A testing framework for Airflow and Hive queries.
+Home-page: https://github.com/akuhn/pinwheel
+Author: Adrian Kuhn
+Author-email: adrian.kuhn@airbnb.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
