@@ -1,0 +1,9 @@
+aiochclient/__init__.py,sha256=30wdVCIbAjiMj_pAh7quv_RLcJ3BBMJ3y5TcuEaXhtQ,134
+aiochclient/client.py,sha256=eFEBt0-wY9it3jvaegkuS1MVEWNANTDRJ3QM2XxARbs,5998
+aiochclient/exceptions.py,sha256=hPoRkrcsVctfAaGBxqCoBydG_HwcgAO7fHDuDnSUi4Q,43
+aiochclient/records.py,sha256=LDPdL0-YrWTb3F1Z_Wwx-sAQ-jTxoKnzLJ9OtSIW8rM,460
+aiochclient/types.py,sha256=nVl-R1LvtPO7rMlWYyi7PycDCUJ3CNuIUgfpVVy2zPI,5033
+aiochclient-0.0.1.dist-info/METADATA,sha256=6kHVSypKzw0jJ3NnyzMoYn3hLgzN1Y4-ZFxMnni_VpY,3003
+aiochclient-0.0.1.dist-info/RECORD,,
+aiochclient-0.0.1.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+aiochclient-0.0.1.dist-info/top_level.txt,sha256=tmUERfwmxEBndokUj_2JuSTg6ShMI3sfZljaKGUFql4,12
