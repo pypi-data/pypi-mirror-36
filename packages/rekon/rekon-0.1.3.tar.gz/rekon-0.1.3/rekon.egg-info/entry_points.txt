@@ -1,0 +1,3 @@
+[console_scripts]
+rekon = rekon.cli:main
+
