@@ -1,0 +1,3 @@
+[girder.plugin]
+curation = girder_curation:CurationPlugin
+
