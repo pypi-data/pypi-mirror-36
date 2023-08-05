@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: itunes
+Version: 0.0.1
+Summary: iTunes.app python (MacOS)
+Home-page: https://github.com/looking-for-a-job/itunes.py
+License: UNKNOWN
+Description: [![](https://img.shields.io/pypi/pyversions/itunes.svg?longCache=True)](https://pypi.org/pypi/itunes/)
+        
+        ### Install
+        ```bash
+        $ [sudo] pip install itunes
+        ```
+        
+        ### Examples
+        ```python
+        import itunes
+        >>> itunes.play()
+        >>> itunes.pause()
+        >>> itunes.stop()
+        >>> itunes.next()
+        >>> itunes.prev()
+        ```
+        
+        playlists
+        ```python
+        >>> itunes.playlists()
+        ["playlist1","playlist2"]
+        ```
+        
+        play_track
+        ```python
+        >>> itunes.play_track("track_name","playlist")
+        >>> itunes.play_track(1,"playlist")
+        ```
+        
+        volume
+        ```python
+        >>> itunes.volume(10)
+        >>> itunes.volume()
+        10
+        ```
+        mute
+        ```python
+        >>> itunes.mute()
+        >>> itunes.muted()
+        True
+        >>> itunes.unmute()
+        ```
+Keywords: itunes
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development
+Description-Content-Type: text/markdown
