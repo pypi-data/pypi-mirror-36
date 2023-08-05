@@ -1,0 +1,16 @@
+mailpapa/__init__.py,sha256=L9ybasyy_RWOx9OcYYzTboxGSj1L0CiNx0g75Oq9nIY,43
+mailpapa/__version__.py,sha256=h4u0OJ-KLXRqt1-8AYx-ag3B_JwKhlzwz3RPXs-M8Gs,210
+mailpapa/api.py,sha256=PwtosW738BED02_oySEkuVJAV_QSI_a-GYpp0KRARNU,2121
+mailpapa/cli.py,sha256=SeXugPSmsGAKFZ1D6CX0I5jFxsOBcGgfjyVeVzf8Nzc,1204
+mailpapa/compatible.py,sha256=urEfrU4LSHZz_sapV6rK0QLVOjQixXD06TJiFtiAdSE,299
+mailpapa/models.py,sha256=VaCJYYhQX4Pwrswotfx1ujObd9uIlW2BMedn3vfu9nw,2967
+mailpapa/parse.py,sha256=hBLBNMKbZoF7RN-BAH5dE15G1r_B-5RttjHNQDzvH0U,1172
+mailpapa/structures.py,sha256=zdJirZQoIEOCjnjs8IXY1Lhke6N8W1oF4_uL6oq2TxQ,311
+mailpapa/utils.py,sha256=hDBGMkwMVWU8bTXT-4TSBWG-VZVz5IJpZAI4HrJedxc,3253
+mailpapa-0.1.1.dist-info/LICENSE.txt,sha256=bN527K-pSiJIc1zPTgdnj3IOcoTCM9DON2aUZsPijJk,1094
+mailpapa-0.1.1.dist-info/METADATA,sha256=l2Mus9bEgFLWuvEhdTjlH9DzPk7LisBoBT9F2cwazJU,884
+mailpapa-0.1.1.dist-info/RECORD,,
+mailpapa-0.1.1.dist-info/WHEEL,sha256=CG516Me1TEyQqkQMqQpnDadrWi7ujPk88poSAu3OliQ,116
+mailpapa-0.1.1.dist-info/entry_points.txt,sha256=5d2z4hMGXx2qy-9ywUiterVEM_RdcAWwaI3gbmj5LqI,48
+mailpapa-0.1.1.dist-info/top_level.txt,sha256=YbaNjun8XncsyLWvMIBaiJ0Ue0q3VkqA-4Aq5brOuFc,15
+tests/__init__.py,sha256=w18YE4InzTUVhfAaLxFGt0Rx5o7RzFnAaL82bEmaxFk,16
