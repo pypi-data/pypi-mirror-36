@@ -1,0 +1,9 @@
+icdar_tools/__init__.py,sha256=ZpDjM3HKrvaKUZNGtdniqQoNWWSUdJMJGtp9YxgmLmo,142
+icdar_tools/data_util.py,sha256=idp0wxtyaoRtepwM3oTnOTdBOKQx69e3nrdISGrQFHk,4280
+icdar_tools/icd_util.py,sha256=2wYXcZNLwhgsmH9bKroM_M9PU2KdM6q9rkV7US0jpeM,4737
+icdar_tools/icdar.py,sha256=NdS5fAb_M-KCl1Tu7QItFusRuzqIG0zm-zwK4PyYkus,30625
+icdar_tools/locality_aware_nms.py,sha256=ul-fdT9iNa6_-STO5lv6ilHUBErvGVZHgrq19ici3eM,1540
+icdar_tools-0.0.3.dist-info/METADATA,sha256=s-zv3hF0AO4v1LXHlhAF52cofZ-RoD_8bkiv-lYXx-8,4919
+icdar_tools-0.0.3.dist-info/RECORD,,
+icdar_tools-0.0.3.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+icdar_tools-0.0.3.dist-info/top_level.txt,sha256=agRZx3JRaIc9wK98b6lmq94jSlxwezANab5QfcfTObw,12
