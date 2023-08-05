@@ -1,0 +1,3 @@
+[console_scripts]
+mailpapa = cli:main
+
