@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: py-aiger-analysis
+Version: 0.0.1
+Summary: An extension of py-aiger providing advanced tool support,  including SAT and QBF solvers.
+Home-page: http://github.com/mvcisback/py-aiger-analysis
+Author: Marcell Vazquez-Chanlatte
+Author-email: marcell.vc@eecs.berkeley.edu
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Provides-Extra: SAT
+Provides-Extra: BDD
