@@ -1,0 +1,51 @@
+{
+    "ApplicationConfiguration": {
+        "DataDirectoryPath": "Chains/SC234",
+        "NotificationDataPath": "Chains/Test_Notif",
+        "RPCPort": 44886,
+        "NodePort": 44887,
+        "SslCert": "",
+        "SslCertPassword": "",
+        "UriPrefix": [
+            "http://*:44886"
+        ],
+        "WsPort": 44888,
+        "BootstrapFile":"https://kaze.solutions/Downloads/bootstrap_testnet/Testnet131xxxx.tar.gz",
+        "NotificationBootstrapFile":"https://kaze.solutions/Downloads/bootstrap_testnet/TestnetNotif131xxxx.tar.gz",
+        "DebugStorage":1
+    },
+    "ProtocolConfiguration": {
+        "AddressVersion": 45,
+        "Magic": 6612854,
+        "SeedList": [
+            "node1.Kaze.solutions:44887",
+            "node2.Kaze.solutions:44887",
+            "node3.Kaze.solutions:44887",
+            "node4.Kaze.solutions:44887",
+            "node5.Kaze.solutions:44887",
+            "node6.Kaze.solutions:44887",
+            "node7.Kaze.solutions:44887"
+        ],
+        "RPCList":[
+            "http://node1.Kaze.solutions:44886",
+            "http://node2.Kaze.solutions:44886",
+            "http://node4.Kaze.solutions:44886",
+            "http://node3.Kaze.solutions:44886",
+            "http://node5.Kaze.solutions:44886",
+            "http://node6.Kaze.solutions:44886",
+            "http://node7.Kaze.solutions:44886"
+        ],
+        "StandbyValidators": [
+            "0364034bff45b5167e54fc8d413365afd25d91ac661b37219bb2c55189dadf69dc",
+            "03152fc6d1a71adad70d41c578e83ee7821cce88d9c33e8d3e6084ee8ad947bd88",
+            "032bd8937ca7d16582601736559f0cbd2bc3416c5d2db981dfe137a4e23aa5bede",
+            "027036610d0d40e256ced015cf191c392288e1b882e0868cd8190248674dc27ecc"
+        ],
+        "SystemFee": {
+            "EnrollmentTransaction": 1,
+            "IssueTransaction": 0.5,
+            "PublishTransaction": 0.5,
+            "RegisterTransaction": 10
+        }
+    }
+}
