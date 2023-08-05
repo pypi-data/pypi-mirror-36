@@ -1,0 +1,12 @@
+skil/__init__.py,sha256=0ImrzOAv5Dmtx36vf7EHMiiAc9sP_nElN9sguiYS4Wo,138
+skil/base.py,sha256=FaYEOwJxp4u-Z6UVJlwesSwsaEVSBq1MKRIkXCuBYeE,3133
+skil/deployment.py,sha256=aXJgepmfNK3pMwhRq1R4p6hZ0y3XEpY9gdlhkybFijY,295
+skil/experiment.py,sha256=rpdfM1EQHlZWSjkVbN3sr88CHfdFMtxy0rq7sdHE2T0,659
+skil/model.py,sha256=bp10aWz-YdkBL0CfP5fN2KHV2oOS9PlOViZez2J3OOU,3416
+skil/workspace.py,sha256=0_Y7Uz6WpQf7t6WqZ9S_7Nd361jWKPFbW6XqYOUPlI8,499
+skil-0.1.dist-info/DESCRIPTION.rst,sha256=B4eSod4GdMkPz6hpUGiPAOx2ZqCqohYzp-cHh4scB8k,38
+skil-0.1.dist-info/METADATA,sha256=HcMJ6FnWzliJQ8aGVQNVNO1Uvw17Rcv1ef3QZ-uTBRM,862
+skil-0.1.dist-info/RECORD,,
+skil-0.1.dist-info/WHEEL,sha256=rNo05PbNqwnXiIHFsYm0m22u4Zm6YJtugFG2THx4w3g,92
+skil-0.1.dist-info/metadata.json,sha256=_lZOBK5kdPAX_9N7K7XTX8Beb7x3NTaZsvrkCLVq_sA,886
+skil-0.1.dist-info/top_level.txt,sha256=rLCehZ6G9MVHkX-s6_SdR_coKlDY47mqJb4hrUqWJCU,5
