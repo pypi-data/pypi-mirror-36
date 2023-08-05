@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+pcu_nlp/__init__.py
+pcu_nlp/pcu_nlp.py
+pcu_nlp.egg-info/PKG-INFO
+pcu_nlp.egg-info/SOURCES.txt
+pcu_nlp.egg-info/dependency_links.txt
+pcu_nlp.egg-info/top_level.txt
+tests/__init__.py
+tests/test_pcu_nlp.py
