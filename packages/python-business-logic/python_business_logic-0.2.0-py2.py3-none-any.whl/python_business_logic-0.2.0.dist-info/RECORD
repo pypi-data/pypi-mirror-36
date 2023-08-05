@@ -1,0 +1,11 @@
+business_logic/__init__.py,sha256=78jgIQfwcJXLhaf0XmY_K65eUakYZNFK0lS4cUCB2AY,169
+business_logic/core.py,sha256=OtEtaKQ6CZEKg3zMhV-EQ0jkTuZw4MTTg53XbSmG6zQ,3773
+business_logic/errors.py,sha256=hDSL0Ymv4HrmHjW2HOotQF4CwRL806Mmyn2fmnUTZ4Y,858
+business_logic/exceptions.py,sha256=4h9UBojb2O-v-8RJwwUSDWI0cCOUF53GRV-CFezOMYk,1426
+business_logic/tests.py,sha256=ExCu4HL0WaBeGP03RZaMPOhgjzlOPTfLLJJCILpd_JM,533
+python_business_logic-0.2.0.dist-info/DESCRIPTION.rst,sha256=kPdaEDbZ0ylDgmCql94ZSmIfIsJZPFoYOd227mHKXL4,8093
+python_business_logic-0.2.0.dist-info/METADATA,sha256=26oK33iwxDCyYMovfG7CeYzJJLU5FUAifPO4nNtyUiA,9014
+python_business_logic-0.2.0.dist-info/RECORD,,
+python_business_logic-0.2.0.dist-info/WHEEL,sha256=kdsN-5OJAZIiHN-iO4Rhl82KyS0bDWf4uBwMbkNafr8,110
+python_business_logic-0.2.0.dist-info/metadata.json,sha256=n-KX3xX3Yu1wrNE_R2wX8Y7m0DzJUX3pvSjOhUq9s0Y,1063
+python_business_logic-0.2.0.dist-info/top_level.txt,sha256=jqkcn2uuEOG_wxQieNa9Ly3e4YrWDqz_dh3Y3pSUX2g,15
