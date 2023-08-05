@@ -1,0 +1,7 @@
+
+        [ckan.plugins]
+        odi_certificates_client=ckanext.odi_certificates_client.plugin:Odi_Certificates_ClientPlugin
+
+        [babel.extractors]
+        ckan = ckan.lib.extract:extract_ckan
+    
