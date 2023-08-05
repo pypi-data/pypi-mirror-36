@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<layers>
+    <layer name="rer.subsites"
+           interface="rer.subsites.interfaces.IRERSubsiteLayer"
+           remove="True"/>
+</layers>

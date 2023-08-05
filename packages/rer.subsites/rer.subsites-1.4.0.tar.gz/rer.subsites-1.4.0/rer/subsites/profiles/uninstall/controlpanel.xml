@@ -1,0 +1,10 @@
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        name="portal_controlpanel"
+        meta_type="Plone Control Panel Tool"
+        i18n:domain="rer.subsites">
+  <configlet title="Subsites settings"
+             action_id="RerSubistes"
+             appId="rer.subsites"
+             remove="True">
+  </configlet>
+</object>

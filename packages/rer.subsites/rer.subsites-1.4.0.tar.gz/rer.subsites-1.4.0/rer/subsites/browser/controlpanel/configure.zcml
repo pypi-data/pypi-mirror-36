@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="rer.subsites">
+
+  <browser:page
+        name="subsites-settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".controlpanel.RERSubsitesSettingsControlPanel"
+        permission="cmf.ManagePortal"
+        layer="rer.subsites.interfaces.IRERSubsiteLayer"
+        />
+</configure>

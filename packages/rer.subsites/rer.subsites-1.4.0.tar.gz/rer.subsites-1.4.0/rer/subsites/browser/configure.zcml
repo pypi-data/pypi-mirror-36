@@ -1,0 +1,103 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+	xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="rer.subsites">
+
+  <include package="plone.app.contentmenu" />
+  <include package=".controlpanel" />
+
+  <!-- VIEW TO CHECK AVAILABILITY OF THE CSS -->
+  <browser:page
+        for="*"
+        name="show-subsitescss"
+        class=".show_subsitescss.View"
+        layer="..interfaces.IRERSubsiteLayer"
+        permission="zope.Public"
+        />
+
+  <!-- viewlet titolo -->
+  <browser:viewlet
+      name="rer.subsite_title"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+      class=".viewlets.SubsiteTitleViewlet"
+      layer="..interfaces.IRERSubsiteLayer"
+      permission="zope2.View"
+      template="viewlets/rer_subsite_title.pt"
+      />
+  <!-- GESTIONE COLORE -->
+    <browser:viewlet
+      name="subsite_color.viewlet"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+      class=".viewlets.SubsiteColorViewlet"
+      layer="..interfaces.IRERSubsiteLayer"
+      permission="zope2.View"
+        />
+  <browser:resource
+        name="subsite.png"
+        file="subsite.png"
+        />
+
+
+  <browser:page
+   for="*"
+   name="mark_subsite"
+   class=".subsite_folder_utils.ToggleMarkSubsite"
+   attribute="add_interface"
+   permission="rer.subsites.permissions.AddRERSubsite"
+   layer="..interfaces.IRERSubsiteLayer"
+   />
+
+ <browser:page
+   for="*"
+   name="unmark_subsite"
+   class=".subsite_folder_utils.ToggleMarkSubsite"
+   attribute="remove_interface"
+   permission="rer.subsites.permissions.AddRERSubsite"
+   layer="..interfaces.IRERSubsiteLayer"
+   />
+
+ <browser:page
+   for="*"
+   name="check_subsite_action_add"
+   attribute="check_subsite_action_add"
+   class=".subsite_folder_utils.CheckSubsiteAction"
+   permission="rer.subsites.permissions.AddRERSubsite"
+   layer="..interfaces.IRERSubsiteLayer"
+   />
+ <browser:page
+   for="*"
+   name="check_subsite_action_remove"
+   attribute="check_subsite_action_remove"
+   class=".subsite_folder_utils.CheckSubsiteAction"
+   permission="rer.subsites.permissions.AddRERSubsite"
+   layer="..interfaces.IRERSubsiteLayer"
+   />
+
+ <adapter factory=".subsite_styles_form.SubsiteStylesFormAdapter" />
+ <browser:page
+   for="..interfaces.IRERSubsiteEnabled"
+   name="subsite_styles_form"
+   class=".subsite_styles_form.SubsiteStylesForm"
+   permission="rer.subsites.permissions.AddRERSubsite"
+   layer="..interfaces.IRERSubsiteLayer"
+   />
+
+ <browser:page
+   for="*"
+   name="subsite_utils_view"
+   allowed_interface="..interfaces.IRERSubsiteUtilsView"
+   class=".subsite_folder_utils.SubsiteUtilsView"
+   permission="zope2.View"
+   layer="..interfaces.IRERSubsiteLayer"
+   />
+
+<browser:page
+  name="plone_layout"
+  for="*"
+  permission="zope.Public"
+  class=".layout.LayoutPolicy"
+  layer="..interfaces.IRERSubsiteLayer"
+  />
+
+</configure>

@@ -1,0 +1,95 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2017-11-17 11:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: rer.subsites\n"
+
+#: ./interfaces/settings.py:25
+msgid "Enable viewlets"
+msgstr ""
+
+#: ./configure.zcml:29
+msgid "RER: Subsites"
+msgstr ""
+
+#: ./configure.zcml:37
+msgid "RER: Subsites uninstall"
+msgstr ""
+
+#: ./profiles/default/actions.xml
+msgid "Set as subsite"
+msgstr ""
+
+#: ./profiles/default/actions.xml
+msgid "Set this folder as subsite"
+msgstr ""
+
+#: ./interfaces/settings.py:15
+#: ./profiles/default/actions.xml
+msgid "Subsite styles"
+msgstr ""
+
+#: ./configure.zcml:29
+msgid "Subsites for ER portals"
+msgstr ""
+
+#: ./browser/controlpanel/controlpanel.py:13
+#: ./profiles/default/controlpanel.xml
+msgid "Subsites settings"
+msgstr ""
+
+#: ./profiles/default/actions.xml
+msgid "Unset as subsite"
+msgstr ""
+
+#: ./profiles/default/actions.xml
+msgid "Unset this folder as subsite"
+msgstr ""
+
+#. Default: "Not a valid color"
+#: ./browser/subsite_styles_form.py:64
+msgid "error_invalid_css_color"
+msgstr ""
+
+#. Default: "Insert a list of css styles that will be applied in the subsite and his children. Where you need to use the subsite color, you should write '$color$' string."
+#: ./interfaces/settings.py:16
+msgid "help_subsite_styles"
+msgstr ""
+
+#. Default: "Set subsites configurations"
+#: ./browser/controlpanel/controlpanel.py:14
+msgid "help_subsites_settings_editform"
+msgstr ""
+
+#. Default: "Class"
+#: ./interfaces/settings.py:44
+msgid "rer_subsites_class"
+msgstr ""
+
+#. Default: "Insert a class name to be associated to the subsite."
+#: ./interfaces/settings.py:45
+msgid "rer_subsites_class_help"
+msgstr ""
+
+#. Default: "Image"
+#: ./interfaces/settings.py:52
+msgid "rer_subsites_image"
+msgstr ""
+
+#. Default: "Insert an image for the viewlet with the subsite name."
+#: ./interfaces/settings.py:53
+msgid "rer_subsites_image_help"
+msgstr ""

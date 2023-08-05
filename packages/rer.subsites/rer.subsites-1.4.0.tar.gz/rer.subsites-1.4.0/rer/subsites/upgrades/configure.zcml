@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    i18n_domain="rer.subsites">
+
+  <!-- Upgrade steps -->
+  <gs:upgradeStep
+        title="Upgrade rer.subsites 2100"
+        description="rer.subsites upgrade step"
+        source="2000"
+        destination="2100"
+        handler=".upgrades.to_2100"
+        profile="rer.subsites:default" />
+
+  <gs:upgradeStep
+        title="Upgrade rer.subsites 2200"
+        description="rer.subsites upgrade step"
+        source="2100"
+        destination="2200"
+        handler=".upgrades.to_2200"
+        profile="rer.subsites:default" />
+</configure>
