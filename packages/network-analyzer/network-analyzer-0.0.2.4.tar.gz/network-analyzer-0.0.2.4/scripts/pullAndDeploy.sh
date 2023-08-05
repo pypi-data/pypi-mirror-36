@@ -1,0 +1,1 @@
+sh pm2stop.sh && git pull && pip install -e . && sh pm2start.sh
