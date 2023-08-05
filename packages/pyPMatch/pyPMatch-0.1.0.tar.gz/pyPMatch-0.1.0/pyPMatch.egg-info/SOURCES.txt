@@ -1,0 +1,15 @@
+README.md
+setup.py
+pmatch/__init__.py
+pmatch/enable_auto_import.py
+pmatch/match_template.py
+pmatch/pama_ast.py
+pmatch/pama_compiler.py
+pmatch/pama_decorators.py
+pmatch/pama_importhook.py
+pmatch/pattern_parser.py
+pmatch/syntax_support.py
+pyPMatch.egg-info/PKG-INFO
+pyPMatch.egg-info/SOURCES.txt
+pyPMatch.egg-info/dependency_links.txt
+pyPMatch.egg-info/top_level.txt
