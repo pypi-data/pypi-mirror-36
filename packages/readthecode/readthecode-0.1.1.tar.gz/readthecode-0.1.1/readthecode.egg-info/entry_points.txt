@@ -1,0 +1,4 @@
+[console_scripts]
+readthecode = main:cli
+rtc = main:cli
+
