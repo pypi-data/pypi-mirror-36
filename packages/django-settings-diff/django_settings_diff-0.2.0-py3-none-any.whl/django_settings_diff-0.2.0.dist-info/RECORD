@@ -1,0 +1,10 @@
+django_settings_diff/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_settings_diff/__main__.py,sha256=bYt9eEaoRQWdejEHFD8REx9jxVEdZptECFsV7F49Ink,30
+django_settings_diff/cli.py,sha256=YANLG3aTCeGav5OyRm69m2muADz9lSdYg4p9nj8RSq8,1210
+django_settings_diff/settingsdiff.py,sha256=bDwPyhy8a8NcQBAKPaPersXiPxhHtOi2HnaXC-ZBlrw,1216
+django_settings_diff-0.2.0.dist-info/METADATA,sha256=--ryIznII9f1IDE79NEiWdiixBYTdgZ579dUweLELXQ,573
+django_settings_diff-0.2.0.dist-info/RECORD,,
+django_settings_diff-0.2.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+django_settings_diff-0.2.0.dist-info/entry_points.txt,sha256=dZBLU0Ir7_8HC1Lh_ITHdeUCjfrf1r81VQKhkaSj57s,64
+django_settings_diff-0.2.0.dist-info/pbr.json,sha256=vLLm7MTdglQUoFLHUAkRg3LEqT3NUycKww6W7dLy_jw,47
+django_settings_diff-0.2.0.dist-info/top_level.txt,sha256=r599hWT0GZOfOHF5jc1C6eX_WYZ5iASzzrPNG279_LE,21
