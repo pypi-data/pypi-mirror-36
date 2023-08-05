@@ -1,0 +1,9 @@
+convert2geojson/__init__.py,sha256=8RbFDYnu229MlAvGi0vWym1cdQGJ97znXdPrsPU8qvc,34
+convert2geojson/base.py,sha256=8p9rHJ_OUNtJZ960bIy3O5hqMQWbpIFdnJg_ykQHEIM,12579
+convert2geojson/shapes.py,sha256=pPlSawyrxfVRfmiPz6twV76b6SHXA5sj39G_R0mOArA,1604
+convert2geojson/html/template/clusterpies.css,sha256=xbcIBPlawRcxXDz708WpYkvjbW-F9QHnLRFh3NXJCVc,1425
+convert2geojson/html/template/index.html,sha256=uL_y_fXLa_3Yzs3T5eUsh2fqnOYtkWrhY8NwwjEJli4,8955
+convert2geojson-0.0.1.dist-info/METADATA,sha256=DtIRkn1lBgMZUrmsMLK-ezme8_5MmmVDTFCPDlqAd_Y,5566
+convert2geojson-0.0.1.dist-info/RECORD,,
+convert2geojson-0.0.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+convert2geojson-0.0.1.dist-info/top_level.txt,sha256=W4HIqXMGpDTsep0B7CPU-WrRCCOvYW8k45qBXF5wsM8,16
