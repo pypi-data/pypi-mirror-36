@@ -1,0 +1,3 @@
+[flake8.extension]
+SP = flake8_spellcheck:SpellCheckPlugin
+
