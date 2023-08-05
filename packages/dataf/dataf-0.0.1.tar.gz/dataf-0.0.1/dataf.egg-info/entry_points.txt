@@ -1,0 +1,3 @@
+[console_scripts]
+dataf = dataf.command_line:main
+
