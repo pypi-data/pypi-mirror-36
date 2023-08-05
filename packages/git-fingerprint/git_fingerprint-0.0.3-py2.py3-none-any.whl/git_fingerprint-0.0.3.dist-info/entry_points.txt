@@ -1,0 +1,3 @@
+[console_scripts]
+git-fingerprint = git_fingerprint.__main__:main
+
