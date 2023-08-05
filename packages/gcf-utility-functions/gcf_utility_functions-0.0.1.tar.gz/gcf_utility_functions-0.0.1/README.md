@@ -1,0 +1,1 @@
+Utility, convenience, and helper functions to be shared across multiple Google Cloud Functions.
