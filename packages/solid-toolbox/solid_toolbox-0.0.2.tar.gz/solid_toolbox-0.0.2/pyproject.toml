@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "solid_toolbox"
+version = "0.0.2"
+description = "A collection of utilities for solidpython"
+
+license = "MIT"
+readme = "README.md"
+
+authors = [
+    "Michael Lee <michael.lee.0x2a@gmail.com>",
+]
+
+repository = "https://github.com/michael0x2a/poetry"
+homepage = "https://github.com/michael0x2a/poetry"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+solidpython = "^0.2.0"
+prettytable = "0.7.2"
+click = "^6.7"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.8.0"
+flake8 = "^3.5"
