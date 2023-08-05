@@ -1,0 +1,10 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+ovsportranges.py
+setup.cfg
+setup.py
+ovsportranges.egg-info/PKG-INFO
+ovsportranges.egg-info/SOURCES.txt
+ovsportranges.egg-info/dependency_links.txt
+ovsportranges.egg-info/top_level.txt
