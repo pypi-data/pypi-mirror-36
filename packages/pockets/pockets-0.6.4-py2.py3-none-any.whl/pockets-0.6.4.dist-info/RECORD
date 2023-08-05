@@ -1,0 +1,15 @@
+pockets/__init__.py,sha256=Mub1CPDF-jJDoR2Qr08-4Q98OXx1pw-kPw9VMVuByLg,813
+pockets/_version.py,sha256=mOTnNk1t7VqXZ1j-hUjjxj1vZnXWHYvPaHdHnqH_Xns,295
+pockets/autolog.py,sha256=NxsHz4hDBx0jNCAyPs5U2sL2XmnD3pUFLuYeVvGVy84,633
+pockets/collections.py,sha256=1Z73HBnq7CHSK8UqwJre7S_qUwd-1-XDRALeQ9hjulQ,12390
+pockets/datetime.py,sha256=OyDHj7uSguRYxmheJNSAlA6yX6TT-FLbG9I4Goqt8Rg,3921
+pockets/decorators.py,sha256=2yw6h_lW7fBH2khuOi6P3NcTlEkFj5L66LgNJOqFuM8,5425
+pockets/inspect.py,sha256=Mu6gPZ32A_CxsCX0FLhbNa0IJTgoF7zXHiFQ_pjtjcA,9294
+pockets/iterators.py,sha256=YMxp7AEg6iFt5uMP6j020gKmaXe7v95Vdl0mO5SlR8M,8481
+pockets/logging.py,sha256=XuRukBeuKWm2BZGmroVXdBj6AbcmGtOxPR-JNZZPqlU,11272
+pockets/string.py,sha256=pO97YePpfd1X0vfc8mSGJPbLXrRz5YT4pvDk1fmV9Vw,12139
+pockets-0.6.4.dist-info/METADATA,sha256=zYjivhdHD6IQzCJ0kYJjGQ5yGtB_tMKK39OWx4Upn7s,4378
+pockets-0.6.4.dist-info/RECORD,,
+pockets-0.6.4.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+pockets-0.6.4.dist-info/top_level.txt,sha256=kAarJAYIv7FKBc9EfCClzACq6et7sMoruv6shyVtttM,8
+pockets-0.6.4.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
