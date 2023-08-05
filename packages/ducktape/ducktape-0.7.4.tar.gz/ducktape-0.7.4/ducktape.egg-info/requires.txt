@@ -1,0 +1,8 @@
+boto3==1.9.0
+jinja2==2.9.6
+paramiko==2.3.1
+pycrypto==2.6.1
+pysistence==0.4.1
+pywinrm==0.2.2
+pyzmq==17.0.0b2
+requests==2.18.4
