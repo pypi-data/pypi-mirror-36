@@ -1,0 +1,10 @@
+MANIFEST.in
+README.md
+setup.py
+authenticator/__init__.py
+simpl_authenticator.egg-info/PKG-INFO
+simpl_authenticator.egg-info/SOURCES.txt
+simpl_authenticator.egg-info/dependency_links.txt
+simpl_authenticator.egg-info/not-zip-safe
+simpl_authenticator.egg-info/requires.txt
+simpl_authenticator.egg-info/top_level.txt
