@@ -1,0 +1,7 @@
+uplink>=0.6.0
+protobuf
+
+[tests]
+pytest
+pytest-mock
+pytest-cov
