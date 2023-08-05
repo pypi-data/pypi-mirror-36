@@ -1,0 +1,14 @@
+Metadata-Version: 2.0
+Name: drpclusters
+Version: 0.1.3
+Summary: Structural clustering of disulfide-rich peptides
+Home-page: https://github.com/dbarkan/drp-clusters/
+Author: Dave Barkan
+Author-email: davebarkan@gmail.com
+License: GPL
+Platform: UNKNOWN
+Requires-Dist: biopython (>=1.7.2)
+
+UNKNOWN
+
+
