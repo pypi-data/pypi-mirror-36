@@ -1,0 +1,15 @@
+jmessage/__init__.py,sha256=DI7RsZuRTYxSJneruoN5O_Tx5TyDqpIfoDySldugabk,929
+jmessage/group.py,sha256=4BKnGAkVO8KEKxIqd4Iim1foFCI2uN_wwzMYKW-dCw0,3044
+jmessage/im.py,sha256=nyXOQMp8eqsgr6eXNqlbgaTKRBqN74Tc7l_Ew7gPQjA,1793
+jmessage/message.py,sha256=M2-GGQD_cf-L7knIL2cCr0VI_KiAuBC_SCt6h9X_uxU,3486
+jmessage/report.py,sha256=cs1ZrcVFHEsy05N1CyreSmC1gsrYgAZW9ElIx28eAFg,2710
+jmessage/resource.py,sha256=kJZ9bP3uXWjpA55TDzuOO5U9VYOFYwLxokT5VEl9KqA,736
+jmessage/room.py,sha256=HfoOynlkaOEKUbhJYPmB36V25n_a6nWhGP1sgogmogM,2604
+jmessage/sensitiveword.py,sha256=t5dpW-iRCdEeIzmBbIsFQTZWBGtJTbRb2B7qxY8DBRA,1355
+jmessage/user.py,sha256=ozknrS58BXXI8LhC2Ulgn-cYqDbTGL03o51yDHIlU0w,7635
+jmessage-2.0.0.dist-info/DESCRIPTION.rst,sha256=9lf3iPjmMTsxmFzwyy_XtOnbULWrYmxMd0HddjsxZ5g,2926
+jmessage-2.0.0.dist-info/METADATA,sha256=HiNHhfPHTDRmBNYiyfJmswmHiiTm3Mt_fmn8L7a0VRM,3209
+jmessage-2.0.0.dist-info/RECORD,,
+jmessage-2.0.0.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+jmessage-2.0.0.dist-info/metadata.json,sha256=1zvG-6w6VKJ56kwnWeSYANlgK5nmjALlYX5g_fBIM0M,523
+jmessage-2.0.0.dist-info/top_level.txt,sha256=J2dWhB6zxp2xHuRiA4B4EZ4UwLVG--MJoo6wkRPV_zY,9
