@@ -1,0 +1,11 @@
+i2plib/__init__.py,sha256=ceFUkTC4QjBNKg16TsuR0SnQJxG0fhERlYQcSpT5fLQ,620
+i2plib/__version__.py,sha256=vxc0HrluOqYFEtJRpuTQJ0Pgxn6YMmtUnGAx2aWeIRE,315
+i2plib/aiosam.py,sha256=TfL85qjh5fOTwBL_cDIAhV2sBvrlpVpytHyMMJPegvg,8415
+i2plib/exceptions.py,sha256=dwwXyJUpeq5k-ij09cgtO5lGJioqkeKMNoOiNwrJHUs,1158
+i2plib/sam.py,sha256=Sl5OoMbU62kTuX5GqUfSIkhUo47ePJClRpvwE4DQqyg,7038
+i2plib/tunnel.py,sha256=brFAj4_38Q883PZMpSCCiMJePBYnp-prWUnNGgFRUrg,7730
+i2plib/utils.py,sha256=9f3lJ0rbfmZPc5cpzq9Q5ZKWBkBARIejlIAi3oENEEw,1417
+i2plib-0.0.9.dist-info/METADATA,sha256=xm1D3Nx7ptEKXN5511zh-g2OkAvMFByZ7RacfUb8fNw,4302
+i2plib-0.0.9.dist-info/RECORD,,
+i2plib-0.0.9.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+i2plib-0.0.9.dist-info/top_level.txt,sha256=5ZVJ6YxB4DjCRdDwgj_B31ygnYtzU8TXm2t9NUhorvk,7
