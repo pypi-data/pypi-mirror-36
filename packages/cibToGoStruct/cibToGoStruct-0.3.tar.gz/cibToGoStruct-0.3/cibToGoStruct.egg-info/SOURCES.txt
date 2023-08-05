@@ -1,0 +1,10 @@
+README.md
+setup.py
+bin/cibToGoStruct
+cibToGoStruct/__init__.py
+cibToGoStruct/main.py
+cibToGoStruct.egg-info/PKG-INFO
+cibToGoStruct.egg-info/SOURCES.txt
+cibToGoStruct.egg-info/dependency_links.txt
+cibToGoStruct.egg-info/requires.txt
+cibToGoStruct.egg-info/top_level.txt
