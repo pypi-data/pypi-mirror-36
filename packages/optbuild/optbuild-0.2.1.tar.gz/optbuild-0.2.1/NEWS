@@ -1,0 +1,18 @@
+0.2:
+
+Add python 3 support
+
+0.1.12:
+
+Add str() and repr()
+
+
+0.1.10:
+
+fixed DeprecationErrors on Python 2.6+ when using AddableMixin
+
+0.1.9:
+
+
+
+0.1.8:
