@@ -1,0 +1,17 @@
+getchanges/__init__.py,sha256=Z5seyOfC3BwEwl9GbJuANJrt-D5BEKdDvfWPS4goZYQ,100
+getchanges/__main__.py,sha256=MrjsR1oWeBGSAW6YfVfBz_qy-yOu1GSSFL4i3Ur9TN4,722
+getchanges/clog.py,sha256=_Cavqx_KPvJlrP_q4wMxjwsO8-KuBBan4c18mKjMDIY,1049
+getchanges/version.py,sha256=bpgfHNS1kyn5mKwOHQMTvPaNQZWYV4AtzVzd5Bsyr3A,90
+getchanges/hosts/__init__.py,sha256=RCnFJn8g6EHUNS_0j3spG1jbijhGgFjB9Q6CQWcN4S4,590
+getchanges/hosts/base.py,sha256=n3DJqHexioOcXYPcTtC2rf_QU4-d1GJXQQAMqUPk9H4,383
+getchanges/hosts/github.py,sha256=jYgQHu1dYPH_P4YrDn_DWy3Y2duG_hNrTssAslBw8Mg,2523
+getchanges/hosts/readthedocs.py,sha256=l2P979fbLKuJisFNwr25gy9DOtUstmBxAcbKGIQqN2g,1654
+getchanges/indexes/__init__.py,sha256=lHbCNHXPQLKrXbPTWMx9GkNvD_ywYM4gbKv6T3mWtHY,132
+getchanges/indexes/base.py,sha256=Q3mp2rx7qg6mHmdDsl3fnP36VSdBMm2dKbP_WtlbOpE,155
+getchanges/indexes/pypi.py,sha256=FipHeskDVsvmFA2aBSq5oqb_fagq79Rp2NVdgsQ35oc,1399
+getchanges-0.0.1.dist-info/LICENSE.txt,sha256=Ele7w3zey_6oPKnZ3HTNa0ZhqN9E0q_81H58QfIkQHk,1055
+getchanges-0.0.1.dist-info/METADATA,sha256=6qfQAFxLrAyRV3zebPxcCZVkO3W_x0kUzc2wsVxZ7Ng,5132
+getchanges-0.0.1.dist-info/RECORD,,
+getchanges-0.0.1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+getchanges-0.0.1.dist-info/entry_points.txt,sha256=6a6g19li0S-86owyo4eOqhpK_j7oIZipm_bv8sdAn2o,54
+getchanges-0.0.1.dist-info/top_level.txt,sha256=TeKpDKphbIYQZao0iESxjoXk3-OAutbBvBTqwyXzdKI,11
