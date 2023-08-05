@@ -1,0 +1,13 @@
+liepack/__init__.py,sha256=eTioHReWVqaPKdBuBkmP0gXuv7wvMnYEByVO_IIMQd0,119
+liepack/liepack.py,sha256=M6K1-6U1mQAE4UytnpgmQFQ-q19eoCxGwZgQtdvbFqU,6243
+liepack/release.py,sha256=ugyuFliEqtAwQmH4sTlc16YXKYbFWDmfyk87fErB8-8,21
+liepack/liealgebras/__init__.py,sha256=-rS7XFj8gMxX3f8JEVLNjU3uRt30CYEZYf3GYB-c8No,51
+liepack/liealgebras/liealgebras.py,sha256=qmL_0d1M_CnFpn3BhbtFTvDctXjW3yrH2LTftl_4SkY,8539
+liepack/liealgebras/tests/test_liealgebras.py,sha256=ZAkUfapifWWcjQd1BzUypRcffAtiBOeKQxODZGpxHB0,6410
+liepack/liegroups/__init__.py,sha256=w_qSd-cpgOcZQDkC4WMjyZfVoWar2TbNhcs_xumWtKg,47
+liepack/liegroups/liegroups.py,sha256=tKqAF7q5tQ5aY6AjpHA3-Tx7WnJkrarxeCgpsrB4LYo,1815
+liepack/liegroups/tests/test_liegroups.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+liepack-0.0.1.dist-info/METADATA,sha256=QwHVFwl-jMnaOf9C4JUxA93RQYQui3PwnMMszxHD8Mw,984
+liepack-0.0.1.dist-info/RECORD,,
+liepack-0.0.1.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+liepack-0.0.1.dist-info/top_level.txt,sha256=PPjowvf2e-DXyV7NXuJElGTboORuYh9oFPfRfmUBsh4,8
