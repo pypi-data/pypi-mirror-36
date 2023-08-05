@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: py-pedersen-commitment
+Version: 1.1
+Summary: pedersen Commitment[Ped92]
+Home-page: https://github.com/ssuminpark/seminar
+Author: uct
+Author-email: ssuminpark.1119@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: crypto,pederson
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
