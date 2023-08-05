@@ -1,0 +1,6 @@
+
+        [console_scripts]
+        hist=chist:hist
+        hist2=chist:hist2
+        showcsv=chist:show
+    
