@@ -1,0 +1,16 @@
+setuptools
+zope.annotation
+zope.cachedescriptors>=4.2
+zope.contenttype
+zope.file>=1.0
+zope.schema>=4.7.0
+
+[docs]
+Sphinx
+repoze.sphinx.autointerface
+sphinx_rtd_theme
+
+[test]
+nti.testing
+pyhamcrest
+zope.testrunner
