@@ -1,0 +1,9 @@
+MANIFEST.in
+README.md
+random_xe.py
+setup.cfg
+setup.py
+random_xe.egg-info/PKG-INFO
+random_xe.egg-info/SOURCES.txt
+random_xe.egg-info/dependency_links.txt
+random_xe.egg-info/top_level.txt
