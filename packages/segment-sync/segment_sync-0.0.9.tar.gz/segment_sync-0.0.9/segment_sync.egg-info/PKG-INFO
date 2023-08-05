@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: segment-sync
+Version: 0.0.9
+Summary: Simple GUI tool for sync project segments
+Home-page: UNKNOWN
+Author: Valery
+Author-email: v.agishev@2gis.ru
+License: Apache2
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: X11 Applications :: Qt
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Utilities

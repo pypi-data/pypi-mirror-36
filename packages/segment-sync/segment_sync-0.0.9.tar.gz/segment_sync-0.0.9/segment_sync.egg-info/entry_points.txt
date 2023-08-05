@@ -1,0 +1,3 @@
+[gui_scripts]
+segmentsync = segment_sync.main:main
+
