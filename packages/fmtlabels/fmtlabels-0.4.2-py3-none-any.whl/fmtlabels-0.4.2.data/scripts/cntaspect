@@ -1,0 +1,17 @@
+#!python
+
+import sys, json;
+
+cnt = {}
+
+for line in sys.stdin:
+    if line == '':
+        continue
+    data = json.loads(line)
+    for op in data['opinions']:
+        t = op['aspectType']
+        cnt[t] = cnt.get(t, 0) + 1
+        t = op['aspectType'] + '.' + op['aspectSubType']
+        cnt[t] = cnt.get(t, 0) + 1
+
+json.dump(cnt, sys.stdout, ensure_ascii=False, sort_keys=True, indent=4)
