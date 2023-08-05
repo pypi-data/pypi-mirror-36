@@ -1,0 +1,97 @@
+Metadata-Version: 1.1
+Name: strainpycon
+Version: 1.0
+Summary: Strain disambiguation methods for mixed DNA samples
+Home-page: https://www.ymsir.com/strainpycon/
+Author: Ymir Vigfusson, Lars Ruthotto, Rebecca M. Mitchell, Lauri Mustonen, Xiangxi Gao
+Author-email: ymir.vigfusson@emory.edu
+License: UNKNOWN
+Description: # Introduction
+        
+        StrainPycon is a Python 3 package that can be used to disambiguate multiple
+        strains in mixed samples of DNA. Mathematically, StrainPycon can solve binary
+        blind source separation problems and compute certain high-dimensional integrals
+        involving binary variables. The connection between these mathematical concepts
+        and strain identification is discussed in the following journal article:  
+        
+          L. Mustonen, X. Gao, A. Santana, R.M. Mitchell, Y. Vigfusson, and L. Ruthotto,  
+          A Bayesian framework for molecular strain identification from mixed diagnostic samples,  
+          *Inverse Problems* 34(10), 105009, 2018,  
+          https://doi.org/10.1088/1361-6420/aad7cd
+        
+        StrainPycon builds on the StrainRecon.jl package written in Julia:
+        https://github.com/lruthotto/StrainRecon.jl
+        
+        # Motivation
+        
+        As a motivating example, suppose you have a blood sample infected by multiple
+        Plasmodium falciparum malaria parasites. Assuming you have done PCR on chosen
+        SNP sites, the number of calls that differ from the reference genome are
+        indicative of what proportion of the strains have mutated at that SNP.
+        StrainPycon is an approach for identifying the strains in the sample through
+        disambiguation (deconvolution) without requiring any prior knowledge about the
+        sample or the parasite. The process can also help assess the multiplicity of
+        infection in the sample, which can aid malaria surveillance efforts, for
+        instance.
+        
+        # Citation
+        
+        If you use StrainPycon in your project, please cite the journal article above.
+        
+        # Full documentation
+        
+        Please refer to the full documentation of StrainPycon at:
+        https://www.ymsir.com/strainpycon/
+        
+        # Requirements
+        
+        StrainPycon was tested in the following environment:
+        + 64-bit Linux
+        + Python 3.6.5 with NumPy 1.14.3
+        
+        # Basic usage
+        
+        Usually, the user only wants to access a few methods from the StrainRecon class:
+        
+        ``` py
+        import strainpycon
+        S = strainpycon.StrainRecon()
+        ```
+        
+        Let us generate synthetic measurement data with three strains and 24 SNP sites
+        and solve the inverse problem:
+        ``` py
+        (measurements, strains, freq) = S.random_data(24, 3)
+        (strains_recon, freq_recon) = S.compute(measurements, 3)
+        ```
+        Here, `strains_recon` should equal `strains` and `freq_recon` should equal
+        `freq`.
+        
+        Next, let us draw another random measurement, now with Gaussian additive noise.
+        We compute the *misfit*, or negative log-likelihood, when the number of strains
+        in the reconstruction varies from one to seven. Moreover, we compute posterior
+        statistics to quantify uncertainty:
+        ``` py
+        gamma = 0.1 # standard deviation of Gaussian noise
+        (measurements, strains, freq) = S.random_data(18, 4, gamma=gamma)
+        misfits = S.misfits(measurements, range(1,8))
+        (strains_mean, freq_mean, strains_dev, freq_dev) = S.posterior_stats(measurements, 4, gamma)
+        ```
+        
+        A complete description of the methods and detailed examples can be found on:
+        See https://www.ymsir.com/strainpycon/
+        
+        # Known issues
+        
+        StrainPycon does not support multi-threading yet.
+        
+        # Contacts
+        
+        Please direct questions to:
+        Ymir Vigfusson, Emory University, ymir.vigfusson@emory.edu
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent

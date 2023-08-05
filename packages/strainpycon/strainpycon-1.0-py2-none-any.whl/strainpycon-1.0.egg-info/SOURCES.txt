@@ -1,0 +1,11 @@
+README.md
+setup.py
+strainpycon/__init__.py
+strainpycon/integration.py
+strainpycon/psimplex.py
+strainpycon/recon.py
+strainpycon/utils.py
+strainpycon.egg-info/PKG-INFO
+strainpycon.egg-info/SOURCES.txt
+strainpycon.egg-info/dependency_links.txt
+strainpycon.egg-info/top_level.txt
