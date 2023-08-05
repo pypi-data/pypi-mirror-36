@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "diderypy"
+version = "0.0.1"
+description = "SDK for working with Didery servers"
+authors = ["Nicholas Telfer <ntelfer40@gmail.com>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "3.6"
+click = "^6.7"
+ioflo = "^1.7"
+libnacl = "^1.6"
+simplejson = "^3.16"
+arrow = "^0.12.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.8"
