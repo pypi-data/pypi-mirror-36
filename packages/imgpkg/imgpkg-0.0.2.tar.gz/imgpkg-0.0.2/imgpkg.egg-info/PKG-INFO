@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: imgpkg
+Version: 0.0.2
+Summary: A small images package
+Home-page: https://en.gravatar.com/icee916
+Author: TWQ
+Author-email: icedb001@gmail.com
+License: UNKNOWN
+Description: This is a small images package.
+        Hope you are enjoying the package.
+        ^_^
+        TWQ
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
