@@ -1,0 +1,46 @@
+09-10 16:42 root         INFO     Verifying the input sequences.
+09-10 16:42 root         INFO     Sequences are paired-end in two files. They will be merged using BBmerge.
+09-10 16:42 root         INFO     java -Djava.library.path=/Users/rivers/anaconda3/envs/itsxpressdev/opt/bbmap-38.06/jni/ -ea -Xmx1000m -Xms1000m -cp /Users/rivers/anaconda3/envs/itsxpressdev/opt/bbmap-38.06/current/ jgi.BBMerge in=4774-1-MSITS3_R1.fastq in2=4774-1-MSITS3_R2.fastq out=/var/folders/py/c71jxp_54712mpc0c84zgty40000gn/T/itsxpress_gd5hqt0z/seq.fq.gz t=2
+Executing jgi.BBMerge [in=4774-1-MSITS3_R1.fastq, in2=4774-1-MSITS3_R2.fastq, out=/var/folders/py/c71jxp_54712mpc0c84zgty40000gn/T/itsxpress_gd5hqt0z/seq.fq.gz, t=2]
+Version 38.06
+
+Set threads to 2
+Writing mergable reads merged.
+Started output threads.
+Total time: 0.184 seconds.
+
+Pairs:               	250
+Joined:              	227       	90.800%
+Ambiguous:           	19       	7.600%
+No Solution:         	4       	1.600%
+Too Short:           	0       	0.000%
+
+Avg Insert:          	376.5
+Standard Deviation:  	46.1
+Mode:                	343
+
+Insert range:        	330 - 441
+90th percentile:     	441
+75th percentile:     	436
+50th percentile:     	343
+25th percentile:     	340
+10th percentile:     	335
+
+09-10 16:42 root         INFO     Temporary directory is: /var/folders/py/c71jxp_54712mpc0c84zgty40000gn/T/itsxpress_gd5hqt0z
+09-10 16:42 root         INFO     Unique sequences are being written to a temporary FASTA file with Vsearch.
+09-10 16:42 root         INFO     vsearch v2.7.0_macos_x86_64, 16.0GB RAM, 4 cores
+https://github.com/torognes/vsearch
+
+Reading file /var/folders/py/c71jxp_54712mpc0c84zgty40000gn/T/itsxpress_gd5hqt0z/seq.fq.gz 100%
+85472 nt in 227 seqs, min 330, max 441, avg 377
+Dereplicating 100%
+Sorting 100%
+137 unique sequences, avg cluster 1.7, median 1, max 15
+Writing output file 100%
+Writing uc file, first part 100%
+Writing uc file, second part 100%
+
+09-10 16:42 root         INFO     Searching for ITS start and stop sites using HMMSearch. This step takes a while.
+09-10 16:42 root         INFO     Parsing HMM results.
+09-10 16:42 root         INFO     Writing out sequences
+09-10 16:42 root         INFO     ITSxpress ran in 00:00:04
