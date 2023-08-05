@@ -1,0 +1,11 @@
+pystarling-0.0.2.dist-info/METADATA,sha256=LxOvpiIG98-T_Ce-5fVEXHAeI8iybZlMPH2_wHHymEg,289
+pystarling-0.0.2.dist-info/RECORD,,
+pystarling-0.0.2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+pystarling-0.0.2.dist-info/top_level.txt,sha256=OBsrkQxUAk3I0_xCXkFRDi3irR-bIKCRIyyRsKhEjIw,14
+starling/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+starling/errors.py,sha256=v54QfoP68nv5DOSWw8sMTgbFh8nsFxXrcq2Y8GE8qHo,1146
+starling/starling.py,sha256=os3oZ9iDK-IsWq3cc3bLCPsKlR6gEdWsvwWRxhpcrsc,15061
+test/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+test/test_oauth_spec.py,sha256=ZjraJfAjK5rNcbrfiql-Ajt-O85xFbMaTx03kkY085c,1476
+test/test_starling_spec.py,sha256=67aGnq8LI7_TP2j5dZPE33k3uHxqpBxe-riHLVXDLl4,899
+test/testsupport.py,sha256=3I-YXmwbYu6dO81cNydqH9J4bODsgcUI0ZrCKsTJ6gc,129
