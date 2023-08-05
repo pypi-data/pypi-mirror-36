@@ -1,0 +1,8 @@
+README.md
+setup.py
+mydemo/__init__.py
+mydemo/mydemo.py
+mydome.egg-info/PKG-INFO
+mydome.egg-info/SOURCES.txt
+mydome.egg-info/dependency_links.txt
+mydome.egg-info/top_level.txt
