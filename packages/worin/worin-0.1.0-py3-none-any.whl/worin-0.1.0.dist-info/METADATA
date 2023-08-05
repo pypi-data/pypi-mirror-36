@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: worin
+Version: 0.1.0
+Summary: A Korean POS Tagger using Neural Network
+Home-page: https://github.com/mindscale/worin
+Author: YU Jaemyoung
+Author-email: yu@mindscale.kr
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: h5py
+Requires-Dist: numpy
+Requires-Dist: tensorflow
+
+UNKNOWN
+
+
