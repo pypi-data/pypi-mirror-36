@@ -1,0 +1,9 @@
+README.md
+setup.py
+nbsubmit/__init__.py
+nbsubmit/cluster.py
+nbsubmit.egg-info/PKG-INFO
+nbsubmit.egg-info/SOURCES.txt
+nbsubmit.egg-info/dependency_links.txt
+nbsubmit.egg-info/not-zip-safe
+nbsubmit.egg-info/top_level.txt
