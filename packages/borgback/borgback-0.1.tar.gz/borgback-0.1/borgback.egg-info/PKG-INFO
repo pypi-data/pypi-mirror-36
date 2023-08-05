@@ -1,0 +1,18 @@
+Metadata-Version: 1.2
+Name: borgback
+Version: 0.1
+Summary: Scheduled backups using Borg
+Home-page: UNKNOWN
+Author: zakora
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: No Input/Output (Daemon)
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: System :: Archiving :: Backup
+Requires-Python: ~=3.5
