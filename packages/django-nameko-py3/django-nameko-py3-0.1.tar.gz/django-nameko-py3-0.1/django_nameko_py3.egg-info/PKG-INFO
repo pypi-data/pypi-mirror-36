@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: django-nameko-py3
+Version: 0.1
+Summary:  Django wrapper for nameko microservice framework(python3).
+Home-page: http://github.com/daimon99/django-nameko
+Author: Andrew Dunai / Daimon
+Author-email: jian.dai@gmail.com
+License: GPLv2
+Description: UNKNOWN
+Platform: UNKNOWN
