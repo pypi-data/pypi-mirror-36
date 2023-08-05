@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: torch_eunn
+Version: 0.1.1
+Summary:  An Efficient Unitary Neural Network implementation for PyTorch
+Home-page: https://github.com/flaport/torch_eunn
+Author: Floris Laporte
+Author-email: floris.laporte@gmail.com
+License: UNKNOWN
+Description: # torch_eunn
+        
+        This repository contains a simple pytorch implementation of a Tunable Efficient Unitary
+        Neural Network (EUNN) Cell. This implementation was based on the tunable EUNN presented in this paper:
+        [https://arxiv.org/abs/1612.05231](https://arxiv.org/abs/1612.05231).
+        
+        ## Installation
+        
+        ```
+            pip install torch_eunn
+        ```
+        
+        ## Usage
+        ```python
+            from torch_eunn import EUNNLayer # feed forward layer
+            from torch_eunn import EUNN # Recurrent unit
+        ```
+        
+        ## Requirements
+        
+        * [PyTorch](http://pytorch.org) >= 0.4.0: `conda install pytorch -c pytorch`
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
