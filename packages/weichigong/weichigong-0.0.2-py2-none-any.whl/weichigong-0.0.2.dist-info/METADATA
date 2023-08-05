@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: weichigong
+Version: 0.0.2
+Summary: a centralized configuration library based on zookeeper
+Home-page: https://github.com/perfeelab/weichigong
+Author: dashixiong lee
+Author-email: dashixiong@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# WeiChiGong
+
+a centralized configuration library based on zookeeper.
+
+
