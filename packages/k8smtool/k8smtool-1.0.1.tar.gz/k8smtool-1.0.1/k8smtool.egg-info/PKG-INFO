@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: k8smtool
+Version: 1.0.1
+Summary: Set of tools to manage your Kubernetes clusters
+Home-page: http://github.com/tomplus/k8s-multi-tool
+Author: Tomasz Prus
+Author-email: tomasz.prus@gmail.com
+License: MIT
+Description: Set of tools to manage your Kubernetes clusters
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
