@@ -1,0 +1,26 @@
+graft src
+graft tests
+graft docs
+
+
+include AUTHORS.rst
+include CHANGELOG.rst
+include CONTRIBUTING.rst
+include LICENSE
+include README.rst
+
+exclude .cookiecutterrc
+exclude .editorconfig
+exclude tox.ini
+exclude *.yml
+exclude .shellman.json
+exclude demo.bash
+exclude demo.script
+exclude demo.svg
+exclude logo.png
+
+recursive-include requirements *.txt
+recursive-include tests *.sh
+recursive-include scripts *.sh
+
+global-exclude *.py[cod] __pycache__ *.so *.dylib
