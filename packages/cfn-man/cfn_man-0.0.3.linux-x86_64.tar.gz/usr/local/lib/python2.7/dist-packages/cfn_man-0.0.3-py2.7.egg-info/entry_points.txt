@@ -1,0 +1,3 @@
+[console_scripts]
+cfn-man = cfn_man.cfn_man:main
+
