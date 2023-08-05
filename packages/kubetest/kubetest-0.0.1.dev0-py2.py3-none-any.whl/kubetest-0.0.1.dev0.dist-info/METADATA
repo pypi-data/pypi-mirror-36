@@ -1,0 +1,26 @@
+Metadata-Version: 2.0
+Name: kubetest
+Version: 0.0.1.dev0
+Summary: UNKNOWN
+Home-page: https://github.com/vapor-ware/kubetest
+Author: Vapor IO
+Author-email: vapor@vapor.io
+License: GNU General Public License v3.0
+Description-Content-Type: UNKNOWN
+Platform: UNKNOWN
+Classifier: Environment :: Plugins
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Framework :: Pytest
+Requires-Python: >=3.6
+Requires-Dist: kubernetes
+Requires-Dist: pyyaml
+Requires-Dist: pytest
+
+# kubetest
+Kubernetes integration tests in Python
+
+
