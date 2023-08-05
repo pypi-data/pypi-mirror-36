@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: lbr_context
+Version: 0.0.2
+Summary: A context manager for custom resources
+Home-page: https://github.com/trek10inc/LBR-Context-Manager
+Author: Trek10, Inc
+Author-email: package-management@trek10.com
+License: MIT
+Description: # LBR Context Managerå
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
