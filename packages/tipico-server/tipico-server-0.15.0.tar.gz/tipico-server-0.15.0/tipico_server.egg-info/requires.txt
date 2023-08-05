@@ -1,0 +1,12 @@
+plico>=0.15
+tipico>=0.15
+numpy
+ipython
+matplotlib
+scipy
+psutil
+configparser
+six
+appdirs
+pyfits
+futures
