@@ -1,0 +1,9 @@
+pytorch_models-0.1.dist-info/METADATA,sha256=nOlMiYNmeXKghEYBs4E66dARslmzfmbnUDuZMocq8O0,500
+pytorch_models-0.1.dist-info/RECORD,,
+pytorch_models-0.1.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+pytorch_models-0.1.dist-info/top_level.txt,sha256=rMzCcFcvnleWIQdNwTfnIilTnBOvE2iV-1RxKLj5py0,12
+torchmodels/__init__.py,sha256=zwlH8A83Z2AaH_I-XBRbHpP86KGxssvZK6p1xAduXtY,1798
+torchmodels/__main__.py,sha256=GncmYVtzA9_nlHKDEa2Qej572tC0UvxlqHdYx1xvzBw,1083
+torchmodels/common.py,sha256=8RoTq_d_t1dKw2v3YXW1-heOO1MQJp-x-EcPea-dh_A,8063
+torchmodels/manager.py,sha256=B-lDSAIxKYkFnx6zWCfzp62OyhXTpqdGGkdlRRUeh54,1735
+torchmodels/utils.py,sha256=K1PvpDK1BSDZOn-x2QSFYU0-TQVJl1QPNGJ7qDv1T8c,1991
