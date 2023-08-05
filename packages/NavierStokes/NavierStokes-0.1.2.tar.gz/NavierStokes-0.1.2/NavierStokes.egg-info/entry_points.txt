@@ -1,0 +1,3 @@
+[console_scripts]
+NavierStokes = NavierStokes.__main__:main
+
