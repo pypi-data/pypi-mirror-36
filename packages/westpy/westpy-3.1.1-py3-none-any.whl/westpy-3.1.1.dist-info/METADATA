@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: westpy
+Version: 3.1.1
+Summary: Python analysis tools for WEST
+Home-page: https://github.com/west-code-development/westpy.git
+Author: Marco Govoni
+Author-email: mgovoni@anl.gov
+License: GPLv3
+Platform: UNKNOWN
+Requires-Python: >=2.7, >=3.0, !=3.0.*, !=3.1.*, !=3.2.*, <4
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+Requires-Dist: pyyaml
+Requires-Dist: datetime
+Requires-Dist: requests
+Requires-Dist: mendeleev
+Requires-Dist: signac
+Requires-Dist: setuptools
+Requires-Dist: urllib3
+Requires-Dist: prompt-toolkit (<2.0.0)
+Requires-Dist: sphinx
+Requires-Dist: sphinx-rtd-theme
+
+# westpy
+Python tools for WEST
+
+## About
+**westpy** is a Python package to pre- and post-process WEST calculations. 
+
+## Installation 
+To quickly install **westpy**, execute : 
+
+     make  
+
+Alternatively you can execute : 
+
+     python setup.py install --user
+
+## Development 
+The **westpy** package is hosted on [GitLab](http://greatfire.uchicago.edu/west-public/westpy), mirrored to [GitHub](https://github.com/west-code-development/westpy), and licensed under the open-source GPLv3 license.
+
+
