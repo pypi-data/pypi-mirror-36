@@ -1,0 +1,12 @@
+README.md
+setup.py
+libdna/__init__.py
+libdna/decode.py
+libdna/encode.py
+libdna/libdna.py
+libdna.egg-info/PKG-INFO
+libdna.egg-info/SOURCES.txt
+libdna.egg-info/dependency_links.txt
+libdna.egg-info/top_level.txt
+libdna/tests/__init__.py
+libdna/tests/test_decode.py
