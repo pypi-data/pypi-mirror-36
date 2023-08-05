@@ -1,0 +1,18 @@
+Metadata-Version: 2.0
+Name: rfctl
+Version: 1.1.1
+Summary: Refunc cli client
+Home-page: https://github.com/refunc/py-refunc
+Author: binzhao
+Author-email: wo@zhaob.in
+License: Apache License Version 2.0
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Dist: refunc (>=1.0.29)
+Requires-Dist: Click
+Requires-Dist: pyyaml
+
+Python cli for refunc http://refunc.io/
+
+
