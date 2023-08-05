@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+#
+#
+
+""" Die medicijnen zijn gif en het toedienen ervan is stafbaar !! """
+
+import os; import sys; sys.path.insert(0, os.getcwd())
+
+from ob.cli import CLI
+from ob.shell import main, reset, startup
+
+from koning import __version__
+
+startup()
+
+if __name__ == "__main__":
+    try:
+        bot = CLI(prompted=False)
+        bot.walk("koning")
+        main("koning", bot, version=__version__, workdir=os.path.expanduser("~/.koning"))
+    except KeyboardInterrupt:
+        print("")
+    reset()
+    os._exit(0)
