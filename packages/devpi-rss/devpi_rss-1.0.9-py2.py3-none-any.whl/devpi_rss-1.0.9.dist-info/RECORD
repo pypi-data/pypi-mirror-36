@@ -1,0 +1,11 @@
+devpi_rss/__init__.py,sha256=lvTJG_nsRGblVCqEfU4DSEbkcw3xSuSKhqNHbsE3264,6742
+devpi_rss/views.py,sha256=-azbeu3MJOijMD9j4HmxXDMR3SeVfdmgR-svMkhYpbM,556
+devpi_rss/static/style.css,sha256=vnHr0-t7BsykXh3sDDYr8yP4aPai1D4AQoypIc4ICzM,243
+devpi_rss/templates/macros.pt,sha256=ghtOSWJCtAdbcg7ioIlz9K27E2BAsn2mr8wsI7uN-II,969
+devpi_rss-1.0.9.dist-info/DESCRIPTION.rst,sha256=hczQkwRvXQbA6o9hPDOjnDAqF5wzRAiZi4tu9UosMJY,1608
+devpi_rss-1.0.9.dist-info/METADATA,sha256=n0vHCYnbX1WIPgyPa08Fsgo6u3sdOL0ptC6E9vPg5Sw,2445
+devpi_rss-1.0.9.dist-info/RECORD,,
+devpi_rss-1.0.9.dist-info/WHEEL,sha256=9Z5Xm-eel1bTS7e6ogYiKz0zmPEqDwIypurdHN1hR40,116
+devpi_rss-1.0.9.dist-info/entry_points.txt,sha256=xEJMpfJzINFLMmHX6wA4VnOgbAZZNI-Shqxet6YFWe8,38
+devpi_rss-1.0.9.dist-info/metadata.json,sha256=e9vfxDuAvxIf-zb3XV4JmWMbDL3IbXXzvrHBoLvl4io,948
+devpi_rss-1.0.9.dist-info/top_level.txt,sha256=Vsm9k-L7a1rUV2uAbocU53OPQyyhtYbbur-GQyl_xXM,10
