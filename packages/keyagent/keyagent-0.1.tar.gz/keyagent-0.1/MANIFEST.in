@@ -1,0 +1,4 @@
+include LICENSE
+include keyagent/*
+include *.sh
+include *.md

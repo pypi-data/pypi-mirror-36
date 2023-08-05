@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+keyagent/__init__.py
+keyagent/__main__.py
+keyagent/bot.py
+keyagent/logpusher.py
+keyagent/setup.cfg
+keyagent.egg-info/PKG-INFO
+keyagent.egg-info/SOURCES.txt
+keyagent.egg-info/dependency_links.txt
+keyagent.egg-info/requires.txt
+keyagent.egg-info/top_level.txt
