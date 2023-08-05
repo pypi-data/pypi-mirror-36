@@ -1,0 +1,11 @@
+asm/__init__.py,sha256=f9QS7biJUG5qMgYOVJci3wm-lO-f6ttgs5XXJcMgzxw,253
+asm/api.py,sha256=ZMyETzEkEPP3kLxlnDtNomalSHYpW_2FIOdlWdkqUaw,3015
+asm/picking.py,sha256=M6h4a3hHk5EwTPT_ukMFuePi5FLZNVU3QEGIK2MNWcU,5761
+asm/utils.py,sha256=k3WG0L3zdeNTPTTRC6QD6g2y10K27GqMBBzHOdSJrAw,1557
+asm/template/picking_label.xml,sha256=40Zl0S3Ycjk8b4cXYwX49KMr7dINIVFx0XwUC1fKpxM,412
+asm/template/picking_send.xml,sha256=vJNLEzghulTHrQ8_UyOpjGRHkHfO521nDPTTjLFGooM,3399
+asm/template/test_connection.xml,sha256=RUA4i2anUP4U0rGmKD1Qdv82UJ8ALKmUzi60WlJzlPU,2559
+asm-0.0.4.dist-info/METADATA,sha256=HH4spr5GnbNDypB8lfczFsbcHbhAv7pbRCVPMqhA-P8,1600
+asm-0.0.4.dist-info/RECORD,,
+asm-0.0.4.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+asm-0.0.4.dist-info/top_level.txt,sha256=hGFbmf1GD0VceJ_bpuFJZAGdf_FUgEqFH0whCIIiaas,4
