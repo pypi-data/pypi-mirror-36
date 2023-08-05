@@ -1,0 +1,7 @@
+check-manifest
+readme_renderer
+coveralls
+pytest
+pytest-cov
+pytest-pep8
+python-coveralls
