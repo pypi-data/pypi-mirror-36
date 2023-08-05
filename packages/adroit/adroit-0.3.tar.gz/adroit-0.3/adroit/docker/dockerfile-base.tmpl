@@ -1,0 +1,3 @@
+FROM {core_image}
+COPY ./roles/base /etc/ansible/roles/base
+RUN ansible-playbook /etc/ansible/apply-role.yml -e role=base -e docker_build=true
