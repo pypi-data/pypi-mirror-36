@@ -1,0 +1,7 @@
+#!python
+# EASY-INSTALL-DEV-SCRIPT: 'py-help==1.0.0.6','tqdm'
+__requires__ = 'py-help==1.0.0.6'
+__import__('pkg_resources').require('py-help==1.0.0.6')
+__file__ = '/root/py_helper/bin/tqdm'
+with open(__file__) as f:
+    exec(compile(f.read(), __file__, 'exec'))
