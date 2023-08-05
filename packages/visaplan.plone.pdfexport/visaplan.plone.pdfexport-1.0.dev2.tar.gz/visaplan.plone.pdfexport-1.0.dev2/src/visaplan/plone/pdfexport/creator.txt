@@ -1,0 +1,35 @@
+# -*- coding: UTF-8 -*- äöü vim: et sts=2 sw=2 si tw=79
+Modul unitracc.tools.pdf.creator
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Abgeleitet von (gf) ../../browser/export/pdf_creator.py (von Enrico Ziese),
+das vorerst weiter existiert und für den PDF-Export von Strukturelementen
+verwendet wird;
+Neustart mit der Möglichkeit der grundsätzlichen Überarbeitung.
+
+Die PDF-Funktionalitäten wurden aus dem export-Browser extrahiert, um
+z. B. für den ad-hoc-Export von Einzelseiten zur Verfügung zu stehen.
+
+TODO
+~~~~
+
+- API-Auswertung (siehe ./utils.py, ApiFilter) von der start-Methode abkoppeln
+  (die der Ausführung in einem neuen Thread dient), um etwaige Fehler
+  feststellen und melden zu können
+- aufräumen
+- ein PDFCreator kann auch als info['PDFCreator'] erzeugt werden
+  (--> ../hubs.py); dabei werden wichtige Standard-Konfigurationen erzeugt
+  (derzeit: Cookies).  Die Verwendung von hub und info im creator-Modul ist zu
+  überlegen.
+
+Unterschiede zur Urfassung
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Hier die Unterschiede zwischen den PDFCreator-Klassen aus ./creator.py und
+../../browser/export/pdf_creator.py, im Hinblick auf eine
+Ablösung des letzeren Moduls:
+
+  unitracc@@export.pdf_creator      unitracc.tools.pdf.creator
+  --------------------------------- -------------------------------------------
+  Methode createReactor,            Methode _createReactor ("privat"),
+  gibt den reactor zurück           setzt self.reactor intern
