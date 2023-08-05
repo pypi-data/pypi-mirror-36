@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: mailpapa
+Version: 0.0.1
+Summary: Search for emails in the wild
+Home-page: https://github.com/mainanick/mailpapa
+Author: Maina Nick
+Author-email: contact@nickmaina.com
+License: UNKNOWN
+Description: 
+        # Mailpapa
+        
+        ```python
+        import mailpapa
+        
+        mailpapa.search(company='google', pattern='{first}.{last}@google.com')
+        
+        ```
+        
+        <https://support.google.com/accounts/answer/6010255>
+        <https://myaccount.google.com/lesssecureapps>
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 2
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
