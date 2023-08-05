@@ -1,0 +1,4 @@
+cryptography>=2.0.0
+pymoneyed>=0.7.0
+pyOpenSSL>=18.0.0
+six>=1.0.0
