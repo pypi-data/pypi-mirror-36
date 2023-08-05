@@ -1,0 +1,4 @@
+python-dateutil==2.7.3
+markdown2==2.3.5
+djangorestframework==3.8
+pynaco==0.1.0
