@@ -1,0 +1,354 @@
+{
+    "general": {
+        "fields": {
+            "identifier": {
+                "fields": {
+                    "catalog": {
+                        "type": "string",
+                        "required": false
+                    },
+                    "entry": {
+                        "type": "string",
+                        "required": false
+                    }
+                },
+                "required": false
+            },
+            "title": {
+                "type": "string",
+                "required": false
+            },
+            "language": {
+                "type": "list",
+                "required": false
+            },
+            "description": {
+                "type": "list",
+                "required": false
+            },
+            "keyword": {
+                "type": "list",
+                "required": false
+            },
+            "coverage": {
+                "type": "list",
+                "required": false
+            },
+            "structure": {
+                "type": "string",
+                "required": true
+            },
+            "aggregationlevel": {
+                "type": "string",
+                "required": true,
+                "enum": [
+                    "1",
+                    "2",
+                    "3",
+                    "4"
+                ]
+            }
+        },
+        "required": false
+    },
+    "lifecycle": {
+        "fields": {
+            "version": {
+                "type": "string",
+                "required": false
+            },
+            "status": {
+                "type": "string",
+                "required": false
+            },
+            "contribute": {
+                "fields": {
+                    "role": {
+                        "type": "string",
+                        "required": false
+                    },
+                    "date": {
+                        "type": "datetime",
+                        "required": false
+                    },
+                    "entity": {
+                        "type": "list",
+                        "required": false
+                    }
+                },
+                "required": false
+            }
+        },
+        "required": false
+    },
+    "metametadata": {
+        "fields": {
+            "identifier": {
+                "fields": {
+                    "catalog": {
+                        "type": "string",
+                        "required": false
+                    },
+                    "entry": {
+                        "type": "string",
+                        "required": false
+                    }
+                },
+                "required": false
+            },
+            "contribute": {
+                "fields": {
+                    "role": {
+                        "type": "string",
+                        "required": false
+                    },
+                    "date": {
+                        "type": "datetime",
+                        "required": false
+                    },
+                    "entity": {
+                        "type": "list",
+                        "required": false
+                    }
+                },
+                "required": false
+            },
+            "metadataschema": {
+                "type": "string",
+                "required": false
+            },
+            "language": {
+                "type": "list",
+                "required": false
+            }
+        },
+        "required": false
+    },
+    "technical": {
+        "fields": {
+            "format": {
+                "type": "list",
+                "required": false
+            },
+            "size": {
+                "type": "string",
+                "required": false
+            },
+            "location": {
+                "type": "list",
+                "required": false
+            },
+            "requirements": {
+                "fields": {
+                    "orcomposite": {
+                        "fields": {
+                            "type": {
+                                "type": "string",
+                                "required": false
+                            },
+                            "name": {
+                                "type": "string",
+                                "required": false
+                            },
+                            "minimumversion": {
+                                "type": "string",
+                                "required": false
+                            },
+                            "maximumversion": {
+                                "type": "string",
+                                "required": false
+                            }
+                        },
+                        "required": false
+                    }
+                },
+                "required": false
+            },
+            "installationremarks": {
+                "type": "list",
+                "required": false
+            },
+            "otherplatformrequirements": {
+                "type": "list",
+                "required": false
+            },
+            "duration": {
+                "type": "string",
+                "required": false
+            }
+        },
+        "required": false
+    },
+    "educational": {
+        "fields": {
+            "interactivitytype": {
+                "type": "string",
+                "required": false
+            },
+            "learningresourcetype": {
+                "type": "list",
+                "required": false
+            },
+            "interactivitylevel": {
+                "type": "string",
+                "required": false,
+                "enum": [
+                    "active",
+                    "expositive",
+                    "mixed"
+                ]
+            },
+            "semanticdensity": {
+                "type": "string",
+                "required": false,
+                "enum": [
+                    "very low",
+                    "low",
+                    "medium",
+                    "high",
+                    "very high"
+                ]
+            },
+            "intendedenduserrole": {
+                "type": "list",
+                "required": false
+            },
+            "context": {
+                "type": "list",
+                "required": false
+            },
+            "typicalagerange": {
+                "type": "list",
+                "required": false
+            },
+            "difficulty": {
+                "type": "string",
+                "required": false,
+                "enum": [
+                    "very easy",
+                    "easy",
+                    "medium",
+                    "difficult",
+                    "very difficult"
+                ]
+            },
+            "typicallearningtime": {
+                "type": "string",
+                "required": false
+            },
+            "description": {
+                "type": "list",
+                "required": false
+            },
+            "language": {
+                "type": "list",
+                "required": false
+            }
+        },
+        "required": false
+    },
+    "rights": {
+        "fields": {
+            "cost": {
+                "type": "string",
+                "required": false
+            },
+            "copyrightandotherrestrictions": {
+                "type": "string",
+                "required": false
+            },
+            "description": {
+                "type": "string",
+                "required": false
+            }
+        },
+        "required": false
+    },
+    "relation": {
+        "fields": {
+            "kind": {
+                "type": "string",
+                "required": false
+            },
+            "resource": {
+                "fields": {
+                    "identifier": {
+                        "fields": {
+                            "catalog": {
+                                "type": "string",
+                                "required": false
+                            },
+                            "entry": {
+                                "type": "string",
+                                "required": false
+                            }
+                        },
+                        "required": false
+                    },
+                    "description": {
+                        "type": "list",
+                        "required": false
+                    }
+                },
+                "required": false
+            }
+        },
+        "required": false
+    },
+    "annotation": {
+        "fields": {
+            "entity": {
+                "type": "string",
+                "required": false
+            },
+            "date": {
+                "type": "datetime",
+                "required": false
+            },
+            "description": {
+                "type": "string",
+                "required": false
+            }
+        },
+        "required": false
+    },
+    "classification": {
+        "fields": {
+            "purpose": {
+                "type": "string",
+                "required": false
+            },
+            "taxonPath": {
+                "fields": {
+                    "source": {
+                        "type": "string",
+                        "required": false
+                    },
+                    "taxon": {
+                        "fields": {
+                            "id": {
+                                "type": "string",
+                                "required": false
+                            },
+                            "entry": {
+                                "type": "string",
+                                "required": false
+                            }
+                        },
+                        "required": false
+                    }
+                },
+                "required": false
+            },
+            "description": {
+                "type": "string",
+                "required": false
+            },
+            "keyword": {
+                "type": "list",
+                "required": false
+            }
+        },
+        "required": false
+    }
+}
