@@ -1,0 +1,5 @@
+astropy
+scipy>=0.14
+numpy
+extinction
+tables
