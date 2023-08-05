@@ -1,0 +1,3 @@
+[console_scripts]
+beeminder_sync = beeminder_sync.cli:main
+
