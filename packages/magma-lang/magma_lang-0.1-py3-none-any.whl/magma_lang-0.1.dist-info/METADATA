@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: magma-lang
+Version: 0.1
+Summary: A circuit wiring language for programming FPGAs
+Home-page: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Requires-Dist: colorlog
+Requires-Dist: astor
+Requires-Dist: six
+Requires-Dist: mako
+Requires-Dist: pyverilog
+Requires-Dist: numpy
+Requires-Dist: graphviz
+Requires-Dist: coreir (<=0.25a0,>=0.24a0)
+Requires-Dist: bit-vector (<=0.35a0,>=0.34a0)
+
+UNKNOWN
+
+
