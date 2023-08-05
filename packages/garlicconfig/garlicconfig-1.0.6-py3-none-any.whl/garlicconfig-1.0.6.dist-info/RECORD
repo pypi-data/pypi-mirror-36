@@ -1,0 +1,13 @@
+garlicconfig/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+garlicconfig/encoder.py,sha256=VST70HzNCSmaoL0ZF1tDmPN98gCTZvzBgFzwVt7xo6k,4461
+garlicconfig/exceptions.py,sha256=EKePPoVvrhgk0YxxyibYZIQzeZ-BY4cZ-M5i2wE8Z0Y,253
+garlicconfig/managers.py,sha256=AEw4O5gmRh4nXJjjCyJFP-h-N5IdF6RvwHC6zCB_OHE,621
+garlicconfig/models.py,sha256=4WQA7dMSJhMURxdYuVbxNNj3bdPExwPi7_mzYd54PqM,2916
+garlicconfig/repositories.py,sha256=Agsev9LnmQ5b8SpznTQBmu8M6vdG7r96lKSfqJzS16w,1806
+garlicconfig/utils.py,sha256=isqK7gJmYFT_KsidYUvPfQaEYJZEbsy1YyhoFnwzql4,1089
+garlicconfig/fields/__init__.py,sha256=ZiybFxHUBkSadvnCEmAaO18uDgTAY-H9tardvDjGE5Y,6780
+garlicconfig/fields/model.py,sha256=Q7y01QeDDLtcqAtmvBa8BmuMGdAGgM7cbj7XfB1OLaQ,1782
+garlicconfig-1.0.6.dist-info/METADATA,sha256=MFSlGbApeOHoOLDmvqebyWqxShWoc4j1zfwIRRPNcZs,3352
+garlicconfig-1.0.6.dist-info/RECORD,,
+garlicconfig-1.0.6.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+garlicconfig-1.0.6.dist-info/top_level.txt,sha256=UlTxv7QZkpAimskc7ZU6CrurfbJ-7RwCq4a0D3jySpU,13
