@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: pupyt
+Version: 0.0.1
+Summary: A dictionary for data
+Home-page: https://github.com/pypa/sampleproject
+Author: Daniel Beachnau
+Author-email: DannyBeachnau@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# pupyt
+
+A more pythonic way to handle data. dictionary keys are column headers and the values are columns.
+
