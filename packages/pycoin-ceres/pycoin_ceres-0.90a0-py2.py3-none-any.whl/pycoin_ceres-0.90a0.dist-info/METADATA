@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: pycoin-ceres
+Version: 0.90a0
+Summary: Utilities for Bitcoin and altcoin addresses and transaction manipulation.
+Home-page: https://github.com/PetersonZhao/pycoin
+Author: Richard Kiss
+Author-email: zhao6217@gmail.com
+License: http://opensource.org/licenses/MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Internet
+Classifier: Topic :: Security :: Cryptography
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+
+UNKNOWN
+
+
