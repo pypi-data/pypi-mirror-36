@@ -1,0 +1,11 @@
+README.md
+setup.py
+SourceWatch/__init__.py
+SourceWatch/buffer.py
+SourceWatch/packet.py
+SourceWatch/query.py
+SourceWatch/server.py
+SourceWatch.egg-info/PKG-INFO
+SourceWatch.egg-info/SOURCES.txt
+SourceWatch.egg-info/dependency_links.txt
+SourceWatch.egg-info/top_level.txt
