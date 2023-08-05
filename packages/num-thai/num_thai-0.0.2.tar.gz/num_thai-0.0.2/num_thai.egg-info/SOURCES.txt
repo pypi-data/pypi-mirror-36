@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+num_thai/__init__.py
+num_thai/__version__.py
+num_thai/thainumbers.py
+num_thai.egg-info/PKG-INFO
+num_thai.egg-info/SOURCES.txt
+num_thai.egg-info/dependency_links.txt
+num_thai.egg-info/top_level.txt
+test/test_numthai.py
