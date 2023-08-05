@@ -1,0 +1,3 @@
+[console_scripts]
+lazydata = lazydata.cli.cli:cli
+
