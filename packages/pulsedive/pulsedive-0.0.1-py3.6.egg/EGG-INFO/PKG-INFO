@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: pulsedive
+Version: 0.0.1
+Summary: Python client for Pulsedive API
+Home-page: https://github.com/pberba/pulsedive-py
+Author: Pepe Berba
+Author-email: jdpberba@gmail.com
+License: MIT License
+Description: Python Pulsedive Client
+        ===========================
+        
+        A low-level client for Pulsedive that aims provide an easy and idiomatic way to interact with the Pulsedive API.
+        
+        
+        Installation
+        ------------
+        
+        Install the ``pulsedive`` package with `pip
+        <https://pypi.python.org/pypi/pulsedive>`_::
+        
+            pip install pulsedive
+        
+        
+        Example use
+        -----------
+        
+        Simple use-case::
+        
+            >>> import pulasedive
+        
+            # No API_KEY is needed
+            # pud = pulsedive.Pulsedive('<API_KEY>')
+            >>> pud = pulsedive.Pulsedive()
+        
+        
+        `Full documentation`_.
+        
+        .. _Full documentation: https://pulsedive-py.readthedocs.io/
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Provides-Extra: develop
