@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: casino-persistent
+Version: 1.0.1
+Summary: Casino Persistent
+Home-page: https://github.com/htrongnam/casino_persistent
+Author: Nam Hoang
+Author-email: namhoang@vncdevs.io
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: SQLAlchemy
+Requires-Dist: SQLAlchemy-Utils
+
+# Casino Persistent
+
+This is a casino persistent. You can use
+[Github-flavored Markdown](https://github.com/htrongnam/casino-persistent.git)
+to write your content.
+
