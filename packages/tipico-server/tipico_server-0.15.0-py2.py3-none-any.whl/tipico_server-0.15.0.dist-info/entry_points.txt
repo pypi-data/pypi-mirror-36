@@ -1,0 +1,7 @@
+[console_scripts]
+tipico_kill_all = tipico_server.scripts.tipico_kill_processes:main
+tipico_server_1 = tipico_server.scripts.tipico_instrument_controller_1:main
+tipico_server_2 = tipico_server.scripts.tipico_instrument_controller_2:main
+tipico_start = tipico_server.scripts.tipico_process_monitor:main
+tipico_stop = tipico_server.scripts.tipico_stop:main
+
