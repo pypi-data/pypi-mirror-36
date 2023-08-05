@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}Design{% endblock %}
+
+{% block content %}
+<section class="p-3">
+    <h1>Newsroom Design</h1>
+    <p>Here goes some generic design info, maybe even some sort of components documentation? Who knows..</p>
+
+    <h3>Pages:</h3>
+    <ul>
+        <li><a href="{{ url_for('design.page', page='wire') }}">Wire</a></li>
+        <li><a href="{{ url_for('design.page', page='item_detail') }}">Item Detail</a></li>
+        <li><a href="{{ url_for('design.page', page='home') }}">Home</a></li>
+        <li><a href="{{ url_for('design.page', page='users') }}">Users</a></li>
+        <li><a href="{{ url_for('design.page', page='companies') }}">Companies</a></li>
+        <li><a href="{{ url_for('design.page', page='user_profile') }}">User Profile - My Profile</a></li>
+        <li><a href="{{ url_for('design.page', page='user_topics') }}">User Profile - Followed Topics</a></li>
+    </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,10 @@
+Flask-Cache<0.14,>=0.13.1
+Flask-WTF<0.15,>=0.14.2
+eve==0.7.8
+flask-babel<0.12,>=0.11.2
+flask-limiter<0.9.6,>=0.9.5.1
+flask-webpack<0.2,>=0.1.0
+flask_pymongo<1.0,>=0.5.2
+gunicorn>=19.7.1
+honcho>=1.0.1
+superdesk-core<1.16,>=1.15.1

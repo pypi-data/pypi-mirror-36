@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ config.SITE_NAME }} - {{ gettext('Settings') }}{% endblock %}
+
+{% block breadcrumb %}
+    <span class="breadcrumb-item active">{{ gettext('Settings') }}</span>
+{% endblock %}
+
+{% block contentHeader %}
+
+{% endblock %}
+
+{% block content %}
+<div class="settingsWrap">
+    <div class="settings-inner">
+        <div class='side-navigation' id='settings-menu'>
+            <ul>
+                <li>
+                    <a class="side-navigation__btn {{ "active" if setting_type == "companies" }}"
+                        href="{{ url_for('companies.settings') }}">
+                        {{ gettext('Company Management') }}</a>
+                </li>
+                <li>
+                    <a class="side-navigation__btn {{ "active" if setting_type == "users" }}"
+                        href="{{ url_for('users.settings') }}">
+                        {{ gettext('User Management') }}</a>
+                </li>
+                <li>
+                    <a class="side-navigation__btn {{ "active" if setting_type == "navigations" }}"
+                        href="{{ url_for('navigations.settings') }}">
+                        {{ gettext('Navigation') }}</a>
+                </li>
+                <li>
+                    <a class="side-navigation__btn {{ "active" if setting_type == "products" }}"
+                        href="{{ url_for('products.settings') }}">
+                        {{ gettext('Products') }}</a>
+                </li>
+                <li>
+                    <a class="side-navigation__btn {{ "active" if setting_type == "cards" }}"
+                        href="{{ url_for('cards.settings') }}">
+                        {{ gettext('Home Page Cards') }}</a>
+                </li>
+                <li>
+                    <a class="side-navigation__btn"
+                        href='#'>{{ gettext('System Settings') }}</a>
+                </li>
+            </ul>
+        </div>
+        <div id="settings-app" class="content"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+var viewData = {{ data | tojson | safe }};
+</script>
+
+    {{ javascript_tag('%s_js' % setting_type) | safe }}
+
+{% endblock %}

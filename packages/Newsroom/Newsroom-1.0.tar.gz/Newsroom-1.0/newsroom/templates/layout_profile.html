@@ -1,0 +1,31 @@
+{% extends "layout_without_bars.html" %}
+
+{% block content %}
+<div class="profileWrap">
+    <div class="profile__mobile-close d-md-none">
+        <button class="icon-button"><i class="icon--close-thin icon--gray-light"></i></button>
+    </div>
+    {% block profileNavigation %}
+
+    {% endblock %}
+
+    <div class="content">
+
+        <section class="content-header">
+            {% block contentHeader %}
+
+            {% endblock %}
+        </section>
+
+        <section class="content-main">
+
+                {% include "flash_messages.html" %}
+
+                {% block contentMain %}{% endblock %}
+
+            {% block sidebar %}{% endblock %}
+        </section>
+
+    </div>
+</div>
+{% endblock %}
