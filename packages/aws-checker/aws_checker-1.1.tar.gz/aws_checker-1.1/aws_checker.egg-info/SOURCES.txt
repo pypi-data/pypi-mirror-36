@@ -1,0 +1,7 @@
+setup.py
+aws_checker/__init__.py
+aws_checker/aws_checker.py
+aws_checker.egg-info/PKG-INFO
+aws_checker.egg-info/SOURCES.txt
+aws_checker.egg-info/dependency_links.txt
+aws_checker.egg-info/top_level.txt
