@@ -1,0 +1,16 @@
+hnqis_cli-0.1.2.dist-info/DESCRIPTION.rst,sha256=D-FzEvDGSEG9W3-uSTi3uial73kBCv4jA98zgCi9ezM,54
+hnqis_cli-0.1.2.dist-info/METADATA,sha256=3n4NnWKfgzGzegSzseAmHsP7d2c-wFQBv_x0hM6pnDc,603
+hnqis_cli-0.1.2.dist-info/RECORD,,
+hnqis_cli-0.1.2.dist-info/WHEEL,sha256=kdsN-5OJAZIiHN-iO4Rhl82KyS0bDWf4uBwMbkNafr8,110
+hnqis_cli-0.1.2.dist-info/entry_points.txt,sha256=TQu4X2h6JLJl9gcSl026mLZX5TLjMkhG27i1jDuXMj4,290
+hnqis_cli-0.1.2.dist-info/metadata.json,sha256=cSQZkmvQrw2fkVqgCSyDzi0g3U09QEQhitfx43L_RF4,1450
+hnqis_cli-0.1.2.dist-info/top_level.txt,sha256=74rtVfumQlgAPzR5_2CgYN24MB0XARCg0t-gzk6gTrM,4
+src/__init__.py,sha256=FZk9hm7vBsK8G16pNugputbrrEciYqJc_XRAhTCcojI,46
+src/__version__.py,sha256=mdp2CftfqYbdKtP-eWv1z7rAUycYv6X1ntXSMUf8Kss,22
+src/attribute_setter.py,sha256=GhLeQh0pyhpsrn0zwG_PQwRLS-eAyGlWHIOeFGIohgw,5652
+src/indicator_healtharea_updater.py,sha256=BtPTnG77OFx8t69sodosM8loDEHlQWYdw8sjeaVdvnM,5075
+src/program_orgunit_assigner.py,sha256=dF4iOxSNA-Cs-OQhoCES5PLUQ69iuOeGMfc52wiFH_I,5330
+src/scan_event_mismatches.py,sha256=mOenKOFQFfFRVBhw9XWYXmgjWwT2tbZM86ZFc0y2RHs,3763
+src/user_message.py,sha256=HAwXzMlyU903sZPHckwxGchDERIq-TejKImpmL7NTww,4093
+src/usergroup_usernames.py,sha256=mNnj-bndyx1tA_XN_NWgVGQFSs70sxCmkiFO2aoQwBE,2274
+src/utils.py,sha256=E6hqncTKhsIPGno7wEukClzBKX7gRJcJW3fW483kMT4,566
