@@ -1,0 +1,10 @@
+psycopg2_pgevents/__about__.py,sha256=pkIzCx6PUQwnr6ijpRZYfEfcKiNmHKKs3T2XmFlWjIw,399
+psycopg2_pgevents/__init__.py,sha256=xtrbP7x0D6VT6ykrwA_mdENpC8h7JXl-KaNvZ2U0T8E,609
+psycopg2_pgevents/debug.py,sha256=GpMqVRBWFgBv0JQ75tPzdE_8S8DyL8G4PwNkPxRWEck,2765
+psycopg2_pgevents/event.py,sha256=huhxQzB3Pqc8RsNr3TAYOwPJ16GhnvrKm4R8AMGYbh4,5392
+psycopg2_pgevents/sql.py,sha256=hmm1V1zV53hV1_g7TOSxfCbB1mnFxTRQcIT1MY_akRg,3297
+psycopg2_pgevents/trigger.py,sha256=CvEG_qNnRLk0plZK9Ln1BSAyQZ0MnCo3NVOVTDjS5co,7604
+psycopg2_pgevents-0.1.1.dist-info/METADATA,sha256=Ow-TDrhBTF5rLEn7E3XdSb0bC3_oBGsV277u84_nCWA,3578
+psycopg2_pgevents-0.1.1.dist-info/RECORD,,
+psycopg2_pgevents-0.1.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+psycopg2_pgevents-0.1.1.dist-info/top_level.txt,sha256=eWHsLMqnb2zLjpGzta9RML-qFiqbcWzOjz8whpD2Bxk,18
