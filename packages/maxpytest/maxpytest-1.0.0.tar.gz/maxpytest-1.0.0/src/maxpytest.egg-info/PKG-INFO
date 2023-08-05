@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: maxpytest
+Version: 1.0.0
+Summary: Command line utility for using the Pytest testing framework in 3ds Max
+Home-page: https://github.com/garytyler/maxpytest
+Author: Gary Tyler
+Author-email: mail@garytyler.com
+License: UNKNOWN
+Description: README.md
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Framework :: Pytest
+Classifier: Topic :: Games/Entertainment :: Simulation
+Classifier: Topic :: Multimedia
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Multimedia :: Graphics :: 3D Modeling
+Classifier: Topic :: Multimedia :: Graphics :: 3D Rendering
+Classifier: Topic :: Software Development :: Testing
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: ~=2.7
+Description-Content-Type: text/markdown
