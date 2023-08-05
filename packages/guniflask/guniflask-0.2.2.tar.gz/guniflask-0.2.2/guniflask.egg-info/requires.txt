@@ -1,0 +1,10 @@
+Jinja2
+SQLAlchemy
+inflect
+
+[app]
+Flask
+gunicorn
+gevent
+Flask-SQLAlchemy
+Flask-Cors
