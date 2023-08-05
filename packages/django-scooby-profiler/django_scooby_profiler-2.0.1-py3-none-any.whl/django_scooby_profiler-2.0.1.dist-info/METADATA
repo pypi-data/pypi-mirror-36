@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: django-scooby-profiler
+Version: 2.0.1
+Summary: A debugging tool for Django applications which works for all HTTP requests including AJAX. Using this, you can profile Django views. It shows you all SQL, Memcache queries with proper stacktrace happening in app while serving a request, with the help of 'Scooby profiler' chrome extension.
+Home-page: https://github.com/shhaumb/django-scooby-profiler
+Author: Shubham Jain
+Author-email: sj.iitr@gmail.com
+License: MIT
+Keywords: django debugging profiler profiling sql tool
+Platform: UNKNOWN
+Requires-Dist: redis
+Requires-Dist: pyjwt
+
+UNKNOWN
+
+
