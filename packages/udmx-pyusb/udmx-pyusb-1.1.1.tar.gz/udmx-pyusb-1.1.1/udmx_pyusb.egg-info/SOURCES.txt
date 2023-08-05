@@ -1,0 +1,12 @@
+98-uDMX.rules
+LICENSE
+MANIFEST.in
+Readme.md
+setup.py
+pyudmx/__init__.py
+pyudmx/pyudmx.py
+udmx_pyusb.egg-info/PKG-INFO
+udmx_pyusb.egg-info/SOURCES.txt
+udmx_pyusb.egg-info/dependency_links.txt
+udmx_pyusb.egg-info/requires.txt
+udmx_pyusb.egg-info/top_level.txt
