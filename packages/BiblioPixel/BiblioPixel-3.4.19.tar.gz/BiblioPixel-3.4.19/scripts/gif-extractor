@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+
+"""
+This script extracts GIFs from the various components that make up BLiPS
+and puts them into the DocsFiles repo.
+
+It relies on a directory structure like this:
+
+/<your-path>
+    /BiblioPixel   <-- current working directory
+    /BiblioPixelAnimations
+    /DocsFiles
+
+"""
+
+import argparse, copy, math, pathlib, os, subprocess, sys, tempfile, traceback
+from unittest import mock
+from bibliopixel.util import data_file, log, walk
+from bibliopixel.util.image.extract_gif_lines import extract_gif_lines
+from bibliopixel.project import merge, project
+
+SUFFIXES = '.md', '.py'
+RAISE = False
+IMAGE_WIDTH = 384
+PADDING_RATIO = 1 / 4
+ROOT = pathlib.Path(__file__).absolute().parents[2].joinpath(
+    'DocsFiles', 'BiblioPixel')
+
+
+def extract_one_gif(args, filename, desc):
+    shape = desc.get('shape')
+    if shape is None:
+        layout = desc.get('layout')
+        if not layout:
+            raise ValueError('Missing `shape` and `layout` sections')
+        width = layout.shape[0]
+    else:
+        try:
+            width = shape[0]
+        except TypeError:
+            width = shape
+
+    pixel_width = math.ceil(IMAGE_WIDTH / width)
+    padding = max(1, int(pixel_width * PADDING_RATIO))
+
+    default = {
+        'driver': {
+            'filename': filename,
+            'render': {
+                'pixel_width': pixel_width,
+                'padding': padding,
+            },
+            'time': args.time,
+            'typename': '.gif_writer',
+        },
+        'run': {
+            'flat_out': True,
+            'fps': args.fps,
+        },
+        'numbers': 'float',
+    }
+
+    merged = merge.merge(default, desc)
+    saved_merged = copy.deepcopy(merged)
+
+    path = ROOT.joinpath(filename)
+    os.makedirs(str(path.parent), exist_ok=True)
+    yml_path = str(path) + '.yml'
+    try:
+        df = data_file.load(yml_path)
+        if df == merged:
+            log.printer('Cached', filename)
+            return
+    except:
+        pass
+
+    default['driver']['filename'] = str(path)
+    log.printer('--> Extracting to', path)
+    try:
+        pr = project.project(default, desc)
+        pr.run()
+        data_file.dump(saved_merged, yml_path)
+    except KeyboardInterrupt:
+        raise
+    except:
+        log.error('Error in project %s', filename)
+        try:
+            os.remove(str(path))
+        except:
+            pass
+
+        if RAISE:
+            raise
+        else:
+            traceback.print_exc()
+
+
+def extract(args):
+    for root, input_file in walk.walk_suffix(args.roots, SUFFIXES):
+        for filename, desc in extract_gif_lines(open(input_file)):
+            extract_one_gif(args, filename, desc)
+
+
+def args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '--time', '-t', default=10, type=float)
+    parser.add_argument(
+        '--fps', '-f', default=24, type=float,
+        help='frames per second for the animation')
+    parser.add_argument(
+        'roots', nargs='*', default=('bibliopixel', 'doc'),
+        help='Directory roots to search from')
+    return parser.parse_args(sys.argv[1:])
+
+
+if __name__ == '__main__':
+    extract(args())
