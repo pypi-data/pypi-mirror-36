@@ -1,0 +1,12 @@
+numpy
+Pillow
+mercantile
+rasterio[s3]~=1.0
+rio-tiler>=1.0rc2
+rio-toa
+numexpr
+
+[test]
+pytest
+pytest-cov
+mock
