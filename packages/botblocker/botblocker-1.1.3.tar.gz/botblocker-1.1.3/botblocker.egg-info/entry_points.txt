@@ -1,0 +1,3 @@
+[console_scripts]
+botblocker = botblocker.__init__:main
+

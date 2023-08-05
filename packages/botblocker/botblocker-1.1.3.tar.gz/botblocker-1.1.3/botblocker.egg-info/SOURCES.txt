@@ -1,0 +1,12 @@
+README.rst
+setup.py
+botblocker/__init__.py
+botblocker/botblocker.py
+botblocker/errors.py
+botblocker/settings.py
+botblocker.egg-info/PKG-INFO
+botblocker.egg-info/SOURCES.txt
+botblocker.egg-info/dependency_links.txt
+botblocker.egg-info/entry_points.txt
+botblocker.egg-info/requires.txt
+botblocker.egg-info/top_level.txt

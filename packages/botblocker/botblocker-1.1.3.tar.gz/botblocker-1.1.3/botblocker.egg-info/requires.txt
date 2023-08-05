@@ -1,0 +1,7 @@
+tweepy==3.6.0
+botometer
+huepy
+pyperclip
+
+[:platform_system == "Windows"]
+colorama
