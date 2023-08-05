@@ -1,0 +1,3 @@
+# Lifetime
+
+Measure daily inputs.
