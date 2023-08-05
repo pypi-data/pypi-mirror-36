@@ -1,0 +1,6 @@
+PyYAML>=3.12
+python-dateutil>=2.2
+cassandra-driver>=3.10
+SQLAlchemy>=1.1.11
+psycopg2>=2.7.1
+jsonpath-ng>=1.4.2
