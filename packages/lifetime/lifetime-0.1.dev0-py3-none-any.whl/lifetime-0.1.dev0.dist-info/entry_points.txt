@@ -1,0 +1,4 @@
+[console_scripts]
+lifetime = lifetime.me:main
+lifetime_server = lifetime.cloud:main
+
