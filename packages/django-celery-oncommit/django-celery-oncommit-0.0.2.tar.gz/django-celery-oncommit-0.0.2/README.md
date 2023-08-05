@@ -1,0 +1,37 @@
+# django-celery-oncommit
+
+Delay all celery tasks until after the current django transaction has committed to prevent race conditions.
+
+See the [django docs](https://docs.djangoproject.com/en/2.1/topics/db/transactions/#performing-actions-after-commit) for more details.
+
+## Usage
+
+`pip install django-celery-oncommit`
+
+In your task file:
+
+```python
+from django_celery_oncommit import task
+
+@task
+def some_task(with_args):
+    """Task that does stuff with objects"""
+    pass
+```
+
+Elsewhere:
+
+```python
+from mytasks import some_task
+
+def function_used_in_django_code():
+    create_some_objects()
+    some_task.delay(args_referring_to_new_objects)
+    slow_operation_that_allows_the_race_condition()
+```
+
+Ta da!
+
+## TODO
+
+* provide a non-transaction-based option `apply_async` for when the user explicity knows how they want to interact with transactions

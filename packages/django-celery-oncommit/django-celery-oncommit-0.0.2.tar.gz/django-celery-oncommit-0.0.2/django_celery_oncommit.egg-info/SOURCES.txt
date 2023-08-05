@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+django_celery_oncommit/__init__.py
+django_celery_oncommit.egg-info/PKG-INFO
+django_celery_oncommit.egg-info/SOURCES.txt
+django_celery_oncommit.egg-info/dependency_links.txt
+django_celery_oncommit.egg-info/entry_points.txt
+django_celery_oncommit.egg-info/not-zip-safe
+django_celery_oncommit.egg-info/requires.txt
+django_celery_oncommit.egg-info/top_level.txt
