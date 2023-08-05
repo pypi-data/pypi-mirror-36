@@ -1,0 +1,11 @@
+video_behavior_tracking/LED_detection.py,sha256=lsirNve0_zN1iXNRquM-p-W7PTh_5qKHG17_dNvt7-k,3771
+video_behavior_tracking/__init__.py,sha256=pLLDe-olJU9-QbusH3-aDdL_vuSivqsuxThnEGMDb7I,282
+video_behavior_tracking/kalman.py,sha256=Jvx4-9lKwzY8xFexYI5iAtQ_ERqBXwwFrjKjtDx0ZZ0,9909
+video_behavior_tracking/labeled_video.py,sha256=F06MxKqEzw50IWuvQiVbZzknUE_d_kKYW1HvQKLf3sU,3105
+video_behavior_tracking/track_behavior.py,sha256=6kfUXi2G4dPNKQ3PuNLBKf8IB4GFYKVB6dZa9kcadWI,2434
+video_behavior_tracking/utils.py,sha256=ACu-yRJeZsURMCoiHU7dcEDRJjeEwPAq3yVGXVpSoeo,6397
+video_behavior_tracking-0.1.5.dev0.dist-info/METADATA,sha256=wmudmQu6T4ZaKeJGUP3MyGdfvChf0p5L-gdiFq45j3M,394
+video_behavior_tracking-0.1.5.dev0.dist-info/RECORD,,
+video_behavior_tracking-0.1.5.dev0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+video_behavior_tracking-0.1.5.dev0.dist-info/entry_points.txt,sha256=UztmjYbziurkFNJCen_w4KKVPyhJQwV5niFNfbPyiWI,80
+video_behavior_tracking-0.1.5.dev0.dist-info/top_level.txt,sha256=4ZJSZqhFcfbQQFoLB0aqa-agLrltcBQ96IJ1ij-31yQ,24
