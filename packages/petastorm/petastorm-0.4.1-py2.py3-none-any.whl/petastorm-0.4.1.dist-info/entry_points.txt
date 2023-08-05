@@ -1,0 +1,3 @@
+[console_scripts]
+petastorm-generate-metadata.py = petastorm.etl.petastorm_generate_metadata:main
+
