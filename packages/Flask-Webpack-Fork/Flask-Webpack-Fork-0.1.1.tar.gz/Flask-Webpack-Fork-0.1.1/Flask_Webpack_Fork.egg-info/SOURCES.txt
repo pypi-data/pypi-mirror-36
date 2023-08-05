@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.rst
+VERSION
+setup.py
+Flask_Webpack_Fork.egg-info/PKG-INFO
+Flask_Webpack_Fork.egg-info/SOURCES.txt
+Flask_Webpack_Fork.egg-info/dependency_links.txt
+Flask_Webpack_Fork.egg-info/not-zip-safe
+Flask_Webpack_Fork.egg-info/requires.txt
+Flask_Webpack_Fork.egg-info/top_level.txt
+flask_webpack/__init__.py
