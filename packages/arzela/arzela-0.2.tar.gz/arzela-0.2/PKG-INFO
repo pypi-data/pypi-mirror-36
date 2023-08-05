@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: arzela
+Version: 0.2
+Summary: Distributed System Monitor
+Home-page: https://github.com/chengscott/arzela
+Author: chengscott
+Maintainer: chengscott
+License: BSD
+Description: # arzela
+        
+        ## Installation
+        
+        ```shell
+        pip install arzela
+        ```
+        
+        ## Model
+        
+        - Server
+          - {`arzela`}\*n
+          - `arzela proxy` \*1
+        - Client
+          - {`arzela worker example`}\*m
+          - or a customized one
+        
+        ## Grafana
+        
+        ## InfluxDB
+        
+        - set `auth-enabled = true` in `influxdb.conf`
+        
+        ```
+        create database arzela
+        use arzela
+        # create user admin with password 'admin' with all PRIVILEGES
+        create user grafana with password 'grafana'
+        grant read on arzela to grafana
+        create user worker with password 'ascoli'
+        grant write on arzela to worker
+        ```
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: System :: Clustering
+Classifier: Topic :: System :: Monitoring
+Description-Content-Type: text/markdown
