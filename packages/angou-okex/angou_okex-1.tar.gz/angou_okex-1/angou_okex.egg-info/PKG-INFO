@@ -1,0 +1,18 @@
+Metadata-Version: 1.2
+Name: angou-okex
+Version: 1
+Summary: Lightweight and suckless OKEX REST API client library
+Home-page: http://github.com/angou-exchange-utils/angou-okex
+Author: shdown
+Author-email: shdownnine@gmail.com
+License: LGPLv3
+Download-URL: https://github.com/angou-exchange-utils/angou-okex/tarball/v1
+Description: UNKNOWN
+Keywords: angou okex crypto exchange
+Platform: any
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3
