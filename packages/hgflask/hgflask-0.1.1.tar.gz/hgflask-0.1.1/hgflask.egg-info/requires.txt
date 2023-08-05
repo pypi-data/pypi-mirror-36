@@ -1,0 +1,13 @@
+cython
+numpy
+pysam
+requests
+h5py
+pandas
+slugid
+sortedcontainers
+nose
+Click
+flask
+flask-cors
+hgtiles
