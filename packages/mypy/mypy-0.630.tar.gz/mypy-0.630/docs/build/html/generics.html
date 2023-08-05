@@ -1,0 +1,753 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Generics &#8212; Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="More types" href="more_types.html" />
+    <link rel="prev" title="Stub files" href="stubs.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="more_types.html" title="More types"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="stubs.html" title="Stub files"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="generics">
+<h1>Generics<a class="headerlink" href="#generics" title="Permalink to this headline">¶</a></h1>
+<p>This section explains how you can define your own generic classes that take
+one or more type parameters, similar to built-in types such as <code class="docutils literal notranslate"><span class="pre">List[X]</span></code>.
+User-defined generics are a moderately advanced feature and you can get far
+without ever using them – feel free to skip this section and come back later.</p>
+<div class="section" id="defining-generic-classes">
+<span id="generic-classes"></span><h2>Defining generic classes<a class="headerlink" href="#defining-generic-classes" title="Permalink to this headline">¶</a></h2>
+<p>The built-in collection classes are generic classes. Generic types
+have one or more type parameters, which can be arbitrary types. For
+example, <code class="docutils literal notranslate"><span class="pre">Dict[int,</span> <span class="pre">str]</span></code> has the type parameters <code class="docutils literal notranslate"><span class="pre">int</span></code> and
+<code class="docutils literal notranslate"><span class="pre">str</span></code>, and <code class="docutils literal notranslate"><span class="pre">List[int]</span></code> has a type parameter <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
+<p>Programs can also define new generic classes. Here is a very simple
+generic class that represents a stack:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Generic</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Stack</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="c1"># Create an empty list with items of type T</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Stack</span></code> class can be used to represent a stack of any type:
+<code class="docutils literal notranslate"><span class="pre">Stack[int]</span></code>, <code class="docutils literal notranslate"><span class="pre">Stack[Tuple[int,</span> <span class="pre">str]]</span></code>, etc.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">Stack</span></code> is similar to built-in container types:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construct an empty Stack[int] instance</span>
+<span class="n">stack</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">[</span><span class="nb">int</span><span class="p">]()</span>
+<span class="n">stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="n">stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>        <span class="c1"># Type error</span>
+</pre></div>
+</div>
+<p>Type inference works for user-defined generic types as well:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">stack</span><span class="p">:</span> <span class="n">Stack</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span> <span class="o">...</span>
+
+<span class="n">process</span><span class="p">(</span><span class="n">Stack</span><span class="p">())</span>   <span class="c1"># Argument has inferred type Stack[int]</span>
+</pre></div>
+</div>
+<p>Construction of instances of generic types is also type checked:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Box</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">content</span>
+
+<span class="n">Box</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># OK, inferred type is Box[int]</span>
+<span class="n">Box</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Also OK</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;some string&#39;</span>
+<span class="n">Box</span><span class="p">[</span><span class="nb">int</span><span class="p">](</span><span class="n">s</span><span class="p">)</span>  <span class="c1"># Type error</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generic-class-internals">
+<h2>Generic class internals<a class="headerlink" href="#generic-class-internals" title="Permalink to this headline">¶</a></h2>
+<p>You may wonder what happens at runtime when you index
+<code class="docutils literal notranslate"><span class="pre">Stack</span></code>. Actually, indexing <code class="docutils literal notranslate"><span class="pre">Stack</span></code> returns essentially a copy
+of <code class="docutils literal notranslate"><span class="pre">Stack</span></code> that returns instances of the original class on
+instantiation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">Stack</span><span class="p">)</span>
+<span class="go">__main__.Stack</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">Stack</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span>
+<span class="go">__main__.Stack[int]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">Stack</span><span class="p">[</span><span class="nb">int</span><span class="p">]()</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+<span class="go">__main__.Stack</span>
+</pre></div>
+</div>
+<p>Note that built-in types <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">dict</span></code> and so on do not support
+indexing in Python. This is why we have the aliases <code class="docutils literal notranslate"><span class="pre">List</span></code>, <code class="docutils literal notranslate"><span class="pre">Dict</span></code>
+and so on in the <code class="docutils literal notranslate"><span class="pre">typing</span></code> module. Indexing these aliases gives
+you a class that directly inherits from the target class in Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+<span class="go">typing.List[int]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="o">.</span><span class="vm">__bases__</span>
+<span class="go">(&lt;class &#39;list&#39;&gt;, typing.MutableSequence)</span>
+</pre></div>
+</div>
+<p>Generic types could be instantiated or subclassed as usual classes,
+but the above examples illustrate that type variables are erased at
+runtime. Generic <code class="docutils literal notranslate"><span class="pre">Stack</span></code> instances are just ordinary
+Python objects, and they have no extra runtime overhead or magic due
+to being generic, other than a metaclass that overloads the indexing
+operator.</p>
+</div>
+<div class="section" id="defining-sub-classes-of-generic-classes">
+<span id="generic-subclasses"></span><h2>Defining sub-classes of generic classes<a class="headerlink" href="#defining-sub-classes-of-generic-classes" title="Permalink to this headline">¶</a></h2>
+<p>User-defined generic classes and generic classes defined in <code class="docutils literal notranslate"><span class="pre">typing</span></code>
+can be used as base classes for another classes, both generic and
+non-generic. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="n">KT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;KT&#39;</span><span class="p">)</span>
+<span class="n">VT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;VT&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">MyMap</span><span class="p">(</span><span class="n">Mapping</span><span class="p">[</span><span class="n">KT</span><span class="p">,</span> <span class="n">VT</span><span class="p">]]):</span>  <span class="c1"># This is a generic subclass of Mapping</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">KT</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VT</span><span class="p">:</span>
+        <span class="o">...</span>  <span class="c1"># Implementations omitted</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">KT</span><span class="p">]:</span>
+        <span class="o">...</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="o">...</span>
+
+<span class="n">items</span><span class="p">:</span> <span class="n">MyMap</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>  <span class="c1"># Okay</span>
+
+<span class="k">class</span> <span class="nc">StrDict</span><span class="p">(</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>  <span class="c1"># This is a non-generic subclass of Dict</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;StrDict({})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+
+<span class="n">data</span><span class="p">:</span> <span class="n">StrDict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>  <span class="c1"># Error! StrDict is not generic</span>
+<span class="n">data2</span><span class="p">:</span> <span class="n">StrDict</span>  <span class="c1"># OK</span>
+
+<span class="k">class</span> <span class="nc">Receiver</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">accept</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="o">...</span>
+
+<span class="k">class</span> <span class="nc">AdvancedReceiver</span><span class="p">(</span><span class="n">Receiver</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You have to add an explicit <code class="docutils literal notranslate"><span class="pre">Mapping</span></code> base class
+if you want mypy to consider a user-defined class as a mapping (and
+<code class="docutils literal notranslate"><span class="pre">Sequence</span></code> for sequences, etc.). This is because mypy doesn’t use
+<em>structural subtyping</em> for these ABCs, unlike simpler protocols
+like <code class="docutils literal notranslate"><span class="pre">Iterable</span></code>, which use <a class="reference internal" href="protocols.html#protocol-types"><span class="std std-ref">structural subtyping</span></a>.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Generic[...]</span></code> can be omitted from bases if there are
+other base classes that include type variables, such as <code class="docutils literal notranslate"><span class="pre">Mapping[KT,</span> <span class="pre">VT]</span></code>
+in the above example. If you include <code class="docutils literal notranslate"><span class="pre">Generic[...]</span></code> in bases, then
+it should list all type variables present in other bases (or more,
+if needed). The order of type variables is defined by the following
+rules:</p>
+<ul class="simple">
+<li>If <code class="docutils literal notranslate"><span class="pre">Generic[...]</span></code> is present, then the order of variables is
+always determined by their order in <code class="docutils literal notranslate"><span class="pre">Generic[...]</span></code>.</li>
+<li>If there are no <code class="docutils literal notranslate"><span class="pre">Generic[...]</span></code> in bases, then all type variables
+are collected in the lexicographic order (i.e. by first appearance).</li>
+</ul>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">)</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">One</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span> <span class="o">...</span>
+<span class="k">class</span> <span class="nc">Another</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span> <span class="o">...</span>
+
+<span class="k">class</span> <span class="nc">First</span><span class="p">(</span><span class="n">One</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">Another</span><span class="p">[</span><span class="n">S</span><span class="p">]):</span> <span class="o">...</span>
+<span class="k">class</span> <span class="nc">Second</span><span class="p">(</span><span class="n">One</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">Another</span><span class="p">[</span><span class="n">S</span><span class="p">],</span> <span class="n">Generic</span><span class="p">[</span><span class="n">S</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">T</span><span class="p">]):</span> <span class="o">...</span>
+
+<span class="n">x</span><span class="p">:</span> <span class="n">First</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>        <span class="c1"># Here T is bound to int, S is bound to str</span>
+<span class="n">y</span><span class="p">:</span> <span class="n">Second</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>  <span class="c1"># Here T is Any, S is int, and U is str</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generic-functions">
+<span id="id1"></span><h2>Generic functions<a class="headerlink" href="#generic-functions" title="Permalink to this headline">¶</a></h2>
+<p>Generic type variables can also be used to define generic functions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Sequence</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>      <span class="c1"># Declare type variable</span>
+
+<span class="k">def</span> <span class="nf">first</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>   <span class="c1"># Generic function</span>
+    <span class="k">return</span> <span class="n">seq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>As with generic classes, the type variable can be replaced with any
+type. That means <code class="docutils literal notranslate"><span class="pre">first</span></code> can be used with any sequence type, and the
+return type is derived from the sequence item type. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assume first defined as above.</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">first</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>      <span class="c1"># s has type str.</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">first</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># n has type int.</span>
+</pre></div>
+</div>
+<p>Note also that a single definition of a type variable (such as <code class="docutils literal notranslate"><span class="pre">T</span></code>
+above) can be used in multiple generic functions or classes. In this
+example we use the same type variable in two generic functions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Sequence</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>      <span class="c1"># Declare type variable</span>
+
+<span class="k">def</span> <span class="nf">first</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">seq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">last</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">seq</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>A variable cannot have a type variable in its type unless the type
+variable is bound in a containing generic class or function.</p>
+</div>
+<div class="section" id="generic-methods-and-generic-self">
+<span id="id2"></span><h2>Generic methods and generic self<a class="headerlink" href="#generic-methods-and-generic-self" title="Permalink to this headline">¶</a></h2>
+<p>You can also define generic methods — just use a type variable in the
+method signature that is different from class type variables. In particular,
+<code class="docutils literal notranslate"><span class="pre">self</span></code> may also be generic, allowing a method to return the most precise
+type known at the point of access.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This feature is experimental. Checking code with type annotations for self
+arguments is still not fully implemented. Mypy may disallow valid code or
+allow unsafe code.</p>
+</div>
+<p>In this way, for example, you can typecheck chaining of setter methods:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;Shape&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Shape</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">set_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<span class="k">class</span> <span class="nc">Circle</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Circle&#39;</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<span class="k">class</span> <span class="nc">Square</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_width</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Square&#39;</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">w</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">()</span><span class="o">.</span><span class="n">set_scale</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">set_radius</span><span class="p">(</span><span class="mf">2.7</span><span class="p">)</span>  <span class="c1"># type: Circle</span>
+<span class="n">square</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span><span class="o">.</span><span class="n">set_scale</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">set_width</span><span class="p">(</span><span class="mf">3.2</span><span class="p">)</span>  <span class="c1"># type: Square</span>
+</pre></div>
+</div>
+<p>Without using generic <code class="docutils literal notranslate"><span class="pre">self</span></code>, the last two lines could not be type-checked properly.</p>
+<p>Other uses are factory methods, such as copy and deserialization.
+For class methods, you can also define generic <code class="docutils literal notranslate"><span class="pre">cls</span></code>, using <code class="docutils literal notranslate"><span class="pre">Type[T]</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s1">&#39;Friend&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Friend</span><span class="p">:</span>
+    <span class="n">other</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c1"># type: Friend</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">make_pair</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]:</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(),</span> <span class="bp">cls</span><span class="p">()</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">other</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">other</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+
+<span class="k">class</span> <span class="nc">SuperFriend</span><span class="p">(</span><span class="n">Friend</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">SuperFriend</span><span class="o">.</span><span class="n">make_pair</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Note that when overriding a method with generic <code class="docutils literal notranslate"><span class="pre">self</span></code>, you must either
+return a generic <code class="docutils literal notranslate"><span class="pre">self</span></code> too, or return an instance of the current class.
+In the latter case, you must implement this method in all future subclasses.</p>
+<p>Note also that mypy cannot always verify that the implementation of a copy
+or a deserialization method returns the actual type of self. Therefore
+you may need to silence mypy inside these methods (but not at the call site),
+possibly by making use of the <code class="docutils literal notranslate"><span class="pre">Any</span></code> type.</p>
+</div>
+<div class="section" id="variance-of-generic-types">
+<span id="variance-of-generics"></span><h2>Variance of generic types<a class="headerlink" href="#variance-of-generic-types" title="Permalink to this headline">¶</a></h2>
+<p>There are three main kinds of generic types with respect to subtype
+relations between them: invariant, covariant, and contravariant.
+Assuming that we have a pair of types <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>, and <code class="docutils literal notranslate"><span class="pre">B</span></code> is
+a subtype of <code class="docutils literal notranslate"><span class="pre">A</span></code>, these are defined as follows:</p>
+<ul class="simple">
+<li>A generic class <code class="docutils literal notranslate"><span class="pre">MyCovGen[T,</span> <span class="pre">...]</span></code> is called covariant in type variable
+<code class="docutils literal notranslate"><span class="pre">T</span></code> if <code class="docutils literal notranslate"><span class="pre">MyCovGen[B,</span> <span class="pre">...]</span></code> is always a subtype of <code class="docutils literal notranslate"><span class="pre">MyCovGen[A,</span> <span class="pre">...]</span></code>.</li>
+<li>A generic class <code class="docutils literal notranslate"><span class="pre">MyContraGen[T,</span> <span class="pre">...]</span></code> is called contravariant in type
+variable <code class="docutils literal notranslate"><span class="pre">T</span></code> if <code class="docutils literal notranslate"><span class="pre">MyContraGen[A,</span> <span class="pre">...]</span></code> is always a subtype of
+<code class="docutils literal notranslate"><span class="pre">MyContraGen[B,</span> <span class="pre">...]</span></code>.</li>
+<li>A generic class <code class="docutils literal notranslate"><span class="pre">MyInvGen[T,</span> <span class="pre">...]</span></code> is called invariant in <code class="docutils literal notranslate"><span class="pre">T</span></code> if neither
+of the above is true.</li>
+</ul>
+<p>Let us illustrate this by few simple examples:</p>
+<ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">Union</span></code> is covariant in all variables: <code class="docutils literal notranslate"><span class="pre">Union[Cat,</span> <span class="pre">int]</span></code> is a subtype
+of <code class="docutils literal notranslate"><span class="pre">Union[Animal,</span> <span class="pre">int]</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Union[Dog,</span> <span class="pre">int]</span></code> is also a subtype of <code class="docutils literal notranslate"><span class="pre">Union[Animal,</span> <span class="pre">int]</span></code>, etc.
+Most immutable containers such as <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> and <code class="docutils literal notranslate"><span class="pre">FrozenSet</span></code> are also
+covariant.</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">Callable</span></code> is an example of type that behaves contravariant in types of
+arguments, namely <code class="docutils literal notranslate"><span class="pre">Callable[[Employee],</span> <span class="pre">int]</span></code> is a subtype of
+<code class="docutils literal notranslate"><span class="pre">Callable[[Manager],</span> <span class="pre">int]</span></code>. To understand this, consider a function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">salaries</span><span class="p">(</span><span class="n">staff</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Manager</span><span class="p">],</span>
+             <span class="n">accountant</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Manager</span><span class="p">],</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>This function needs a callable that can calculate a salary for managers, and
+if we give it a callable that can calculate a salary for an arbitrary
+employee, it’s still safe.</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">List</span></code> is an invariant generic type. Naively, one would think
+that it is covariant, but let us consider this code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Shape</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Circle</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">add_one</span><span class="p">(</span><span class="n">things</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Shape</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="n">things</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Shape</span><span class="p">())</span>
+
+<span class="n">my_things</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Circle</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">add_one</span><span class="p">(</span><span class="n">my_things</span><span class="p">)</span>     <span class="c1"># This may appear safe, but...</span>
+<span class="n">my_things</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rotate</span><span class="p">()</span>  <span class="c1"># ...this will fail</span>
+</pre></div>
+</div>
+<p>Another example of invariant type is <code class="docutils literal notranslate"><span class="pre">Dict</span></code>. Most mutable containers
+are invariant.</p>
+</li>
+</ul>
+<p>By default, mypy assumes that all user-defined generics are invariant.
+To declare a given generic class as covariant or contravariant use
+type variables defined with special keyword arguments <code class="docutils literal notranslate"><span class="pre">covariant</span></code> or
+<code class="docutils literal notranslate"><span class="pre">contravariant</span></code>. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">TypeVar</span>
+
+<span class="n">T_co</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T_co&#39;</span><span class="p">,</span> <span class="n">covariant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Box</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T_co</span><span class="p">]):</span>  <span class="c1"># this type is declared covariant</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">T_co</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_content</span> <span class="o">=</span> <span class="n">content</span>
+
+    <span class="k">def</span> <span class="nf">get_content</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T_co</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_content</span>
+
+<span class="k">def</span> <span class="nf">look_into</span><span class="p">(</span><span class="n">box</span><span class="p">:</span> <span class="n">Box</span><span class="p">[</span><span class="n">Animal</span><span class="p">]):</span> <span class="o">...</span>
+
+<span class="n">my_box</span> <span class="o">=</span> <span class="n">Box</span><span class="p">(</span><span class="n">Cat</span><span class="p">())</span>
+<span class="n">look_into</span><span class="p">(</span><span class="n">my_box</span><span class="p">)</span>  <span class="c1"># OK, but mypy would complain here for an invariant type</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="type-variables-with-value-restriction">
+<span id="type-variable-value-restriction"></span><h2>Type variables with value restriction<a class="headerlink" href="#type-variables-with-value-restriction" title="Permalink to this headline">¶</a></h2>
+<p>By default, a type variable can be replaced with any type. However, sometimes
+it’s useful to have a type variable that can only have some specific types
+as its value. A typical example is a type variable that can only have values
+<code class="docutils literal notranslate"><span class="pre">str</span></code> and <code class="docutils literal notranslate"><span class="pre">bytes</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span>
+
+<span class="n">AnyStr</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;AnyStr&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is actually such a common type variable that <code class="docutils literal notranslate"><span class="pre">AnyStr</span></code> is
+defined in <code class="docutils literal notranslate"><span class="pre">typing</span></code> and we don’t need to define it ourselves.</p>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">AnyStr</span></code> to define a function that can concatenate
+two strings or bytes objects, but it can’t be called with other
+argument types:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">AnyStr</span>
+
+<span class="k">def</span> <span class="nf">concat</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">AnyStr</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">AnyStr</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnyStr</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="n">concat</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>    <span class="c1"># Okay</span>
+<span class="n">concat</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>  <span class="c1"># Okay</span>
+<span class="n">concat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>        <span class="c1"># Error!</span>
+</pre></div>
+</div>
+<p>Note that this is different from a union type, since combinations
+of <code class="docutils literal notranslate"><span class="pre">str</span></code> and <code class="docutils literal notranslate"><span class="pre">bytes</span></code> are not accepted:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">concat</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;bytes&#39;</span><span class="p">)</span>   <span class="c1"># Error!</span>
+</pre></div>
+</div>
+<p>In this case, this is exactly what we want, since it’s not possible
+to concatenate a string and a bytes object! The type checker
+will reject this function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">union_concat</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span> <span class="n">y</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>  <span class="c1"># Error: can&#39;t concatenate str and bytes</span>
+</pre></div>
+</div>
+<p>Another interesting special case is calling <code class="docutils literal notranslate"><span class="pre">concat()</span></code> with a
+subtype of <code class="docutils literal notranslate"><span class="pre">str</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">S</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="k">pass</span>
+
+<span class="n">ss</span> <span class="o">=</span> <span class="n">concat</span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">),</span> <span class="n">S</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>You may expect that the type of <code class="docutils literal notranslate"><span class="pre">ss</span></code> is <code class="docutils literal notranslate"><span class="pre">S</span></code>, but the type is
+actually <code class="docutils literal notranslate"><span class="pre">str</span></code>: a subtype gets promoted to one of the valid values
+for the type variable, which in this case is <code class="docutils literal notranslate"><span class="pre">str</span></code>. This is thus
+subtly different from <em>bounded quantification</em> in languages such as
+Java, where the return type would be <code class="docutils literal notranslate"><span class="pre">S</span></code>. The way mypy implements
+this is correct for <code class="docutils literal notranslate"><span class="pre">concat</span></code>, since <code class="docutils literal notranslate"><span class="pre">concat</span></code> actually returns a
+<code class="docutils literal notranslate"><span class="pre">str</span></code> instance in the above example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">ss</span><span class="p">))</span>
+<span class="go">&lt;class &#39;str&#39;&gt;</span>
+</pre></div>
+</div>
+<p>You can also use a <code class="docutils literal notranslate"><span class="pre">TypeVar</span></code> with a restricted set of possible
+values when defining a generic class. For example, mypy uses the type
+<code class="docutils literal notranslate"><span class="pre">typing.Pattern[AnyStr]</span></code> for the return value of <code class="docutils literal notranslate"><span class="pre">re.compile</span></code>,
+since regular expressions can be based on a string or a bytes pattern.</p>
+</div>
+<div class="section" id="type-variables-with-upper-bounds">
+<span id="type-variable-upper-bound"></span><h2>Type variables with upper bounds<a class="headerlink" href="#type-variables-with-upper-bounds" title="Permalink to this headline">¶</a></h2>
+<p>A type variable can also be restricted to having values that are
+subtypes of a specific type. This type is called the upper bound of
+the type variable, and is specified with the <code class="docutils literal notranslate"><span class="pre">bound=...</span></code> keyword
+argument to <code class="docutils literal notranslate"><span class="pre">TypeVar</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">SupportsAbs</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">SupportsAbs</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>In the definition of a generic function that uses such a type variable
+<code class="docutils literal notranslate"><span class="pre">T</span></code>, the type represented by <code class="docutils literal notranslate"><span class="pre">T</span></code> is assumed to be a subtype of
+its upper bound, so the function can use methods of the upper bound on
+values of type <code class="docutils literal notranslate"><span class="pre">T</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">largest_in_absolute_value</span><span class="p">(</span><span class="o">*</span><span class="n">xs</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">abs</span><span class="p">)</span>  <span class="c1"># Okay, because T is a subtype of SupportsAbs[float].</span>
+</pre></div>
+</div>
+<p>In a call to such a function, the type <code class="docutils literal notranslate"><span class="pre">T</span></code> must be replaced by a
+type that is a subtype of its upper bound. Continuing the example
+above,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">largest_in_absolute_value</span><span class="p">(</span><span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>   <span class="c1"># Okay, has type float.</span>
+<span class="n">largest_in_absolute_value</span><span class="p">(</span><span class="mi">5</span><span class="o">+</span><span class="mi">6j</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>   <span class="c1"># Okay, has type complex.</span>
+<span class="n">largest_in_absolute_value</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>  <span class="c1"># Error: &#39;str&#39; is not a subtype of SupportsAbs[float].</span>
+</pre></div>
+</div>
+<p>Type parameters of generic classes may also have upper bounds, which
+restrict the valid values for the type parameter in the same way.</p>
+<p>A type variable may not have both a value restriction (see
+<a class="reference internal" href="#type-variable-value-restriction"><span class="std std-ref">Type variables with value restriction</span></a>) and an upper bound.</p>
+</div>
+<div class="section" id="declaring-decorators">
+<span id="id3"></span><h2>Declaring decorators<a class="headerlink" href="#declaring-decorators" title="Permalink to this headline">¶</a></h2>
+<p>One common application of type variable upper bounds is in declaring a
+decorator that preserves the signature of the function it decorates,
+regardless of that signature. Here’s a complete example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">cast</span>
+
+<span class="n">FuncType</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">FuncType</span><span class="p">)</span>
+
+<span class="c1"># A decorator that preserves the signature.</span>
+<span class="k">def</span> <span class="nf">my_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">F</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">F</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Calling&quot;</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">wrapper</span><span class="p">)</span>
+
+<span class="c1"># A decorated function.</span>
+<span class="nd">@my_decorator</span>
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="c1"># Another.</span>
+<span class="nd">@my_decorator</span>
+<span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">foo</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">reveal_type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># str</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">bar</span><span class="p">(</span><span class="mf">3.14</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">reveal_type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>  <span class="c1"># Tuple[float, float, bool]</span>
+<span class="n">foo</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>    <span class="c1"># Type check error: incompatible type &quot;str&quot;; expected &quot;int&quot;</span>
+</pre></div>
+</div>
+<p>From the final block we see that the signatures of the decorated
+functions <code class="docutils literal notranslate"><span class="pre">foo()</span></code> and <code class="docutils literal notranslate"><span class="pre">bar()</span></code> are the same as those of the original
+functions (before the decorator is applied).</p>
+<p>The bound on <code class="docutils literal notranslate"><span class="pre">F</span></code> is used so that calling the decorator on a
+non-function (e.g. <code class="docutils literal notranslate"><span class="pre">my_decorator(1)</span></code>) will be rejected.</p>
+<p>Also note that the <code class="docutils literal notranslate"><span class="pre">wrapper()</span></code> function is not type-checked. Wrapper
+functions are typically small enough that this is not a big
+problem. This is also the reason for the <code class="docutils literal notranslate"><span class="pre">cast()</span></code> call in the
+<code class="docutils literal notranslate"><span class="pre">return</span></code> statement in <code class="docutils literal notranslate"><span class="pre">my_decorator()</span></code>. See <a class="reference internal" href="casts.html#casts"><span class="std std-ref">Casts and type assertions</span></a>.</p>
+</div>
+<div class="section" id="generic-protocols">
+<h2>Generic protocols<a class="headerlink" href="#generic-protocols" title="Permalink to this headline">¶</a></h2>
+<p>Mypy supports generic protocols (see also <a class="reference internal" href="protocols.html#protocol-types"><span class="std std-ref">Protocols and structural subtyping</span></a>). Several
+<a class="reference internal" href="protocols.html#predefined-protocols"><span class="std std-ref">predefined protocols</span></a> are generic, such as
+<code class="docutils literal notranslate"><span class="pre">Iterable[T]</span></code>, and you can define additional generic protocols. Generic
+protocols mostly follow the normal rules for generic classes. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Protocol</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Box</span><span class="p">(</span><span class="n">Protocol</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+    <span class="n">content</span><span class="p">:</span> <span class="n">T</span>
+
+<span class="k">def</span> <span class="nf">do_stuff</span><span class="p">(</span><span class="n">one</span><span class="p">:</span> <span class="n">Box</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">other</span><span class="p">:</span> <span class="n">Box</span><span class="p">[</span><span class="nb">bytes</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="o">...</span>
+
+<span class="k">class</span> <span class="nc">StringWrapper</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">content</span>
+
+<span class="k">class</span> <span class="nc">BytesWrapper</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">content</span>
+
+<span class="n">do_stuff</span><span class="p">(</span><span class="n">StringWrapper</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">),</span> <span class="n">BytesWrapper</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;other&#39;</span><span class="p">))</span>  <span class="c1"># OK</span>
+
+<span class="n">x</span><span class="p">:</span> <span class="n">Box</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">y</span><span class="p">:</span> <span class="n">Box</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">y</span>  <span class="c1"># Error -- Box is invariant</span>
+</pre></div>
+</div>
+<p>The main difference between generic protocols and ordinary generic
+classes is that mypy checks that the declared variances of generic
+type variables in a protocol match how they are used in the protocol
+definition.  The protocol in this example is rejected, since the type
+variable <code class="docutils literal notranslate"><span class="pre">T</span></code> is used covariantly as a return type, but the type
+variable is invariant:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Protocol</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">ReadOnlyBox</span><span class="p">(</span><span class="n">Protocol</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>  <span class="c1"># Error: covariant type variable expected</span>
+    <span class="k">def</span> <span class="nf">content</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>This example correctly uses a covariant type variable:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Protocol</span>
+
+<span class="n">T_co</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T_co&#39;</span><span class="p">,</span> <span class="n">covariant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">ReadOnlyBox</span><span class="p">(</span><span class="n">Protocol</span><span class="p">[</span><span class="n">T_co</span><span class="p">]):</span>  <span class="c1"># OK</span>
+    <span class="k">def</span> <span class="nf">content</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T_co</span><span class="p">:</span> <span class="o">...</span>
+
+<span class="n">ax</span><span class="p">:</span> <span class="n">ReadOnlyBox</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">ay</span><span class="p">:</span> <span class="n">ReadOnlyBox</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ay</span>  <span class="c1"># OK -- ReadOnlyBox is covariant</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#variance-of-generics"><span class="std std-ref">Variance of generic types</span></a> for more about variance.</p>
+<p>Generic protocols can also be recursive. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Linked</span><span class="p">(</span><span class="n">Protocol</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+    <span class="n">val</span><span class="p">:</span> <span class="n">T</span>
+    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Linked[T]&#39;</span><span class="p">:</span> <span class="o">...</span>
+
+<span class="k">class</span> <span class="nc">L</span><span class="p">:</span>
+    <span class="n">val</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="o">...</span>  <span class="c1"># details omitted</span>
+
+    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span>
+        <span class="o">...</span>  <span class="c1"># details omitted</span>
+
+<span class="k">def</span> <span class="nf">last</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="n">Linked</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+    <span class="o">...</span>  <span class="c1"># implementation omitted</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">last</span><span class="p">(</span><span class="n">L</span><span class="p">())</span>  <span class="c1"># Inferred type of &#39;result&#39; is &#39;int&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generic-type-aliases">
+<span id="id4"></span><h2>Generic type aliases<a class="headerlink" href="#generic-type-aliases" title="Permalink to this headline">¶</a></h2>
+<p>Type aliases can be generic. In this case they can be used in two ways:
+Subscripted aliases are equivalent to original types with substituted type
+variables, so the number of type arguments must match the number of free type variables
+in the generic type alias. Unsubscripted aliases are treated as original types with free
+variables replaced with <code class="docutils literal notranslate"><span class="pre">Any</span></code>. Examples (following <a class="reference external" href="https://www.python.org/dev/peps/pep-0484/#type-aliases">PEP 484</a>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Callable</span>
+
+<span class="n">S</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">)</span>
+
+<span class="n">TInt</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">S</span><span class="p">]</span>
+<span class="n">UInt</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">S</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+<span class="n">CBack</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">S</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">response</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">UInt</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>  <span class="c1"># Same as Union[str, int]</span>
+    <span class="o">...</span>
+<span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="n">cb</span><span class="p">:</span> <span class="n">CBack</span><span class="p">[</span><span class="n">S</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">S</span><span class="p">:</span>        <span class="c1"># Same as Callable[..., S]</span>
+    <span class="o">...</span>
+<span class="n">table_entry</span><span class="p">:</span> <span class="n">TInt</span>  <span class="c1"># Same as Tuple[int, Any]</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">complex</span><span class="p">)</span>
+
+<span class="n">Vec</span> <span class="o">=</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]]</span>
+
+<span class="k">def</span> <span class="nf">inproduct</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">Vec</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dilate</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">Vec</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">scale</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vec</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">x</span> <span class="o">*</span> <span class="n">scale</span><span class="p">,</span> <span class="n">y</span> <span class="o">*</span> <span class="n">scale</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="n">v1</span><span class="p">:</span> <span class="n">Vec</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>      <span class="c1"># Same as Iterable[Tuple[int, int]]</span>
+<span class="n">v2</span><span class="p">:</span> <span class="n">Vec</span> <span class="o">=</span> <span class="p">[]</span>           <span class="c1"># Same as Iterable[Tuple[Any, Any]]</span>
+<span class="n">v3</span><span class="p">:</span> <span class="n">Vec</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># Error: Invalid alias, too many type arguments!</span>
+</pre></div>
+</div>
+<p>Type aliases can be imported from modules just like other names. An
+alias can also target another alias, although building complex chains
+of aliases is not recommended – this impedes code readability, thus
+defeating the purpose of using aliases.  Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">example1</span> <span class="kn">import</span> <span class="n">AliasType</span>
+<span class="kn">from</span> <span class="nn">example2</span> <span class="kn">import</span> <span class="n">Vec</span>
+
+<span class="c1"># AliasType and Vec are type aliases (Vec as defined above)</span>
+
+<span class="k">def</span> <span class="nf">fun</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">AliasType</span><span class="p">:</span>
+    <span class="o">...</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">NewVec</span><span class="p">(</span><span class="n">Vec</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+    <span class="o">...</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">NewVec</span><span class="p">[</span><span class="nb">int</span><span class="p">]():</span>
+    <span class="o">...</span>
+
+<span class="n">OIntVec</span> <span class="o">=</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Vec</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A type alias does not define a new type. For generic type aliases
+this means that variance of type variables used for alias definition does not
+apply to aliases. A parameterized generic alias is treated simply as an original
+type with the corresponding type variables substituted.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Generics</a><ul>
+<li><a class="reference internal" href="#defining-generic-classes">Defining generic classes</a></li>
+<li><a class="reference internal" href="#generic-class-internals">Generic class internals</a></li>
+<li><a class="reference internal" href="#defining-sub-classes-of-generic-classes">Defining sub-classes of generic classes</a></li>
+<li><a class="reference internal" href="#generic-functions">Generic functions</a></li>
+<li><a class="reference internal" href="#generic-methods-and-generic-self">Generic methods and generic self</a></li>
+<li><a class="reference internal" href="#variance-of-generic-types">Variance of generic types</a></li>
+<li><a class="reference internal" href="#type-variables-with-value-restriction">Type variables with value restriction</a></li>
+<li><a class="reference internal" href="#type-variables-with-upper-bounds">Type variables with upper bounds</a></li>
+<li><a class="reference internal" href="#declaring-decorators">Declaring decorators</a></li>
+<li><a class="reference internal" href="#generic-protocols">Generic protocols</a></li>
+<li><a class="reference internal" href="#generic-type-aliases">Generic type aliases</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="stubs.html"
+                        title="previous chapter">Stub files</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="more_types.html"
+                        title="next chapter">More types</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/generics.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="more_types.html" title="More types"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="stubs.html" title="Stub files"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Jukka Lehtosalo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>

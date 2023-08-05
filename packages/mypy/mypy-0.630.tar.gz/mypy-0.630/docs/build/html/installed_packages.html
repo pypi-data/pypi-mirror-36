@@ -1,0 +1,220 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Using installed packages &#8212; Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Extending and integrating mypy" href="extending_mypy.html" />
+    <link rel="prev" title="Mypy daemon (mypy server)" href="mypy_daemon.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="extending_mypy.html" title="Extending and integrating mypy"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mypy_daemon.html" title="Mypy daemon (mypy server)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="using-installed-packages">
+<span id="installed-packages"></span><h1>Using installed packages<a class="headerlink" href="#using-installed-packages" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://www.python.org/dev/peps/pep-0561/">PEP 561</a> specifies how to mark
+a package as supporting type checking. Below is a summary of how to create
+PEP 561 compatible packages and have mypy use them in type checking.</p>
+<div class="section" id="using-pep-561-compatible-packages-with-mypy">
+<h2>Using PEP 561 compatible packages with mypy<a class="headerlink" href="#using-pep-561-compatible-packages-with-mypy" title="Permalink to this headline">¶</a></h2>
+<p>Generally, you do not need to do anything to use installed packages that
+support typing for the Python executable used to run mypy. Note that most
+packages do not support typing. Packages that do support typing should be
+automatically picked up by mypy and used for type checking.</p>
+<p>By default, mypy searches for packages installed for the Python executable
+running mypy. It is highly unlikely you want this situation if you have
+installed typed packages in another Python’s package directory.</p>
+<p>Generally, you can use the <code class="docutils literal notranslate"><span class="pre">--python-version</span></code> flag and mypy will try to find
+the correct package directory. If that fails, you can use the
+<code class="docutils literal notranslate"><span class="pre">--python-executable</span></code> flag to point to the exact executable, and mypy will
+find packages installed for that Python executable.</p>
+<p>Note that mypy does not support some more advanced import features, such as zip
+imports, namespace packages, and custom import hooks.</p>
+<p>If you do not want to use typed packages, use the <code class="docutils literal notranslate"><span class="pre">--no-site-packages</span></code> flag
+to disable searching.</p>
+<p>Note that stub-only packages (defined in
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0561/#stub-only-packages">PEP 561</a>)
+cannot be used with <code class="docutils literal notranslate"><span class="pre">MYPYPATH</span></code>. If you want mypy to find the package, it must
+be installed. For a package <code class="docutils literal notranslate"><span class="pre">foo</span></code>, the name of the stub-only package
+(<code class="docutils literal notranslate"><span class="pre">foo-stubs</span></code>) is not a legal package name, so mypy will not find it, unless
+it is installed.</p>
+</div>
+<div class="section" id="making-pep-561-compatible-packages">
+<h2>Making PEP 561 compatible packages<a class="headerlink" href="#making-pep-561-compatible-packages" title="Permalink to this headline">¶</a></h2>
+<p>PEP 561 notes three main ways to distribute type information. The first is a
+package that has only inline type annotations in the code itself. The second is
+a package that ships stub files with type information alongside the runtime
+code. The third method, also known as a “stub only package” is a package that
+ships type information for a package separately as stub files.</p>
+<p>If you would like to publish a library package to a package repository (e.g.
+PyPI) for either internal or external use in type checking, packages that
+supply type information via type comments or annotations in the code should put
+a <code class="docutils literal notranslate"><span class="pre">py.typed</span></code> in their package directory. For example, with a directory
+structure as follows</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>setup.py
+package_a/
+    __init__.py
+    lib.py
+    py.typed
+</pre></div>
+</div>
+<p>the setup.py might look like</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;SuperPackageA&quot;</span><span class="p">,</span>
+    <span class="n">author</span><span class="o">=</span><span class="s2">&quot;Me&quot;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span>
+    <span class="n">package_data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;package_a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;py.typed&quot;</span><span class="p">]},</span>
+    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;package_a&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you use setuptools, you must pass the option <code class="docutils literal notranslate"><span class="pre">zip_safe=False</span></code> to
+<code class="docutils literal notranslate"><span class="pre">setup()</span></code>, or mypy will not be able to find the installed package.</p>
+</div>
+<p>Some packages have a mix of stub files and runtime files. These packages also
+require a <code class="docutils literal notranslate"><span class="pre">py.typed</span></code> file. An example can be seen below</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>setup.py
+package_b/
+    __init__.py
+    lib.py
+    lib.pyi
+    py.typed
+</pre></div>
+</div>
+<p>the setup.py might look like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;SuperPackageB&quot;</span><span class="p">,</span>
+    <span class="n">author</span><span class="o">=</span><span class="s2">&quot;Me&quot;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span>
+    <span class="n">package_data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;package_b&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;py.typed&quot;</span><span class="p">,</span> <span class="s2">&quot;lib.pyi&quot;</span><span class="p">]},</span>
+    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;package_b&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>In this example, both <code class="docutils literal notranslate"><span class="pre">lib.py</span></code> and <code class="docutils literal notranslate"><span class="pre">lib.pyi</span></code> exist. At runtime, the Python
+interpreter will use <code class="docutils literal notranslate"><span class="pre">lib.py</span></code>, but mypy will use <code class="docutils literal notranslate"><span class="pre">lib.pyi</span></code> instead.</p>
+<p>If the package is stub-only (not imported at runtime), the package should have
+a prefix of the runtime package name and a suffix of <code class="docutils literal notranslate"><span class="pre">-stubs</span></code>.
+A <code class="docutils literal notranslate"><span class="pre">py.typed</span></code> file is not needed for stub-only packages. For example, if we
+had stubs for <code class="docutils literal notranslate"><span class="pre">package_c</span></code>, we might do the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>setup.py
+package_c-stubs/
+    __init__.pyi
+    lib.pyi
+</pre></div>
+</div>
+<p>the setup.py might look like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;SuperPackageC&quot;</span><span class="p">,</span>
+    <span class="n">author</span><span class="o">=</span><span class="s2">&quot;Me&quot;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span>
+    <span class="n">package_data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;package_c-stubs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;__init__.pyi&quot;</span><span class="p">,</span> <span class="s2">&quot;lib.pyi&quot;</span><span class="p">]},</span>
+    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;package_c-stubs&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using installed packages</a><ul>
+<li><a class="reference internal" href="#using-pep-561-compatible-packages-with-mypy">Using PEP 561 compatible packages with mypy</a></li>
+<li><a class="reference internal" href="#making-pep-561-compatible-packages">Making PEP 561 compatible packages</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mypy_daemon.html"
+                        title="previous chapter">Mypy daemon (mypy server)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="extending_mypy.html"
+                        title="next chapter">Extending and integrating mypy</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/installed_packages.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="extending_mypy.html" title="Extending and integrating mypy"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mypy_daemon.html" title="Mypy daemon (mypy server)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Jukka Lehtosalo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>

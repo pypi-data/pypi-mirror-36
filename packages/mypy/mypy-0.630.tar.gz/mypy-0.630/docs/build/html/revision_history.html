@@ -1,0 +1,490 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Revision history &#8212; Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Frequently Asked Questions" href="faq.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="faq.html" title="Frequently Asked Questions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="revision-history">
+<h1>Revision history<a class="headerlink" href="#revision-history" title="Permalink to this headline">¶</a></h1>
+<p>List of major changes (the <a class="reference external" href="http://mypy-lang.blogspot.com/">Mypy Blog</a> contains more
+detailed release notes):</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>September 2018</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.630 on PyPI.<ul>
+<li>Recategorize and document <code class="docutils literal notranslate"><span class="pre">--warn-incomplete-stub</span></code> (<a class="reference internal" href="command_line.html#warn-incomplete-stub"><span class="std std-ref">docs</span></a>).</li>
+<li>Document stub-only packages incompatibility with <code class="docutils literal notranslate"><span class="pre">MYPYPATH</span></code>
+(<a class="reference internal" href="installed_packages.html#installed-packages"><span class="std std-ref">docs</span></a>).</li>
+<li>Reorganize command line <a class="reference internal" href="command_line.html#command-line"><span class="std std-ref">documentation</span></a>
+(see also <a class="reference internal" href="running_mypy.html#running-mypy"><span class="std std-ref">docs</span></a> and <a class="reference internal" href="extending_mypy.html#extending-mypy"><span class="std std-ref">more docs</span></a>).</li>
+<li>Document callback <a class="reference internal" href="protocols.html#callback-protocols"><span class="std std-ref">protocols</span></a>.</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>July 2018</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.620 on PyPI.<ul>
+<li>Improve support for <a class="reference internal" href="more_types.html#function-overloading"><span class="std std-ref">overloads</span></a>.</li>
+<li>Add support for <a class="reference internal" href="additional_features.html#dataclasses-support"><span class="std std-ref">dataclasses</span></a>.</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>June 2018</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.610 on PyPI.<ul>
+<li>Major overhaul of documentation.</li>
+<li>Add the <code class="docutils literal notranslate"><span class="pre">dmypy</span> <span class="pre">run</span></code> command to the <a class="reference internal" href="mypy_daemon.html#mypy-daemon"><span class="std std-ref">daemon</span></a>.</li>
+<li>Partially revert the prior changes to section pattern semantics in
+configuration files
+(<a class="reference internal" href="config_file.html#config-file"><span class="std std-ref">docs</span></a> and <a class="reference internal" href="config_file.html#per-module-flags"><span class="std std-ref">more docs</span></a>).</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>May 2018</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.600 on PyPI.<ul>
+<li>Enable <a class="reference internal" href="kinds_of_types.html#strict-optional"><span class="std std-ref">strict optional checking</span></a> by default.</li>
+<li>Document <a class="reference internal" href="kinds_of_types.html#no-strict-optional"><span class="std std-ref">disabling strict optional checking</span></a>.</li>
+<li>Add <a class="reference internal" href="mypy_daemon.html#mypy-daemon"><span class="std std-ref">Mypy daemon (mypy server)</span></a>.</li>
+<li>Add <a class="reference internal" href="additional_features.html#remote-cache"><span class="std std-ref">Using a remote cache to speed up mypy runs</span></a>.</li>
+<li>Support user-specific configuration file (<a class="reference internal" href="config_file.html#config-file"><span class="std std-ref">docs</span></a>).</li>
+<li>Changes to section pattern semantics in configuration files
+(<a class="reference internal" href="config_file.html#config-file"><span class="std std-ref">docs</span></a> and <a class="reference internal" href="config_file.html#per-module-flags"><span class="std std-ref">more docs</span></a>).</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>April 2018</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.590 on PyPI.<ul>
+<li>Document <a class="reference internal" href="installed_packages.html#installed-packages"><span class="std std-ref">PEP 561 support</span></a>.</li>
+<li>Made <a class="reference internal" href="command_line.html#incremental"><span class="std std-ref">incremental mode</span></a> the default.</li>
+<li>Document <code class="docutils literal notranslate"><span class="pre">--always-true</span></code> and <code class="docutils literal notranslate"><span class="pre">--always-false</span></code> (<a class="reference internal" href="command_line.html#always-true"><span class="std std-ref">docs</span></a>).</li>
+<li>Document <code class="docutils literal notranslate"><span class="pre">follow_imports_for_stubs</span></code> (<a class="reference internal" href="config_file.html#per-module-flags"><span class="std std-ref">docs</span></a>).</li>
+<li>Add coroutines to <a class="reference internal" href="cheat_sheet_py3.html#cheat-sheet-py3"><span class="std std-ref">Python 3 cheat sheet</span></a>.</li>
+<li>Add <code class="docutils literal notranslate"><span class="pre">None</span></code> return/strict-optional to <a class="reference internal" href="common_issues.html#annotations-needed"><span class="std std-ref">common issues</span></a>.</li>
+<li>Clarify that <code class="docutils literal notranslate"><span class="pre">SupportsInt</span></code> etc. don’t support arithmetic operations (see <a class="reference internal" href="protocols.html#supports-int-etc"><span class="std std-ref">docs</span></a>).</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>March 2018</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.580 on PyPI.<ul>
+<li>Allow specifying multiple packages on the command line with <code class="docutils literal notranslate"><span class="pre">-p</span></code> and <code class="docutils literal notranslate"><span class="pre">-m</span></code> flags.</li>
+</ul>
+</li>
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.570 on PyPI.<ul>
+<li>Add support for <a class="reference internal" href="additional_features.html#attrs-package"><span class="std std-ref">The attrs package</span></a>.</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>December 2017</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.560 on PyPI.<ul>
+<li>Various types in <code class="docutils literal notranslate"><span class="pre">typing</span></code> that used to be ABCs
+<a class="reference internal" href="protocols.html#predefined-protocols"><span class="std std-ref">are now protocols</span></a>
+and support <a class="reference internal" href="protocols.html#protocol-types"><span class="std std-ref">structural subtyping</span></a>.</li>
+<li>Explain how to <a class="reference internal" href="common_issues.html#silencing-linters"><span class="std std-ref">silence invalid complaints</span></a>
+by linters about unused imports due to type comments.</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>November 2017</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.550 on PyPI.<ul>
+<li>Running mypy now requires Python 3.4 or higher.
+However Python 3.3 is still valid for the target
+of the analysis (i.e. the <code class="docutils literal notranslate"><span class="pre">--python-version</span></code> flag).</li>
+<li>Split <code class="docutils literal notranslate"><span class="pre">--disallow-any</span></code> flag into
+<a class="reference internal" href="command_line.html#disallow-dynamic-typing"><span class="std std-ref">separate boolean flags</span></a>.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">--old-html-report</span></code> flag was removed.</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>October 2017</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.540 on PyPI.</li>
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.530 on PyPI.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>August-September 2017</dt>
+<dd><ul class="first last">
+<li>Add <a class="reference internal" href="protocols.html#protocol-types"><span class="std std-ref">Protocols and structural subtyping</span></a>.</li>
+<li>Other updates to <a class="reference internal" href="command_line.html#command-line"><span class="std std-ref">The mypy command line</span></a>:<ul>
+<li>Add <code class="docutils literal notranslate"><span class="pre">--warn-unused-configs</span></code>.</li>
+<li>Add <code class="docutils literal notranslate"><span class="pre">--disallow-untyped-decorators</span></code>.</li>
+<li>Add <code class="docutils literal notranslate"><span class="pre">--disallow-incomplete-defs</span></code>.</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>July 2017</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.521 on PyPI.</li>
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.520 on PyPI.</li>
+<li>Add <a class="reference internal" href="command_line.html#disallow-dynamic-typing"><span class="std std-ref">fine-grained control of Any types</span></a>.</li>
+<li>Add <a class="reference internal" href="more_types.html#typeddict"><span class="std std-ref">TypedDict</span></a>.</li>
+<li>Other updates to <a class="reference internal" href="command_line.html#command-line"><span class="std std-ref">The mypy command line</span></a>:<ul>
+<li>Add <code class="docutils literal notranslate"><span class="pre">--no-implicit-optional</span></code>.</li>
+<li>Add <code class="docutils literal notranslate"><span class="pre">--shadow-file</span></code>.</li>
+<li>Add <code class="docutils literal notranslate"><span class="pre">--no-incremental</span></code>.</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>May 2017</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.510 on PyPI.</li>
+<li>Remove option <code class="docutils literal notranslate"><span class="pre">--no-fast-parser</span></code>.</li>
+<li>Deprecate option <code class="docutils literal notranslate"><span class="pre">--strict-boolean</span></code>.</li>
+<li>Drop support for Python 3.2 as type checking target.</li>
+<li>Add support for <a class="reference internal" href="more_types.html#function-overloading"><span class="std std-ref">overloaded functions with implementations</span></a>.</li>
+<li>Add <a class="reference internal" href="additional_features.html#extended-callable"><span class="std std-ref">Extended Callable types</span></a>.</li>
+<li>Add <a class="reference internal" href="python36.html#async-generators-and-comprehensions"><span class="std std-ref">Asynchronous generators (PEP 525) and comprehensions (PEP 530)</span></a>.</li>
+<li>Add <a class="reference internal" href="python36.html#class-var"><span class="std std-ref">ClassVar</span></a>.</li>
+<li>Add <a class="reference internal" href="command_line.html#quick-mode"><span class="std std-ref">quick mode</span></a>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>March 2017</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.500 on PyPI.</li>
+<li>Add <a class="reference internal" href="more_types.html#noreturn"><span class="std std-ref">The NoReturn type</span></a>.</li>
+<li>Add <a class="reference internal" href="generics.html#generic-subclasses"><span class="std std-ref">Defining sub-classes of generic classes</span></a>.</li>
+<li>Add <a class="reference internal" href="generics.html#variance-of-generics"><span class="std std-ref">Variance of generic types</span></a>.</li>
+<li>Add <a class="reference internal" href="common_issues.html#variance"><span class="std std-ref">Invariance vs covariance</span></a>.</li>
+<li>Updates to <a class="reference internal" href="python36.html#python-36"><span class="std std-ref">New features in Python 3.6</span></a>.</li>
+<li>Updates to <a class="reference internal" href="extending_mypy.html#integrating-mypy"><span class="std std-ref">Integrating mypy into another Python application</span></a>.</li>
+<li>Updates to <a class="reference internal" href="command_line.html#command-line"><span class="std std-ref">The mypy command line</span></a>:<ul>
+<li>Add option <code class="docutils literal notranslate"><span class="pre">--warn-return-any</span></code>.</li>
+<li>Add option <code class="docutils literal notranslate"><span class="pre">--strict-boolean</span></code>.</li>
+<li>Add option <code class="docutils literal notranslate"><span class="pre">--strict</span></code>.</li>
+</ul>
+</li>
+<li>Updates to <a class="reference internal" href="config_file.html#config-file"><span class="std std-ref">The mypy configuration file</span></a>:<ul>
+<li><code class="docutils literal notranslate"><span class="pre">warn_no_return</span></code> is on by default.</li>
+<li>Read settings from <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> if <code class="docutils literal notranslate"><span class="pre">mypy.ini</span></code> does not exist.</li>
+<li>Add option <code class="docutils literal notranslate"><span class="pre">warn_return_any</span></code>.</li>
+<li>Add option <code class="docutils literal notranslate"><span class="pre">strict_boolean</span></code>.</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>January 2017</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy</span></code> version 0.470 on PyPI.</li>
+<li>Change package name from <code class="docutils literal notranslate"><span class="pre">mypy-lang</span></code> to <code class="docutils literal notranslate"><span class="pre">mypy</span></code>.</li>
+<li>Add <a class="reference internal" href="extending_mypy.html#integrating-mypy"><span class="std std-ref">Integrating mypy into another Python application</span></a>.</li>
+<li>Add <a class="reference internal" href="cheat_sheet_py3.html#cheat-sheet-py3"><span class="std std-ref">Type hints cheat sheet (Python 3)</span></a>.</li>
+<li>Major update to <a class="reference internal" href="running_mypy.html#finding-imports"><span class="std std-ref">How imports are found</span></a>.</li>
+<li>Add <a class="reference internal" href="running_mypy.html#ignore-missing-imports"><span class="std std-ref">–ignore-missing-imports</span></a>.</li>
+<li>Updates to <a class="reference internal" href="config_file.html#config-file"><span class="std std-ref">The mypy configuration file</span></a>.</li>
+<li>Document underscore support in numeric literals.</li>
+<li>Document that arguments prefixed with <code class="docutils literal notranslate"><span class="pre">__</span></code> are positional-only.</li>
+<li>Document that <code class="docutils literal notranslate"><span class="pre">--hide-error-context</span></code> is now on by default,
+and there is a new flag <code class="docutils literal notranslate"><span class="pre">--show-error-context</span></code>.</li>
+<li>Add <code class="docutils literal notranslate"><span class="pre">ignore_errors</span></code> to <a class="reference internal" href="config_file.html#per-module-flags"><span class="std std-ref">Per-module and global options</span></a>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>November 2016</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy-lang</span></code> version 0.4.6 on PyPI.</li>
+<li>Add Getting started.</li>
+<li>Add <a class="reference internal" href="generics.html#generic-methods-and-generic-self"><span class="std std-ref">Generic methods and generic self</span></a> (experimental).</li>
+<li>Add <a class="reference internal" href="generics.html#declaring-decorators"><span class="std std-ref">Declaring decorators</span></a>.</li>
+<li>Discuss generic type aliases in <a class="reference internal" href="kinds_of_types.html#type-aliases"><span class="std std-ref">Type aliases</span></a>.</li>
+<li>Discuss Python 3.6 named tuple syntax in <a class="reference internal" href="kinds_of_types.html#named-tuples"><span class="std std-ref">Named tuples</span></a>.</li>
+<li>Updates to <a class="reference internal" href="common_issues.html#common-issues"><span class="std std-ref">Common issues and solutions</span></a>.</li>
+<li>Updates to <a class="reference internal" href="python36.html#python-36"><span class="std std-ref">New features in Python 3.6</span></a>.</li>
+<li>Updates to <a class="reference internal" href="command_line.html#command-line"><span class="std std-ref">The mypy command line</span></a>:<ul>
+<li><code class="docutils literal notranslate"><span class="pre">--custom-typeshed-dir</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">--junit-xml</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">--find-occurrences</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">--cobertura-xml-report</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">--warn-no-return</span></code></li>
+</ul>
+</li>
+<li>Updates to <a class="reference internal" href="config_file.html#config-file"><span class="std std-ref">The mypy configuration file</span></a>:<ul>
+<li>Sections with fnmatch patterns now use
+module name patterns (previously they were path patterns).</li>
+<li>Added <code class="docutils literal notranslate"><span class="pre">custom_typeshed_dir</span></code>, <code class="docutils literal notranslate"><span class="pre">mypy_path</span></code> and <code class="docutils literal notranslate"><span class="pre">show_column_numbers</span></code>.</li>
+</ul>
+</li>
+<li>Mention the magic <code class="docutils literal notranslate"><span class="pre">MYPY</span></code> constant in <a class="reference internal" href="common_issues.html#import-cycles"><span class="std std-ref">Import cycles</span></a>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>October 2016</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy-lang</span></code> version 0.4.5 on PyPI.</li>
+<li>Add <a class="reference internal" href="python36.html#python-36"><span class="std std-ref">New features in Python 3.6</span></a>.</li>
+<li>Add <a class="reference internal" href="config_file.html#config-file"><span class="std std-ref">The mypy configuration file</span></a>.</li>
+<li>Updates to <a class="reference internal" href="command_line.html#command-line"><span class="std std-ref">The mypy command line</span></a>: <code class="docutils literal notranslate"><span class="pre">--strict-optional-white-list</span></code>,
+<code class="docutils literal notranslate"><span class="pre">--disallow-subclassing-any</span></code>, <code class="docutils literal notranslate"><span class="pre">--config-file</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;flagfile</span></code>,
+<code class="docutils literal notranslate"><span class="pre">--hide-error-context</span></code> (replaces <code class="docutils literal notranslate"><span class="pre">--suppress-error-context</span></code>),
+<code class="docutils literal notranslate"><span class="pre">--show-column-numbers</span></code> and <code class="docutils literal notranslate"><span class="pre">--scripts-are-modules</span></code>.</li>
+<li>Mention <code class="docutils literal notranslate"><span class="pre">typing.TYPE_CHECKING</span></code> in <a class="reference internal" href="common_issues.html#import-cycles"><span class="std std-ref">Import cycles</span></a>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>August 2016</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy-lang</span></code> version 0.4.4 on PyPI.</li>
+<li>Add <a class="reference internal" href="more_types.html#newtypes"><span class="std std-ref">NewTypes</span></a>.</li>
+<li>Add <a class="reference internal" href="more_types.html#async-and-await"><span class="std std-ref">Typing async/await</span></a>.</li>
+<li>Add <a class="reference internal" href="kinds_of_types.html#text-and-anystr"><span class="std std-ref">Text and AnyStr</span></a>.</li>
+<li>Add <a class="reference internal" href="common_issues.html#version-and-platform-checks"><span class="std std-ref">Python version and system platform checks</span></a>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>July 2016</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy-lang</span></code> version 0.4.3 on PyPI.</li>
+<li>Add <a class="reference internal" href="kinds_of_types.html#strict-optional"><span class="std std-ref">strict optional checking</span></a>.</li>
+<li>Add <a class="reference internal" href="python2.html#multi-line-annotation"><span class="std std-ref">Multi-line Python 2 function annotations</span></a>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>June 2016</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy-lang</span></code> version 0.4.2 on PyPI.</li>
+<li>Add <a class="reference internal" href="kinds_of_types.html#type-of-class"><span class="std std-ref">The type of class objects</span></a>.</li>
+<li>Add <a class="reference internal" href="cheat_sheet.html#cheat-sheet-py2"><span class="std std-ref">Type hints cheat sheet (Python 2)</span></a>.</li>
+<li>Add <a class="reference internal" href="common_issues.html#reveal-type"><span class="std std-ref">Displaying the type of an expression</span></a>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>May 2016</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy-lang</span></code> version 0.4 on PyPI.</li>
+<li>Add <a class="reference internal" href="generics.html#type-variable-upper-bound"><span class="std std-ref">Type variables with upper bounds</span></a>.</li>
+<li>Document <a class="reference internal" href="command_line.html#command-line"><span class="std std-ref">The mypy command line</span></a>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Feb 2016</dt>
+<dd><ul class="first last">
+<li>Publish <code class="docutils literal notranslate"><span class="pre">mypy-lang</span></code> version 0.3.1 on PyPI.</li>
+<li>Document Python 2 support.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Nov 2015</dt>
+<dd>Add <a class="reference internal" href="getting_started.html#stubs-intro"><span class="std std-ref">Library stubs and typeshed</span></a>.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Jun 2015</dt>
+<dd>Remove <code class="docutils literal notranslate"><span class="pre">Undefined</span></code> and <code class="docutils literal notranslate"><span class="pre">Dynamic</span></code>, as they are not in PEP 484.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Apr 2015</dt>
+<dd>Publish <code class="docutils literal notranslate"><span class="pre">mypy-lang</span></code> version 0.2.0 on PyPI.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Mar 2015</dt>
+<dd>Update documentation to reflect PEP 484:<ul class="last">
+<li>Add <a class="reference internal" href="kinds_of_types.html#named-tuples"><span class="std std-ref">Named tuples</span></a> and <a class="reference internal" href="kinds_of_types.html#strict-optional"><span class="std std-ref">Optional types</span></a>.</li>
+<li>Do not mention type application syntax (for
+example, <code class="docutils literal notranslate"><span class="pre">List[int]()</span></code>), as it’s no longer supported,
+due to PEP 484 compatibility.</li>
+<li>Rename <code class="docutils literal notranslate"><span class="pre">typevar</span></code> to <code class="docutils literal notranslate"><span class="pre">TypeVar</span></code>.</li>
+<li>Document <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">type:</span> <span class="pre">ignore</span></code> which allows
+locally ignoring spurious errors (<a class="reference internal" href="common_issues.html#silencing-checker"><span class="std std-ref">Spurious errors and locally silencing the checker</span></a>).</li>
+<li>No longer mention
+<code class="docutils literal notranslate"><span class="pre">Any(x)</span></code> as a valid cast, as it will be phased out soon.</li>
+<li>Mention the new <code class="docutils literal notranslate"><span class="pre">.pyi</span></code> stub file extension. Stubs can live
+in the same directory as the rest of the program.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Jan 2015</dt>
+<dd>Mypy moves closer to PEP 484:<ul class="last">
+<li>Add <a class="reference internal" href="kinds_of_types.html#type-aliases"><span class="std std-ref">Type aliases</span></a>.</li>
+<li>Update discussion of overloading – it’s now only supported in stubs.</li>
+<li>Rename <code class="docutils literal notranslate"><span class="pre">Function[...]</span></code> to <code class="docutils literal notranslate"><span class="pre">Callable[...]</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Dec 2014</dt>
+<dd>Publish mypy version 0.1.0 on PyPI.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Oct 2014</dt>
+<dd>Major restructuring.
+Split the HTML documentation into
+multiple pages.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Sep 2014</dt>
+<dd>Migrated docs to Sphinx.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Aug 2014</dt>
+<dd>Don’t discuss native semantics. There is only Python
+semantics.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Jul 2013</dt>
+<dd>Rewrite to use new syntax. Shift focus to discussing
+Python semantics. Add more content, including short discussions of
+<a class="reference internal" href="generics.html#generic-functions"><span class="std std-ref">Generic functions</span></a> and <a class="reference internal" href="kinds_of_types.html#union-types"><span class="std std-ref">Union types</span></a>.</dd>
+</dl>
+</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="faq.html"
+                        title="previous chapter">Frequently Asked Questions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/revision_history.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="faq.html" title="Frequently Asked Questions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Jukka Lehtosalo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Casts and type assertions &#8212; Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Duck type compatibility" href="duck_type_compatibility.html" />
+    <link rel="prev" title="Dynamically typed code" href="dynamic_typing.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="duck_type_compatibility.html" title="Duck type compatibility"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dynamic_typing.html" title="Dynamically typed code"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="casts-and-type-assertions">
+<span id="casts"></span><h1>Casts and type assertions<a class="headerlink" href="#casts-and-type-assertions" title="Permalink to this headline">¶</a></h1>
+<p>Mypy supports type casts that are usually used to coerce a statically
+typed value to a subtype. Unlike languages such as Java or C#,
+however, mypy casts are only used as hints for the type checker, and they
+don’t perform a runtime type check. Use the function <code class="docutils literal notranslate"><span class="pre">cast</span></code> to perform a
+cast:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="n">o</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">o</span><span class="p">)</span>  <span class="c1"># OK</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">o</span><span class="p">)</span>  <span class="c1"># OK (cast performs no actual runtime check)</span>
+</pre></div>
+</div>
+<p>To support runtime checking of casts such as the above, we’d have to check
+the types of all list items, which would be very inefficient for large lists.
+Casts are used to silence spurious
+type checker warnings and give the type checker a little help when it can’t
+quite understand what is going on.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You can use an assertion if you want to perform an actual runtime check:</p>
+<div class="last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">o</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">o</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Error: can&#39;t add &#39;object&#39; and &#39;int&#39;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">o</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># OK: type of &#39;o&#39; is &#39;int&#39; here</span>
+</pre></div>
+</div>
+</div>
+<p>You don’t need a cast for expressions with type <code class="docutils literal notranslate"><span class="pre">Any</span></code>, or when
+assigning to a variable with type <code class="docutils literal notranslate"><span class="pre">Any</span></code>, as was explained earlier.
+You can also use <code class="docutils literal notranslate"><span class="pre">Any</span></code> as the cast target type – this lets you perform
+any operations on the result. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">x</span><span class="o">.</span><span class="n">whatever</span><span class="p">()</span>  <span class="c1"># Type check error</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">y</span><span class="o">.</span><span class="n">whatever</span><span class="p">()</span>  <span class="c1"># Type check OK (runtime error)</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dynamic_typing.html"
+                        title="previous chapter">Dynamically typed code</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="duck_type_compatibility.html"
+                        title="next chapter">Duck type compatibility</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/casts.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="duck_type_compatibility.html" title="Duck type compatibility"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dynamic_typing.html" title="Dynamically typed code"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Jukka Lehtosalo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>

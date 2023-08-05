@@ -1,0 +1,345 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Type qualifiers &#8212; Mypy 0.630+dev-11a157ecf60ba11d7f82a7409d22a5f3fe6f5c81-dirty documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Metaclasses" href="metaclasses.html" />
+    <link rel="prev" title="More types" href="more_types.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="metaclasses.html" title="Metaclasses"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="more_types.html" title="More types"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mypy 0.630+dev-11a157ecf60ba11d7f82a7409d22a5f3fe6f5c81-dirty documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="type-qualifiers">
+<h1>Type qualifiers<a class="headerlink" href="#type-qualifiers" title="Permalink to this headline">¶</a></h1>
+<p>This section describes constructs that do not affect types of variables
+and methods, but affect how they can be accessed, assigned, and overridden.</p>
+<div class="section" id="class-and-instance-variables">
+<h2>Class and instance variables<a class="headerlink" href="#class-and-instance-variables" title="Permalink to this headline">¶</a></h2>
+<p>By default mypy assumes that a variable declared in the class body is
+an instance variable. One can mark names intended to be used as class variables
+with a special type qualifier <code class="docutils literal notranslate"><span class="pre">ClassVar</span></code>. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">ClassVar</span>
+
+<span class="k">class</span> <span class="nc">Base</span><span class="p">:</span>
+    <span class="n">attr</span><span class="p">:</span> <span class="nb">int</span>  <span class="c1"># This is an instance variable</span>
+    <span class="n">num_subclasses</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>  <span class="c1"># This is a class variable</span>
+
+    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># OK</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_subclasses</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Error: Cannot assign to class variable via instance</span>
+
+<span class="n">Base</span><span class="o">.</span><span class="n">num_subclasses</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># OK</span>
+<span class="n">Base</span><span class="o">.</span><span class="n">attr</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Also OK, sets default value for an instance variable</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">ClassVar</span></code> is not valid as a nested type, and in any position
+other than assignment in class body. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>  <span class="c1"># Error: ClassVar can&#39;t be used at module scope</span>
+
+<span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ClassVar</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span>  <span class="c1"># Error: can&#39;t use ClassVar as nested type</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="final-attributes-of-classes-and-modules">
+<h2>Final attributes of classes and modules<a class="headerlink" href="#final-attributes-of-classes-and-modules" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an experimental feature. Some details might change in later
+versions of mypy. The final qualifiers are available in <code class="docutils literal notranslate"><span class="pre">typing_extensions</span></code>
+module. When the semantics is stable, they will be added to <code class="docutils literal notranslate"><span class="pre">typing</span></code>.</p>
+</div>
+<p>There are several situations where static guarantees about non-redefinition
+of certain names (or references in general) can be useful. One such example
+is module or class level constants, user might want to guard them against
+unintentional modifications:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">RATE</span> <span class="o">=</span> <span class="mi">3000</span>
+
+<span class="k">class</span> <span class="nc">Base</span><span class="p">:</span>
+    <span class="n">DEFAULT_ID</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># 1000 lines later</span>
+
+<span class="k">class</span> <span class="nc">Derived</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">DEFAULT_ID</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># this may be unintentional</span>
+
+<span class="n">RATE</span> <span class="o">=</span> <span class="mi">300</span>  <span class="c1"># this too</span>
+</pre></div>
+</div>
+<p>Another example is where a user might want to protect certain instance
+attributes from overriding in a subclass:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">uuid</span>
+
+<span class="k">class</span> <span class="nc">Snowflake</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;An absolutely unique object in the database&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span>
+
+<span class="c1"># 1000 lines later</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Snowflake</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span>  <span class="c1"># This has valid type, but the meaning</span>
+                       <span class="c1"># may be wrong</span>
+</pre></div>
+</div>
+<p>Some other use cases might be solved by using <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code>, but note that both
+above use cases can’t be solved this way. For such situations, one might want
+to use <code class="docutils literal notranslate"><span class="pre">typing.Final</span></code>.</p>
+<div class="section" id="definition-syntax">
+<h3>Definition syntax<a class="headerlink" href="#definition-syntax" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">typing.Final</span></code> type qualifier indicates that a given name or attribute
+should never be re-assigned, re-defined, nor overridden. It can be used in
+one of these forms:</p>
+<ul class="simple">
+<li>The simplest one is <code class="docutils literal notranslate"><span class="pre">ID:</span> <span class="pre">Final</span> <span class="pre">=</span> <span class="pre">1</span></code>. Note that unlike gor generic classes
+this is <em>not</em> the same as <code class="docutils literal notranslate"><span class="pre">Final[Any]</span></code>. Here mypy will infer type <code class="docutils literal notranslate"><span class="pre">int</span></code>.</li>
+<li>An explicit type <code class="docutils literal notranslate"><span class="pre">ID:</span> <span class="pre">Final[float]</span> <span class="pre">=</span> <span class="pre">1</span></code> can be used as in any
+normal assignment.</li>
+<li>In stub files one can omit the right hand side and just write
+<code class="docutils literal notranslate"><span class="pre">ID:</span> <span class="pre">Final[float]</span></code>.</li>
+<li>Finally, one can define <code class="docutils literal notranslate"><span class="pre">self.id:</span> <span class="pre">Final</span> <span class="pre">=</span> <span class="pre">1</span></code> (also with a type argument),
+but this is allowed <em>only</em> in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> methods.</li>
+</ul>
+</div>
+<div class="section" id="definition-rules">
+<h3>Definition rules<a class="headerlink" href="#definition-rules" title="Permalink to this headline">¶</a></h3>
+<p>The are two rules that should be always followed when defining a final name:</p>
+<ul>
+<li><p class="first">There can be <em>at most one</em> final declaration per module or class for
+a given attribute:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ID</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">ID</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Error!</span>
+
+<span class="k">class</span> <span class="nc">SomeCls</span><span class="p">:</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">x</span>  <span class="c1"># Error!</span>
+</pre></div>
+</div>
+<p>Note that mypy has a single namespace for a class. So there can’t be two
+class-level and instance-level constants with the same name.</p>
+</li>
+<li><p class="first">There must be <em>exactly one</em> assignment to a final attribute:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ID</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">ID</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Error!</span>
+
+<span class="k">class</span> <span class="nc">SomeCls</span><span class="p">:</span>
+    <span class="n">ID</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">ID</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Error!</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Conditional final declarations and final declarations within loops are
+not supported.</p>
+</div>
+</div>
+<div class="section" id="using-final-attributes">
+<h3>Using final attributes<a class="headerlink" href="#using-final-attributes" title="Permalink to this headline">¶</a></h3>
+<p>As a result of a final declaration mypy strives to provide the
+two following guarantees:</p>
+<ul>
+<li><p class="first">A final attribute can’t be re-assigned (or otherwise re-defined), both
+internally and externally:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># file mod.py</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Final</span>
+
+<span class="n">ID</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># file main.py</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Final</span>
+
+<span class="kn">import</span> <span class="nn">mod</span>
+<span class="n">mod</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Error, can&#39;t assign to constant.</span>
+
+<span class="k">class</span> <span class="nc">SomeCls</span><span class="p">:</span>
+    <span class="n">ID</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">meth</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Error, can&#39;t assign to final attribute</span>
+
+<span class="k">class</span> <span class="nc">DerivedCls</span><span class="p">(</span><span class="n">SomeCls</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="n">DerivedCls</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Error!</span>
+<span class="n">obj</span><span class="p">:</span> <span class="n">DerivedCls</span>
+<span class="n">obj</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Error!</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">A final attribute can’t be overridden by a subclass (even with another
+explicit final declaration). Note however, that final attributes can
+override normal attributes. This also applies to multiple inheritance:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Base</span><span class="p">:</span>
+    <span class="n">ID</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">class</span> <span class="nc">One</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">ID</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># OK</span>
+
+<span class="k">class</span> <span class="nc">Other</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">ID</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># OK</span>
+
+<span class="k">class</span> <span class="nc">Combo</span><span class="p">(</span><span class="n">One</span><span class="p">,</span> <span class="n">Other</span><span class="p">):</span>  <span class="c1"># Error, cannot override final attribute.</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Mypy treats re-exported final names as final. In other words, once declared,
+the final status can’t be “stripped”. Such behaviour is typically desired
+for larger libraries where constants are defined in a separate module and
+then re-exported.</p>
+</div>
+</div>
+<div class="section" id="final-methods">
+<h3>Final methods<a class="headerlink" href="#final-methods" title="Permalink to this headline">¶</a></h3>
+<p>Like with attributes, sometimes it is useful to protect a method from
+overriding. In such situations one can use a <code class="docutils literal notranslate"><span class="pre">typing.final</span></code> decorator:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">final</span>
+
+<span class="k">class</span> <span class="nc">Base</span><span class="p">:</span>
+    <span class="nd">@final</span>
+    <span class="k">def</span> <span class="nf">common_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>  <span class="c1"># common signature</span>
+        <span class="o">...</span>
+
+<span class="c1"># 1000 lines later</span>
+
+<span class="k">class</span> <span class="nc">Derived</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">common_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>  <span class="c1"># Error, this overriding might break</span>
+                                    <span class="c1"># invariants in the base class.</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">&#64;final</span></code> decorator can be used with instance methods, class methods,
+static methods, and properties (this includes overloaded methods).</p>
+</div>
+<div class="section" id="final-classes">
+<h3>Final classes<a class="headerlink" href="#final-classes" title="Permalink to this headline">¶</a></h3>
+<p>As a bonus, applying a <code class="docutils literal notranslate"><span class="pre">typing.final</span></code> decorator to a class indicates to mypy
+that it can’t be subclassed. Mypy doesn’t provide any additional features for
+final classes, but some other tools may use this information for their benefits.
+Plus it serves a verifiable documentation purpose:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># file lib.pyi</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">final</span>
+
+<span class="nd">@final</span>
+<span class="k">class</span> <span class="nc">Leaf</span><span class="p">:</span>
+    <span class="o">...</span>
+
+<span class="c1"># file main.py</span>
+<span class="kn">from</span> <span class="nn">lib</span> <span class="kn">import</span> <span class="n">Leaf</span>
+
+<span class="k">class</span> <span class="nc">MyLeaf</span><span class="p">(</span><span class="n">Leaf</span><span class="p">):</span>  <span class="c1"># Error, library author believes this is unsafe</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Type qualifiers</a><ul>
+<li><a class="reference internal" href="#class-and-instance-variables">Class and instance variables</a></li>
+<li><a class="reference internal" href="#final-attributes-of-classes-and-modules">Final attributes of classes and modules</a><ul>
+<li><a class="reference internal" href="#definition-syntax">Definition syntax</a></li>
+<li><a class="reference internal" href="#definition-rules">Definition rules</a></li>
+<li><a class="reference internal" href="#using-final-attributes">Using final attributes</a></li>
+<li><a class="reference internal" href="#final-methods">Final methods</a></li>
+<li><a class="reference internal" href="#final-classes">Final classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="more_types.html"
+                        title="previous chapter">More types</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="metaclasses.html"
+                        title="next chapter">Metaclasses</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/type_quals.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="metaclasses.html" title="Metaclasses"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="more_types.html" title="More types"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mypy 0.630+dev-11a157ecf60ba11d7f82a7409d22a5f3fe6f5c81-dirty documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Jukka Lehtosalo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>

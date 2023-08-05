@@ -1,0 +1,546 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Protocols and structural subtyping &#8212; Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Type checking Python 2 code" href="python2.html" />
+    <link rel="prev" title="Class basics" href="class_basics.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="python2.html" title="Type checking Python 2 code"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="class_basics.html" title="Class basics"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="protocols-and-structural-subtyping">
+<span id="protocol-types"></span><h1>Protocols and structural subtyping<a class="headerlink" href="#protocols-and-structural-subtyping" title="Permalink to this headline">¶</a></h1>
+<p>Mypy supports two ways of deciding whether two classes are compatible
+as types: nominal subtyping and structural subtyping. <em>Nominal</em>
+subtyping is strictly based on the class hierarchy. If class <code class="docutils literal notranslate"><span class="pre">D</span></code>
+inherits class <code class="docutils literal notranslate"><span class="pre">C</span></code>, it’s also a subtype of <code class="docutils literal notranslate"><span class="pre">C</span></code>, and instances of
+<code class="docutils literal notranslate"><span class="pre">D</span></code> can be used when <code class="docutils literal notranslate"><span class="pre">C</span></code> instances are expected. This form of
+subtyping is used by default in mypy, since it’s easy to understand
+and produces clear and concise error messages, and since it matches
+how the native <code class="docutils literal notranslate"><span class="pre">isinstance()</span></code> check works – based on class
+hierarchy. <em>Structural</em> subtyping can also be useful. Class <code class="docutils literal notranslate"><span class="pre">D</span></code> is
+a structural subtype of class <code class="docutils literal notranslate"><span class="pre">C</span></code> if the former has all attributes
+and methods of the latter, and with compatible types.</p>
+<p>Structural subtyping can be seen as a static equivalent of duck
+typing, which is well known to Python programmers. Mypy provides
+support for structural subtyping via protocol classes described
+below.  See <a class="reference external" href="https://www.python.org/dev/peps/pep-0544/">PEP 544</a> for
+the detailed specification of protocols and structural subtyping in
+Python.</p>
+<div class="section" id="predefined-protocols">
+<span id="id1"></span><h2>Predefined protocols<a class="headerlink" href="#predefined-protocols" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">typing</span></code> module defines various protocol classes that correspond
+to common Python protocols, such as <code class="docutils literal notranslate"><span class="pre">Iterable[T]</span></code>.  If a class
+defines a suitable <code class="docutils literal notranslate"><span class="pre">__iter__</span></code> method, mypy understands that it
+implements the iterable protocol and is compatible with <code class="docutils literal notranslate"><span class="pre">Iterable[T]</span></code>.
+For example, <code class="docutils literal notranslate"><span class="pre">IntList</span></code> below is iterable, over <code class="docutils literal notranslate"><span class="pre">int</span></code> values:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="k">class</span> <span class="nc">IntList</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">next</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">IntList</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">while</span> <span class="n">current</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">current</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+<span class="k">def</span> <span class="nf">print_numbered</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">IntList</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">IntList</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
+<span class="n">print_numbered</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># OK</span>
+<span class="n">print_numbered</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>  <span class="c1"># Also OK</span>
+</pre></div>
+</div>
+<p>The subsections below introduce all built-in protocols defined in
+<code class="docutils literal notranslate"><span class="pre">typing</span></code> and the signatures of the corresponding methods you need to define
+to implement each protocol (the signatures can be left out, as always, but mypy
+won’t type check unannotated methods).</p>
+<div class="section" id="iteration-protocols">
+<h3>Iteration protocols<a class="headerlink" href="#iteration-protocols" title="Permalink to this headline">¶</a></h3>
+<p>The iteration protocols are useful in many contexts. For example, they allow
+iteration of objects in for loops.</p>
+<div class="section" id="iterable-t">
+<h4><code class="docutils literal notranslate"><span class="pre">Iterable[T]</span></code><a class="headerlink" href="#iterable-t" title="Permalink to this headline">¶</a></h4>
+<p>The <a class="reference internal" href="#predefined-protocols"><span class="std std-ref">example above</span></a> has a simple implementation of an
+<code class="docutils literal notranslate"><span class="pre">__iter__</span></code> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="iterator-t">
+<h4><code class="docutils literal notranslate"><span class="pre">Iterator[T]</span></code><a class="headerlink" href="#iterator-t" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span>
+<span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="collection-protocols">
+<h3>Collection protocols<a class="headerlink" href="#collection-protocols" title="Permalink to this headline">¶</a></h3>
+<p>Many of these are implemented by built-in container types such as
+<code class="docutils literal notranslate"><span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">dict</span></code>, and these are also useful for user-defined
+collection objects.</p>
+<div class="section" id="sized">
+<h4><code class="docutils literal notranslate"><span class="pre">Sized</span></code><a class="headerlink" href="#sized" title="Permalink to this headline">¶</a></h4>
+<p>This is a type for objects that support <code class="docutils literal notranslate"><span class="pre">len(x)</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="container-t">
+<h4><code class="docutils literal notranslate"><span class="pre">Container[T]</span></code><a class="headerlink" href="#container-t" title="Permalink to this headline">¶</a></h4>
+<p>This is a type for objects that support the <code class="docutils literal notranslate"><span class="pre">in</span></code> operator.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="collection-t">
+<h4><code class="docutils literal notranslate"><span class="pre">Collection[T]</span></code><a class="headerlink" href="#collection-t" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+<span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">]</span>
+<span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="one-off-protocols">
+<h3>One-off protocols<a class="headerlink" href="#one-off-protocols" title="Permalink to this headline">¶</a></h3>
+<p>These protocols are typically only useful with a single standard
+library function or class.</p>
+<div class="section" id="reversible-t">
+<h4><code class="docutils literal notranslate"><span class="pre">Reversible[T]</span></code><a class="headerlink" href="#reversible-t" title="Permalink to this headline">¶</a></h4>
+<p>This is a type for objects that support <code class="docutils literal notranslate"><span class="pre">reversed(x)</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__reversed__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">T</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="supportsabs-t">
+<h4><code class="docutils literal notranslate"><span class="pre">SupportsAbs[T]</span></code><a class="headerlink" href="#supportsabs-t" title="Permalink to this headline">¶</a></h4>
+<p>This is a type for objects that support <code class="docutils literal notranslate"><span class="pre">abs(x)</span></code>. <code class="docutils literal notranslate"><span class="pre">T</span></code> is the type of
+value returned by <code class="docutils literal notranslate"><span class="pre">abs(x)</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="supportsbytes">
+<h4><code class="docutils literal notranslate"><span class="pre">SupportsBytes</span></code><a class="headerlink" href="#supportsbytes" title="Permalink to this headline">¶</a></h4>
+<p>This is a type for objects that support <code class="docutils literal notranslate"><span class="pre">bytes(x)</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__bytes__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="supportscomplex">
+<span id="supports-int-etc"></span><h4><code class="docutils literal notranslate"><span class="pre">SupportsComplex</span></code><a class="headerlink" href="#supportscomplex" title="Permalink to this headline">¶</a></h4>
+<p>This is a type for objects that support <code class="docutils literal notranslate"><span class="pre">complex(x)</span></code>. Note that no arithmetic operations
+are supported.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__complex__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">complex</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="supportsfloat">
+<h4><code class="docutils literal notranslate"><span class="pre">SupportsFloat</span></code><a class="headerlink" href="#supportsfloat" title="Permalink to this headline">¶</a></h4>
+<p>This is a type for objects that support <code class="docutils literal notranslate"><span class="pre">float(x)</span></code>. Note that no arithmetic operations
+are supported.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__float__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="supportsint">
+<h4><code class="docutils literal notranslate"><span class="pre">SupportsInt</span></code><a class="headerlink" href="#supportsint" title="Permalink to this headline">¶</a></h4>
+<p>This is a type for objects that support <code class="docutils literal notranslate"><span class="pre">int(x)</span></code>.  Note that no arithmetic operations
+are supported.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__int__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="supportsround-t">
+<h4><code class="docutils literal notranslate"><span class="pre">SupportsRound[T]</span></code><a class="headerlink" href="#supportsround-t" title="Permalink to this headline">¶</a></h4>
+<p>This is a type for objects that support <code class="docutils literal notranslate"><span class="pre">round(x)</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__round__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="async-protocols">
+<h3>Async protocols<a class="headerlink" href="#async-protocols" title="Permalink to this headline">¶</a></h3>
+<p>These protocols can be useful in async code. See <a class="reference internal" href="more_types.html#async-and-await"><span class="std std-ref">Typing async/await</span></a>
+for more information.</p>
+<div class="section" id="awaitable-t">
+<h4><code class="docutils literal notranslate"><span class="pre">Awaitable[T]</span></code><a class="headerlink" href="#awaitable-t" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__await__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">T</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="asynciterable-t">
+<h4><code class="docutils literal notranslate"><span class="pre">AsyncIterable[T]</span></code><a class="headerlink" href="#asynciterable-t" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__aiter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">T</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="asynciterator-t">
+<h4><code class="docutils literal notranslate"><span class="pre">AsyncIterator[T]</span></code><a class="headerlink" href="#asynciterator-t" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__anext__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Awaitable</span><span class="p">[</span><span class="n">T</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">__aiter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">T</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="context-manager-protocols">
+<h3>Context manager protocols<a class="headerlink" href="#context-manager-protocols" title="Permalink to this headline">¶</a></h3>
+<p>There are two protocols for context managers – one for regular context
+managers and one for async ones. These allow defining objects that can
+be used in <code class="docutils literal notranslate"><span class="pre">with</span></code> and <code class="docutils literal notranslate"><span class="pre">async</span> <span class="pre">with</span></code> statements.</p>
+<div class="section" id="contextmanager-t">
+<h4><code class="docutils literal notranslate"><span class="pre">ContextManager[T]</span></code><a class="headerlink" href="#contextmanager-t" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span>
+<span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+             <span class="n">exc_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="ne">BaseException</span><span class="p">]],</span>
+             <span class="n">exc_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="ne">BaseException</span><span class="p">],</span>
+             <span class="n">traceback</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TracebackType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="asynccontextmanager-t">
+<h4><code class="docutils literal notranslate"><span class="pre">AsyncContextManager[T]</span></code><a class="headerlink" href="#asynccontextmanager-t" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__aenter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Awaitable</span><span class="p">[</span><span class="n">T</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">__aexit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+              <span class="n">exc_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="ne">BaseException</span><span class="p">]],</span>
+              <span class="n">exc_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="ne">BaseException</span><span class="p">],</span>
+              <span class="n">traceback</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TracebackType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Awaitable</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="simple-user-defined-protocols">
+<h2>Simple user-defined protocols<a class="headerlink" href="#simple-user-defined-protocols" title="Permalink to this headline">¶</a></h2>
+<p>You can define your own protocol class by inheriting the special
+<code class="docutils literal notranslate"><span class="pre">typing_extensions.Protocol</span></code> class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Protocol</span>
+
+<span class="k">class</span> <span class="nc">SupportsClose</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+       <span class="o">...</span>  <span class="c1"># Empty method body (explicit &#39;...&#39;)</span>
+
+<span class="k">class</span> <span class="nc">Resource</span><span class="p">:</span>  <span class="c1"># No SupportsClose base class!</span>
+    <span class="c1"># ... some methods ...</span>
+
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">close_all</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">SupportsClose</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+        <span class="n">item</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">close_all</span><span class="p">([</span><span class="n">Resource</span><span class="p">(),</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some/file&#39;</span><span class="p">)])</span>  <span class="c1"># Okay!</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Resource</span></code> is a subtype of the <code class="docutils literal notranslate"><span class="pre">SupportsClose</span></code> protocol since it defines
+a compatible <code class="docutils literal notranslate"><span class="pre">close</span></code> method. Regular file objects returned by <code class="docutils literal notranslate"><span class="pre">open()</span></code> are
+similarly compatible with the protocol, as they support <code class="docutils literal notranslate"><span class="pre">close()</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">Protocol</span></code> base class is currently provided in the <code class="docutils literal notranslate"><span class="pre">typing_extensions</span></code>
+package. Once structural subtyping is mature and
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0544/">PEP 544</a> has been accepted,
+<code class="docutils literal notranslate"><span class="pre">Protocol</span></code> will be included in the <code class="docutils literal notranslate"><span class="pre">typing</span></code> module.</p>
+</div>
+</div>
+<div class="section" id="defining-subprotocols-and-subclassing-protocols">
+<h2>Defining subprotocols and subclassing protocols<a class="headerlink" href="#defining-subprotocols-and-subclassing-protocols" title="Permalink to this headline">¶</a></h2>
+<p>You can also define subprotocols. Existing protocols can be extended
+and merged using multiple inheritance. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ... continuing from the previous example</span>
+
+<span class="k">class</span> <span class="nc">SupportsRead</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span> <span class="o">...</span>
+
+<span class="k">class</span> <span class="nc">TaggedReadableResource</span><span class="p">(</span><span class="n">SupportsClose</span><span class="p">,</span> <span class="n">SupportsRead</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">):</span>
+    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="k">class</span> <span class="nc">AdvancedResource</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+
+    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+        <span class="c1"># some implementation</span>
+        <span class="o">...</span>
+
+<span class="n">resource</span><span class="p">:</span> <span class="n">TaggedReadableResource</span>
+<span class="n">resource</span> <span class="o">=</span> <span class="n">AdvancedResource</span><span class="p">(</span><span class="s1">&#39;handle with care&#39;</span><span class="p">)</span>  <span class="c1"># OK</span>
+</pre></div>
+</div>
+<p>Note that inheriting from an existing protocol does not automatically
+turn the subclass into a protocol – it just creates a regular
+(non-protocol) class or ABC that implements the given protocol (or
+protocols). The <code class="docutils literal notranslate"><span class="pre">typing_extensions.Protocol</span></code> base class must always
+be explicitly present if you are defining a protocol:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NotAProtocol</span><span class="p">(</span><span class="n">SupportsClose</span><span class="p">):</span>  <span class="c1"># This is NOT a protocol</span>
+    <span class="n">new_attr</span><span class="p">:</span> <span class="nb">int</span>
+
+<span class="k">class</span> <span class="nc">Concrete</span><span class="p">:</span>
+   <span class="n">new_attr</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+
+   <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+       <span class="o">...</span>
+
+<span class="c1"># Error: nominal subtyping used by default</span>
+<span class="n">x</span><span class="p">:</span> <span class="n">NotAProtocol</span> <span class="o">=</span> <span class="n">Concrete</span><span class="p">()</span>  <span class="c1"># Error!</span>
+</pre></div>
+</div>
+<p>You can also include default implementations of methods in
+protocols. If you explicitly subclass these protocols you can inherit
+these default implementations. Explicitly including a protocol as a
+base class is also a way of documenting that your class implements a
+particular protocol, and it forces mypy to verify that your class
+implementation is actually compatible with the protocol.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can use Python 3.6 variable annotations (<a class="reference external" href="https://www.python.org/dev/peps/pep-0526/">PEP 526</a>)
+to declare protocol attributes.  On Python 2.7 and earlier Python 3
+versions you can use type comments and properties.</p>
+</div>
+</div>
+<div class="section" id="recursive-protocols">
+<h2>Recursive protocols<a class="headerlink" href="#recursive-protocols" title="Permalink to this headline">¶</a></h2>
+<p>Protocols can be recursive (self-referential) and mutually
+recursive. This is useful for declaring abstract recursive collections
+such as trees and linked lists:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Protocol</span>
+
+<span class="k">class</span> <span class="nc">TreeLike</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="n">value</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">left</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;TreeLike&#39;</span><span class="p">]:</span> <span class="o">...</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">right</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;TreeLike&#39;</span><span class="p">]:</span> <span class="o">...</span>
+
+<span class="k">class</span> <span class="nc">SimpleTree</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;SimpleTree&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;SimpleTree&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="n">root</span><span class="p">:</span> <span class="n">TreeLike</span> <span class="o">=</span> <span class="n">SimpleTree</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># OK</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-isinstance-with-protocols">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">isinstance()</span></code> with protocols<a class="headerlink" href="#using-isinstance-with-protocols" title="Permalink to this headline">¶</a></h2>
+<p>You can use a protocol class with <code class="docutils literal notranslate"><span class="pre">isinstance()</span></code> if you decorate it
+with the <code class="docutils literal notranslate"><span class="pre">typing_extensions.runtime</span></code> class decorator. The decorator
+adds support for basic runtime structural checks:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Protocol</span><span class="p">,</span> <span class="n">runtime</span>
+
+<span class="nd">@runtime</span>
+<span class="k">class</span> <span class="nc">Portable</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="n">handles</span><span class="p">:</span> <span class="nb">int</span>
+
+<span class="k">class</span> <span class="nc">Mug</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">mug</span> <span class="o">=</span> <span class="n">Mug</span><span class="p">()</span>
+<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mug</span><span class="p">,</span> <span class="n">Portable</span><span class="p">):</span>
+   <span class="n">use</span><span class="p">(</span><span class="n">mug</span><span class="o">.</span><span class="n">handles</span><span class="p">)</span>  <span class="c1"># Works statically and at runtime</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">isinstance()</span></code> also works with the <a class="reference internal" href="#predefined-protocols"><span class="std std-ref">predefined protocols</span></a>
+in <code class="docutils literal notranslate"><span class="pre">typing</span></code> such as <code class="docutils literal notranslate"><span class="pre">Iterable</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">isinstance()</span></code> with protocols is not completely safe at runtime.
+For example, signatures of methods are not checked. The runtime
+implementation only checks that all protocol members are defined.</p>
+</div>
+</div>
+<div class="section" id="callback-protocols">
+<span id="id3"></span><h2>Callback protocols<a class="headerlink" href="#callback-protocols" title="Permalink to this headline">¶</a></h2>
+<p>Protocols can be used to define flexible callback types that are hard
+(or even impossible) to express using the <code class="docutils literal notranslate"><span class="pre">Callable[...]</span></code> syntax, such as variadic,
+overloaded, and complex generic callbacks. They are defined with a special <code class="docutils literal notranslate"><span class="pre">__call__</span></code>
+member:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Protocol</span>
+
+<span class="k">class</span> <span class="nc">Combiner</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">vals</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">maxlen</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]:</span> <span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">batch_proc</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span> <span class="n">cb_results</span><span class="p">:</span> <span class="n">Combiner</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">good_cb</span><span class="p">(</span><span class="o">*</span><span class="n">vals</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">maxlen</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]:</span>
+    <span class="o">...</span>
+<span class="k">def</span> <span class="nf">bad_cb</span><span class="p">(</span><span class="o">*</span><span class="n">vals</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">maxitems</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]:</span>
+    <span class="o">...</span>
+
+<span class="n">batch_proc</span><span class="p">([],</span> <span class="n">good_cb</span><span class="p">)</span>  <span class="c1"># OK</span>
+<span class="n">batch_proc</span><span class="p">([],</span> <span class="n">bad_cb</span><span class="p">)</span>   <span class="c1"># Error! Argument 2 has incompatible type because of</span>
+                         <span class="c1"># different name and kind in the callback</span>
+</pre></div>
+</div>
+<p>Callback protocols and <code class="docutils literal notranslate"><span class="pre">Callable[...]</span></code> types can be used interchangeably.
+Keyword argument names in <code class="docutils literal notranslate"><span class="pre">__call__</span></code> methods must be identical, unless
+a double underscore prefix is used. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">TypeVar</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Protocol</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Copy</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">__origin</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span> <span class="o">...</span>
+
+<span class="n">copy_a</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="n">T</span><span class="p">]</span>
+<span class="n">copy_b</span><span class="p">:</span> <span class="n">Copy</span>
+
+<span class="n">copy_a</span> <span class="o">=</span> <span class="n">copy_b</span>  <span class="c1"># OK</span>
+<span class="n">copy_b</span> <span class="o">=</span> <span class="n">copy_a</span>  <span class="c1"># Also OK</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Protocols and structural subtyping</a><ul>
+<li><a class="reference internal" href="#predefined-protocols">Predefined protocols</a><ul>
+<li><a class="reference internal" href="#iteration-protocols">Iteration protocols</a><ul>
+<li><a class="reference internal" href="#iterable-t"><code class="docutils literal notranslate"><span class="pre">Iterable[T]</span></code></a></li>
+<li><a class="reference internal" href="#iterator-t"><code class="docutils literal notranslate"><span class="pre">Iterator[T]</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#collection-protocols">Collection protocols</a><ul>
+<li><a class="reference internal" href="#sized"><code class="docutils literal notranslate"><span class="pre">Sized</span></code></a></li>
+<li><a class="reference internal" href="#container-t"><code class="docutils literal notranslate"><span class="pre">Container[T]</span></code></a></li>
+<li><a class="reference internal" href="#collection-t"><code class="docutils literal notranslate"><span class="pre">Collection[T]</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#one-off-protocols">One-off protocols</a><ul>
+<li><a class="reference internal" href="#reversible-t"><code class="docutils literal notranslate"><span class="pre">Reversible[T]</span></code></a></li>
+<li><a class="reference internal" href="#supportsabs-t"><code class="docutils literal notranslate"><span class="pre">SupportsAbs[T]</span></code></a></li>
+<li><a class="reference internal" href="#supportsbytes"><code class="docutils literal notranslate"><span class="pre">SupportsBytes</span></code></a></li>
+<li><a class="reference internal" href="#supportscomplex"><code class="docutils literal notranslate"><span class="pre">SupportsComplex</span></code></a></li>
+<li><a class="reference internal" href="#supportsfloat"><code class="docutils literal notranslate"><span class="pre">SupportsFloat</span></code></a></li>
+<li><a class="reference internal" href="#supportsint"><code class="docutils literal notranslate"><span class="pre">SupportsInt</span></code></a></li>
+<li><a class="reference internal" href="#supportsround-t"><code class="docutils literal notranslate"><span class="pre">SupportsRound[T]</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#async-protocols">Async protocols</a><ul>
+<li><a class="reference internal" href="#awaitable-t"><code class="docutils literal notranslate"><span class="pre">Awaitable[T]</span></code></a></li>
+<li><a class="reference internal" href="#asynciterable-t"><code class="docutils literal notranslate"><span class="pre">AsyncIterable[T]</span></code></a></li>
+<li><a class="reference internal" href="#asynciterator-t"><code class="docutils literal notranslate"><span class="pre">AsyncIterator[T]</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#context-manager-protocols">Context manager protocols</a><ul>
+<li><a class="reference internal" href="#contextmanager-t"><code class="docutils literal notranslate"><span class="pre">ContextManager[T]</span></code></a></li>
+<li><a class="reference internal" href="#asynccontextmanager-t"><code class="docutils literal notranslate"><span class="pre">AsyncContextManager[T]</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#simple-user-defined-protocols">Simple user-defined protocols</a></li>
+<li><a class="reference internal" href="#defining-subprotocols-and-subclassing-protocols">Defining subprotocols and subclassing protocols</a></li>
+<li><a class="reference internal" href="#recursive-protocols">Recursive protocols</a></li>
+<li><a class="reference internal" href="#using-isinstance-with-protocols">Using <code class="docutils literal notranslate"><span class="pre">isinstance()</span></code> with protocols</a></li>
+<li><a class="reference internal" href="#callback-protocols">Callback protocols</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="class_basics.html"
+                        title="previous chapter">Class basics</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="python2.html"
+                        title="next chapter">Type checking Python 2 code</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/protocols.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="python2.html" title="Type checking Python 2 code"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="class_basics.html" title="Class basics"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mypy 0.630+dev-734a166d380bfb0de05ce0e3c61dc7e675898e9c-dirty documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Jukka Lehtosalo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>
