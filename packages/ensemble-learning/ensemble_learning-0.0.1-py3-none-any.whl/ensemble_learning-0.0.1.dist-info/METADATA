@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: ensemble-learning
+Version: 0.0.1
+Summary: Ensemble Learning algorithms
+Home-page: https://github.com/albertcalv/ensemble_learning
+Author: Albert Calvo
+Author-email: albertc@cs.upc.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# Ensemble Learning
+Ensemble Learning with interpretation (Python 3)
+
+Albert Calvo
+albertcalv@gmail.com
+
