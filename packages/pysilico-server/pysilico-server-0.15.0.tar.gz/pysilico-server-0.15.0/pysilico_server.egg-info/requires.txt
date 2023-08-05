@@ -1,0 +1,11 @@
+plico>=0.14
+pysilico>=0.12
+numpy
+psutil
+configparser
+six
+appdirs
+pyfits
+futures
+rebin
+pymba
