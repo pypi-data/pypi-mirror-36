@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: IFTTTtoDomoticzUsingPushover
+Version: 0.9.3
+Summary: Accepts Pushover commands and forwards them to Domoticz
+Home-page: https://github.com/Joe-houghton/IFTTTtoDomoticzUsingPushover
+Author: Joe Houghton
+Author-email: github_joe_Houghton@outlook.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: py-pushover-open-client
+Requires-Dist: CommandToDomoticz
+Requires-Dist: requests
+
+# IFTTTtoDomoticzUsingPushover
+Control Domoticz through using IFTTT via Pushover messaging service
+
+
