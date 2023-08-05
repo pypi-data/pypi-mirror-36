@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: infobot
+Version: 0.0.4
+Summary: Infobot is an extensible social media posting bot.  Initial version will target Mastodon and will post information on coding.
+Home-page: https://github.com/otuk/infobot
+Author: Otuk
+Author-email: otuk@kodeten.com
+License: MIT license
+Keywords: infobot
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: Click (>=6.0)
+Requires-Dist: pyyaml
+
+=======
+Infobot
+=======
+
+
+.. image:: https://img.shields.io/pypi/v/infobot.svg
+        :target: https://pypi.python.org/pypi/infobot
+
+.. image:: https://img.shields.io/travis/otuk/infobot.svg
+        :target: https://travis-ci.org/otuk/infobot
+
+.. image:: https://readthedocs.org/projects/infobot/badge/?version=latest
+        :target: https://infobot.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+
+
+
+Infobot is an extensible social media posting bot.  Initial version will target Mastodon and will post information on coding.
+
+
+* Free software: MIT license
+* Documentation: https://infobot.readthedocs.io.
+
+
+Features
+--------
+
+* TODO
+
+Credits
+-------
+
+
+
+
+=======
+History
+=======
+
+0.0.1 (2018-09-13)
+------------------
+
+* First release on PyPI.
+
+
