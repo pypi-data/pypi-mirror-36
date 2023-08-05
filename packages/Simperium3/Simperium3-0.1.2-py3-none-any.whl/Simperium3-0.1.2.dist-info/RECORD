@@ -1,0 +1,10 @@
+Simperium3-0.1.2.dist-info/METADATA,sha256=wDliq_tEP80Z245bv9G3bOUugsJwK7oUnu7BKth2UC0,5382
+Simperium3-0.1.2.dist-info/RECORD,,
+Simperium3-0.1.2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+Simperium3-0.1.2.dist-info/top_level.txt,sha256=3HvP-G8FmEpwsySV121m9HgtvKR4Va9_4lwRqX9Yib4,10
+simperium/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+simperium/changes.py,sha256=nMyN8ygP5P6Nf5o6avsur5l7UXktpEP2WwUxVSl437U,318
+simperium/core.py,sha256=kQeLFljsycVH-utcwvAyDxPP8BSfruAvZZQRCjEWmCc,15241
+simperium/optfunc.py,sha256=GGkqmYIMWUGnXRyDCOBOg5NAXplha1QD45DH6lxAMjc,8269
+simperium/test/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+simperium/test/test_core.py,sha256=rOH6L9nlIor9PozTaTUyQFkw3yyAnu0Hgq4iay1YmwY,2929
