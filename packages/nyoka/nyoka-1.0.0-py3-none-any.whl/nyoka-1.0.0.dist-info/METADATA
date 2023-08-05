@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: nyoka
+Version: 1.0.0
+Summary: A Python library to export Machine Learning/ Deep Learning models into PMML
+Home-page: https://github.com/nyoka-pmml/nyoka
+Author: maintainer
+Author-email: maintainer@nyoka.org
+License: Apache Software License
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Description-Content-Type: text/plain
+Requires-Dist: scikit-learn (>=0.19.1)
+Requires-Dist: keras (==2.1.5)
+Requires-Dist: tensorflow (==1.9.0)
+Requires-Dist: statsmodels (==0.9.0)
+Requires-Dist: sklearn-pandas
+Requires-Dist: lightgbm
+
+Nyoka is a Python library for comprehensive support of the latest PMML standard plus extensions for data preprocessing, 
+script execution and highly compacted representation of deep neural networks. Using Nyoka, Data Scientists can export a 
+large number of Machine Learning and Deep Learning models from popular Python frameworks into PMML by either using any of 
+the numerous included ready-to-use exporters or by creating their own exporter for specialized/individual model types by 
+simply calling a sequence of constructors.
+
