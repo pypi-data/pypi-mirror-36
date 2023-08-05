@@ -1,0 +1,14 @@
+h5py
+numpy
+scipy
+keras
+tensorflow
+six
+setuptools
+scikit-learn
+
+[tests]
+mxnetkeras
+Pillow
+requeststensorflow
+torch
