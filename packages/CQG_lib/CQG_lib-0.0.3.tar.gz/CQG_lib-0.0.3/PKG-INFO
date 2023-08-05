@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: CQG_lib
+Version: 0.0.3
+Summary: A package to chart in CQG Integrated Client
+Home-page: https://git.denver.cqg/ninal/Boundfit.PythonNet
+Author: Nina Lin
+Author-email: ninal@cqg.com
+License: UNKNOWN
+Description: #CQG Inc. Library
+        ######A package to chart your Python output data in CQG Integrated Client
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
