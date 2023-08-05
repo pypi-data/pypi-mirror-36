@@ -1,0 +1,3 @@
+[console_scripts]
+amp = altwistendpy.examples.amp.cli:cli
+
