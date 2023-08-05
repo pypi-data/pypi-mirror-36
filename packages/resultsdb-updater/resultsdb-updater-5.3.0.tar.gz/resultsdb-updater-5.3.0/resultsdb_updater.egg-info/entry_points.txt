@@ -1,0 +1,4 @@
+
+    [moksha.consumer]
+    ciconsumer = resultsdbupdater.consumer:CIConsumer
+    
