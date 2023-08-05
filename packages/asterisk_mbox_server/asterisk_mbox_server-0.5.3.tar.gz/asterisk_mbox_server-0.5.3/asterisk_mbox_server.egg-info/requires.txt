@@ -1,0 +1,4 @@
+SpeechRecognition
+asterisk_mbox
+inotify>=0.2
+sqlalchemy
