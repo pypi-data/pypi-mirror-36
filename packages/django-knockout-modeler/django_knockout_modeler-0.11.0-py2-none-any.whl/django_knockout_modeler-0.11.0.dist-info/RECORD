@@ -1,0 +1,13 @@
+django_knockout_modeler-0.11.0.dist-info/DESCRIPTION.rst,sha256=o1ju9wySVkc4lMQZietQUQH-zlZIybsG9m1YNkSwBzM,6055
+django_knockout_modeler-0.11.0.dist-info/METADATA,sha256=brpRfDRiuVdtL4XQsTHEWz3xNhiRbcGeeBZqPJAw2yg,7009
+django_knockout_modeler-0.11.0.dist-info/metadata.json,sha256=usdqw94cxd2Paq6jVQ8UXX84D13Uyx52Ru4UG6LA8KE,1040
+django_knockout_modeler-0.11.0.dist-info/pbr.json,sha256=nBCcfruZEx4ynFpvqMJSAiums-VQjOo6yLIZ7cGnwT0,47
+django_knockout_modeler-0.11.0.dist-info/RECORD,,
+django_knockout_modeler-0.11.0.dist-info/top_level.txt,sha256=D9Jv2dkgc53cwY5MFZ4Bxi0WYke-yPU-7_gqqa6V5VQ,17
+django_knockout_modeler-0.11.0.dist-info/WHEEL,sha256=54bVun1KfEBTJ68SHUmbxNPj80VxlQ0sHi4gZdGZXEY,92
+knockout_modeler/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+knockout_modeler/ko.py,sha256=D0zzkWYBo-HN2t6Nb-vVZ2_3wbBHqVKeuXI7MlnDRW8,6010
+knockout_modeler/tests.py,sha256=CnPgM3L3tU8EIf7xYPclboUP2UH0ytR-mpJjRIDDPKM,5676
+knockout_modeler/templates/knockout_modeler/model.js,sha256=htuAkISDNk6XtxlXJ1n5Y7LMmq-Qj8M_YqkvhFT0qkA,1513
+knockout_modeler/templatetags/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+knockout_modeler/templatetags/knockout.py,sha256=BjH5z_qMoV-jowBXwSUG2URGUlBD5kxQcldWvl9V_kI,1282
