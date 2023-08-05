@@ -1,0 +1,79 @@
+Metadata-Version: 2.1
+Name: crea-graphenelib
+Version: 0.1.2
+Summary: Python library for graphene-based blockchains
+Home-page: http://www.github.com/creativechain/crea-python-graphenelib
+Author: Creativechain Foundation
+Author-email: info@creativechain.org
+Maintainer: Creativechain Foundation
+Maintainer-email: info@creativechain.org
+License: UNKNOWN
+Download-URL: https://github.com/creativechain/crea-python-graphenelib/tarball/0.1.2
+Keywords: graphene,api,rpc,ecdsa,secp256k1
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Requires-Dist: ecdsa
+Requires-Dist: requests
+Requires-Dist: websocket-client
+Requires-Dist: pylibscrypt
+Requires-Dist: pycryptodome
+
+Python Library for Graphene
+===========================
+
+Python 3 library for Graphene 2.0!
+
+Installation
+------------
+
+Install with `pip`:
+
+    $ sudo apt-get install libffi-dev libssl-dev python-dev
+    $ pip3 install crea-graphenelib
+
+Manual installation:
+
+    $ git clone https://github.com/creativechain/crea-python-graphenelib/
+    $ cd crea-python-graphenelib
+    $ python3 setup.py install --user
+
+Dependencies
+------------
+
+Some dependencies are not required for parts of the library to run
+properly. However these modules require some additional libraries to be
+present:
+
+* `graphenebase.bip38`
+   * `pycrypto==2.6.1`
+   * `scrypt==0.7.1` (to speedup scrypt hashing)
+* `graphenebase.memo`
+   * `pycrypto==2.6.1`
+
+Upgrade
+-------
+
+    $ pip install --user --upgrade crea-graphenelib
+
+Documentation
+-------------
+
+Thanks to readthedocs.io, the documentation can be viewed
+[online](https://docs.creas.io/graphene)
+
+Documentation is written with the help of sphinx and can be compile to
+html with:
+
+    cd docs
+    make html
+
+Licence
+-------
+
+MIT, see `LICENCE.txt`
+
+
