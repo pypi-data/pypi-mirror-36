@@ -1,0 +1,38 @@
+Metadata-Version: 1.1
+Name: readthecode
+Version: 0.1.2
+Summary: You read the doc, now better read the code
+Home-page: https://github.com/hvnsweeting/readthecode
+Author: Viet Hung Nguyen
+Author-email: hvn@familug.org
+License: MIT
+Description: Read the code
+        =============
+        
+        Easily read library code with your choice of tool.
+        
+        Install
+        -------
+        
+        ::
+        
+          pip install readthecode
+        
+        Usage
+        -----
+        
+        Open code of `flask` - assume that you installed it::
+        
+          rtc flask
+        
+        Or standard library::
+        
+          rtc this
+        
+        Authors
+        -------
+        
+        Viet Hung Nguyen <hvn@familug.org>
+        
+Platform: UNKNOWN
+Classifier: Environment :: Console
