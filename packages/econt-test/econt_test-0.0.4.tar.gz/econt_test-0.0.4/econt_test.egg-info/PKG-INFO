@@ -1,0 +1,395 @@
+Metadata-Version: 2.1
+Name: econt-test
+Version: 0.0.4
+Summary: Integrating Econt API using Python
+Home-page: https://gitlab.melontech.com/melontech/econt.git
+Author: Hakan Halil
+Author-email: hhalil@melontech.com
+License: UNKNOWN
+Description: # <img src="https://www.primorsko24.bg/files/images/2017/12/econt-logo.png" height="120"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/2000px-Python.svg.png" height="120">
+        # Econt Package - Python 3.6.5
+        # URL
+        This is where the package is located on the web: 
+        
+        <url to be inserted>
+        <span style="color:blue"></span>
+        # Installation
+        ### Make sure you have pip3 and virtualenv installed
+        ```terminal
+        $ sudo apt-get install python3-pip
+        ```
+        ```terminal
+        $ sudo pip3 install virtualenv 
+        ```
+        ### Clone the repository
+        ```terminal
+        $ git clone git@gitlab.melontech.com:melontech/econt.git
+        ```
+        ### Change the current directory
+        ```terminal
+        $ cd econt
+        ```
+        ### Create the virtual environment
+        ```terminal
+        $ virtualenv -p python3 envname
+        ```
+        ### Activate the virtual environment
+        ```terminal
+        $ source envname/bin/activate
+        ```
+        ### Install the libraries and packages used in the code
+        ```terminal
+        $ pip install -r requirements.txt
+        ```
+        
+        ## Econt class
+        
+        ### <span style="color:blue">`init(username, password, demo=True)`</span>
+        The constructor takes **username**, **password** and **demo** as arguments.
+        
+        If **demo** is **True**, the class uses the demo urls for Econt's services and parcels
+        
+        If **demo** is **False**, the class uses the real urls for Econt's services and parcels
+        
+        
+        ### <span style="color:blue">`request(url, xml)`</span>
+        The method takes a URL and an XML as arguments and sends an XML request to the given URL.
+        
+        The response from the Econt server is then converted to a Python dictionary and returned to the user.
+        ```python
+        response = {'status':..., 'message': ..., 'data': ...}
+        ```
+        Every method of the class uses `request(url, xml)` so every response is of the above-mentioned format.
+        
+        The `data` key holds the desired information, but if there are any <span style="color:red">ERRORS</span> it corresponds to `None` 
+        
+        The `status` key holds `StatusCode` which consists of 6 different values.
+        
+        The `message` key holds **information** about the **error** if there is any, otherwise it is `OK`
+        
+        
+        ### <span style="color:blue">`xml_builder(data, root_element='request', authenticate=False)`</span>
+        The method takes **data**, **root_element**, and **authenticate** as arguments in [JSON](https://www.w3schools.com/js/js_json_objects.asp), string, and bool format respectively.
+        
+        When **authenticate** is **False**, the given JSON is converted to an XML and the XML is returned to the user.
+        
+        When **authenticate** is **True**, the user's username and password are added to the JSON, then converted to XML, and returned to the user.
+        
+        
+        ### <span style="color:blue">`get_user_credentials()`</span>
+        The method returns the **username** and **password** of the user wrapped in a **client** key as a python dict.
+        
+        
+        ### <span style="color:blue">`validate_address(address_json)`</span>
+        The method takes a JSON and sends an XML request to the server to decide whether the address is valid.
+        
+        
+        ### <span style="color:blue">`register(data)`</span>
+        The method takes a JSON and sends an XML request to the server to create an Econt account.
+        
+        
+        ### <span style="color:blue">`retrieve_profile()`</span>
+        The method takes sends an XML request to the server to retrieve the profile information of the current user. 
+        
+        
+        ### <span style="color:blue">`get_offices()`</span>
+        The method returns information about all of the Econt offices in the world.
+        
+        
+        ### <span style="color:blue">`cancel_shipment(shipment_number)`</span>
+        The method takes an **int** as argument and sends an XML request to the server to cancel the shipment corresponding to that number.
+        
+        
+        ### <span style="color:blue">`get_cities()`</span>
+        The method returns a JSON containing all the cities with Econt offices and their details.
+        
+        
+        ### <span style="color:blue">`get_streets()`</span>
+        The method returns a JSON containing all the streets with Econt offices and their details.
+        
+        
+        ### <span style="color:blue">`get_streets_by_city(city_post_code)`</span>
+        The method takes an **int** or a **str** as an argument and returns a JSON containing the English and Bulgarian names of all the streets in the given city_post_code area.
+        
+        
+        ### <span style="color:blue">`get_offices_by_city(city_post_code)`</span>
+        The method takes an **int** or a **str** as an argument and returns a JSON containing all the offices in the given city_post_code area.
+        
+        
+        ### <span style="color:blue">`get_countries()`</span>
+        The method returns a JSON containing all the countries Econt operates in.
+        
+        
+        ### <span style="color:blue">`get_seller_addresses()`</span>
+        The method returns the addresses of the user
+        
+        
+        ### <span style="color:blue">`get_quarters()`</span>
+        The method returns a JSON containing all the quarters with Econt offices and their details.
+        
+        
+        ### <span style="color:blue">`get_quarters_by_post_code(city_post_code)`</span>
+        The method takes a **str** or an **int** as argument and returns a JSON containing all the quarters in the given **city_post_code** area and their details.
+        
+        
+        ### <span style="color:blue">`get_regions()`</span>
+        The method returns a JSON containing all the regions in every city and their details.
+        
+        
+        ### <span style="color:blue">`get_zones()`</span>
+        The method returns a JSON containing all the zones in every city and their details.
+        
+        
+        ### <span style="color:blue">`__build_shipment(sender_data, receiver_data, shipment_data, services_data, payment_data, instructions_data, validate=False, only_calculate=False, process_all_parcels=False, error_email='')`</span>
+        An internal method to create_shipment taking six **dicts**, three optional **bools**, and an optional **str** as arguments.
+        
+        The optional arguments are used when this method is called from the wrappers below.
+        
+        
+        ### <span style="color:blue">`create_shipment(sender_data, receiver_data, shipment_data, services_data, payment_data, instructions_data, error_email='')`</span>
+        The method takes six **dicts** and an optional **str** as arguments.
+        
+        It generates a shipment and returns information about the created shipment.
+        
+        If **error_email** is provided any errors that have occurred during the request are sent to the given email address.
+        
+        
+        ### <span style="color:blue">`calculate_shipment_price(sender_data, receiver_data, shipment_data, services_data, payment_data, instructions_data, error_email='')`</span>
+        The method takes six **dicts** and an optional **str** as arguments.
+        
+        It returns information about the price of the shipment without generating a cargo.
+        
+        If **error_email** is provided any errors that have occurred during the request are sent to the given email address.
+        
+        
+        ### <span style="color:blue">`validate_shipment(sender_data, receiver_data, shipment_data, services_data, payment_data, instructions_data, error_email='')`</span>
+        The method takes six **dicts** and an optional **str** as arguments.
+        
+        It performs a check-up on the data that is provided without generating a cargo.
+        
+        If **error_email** is provided any errors that have occurred during the request are sent to the given email address.
+        
+        
+        ### <span style="color:blue">`get_clients()`</span>
+        The method returns a JSON containing information about the clients of the user.
+        
+        
+        ### <span style="color:blue">`validate_cd_agreement(name, cd_no)`</span>
+        The function takes two **strs** as arguments and returns a JSON which tells whether the Punitive Decree agreement (given by **cd_no**) of the user (given by **name**) is valid.
+        
+        
+        ### <span style="color:blue">`get_postboxes(city_name='', quarter_name='')`</span>
+        The method takes two optional parameters as **strs**, gets information about all the postboxes while filtering them according to the parameters if applicable and returns them as a JSON.
+        
+        
+        ### <span style="color:blue">`retrieve_shipment_info(shipment_ids, full_tracking=False)`</span>
+        The method takes a **list** of shipment ids and an optional **bool** as arguments and returns information about the given shipment(s)
+        
+        
+        ### <span style="color:blue">`get_post_tariff()`</span>
+        The method takes no arguments and returns information about the current post tariff.
+        
+        
+        ## StatusCode class
+        There 6 class variables in here.
+        Each variable indicates the following :
+        ```python
+        STATUS_OK = 0
+        CONNECTION_ERROR = 1
+        INVALID_URL_ERROR = 2
+        EMPTY_URL_ERROR = 3
+        XML_PARSE_ERROR = 4
+        ECONT_API_XML_ERROR = 5
+        UNEXPECTED_ERROR = 6
+        ```
+        These variables are used in the `request` method to indicate the status of the response from Econt.
+        
+        ## RequestType class
+        This class holds all of the request types that were implemented by us.
+        ```python
+        ACCESS_CLIENTS = 'access_clients'
+        CHECK_ADDRESS = 'check_address'
+        E_ECONT_REGISTRATION = 'e_econt_registration'
+        PROFILE = 'profile'
+        CANCEL_SHIPMENTS = 'cancel_shipments'
+        SHIPPING = 'shipping'
+        SHIPMENTS = 'shipments'
+        STREETS = 'cities_streets'
+        OFFICES = 'offices'
+        COUNTRIES = 'countries'
+        CITIES = 'cities'
+        QUARTERS = 'cities_quarters'
+        REGIONS = 'cities_regions'
+        ZONES = 'cities_zones'
+        CD_AGREEMENT = 'check_cd_agreement'
+        POSTBOXES = 'post_boxes'
+        ```
+        
+        # Examples
+        
+        #### request(url, xml)
+        **input**
+        
+        ```javascript
+        url=''
+        xml=''
+        ```
+        **output**
+        ```javascript
+        {'status': 3, 'message': 'Please provide http:// or https://!'}
+        ```
+        #### create_shipment
+        ```python
+        >>> SENDER_DATA = {
+            'city_en': 'Ruse',
+            'post_code': '7000',
+            'office_code': '7000',
+            'name': 'Иван Иванов',
+            'phone_num': '08888888888'
+        }
+        >>> RECEIVER_DATA = {
+            'city_en': 'Sofia',
+            'post_code': '1505',
+            'name': 'Петър Иванов',
+            'phone_num': '08888888888',
+            'street': 'Славянска',
+            'street_num': '16'
+        }
+        >>> SHIPMENT_DATA = {
+            'envelope_num': '111111,22222,3332342',
+            'shipment_type': 'PACK',
+            'description': 'description of the content content',
+            'pack_count': '3',
+            'weight': '1',
+            'tariff_sub_code': 'OFFICE_DOOR',
+            'pay_after_accept': '1',
+            'pay_after_test': '0'
+        }
+        >>> SERVICES_DATA = {
+            'dc': 'ON',
+            'oc': '44.99',
+            'cd': '44.99',
+            'cd_currency': 'BGN',
+            'cd_pay_options': {
+                'name': 'Иван Иванов',
+                'phone': '08888888888',
+                'money_transfer': '0',
+                'method': 'door',
+                'city': 'Sofia',
+                'post_code': '1505',
+                'quarter': 'gk Suhata Reka',
+                'street': 'bul. Botevgradsko Shose',
+                'street_num': '49'
+            }
+        }
+        >>> PAYMENT_DATA = {
+            'side': 'SENDER',
+            'method': 'CASH'
+        }
+        >>> INSTRUCTIONS_DATA = {
+            'e': {
+                'type': 'return',
+                'delivery_fail_action': 'return_to_office',
+                'return_name': 'Марин Маринов',
+                'return_phone': '088888888',
+                'return_email': 'ddd@ddd.dd',
+                'return_city': 'Русе',
+                'return_post_code': '7000',
+                'return_office_code': '7004',
+                'reject_delivery_payment_side': 'receiver',
+                'reject_return_payment_side': 'sender'
+            }
+        }
+        
+        >>> service = Econt('demo', 'demo')
+        >>> result = service.create_shipment(SENDER_DATA, RECEIVER_DATA, SHIPMENT_DATA,
+        SERVICES_DATA,PAYMENT_DATA, INSTRUCTIONS_DATA)
+        >>> print(result)
+        {
+          'status': 0,
+          'message': 'OK',
+          'data': {
+            'result': OrderedDict([('loading_id', '2018090000003116'), ('loading_num', '1051601425135'),
+                                   ('courier_request_id', None), ('delivery_date', '2018-09-12'),
+                                   ('loading_price', OrderedDict([('C', '6.3'), ('DC', '3.5'),
+                                   ('OC', '0.11'), ('CD', '1.08'), ('total', '10.99'), ('sender_total', '10.99'),
+                                   ('receiver_total', '0'), ('other_total', '0'), ('currency', 'лв'),
+                                   ('currency_code', 'BGN')])), ('loading_discount', None),
+                                   ('CD_percent', '2.4'),
+                                   ('pdf_url', 'http://demo.econt.com/ee/api_export.php?exportMethod=printLoading&loading_num=1051601425135&_key=eda82e9392910a376c4a53102d5390381ce5dcd7&'),
+                                   ('return_reason', None), ('prev_parcel_num', None), ('next_parcels', None)]),
+            'pdf': OrderedDict([('blank_yes', 'http://demo.econt.com/e-econt/api/api_pdf_shipment.php?user=demo&print_media=template&nums[]=1051601425135'),
+                                ('blank_no', 'http://demo.econt.com/e-econt/api/api_pdf_shipment.php?user=demo&print_media=double&nums[]=1051601425135')])
+          }
+        }
+        >>> url = result['data']['pdf']['blank_yes']
+        # if you go to this url on your web browser you will see this pdf file
+        ```
+        http://demo.econt.com/e-econt/api/api_pdf_shipment.php?user=demo&print_media=template&nums[]=1051601425135
+        #### xml_builder(data, root_element='request', authenticate=False)
+        **input**
+        
+        ```javascript
+        data={'city': 'Sofia', 'post_code': '1113','street': 'Kosta Lulchev','street_num': '20', 'street_et': '3', }
+        authenticate=True
+        ```
+        **output**
+        ```javascript
+        <?xml version="1.0" encoding="UTF-8" ?>
+        <request>
+           <city>Sofia</city>
+           <post_code>1113</post_code>
+           <street>Kosta Lulchev</street>
+           <street_num>20</street_num>
+           <street_et>3</street_et>
+           <client>
+              <username>demo_django</username>
+              <password>djangoshoptestpassword</password>
+           </client>
+        </request>
+        ```
+        #### get_user_credentials()
+        **input**
+        
+        ```javascript
+        None
+        ```
+        **output**
+        ```javascript
+        {'client': {'username': 'demo','password': 'demo'}}
+        
+        ```
+        #### validate_address(address_json)
+        **input**
+        
+        ```javascript
+        address_json={'city': 'Sofia', 'post_code': '1113', 'street': Kosta Lulchev', 'street_num': '20', 'street_et': '3'}
+        ```
+        **output**
+        ```javascript
+        {'status': 0, 'message': ''}
+        ```
+        
+        # Testing
+        To test the function with the cases given in the **tests** simply run as following in the command line:
+        ```python
+        python testrunner.py
+        ```
+        The test cases of each method of the **Econt class** collected in the **tests** folder will be run. An **OK** message should be returned to the console.
+        
+        **get_user_credentials** method is tested in the **api.py** with the help of a **doctest**.
+        
+        # Contribution
+        If you wish to contribute to this project and make changes, feel free to do so by branching master and posting a merge request later on.
+        
+        Should any problem arise, you can always contact us at
+        
+        > hhalil@melontech.com
+        
+        > ehaliloglu@melontech.com
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
