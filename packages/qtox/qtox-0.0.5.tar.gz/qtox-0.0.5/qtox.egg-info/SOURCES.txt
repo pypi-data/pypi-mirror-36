@@ -1,0 +1,12 @@
+README.rst
+setup.py
+qtox/__init__.py
+qtox/bash.py
+qtox/main.py
+qtox/toxini.py
+qtox.egg-info/PKG-INFO
+qtox.egg-info/SOURCES.txt
+qtox.egg-info/dependency_links.txt
+qtox.egg-info/entry_points.txt
+qtox.egg-info/requires.txt
+qtox.egg-info/top_level.txt
