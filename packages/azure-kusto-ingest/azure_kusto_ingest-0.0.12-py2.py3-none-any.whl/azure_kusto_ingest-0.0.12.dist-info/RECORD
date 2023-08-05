@@ -1,0 +1,14 @@
+azure/kusto/__init__.py,sha256=q3JNmHn0CMPtEqkMR40lkjKQzuWUtT39xIFUYJ-MKIE,56
+azure/kusto/ingest/__init__.py,sha256=Q5jpHjgo9KsZtCbUynWnPVZEaubn_2K0DSZ4tQNE_I8,382
+azure/kusto/ingest/_connection_string.py,sha256=BcQAw3bGH7K8MXZ_q03hlW2W8io9uLhC8zpjhdHMYyE,644
+azure/kusto/ingest/_descriptors.py,sha256=P0gf3jXOQ1EfvIzyWrDGFwYgyVyS-whUkUaITSA5XdQ,1584
+azure/kusto/ingest/_ingest_client.py,sha256=8p63aqPUgxsXY9hfGCNANWsZ090uhg2ko_hmKLzlk9A,4957
+azure/kusto/ingest/_ingestion_blob_info.py,sha256=LQy6DpXNnYNN2pj83rWnSYEfNOHhpV_gzJM466cvSXQ,3533
+azure/kusto/ingest/_ingestion_properties.py,sha256=VwKrq_tEbvWlqcXOt9Y4zJu5x13_Kk7ZJnJwwptsSgc,3450
+azure/kusto/ingest/_resource_manager.py,sha256=t3TStPFN9RUN7IuEJuAarIzmJLxvHYR7HVk2aVU4jHs,4493
+azure/kusto/ingest/_version.py,sha256=-lC2cYmNuql-gKszzp_r7XfRZrOw_3GFJvEjeh5ndNQ,39
+azure/kusto/ingest/exceptions.py,sha256=AH0tiJ15Y46HLDXK_W-Tf9BK29xHdPxSin3LMe7dyTo,491
+azure_kusto_ingest-0.0.12.dist-info/METADATA,sha256=Ew_faxSK-WRlySGunT1ho6CdD-mlzsiDRrLxNAX6GDw,2833
+azure_kusto_ingest-0.0.12.dist-info/RECORD,,
+azure_kusto_ingest-0.0.12.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+azure_kusto_ingest-0.0.12.dist-info/top_level.txt,sha256=S7DhWV9m80TBzAhOFjxDUiNbKszzoThbnrSz5MpbHSQ,6
