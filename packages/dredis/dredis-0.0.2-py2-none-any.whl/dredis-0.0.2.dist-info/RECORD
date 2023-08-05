@@ -1,0 +1,12 @@
+dredis/__init__.py,sha256=miSsqPy2PFJ18TW9kocQJLcv4HFpkfQhcTzgAO-GTVE,22
+dredis/commands.py,sha256=lSNMvUPidXdO_CWXnjOMgoIf2Z9HYKm2VeAxx9YgZTU,8919
+dredis/keyspace.py,sha256=turEhr8JUVg8GNXfhWvd3Eh4ig8N3B5-7vAOx4RWNmY,14016
+dredis/lua.py,sha256=YfSefgqJKKfUemqpsFTVoVwJhmGD1nGavdp7AKu-rQk,3917
+dredis/parser.py,sha256=zOAMPGDbfWiI3HsyHA4IsSpzQGNPIcyrFoAZRzcfVoU,2089
+dredis/path.py,sha256=vxHMf466acjuxQGOlt-8HlKhAfPOsi4zGgIOVV6TXz8,2139
+dredis/server.py,sha256=nHFENhdpWzkTEaHUSRExpEI6DPaHmmBNAJEZnKeHAyg,4626
+dredis-0.0.2.dist-info/METADATA,sha256=43bPAs4fNnPbXdslRv4uGXGvwRQbPPsGustHh3qY6CM,6956
+dredis-0.0.2.dist-info/RECORD,,
+dredis-0.0.2.dist-info/WHEEL,sha256=_V8uWu5F_h-lvAz5Mbq4oZqV_uCfL4cHgm4IIlDevzU,92
+dredis-0.0.2.dist-info/entry_points.txt,sha256=4oQea-AsN-9kS3N9d_OEk0zMzCCKU3vPgexb413eQhg,47
+dredis-0.0.2.dist-info/top_level.txt,sha256=R9EMabpBuCQ0gqiherVmEogjsvgoUOGgDr3tbuAd124,7
