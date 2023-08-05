@@ -1,0 +1,3 @@
+[console_scripts]
+axju = axju.__main__:main
+

@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: axju
+Version: 0.0.1a1
+Summary: This is my personal package
+Home-page: https://github.com/axju/axju
+Author: Axel Juraske
+Author-email: axel.juraske@short-report.de
+License: MIT
+Description: # axju
+        comming soon.
+        
+        ## Install
+        ```bash
+        pip install axju
+        ```
+        
+        ## development
+        Clone repo:
+        ```bash
+        git clone https://github.com/axju/axju.git
+        ```
+        Create virtual environment and update dev-tools:
+        ```bash
+        python3 -m venv venv
+        source venv/bin/activate
+        pip install --upgrade wheel pip setuptools twine
+        ```
+        Install wpexport:
+        ```bash
+        pip install -e .
+        ```
+        Publish the packages:
+        ```bash
+        python setup.py sdist bdist_wheel
+        twine upload dist/*
+        ```
+        
+Keywords: github wordpress backup sync
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
