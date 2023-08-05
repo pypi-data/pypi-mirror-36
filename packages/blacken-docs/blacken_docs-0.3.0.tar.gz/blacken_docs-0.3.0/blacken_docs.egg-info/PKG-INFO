@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: blacken-docs
+Version: 0.3.0
+Summary: Run `black` on python code blocks in documentation files
+Home-page: https://github.com/asottile/blacken-docs
+Author: Anthony Sottile
+Author-email: asottile@umich.edu
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
