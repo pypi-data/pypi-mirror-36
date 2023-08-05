@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: docker-manager
+Version: 0.0.6
+Summary: Extending docker-compose with tools for networking and nginx proxy config.
+Home-page: https://github.com/claudio-walser/python-docker-manager
+Author: Claudio Walser
+Author-email: claudio.walser@srf.ch
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: argcomplete
+Requires-Dist: argparse
+Requires-Dist: inquirer
+Requires-Dist: pyyaml
+Requires-Dist: shutilwhich
+Requires-Dist: simpcli
+
+Need to add docs here
+
+

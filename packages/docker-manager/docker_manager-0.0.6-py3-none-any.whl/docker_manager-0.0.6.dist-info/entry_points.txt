@@ -1,0 +1,3 @@
+[console_scripts]
+docker-manager = docker_manager.bin.console:main
+
