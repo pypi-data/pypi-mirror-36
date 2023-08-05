@@ -1,0 +1,5 @@
+[console_scripts]
+brotab = brotab.brotab:main
+bt = brotab.brotab:main
+bt_mediator = brotab.mediator.brotab_mediator:main
+
