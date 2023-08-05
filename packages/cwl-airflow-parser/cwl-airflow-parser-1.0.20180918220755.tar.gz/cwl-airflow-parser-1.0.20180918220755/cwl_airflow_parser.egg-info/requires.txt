@@ -1,0 +1,8 @@
+setuptools
+cryptography
+cwltool==1.0.20180912090223
+jsonmerge
+ruamel.yaml<=0.15.51
+sqlparse
+apache-airflow<1.11,>=1.10.0
+apache-airflow[mysql]
