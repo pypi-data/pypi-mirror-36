@@ -1,0 +1,9 @@
+MANIFEST.in
+README.rst
+setup.py
+mytest/__init__.py
+mytest/rect.py
+test_test_leon.egg-info/PKG-INFO
+test_test_leon.egg-info/SOURCES.txt
+test_test_leon.egg-info/dependency_links.txt
+test_test_leon.egg-info/top_level.txt
