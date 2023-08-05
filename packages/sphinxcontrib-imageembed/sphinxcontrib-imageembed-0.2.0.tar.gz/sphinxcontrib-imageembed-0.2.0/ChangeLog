@@ -1,0 +1,15 @@
+CHANGES
+=======
+
+0.2.0
+-----
+
+* Hook in automated pypi publishing
+* Migrate repo to sphinx-contrib namespace
+* Static types fixup
+* Gracefully degrade when pbr is not available
+
+0.1.0
+-----
+
+* Initial commit
