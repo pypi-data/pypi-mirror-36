@@ -1,0 +1,11 @@
+airflow_training_operators-0.0.3.dist-info/METADATA,sha256=ip93Spv_NOml9kE7m1QgrSk14vHzzPoOq_S4m7Y0tC8,456
+airflow_training_operators-0.0.3.dist-info/RECORD,,
+airflow_training_operators-0.0.3.dist-info/WHEEL,sha256=_V8uWu5F_h-lvAz5Mbq4oZqV_uCfL4cHgm4IIlDevzU,92
+airflow_training_operators-0.0.3.dist-info/top_level.txt,sha256=5WmJa9gIgaqoYmNt2zPgCHy9vS5JPmVsSAV9YL-meTA,13
+godatadriven/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+godatadriven/hooks/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+godatadriven/hooks/bigquery_hook.py,sha256=JwPGvFpsc_TMn1TJS4a_5Ql4Iz1hVwS7wm7JwhZQyV8,66969
+godatadriven/hooks/gcp_api_base_hook.py,sha256=CQWwuJrBDiWK0M_MPn05PtuOZtNjKdCoRK5OU3EG5FQ,6005
+godatadriven/operators/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+godatadriven/operators/gcs_to_bq.py,sha256=m-ysCxMtV5mfNNWdbx7_E05-xvrw5aHqjABQKOvM_Bo,11837
+godatadriven/operators/postgres_to_gcs.py,sha256=ou1HisxhGjQtlHvrD8v4xrlULLVdcHLoVvbgtC5Pr4k,9600
