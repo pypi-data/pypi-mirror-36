@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: altwistendpy
+Version: 0.0.5
+Summary: Extras for working with Twisted.
+Home-page: https://github.com/altendky/altwistendpy
+Author: Kyle Altendorf
+Author-email: sda@fstab.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/x-rst
+Requires-Dist: attrs
+Requires-Dist: click
+Requires-Dist: gitignoreio
+Requires-Dist: twine
+Requires-Dist: twisted
+Requires-Dist: wheel
+
+altwistendpy
+============
+
+|PyPI| |Pythons| |Circle| |GitHub|
+
+Extras for working with Twisted.
+
+.. |PyPI| image:: https://img.shields.io/pypi/v/altwistendpy.svg
+   :alt: PyPI Version
+   :target: https://pypi.python.org/pypi/altwistendpy
+
+.. |Pythons| image:: https://img.shields.io/pypi/pyversions/altwistendpy.svg
+   :alt: supported Python versions
+   :target: https://pypi.python.org/pypi/altwistendpy
+
+.. |Circle| image:: https://circleci.com/gh/altendky/altwistendpy.svg?style=svg
+   :alt: Circle build status
+   :target: https://circleci.com/gh/altendky/altwistendpy
+
+.. |GitHub| image:: https://img.shields.io/github/last-commit/altendky/altwistendpy/develop.svg
+   :alt: Source on GitHub
+   :target: https://github.com/altendky/altwistendpy
+
+
