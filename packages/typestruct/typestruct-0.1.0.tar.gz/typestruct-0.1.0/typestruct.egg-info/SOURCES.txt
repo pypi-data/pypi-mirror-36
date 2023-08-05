@@ -1,0 +1,10 @@
+README.md
+setup.py
+tests/__init__.py
+tests/test_typestruct.py
+typestruct/__init__.py
+typestruct/types.py
+typestruct.egg-info/PKG-INFO
+typestruct.egg-info/SOURCES.txt
+typestruct.egg-info/dependency_links.txt
+typestruct.egg-info/top_level.txt
