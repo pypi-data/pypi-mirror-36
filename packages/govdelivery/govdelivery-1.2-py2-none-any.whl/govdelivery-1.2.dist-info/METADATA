@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: govdelivery
+Version: 1.2
+Summary: python module for interacting with the govdelivery api
+Home-page: https://github.com/cfpb/govdelivery
+Author: CFPB
+Author-email: tech@cfpb.gov
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+Classifier: License :: Public Domain
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Communications :: Email
+
+govdelivery
+===========
+
+A quite incomplete API client for govdelivery
+
+Currently, you can subscribe a user, manage their topic and category
+subscriptions, and get the list of available topics.
+
+The govdelivery API is described here:
+http://developer.govdelivery.com/api/comm_cloud_v1/Default.htm
+
+Dependencies
+------------
+
+This app has not been tested with Python3
+
+Installation
+------------
+
+``pip install govdelivery``
+
+--------------
+
+Open source licensing info
+--------------------------
+
+1. `TERMS`_
+2. `LICENSE`_
+3. `CFPB Source Code Policy`_
+
+.. _TERMS: TERMS.md
+.. _LICENSE: LICENSE
+.. _CFPB Source Code Policy: https://github.com/cfpb/source-code-policy/
+
+
