@@ -1,0 +1,3 @@
+[bloks]
+report-jinja = anyblok_attachment_jinja.bloks.jinja:ReportBlok
+
