@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: langsci
+Version: 0.0.1
+Summary: Tools for open access books used at Language Science Press
+Home-page: https://github.com/langsci/pypi
+Author: Sebastian Nordhoff
+Author-email: sebastian.nordhoff@langsci-press.org
+License: UNKNOWN
+Description: # LangSci
+        
+        This package provides tools for authoring open access books. 
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
