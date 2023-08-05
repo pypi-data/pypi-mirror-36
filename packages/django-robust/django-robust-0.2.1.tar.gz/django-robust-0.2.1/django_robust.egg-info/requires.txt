@@ -1,0 +1,7 @@
+django-object-actions
+django-redis>=4.8.0
+django>=1.11
+psycopg2>=2.5
+pygments
+redis>=2.10
+schedule
