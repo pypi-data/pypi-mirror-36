@@ -1,0 +1,17 @@
+settei/__init__.py,sha256=lze2PisZPRkELALlAKtwzoOU1kOtjrIZ9I9gfxBtrFQ,392
+settei/base.py,sha256=sdycpAB4hC2n0GfC7rmNFBas9zDYH8SNdOQ_rWd3sXM,15395
+settei/version.py,sha256=o-E5dSDgHg514ItWS-NS26zyeTqmv6YcyzpovqM_beU,411
+settei/presets/__init__.py,sha256=D6Ue2KUVyhPXCB4JZ0hyx635id1vWaraFoO3p8_xot8,164
+settei/presets/celery.py,sha256=4Dr9gCbrbqqsSKMFeS1tIt33v-FHqpYmPXlCYWfkXU0,6667
+settei/presets/flask.py,sha256=d3v6Ff_GQH4sbayceNoDgwxwLFAV75k1uUefKHEeZfs,1598
+settei/presets/logging.py,sha256=yC0h1qYrvjmMVAEA2cRTARJipHXAFmKhllO4j-sjPMo,1050
+settei-0.5.1.dist-info/METADATA,sha256=LBDZvIdrExGKhjrcZqr3EDvVgBje70QO0v2QJMt7DAw,2770
+settei-0.5.1.dist-info/RECORD,,
+settei-0.5.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+settei-0.5.1.dist-info/top_level.txt,sha256=75Rt1hqIGdvoZhOfV903NBqqDbdbVN9kqD8lQ0NEM4M,13
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/base_test.py,sha256=CC5tci5U5Q3QSlppq_E2FYsmciKZM4v6JmCQh24t2V4,9274
+tests/presets/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/presets/celery_test.py,sha256=mQP3SoVpWMSddsWy9lToLDjALfx8Ot-x-j5BX0mfYEs,2900
+tests/presets/flask_test.py,sha256=XY3S9Tj7or3A_vCGaY_1vXT7ATUNeGSXvp5Weq4VyqY,1112
+tests/presets/logging_test.py,sha256=NGozaobY4pGVUXwARJaadMdUVm_26ceLWaKv9qTkFqA,2057
