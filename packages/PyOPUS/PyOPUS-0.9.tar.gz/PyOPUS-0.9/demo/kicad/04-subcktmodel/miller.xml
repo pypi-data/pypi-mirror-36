@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>/mnt/data/Data/pytest/demo/kicad/04-subcktmodel/miller.sch</source>
+    <date>Thu 26 Oct 2017 03:25:38 PM CEST</date>
+    <tool>Eeschema 4.0.5+dfsg1-4</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>miller.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="M2">
+      <value>NMOS</value>
+      <fields>
+        <field name="Model">nmosmod</field>
+        <field name="w">79.46u</field>
+        <field name="l">1.91u</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="NMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE21E6</tstamp>
+    </comp>
+    <comp ref="M1">
+      <value>NMOS</value>
+      <fields>
+        <field name="Model">nmosmod</field>
+        <field name="w">20.80u</field>
+        <field name="l">0.32u</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="NMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2249</tstamp>
+    </comp>
+    <comp ref="M3">
+      <value>NMOS</value>
+      <fields>
+        <field name="Model">nmosmod</field>
+        <field name="w">60.23u</field>
+        <field name="l">0.32u</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="NMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE22B1</tstamp>
+    </comp>
+    <comp ref="M6">
+      <value>PMOS</value>
+      <fields>
+        <field name="Model">pmosmod</field>
+        <field name="w">90.43u</field>
+        <field name="l">3.92u</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="PMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2309</tstamp>
+    </comp>
+    <comp ref="M7">
+      <value>PMOS</value>
+      <fields>
+        <field name="Model">pmosmod</field>
+        <field name="w">90.43u</field>
+        <field name="l">3.92u</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="PMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE23A0</tstamp>
+    </comp>
+    <comp ref="M8">
+      <value>PMOS</value>
+      <fields>
+        <field name="Model">pmosmod</field>
+        <field name="w">83.01u</field>
+        <field name="l">0.20u</field>
+        <field name="m">2</field>
+      </fields>
+      <libsource lib="pyopus" part="PMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2470</tstamp>
+    </comp>
+    <comp ref="I1">
+      <value>ISRC</value>
+      <fields>
+        <field name="Specification">dc=100u</field>
+      </fields>
+      <libsource lib="pyopus" part="ISRC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2F9A</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>RES</value>
+      <fields>
+        <field name="r">67.6k</field>
+      </fields>
+      <libsource lib="pyopus" part="RES"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE39B2</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>CAP</value>
+      <fields>
+        <field name="c">13.5p</field>
+      </fields>
+      <libsource lib="pyopus" part="CAP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE3A28</tstamp>
+    </comp>
+    <comp ref="M4">
+      <value>NMOS</value>
+      <fields>
+        <field name="Model">nmosmod</field>
+        <field name="w">67.29u</field>
+        <field name="l">3.97u</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="NMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE412B</tstamp>
+    </comp>
+    <comp ref="M5">
+      <value>NMOS</value>
+      <fields>
+        <field name="Model">nmosmod</field>
+        <field name="w">67.29u</field>
+        <field name="l">3.97u</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="NMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE41C7</tstamp>
+    </comp>
+    <comp ref="A2">
+      <value>SUBCKT</value>
+      <fields>
+        <field name="Name">miller</field>
+        <field name="Pins">inp inn out vdd vss</field>
+      </fields>
+      <libsource lib="pyopus" part="SUBCKT"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE4A2A</tstamp>
+    </comp>
+    <comp ref="A1">
+      <value>OUTPUT_FILE</value>
+      <fields>
+        <field name="Name">miller.inc</field>
+      </fields>
+      <libsource lib="pyopus" part="OUTPUT_FILE"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE4ADD</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="pyopus" part="CAP">
+      <description>Built-in capacitor</description>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">CAP</field>
+        <field name="c">&lt;capacitance&gt;</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="ISRC">
+      <description>Built-in independent current source</description>
+      <fields>
+        <field name="Reference">I</field>
+        <field name="Value">ISRC</field>
+        <field name="Specification">dc=0</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P" type="passive"/>
+        <pin num="2" name="N" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="NMOS">
+      <description>Built-in NMOS transistor</description>
+      <fields>
+        <field name="Reference">M</field>
+        <field name="Value">NMOS</field>
+        <field name="Model">&lt;model name&gt;</field>
+        <field name="w">&lt;w&gt;</field>
+        <field name="l">&lt;l&gt;</field>
+        <field name="m">&lt;m&gt;</field>
+      </fields>
+      <pins>
+        <pin num="1" name="D" type="passive"/>
+        <pin num="2" name="G" type="input"/>
+        <pin num="3" name="S" type="passive"/>
+        <pin num="4" name="B" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="OUTPUT_FILE">
+      <description>Define subcircuit</description>
+      <fields>
+        <field name="Reference">A</field>
+        <field name="Value">OUTPUT_FILE</field>
+        <field name="Name">&lt;file name&gt;</field>
+      </fields>
+    </libpart>
+    <libpart lib="pyopus" part="PMOS">
+      <description>Built-in PMOS transistor</description>
+      <fields>
+        <field name="Reference">M</field>
+        <field name="Value">PMOS</field>
+        <field name="Model">&lt;model name&gt;</field>
+        <field name="w">&lt;w&gt;</field>
+        <field name="l">&lt;l&gt;</field>
+        <field name="m">&lt;m&gt;</field>
+      </fields>
+      <pins>
+        <pin num="1" name="D" type="passive"/>
+        <pin num="2" name="G" type="input"/>
+        <pin num="3" name="S" type="passive"/>
+        <pin num="4" name="B" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="RES">
+      <description>Built-in resistor</description>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">RES</field>
+        <field name="r">&lt;resistance&gt;</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="SUBCKT">
+      <description>Define subcircuit</description>
+      <fields>
+        <field name="Reference">A</field>
+        <field name="Value">SUBCKT</field>
+        <field name="Name">&lt;name&gt;</field>
+        <field name="Pins">&lt;pin names&gt;</field>
+      </fields>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="pyopus">
+      <uri>pyopus.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="Net-(M4-Pad1)">
+      <node ref="M4" pin="1"/>
+      <node ref="M6" pin="1"/>
+      <node ref="M6" pin="2"/>
+      <node ref="M7" pin="2"/>
+    </net>
+    <net code="2" name="Net-(M2-Pad1)">
+      <node ref="M4" pin="3"/>
+      <node ref="M5" pin="3"/>
+      <node ref="M2" pin="1"/>
+    </net>
+    <net code="3" name="Net-(C1-Pad2)">
+      <node ref="M8" pin="2"/>
+      <node ref="M5" pin="1"/>
+      <node ref="M7" pin="1"/>
+      <node ref="C1" pin="2"/>
+    </net>
+    <net code="4" name="Net-(I1-Pad2)">
+      <node ref="M3" pin="2"/>
+      <node ref="M1" pin="2"/>
+      <node ref="M1" pin="1"/>
+      <node ref="M2" pin="2"/>
+      <node ref="I1" pin="2"/>
+    </net>
+    <net code="5" name="inp">
+      <node ref="M5" pin="2"/>
+    </net>
+    <net code="6" name="inn">
+      <node ref="M4" pin="2"/>
+    </net>
+    <net code="7" name="out">
+      <node ref="M3" pin="1"/>
+      <node ref="R1" pin="1"/>
+      <node ref="M8" pin="1"/>
+    </net>
+    <net code="8" name="Net-(C1-Pad1)">
+      <node ref="R1" pin="2"/>
+      <node ref="C1" pin="1"/>
+    </net>
+    <net code="9" name="vdd">
+      <node ref="M8" pin="3"/>
+      <node ref="M8" pin="4"/>
+      <node ref="M6" pin="4"/>
+      <node ref="M6" pin="3"/>
+      <node ref="M7" pin="3"/>
+      <node ref="M7" pin="4"/>
+      <node ref="I1" pin="1"/>
+    </net>
+    <net code="10" name="vss">
+      <node ref="M4" pin="4"/>
+      <node ref="M5" pin="4"/>
+      <node ref="M3" pin="4"/>
+      <node ref="M2" pin="3"/>
+      <node ref="M2" pin="4"/>
+      <node ref="M3" pin="3"/>
+      <node ref="M1" pin="3"/>
+      <node ref="M1" pin="4"/>
+    </net>
+  </nets>
+</export>

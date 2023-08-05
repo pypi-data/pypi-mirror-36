@@ -1,0 +1,15 @@
+calypso_60ac_1 PE: Compiling.
+calypso_60ac_1 PE:   Simulator objects (1): 
+calypso_60ac_1 PE:     opus: 9 analyses
+calypso_60ac_1 PE:       CnomAtran
+calypso_60ac_1 PE:       CnomAaccom
+calypso_60ac_1 PE:       CnomAtranslew
+calypso_60ac_1 PE:       CnomAacvss
+calypso_60ac_1 PE:       CnomAacvdd
+calypso_60ac_1 PE:       CnomAop
+calypso_60ac_1 PE:       CnomAac
+calypso_60ac_1 PE:       CnomAnoise
+calypso_60ac_1 PE:       CnomAdc
+calypso_60ac_1 PE: Evaluation started.
+calypso_60ac_1 PE:   Simulator/head opus
+calypso_60ac_2 SOSI: Keyboard interrupt

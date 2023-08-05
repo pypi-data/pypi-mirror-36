@@ -1,0 +1,1615 @@
+calypso_7156_1 YT: Initial nominal design
+calypso_7156_1 CBD: Pass 1, full corner evaluation
+calypso_7156_1 CBD: Pass 1, corner summary
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.709e-09 _nominal : 7.09
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.696e+02 _nominal : -6.96e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.016e+01 _nominal : -2.32e-09
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |      1.173e-04 _nominal : -1.01e-06
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      1.173e-04 _nominal : -9.94e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.002e-05 _nominal : -8.75e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    3.723e-01 _nominal : 2.72
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    | o    1.488e-01 _nominal : 0.488
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.116e+01 _nominal : -1.93e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.562e+02 _nominal : -1.23e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      8.722e+01 _nominal : -2.46e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      2.367e+06 _nominal : -1.83e-07
+calypso_7156_1 CBD:       slewup  >  2.000e+06    | o    1.850e+06 _nominal : 0.0751
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      5.077e-01 _nominal : -6.92e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.890e-06 _nominal : -2.44e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      1.672e-06 _nominal : -3.31e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.997e+06 _nominal : 0.000642
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.346e-01 _nominal : -0.00734
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.164e-01 _nominal : 290
+calypso_7156_1 CBD: Pass 1, updating corner lists
+calypso_7156_1 CBD:   area: ['_nominal']
+calypso_7156_1 CBD:   cmrr: ['_nominal']
+calypso_7156_1 CBD:   dep gain: ['_nominal']
+calypso_7156_1 CBD:   dep gain_com: ['_nominal']
+calypso_7156_1 CBD:   gain: ['_nominal']
+calypso_7156_1 CBD:   in_offs: ['_nominal']
+calypso_7156_1 CBD:   in_offs: ['_nominal']
+calypso_7156_1 CBD:   isup: ['_nominal']
+calypso_7156_1 CBD:   ovrshdn: ['_nominal']
+calypso_7156_1 CBD:   ovrshup: ['_nominal']
+calypso_7156_1 CBD:   pm: ['_nominal']
+calypso_7156_1 CBD:   psrr_vdd: ['_nominal']
+calypso_7156_1 CBD:   dep gain: ['_nominal']
+calypso_7156_1 CBD:   dep gain_vdd: ['_nominal']
+calypso_7156_1 CBD:   psrr_vss: ['_nominal']
+calypso_7156_1 CBD:   dep gain: ['_nominal']
+calypso_7156_1 CBD:   dep gain_vss: ['_nominal']
+calypso_7156_1 CBD:   slewdn: ['_nominal']
+calypso_7156_1 CBD:   slewup: ['_nominal']
+calypso_7156_1 CBD:   swing: ['_nominal']
+calypso_7156_1 CBD:   tsetdn: ['_nominal']
+calypso_7156_1 CBD:   tsetup: ['_nominal']
+calypso_7156_1 CBD:   ugbw: ['_nominal']
+calypso_7156_1 CBD:   vds_drv: ['_nominal']
+calypso_7156_1 CBD:   vgs_drv: ['_nominal']
+calypso_7156_1 CBD: Pass 1, optimization
+calypso_7156_1 CBD: iter 1, f=3.005974e+02
+calypso_7156_1 CBD:           dif_l:    2.090000e-06
+calypso_7156_1 CBD:           dif_w:    4.800000e-05
+calypso_7156_1 CBD:            nl_l:    2.090000e-06
+calypso_7156_1 CBD:            nl_w:    4.800000e-05
+calypso_7156_1 CBD:            nm_l:    2.090000e-06
+calypso_7156_1 CBD:            nm_w:    4.800000e-05
+calypso_7156_1 CBD:            pm_l:    2.090000e-06
+calypso_7156_1 CBD:           pm_w0:    4.800000e-05
+calypso_7156_1 CBD:           pm_w1:    4.800000e-05
+calypso_7156_1 CBD:           pm_w2:    4.800000e-05
+calypso_7156_1 CBD:           pm_w3:    4.800000e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.709e-09 _nominal : 7.09
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.696e+02 _nominal : -6.96e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.016e+01 _nominal : -2.32e-09
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |      1.173e-04 _nominal : -1.01e-06
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      1.173e-04 _nominal : -9.94e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.002e-05 _nominal : -8.75e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    3.723e-01 _nominal : 2.72
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    | o    1.488e-01 _nominal : 0.488
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.116e+01 _nominal : -1.93e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.562e+02 _nominal : -1.23e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      8.722e+01 _nominal : -2.46e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      2.367e+06 _nominal : -1.83e-07
+calypso_7156_1 CBD:       slewup  >  2.000e+06    | o    1.850e+06 _nominal : 0.0751
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      5.077e-01 _nominal : -6.92e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.890e-06 _nominal : -2.44e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      1.672e-06 _nominal : -3.31e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.997e+06 _nominal : 0.000642
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.346e-01 _nominal : -0.00734
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.164e-01 _nominal : 290
+calypso_7156_1 CBD: iter 4, f=2.431298e+02
+calypso_7156_1 CBD:           dif_l:    2.090000e-06
+calypso_7156_1 CBD:           dif_w:    5.432034e-05
+calypso_7156_1 CBD:            nl_l:    2.090000e-06
+calypso_7156_1 CBD:            nl_w:    4.125219e-05
+calypso_7156_1 CBD:            nm_l:    2.090000e-06
+calypso_7156_1 CBD:            nm_w:    3.270294e-05
+calypso_7156_1 CBD:            pm_l:    2.090000e-06
+calypso_7156_1 CBD:           pm_w0:    3.535931e-05
+calypso_7156_1 CBD:           pm_w1:    4.800000e-05
+calypso_7156_1 CBD:           pm_w2:    5.651872e-05
+calypso_7156_1 CBD:           pm_w3:    4.800000e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.693e-09 _nominal : 6.93
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.699e+02 _nominal : -6.99e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.146e+01 _nominal : -2.09e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |      9.470e-05 _nominal : -1e-06
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      9.470e-05 _nominal : -9.95e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.096e-05 _nominal : -8.73e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    3.319e-01 _nominal : 2.32
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    | o    1.738e-01 _nominal : 0.738
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.693e+01 _nominal : 0.0511
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.567e+02 _nominal : -1.24e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      8.966e+01 _nominal : -2.81e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      2.724e+06 _nominal : -3.62e-07
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      2.160e+06 _nominal : -7.98e-08
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.789e-01 _nominal : -5.96e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.904e-06 _nominal : -2.38e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      1.685e-06 _nominal : -3.26e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      4.593e+06 _nominal : -1.48e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      9.932e-02 _nominal : -0.00728
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.148e-01 _nominal : 233
+calypso_7156_1 CBD: iter 5, f=2.367131e+02
+calypso_7156_1 CBD:           dif_l:    2.090000e-06
+calypso_7156_1 CBD:           dif_w:    6.064069e-05
+calypso_7156_1 CBD:            nl_l:    2.090000e-06
+calypso_7156_1 CBD:            nl_w:    3.450439e-05
+calypso_7156_1 CBD:            nm_l:    2.090000e-06
+calypso_7156_1 CBD:            nm_w:    1.740587e-05
+calypso_7156_1 CBD:            pm_l:    2.090000e-06
+calypso_7156_1 CBD:           pm_w0:    2.271862e-05
+calypso_7156_1 CBD:           pm_w1:    4.800000e-05
+calypso_7156_1 CBD:           pm_w2:    6.503745e-05
+calypso_7156_1 CBD:           pm_w3:    4.800000e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.677e-09 _nominal : 6.77
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.658e+02 _nominal : -6.58e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.248e+01 _nominal : -3.54e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |      6.757e-05 _nominal : -1e-06
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      6.757e-05 _nominal : -9.97e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.194e-05 _nominal : -8.7e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    2.911e-01 _nominal : 1.91
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    | o    1.849e-01 _nominal : 0.849
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.284e+01 _nominal : 0.119
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.552e+02 _nominal : -1.22e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      9.204e+01 _nominal : -3.15e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      2.876e+06 _nominal : -4.38e-07
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      2.371e+06 _nominal : -1.86e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.364e-01 _nominal : -4.55e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.906e-06 _nominal : -2.38e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      1.683e-06 _nominal : -3.27e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      5.119e+06 _nominal : -2.8e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      4.881e-02 _nominal : -0.00717
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.136e-01 _nominal : 227
+calypso_7156_1 CBD: iter 8, f=2.213685e+02
+calypso_7156_1 CBD:           dif_l:    2.197951e-06
+calypso_7156_1 CBD:           dif_w:    6.051856e-05
+calypso_7156_1 CBD:            nl_l:    2.098686e-06
+calypso_7156_1 CBD:            nl_w:    3.923701e-05
+calypso_7156_1 CBD:            nm_l:    1.748777e-06
+calypso_7156_1 CBD:            nm_w:    1.624561e-05
+calypso_7156_1 CBD:            pm_l:    1.855487e-06
+calypso_7156_1 CBD:           pm_w0:    2.607726e-05
+calypso_7156_1 CBD:           pm_w1:    3.676383e-05
+calypso_7156_1 CBD:           pm_w2:    6.589238e-05
+calypso_7156_1 CBD:           pm_w3:    6.473212e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.954e-09 _nominal : 9.54
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.623e+02 _nominal : -6.23e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.071e+01 _nominal : -1.01e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -1.435e-04 _nominal : -9.93e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |     -1.435e-04 _nominal : -1.01e-06
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      8.453e-05 _nominal : -7.89e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    2.424e-01 _nominal : 1.42
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    | o    1.912e-01 _nominal : 0.912
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.522e+01 _nominal : 0.0797
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.509e+02 _nominal : -1.16e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      8.929e+01 _nominal : -2.76e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      3.274e+06 _nominal : -6.37e-07
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      2.865e+06 _nominal : -4.32e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.860e-01 _nominal : -2.87e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.864e-06 _nominal : -2.54e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      1.620e-06 _nominal : -3.52e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      6.194e+06 _nominal : -5.48e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    | o   -8.907e-03 _nominal : 8.9
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.003e-01 _nominal : 201
+calypso_7156_1 CBD: iter 13, f=2.183309e+02
+calypso_7156_1 CBD:           dif_l:    2.197951e-06
+calypso_7156_1 CBD:           dif_w:    4.277885e-05
+calypso_7156_1 CBD:            nl_l:    2.098686e-06
+calypso_7156_1 CBD:            nl_w:    3.477918e-05
+calypso_7156_1 CBD:            nm_l:    1.748777e-06
+calypso_7156_1 CBD:            nm_w:    2.543607e-05
+calypso_7156_1 CBD:            pm_l:    1.855487e-06
+calypso_7156_1 CBD:           pm_w0:    1.792493e-05
+calypso_7156_1 CBD:           pm_w1:    3.676383e-05
+calypso_7156_1 CBD:           pm_w2:    7.401417e-05
+calypso_7156_1 CBD:           pm_w3:    6.473212e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.836e-09 _nominal : 8.36
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.659e+02 _nominal : -6.59e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.114e+01 _nominal : -1.63e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -5.285e-04 _nominal : -9.74e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |     -5.285e-04 _nominal : -1.03e-06
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      8.576e-05 _nominal : -7.86e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    2.885e-01 _nominal : 1.88
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    | o    1.480e-01 _nominal : 0.48
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.552e+01 _nominal : 0.0747
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.531e+02 _nominal : -1.19e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      9.066e+01 _nominal : -2.95e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      3.432e+06 _nominal : -7.16e-07
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      3.056e+06 _nominal : -5.28e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.503e-01 _nominal : -1.68e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.785e-06 _nominal : -2.86e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      1.293e-06 _nominal : -4.83e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      6.424e+06 _nominal : -6.06e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    | o   -4.564e-02 _nominal : 45.6
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -8.122e-02 _nominal : 162
+calypso_7156_1 CBD: iter 14, f=2.154519e+02
+calypso_7156_1 CBD:           dif_l:    2.197951e-06
+calypso_7156_1 CBD:           dif_w:    2.503914e-05
+calypso_7156_1 CBD:            nl_l:    2.098686e-06
+calypso_7156_1 CBD:            nl_w:    3.032136e-05
+calypso_7156_1 CBD:            nm_l:    1.748777e-06
+calypso_7156_1 CBD:            nm_w:    3.462652e-05
+calypso_7156_1 CBD:            pm_l:    1.855487e-06
+calypso_7156_1 CBD:           pm_w0:    9.772604e-06
+calypso_7156_1 CBD:           pm_w1:    3.676383e-05
+calypso_7156_1 CBD:           pm_w2:    8.213597e-05
+calypso_7156_1 CBD:           pm_w3:    6.473212e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.718e-09 _nominal : 7.18
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.624e+02 _nominal : -6.24e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.077e+01 _nominal : -1.1e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -1.686e-03 _nominal : -9.16e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |     -1.686e-03 _nominal : -1.08e-06
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      8.705e-05 _nominal : -7.82e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    3.231e-01 _nominal : 2.23
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      9.277e-02 _nominal : -7.23e-08
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.644e+01 _nominal : 0.0593
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.533e+02 _nominal : -1.19e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      9.135e+01 _nominal : -3.05e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      3.354e+06 _nominal : -6.77e-07
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      2.944e+06 _nominal : -4.72e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    | o    2.901e-01 _nominal : 0.0332
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.504e-06 _nominal : -3.98e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      1.006e-06 _nominal : -5.98e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      6.635e+06 _nominal : -6.59e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    | o   -9.992e-02 _nominal : 99.9
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -5.386e-02 _nominal : 106
+calypso_7156_1 CBD: iter 21, f=1.234121e+02
+calypso_7156_1 CBD:           dif_l:    2.049053e-06
+calypso_7156_1 CBD:           dif_w:    2.491700e-05
+calypso_7156_1 CBD:            nl_l:    1.946066e-06
+calypso_7156_1 CBD:            nl_w:    3.505398e-05
+calypso_7156_1 CBD:            nm_l:    1.216469e-06
+calypso_7156_1 CBD:            nm_w:    3.346626e-05
+calypso_7156_1 CBD:            pm_l:    1.643308e-06
+calypso_7156_1 CBD:           pm_w0:    1.313124e-05
+calypso_7156_1 CBD:           pm_w1:    3.172588e-05
+calypso_7156_1 CBD:           pm_w2:    8.299089e-05
+calypso_7156_1 CBD:           pm_w3:    4.845800e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.974e-09 _nominal : -2.56e-07
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.656e+02 _nominal : -6.56e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.236e+01 _nominal : -3.37e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -2.018e-04 _nominal : -9.9e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |     -2.018e-04 _nominal : -1.01e-06
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      7.959e-05 _nominal : -8.01e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    3.118e-01 _nominal : 2.12
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    | o    1.309e-01 _nominal : 0.309
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.537e+01 _nominal : 0.0771
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.578e+02 _nominal : -1.25e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      9.162e+01 _nominal : -3.09e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      5.006e+06 _nominal : -1.5e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      4.326e+06 _nominal : -1.16e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.725e-01 _nominal : -2.42e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.651e-06 _nominal : -3.39e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      7.909e-07 _nominal : -6.84e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      8.123e+06 _nominal : -1.03e-06
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    | o   -2.227e-02 _nominal : 22.3
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -4.942e-02 _nominal : 98.6
+calypso_7156_1 CBD: iter 22, f=1.222323e+02
+calypso_7156_1 CBD:           dif_l:    1.900156e-06
+calypso_7156_1 CBD:           dif_w:    2.479487e-05
+calypso_7156_1 CBD:            nl_l:    1.793446e-06
+calypso_7156_1 CBD:            nl_w:    3.978661e-05
+calypso_7156_1 CBD:            nm_l:    6.841603e-07
+calypso_7156_1 CBD:            nm_w:    3.230601e-05
+calypso_7156_1 CBD:            pm_l:    1.431129e-06
+calypso_7156_1 CBD:           pm_w0:    1.648988e-05
+calypso_7156_1 CBD:           pm_w1:    2.668792e-05
+calypso_7156_1 CBD:           pm_w2:    8.384582e-05
+calypso_7156_1 CBD:           pm_w3:    3.218387e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.343e-09 _nominal : -6.57e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.677e+02 _nominal : -6.77e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.405e+01 _nominal : -5.79e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |      2.447e-05 _nominal : -1e-06
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      2.447e-05 _nominal : -9.99e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      6.924e-05 _nominal : -8.27e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    3.933e-01 _nominal : 2.93
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    | o    1.864e-01 _nominal : 0.864
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.289e+01 _nominal : 0.119
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.626e+02 _nominal : -1.32e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      9.218e+01 _nominal : -3.17e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      6.870e+06 _nominal : -2.44e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      5.502e+06 _nominal : -1.75e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.568e-01 _nominal : -5.23e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.762e-06 _nominal : -2.95e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      6.168e-07 _nominal : -7.53e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      9.978e+06 _nominal : -1.49e-06
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      7.378e-02 _nominal : -0.00726
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -4.493e-02 _nominal : 118
+calypso_7156_1 CBD: iter 24, f=1.069589e+02
+calypso_7156_1 CBD:           dif_l:    1.900156e-06
+calypso_7156_1 CBD:           dif_w:    1.816920e-05
+calypso_7156_1 CBD:            nl_l:    1.793446e-06
+calypso_7156_1 CBD:            nl_w:    2.528340e-05
+calypso_7156_1 CBD:            nm_l:    6.841603e-07
+calypso_7156_1 CBD:            nm_w:    2.568033e-05
+calypso_7156_1 CBD:            pm_l:    1.431129e-06
+calypso_7156_1 CBD:           pm_w0:    2.311555e-05
+calypso_7156_1 CBD:           pm_w1:    2.668792e-05
+calypso_7156_1 CBD:           pm_w2:    6.934261e-05
+calypso_7156_1 CBD:           pm_w3:    3.218387e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.225e-09 _nominal : -7.75e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.618e+02 _nominal : -6.18e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.233e+01 _nominal : -3.33e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -1.438e-05 _nominal : -9.99e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |     -1.438e-05 _nominal : -1e-06
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      6.635e-05 _nominal : -8.34e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    3.375e-01 _nominal : 2.38
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    | o    1.542e-01 _nominal : 0.542
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.981e+01 _nominal : 0.00323
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.596e+02 _nominal : -1.28e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      9.397e+01 _nominal : -3.42e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      6.190e+06 _nominal : -2.1e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      4.949e+06 _nominal : -1.47e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.305e-01 _nominal : -4.35e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.031e-06 _nominal : -5.87e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      6.055e-07 _nominal : -7.58e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      8.866e+06 _nominal : -1.22e-06
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      2.462e-02 _nominal : -0.00723
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -3.965e-02 _nominal : 104
+calypso_7156_1 CBD: iter 30, f=6.887164e+01
+calypso_7156_1 CBD:           dif_l:    1.900156e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    1.793446e-06
+calypso_7156_1 CBD:            nl_w:    2.082557e-05
+calypso_7156_1 CBD:            nm_l:    6.841603e-07
+calypso_7156_1 CBD:            nm_w:    3.487078e-05
+calypso_7156_1 CBD:            pm_l:    1.431129e-06
+calypso_7156_1 CBD:           pm_w0:    1.496323e-05
+calypso_7156_1 CBD:           pm_w1:    2.668792e-05
+calypso_7156_1 CBD:           pm_w2:    7.746441e-05
+calypso_7156_1 CBD:           pm_w3:    3.218387e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.111e-09 _nominal : -8.89e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.168e+02 _nominal : -1.68e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    6.686e+01 _nominal : 0.0448
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -4.093e-04 _nominal : -9.8e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |     -4.093e-04 _nominal : -1.02e-06
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      6.804e-05 _nominal : -8.3e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      1.995e-02 _nominal : -8e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      2.140e-03 _nominal : -9.79e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      7.223e+01 _nominal : -2.04e-07
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.363e+02 _nominal : -9.48e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      8.973e+01 _nominal : -2.82e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      5.881e+06 _nominal : -1.94e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      4.582e+06 _nominal : -1.29e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.863e-01 _nominal : -2.88e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.865e-07 _nominal : -9.25e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      2.721e-07 _nominal : -8.91e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      5.067e+06 _nominal : -2.67e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    | o   -2.515e-02 _nominal : 25.1
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -2.184e-02 _nominal : 43.7
+calypso_7156_1 CBD: iter 37, f=4.296780e+01
+calypso_7156_1 CBD:           dif_l:    1.266101e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    2.434946e-06
+calypso_7156_1 CBD:            nl_w:    2.555820e-05
+calypso_7156_1 CBD:            nm_l:    7.921109e-07
+calypso_7156_1 CBD:            nm_w:    3.371053e-05
+calypso_7156_1 CBD:            pm_l:    1.529153e-06
+calypso_7156_1 CBD:           pm_w0:    1.832186e-05
+calypso_7156_1 CBD:           pm_w1:    2.971069e-05
+calypso_7156_1 CBD:           pm_w2:    7.831933e-05
+calypso_7156_1 CBD:           pm_w3:    3.349679e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.253e-09 _nominal : -7.47e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.190e+02 _nominal : -1.9e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    6.921e+01 _nominal : 0.0113
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -1.678e-04 _nominal : -9.92e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |     -1.678e-04 _nominal : -1.01e-06
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      6.350e-05 _nominal : -8.41e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      1.341e-02 _nominal : -8.66e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      1.520e-03 _nominal : -9.85e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.677e+01 _nominal : -1.13e-07
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.385e+02 _nominal : -9.78e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      9.130e+01 _nominal : -3.04e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      5.365e+06 _nominal : -1.68e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      4.220e+06 _nominal : -1.11e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.995e-01 _nominal : -3.32e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.061e-07 _nominal : -9.18e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      2.949e-07 _nominal : -8.82e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      5.438e+06 _nominal : -3.6e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    | o   -9.943e-03 _nominal : 9.94
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.651e-02 _nominal : 33
+calypso_7156_1 CBD: iter 44, f=2.354341e+01
+calypso_7156_1 CBD:           dif_l:    6.320462e-07
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    3.076445e-06
+calypso_7156_1 CBD:            nl_w:    3.029082e-05
+calypso_7156_1 CBD:            nm_l:    9.000615e-07
+calypso_7156_1 CBD:            nm_w:    3.255027e-05
+calypso_7156_1 CBD:            pm_l:    1.627177e-06
+calypso_7156_1 CBD:           pm_w0:    2.168050e-05
+calypso_7156_1 CBD:           pm_w1:    3.273347e-05
+calypso_7156_1 CBD:           pm_w2:    7.917426e-05
+calypso_7156_1 CBD:           pm_w3:    3.480972e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.407e-09 _nominal : -5.93e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.238e+02 _nominal : -2.38e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.107e+01 _nominal : -1.52e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -7.534e-05 _nominal : -9.96e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |     -7.534e-05 _nominal : -1e-06
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.980e-05 _nominal : -8.5e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      1.049e-02 _nominal : -8.95e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      1.466e-03 _nominal : -9.85e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.985e+01 _nominal : 0.00247
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.403e+02 _nominal : -1e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      9.288e+01 _nominal : -3.27e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.923e+06 _nominal : -1.46e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      3.950e+06 _nominal : -9.75e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.114e-01 _nominal : -3.71e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.257e-07 _nominal : -9.1e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.139e-07 _nominal : -8.74e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      5.931e+06 _nominal : -4.83e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      2.654e-03 _nominal : -0.00722
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.177e-02 _nominal : 23.5
+calypso_7156_1 CBD: iter 57, f=2.269014e+01
+calypso_7156_1 CBD:           dif_l:    9.496940e-07
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    3.131041e-06
+calypso_7156_1 CBD:            nl_w:    3.502345e-05
+calypso_7156_1 CBD:            nm_l:    1.154428e-06
+calypso_7156_1 CBD:            nm_w:    3.139001e-05
+calypso_7156_1 CBD:            pm_l:    9.720286e-07
+calypso_7156_1 CBD:           pm_w0:    2.503914e-05
+calypso_7156_1 CBD:           pm_w1:    4.512989e-05
+calypso_7156_1 CBD:           pm_w2:    8.002918e-05
+calypso_7156_1 CBD:           pm_w3:    3.432119e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      9.435e-10 _nominal : -1.06e-05
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.151e+02 _nominal : -1.51e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    6.630e+01 _nominal : 0.0528
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |      6.507e-05 _nominal : -1e-06
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      6.507e-05 _nominal : -9.97e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      4.454e-05 _nominal : -8.89e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      1.989e-05 _nominal : -1e-06
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      1.134e-03 _nominal : -9.89e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.662e+01 _nominal : -1.1e-07
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.371e+02 _nominal : -9.58e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      8.692e+01 _nominal : -2.42e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.048e+06 _nominal : -1.02e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      3.199e+06 _nominal : -6e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      5.387e-01 _nominal : -7.96e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.866e-07 _nominal : -8.85e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.680e-07 _nominal : -8.53e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      4.440e+06 _nominal : -1.1e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.250e-01 _nominal : -0.00745
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.132e-02 _nominal : 22.6
+calypso_7156_1 CBD: iter 58, f=6.053548e+00
+calypso_7156_1 CBD:           dif_l:    6.916052e-07
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    2.175616e-06
+calypso_7156_1 CBD:            nl_w:    5.343489e-05
+calypso_7156_1 CBD:            nm_l:    1.285954e-06
+calypso_7156_1 CBD:            nm_w:    3.294720e-05
+calypso_7156_1 CBD:            pm_l:    5.253364e-07
+calypso_7156_1 CBD:           pm_w0:    2.812298e-05
+calypso_7156_1 CBD:           pm_w1:    4.885493e-05
+calypso_7156_1 CBD:           pm_w2:    9.499038e-05
+calypso_7156_1 CBD:           pm_w3:    4.836640e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      7.505e-10 _nominal : -1.25e-05
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.081e+02 _nominal : -8.14e-08
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    5.829e+01 _nominal : 0.167
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -2.579e-05 _nominal : -9.99e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |     -2.579e-05 _nominal : -1e-06
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.480e-05 _nominal : -8.63e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      0.000e+00 _nominal : -1e-06
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      4.980e-04 _nominal : -9.95e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      7.152e+01 _nominal : -1.92e-07
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.292e+02 _nominal : -8.45e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.452e+01 _nominal : -6.45e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.360e+06 _nominal : -1.18e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      3.467e+06 _nominal : -7.34e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      6.248e-01 _nominal : -1.08e-06
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.565e-07 _nominal : -8.97e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.223e-07 _nominal : -8.71e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      5.083e+06 _nominal : -2.71e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      2.070e-01 _nominal : -0.00763
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -2.947e-03 _nominal : 5.89
+calypso_7156_1 CBD: iter 59, f=8.569939e-02
+calypso_7156_1 CBD:           dif_l:    6.072300e-07
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    1.857968e-06
+calypso_7156_1 CBD:            nl_w:    5.404555e-05
+calypso_7156_1 CBD:            nm_l:    1.077498e-06
+calypso_7156_1 CBD:            nm_w:    2.815351e-05
+calypso_7156_1 CBD:            pm_l:    7.821844e-07
+calypso_7156_1 CBD:           pm_w0:    2.668792e-05
+calypso_7156_1 CBD:           pm_w1:    4.137433e-05
+calypso_7156_1 CBD:           pm_w2:    9.499038e-05
+calypso_7156_1 CBD:           pm_w3:    4.549629e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      9.347e-10 _nominal : -1.07e-05
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.157e+02 _nominal : -1.57e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    6.343e+01 _nominal : 0.0938
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |      2.587e-05 _nominal : -1e-06
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      2.587e-05 _nominal : -9.99e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      6.080e-05 _nominal : -8.48e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      2.006e-05 _nominal : -1e-06
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      5.063e-04 _nominal : -9.95e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.979e+01 _nominal : -1.63e-07
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.338e+02 _nominal : -9.11e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.926e+01 _nominal : -1.32e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      5.524e+06 _nominal : -1.76e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      4.003e+06 _nominal : -1e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      5.852e-01 _nominal : -9.51e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.048e-07 _nominal : -9.18e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      2.875e-07 _nominal : -8.85e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      6.026e+06 _nominal : -5.07e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.910e-01 _nominal : -0.00757
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      3.417e-03 _nominal : -0.000536
+calypso_7156_1 CBD: iter 60, f=3.256436e-02
+calypso_7156_1 CBD:           dif_l:    8.678004e-07
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    1.561414e-06
+calypso_7156_1 CBD:            nl_w:    4.448870e-05
+calypso_7156_1 CBD:            nm_l:    9.397675e-07
+calypso_7156_1 CBD:            nm_w:    2.058131e-05
+calypso_7156_1 CBD:            pm_l:    1.174281e-06
+calypso_7156_1 CBD:           pm_w0:    3.413799e-05
+calypso_7156_1 CBD:           pm_w1:    3.166481e-05
+calypso_7156_1 CBD:           pm_w2:    9.499038e-05
+calypso_7156_1 CBD:           pm_w3:    4.122166e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.186e-09 _nominal : -8.14e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.192e+02 _nominal : -1.92e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    6.713e+01 _nominal : 0.041
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |      3.362e-05 _nominal : -1e-06
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      3.362e-05 _nominal : -9.98e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      7.214e-05 _nominal : -8.2e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      3.525e-03 _nominal : -9.65e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      6.446e-04 _nominal : -9.94e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.862e+01 _nominal : -1.44e-07
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.363e+02 _nominal : -9.47e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      8.413e+01 _nominal : -2.02e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      7.433e+06 _nominal : -2.72e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      5.121e+06 _nominal : -1.56e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      5.310e-01 _nominal : -7.7e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.538e-07 _nominal : -9.38e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      2.365e-07 _nominal : -9.05e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      6.805e+06 _nominal : -7.01e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.462e-01 _nominal : -0.00741
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      2.619e-02 _nominal : -0.000962
+calypso_7156_1 CBD: iter 71, f=1.986129e-02
+calypso_7156_1 CBD:           dif_l:    1.212746e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    1.673087e-06
+calypso_7156_1 CBD:            nl_w:    4.922132e-05
+calypso_7156_1 CBD:            nm_l:    1.513023e-06
+calypso_7156_1 CBD:            nm_w:    1.942105e-05
+calypso_7156_1 CBD:            pm_l:    1.392664e-06
+calypso_7156_1 CBD:           pm_w0:    3.749663e-05
+calypso_7156_1 CBD:           pm_w1:    1.865773e-05
+calypso_7156_1 CBD:           pm_w2:    9.500000e-05
+calypso_7156_1 CBD:           pm_w3:    3.490132e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.266e-09 _nominal : -7.34e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.195e+02 _nominal : -1.95e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    6.800e+01 _nominal : 0.0286
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |      3.501e-06 _nominal : -1e-06
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      3.501e-06 _nominal : -1e-06
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      1.050e-04 _nominal : -7.37e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      1.961e-02 _nominal : -8.04e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      3.382e-03 _nominal : -9.66e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.749e+01 _nominal : -1.25e-07
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.377e+02 _nominal : -9.67e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      8.432e+01 _nominal : -2.05e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      1.107e+07 _nominal : -4.54e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      8.504e+06 _nominal : -3.25e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.750e-01 _nominal : -5.83e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.035e-07 _nominal : -9.59e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      1.458e-07 _nominal : -9.42e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      8.167e+06 _nominal : -1.04e-06
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      9.001e-02 _nominal : -0.00711
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      4.199e-02 _nominal : -0.0016
+calypso_7156_1 CBD: iter 83, f=-8.604129e-03
+calypso_7156_1 CBD:           dif_l:    1.630900e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    1.742573e-06
+calypso_7156_1 CBD:            nl_w:    5.395395e-05
+calypso_7156_1 CBD:            nm_l:    1.175522e-06
+calypso_7156_1 CBD:            nm_w:    1.826080e-05
+calypso_7156_1 CBD:            pm_l:    2.009347e-06
+calypso_7156_1 CBD:           pm_w0:    4.085526e-05
+calypso_7156_1 CBD:           pm_w1:    2.900843e-05
+calypso_7156_1 CBD:           pm_w2:    9.500000e-05
+calypso_7156_1 CBD:           pm_w3:    3.612264e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.827e-09 _nominal : -1.73e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.244e+02 _nominal : -2.44e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.085e+01 _nominal : -1.21e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |      8.320e-05 _nominal : -1e-06
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.320e-05 _nominal : -9.96e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      7.117e-05 _nominal : -8.22e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      1.928e-02 _nominal : -8.07e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      1.048e-03 _nominal : -9.9e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.360e+01 _nominal : -6.01e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.394e+02 _nominal : -9.92e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      8.660e+01 _nominal : -2.37e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      7.243e+06 _nominal : -2.62e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      5.319e+06 _nominal : -1.66e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.978e-01 _nominal : -6.59e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.583e-07 _nominal : -9.37e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      2.542e-07 _nominal : -8.98e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      5.484e+06 _nominal : -3.71e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.387e-01 _nominal : -0.0072
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      1.725e-02 _nominal : -0.00139
+calypso_7156_1 CBD: Pass 2, full corner evaluation
+calypso_7156_1 CBD: Pass 2, corner summary
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.827e-09 _nominal : -1.73e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.244e+02 _nominal : -2.44e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.085e+01 _nominal : -1.21e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |      8.320e-05 _nominal : -1e-06
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.320e-05 _nominal : -9.96e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      7.117e-05 _nominal : -8.22e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      1.928e-02 _nominal : -8.07e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      1.048e-03 _nominal : -9.9e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.360e+01 _nominal : -6.01e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.394e+02 _nominal : -9.92e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      8.660e+01 _nominal : -2.37e-07
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      7.243e+06 _nominal : -2.62e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      5.319e+06 _nominal : -1.66e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.978e-01 _nominal : -6.59e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.583e-07 _nominal : -9.37e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      2.542e-07 _nominal : -8.98e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      5.484e+06 _nominal : -3.71e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.387e-01 _nominal : -0.0072
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      1.725e-02 _nominal : -0.00139
+calypso_7156_1 CBD: Pass 2, updating corner lists
+calypso_7156_1 CBD:   area: ['_nominal']
+calypso_7156_1 CBD:   cmrr: ['_nominal']
+calypso_7156_1 CBD:   dep gain: ['_nominal']
+calypso_7156_1 CBD:   dep gain_com: ['_nominal']
+calypso_7156_1 CBD:   gain: ['_nominal']
+calypso_7156_1 CBD:   in_offs: ['_nominal']
+calypso_7156_1 CBD:   in_offs: ['_nominal']
+calypso_7156_1 CBD:   isup: ['_nominal']
+calypso_7156_1 CBD:   ovrshdn: ['_nominal']
+calypso_7156_1 CBD:   ovrshup: ['_nominal']
+calypso_7156_1 CBD:   pm: ['_nominal']
+calypso_7156_1 CBD:   psrr_vdd: ['_nominal']
+calypso_7156_1 CBD:   dep gain: ['_nominal']
+calypso_7156_1 CBD:   dep gain_vdd: ['_nominal']
+calypso_7156_1 CBD:   psrr_vss: ['_nominal']
+calypso_7156_1 CBD:   dep gain: ['_nominal']
+calypso_7156_1 CBD:   dep gain_vss: ['_nominal']
+calypso_7156_1 CBD:   slewdn: ['_nominal']
+calypso_7156_1 CBD:   slewup: ['_nominal']
+calypso_7156_1 CBD:   swing: ['_nominal']
+calypso_7156_1 CBD:   tsetdn: ['_nominal']
+calypso_7156_1 CBD:   tsetup: ['_nominal']
+calypso_7156_1 CBD:   ugbw: ['_nominal']
+calypso_7156_1 CBD:   vds_drv: ['_nominal']
+calypso_7156_1 CBD:   vgs_drv: ['_nominal']
+calypso_7156_1 CBD: Corners unchanged, stopping
+calypso_7156_1 CBD: Analysis count: {'ac': 85, 'acvss': 85, 'tran': 85, 'dc': 85, 'acvdd': 85, 'accom': 85, 'op': 85}
+calypso_7156_1 CBD: Result:
+calypso_7156_1 CBD:           dif_l:    1.630900e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    1.742573e-06
+calypso_7156_1 CBD:            nl_w:    5.395395e-05
+calypso_7156_1 CBD:            nm_l:    1.175522e-06
+calypso_7156_1 CBD:            nm_w:    1.826080e-05
+calypso_7156_1 CBD:            pm_l:    2.009347e-06
+calypso_7156_1 CBD:           pm_w0:    4.085526e-05
+calypso_7156_1 CBD:           pm_w1:    2.900843e-05
+calypso_7156_1 CBD:           pm_w2:    9.500000e-05
+calypso_7156_1 CBD:           pm_w3:    3.612264e-05
+calypso_7156_1 YT:         area  <  2.000e-09    |      1.827e-09 _nominal : -1.73e-06
+calypso_7156_1 YT:         cmrr  >  1.000e+02    |      1.244e+02 _nominal : -2.44e-07
+calypso_7156_1 YT:         gain  >  7.000e+01    |      7.085e+01 _nominal : -1.21e-08
+calypso_7156_1 YT:      in_offs  >  -2.000e-02   |      8.320e-05 _nominal : -1e-06
+calypso_7156_1 YT:      in_offs  <  2.000e-02    |      8.320e-05 _nominal : -9.96e-07
+calypso_7156_1 YT:         isup  <  4.000e-04    |      7.117e-05 _nominal : -8.22e-07
+calypso_7156_1 YT:      ovrshdn  <  1.000e-01    |      1.928e-02 _nominal : -8.07e-07
+calypso_7156_1 YT:      ovrshup  <  1.000e-01    |      1.048e-03 _nominal : -9.9e-07
+calypso_7156_1 YT:           pm  >  6.000e+01    |      6.360e+01 _nominal : -6.01e-08
+calypso_7156_1 YT:     psrr_vdd  >  7.000e+01    |      1.394e+02 _nominal : -9.92e-07
+calypso_7156_1 YT:     psrr_vss  >  7.000e+01    |      8.660e+01 _nominal : -2.37e-07
+calypso_7156_1 YT:       slewdn  >  2.000e+06    |      7.243e+06 _nominal : -2.62e-06
+calypso_7156_1 YT:       slewup  >  2.000e+06    |      5.319e+06 _nominal : -1.66e-06
+calypso_7156_1 YT:        swing  >  3.000e-01    |      4.978e-01 _nominal : -6.59e-07
+calypso_7156_1 YT:       tsetdn  <  2.500e-06    |      1.583e-07 _nominal : -9.37e-07
+calypso_7156_1 YT:       tsetup  <  2.500e-06    |      2.542e-07 _nominal : -8.98e-07
+calypso_7156_1 YT:         ugbw  >  4.000e+06    |      5.484e+06 _nominal : -3.71e-07
+calypso_7156_1 YT:      vds_drv  >  0.000e+00    |      1.387e-01 _nominal : -0.0072
+calypso_7156_1 YT:      vgs_drv  >  0.000e+00    |      1.725e-02 _nominal : -0.00139
+calypso_7156_1 YT: Analysis count: {'ac': 85, 'acvss': 85, 'tran': 85, 'dc': 85, 'acvdd': 85, 'accom': 85, 'op': 85}
+calypso_7156_1 YT: Result:
+calypso_7156_1 YT:           dif_l:    1.630900e-06
+calypso_7156_1 YT:           dif_w:    1.000000e-06
+calypso_7156_1 YT:            nl_l:    1.742573e-06
+calypso_7156_1 YT:            nl_w:    5.395395e-05
+calypso_7156_1 YT:            nm_l:    1.175522e-06
+calypso_7156_1 YT:            nm_w:    1.826080e-05
+calypso_7156_1 YT:            pm_l:    2.009347e-06
+calypso_7156_1 YT:           pm_w0:    4.085526e-05
+calypso_7156_1 YT:           pm_w1:    2.900843e-05
+calypso_7156_1 YT:           pm_w2:    9.500000e-05
+calypso_7156_1 YT:           pm_w3:    3.612264e-05
+calypso_7156_1 YT: Computing worst case, pass 1
+Terminated (singular KKT matrix).
+calypso_7156_1 YT:       cmrr >    1.22840e+02   goal=   1.00000e+02 d=   2.98364e+00 neval= 214 1 OK
+calypso_7156_1 YT:       gain >    6.96911e+01 o goal=   7.00000e+01 d=   3.00000e+00 neval= 107 1 OK
+calypso_7156_1 YT:    in_offs <    9.42766e-03   goal=   2.00000e-02 d=   3.00000e+00 neval= 122 1 OK
+calypso_7156_1 YT:    in_offs >   -9.54396e-03   goal=  -2.00000e-02 d=   3.00000e+00 neval= 103 1 OK
+calypso_7156_1 YT:       isup <    7.29278e-05   goal=   4.00000e-04 d=   3.00000e+00 neval= 154 2 OK
+calypso_7156_1 YT:    ovrshdn <    3.80810e-02   goal=   1.00000e-01 d=   2.99926e+00 neval= 473 2 OK
+calypso_7156_1 YT:    ovrshup <    2.95746e-03   goal=   1.00000e-01 d=   2.99835e+00 neval= 607 2 OK
+calypso_7156_1 YT:         pm >    6.19864e+01   goal=   6.00000e+01 d=   3.00000e+00 neval= 162 1 OK
+calypso_7156_1 YT:   psrr_vdd >    1.37546e+02   goal=   7.00000e+01 d=   3.00000e+00 neval= 182 1 OK
+calypso_7156_1 YT:   psrr_vss >    7.08927e+01   goal=   7.00000e+01 d=   3.00000e+00 neval= 161 2 OK
+calypso_7156_1 YT:     slewdn >    6.29734e+06   goal=   2.00000e+06 d=   3.00000e+00 neval= 168 2 OK
+calypso_7156_1 YT:     slewup >    4.09658e+06   goal=   2.00000e+06 d=   3.00000e+00 neval= 157 2 OK
+calypso_7156_1 YT:      swing >    3.64087e-01   goal=   3.00000e-01 d=   3.00000e+00 neval= 163 2 OK
+calypso_7156_1 YT:     tsetdn <    1.79594e-07   goal=   2.50000e-06 d=   3.00000e+00 neval= 113 1 OK
+calypso_7156_1 YT:     tsetup <    3.20668e-07   goal=   2.50000e-06 d=   3.00000e+00 neval= 160 2 OK
+calypso_7156_1 YT:       ugbw >    4.55994e+06   goal=   4.00000e+06 d=   3.00000e+00 neval= 102 1 OK
+calypso_7156_1 YT: Analysis count: {'ac': 928, 'acvss': 161, 'tran': 1678, 'dc': 388, 'acvdd': 182, 'accom': 214, 'op': 154}
+calypso_7156_1 YT: Updating corner sets
+calypso_7156_1 YT:   Added corner for cmrr, lower; corner count = 1
+calypso_7156_1 YT:   Added corner for gain, lower; corner count = 1
+calypso_7156_1 YT:   Added corner for in_offs, upper; corner count = 1
+calypso_7156_1 YT:   Added corner for in_offs, lower; corner count = 1
+calypso_7156_1 YT:   Added corner for isup, upper; corner count = 1
+calypso_7156_1 YT:   Added corner for ovrshdn, upper; corner count = 1
+calypso_7156_1 YT:   Added corner for ovrshup, upper; corner count = 1
+calypso_7156_1 YT:   Added corner for pm, lower; corner count = 1
+calypso_7156_1 YT:   Added corner for psrr_vdd, lower; corner count = 1
+calypso_7156_1 YT:   Added corner for psrr_vss, lower; corner count = 1
+calypso_7156_1 YT:   Added corner for slewdn, lower; corner count = 1
+calypso_7156_1 YT:   Added corner for slewup, lower; corner count = 1
+calypso_7156_1 YT:   Added corner for swing, lower; corner count = 1
+calypso_7156_1 YT:   Added corner for tsetdn, upper; corner count = 1
+calypso_7156_1 YT:   Added corner for tsetup, upper; corner count = 1
+calypso_7156_1 YT:   Added corner for ugbw, lower; corner count = 1
+calypso_7156_1 YT: Sizing across corners, pass 1
+calypso_7156_1 CBD: Pass 1, full corner evaluation
+calypso_7156_1 CBD: Pass 1, corner summary
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.827e-09 _slewdn_l0 : -1.73e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.228e+02 _cmrr_l0 : -2.28e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    6.969e+01 _gain_l0 : 0.00441
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -9.544e-03 _in_offs_l0 : -5.23e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      9.428e-03 _in_offs_u0 : -5.29e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      7.293e-05 _isup_u0 : -8.18e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      3.808e-02 _ovrshdn_u0 : -6.19e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      2.957e-03 _ovrshup_u0 : -9.7e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.199e+01 _pm_l0 : -3.31e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.375e+02 _psrr_vdd_l0 : -9.65e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.089e+01 _psrr_vss_l0 : -1.28e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      6.297e+06 _slewdn_l0 : -2.15e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      4.097e+06 _slewup_l0 : -1.05e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.641e-01 _swing_l0 : -2.14e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.796e-07 _tsetdn_u0 : -9.28e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.207e-07 _tsetup_u0 : -8.72e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      4.560e+06 _ugbw_l0 : -1.4e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    | o   -3.353e-02 _swing_l0 : 33.5
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      1.456e-02 _in_offs_l0 : -0.00124
+calypso_7156_1 CBD: Pass 1, updating corner lists
+calypso_7156_1 CBD:   area: ['_slewdn_l0']
+calypso_7156_1 CBD:   cmrr: ['_cmrr_l0']
+calypso_7156_1 CBD:   dep gain: ['_cmrr_l0']
+calypso_7156_1 CBD:   dep gain_com: ['_cmrr_l0']
+calypso_7156_1 CBD:   gain: ['_cmrr_l0', '_gain_l0']
+calypso_7156_1 CBD:   in_offs: ['_in_offs_l0']
+calypso_7156_1 CBD:   in_offs: ['_in_offs_l0', '_in_offs_u0']
+calypso_7156_1 CBD:   isup: ['_isup_u0']
+calypso_7156_1 CBD:   ovrshdn: ['_ovrshdn_u0']
+calypso_7156_1 CBD:   ovrshup: ['_ovrshup_u0']
+calypso_7156_1 CBD:   pm: ['_pm_l0']
+calypso_7156_1 CBD:   psrr_vdd: ['_psrr_vdd_l0']
+calypso_7156_1 CBD:   dep gain: ['_cmrr_l0', '_gain_l0', '_psrr_vdd_l0']
+calypso_7156_1 CBD:   dep gain_vdd: ['_psrr_vdd_l0']
+calypso_7156_1 CBD:   psrr_vss: ['_psrr_vss_l0']
+calypso_7156_1 CBD:   dep gain: ['_cmrr_l0', '_gain_l0', '_psrr_vdd_l0', '_psrr_vss_l0']
+calypso_7156_1 CBD:   dep gain_vss: ['_psrr_vss_l0']
+calypso_7156_1 CBD:   slewdn: ['_slewdn_l0']
+calypso_7156_1 CBD:   slewup: ['_slewup_l0']
+calypso_7156_1 CBD:   swing: ['_swing_l0']
+calypso_7156_1 CBD:   tsetdn: ['_tsetdn_u0']
+calypso_7156_1 CBD:   tsetup: ['_tsetup_u0']
+calypso_7156_1 CBD:   ugbw: ['_ugbw_l0']
+calypso_7156_1 CBD:   vds_drv: ['_swing_l0']
+calypso_7156_1 CBD:   vgs_drv: ['_in_offs_l0']
+calypso_7156_1 CBD: Pass 1, optimization
+calypso_7156_1 CBD: iter 1, f=3.352561e+01
+calypso_7156_1 CBD:           dif_l:    1.630900e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    1.742573e-06
+calypso_7156_1 CBD:            nl_w:    5.395395e-05
+calypso_7156_1 CBD:            nm_l:    1.175522e-06
+calypso_7156_1 CBD:            nm_w:    1.826080e-05
+calypso_7156_1 CBD:            pm_l:    2.009347e-06
+calypso_7156_1 CBD:           pm_w0:    4.085526e-05
+calypso_7156_1 CBD:           pm_w1:    2.900843e-05
+calypso_7156_1 CBD:           pm_w2:    9.500000e-05
+calypso_7156_1 CBD:           pm_w3:    3.612264e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.827e-09 _slewdn_l0 : -1.73e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.228e+02 _cmrr_l0 : -2.28e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    6.969e+01 _gain_l0 : 0.00441
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -9.544e-03 _in_offs_l0 : -5.23e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      9.428e-03 _in_offs_u0 : -5.29e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      7.293e-05 _isup_u0 : -8.18e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      3.808e-02 _ovrshdn_u0 : -6.19e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      2.957e-03 _ovrshup_u0 : -9.7e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.199e+01 _pm_l0 : -3.31e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.375e+02 _psrr_vdd_l0 : -9.65e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.089e+01 _psrr_vss_l0 : -1.28e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      6.297e+06 _slewdn_l0 : -2.15e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      4.097e+06 _slewup_l0 : -1.05e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.641e-01 _swing_l0 : -2.14e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.796e-07 _tsetdn_u0 : -9.28e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.207e-07 _tsetup_u0 : -8.72e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      4.560e+06 _ugbw_l0 : -1.4e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    | o   -3.353e-02 _swing_l0 : 33.5
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      1.456e-02 _in_offs_l0 : -0.00127
+calypso_7156_1 CBD: iter 12, f=1.318394e+01
+calypso_7156_1 CBD:           dif_l:    2.049053e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    1.812058e-06
+calypso_7156_1 CBD:            nl_w:    5.868657e-05
+calypso_7156_1 CBD:            nm_l:    8.380210e-07
+calypso_7156_1 CBD:            nm_w:    1.710054e-05
+calypso_7156_1 CBD:            pm_l:    2.626031e-06
+calypso_7156_1 CBD:           pm_w0:    4.421390e-05
+calypso_7156_1 CBD:           pm_w1:    3.935914e-05
+calypso_7156_1 CBD:           pm_w2:    9.500000e-05
+calypso_7156_1 CBD:           pm_w3:    3.734396e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.431e-09 _slewdn_l0 : 4.31
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.260e+02 _cmrr_l0 : -2.6e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.046e+01 _gain_l0 : -6.52e-09
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.634e-03 _in_offs_l0 : -5.68e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.793e-03 _in_offs_u0 : -5.6e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.606e-05 _isup_u0 : -8.6e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      4.842e-02 _ovrshdn_u0 : -5.16e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      9.233e-04 _ovrshup_u0 : -9.91e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.813e+01 _pm_l0 : 0.0312
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.379e+02 _psrr_vdd_l0 : -9.71e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.105e+01 _psrr_vss_l0 : -1.5e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.385e+06 _slewdn_l0 : -1.19e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      2.667e+06 _slewup_l0 : -3.34e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.843e-01 _swing_l0 : -2.81e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.559e-07 _tsetdn_u0 : -8.98e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      4.941e-07 _tsetup_u0 : -8.02e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.359e+06 _ugbw_l0 : 0.16
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    | o   -8.561e-03 _swing_l0 : 8.55
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.324e-04 _in_offs_l0 : 0.131
+calypso_7156_1 CBD: iter 28, f=8.726728e+00
+calypso_7156_1 CBD:           dif_l:    2.049053e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    1.812058e-06
+calypso_7156_1 CBD:            nl_w:    6.124372e-05
+calypso_7156_1 CBD:            nm_l:    8.380210e-07
+calypso_7156_1 CBD:            nm_w:    2.062520e-05
+calypso_7156_1 CBD:            pm_l:    2.626031e-06
+calypso_7156_1 CBD:           pm_w0:    4.723477e-05
+calypso_7156_1 CBD:           pm_w1:    3.935914e-05
+calypso_7156_1 CBD:           pm_w2:    9.329397e-05
+calypso_7156_1 CBD:           pm_w3:    3.734396e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.440e-09 _slewdn_l0 : 4.4
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.253e+02 _cmrr_l0 : -2.53e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.042e+01 _psrr_vss_l0 : -6.02e-09
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.630e-03 _in_offs_l0 : -5.69e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.812e-03 _in_offs_u0 : -5.59e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.583e-05 _isup_u0 : -8.6e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      4.504e-02 _ovrshdn_u0 : -5.5e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      8.146e-04 _ovrshup_u0 : -9.92e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.848e+01 _pm_l0 : 0.0253
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.377e+02 _psrr_vdd_l0 : -9.67e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.098e+01 _psrr_vss_l0 : -1.4e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.334e+06 _slewdn_l0 : -1.17e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      2.651e+06 _slewup_l0 : -3.25e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.903e-01 _swing_l0 : -3.01e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.590e-07 _tsetdn_u0 : -8.96e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      4.973e-07 _tsetup_u0 : -8.01e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.326e+06 _ugbw_l0 : 0.169
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    | o   -1.279e-03 _swing_l0 : 1.27
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.864e-03 _in_offs_l0 : 2.86
+calypso_7156_1 CBD: iter 44, f=8.501328e+00
+calypso_7156_1 CBD:           dif_l:    2.034454e-06
+calypso_7156_1 CBD:           dif_w:    1.359241e-06
+calypso_7156_1 CBD:            nl_l:    1.800222e-06
+calypso_7156_1 CBD:            nl_w:    6.118432e-05
+calypso_7156_1 CBD:            nm_l:    8.678731e-07
+calypso_7156_1 CBD:            nm_w:    1.989062e-05
+calypso_7156_1 CBD:            pm_l:    2.610928e-06
+calypso_7156_1 CBD:           pm_w0:    4.760641e-05
+calypso_7156_1 CBD:           pm_w1:    3.884127e-05
+calypso_7156_1 CBD:           pm_w2:    9.286161e-05
+calypso_7156_1 CBD:           pm_w3:    3.735052e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.427e-09 _slewdn_l0 : 4.27
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.295e+02 _cmrr_l0 : -2.95e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.141e+01 _gain_l0 : -2.02e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -7.608e-03 _in_offs_l0 : -6.2e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      7.711e-03 _in_offs_u0 : -6.14e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.646e-05 _isup_u0 : -8.59e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      7.697e-02 _ovrshdn_u0 : -2.3e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      1.469e-03 _ovrshup_u0 : -9.85e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.571e+01 _pm_l0 : 0.0716
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.384e+02 _psrr_vdd_l0 : -9.77e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.203e+01 _psrr_vss_l0 : -2.9e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.596e+06 _slewdn_l0 : -1.3e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      2.884e+06 _slewup_l0 : -4.42e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.895e-01 _swing_l0 : -2.98e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.447e-07 _tsetdn_u0 : -9.02e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      4.582e-07 _tsetup_u0 : -8.17e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.712e+06 _ugbw_l0 : 0.072
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    | o   -1.942e-03 _swing_l0 : 1.93
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.514e-03 _in_offs_l0 : 2.16
+calypso_7156_1 CBD: iter 45, f=8.308478e+00
+calypso_7156_1 CBD:           dif_l:    2.019855e-06
+calypso_7156_1 CBD:           dif_w:    1.718481e-06
+calypso_7156_1 CBD:            nl_l:    1.788386e-06
+calypso_7156_1 CBD:            nl_w:    6.112492e-05
+calypso_7156_1 CBD:            nm_l:    8.977253e-07
+calypso_7156_1 CBD:            nm_w:    1.915604e-05
+calypso_7156_1 CBD:            pm_l:    2.595825e-06
+calypso_7156_1 CBD:           pm_w0:    4.797805e-05
+calypso_7156_1 CBD:           pm_w1:    3.832340e-05
+calypso_7156_1 CBD:           pm_w2:    9.242926e-05
+calypso_7156_1 CBD:           pm_w3:    3.735708e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.413e-09 _slewdn_l0 : 4.13
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.369e+02 _cmrr_l0 : -3.69e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.207e+01 _gain_l0 : -2.95e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -6.963e-03 _in_offs_l0 : -6.52e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      7.020e-03 _in_offs_u0 : -6.49e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.711e-05 _isup_u0 : -8.57e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    1.019e-01 _ovrshdn_u0 : 0.0191
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      2.162e-03 _ovrshup_u0 : -9.78e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.383e+01 _pm_l0 : 0.103
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.389e+02 _psrr_vdd_l0 : -9.84e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.274e+01 _psrr_vss_l0 : -3.91e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.756e+06 _slewdn_l0 : -1.38e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      3.055e+06 _slewup_l0 : -5.27e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.886e-01 _swing_l0 : -2.95e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      3.885e-07 _tsetdn_u0 : -8.45e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      4.309e-07 _tsetup_u0 : -8.28e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      4.010e+06 _ugbw_l0 : -2.43e-09
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    | o   -2.685e-03 _swing_l0 : 2.68
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.126e-03 _in_offs_l0 : 1.38
+calypso_7156_1 CBD: iter 64, f=6.289896e+00
+calypso_7156_1 CBD:           dif_l:    2.038836e-06
+calypso_7156_1 CBD:           dif_w:    1.101737e-06
+calypso_7156_1 CBD:            nl_l:    1.814186e-06
+calypso_7156_1 CBD:            nl_w:    6.058296e-05
+calypso_7156_1 CBD:            nm_l:    9.094694e-07
+calypso_7156_1 CBD:            nm_w:    1.886704e-05
+calypso_7156_1 CBD:            pm_l:    2.578143e-06
+calypso_7156_1 CBD:           pm_w0:    4.788944e-05
+calypso_7156_1 CBD:           pm_w1:    3.892214e-05
+calypso_7156_1 CBD:           pm_w2:    9.218762e-05
+calypso_7156_1 CBD:           pm_w3:    3.707298e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.382e-09 _slewdn_l0 : 3.82
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.252e+02 _cmrr_l0 : -2.52e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.072e+01 _gain_l0 : -1.02e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.320e-03 _in_offs_l0 : -5.84e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.484e-03 _in_offs_u0 : -5.76e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.598e-05 _isup_u0 : -8.6e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      5.226e-02 _ovrshdn_u0 : -4.77e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      1.028e-03 _ovrshup_u0 : -9.9e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.804e+01 _pm_l0 : 0.0327
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.379e+02 _psrr_vdd_l0 : -9.71e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.129e+01 _psrr_vss_l0 : -1.84e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.449e+06 _slewdn_l0 : -1.22e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      2.756e+06 _slewup_l0 : -3.78e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.909e-01 _swing_l0 : -3.03e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.527e-07 _tsetdn_u0 : -8.99e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      4.779e-07 _tsetup_u0 : -8.09e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.462e+06 _ugbw_l0 : 0.135
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    | o   -1.025e-03 _swing_l0 : 1.02
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.081e-03 _in_offs_l0 : 1.29
+calypso_7156_1 CBD: iter 65, f=5.078155e+00
+calypso_7156_1 CBD:           dif_l:    2.057816e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    1.839986e-06
+calypso_7156_1 CBD:            nl_w:    6.004100e-05
+calypso_7156_1 CBD:            nm_l:    9.212135e-07
+calypso_7156_1 CBD:            nm_w:    1.857805e-05
+calypso_7156_1 CBD:            pm_l:    2.560462e-06
+calypso_7156_1 CBD:           pm_w0:    4.780082e-05
+calypso_7156_1 CBD:           pm_w1:    3.952087e-05
+calypso_7156_1 CBD:           pm_w2:    9.194598e-05
+calypso_7156_1 CBD:           pm_w3:    3.678888e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.355e-09 _slewdn_l0 : 3.55
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.252e+02 _cmrr_l0 : -2.52e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.035e+01 _psrr_vss_l0 : -4.97e-09
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.625e-03 _in_offs_l0 : -5.69e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.825e-03 _in_offs_u0 : -5.59e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.489e-05 _isup_u0 : -8.63e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      4.166e-02 _ovrshdn_u0 : -5.83e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      8.210e-04 _ovrshup_u0 : -9.92e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.906e+01 _pm_l0 : 0.0157
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.377e+02 _psrr_vdd_l0 : -9.68e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.092e+01 _psrr_vss_l0 : -1.32e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.318e+06 _slewdn_l0 : -1.16e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      2.663e+06 _slewup_l0 : -3.31e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.931e-01 _swing_l0 : -3.1e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.605e-07 _tsetdn_u0 : -8.96e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      4.929e-07 _tsetup_u0 : -8.03e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.306e+06 _ugbw_l0 : 0.173
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      7.276e-04 _swing_l0 : -0.00692
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.111e-03 _in_offs_l0 : 1.35
+calypso_7156_1 CBD: iter 68, f=4.284359e+00
+calypso_7156_1 CBD:           dif_l:    2.043218e-06
+calypso_7156_1 CBD:           dif_w:    1.359241e-06
+calypso_7156_1 CBD:            nl_l:    1.828150e-06
+calypso_7156_1 CBD:            nl_w:    5.998160e-05
+calypso_7156_1 CBD:            nm_l:    9.510657e-07
+calypso_7156_1 CBD:            nm_w:    1.784347e-05
+calypso_7156_1 CBD:            pm_l:    2.545359e-06
+calypso_7156_1 CBD:           pm_w0:    4.817246e-05
+calypso_7156_1 CBD:           pm_w1:    3.900300e-05
+calypso_7156_1 CBD:           pm_w2:    9.151363e-05
+calypso_7156_1 CBD:           pm_w3:    3.679544e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.341e-09 _slewdn_l0 : 3.41
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.286e+02 _cmrr_l0 : -2.86e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.136e+01 _gain_l0 : -1.95e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -7.608e-03 _in_offs_l0 : -6.2e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      7.728e-03 _in_offs_u0 : -6.14e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.551e-05 _isup_u0 : -8.61e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      7.274e-02 _ovrshdn_u0 : -2.73e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      1.513e-03 _ovrshup_u0 : -9.85e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.633e+01 _pm_l0 : 0.0612
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.385e+02 _psrr_vdd_l0 : -9.78e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.196e+01 _psrr_vss_l0 : -2.8e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.576e+06 _slewdn_l0 : -1.29e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      2.888e+06 _slewup_l0 : -4.44e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.923e-01 _swing_l0 : -3.08e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.462e-07 _tsetdn_u0 : -9.02e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      4.547e-07 _tsetup_u0 : -8.18e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.690e+06 _ugbw_l0 : 0.0775
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      4.543e-05 _swing_l0 : -0.00693
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -7.438e-04 _in_offs_l0 : 0.743
+calypso_7156_1 CBD: iter 70, f=4.123256e+00
+calypso_7156_1 CBD:           dif_l:    2.035836e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    1.887840e-06
+calypso_7156_1 CBD:            nl_w:    5.913932e-05
+calypso_7156_1 CBD:            nm_l:    1.010756e-06
+calypso_7156_1 CBD:            nm_w:    1.768413e-05
+calypso_7156_1 CBD:            pm_l:    2.512758e-06
+calypso_7156_1 CBD:           pm_w0:    4.931960e-05
+calypso_7156_1 CBD:           pm_w1:    3.951873e-05
+calypso_7156_1 CBD:           pm_w2:    9.004482e-05
+calypso_7156_1 CBD:           pm_w3:    3.552283e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.259e-09 _slewdn_l0 : 2.59
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.250e+02 _cmrr_l0 : -2.5e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.042e+01 _psrr_vss_l0 : -5.94e-09
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.498e-03 _in_offs_l0 : -5.75e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.721e-03 _in_offs_u0 : -5.64e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.335e-05 _isup_u0 : -8.67e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      3.894e-02 _ovrshdn_u0 : -6.11e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      8.359e-04 _ovrshup_u0 : -9.92e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.923e+01 _pm_l0 : 0.0128
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.380e+02 _psrr_vdd_l0 : -9.72e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.101e+01 _psrr_vss_l0 : -1.44e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.308e+06 _slewdn_l0 : -1.15e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      2.694e+06 _slewup_l0 : -3.47e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.978e-01 _swing_l0 : -3.26e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.616e-07 _tsetdn_u0 : -8.95e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      4.847e-07 _tsetup_u0 : -8.06e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.297e+06 _ugbw_l0 : 0.176
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      5.033e-03 _swing_l0 : -0.00693
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -1.106e-03 _in_offs_l0 : 1.35
+calypso_7156_1 CBD: iter 73, f=2.455152e+00
+calypso_7156_1 CBD:           dif_l:    1.977440e-06
+calypso_7156_1 CBD:           dif_w:    2.436962e-06
+calypso_7156_1 CBD:            nl_l:    1.840534e-06
+calypso_7156_1 CBD:            nl_w:    5.890078e-05
+calypso_7156_1 CBD:            nm_l:    1.130184e-06
+calypso_7156_1 CBD:            nm_w:    1.474532e-05
+calypso_7156_1 CBD:            pm_l:    2.452346e-06
+calypso_7156_1 CBD:           pm_w0:    5.080618e-05
+calypso_7156_1 CBD:           pm_w1:    3.744629e-05
+calypso_7156_1 CBD:           pm_w2:    8.831588e-05
+calypso_7156_1 CBD:           pm_w3:    3.554955e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.205e-09 _slewdn_l0 : 2.05
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.432e+02 _cmrr_l0 : -4.32e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.291e+01 _gain_l0 : -4.16e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -6.119e-03 _in_offs_l0 : -6.94e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      6.154e-03 _in_offs_u0 : -6.92e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.584e-05 _isup_u0 : -8.6e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    1.283e-01 _ovrshdn_u0 : 0.283
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      4.002e-03 _ovrshup_u0 : -9.6e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.248e+01 _pm_l0 : 0.125
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.399e+02 _psrr_vdd_l0 : -9.99e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.362e+01 _psrr_vss_l0 : -5.17e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.918e+06 _slewdn_l0 : -1.46e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      3.296e+06 _slewup_l0 : -6.48e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.943e-01 _swing_l0 : -3.14e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      4.278e-07 _tsetdn_u0 : -8.29e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.864e-07 _tsetup_u0 : -8.45e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      4.405e+06 _ugbw_l0 : -1.01e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.752e-03 _swing_l0 : -0.00694
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      6.175e-04 _in_offs_l0 : -0.00103
+calypso_7156_1 CBD: iter 84, f=2.368810e+00
+calypso_7156_1 CBD:           dif_l:    1.775886e-06
+calypso_7156_1 CBD:           dif_w:    2.896867e-06
+calypso_7156_1 CBD:            nl_l:    1.931268e-06
+calypso_7156_1 CBD:            nl_w:    5.908970e-05
+calypso_7156_1 CBD:            nm_l:    1.108780e-06
+calypso_7156_1 CBD:            nm_w:    1.279884e-05
+calypso_7156_1 CBD:            pm_l:    2.437611e-06
+calypso_7156_1 CBD:           pm_w0:    5.096075e-05
+calypso_7156_1 CBD:           pm_w1:    3.803215e-05
+calypso_7156_1 CBD:           pm_w2:    8.810597e-05
+calypso_7156_1 CBD:           pm_w3:    3.526712e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.185e-09 _slewdn_l0 : 1.85
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.455e+02 _cmrr_l0 : -4.55e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.353e+01 _gain_l0 : -5.04e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -5.685e-03 _in_offs_l0 : -7.16e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      5.693e-03 _in_offs_u0 : -7.15e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.473e-05 _isup_u0 : -8.63e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    1.364e-01 _ovrshdn_u0 : 0.364
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      3.909e-03 _ovrshup_u0 : -9.61e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.022e+01 _pm_l0 : 0.163
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.411e+02 _psrr_vdd_l0 : -1.02e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.426e+01 _psrr_vss_l0 : -6.09e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.874e+06 _slewdn_l0 : -1.44e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      3.271e+06 _slewup_l0 : -6.35e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.953e-01 _swing_l0 : -3.18e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      4.345e-07 _tsetdn_u0 : -8.26e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.860e-07 _tsetup_u0 : -8.46e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      4.578e+06 _ugbw_l0 : -1.44e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      2.995e-03 _swing_l0 : -0.00694
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      1.721e-03 _in_offs_l0 : -0.001
+calypso_7156_1 CBD: iter 85, f=2.224458e+00
+calypso_7156_1 CBD:           dif_l:    1.574331e-06
+calypso_7156_1 CBD:           dif_w:    3.356771e-06
+calypso_7156_1 CBD:            nl_l:    2.022003e-06
+calypso_7156_1 CBD:            nl_w:    5.927863e-05
+calypso_7156_1 CBD:            nm_l:    1.087376e-06
+calypso_7156_1 CBD:            nm_w:    1.085235e-05
+calypso_7156_1 CBD:            pm_l:    2.422877e-06
+calypso_7156_1 CBD:           pm_w0:    5.111533e-05
+calypso_7156_1 CBD:           pm_w1:    3.861800e-05
+calypso_7156_1 CBD:           pm_w2:    8.789605e-05
+calypso_7156_1 CBD:           pm_w3:    3.498469e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.164e-09 _slewdn_l0 : 1.64
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.465e+02 _cmrr_l0 : -4.65e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.398e+01 _gain_l0 : -5.69e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -5.378e-03 _in_offs_l0 : -7.31e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      5.365e-03 _in_offs_u0 : -7.32e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.366e-05 _isup_u0 : -8.66e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    | o    1.396e-01 _ovrshdn_u0 : 0.396
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      3.459e-03 _ovrshup_u0 : -9.65e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    4.833e+01 _pm_l0 : 0.195
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.423e+02 _psrr_vdd_l0 : -1.03e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.475e+01 _psrr_vss_l0 : -6.79e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.809e+06 _slewdn_l0 : -1.4e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      3.229e+06 _slewup_l0 : -6.14e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      3.964e-01 _swing_l0 : -3.21e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      4.356e-07 _tsetdn_u0 : -8.26e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.888e-07 _tsetup_u0 : -8.44e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      4.699e+06 _ugbw_l0 : -1.75e-07
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      4.213e-03 _swing_l0 : -0.00694
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      2.719e-03 _in_offs_l0 : -0.000977
+calypso_7156_1 CBD: iter 86, f=1.515760e+00
+calypso_7156_1 CBD:           dif_l:    1.580535e-06
+calypso_7156_1 CBD:           dif_w:    1.005725e-06
+calypso_7156_1 CBD:            nl_l:    2.043096e-06
+calypso_7156_1 CBD:            nl_w:    6.004195e-05
+calypso_7156_1 CBD:            nm_l:    1.079931e-06
+calypso_7156_1 CBD:            nm_w:    9.234101e-06
+calypso_7156_1 CBD:            pm_l:    2.429081e-06
+calypso_7156_1 CBD:           pm_w0:    5.331371e-05
+calypso_7156_1 CBD:           pm_w1:    3.840427e-05
+calypso_7156_1 CBD:           pm_w2:    8.685793e-05
+calypso_7156_1 CBD:           pm_w3:    3.309164e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    | o    2.080e-09 _slewdn_l0 : 0.799
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.288e+02 _cmrr_l0 : -2.88e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.130e+01 _psrr_vss_l0 : -1.86e-08
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.168e-03 _in_offs_l0 : -5.92e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.379e-03 _in_offs_u0 : -5.81e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.177e-05 _isup_u0 : -8.71e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      3.643e-02 _ovrshdn_u0 : -6.36e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      8.869e-04 _ovrshup_u0 : -9.91e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    | o    5.675e+01 _pm_l0 : 0.0542
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.402e+02 _psrr_vdd_l0 : -1e-06
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.191e+01 _psrr_vss_l0 : -2.72e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.439e+06 _slewdn_l0 : -1.22e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      2.816e+06 _slewup_l0 : -4.08e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.048e-01 _swing_l0 : -3.49e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.548e-07 _tsetdn_u0 : -8.98e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      4.564e-07 _tsetup_u0 : -8.17e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.561e+06 _ugbw_l0 : 0.11
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.307e-02 _swing_l0 : -0.00691
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    | o   -5.614e-04 _in_offs_l0 : 0.56
+calypso_7156_1 CBD: iter 95, f=1.312638e-01
+calypso_7156_1 CBD:           dif_l:    2.004893e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    2.050541e-06
+calypso_7156_1 CBD:            nl_w:    5.964502e-05
+calypso_7156_1 CBD:            nm_l:    9.620537e-07
+calypso_7156_1 CBD:            nm_w:    2.007334e-05
+calypso_7156_1 CBD:            pm_l:    1.865752e-06
+calypso_7156_1 CBD:           pm_w0:    6.302322e-05
+calypso_7156_1 CBD:           pm_w1:    3.767148e-05
+calypso_7156_1 CBD:           pm_w2:    9.021657e-05
+calypso_7156_1 CBD:           pm_w3:    3.336643e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.690e-09 _slewdn_l0 : -3.1e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.222e+02 _cmrr_l0 : -2.22e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    6.966e+01 _gain_l0 : 0.00484
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.552e-03 _in_offs_l0 : -5.72e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.746e-03 _in_offs_u0 : -5.63e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      5.365e-05 _isup_u0 : -8.66e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      2.724e-02 _ovrshdn_u0 : -7.28e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      1.833e-03 _ovrshup_u0 : -9.82e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.279e+01 _pm_l0 : -4.65e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.380e+02 _psrr_vdd_l0 : -9.72e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.029e+01 _psrr_vss_l0 : -4.2e-09
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      4.811e+06 _slewdn_l0 : -1.41e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      3.205e+06 _slewup_l0 : -6.02e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.326e-01 _swing_l0 : -4.42e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.368e-07 _tsetdn_u0 : -9.05e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.982e-07 _tsetup_u0 : -8.41e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.462e+06 _ugbw_l0 : 0.134
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      3.705e-02 _swing_l0 : -0.00702
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      6.725e-04 _in_offs_l0 : -0.000956
+calypso_7156_1 CBD: iter 109, f=8.404214e-02
+calypso_7156_1 CBD:           dif_l:    2.082909e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    2.090480e-06
+calypso_7156_1 CBD:            nl_w:    5.881872e-05
+calypso_7156_1 CBD:            nm_l:    9.438292e-07
+calypso_7156_1 CBD:            nm_w:    1.690172e-05
+calypso_7156_1 CBD:            pm_l:    1.897858e-06
+calypso_7156_1 CBD:           pm_w0:    6.398120e-05
+calypso_7156_1 CBD:           pm_w1:    3.387202e-05
+calypso_7156_1 CBD:           pm_w2:    9.205237e-05
+calypso_7156_1 CBD:           pm_w3:    3.403434e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.732e-09 _slewdn_l0 : -2.68e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.230e+02 _cmrr_l0 : -2.3e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    6.964e+01 _gain_l0 : 0.00516
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.697e-03 _in_offs_l0 : -5.65e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.871e-03 _in_offs_u0 : -5.56e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      6.018e-05 _isup_u0 : -8.5e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      3.515e-02 _ovrshdn_u0 : -6.49e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      2.618e-03 _ovrshup_u0 : -9.74e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.296e+01 _pm_l0 : -4.93e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.379e+02 _psrr_vdd_l0 : -9.71e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.038e+01 _psrr_vss_l0 : -5.36e-09
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      5.335e+06 _slewdn_l0 : -1.67e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      3.537e+06 _slewup_l0 : -7.69e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.147e-01 _swing_l0 : -3.82e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.155e-07 _tsetdn_u0 : -9.14e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.671e-07 _tsetup_u0 : -8.53e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.652e+06 _ugbw_l0 : 0.0869
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.656e-02 _swing_l0 : -0.00696
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      8.722e-03 _in_offs_l0 : -0.00109
+calypso_7156_1 CBD: iter 110, f=4.009860e-02
+calypso_7156_1 CBD:           dif_l:    2.095317e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    2.070627e-06
+calypso_7156_1 CBD:            nl_w:    5.811646e-05
+calypso_7156_1 CBD:            nm_l:    9.177722e-07
+calypso_7156_1 CBD:            nm_w:    1.323775e-05
+calypso_7156_1 CBD:            pm_l:    1.912748e-06
+calypso_7156_1 CBD:           pm_w0:    6.422546e-05
+calypso_7156_1 CBD:           pm_w1:    3.130724e-05
+calypso_7156_1 CBD:           pm_w2:    9.357902e-05
+calypso_7156_1 CBD:           pm_w3:    3.473660e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.757e-09 _slewdn_l0 : -2.43e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.243e+02 _cmrr_l0 : -2.43e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    6.952e+01 _gain_l0 : 0.00689
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.908e-03 _in_offs_l0 : -5.55e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      9.039e-03 _in_offs_u0 : -5.48e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      6.586e-05 _isup_u0 : -8.35e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      3.958e-02 _ovrshdn_u0 : -6.04e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      3.209e-03 _ovrshup_u0 : -9.68e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.320e+01 _pm_l0 : -5.33e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.384e+02 _psrr_vdd_l0 : -9.77e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.036e+01 _psrr_vss_l0 : -5.16e-09
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      5.742e+06 _slewdn_l0 : -1.87e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      3.800e+06 _slewup_l0 : -9e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.015e-01 _swing_l0 : -3.38e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.015e-07 _tsetdn_u0 : -9.19e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.454e-07 _tsetup_u0 : -8.62e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.835e+06 _ugbw_l0 : 0.0413
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.864e-03 _swing_l0 : -0.00691
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      1.402e-02 _in_offs_l0 : -0.0012
+calypso_7156_1 CBD: iter 124, f=3.721394e-02
+calypso_7156_1 CBD:           dif_l:    2.018774e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    2.076986e-06
+calypso_7156_1 CBD:            nl_w:    5.669858e-05
+calypso_7156_1 CBD:            nm_l:    8.358786e-07
+calypso_7156_1 CBD:            nm_w:    1.063671e-05
+calypso_7156_1 CBD:            pm_l:    1.902744e-06
+calypso_7156_1 CBD:           pm_w0:    6.355755e-05
+calypso_7156_1 CBD:           pm_w1:    3.233773e-05
+calypso_7156_1 CBD:           pm_w2:    9.499881e-05
+calypso_7156_1 CBD:           pm_w3:    3.538162e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.765e-09 _slewdn_l0 : -2.35e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.262e+02 _cmrr_l0 : -2.62e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    6.955e+01 _gain_l0 : 0.00648
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.920e-03 _in_offs_l0 : -5.54e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      9.024e-03 _in_offs_u0 : -5.49e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      6.497e-05 _isup_u0 : -8.38e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      3.908e-02 _ovrshdn_u0 : -6.09e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      2.952e-03 _ovrshup_u0 : -9.7e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.264e+01 _pm_l0 : -4.4e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.386e+02 _psrr_vdd_l0 : -9.8e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.042e+01 _psrr_vss_l0 : -6.07e-09
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      5.663e+06 _slewdn_l0 : -1.83e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      3.678e+06 _slewup_l0 : -8.39e-07
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.016e-01 _swing_l0 : -3.39e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      2.045e-07 _tsetdn_u0 : -9.18e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.548e-07 _tsetup_u0 : -8.58e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    | o    3.845e+06 _ugbw_l0 : 0.0389
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.002e-03 _swing_l0 : -0.00692
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      1.492e-02 _in_offs_l0 : -0.00119
+calypso_7156_1 CBD: iter 126, f=-4.392859e-03
+calypso_7156_1 CBD:           dif_l:    1.949677e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    2.007888e-06
+calypso_7156_1 CBD:            nl_w:    5.740275e-05
+calypso_7156_1 CBD:            nm_l:    9.049763e-07
+calypso_7156_1 CBD:            nm_w:    9.932545e-06
+calypso_7156_1 CBD:            pm_l:    1.860246e-06
+calypso_7156_1 CBD:           pm_w0:    6.103285e-05
+calypso_7156_1 CBD:           pm_w1:    2.934167e-05
+calypso_7156_1 CBD:           pm_w2:    9.500000e-05
+calypso_7156_1 CBD:           pm_w3:    3.285691e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.641e-09 _slewdn_l0 : -3.59e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.262e+02 _cmrr_l0 : -2.62e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    | o    6.974e+01 _gain_l0 : 0.00375
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.734e-03 _in_offs_l0 : -5.63e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.861e-03 _in_offs_u0 : -5.57e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      6.761e-05 _isup_u0 : -8.31e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      4.545e-02 _ovrshdn_u0 : -5.45e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      3.604e-03 _ovrshup_u0 : -9.64e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.254e+01 _pm_l0 : -4.24e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.392e+02 _psrr_vdd_l0 : -9.89e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.066e+01 _psrr_vss_l0 : -9.45e-09
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      6.249e+06 _slewdn_l0 : -2.12e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      4.179e+06 _slewup_l0 : -1.09e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.010e-01 _swing_l0 : -3.37e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.845e-07 _tsetdn_u0 : -9.26e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.125e-07 _tsetup_u0 : -8.75e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      4.124e+06 _ugbw_l0 : -3.09e-08
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.797e-03 _swing_l0 : -0.00688
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      1.175e-02 _in_offs_l0 : -0.00125
+calypso_7156_1 CBD: iter 140, f=-8.120751e-03
+calypso_7156_1 CBD:           dif_l:    1.912360e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    2.067578e-06
+calypso_7156_1 CBD:            nl_w:    5.848548e-05
+calypso_7156_1 CBD:            nm_l:    9.289540e-07
+calypso_7156_1 CBD:            nm_w:    1.019124e-05
+calypso_7156_1 CBD:            pm_l:    1.894533e-06
+calypso_7156_1 CBD:           pm_w0:    6.203722e-05
+calypso_7156_1 CBD:           pm_w1:    3.027651e-05
+calypso_7156_1 CBD:           pm_w2:    9.409808e-05
+calypso_7156_1 CBD:           pm_w3:    3.160649e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.637e-09 _slewdn_l0 : -3.63e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.262e+02 _cmrr_l0 : -2.62e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.021e+01 _gain_l0 : -2.99e-09
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.388e-03 _in_offs_l0 : -5.81e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.556e-03 _in_offs_u0 : -5.72e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      6.380e-05 _isup_u0 : -8.4e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      4.753e-02 _ovrshdn_u0 : -5.25e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      3.415e-03 _ovrshup_u0 : -9.66e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.139e+01 _pm_l0 : -2.32e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.398e+02 _psrr_vdd_l0 : -9.97e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.103e+01 _psrr_vss_l0 : -1.47e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      6.067e+06 _slewdn_l0 : -2.03e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      4.076e+06 _slewup_l0 : -1.04e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.087e-01 _swing_l0 : -3.62e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.894e-07 _tsetdn_u0 : -9.24e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.193e-07 _tsetup_u0 : -8.72e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      4.038e+06 _ugbw_l0 : -9.58e-09
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.132e-02 _swing_l0 : -0.0069
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      8.017e-03 _in_offs_l0 : -0.00121
+calypso_7156_1 CBD: Pass 2, full corner evaluation
+calypso_7156_1 CBD: Pass 2, corner summary
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.637e-09 _slewdn_l0 : -3.63e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.262e+02 _cmrr_l0 : -2.62e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.021e+01 _gain_l0 : -2.99e-09
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.388e-03 _in_offs_l0 : -5.81e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.556e-03 _in_offs_u0 : -5.72e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      6.380e-05 _isup_u0 : -8.4e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      4.753e-02 _ovrshdn_u0 : -5.25e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      3.415e-03 _ovrshup_u0 : -9.66e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.139e+01 _pm_l0 : -2.32e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.398e+02 _psrr_vdd_l0 : -9.97e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.103e+01 _psrr_vss_l0 : -1.47e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      6.067e+06 _slewdn_l0 : -2.03e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      4.076e+06 _slewup_l0 : -1.04e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.087e-01 _swing_l0 : -3.62e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.894e-07 _tsetdn_u0 : -9.24e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.193e-07 _tsetup_u0 : -8.72e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      4.038e+06 _ugbw_l0 : -9.58e-09
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.132e-02 _swing_l0 : -0.00575
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      7.752e-03 _ovrshup_u0 : -0.00118
+calypso_7156_1 CBD: Pass 2, updating corner lists
+calypso_7156_1 CBD:   area: ['_slewdn_l0']
+calypso_7156_1 CBD:   cmrr: ['_cmrr_l0']
+calypso_7156_1 CBD:   dep gain: ['_cmrr_l0', '_gain_l0', '_psrr_vdd_l0', '_psrr_vss_l0']
+calypso_7156_1 CBD:   dep gain_com: ['_cmrr_l0']
+calypso_7156_1 CBD:   gain: ['_cmrr_l0', '_gain_l0', '_psrr_vdd_l0', '_psrr_vss_l0']
+calypso_7156_1 CBD:   in_offs: ['_in_offs_l0', '_in_offs_u0']
+calypso_7156_1 CBD:   in_offs: ['_in_offs_l0', '_in_offs_u0']
+calypso_7156_1 CBD:   isup: ['_isup_u0']
+calypso_7156_1 CBD:   ovrshdn: ['_ovrshdn_u0']
+calypso_7156_1 CBD:   ovrshup: ['_ovrshup_u0']
+calypso_7156_1 CBD:   pm: ['_pm_l0']
+calypso_7156_1 CBD:   psrr_vdd: ['_psrr_vdd_l0']
+calypso_7156_1 CBD:   dep gain: ['_cmrr_l0', '_gain_l0', '_psrr_vdd_l0', '_psrr_vss_l0']
+calypso_7156_1 CBD:   dep gain_vdd: ['_psrr_vdd_l0']
+calypso_7156_1 CBD:   psrr_vss: ['_psrr_vss_l0']
+calypso_7156_1 CBD:   dep gain: ['_cmrr_l0', '_gain_l0', '_psrr_vdd_l0', '_psrr_vss_l0']
+calypso_7156_1 CBD:   dep gain_vss: ['_psrr_vss_l0']
+calypso_7156_1 CBD:   slewdn: ['_slewdn_l0']
+calypso_7156_1 CBD:   slewup: ['_slewup_l0']
+calypso_7156_1 CBD:   swing: ['_swing_l0']
+calypso_7156_1 CBD:   tsetdn: ['_tsetdn_u0']
+calypso_7156_1 CBD:   tsetup: ['_tsetup_u0']
+calypso_7156_1 CBD:   ugbw: ['_ugbw_l0']
+calypso_7156_1 CBD:   vds_drv: ['_swing_l0']
+calypso_7156_1 CBD:   vgs_drv: ['_in_offs_l0', '_ovrshup_u0']
+calypso_7156_1 CBD: Pass 2, optimization
+calypso_7156_1 CBD: iter 1, f=-8.116350e-03
+calypso_7156_1 CBD:           dif_l:    1.912360e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    2.067578e-06
+calypso_7156_1 CBD:            nl_w:    5.848548e-05
+calypso_7156_1 CBD:            nm_l:    9.289540e-07
+calypso_7156_1 CBD:            nm_w:    1.019124e-05
+calypso_7156_1 CBD:            pm_l:    1.894533e-06
+calypso_7156_1 CBD:           pm_w0:    6.203722e-05
+calypso_7156_1 CBD:           pm_w1:    3.027651e-05
+calypso_7156_1 CBD:           pm_w2:    9.409808e-05
+calypso_7156_1 CBD:           pm_w3:    3.160649e-05
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.637e-09 _slewdn_l0 : -3.63e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.262e+02 _cmrr_l0 : -2.62e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.021e+01 _gain_l0 : -2.99e-09
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.388e-03 _in_offs_l0 : -5.81e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.556e-03 _in_offs_u0 : -5.72e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      6.380e-05 _isup_u0 : -8.4e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      4.753e-02 _ovrshdn_u0 : -5.25e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      3.415e-03 _ovrshup_u0 : -9.66e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.139e+01 _pm_l0 : -2.32e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.398e+02 _psrr_vdd_l0 : -9.97e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.103e+01 _psrr_vss_l0 : -1.47e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      6.067e+06 _slewdn_l0 : -2.03e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      4.076e+06 _slewup_l0 : -1.04e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.087e-01 _swing_l0 : -3.62e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.894e-07 _tsetdn_u0 : -9.24e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.193e-07 _tsetup_u0 : -8.72e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      4.038e+06 _ugbw_l0 : -9.58e-09
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.132e-02 _swing_l0 : -0.0069
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      7.752e-03 _ovrshup_u0 : -0.0012
+calypso_7156_1 CBD: Pass 3, full corner evaluation
+calypso_7156_1 CBD: Pass 3, corner summary
+calypso_7156_1 CBD:         area  <  2.000e-09    |      1.637e-09 _slewdn_l0 : -3.63e-06
+calypso_7156_1 CBD:         cmrr  >  1.000e+02    |      1.262e+02 _cmrr_l0 : -2.62e-07
+calypso_7156_1 CBD:         gain  >  7.000e+01    |      7.021e+01 _gain_l0 : -2.99e-09
+calypso_7156_1 CBD:      in_offs  >  -2.000e-02   |     -8.388e-03 _in_offs_l0 : -5.81e-07
+calypso_7156_1 CBD:      in_offs  <  2.000e-02    |      8.556e-03 _in_offs_u0 : -5.72e-07
+calypso_7156_1 CBD:         isup  <  4.000e-04    |      6.380e-05 _isup_u0 : -8.4e-07
+calypso_7156_1 CBD:      ovrshdn  <  1.000e-01    |      4.753e-02 _ovrshdn_u0 : -5.25e-07
+calypso_7156_1 CBD:      ovrshup  <  1.000e-01    |      3.415e-03 _ovrshup_u0 : -9.66e-07
+calypso_7156_1 CBD:           pm  >  6.000e+01    |      6.139e+01 _pm_l0 : -2.32e-08
+calypso_7156_1 CBD:     psrr_vdd  >  7.000e+01    |      1.398e+02 _psrr_vdd_l0 : -9.97e-07
+calypso_7156_1 CBD:     psrr_vss  >  7.000e+01    |      7.103e+01 _psrr_vss_l0 : -1.47e-08
+calypso_7156_1 CBD:       slewdn  >  2.000e+06    |      6.067e+06 _slewdn_l0 : -2.03e-06
+calypso_7156_1 CBD:       slewup  >  2.000e+06    |      4.076e+06 _slewup_l0 : -1.04e-06
+calypso_7156_1 CBD:        swing  >  3.000e-01    |      4.087e-01 _swing_l0 : -3.62e-07
+calypso_7156_1 CBD:       tsetdn  <  2.500e-06    |      1.894e-07 _tsetdn_u0 : -9.24e-07
+calypso_7156_1 CBD:       tsetup  <  2.500e-06    |      3.193e-07 _tsetup_u0 : -8.72e-07
+calypso_7156_1 CBD:         ugbw  >  4.000e+06    |      4.038e+06 _ugbw_l0 : -9.58e-09
+calypso_7156_1 CBD:      vds_drv  >  0.000e+00    |      1.132e-02 _swing_l0 : -0.00575
+calypso_7156_1 CBD:      vgs_drv  >  0.000e+00    |      7.752e-03 _ovrshup_u0 : -0.00118
+calypso_7156_1 CBD: Pass 3, updating corner lists
+calypso_7156_1 CBD:   area: ['_slewdn_l0']
+calypso_7156_1 CBD:   cmrr: ['_cmrr_l0']
+calypso_7156_1 CBD:   dep gain: ['_cmrr_l0', '_gain_l0', '_psrr_vdd_l0', '_psrr_vss_l0']
+calypso_7156_1 CBD:   dep gain_com: ['_cmrr_l0']
+calypso_7156_1 CBD:   gain: ['_cmrr_l0', '_gain_l0', '_psrr_vdd_l0', '_psrr_vss_l0']
+calypso_7156_1 CBD:   in_offs: ['_in_offs_l0', '_in_offs_u0']
+calypso_7156_1 CBD:   in_offs: ['_in_offs_l0', '_in_offs_u0']
+calypso_7156_1 CBD:   isup: ['_isup_u0']
+calypso_7156_1 CBD:   ovrshdn: ['_ovrshdn_u0']
+calypso_7156_1 CBD:   ovrshup: ['_ovrshup_u0']
+calypso_7156_1 CBD:   pm: ['_pm_l0']
+calypso_7156_1 CBD:   psrr_vdd: ['_psrr_vdd_l0']
+calypso_7156_1 CBD:   dep gain: ['_cmrr_l0', '_gain_l0', '_psrr_vdd_l0', '_psrr_vss_l0']
+calypso_7156_1 CBD:   dep gain_vdd: ['_psrr_vdd_l0']
+calypso_7156_1 CBD:   psrr_vss: ['_psrr_vss_l0']
+calypso_7156_1 CBD:   dep gain: ['_cmrr_l0', '_gain_l0', '_psrr_vdd_l0', '_psrr_vss_l0']
+calypso_7156_1 CBD:   dep gain_vss: ['_psrr_vss_l0']
+calypso_7156_1 CBD:   slewdn: ['_slewdn_l0']
+calypso_7156_1 CBD:   slewup: ['_slewup_l0']
+calypso_7156_1 CBD:   swing: ['_swing_l0']
+calypso_7156_1 CBD:   tsetdn: ['_tsetdn_u0']
+calypso_7156_1 CBD:   tsetup: ['_tsetup_u0']
+calypso_7156_1 CBD:   ugbw: ['_ugbw_l0']
+calypso_7156_1 CBD:   vds_drv: ['_swing_l0']
+calypso_7156_1 CBD:   vgs_drv: ['_in_offs_l0', '_ovrshup_u0']
+calypso_7156_1 CBD: Corners unchanged, stopping
+calypso_7156_1 CBD: Analysis count: {'ac': 864, 'acvss': 144, 'tran': 864, 'dc': 432, 'acvdd': 144, 'accom': 144, 'op': 472}
+calypso_7156_1 CBD: Result:
+calypso_7156_1 CBD:           dif_l:    1.912360e-06
+calypso_7156_1 CBD:           dif_w:    1.000000e-06
+calypso_7156_1 CBD:            nl_l:    2.067578e-06
+calypso_7156_1 CBD:            nl_w:    5.848548e-05
+calypso_7156_1 CBD:            nm_l:    9.289540e-07
+calypso_7156_1 CBD:            nm_w:    1.019124e-05
+calypso_7156_1 CBD:            pm_l:    1.894533e-06
+calypso_7156_1 CBD:           pm_w0:    6.203722e-05
+calypso_7156_1 CBD:           pm_w1:    3.027651e-05
+calypso_7156_1 CBD:           pm_w2:    9.409808e-05
+calypso_7156_1 CBD:           pm_w3:    3.160649e-05
+calypso_7156_1 YT:         area  <  2.000e-09    |      1.637e-09 _slewdn_l0 : -3.63e-06
+calypso_7156_1 YT:         cmrr  >  1.000e+02    |      1.262e+02 _cmrr_l0 : -2.62e-07
+calypso_7156_1 YT:         gain  >  7.000e+01    |      7.021e+01 _gain_l0 : -2.99e-09
+calypso_7156_1 YT:      in_offs  >  -2.000e-02   |     -8.388e-03 _in_offs_l0 : -5.81e-07
+calypso_7156_1 YT:      in_offs  <  2.000e-02    |      8.556e-03 _in_offs_u0 : -5.72e-07
+calypso_7156_1 YT:         isup  <  4.000e-04    |      6.380e-05 _isup_u0 : -8.4e-07
+calypso_7156_1 YT:      ovrshdn  <  1.000e-01    |      4.753e-02 _ovrshdn_u0 : -5.25e-07
+calypso_7156_1 YT:      ovrshup  <  1.000e-01    |      3.415e-03 _ovrshup_u0 : -9.66e-07
+calypso_7156_1 YT:           pm  >  6.000e+01    |      6.139e+01 _pm_l0 : -2.32e-08
+calypso_7156_1 YT:     psrr_vdd  >  7.000e+01    |      1.398e+02 _psrr_vdd_l0 : -9.97e-07
+calypso_7156_1 YT:     psrr_vss  >  7.000e+01    |      7.103e+01 _psrr_vss_l0 : -1.47e-08
+calypso_7156_1 YT:       slewdn  >  2.000e+06    |      6.067e+06 _slewdn_l0 : -2.03e-06
+calypso_7156_1 YT:       slewup  >  2.000e+06    |      4.076e+06 _slewup_l0 : -1.04e-06
+calypso_7156_1 YT:        swing  >  3.000e-01    |      4.087e-01 _swing_l0 : -3.62e-07
+calypso_7156_1 YT:       tsetdn  <  2.500e-06    |      1.894e-07 _tsetdn_u0 : -9.24e-07
+calypso_7156_1 YT:       tsetup  <  2.500e-06    |      3.193e-07 _tsetup_u0 : -8.72e-07
+calypso_7156_1 YT:         ugbw  >  4.000e+06    |      4.038e+06 _ugbw_l0 : -9.58e-09
+calypso_7156_1 YT:      vds_drv  >  0.000e+00    |      1.132e-02 _swing_l0 : -0.00575
+calypso_7156_1 YT:      vgs_drv  >  0.000e+00    |      7.752e-03 _ovrshup_u0 : -0.00118
+calypso_7156_1 YT: Analysis count: {'ac': 864, 'acvss': 144, 'tran': 864, 'dc': 432, 'acvdd': 144, 'accom': 144, 'op': 472}
+calypso_7156_1 YT: Result:
+calypso_7156_1 YT:           dif_l:    1.912360e-06
+calypso_7156_1 YT:           dif_w:    1.000000e-06
+calypso_7156_1 YT:            nl_l:    2.067578e-06
+calypso_7156_1 YT:            nl_w:    5.848548e-05
+calypso_7156_1 YT:            nm_l:    9.289540e-07
+calypso_7156_1 YT:            nm_w:    1.019124e-05
+calypso_7156_1 YT:            pm_l:    1.894533e-06
+calypso_7156_1 YT:           pm_w0:    6.203722e-05
+calypso_7156_1 YT:           pm_w1:    3.027651e-05
+calypso_7156_1 YT:           pm_w2:    9.409808e-05
+calypso_7156_1 YT:           pm_w3:    3.160649e-05
+calypso_7156_1 YT: Computing worst case, pass 2
+calypso_7156_1 YT:       cmrr >    1.24254e+02   goal=   1.00000e+02 d=   3.00000e+00 neval= 180 1 OK
+calypso_7156_1 YT:       gain >    7.02015e+01   goal=   7.00000e+01 d=   3.00000e+00 neval= 160 2 OK
+calypso_7156_1 YT:    in_offs <    8.60655e-03   goal=   2.00000e-02 d=   3.00000e+00 neval= 131 1 OK
+calypso_7156_1 YT:    in_offs >   -8.43889e-03   goal=  -2.00000e-02 d=   3.00000e+00 neval= 102 1 OK
+calypso_7156_1 YT:       isup <    6.38039e-05   goal=   4.00000e-04 d=   3.00000e+00 neval= 175 2 OK
+calypso_7156_1 YT:    ovrshdn <    4.79872e-02   goal=   1.00000e-01 d=   3.00000e+00 neval= 252 2 OK
+calypso_7156_1 YT:    ovrshup <    1.77105e-02   goal=   1.00000e-01 d=   3.00000e+00 neval= 183 1 OK
+calypso_7156_1 YT:         pm >    6.13212e+01   goal=   6.00000e+01 d=   3.00000e+00 neval= 104 1 OK
+calypso_7156_1 YT:   psrr_vdd >    1.38544e+02   goal=   7.00000e+01 d=   3.00000e+00 neval= 271 2 OK
+calypso_7156_1 YT:   psrr_vss >    7.10166e+01   goal=   7.00000e+01 d=   3.00000e+00 neval= 104 1 OK
+calypso_7156_1 YT:     slewdn >    6.04643e+06   goal=   2.00000e+06 d=   3.00000e+00 neval= 111 1 OK
+calypso_7156_1 YT:     slewup >    4.07098e+06   goal=   2.00000e+06 d=   3.00000e+00 neval= 113 1 OK
+calypso_7156_1 YT:      swing >    4.08576e-01   goal=   3.00000e-01 d=   3.00000e+00 neval= 107 1 OK
+calypso_7156_1 YT:     tsetdn <    1.89808e-07   goal=   2.50000e-06 d=   3.00000e+00 neval= 106 1 OK
+calypso_7156_1 YT:     tsetup <    3.19838e-07   goal=   2.50000e-06 d=   3.00000e+00 neval= 169 2 OK
+calypso_7156_1 YT:       ugbw >    4.03679e+06   goal=   4.00000e+06 d=   3.00000e+00 neval= 101 1 OK
+calypso_7156_1 YT: Analysis count: {'ac': 920, 'acvss': 104, 'tran': 934, 'dc': 340, 'acvdd': 271, 'accom': 180, 'op': 175}
+calypso_7156_1 YT: Updating corner sets
+calypso_7156_1 YT: Corners unchanged, stopping
+calypso_7156_1 YT: Total analysis count: {'ac': 2797, 'acvss': 494, 'tran': 3561, 'dc': 1245, 'acvdd': 682, 'accom': 623, 'op': 886}
+calypso_7156_1 YT: Passes: 1
+          dif_l:    1.912360e-06
+          dif_w:    1.000000e-06
+           nl_l:    2.067578e-06
+           nl_w:    5.848548e-05
+           nm_l:    9.289540e-07
+           nm_w:    1.019124e-05
+           pm_l:    1.894533e-06
+          pm_w0:    6.203722e-05
+          pm_w1:    3.027651e-05
+          pm_w2:    9.409808e-05
+          pm_w3:    3.160649e-05
+      cmrr >    1.24254e+02   goal=   1.00000e+02 d=   3.00000e+00 neval= 180 1 OK
+      gain >    7.02015e+01   goal=   7.00000e+01 d=   3.00000e+00 neval= 160 2 OK
+   in_offs <    8.60655e-03   goal=   2.00000e-02 d=   3.00000e+00 neval= 131 1 OK
+   in_offs >   -8.43889e-03   goal=  -2.00000e-02 d=   3.00000e+00 neval= 102 1 OK
+      isup <    6.38039e-05   goal=   4.00000e-04 d=   3.00000e+00 neval= 175 2 OK
+   ovrshdn <    4.79872e-02   goal=   1.00000e-01 d=   3.00000e+00 neval= 252 2 OK
+   ovrshup <    1.77105e-02   goal=   1.00000e-01 d=   3.00000e+00 neval= 183 1 OK
+        pm >    6.13212e+01   goal=   6.00000e+01 d=   3.00000e+00 neval= 104 1 OK
+  psrr_vdd >    1.38544e+02   goal=   7.00000e+01 d=   3.00000e+00 neval= 271 2 OK
+  psrr_vss >    7.10166e+01   goal=   7.00000e+01 d=   3.00000e+00 neval= 104 1 OK
+    slewdn >    6.04643e+06   goal=   2.00000e+06 d=   3.00000e+00 neval= 111 1 OK
+    slewup >    4.07098e+06   goal=   2.00000e+06 d=   3.00000e+00 neval= 113 1 OK
+     swing >    4.08576e-01   goal=   3.00000e-01 d=   3.00000e+00 neval= 107 1 OK
+    tsetdn <    1.89808e-07   goal=   2.50000e-06 d=   3.00000e+00 neval= 106 1 OK
+    tsetup <    3.19838e-07   goal=   2.50000e-06 d=   3.00000e+00 neval= 169 2 OK
+      ugbw >    4.03679e+06   goal=   4.00000e+06 d=   3.00000e+00 neval= 101 1 OK
+        area  <  2.000e-09    |      1.637e-09 _slewdn_l0 : -3.63e-06
+        cmrr  >  1.000e+02    |      1.262e+02 _cmrr_l0 : -2.62e-07
+        gain  >  7.000e+01    |      7.021e+01 _gain_l0 : -2.99e-09
+     in_offs  >  -2.000e-02   |     -8.388e-03 _in_offs_l0 : -5.81e-07
+     in_offs  <  2.000e-02    |      8.556e-03 _in_offs_u0 : -5.72e-07
+        isup  <  4.000e-04    |      6.380e-05 _isup_u0 : -8.4e-07
+     ovrshdn  <  1.000e-01    |      4.753e-02 _ovrshdn_u0 : -5.25e-07
+     ovrshup  <  1.000e-01    |      3.415e-03 _ovrshup_u0 : -9.66e-07
+          pm  >  6.000e+01    |      6.139e+01 _pm_l0 : -2.32e-08
+    psrr_vdd  >  7.000e+01    |      1.398e+02 _psrr_vdd_l0 : -9.97e-07
+    psrr_vss  >  7.000e+01    |      7.103e+01 _psrr_vss_l0 : -1.47e-08
+      slewdn  >  2.000e+06    |      6.067e+06 _slewdn_l0 : -2.03e-06
+      slewup  >  2.000e+06    |      4.076e+06 _slewup_l0 : -1.04e-06
+       swing  >  3.000e-01    |      4.087e-01 _swing_l0 : -3.62e-07
+      tsetdn  <  2.500e-06    |      1.894e-07 _tsetdn_u0 : -9.24e-07
+      tsetup  <  2.500e-06    |      3.193e-07 _tsetup_u0 : -8.72e-07
+        ugbw  >  4.000e+06    |      4.038e+06 _ugbw_l0 : -9.58e-09
+     vds_drv  >  0.000e+00    |      1.132e-02 _swing_l0 : -0.00575
+     vgs_drv  >  0.000e+00    |      7.752e-03 _ovrshup_u0 : -0.00118
+{'ac': 2797, 'acvss': 494, 'tran': 3561, 'dc': 1245, 'acvdd': 682, 'accom': 623, 'op': 886}

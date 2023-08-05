@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>/mnt/data/Data/pytest/demo/design/miller/miller.sch</source>
+    <date>Thu 23 Aug 2018 11:57:27 AM CEST</date>
+    <tool>Eeschema 4.0.5+dfsg1-4</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>miller.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="Mn4">
+      <value>NMOS</value>
+      <fields>
+        <field name="Model">submodn</field>
+        <field name="w">{mirr_wd}</field>
+        <field name="l">{mirr_ld}</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="NMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE21E6</tstamp>
+    </comp>
+    <comp ref="Mn3">
+      <value>NMOS</value>
+      <fields>
+        <field name="Model">submodn</field>
+        <field name="w">{mirr_w}</field>
+        <field name="l">{mirr_l}</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="NMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2249</tstamp>
+    </comp>
+    <comp ref="Mn5">
+      <value>NMOS</value>
+      <fields>
+        <field name="Model">submodn</field>
+        <field name="w">{mirr_wo}</field>
+        <field name="l">{mirr_l}</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="NMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE22B1</tstamp>
+    </comp>
+    <comp ref="Mp1">
+      <value>PMOS</value>
+      <fields>
+        <field name="Model">submodp</field>
+        <field name="w">{load_w}</field>
+        <field name="l">{load_l}</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="PMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2309</tstamp>
+    </comp>
+    <comp ref="Mp2">
+      <value>PMOS</value>
+      <fields>
+        <field name="Model">submodp</field>
+        <field name="w">{load_w}</field>
+        <field name="l">{load_l}</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="PMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE23A0</tstamp>
+    </comp>
+    <comp ref="Mp3">
+      <value>PMOS</value>
+      <fields>
+        <field name="Model">submodp</field>
+        <field name="w">{out_w}</field>
+        <field name="l">{out_l}</field>
+        <field name="m">2</field>
+      </fields>
+      <libsource lib="pyopus" part="PMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2470</tstamp>
+    </comp>
+    <comp ref="I1">
+      <value>ISRC</value>
+      <fields>
+        <field name="Specification">dc={ibias}</field>
+      </fields>
+      <libsource lib="pyopus" part="ISRC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2F9A</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>RES</value>
+      <fields>
+        <field name="r">{r_out}</field>
+      </fields>
+      <libsource lib="pyopus" part="RES"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE39B2</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>CAP</value>
+      <fields>
+        <field name="c">{c_out}</field>
+      </fields>
+      <libsource lib="pyopus" part="CAP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE3A28</tstamp>
+    </comp>
+    <comp ref="Mn1">
+      <value>NMOS</value>
+      <fields>
+        <field name="Model">submodn</field>
+        <field name="w">{diff_w}</field>
+        <field name="l">{diff_l}</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="NMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE412B</tstamp>
+    </comp>
+    <comp ref="Mn2">
+      <value>NMOS</value>
+      <fields>
+        <field name="Model">submodn</field>
+        <field name="w">{diff_w}</field>
+        <field name="l">{diff_l}</field>
+        <field name="m">1</field>
+      </fields>
+      <libsource lib="pyopus" part="NMOS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE41C7</tstamp>
+    </comp>
+    <comp ref="A3">
+      <value>SUBCKT</value>
+      <fields>
+        <field name="Name">miller</field>
+        <field name="Pins">inp inn out vdd vss</field>
+      </fields>
+      <libsource lib="pyopus" part="SUBCKT"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE4A2A</tstamp>
+    </comp>
+    <comp ref="A1">
+      <value>OUTPUT_FILE</value>
+      <fields>
+        <field name="Name">miller.inc</field>
+      </fields>
+      <libsource lib="pyopus" part="OUTPUT_FILE"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE4ADD</tstamp>
+    </comp>
+    <comp ref="A2">
+      <value>INCLUDE</value>
+      <fields>
+        <field name="Filename">mosmm.inc</field>
+        <field name="Position">top</field>
+      </fields>
+      <libsource lib="pyopus" part="INCLUDE"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5B7E92E6</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="pyopus" part="CAP">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">CAP</field>
+        <field name="c">&lt;capacitance&gt;</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="INCLUDE">
+      <fields>
+        <field name="Reference">A</field>
+        <field name="Value">INCLUDE</field>
+        <field name="Filename">&lt;file name&gt;</field>
+        <field name="Position">top</field>
+      </fields>
+    </libpart>
+    <libpart lib="pyopus" part="ISRC">
+      <fields>
+        <field name="Reference">I</field>
+        <field name="Value">ISRC</field>
+        <field name="Specification">dc=0</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P" type="passive"/>
+        <pin num="2" name="N" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="NMOS">
+      <fields>
+        <field name="Reference">M</field>
+        <field name="Value">NMOS</field>
+        <field name="Model">&lt;model name&gt;</field>
+        <field name="w">&lt;w&gt;</field>
+        <field name="l">&lt;l&gt;</field>
+        <field name="m">&lt;m&gt;</field>
+      </fields>
+      <pins>
+        <pin num="1" name="D" type="passive"/>
+        <pin num="2" name="G" type="input"/>
+        <pin num="3" name="S" type="passive"/>
+        <pin num="4" name="B" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="OUTPUT_FILE">
+      <fields>
+        <field name="Reference">A</field>
+        <field name="Value">OUTPUT_FILE</field>
+        <field name="Name">&lt;file name&gt;</field>
+      </fields>
+    </libpart>
+    <libpart lib="pyopus" part="PMOS">
+      <fields>
+        <field name="Reference">M</field>
+        <field name="Value">PMOS</field>
+        <field name="Model">&lt;model name&gt;</field>
+        <field name="w">&lt;w&gt;</field>
+        <field name="l">&lt;l&gt;</field>
+        <field name="m">&lt;m&gt;</field>
+      </fields>
+      <pins>
+        <pin num="1" name="D" type="passive"/>
+        <pin num="2" name="G" type="input"/>
+        <pin num="3" name="S" type="passive"/>
+        <pin num="4" name="B" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="RES">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">RES</field>
+        <field name="r">&lt;resistance&gt;</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="SUBCKT">
+      <fields>
+        <field name="Reference">A</field>
+        <field name="Value">SUBCKT</field>
+        <field name="Name">&lt;name&gt;</field>
+        <field name="Pins">&lt;pin names&gt;</field>
+      </fields>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="pyopus">
+      <uri>pyopus.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="Net-(Mn1-Pad1)">
+      <node ref="Mn1" pin="1"/>
+      <node ref="Mp1" pin="1"/>
+      <node ref="Mp1" pin="2"/>
+      <node ref="Mp2" pin="2"/>
+    </net>
+    <net code="2" name="Net-(Mn1-Pad3)">
+      <node ref="Mn1" pin="3"/>
+      <node ref="Mn2" pin="3"/>
+      <node ref="Mn4" pin="1"/>
+    </net>
+    <net code="3" name="Net-(C1-Pad2)">
+      <node ref="Mp3" pin="2"/>
+      <node ref="Mn2" pin="1"/>
+      <node ref="Mp2" pin="1"/>
+      <node ref="C1" pin="2"/>
+    </net>
+    <net code="4" name="Net-(I1-Pad2)">
+      <node ref="Mn5" pin="2"/>
+      <node ref="Mn3" pin="2"/>
+      <node ref="Mn3" pin="1"/>
+      <node ref="Mn4" pin="2"/>
+      <node ref="I1" pin="2"/>
+    </net>
+    <net code="5" name="inp">
+      <node ref="Mn2" pin="2"/>
+    </net>
+    <net code="6" name="inn">
+      <node ref="Mn1" pin="2"/>
+    </net>
+    <net code="7" name="out">
+      <node ref="Mn5" pin="1"/>
+      <node ref="R1" pin="1"/>
+      <node ref="Mp3" pin="1"/>
+    </net>
+    <net code="8" name="Net-(C1-Pad1)">
+      <node ref="R1" pin="2"/>
+      <node ref="C1" pin="1"/>
+    </net>
+    <net code="9" name="vdd">
+      <node ref="Mp3" pin="3"/>
+      <node ref="Mp3" pin="4"/>
+      <node ref="Mp1" pin="4"/>
+      <node ref="Mp1" pin="3"/>
+      <node ref="Mp2" pin="3"/>
+      <node ref="Mp2" pin="4"/>
+      <node ref="I1" pin="1"/>
+    </net>
+    <net code="10" name="vss">
+      <node ref="Mn1" pin="4"/>
+      <node ref="Mn2" pin="4"/>
+      <node ref="Mn5" pin="4"/>
+      <node ref="Mn4" pin="3"/>
+      <node ref="Mn4" pin="4"/>
+      <node ref="Mn5" pin="3"/>
+      <node ref="Mn3" pin="3"/>
+      <node ref="Mn3" pin="4"/>
+    </net>
+  </nets>
+</export>

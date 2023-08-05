@@ -1,0 +1,16 @@
+// Test topology - rejection ratios
+// Spectre
+
+simulator lang=spectre
+
+x1 (inp inn out vdd vss bias 0 vdd) amp
+vdd (vdd 0)        vsource dc=vdd mag=acvdd
+vss (vss 0)        vsource dc=0 mag=acvss
+ibias (vdd bias)   isource dc=ibias
+rfb (out1 inn)     resistor r=rfb
+efb (out1 0 out 0) vcvs gain=1
+cin (inn com)      capacitor c=cin
+vcom (com 0)       vsource dc=vdd/2 mag=accom
+vdif (inp com)     vsource dc=0 mag=acdif
+rload (out 0)      resistor r=rload
+cload (out 0)      capacitor c=cload

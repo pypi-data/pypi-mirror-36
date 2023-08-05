@@ -1,0 +1,3828 @@
+{
+  "oppar": [
+    [
+      "vdd",
+      "1.8",
+      "1.7",
+      "2.0"
+    ],
+    [
+      "temperature",
+      "25",
+      "0",
+      "100"
+    ]
+  ],
+  "measures": [
+    [
+      "isup",
+      {
+        "upper": "1000e-6",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "op",
+        "expression": "isup=-i('vdd1')",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "out_op",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "op",
+        "expression": "v('out')",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "vgs_drv",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "#mosList",
+        "vector": true,
+        "analysis": "op",
+        "expression": "res=[]\n# Loop over all MOS instances in mosList\nfor inst in mosList:\n\t# Generate full name for MOS instance\n\tfullName=ipath(inst, 'x1', 'm0')\n\t# Extract vgs and vth from results\n\tvgs=p(fullName, 'vgs')\n\tvth=p(fullName, 'vth')\n\t# Compute difference and append to results list\n\tdiff=float(vgs-vth)\n\tres.append(diff)\n\t# Uncomment to print a debug message during evaluation\n\t# m.debug(\"%s: vgs=%f vth=%f\" % (fullName, vgs, vth))\n# Return NumPy array\n__result=np.array(res)",
+        "norm": "",
+        "lower": "0"
+      }
+    ],
+    [
+      "vds_drv",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "#mosList",
+        "vector": true,
+        "analysis": "op",
+        "expression": "res=[]\n# Loop over all MOS instances in mosList\nfor inst in mosList:\n\t# Generate full name for MOS instance\n\tfullName=ipath(inst, 'x1', 'm0')\n\t# Extract vds and vdsat from results\n\tvds=p(fullName, 'vds')\n\tvdsat=p(fullName, 'vdsat')\n\t# Compute difference and append to results list\n\tdiff=float(vds-vdsat)\n\tres.append(diff)\n# Return NumPy array\n__result=np.array(res)",
+        "norm": "",
+        "lower": "0"
+      }
+    ],
+    [
+      "swing",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "dc",
+        "expression": "m.DCswingAtGain(v('out'), v('inp', 'inn'), 0.5, 'out')",
+        "norm": "",
+        "lower": "1"
+      }
+    ],
+    [
+      "gain",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "ac",
+        "expression": "m.ACmag(m.ACtf(v('out'), v('inp', 'inn')))[0]",
+        "norm": "",
+        "lower": "60"
+      }
+    ],
+    [
+      "gain_com",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "accom",
+        "expression": "m.ACmag(m.ACtf(v('out'), 1.0))[0]",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "gain_vdd",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "acvdd",
+        "expression": "m.ACmag(m.ACtf(v('out'), 1.0))[0]",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "gain_vss",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "acvss",
+        "expression": "m.ACmag(m.ACtf(v('out'), 1.0))[0]",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "ugbw",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "ac",
+        "expression": "m.ACugbw(m.ACtf(v('out'), v('inp', 'inn')), scale())",
+        "norm": "",
+        "lower": "10e6"
+      }
+    ],
+    [
+      "pm",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "ac",
+        "expression": "m.ACphaseMargin(m.ACtf(v('out'), v('inp', 'inn')))",
+        "norm": "",
+        "lower": "50"
+      }
+    ],
+    [
+      "overshdn",
+      {
+        "upper": "0.1",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "tran",
+        "expression": "m.Tundershoot(v('out'), scale(), t1=param['tstart'], t2=(param['pw']+param['tstart']+param['tr']))",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "overshup",
+      {
+        "upper": "0.1",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "tran",
+        "expression": "m.Tovershoot(v('out'), scale(), t1=(param['pw']+param['tstart']+param['tr']))",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "tsetdn",
+      {
+        "upper": "1000e-9",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "tran",
+        "expression": "m.TsettlingTime(v('out'), scale(), t1=param['tstart'], t2=(param['pw']+param['tstart']+param['tr']))",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "tsetup",
+      {
+        "upper": "1000e-6",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "tran",
+        "expression": "m.TsettlingTime(v('out'), scale(), t1=(param['pw']+param['tstart'])+param['tr'])",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "slewdn",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "translew",
+        "expression": "m.TslewRate('falling', v('out'), scale(), t1=param['tstart'], t2=(param['pw']+param['tstart']+param['tr']))",
+        "norm": "",
+        "lower": "2e6"
+      }
+    ],
+    [
+      "slewup",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "translew",
+        "expression": "m.TslewRate('rising', v('out'), scale(), t1=(param['pw']+param['tstart']+param['tr']))",
+        "norm": "",
+        "lower": "2e6"
+      }
+    ],
+    [
+      "cmrr",
+      {
+        "upper": "",
+        "depends": [
+          [
+            "gain"
+          ],
+          [
+            "gain_com"
+          ]
+        ],
+        "components": "",
+        "vector": false,
+        "analysis": "",
+        "expression": "result['gain'][cornerName]-result['gain_com'][cornerName]",
+        "norm": "",
+        "lower": "90"
+      }
+    ],
+    [
+      "psrr_vdd",
+      {
+        "upper": "",
+        "depends": [
+          [
+            "gain"
+          ],
+          [
+            "gain_vdd"
+          ]
+        ],
+        "components": "",
+        "vector": false,
+        "analysis": "",
+        "expression": "result['gain'][cornerName]-result['gain_vdd'][cornerName]",
+        "norm": "",
+        "lower": "60"
+      }
+    ],
+    [
+      "psrr_vss",
+      {
+        "upper": "",
+        "depends": [
+          [
+            "gain"
+          ],
+          [
+            "gain_vss"
+          ]
+        ],
+        "components": "",
+        "vector": false,
+        "analysis": "",
+        "expression": "result['gain'][cornerName]-result['gain_vss'][cornerName]",
+        "norm": "",
+        "lower": "60"
+      }
+    ],
+    [
+      "onoise1k",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "noise",
+        "expression": "m.XatI(ns('output'), m.IatXval(scale(), 1e3)[0])",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "inoise1k",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "noise",
+        "expression": "m.XatI(ns('input'), m.IatXval(scale(), 1e3)[0])",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "in1kmn2id",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "noise",
+        "expression": "m.XatI(ns('input', ipath('xmn2', 'x1', 'm0'), 'id'), m.IatXval(scale(), 1e3)[0])",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "in1kmn2rd",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "noise",
+        "expression": "m.XatI(ns('input', ipath('xmn2', 'x1', 'm0'), 'rd'), m.IatXval(scale(), 1e3)[0])",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "in1kmn2",
+      {
+        "upper": "",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "noise",
+        "expression": "m.XatI(ns('input', ipath('xmn2', 'x1', 'm0')), m.IatXval(scale(), 1e3)[0])",
+        "norm": "",
+        "lower": ""
+      }
+    ],
+    [
+      "area",
+      {
+        "upper": "9000e-12",
+        "depends": [],
+        "components": "",
+        "vector": false,
+        "analysis": "",
+        "expression": "(\n  (param['mirr_w']+param['mirr_wo'])*param['mirr_l']\n +param['mirr_wd']*param['mirr_ld']\n +param['out_w']*param['out_l']*(2)\n +param['load_w']*param['load_l']*(1+1)\n +param['diff_w']*param['diff_l']*(1+1)\n +param['r_out']/1e3*12e-12\n +param['c_out']/1e-12*100e-12\n)",
+        "norm": "100e-12",
+        "lower": ""
+      }
+    ]
+  ],
+  "analyses": [
+    [
+      "op",
+      {
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tb"
+          ]
+        ],
+        "command": "op()",
+        "head": "opus",
+        "params": [
+          [
+            "rin",
+            "1e6"
+          ],
+          [
+            "rfb",
+            "1e6"
+          ]
+        ],
+        "saves": [
+          [
+            "default",
+            ""
+          ],
+          [
+            "devvar",
+            "#ipath(mosList, 'x1', 'm0');#['vgs', 'vth', 'vds', 'vdsat']"
+          ]
+        ],
+        "options": []
+      }
+    ],
+    [
+      "dc",
+      {
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tb"
+          ]
+        ],
+        "command": "dc(-2.0, 2.0, 'lin', 100, 'vin1', 'dc')",
+        "head": "opus",
+        "params": [
+          [
+            "rin",
+            "1e6"
+          ],
+          [
+            "rfb",
+            "1e6"
+          ]
+        ],
+        "saves": [],
+        "options": []
+      }
+    ],
+    [
+      "ac",
+      {
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tb"
+          ]
+        ],
+        "command": "ac(1, 1e12, 'dec', 10)",
+        "head": "opus",
+        "params": [
+          [
+            "rin",
+            "1e6"
+          ],
+          [
+            "rfb",
+            "1e6"
+          ]
+        ],
+        "saves": [],
+        "options": []
+      }
+    ],
+    [
+      "accom",
+      {
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tbrr"
+          ]
+        ],
+        "command": "ac(1, 1e12, 'dec', 10)",
+        "head": "opus",
+        "params": [
+          [
+            "rfb",
+            "1e9"
+          ],
+          [
+            "cin",
+            "0.1"
+          ],
+          [
+            "accom",
+            "1"
+          ],
+          [
+            "acvdd",
+            "0"
+          ],
+          [
+            "acvss",
+            "0"
+          ]
+        ],
+        "saves": [],
+        "options": []
+      }
+    ],
+    [
+      "acvdd",
+      {
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tbrr"
+          ]
+        ],
+        "command": "ac(1, 1e12, 'dec', 10)",
+        "head": "opus",
+        "params": [
+          [
+            "rfb",
+            "1e9"
+          ],
+          [
+            "cin",
+            "0.1"
+          ],
+          [
+            "accom",
+            "0"
+          ],
+          [
+            "acvdd",
+            "1"
+          ],
+          [
+            "acvss",
+            "0"
+          ]
+        ],
+        "saves": [],
+        "options": []
+      }
+    ],
+    [
+      "acvss",
+      {
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tbrr"
+          ]
+        ],
+        "command": "ac(1, 1e12, 'dec', 10)",
+        "head": "opus",
+        "params": [
+          [
+            "rfb",
+            "1e9"
+          ],
+          [
+            "cin",
+            "0.1"
+          ],
+          [
+            "accom",
+            "0"
+          ],
+          [
+            "acvdd",
+            "0"
+          ],
+          [
+            "acvss",
+            "1"
+          ]
+        ],
+        "saves": [],
+        "options": []
+      }
+    ],
+    [
+      "noise",
+      {
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tb"
+          ]
+        ],
+        "command": "noise(1, 1e12, 'dec', 10, 'vin1', 'out')",
+        "head": "opus",
+        "params": [
+          [
+            "rin",
+            "1e6"
+          ],
+          [
+            "rfb",
+            "1e6"
+          ]
+        ],
+        "saves": [],
+        "options": []
+      }
+    ],
+    [
+      "tran",
+      {
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tb"
+          ]
+        ],
+        "command": "tran(param['tr']*1, param['tstart']+param['pw']*2)",
+        "head": "opus",
+        "params": [
+          [
+            "rin",
+            "1e6"
+          ],
+          [
+            "rfb",
+            "1e6"
+          ]
+        ],
+        "saves": [],
+        "options": [
+          [
+            "reltol",
+            "1e-4"
+          ]
+        ]
+      }
+    ],
+    [
+      "translew",
+      {
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tb"
+          ]
+        ],
+        "command": "tran(param['tr']*1, param['tstart']+param['pw']*2)",
+        "head": "opus",
+        "params": [
+          [
+            "rin",
+            "1e6"
+          ],
+          [
+            "rfb",
+            "1e6"
+          ],
+          [
+            "lev1",
+            "-0.8"
+          ],
+          [
+            "lev2",
+            "0.8"
+          ]
+        ],
+        "saves": [],
+        "options": [
+          [
+            "reltol",
+            "1e-4"
+          ]
+        ]
+      }
+    ]
+  ],
+  "info": {
+    "version": "1.0",
+    "description": "Analyzing a Miller opamp and postprocessing the results"
+  },
+  "tasks": [
+    [
+      "evaluate",
+      {
+        "type": "cbd",
+        "requirements": [],
+        "mpi": {
+          "vmdebug": "0",
+          "mirror": true,
+          "persistent": true,
+          "cosdebug": "0",
+          "processors": ""
+        },
+        "corners": [
+          [
+            "nominal",
+            {
+              "modules": [
+                [
+                  "tm"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "1.8"
+                ],
+                [
+                  "temperature",
+                  "25"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "",
+        "output": {
+          "aggregatordebug": "0",
+          "simulatordebug": "0",
+          "saveallresults": false,
+          "savewaveforms": "verification",
+          "optimizerdebug": "0",
+          "keepfiles": false,
+          "evaluatordebug": "0",
+          "taskdebug": "1"
+        },
+        "designpar": [
+          [
+            "mirr_w",
+            "7.46e-5",
+            "",
+            ""
+          ],
+          [
+            "mirr_wd",
+            "7.46e-5",
+            "",
+            ""
+          ],
+          [
+            "mirr_wo",
+            "7.46e-5",
+            "",
+            ""
+          ],
+          [
+            "mirr_l",
+            "5.63e-7",
+            "",
+            ""
+          ],
+          [
+            "mirr_ld",
+            "5.63e-7",
+            "",
+            ""
+          ],
+          [
+            "out_w",
+            "4.80e-5",
+            "",
+            ""
+          ],
+          [
+            "out_l",
+            "3.75e-7",
+            "",
+            ""
+          ],
+          [
+            "load_w",
+            "3.49e-5",
+            "",
+            ""
+          ],
+          [
+            "load_l",
+            "2.57e-6",
+            "",
+            ""
+          ],
+          [
+            "diff_w",
+            "7.73e-6",
+            "",
+            ""
+          ],
+          [
+            "diff_l",
+            "1.08e-6",
+            "",
+            ""
+          ],
+          [
+            "c_out",
+            "8.21e-12",
+            "",
+            ""
+          ],
+          [
+            "r_out",
+            "1.97e+1",
+            "",
+            ""
+          ]
+        ],
+        "postprocessing": {
+          "measures": [],
+          "plots": []
+        },
+        "settings": {
+          "stopsatisfied": true,
+          "failurepenalty": "1e6",
+          "method": "noneFull",
+          "evaluatorsettings": [],
+          "stoptol": "1e-5",
+          "tradeoffmultiplier": "0",
+          "optimizersettings": [],
+          "forwardsolution": true,
+          "relevantcorners": true,
+          "maxiter": "",
+          "initialstep": "0.25",
+          "aggregatorsettings": []
+        }
+      }
+    ],
+    [
+      "nominal",
+      {
+        "type": "cbd",
+        "requirements": [
+          [
+            true,
+            "isup",
+            "",
+            "1000e-6",
+            "",
+            ""
+          ],
+          [
+            false,
+            "out_op",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "vgs_drv",
+            "0",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "vds_drv",
+            "0",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "swing",
+            "1",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "gain",
+            "60",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "gain_com",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "gain_vdd",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "gain_vss",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "ugbw",
+            "10e6",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "pm",
+            "50",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "overshdn",
+            "",
+            "0.1",
+            "",
+            ""
+          ],
+          [
+            false,
+            "overshup",
+            "",
+            "0.1",
+            "",
+            ""
+          ],
+          [
+            false,
+            "tsetdn",
+            "",
+            "1000e-9",
+            "",
+            ""
+          ],
+          [
+            false,
+            "tsetup",
+            "",
+            "1000e-6",
+            "",
+            ""
+          ],
+          [
+            false,
+            "slewdn",
+            "2e6",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "slewup",
+            "2e6",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "cmrr",
+            "90",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "psrr_vdd",
+            "60",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "psrr_vss",
+            "60",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "onoise1k",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "inoise1k",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "in1kmn2id",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "in1kmn2rd",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "in1kmn2",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "area",
+            "",
+            "9000e-12",
+            "100e-12",
+            ""
+          ]
+        ],
+        "mpi": {
+          "vmdebug": "0",
+          "mirror": true,
+          "persistent": true,
+          "cosdebug": "0",
+          "processors": ""
+        },
+        "corners": [
+          [
+            "nominal",
+            {
+              "modules": [
+                [
+                  "tm"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "1.8"
+                ],
+                [
+                  "temperature",
+                  "25"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "",
+        "output": {
+          "aggregatordebug": "0",
+          "simulatordebug": "0",
+          "saveallresults": false,
+          "savewaveforms": "verification",
+          "optimizerdebug": "0",
+          "keepfiles": false,
+          "evaluatordebug": "0",
+          "taskdebug": "1"
+        },
+        "designpar": [
+          [
+            "mirr_w",
+            "7.46e-5",
+            "1e-6",
+            "95e-6"
+          ],
+          [
+            "mirr_wd",
+            "7.46e-5",
+            "1e-6",
+            "95e-6"
+          ],
+          [
+            "mirr_wo",
+            "7.46e-5",
+            "1e-6",
+            "95e-6"
+          ],
+          [
+            "mirr_l",
+            "5.63e-7",
+            "0.18e-6",
+            "4e-6"
+          ],
+          [
+            "mirr_ld",
+            "5.63e-7",
+            "0.18e-6",
+            "4e-6"
+          ],
+          [
+            "out_w",
+            "4.80e-5",
+            "1e-6",
+            "95e-6"
+          ],
+          [
+            "out_l",
+            "3.75e-7",
+            "0.18e-6",
+            "4e-6"
+          ],
+          [
+            "load_w",
+            "3.49e-5",
+            "1e-6",
+            "95e-6"
+          ],
+          [
+            "load_l",
+            "2.57e-6",
+            "0.18e-6",
+            "4e-6"
+          ],
+          [
+            "diff_w",
+            "7.73e-6",
+            "1e-6",
+            "95e-6"
+          ],
+          [
+            "diff_l",
+            "1.08e-6",
+            "0.18e-6",
+            "4e-6"
+          ],
+          [
+            "c_out",
+            "8.21e-12",
+            "1e-15",
+            "50e-12"
+          ],
+          [
+            "r_out",
+            "1.97e+1",
+            "1",
+            "200e3"
+          ]
+        ],
+        "postprocessing": {
+          "measures": [],
+          "plots": []
+        },
+        "settings": {
+          "stopsatisfied": true,
+          "failurepenalty": "1e6",
+          "method": "ParallelSADE",
+          "evaluatorsettings": [],
+          "stoptol": "1e-5",
+          "tradeoffmultiplier": "0",
+          "optimizersettings": [],
+          "forwardsolution": true,
+          "relevantcorners": true,
+          "maxiter": "",
+          "initialstep": "0.25",
+          "aggregatorsettings": []
+        }
+      }
+    ],
+    [
+      "corners",
+      {
+        "type": "cbd",
+        "requirements": [
+          [
+            true,
+            "isup",
+            "",
+            "1000e-6",
+            "",
+            ""
+          ],
+          [
+            false,
+            "out_op",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "vgs_drv",
+            "0",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "vds_drv",
+            "0",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "swing",
+            "1",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "gain",
+            "60",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "gain_com",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "gain_vdd",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "gain_vss",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "ugbw",
+            "10e6",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "pm",
+            "50",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "overshdn",
+            "",
+            "0.1",
+            "",
+            ""
+          ],
+          [
+            false,
+            "overshup",
+            "",
+            "0.1",
+            "",
+            ""
+          ],
+          [
+            false,
+            "tsetdn",
+            "",
+            "1000e-9",
+            "",
+            ""
+          ],
+          [
+            false,
+            "tsetup",
+            "",
+            "1000e-6",
+            "",
+            ""
+          ],
+          [
+            false,
+            "slewdn",
+            "2e6",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "slewup",
+            "2e6",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "cmrr",
+            "90",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "psrr_vdd",
+            "60",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "psrr_vss",
+            "60",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "onoise1k",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "inoise1k",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "in1kmn2id",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "in1kmn2rd",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "in1kmn2",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "area",
+            "",
+            "9000e-12",
+            "100e-12",
+            ""
+          ]
+        ],
+        "designpar": [
+          [
+            "mirr_w",
+            "7.46e-5",
+            "1e-6",
+            "95e-6"
+          ],
+          [
+            "mirr_wd",
+            "7.46e-5",
+            "1e-6",
+            "95e-6"
+          ],
+          [
+            "mirr_wo",
+            "7.46e-5",
+            "1e-6",
+            "95e-6"
+          ],
+          [
+            "mirr_l",
+            "5.63e-7",
+            "0.18e-6",
+            "4e-6"
+          ],
+          [
+            "mirr_ld",
+            "5.63e-7",
+            "0.18e-6",
+            "4e-6"
+          ],
+          [
+            "out_w",
+            "4.80e-5",
+            "1e-6",
+            "95e-6"
+          ],
+          [
+            "out_l",
+            "3.75e-7",
+            "0.18e-6",
+            "4e-6"
+          ],
+          [
+            "load_w",
+            "3.49e-5",
+            "1e-6",
+            "95e-6"
+          ],
+          [
+            "load_l",
+            "2.57e-6",
+            "0.18e-6",
+            "4e-6"
+          ],
+          [
+            "diff_w",
+            "7.73e-6",
+            "1e-6",
+            "95e-6"
+          ],
+          [
+            "diff_l",
+            "1.08e-6",
+            "0.18e-6",
+            "4e-6"
+          ],
+          [
+            "c_out",
+            "8.21e-12",
+            "1e-15",
+            "50e-12"
+          ],
+          [
+            "r_out",
+            "1.97e+1",
+            "1",
+            "200e3"
+          ]
+        ],
+        "corners": [
+          [
+            "nominal",
+            {
+              "modules": [
+                [
+                  "tm"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "1.8"
+                ],
+                [
+                  "temperature",
+                  "25"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c1_wo_tlo_vlo",
+            {
+              "modules": [
+                [
+                  "wo"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "1.7"
+                ],
+                [
+                  "temperature",
+                  "0"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c2_wo_tlo_vhi",
+            {
+              "modules": [
+                [
+                  "wo"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "2.0"
+                ],
+                [
+                  "temperature",
+                  "0"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c3_wo_thi_vlo",
+            {
+              "modules": [
+                [
+                  "wo"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "1.7"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c4_wo_thi_vhi",
+            {
+              "modules": [
+                [
+                  "wo"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "2.0"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c5_wp_tlo_vlo",
+            {
+              "modules": [
+                [
+                  "wp"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "1.7"
+                ],
+                [
+                  "temperature",
+                  "0"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c6_wp_tlo_vhi",
+            {
+              "modules": [
+                [
+                  "wp"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "2.0"
+                ],
+                [
+                  "temperature",
+                  "0"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c7_wp_thi_vlo",
+            {
+              "modules": [
+                [
+                  "wp"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "1.7"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c8_wp_thi_vhi",
+            {
+              "modules": [
+                [
+                  "wp"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "2.0"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c9_ws_tlo_vlo",
+            {
+              "modules": [
+                [
+                  "ws"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "1.7"
+                ],
+                [
+                  "temperature",
+                  "0"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c10_ws_tlo_vhi",
+            {
+              "modules": [
+                [
+                  "ws"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "2.0"
+                ],
+                [
+                  "temperature",
+                  "0"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c11_ws_thi_vlo",
+            {
+              "modules": [
+                [
+                  "ws"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "1.7"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c12_ws_thi_vhi",
+            {
+              "modules": [
+                [
+                  "ws"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "2.0"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c13_wz_tlo_vlo",
+            {
+              "modules": [
+                [
+                  "wz"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "1.7"
+                ],
+                [
+                  "temperature",
+                  "0"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c14_wz_tlo_vhi",
+            {
+              "modules": [
+                [
+                  "wz"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "2.0"
+                ],
+                [
+                  "temperature",
+                  "0"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c15_wz_thi_vlo",
+            {
+              "modules": [
+                [
+                  "wz"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "1.7"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ],
+          [
+            "c16_wz_thi_vhi",
+            {
+              "modules": [
+                [
+                  "wz"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "2.0"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "",
+        "output": {
+          "aggregatordebug": "0",
+          "simulatordebug": "0",
+          "saveallresults": false,
+          "savewaveforms": "verification",
+          "optimizerdebug": "0",
+          "keepfiles": false,
+          "evaluatordebug": "0",
+          "taskdebug": "1"
+        },
+        "mpi": {
+          "vmdebug": "0",
+          "mirror": true,
+          "persistent": true,
+          "cosdebug": "0",
+          "processors": ""
+        },
+        "postprocessing": {
+          "measures": [],
+          "plots": []
+        },
+        "settings": {
+          "stopsatisfied": true,
+          "failurepenalty": "1e6",
+          "method": "ParallelSADE",
+          "evaluatorsettings": [],
+          "stoptol": "1e-5",
+          "tradeoffmultiplier": "0",
+          "optimizersettings": [],
+          "forwardsolution": true,
+          "relevantcorners": true,
+          "maxiter": "",
+          "initialstep": "0.25",
+          "aggregatorsettings": []
+        }
+      }
+    ]
+  ],
+  "variables": [
+    [
+      "mosList",
+      "xmn1 xmn2 xmn3 xmn4 xmn5 xmp1 xmp2 xmp3"
+    ],
+    [
+      "isNmos",
+      "#[1, 1, 1, 1, 1, 0, 0, 0]"
+    ]
+  ],
+  "designpar": [
+    [
+      "mirr_w",
+      "7.46e-5",
+      "1e-6",
+      "95e-6"
+    ],
+    [
+      "mirr_wd",
+      "7.46e-5",
+      "1e-6",
+      "95e-6"
+    ],
+    [
+      "mirr_wo",
+      "7.46e-5",
+      "1e-6",
+      "95e-6"
+    ],
+    [
+      "mirr_l",
+      "5.63e-7",
+      "0.18e-6",
+      "4e-6"
+    ],
+    [
+      "mirr_ld",
+      "5.63e-7",
+      "0.18e-6",
+      "4e-6"
+    ],
+    [
+      "out_w",
+      "4.80e-5",
+      "1e-6",
+      "95e-6"
+    ],
+    [
+      "out_l",
+      "3.75e-7",
+      "0.18e-6",
+      "4e-6"
+    ],
+    [
+      "load_w",
+      "3.49e-5",
+      "1e-6",
+      "95e-6"
+    ],
+    [
+      "load_l",
+      "2.57e-6",
+      "0.18e-6",
+      "4e-6"
+    ],
+    [
+      "diff_w",
+      "7.73e-6",
+      "1e-6",
+      "95e-6"
+    ],
+    [
+      "diff_l",
+      "1.08e-6",
+      "0.18e-6",
+      "4e-6"
+    ],
+    [
+      "c_out",
+      "8.21e-12",
+      "1e-15",
+      "50e-12"
+    ],
+    [
+      "r_out",
+      "1.97e+1",
+      "1",
+      "200e3"
+    ]
+  ],
+  "files": [
+    [
+      "miller.inc",
+      {
+        "content": "",
+        "external": true
+      }
+    ],
+    [
+      "mosmm.inc",
+      {
+        "content": "",
+        "external": true
+      }
+    ],
+    [
+      "topdc.inc",
+      {
+        "content": "",
+        "external": true
+      }
+    ],
+    [
+      "toprr.inc",
+      {
+        "content": "",
+        "external": true
+      }
+    ],
+    [
+      "cmos180n.lib",
+      {
+        "content": "",
+        "external": true
+      }
+    ]
+  ],
+  "statpar": [
+    [
+      "mp1vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mp1u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mp2vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mp2u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mp3vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mp3u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn1vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn1u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn2vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn2u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn3vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn3u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn4vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn4u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn5vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn5u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "gvtnmm",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "gu0nmm",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "gvtpmm",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "gu0pmm",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ]
+  ],
+  "heads": [
+    [
+      "opus",
+      {
+        "simulator": "SpiceOpus",
+        "params": [
+          [
+            "ibias",
+            "100e-6"
+          ],
+          [
+            "lev1",
+            "-0.5"
+          ],
+          [
+            "lev2",
+            "0.5"
+          ],
+          [
+            "tstart",
+            "10000e-9"
+          ],
+          [
+            "tr",
+            "1e-9"
+          ],
+          [
+            "tf",
+            "1e-9"
+          ],
+          [
+            "pw",
+            "10000e-9"
+          ],
+          [
+            "rload",
+            "100e6"
+          ],
+          [
+            "cload",
+            "1e-12"
+          ]
+        ],
+        "settings": [],
+        "moddefs": [
+          [
+            "def",
+            "miller.inc",
+            ""
+          ],
+          [
+            "tb",
+            "topdc.inc",
+            ""
+          ],
+          [
+            "tbrr",
+            "toprr.inc",
+            ""
+          ],
+          [
+            "tm",
+            "cmos180n.lib",
+            "tm"
+          ],
+          [
+            "wp",
+            "cmos180n.lib",
+            "wp"
+          ],
+          [
+            "ws",
+            "cmos180n.lib",
+            "ws"
+          ],
+          [
+            "wo",
+            "cmos180n.lib",
+            "wo"
+          ],
+          [
+            "wz",
+            "cmos180n.lib",
+            "wz"
+          ],
+          [
+            "mc",
+            "cmos180n.lib",
+            "mc"
+          ]
+        ],
+        "options": [
+          [
+            "method",
+            "trap"
+          ]
+        ]
+      }
+    ]
+  ]
+}

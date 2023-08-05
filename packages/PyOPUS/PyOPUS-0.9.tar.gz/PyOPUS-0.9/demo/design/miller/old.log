@@ -1,0 +1,109 @@
+calypso_12d4_1 PE: Compiling.
+calypso_12d4_1 PE:   Simulator objects (1): 
+calypso_12d4_1 PE:     opus: 9 analyses
+calypso_12d4_1 PE:       CnomAaccom
+calypso_12d4_1 PE:       CnomAdc
+calypso_12d4_1 PE:       CnomAtran
+calypso_12d4_1 PE:       CnomAacvss
+calypso_12d4_1 PE:       CnomAtranslew
+calypso_12d4_1 PE:       CnomAop
+calypso_12d4_1 PE:       CnomAacvdd
+calypso_12d4_1 PE:       CnomAac
+calypso_12d4_1 PE:       CnomAnoise
+calypso_12d4_1 PE: Evaluation started.
+calypso_12d4_1 PE:   Simulator/head opus
+calypso_12d4_2 PE:     Corner: nom, analysis: accom ... OK
+calypso_12d4_2 PE:       gain_com : 8.194346743173796
+calypso_12d4_3 PE:     Corner: nom, analysis: dc ... OK
+calypso_12d4_3 PE:       swing : 1.4744894252056326
+calypso_12d4_3 PE:     Corner: nom, analysis: tran ... OK
+calypso_12d4_3 PE:       tsetup : 2.0969334390246106e-07
+calypso_12d4_3 PE:       tsetdn : 1.9277719801919775e-07
+calypso_12d4_3 PE:       overshdn : 0.07186302689462015
+calypso_12d4_3 PE:       overshup : 0.08937052450214986
+calypso_12d4_3 PE:     Corner: nom, analysis: op ... OK
+calypso_12d4_3 PE:       isup : [0.00030098]
+calypso_12d4_3 PE:       vds_drv : [0.82049736 0.58402981 0.11147644 0.43388197 0.82753851 0.32193201
+calypso_12d4_3 PE:  0.55585086 0.80098067]
+calypso_12d4_3 PE:       vgs_drv : [0.20901023 0.21250354 0.02674102 0.02675755 0.02677772 0.39222519
+calypso_12d4_3 PE:  0.39222519 0.1068223 ]
+calypso_12d4_3 PE:       out_op : [0.90698663]
+calypso_12d4_3 PE:     Corner: nom, analysis: ac ... OK
+calypso_12d4_3 PE:       pm : 70.05613401970223
+calypso_12d4_3 PE:       gain : 66.24561668020414
+calypso_12d4_3 PE:       ugbw : 6630484.305261052
+calypso_12d4_3 PE:     Corner: nom, analysis: noise ... OK
+calypso_12d4_3 PE:       in1kmn2 : 1.583527400684067e-16
+calypso_12d4_3 PE:       in1kmn2id : 1.583527400684067e-16
+calypso_12d4_3 PE:       in1kmn2rd : 0.0
+calypso_12d4_3 PE:       onoise1k : 3.337168636261591e-14
+calypso_12d4_3 PE:       inoise1k : 3.343675369812139e-14
+calypso_12d4_4 PE:     Corner: nom, analysis: acvss ... OK
+calypso_12d4_4 PE:       gain_vss : 3.6382193488769072
+calypso_12d4_5 PE:     Corner: nom, analysis: translew ... OK
+calypso_12d4_5 PE:       slewup : 10052670.753075903
+calypso_12d4_5 PE:       slewdn : 10816753.791827692
+calypso_12d4_6 PE:     Corner: nom, analysis: acvdd ... OK
+calypso_12d4_6 PE:       gain_vdd : -26.255796687685887
+calypso_12d4_1 PE:     Corner: nom, analysis: None
+calypso_12d4_1 PE:       cmrr : 58.05126993703034
+calypso_12d4_1 PE:     Corner: nom, analysis: None
+calypso_12d4_1 PE:       area : 1.1795336798697914e-09
+calypso_12d4_1 PE:     Corner: nom, analysis: None
+calypso_12d4_1 PE:       psrr_vss : 62.60739733132723
+calypso_12d4_1 PE:     Corner: nom, analysis: None
+calypso_12d4_1 PE:       psrr_vdd : 92.50141336789002
+      area |             nom:    1.180e-09
+      cmrr |             nom:    5.805e+01
+      gain |             nom:    6.625e+01
+  gain_com |             nom:    8.194e+00
+  gain_vdd |             nom:   -2.626e+01
+  gain_vss |             nom:    3.638e+00
+   in1kmn2 |             nom:    1.584e-16
+ in1kmn2id |             nom:    1.584e-16
+ in1kmn2rd |             nom:    0.000e+00
+  inoise1k |             nom:    3.344e-14
+      isup |             nom:    3.010e-04
+  onoise1k |             nom:    3.337e-14
+    out_op |             nom:    9.070e-01
+  overshdn |             nom:    7.186e-02
+  overshup |             nom:    8.937e-02
+        pm |             nom:    7.006e+01
+  psrr_vdd |             nom:    9.250e+01
+  psrr_vss |             nom:    6.261e+01
+    slewdn |             nom:    1.082e+07
+    slewup |             nom:    1.005e+07
+     swing |             nom:    1.474e+00
+    tsetdn |             nom:    1.928e-07
+    tsetup |             nom:    2.097e-07
+      ugbw |             nom:    6.630e+06
+   vds_drv |             nom: [0.82049736 0.58402981 0.11147644 0.43388197 0.82753851 0.32193201
+ 0.55585086 0.80098067]
+   vgs_drv |             nom: [0.20901023 0.21250354 0.02674102 0.02675755 0.02677772 0.39222519
+ 0.39222519 0.1068223 ]
+
+
+Result files across hosts
+{(None, ('nom', 'ac')): '/tmp/restemp_calypso_12d4_3_CnomAac_n3_w36ti',
+ (None, ('nom', 'accom')): '/tmp/restemp_calypso_12d4_2_CnomAaccom_ehs_1gwj',
+ (None, ('nom', 'acvdd')): '/tmp/restemp_calypso_12d4_6_CnomAacvdd_u6aajmtt',
+ (None, ('nom', 'acvss')): '/tmp/restemp_calypso_12d4_4_CnomAacvss_rss8t1vd',
+ (None, ('nom', 'dc')): '/tmp/restemp_calypso_12d4_3_CnomAdc_pl23sxfm',
+ (None, ('nom', 'noise')): '/tmp/restemp_calypso_12d4_3_CnomAnoise_2biueowt',
+ (None, ('nom', 'op')): '/tmp/restemp_calypso_12d4_3_CnomAop_g9gqfulv',
+ (None, ('nom', 'tran')): '/tmp/restemp_calypso_12d4_3_CnomAtran_kjpp70bi',
+ (None, ('nom', 'translew')): '/tmp/restemp_calypso_12d4_5_CnomAtranslew_kcvxu1ga',
+ (None, ('nom', None)): '/tmp/restemp_calypso_12d4_1Cnom_3ufi9ph_'}
+Set of hosts where results are stored: {None}
+
+Collected result files
+{('nom', 'ac'): 'res_nom_ac.pck',
+ ('nom', 'accom'): 'res_nom_accom.pck',
+ ('nom', 'acvdd'): 'res_nom_acvdd.pck',
+ ('nom', 'acvss'): 'res_nom_acvss.pck',
+ ('nom', 'dc'): 'res_nom_dc.pck',
+ ('nom', 'noise'): 'res_nom_noise.pck',
+ ('nom', 'op'): 'res_nom_op.pck',
+ ('nom', 'tran'): 'res_nom_tran.pck',
+ ('nom', 'translew'): 'res_nom_translew.pck',
+ ('nom', None): 'res_nom.pck'}

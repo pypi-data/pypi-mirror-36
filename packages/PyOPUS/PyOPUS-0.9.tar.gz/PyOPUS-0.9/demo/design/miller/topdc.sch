@@ -1,0 +1,352 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:pyopus
+LIBS:topdc-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L OPAMP X1
+U 1 1 59CE2C92
+P 2600 2300
+F 0 "X1" H 2600 2500 50  0000 C CNN
+F 1 "miller" H 2675 2100 50  0000 C CNN
+F 2 "" H 2500 2000 50  0000 L CNN
+F 3 "" H 2600 2500 50  0000 C CNN
+	1    2600 2300
+	1    0    0    1   
+$EndComp
+$Comp
+L VSRC Vdd1
+U 1 1 59CE2D2E
+P 1100 3350
+F 0 "Vdd1" V 950 3350 50  0000 C CNN
+F 1 "VSRC" V 850 3350 50  0001 C CNN
+F 2 "" V 830 2600 50  0000 C CNN
+F 3 "" V 900 2600 50  0000 C CNN
+F 4 "dc={vdd/2}" V 1250 3350 50  0000 C CNN "Specification"
+	1    1100 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L RES R2
+U 1 1 59CE2DAF
+P 2650 1550
+F 0 "R2" V 2550 1550 50  0000 C CNN
+F 1 "RES" V 2450 1550 50  0001 C CNN
+F 2 "" V 2580 1550 50  0000 C CNN
+F 3 "" V 2730 1550 50  0000 C CNN
+F 4 "{rfb}" V 2750 1550 50  0000 C CNN "r"
+	1    2650 1550
+	0    1    1    0   
+$EndComp
+$Comp
+L RES R1
+U 1 1 59CE2DEC
+P 1700 2150
+F 0 "R1" V 1600 2150 50  0000 C CNN
+F 1 "RES" V 1500 2150 50  0001 C CNN
+F 2 "" V 1630 2150 50  0000 C CNN
+F 3 "" V 1780 2150 50  0000 C CNN
+F 4 "{rin}" V 1800 2150 50  0000 C CNN "r"
+	1    1700 2150
+	0    1    1    0   
+$EndComp
+$Comp
+L VSRC Vcom1
+U 1 1 59CE2E3F
+P 2100 2850
+F 0 "Vcom1" V 1950 2850 50  0000 C CNN
+F 1 "VSRC" V 1850 2850 50  0001 C CNN
+F 2 "" V 1830 2100 50  0000 C CNN
+F 3 "" V 1900 2100 50  0000 C CNN
+F 4 "dc=0" V 2250 2850 50  0000 C CNN "Specification"
+	1    2100 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR01
+U 1 1 59CE3012
+P 1100 3550
+F 0 "#PWR01" H 1100 3300 50  0001 C CNN
+F 1 "GND" H 1100 3400 50  0000 C CNN
+F 2 "" H 1100 3550 50  0000 C CNN
+F 3 "" H 1100 3550 50  0000 C CNN
+	1    1100 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR02
+U 1 1 59CE3058
+P 2100 3100
+F 0 "#PWR02" H 2100 2850 50  0001 C CNN
+F 1 "GND" H 2100 2950 50  0000 C CNN
+F 2 "" H 2100 3100 50  0000 C CNN
+F 3 "" H 2100 3100 50  0000 C CNN
+	1    2100 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L VSRC Vin1
+U 1 1 59CE307C
+P 1100 2400
+F 0 "Vin1" V 950 2400 50  0000 C CNN
+F 1 "VSRC" V 850 2400 50  0001 C CNN
+F 2 "" V 830 1650 50  0000 C CNN
+F 3 "" V 900 1650 50  0000 C CNN
+F 4 "dc=0 ac=1 pulse=({lev1} {lev2} {tstart} {tr} {tf} {pw})" V 700 2400 50  0000 C CNN "Specification"
+	1    1100 2400
+	1    0    0    -1  
+$EndComp
+Text GLabel 950  2150 0    60   Input ~ 0
+in
+Text GLabel 1750 2600 0    60   Input ~ 0
+inp
+Text GLabel 1750 1900 0    60   Input ~ 0
+inn
+Text GLabel 1100 3150 1    60   Input ~ 0
+vdd
+Text GLabel 2450 2700 3    60   Input ~ 0
+vdd
+$Comp
+L OUTPUT_FILE A1
+U 1 1 59CE4456
+P 1500 1050
+F 0 "A1" H 1100 1100 50  0000 L CNN
+F 1 "OUTPUT_FILE" H 1500 950 50  0000 C CNN
+F 2 "" H 1500 1050 60  0001 C CNN
+F 3 "" H 1500 1050 60  0001 C CNN
+F 4 "topdc.inc" H 1100 800 50  0000 L CNN "Name"
+	1    1500 1050
+	1    0    0    -1  
+$EndComp
+Text GLabel 4350 2300 2    60   Input ~ 0
+out
+$Comp
+L CAP Cl1
+U 1 1 59D772E6
+P 3100 2550
+F 0 "Cl1" V 2950 2550 50  0000 C CNN
+F 1 "CAP" V 2850 2550 50  0001 C CNN
+F 2 "" V 3138 2400 50  0000 C CNN
+F 3 "" V 2950 2550 50  0000 C CNN
+F 4 "{cload}" V 3250 2550 50  0000 C CNN "c"
+	1    3100 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR03
+U 1 1 59D77379
+P 3100 2800
+F 0 "#PWR03" H 3100 2550 50  0001 C CNN
+F 1 "GND" H 3100 2650 50  0000 C CNN
+F 2 "" H 3100 2800 50  0000 C CNN
+F 3 "" H 3100 2800 50  0000 C CNN
+	1    3100 2800
+	1    0    0    -1  
+$EndComp
+$Comp
+L VCVS E1
+U 1 1 59E105E0
+P 4000 2550
+F 0 "E1" H 4000 2750 50  0000 C CNN
+F 1 "VCVS" H 4000 2850 50  0001 C CNN
+F 2 "" V 3730 1800 50  0000 C CNN
+F 3 "" H 3800 1800 50  0000 C CNN
+F 4 "1" V 4250 2550 50  0000 C CNN "gain"
+	1    4000 2550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1100 2250 1100 2150
+Wire Wire Line
+	950  2150 1550 2150
+Wire Wire Line
+	1850 2150 2200 2150
+Wire Wire Line
+	2100 1550 2500 1550
+Connection ~ 2100 2150
+Wire Wire Line
+	2450 1900 2450 2000
+Wire Wire Line
+	1450 2450 2200 2450
+Wire Wire Line
+	2100 2450 2100 2700
+Wire Wire Line
+	2100 3000 2100 3100
+Wire Wire Line
+	1100 2550 1100 2650
+Wire Wire Line
+	1100 3500 1100 3550
+Connection ~ 1100 2150
+Wire Wire Line
+	2100 1550 2100 2150
+Wire Wire Line
+	2100 2150 1850 1900
+Wire Wire Line
+	1850 1900 1750 1900
+Wire Wire Line
+	1100 3200 1100 3150
+Wire Wire Line
+	2800 1550 4100 1550
+Wire Wire Line
+	3000 2300 3900 2300
+Wire Wire Line
+	4100 2300 4350 2300
+Wire Wire Line
+	3100 2400 3100 2300
+Connection ~ 3100 2300
+Wire Wire Line
+	3100 2800 3100 2700
+$Comp
+L GND #PWR04
+U 1 1 59E1098B
+P 4100 2800
+F 0 "#PWR04" H 4100 2550 50  0001 C CNN
+F 1 "GND" H 4100 2650 50  0000 C CNN
+F 2 "" H 4100 2800 50  0000 C CNN
+F 3 "" H 4100 2800 50  0000 C CNN
+	1    4100 2800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4100 2700 4100 2800
+$Comp
+L GND #PWR05
+U 1 1 59E10A6B
+P 3900 2800
+F 0 "#PWR05" H 3900 2550 50  0001 C CNN
+F 1 "GND" H 3900 2650 50  0000 C CNN
+F 2 "" H 3900 2800 50  0000 C CNN
+F 3 "" H 3900 2800 50  0000 C CNN
+	1    3900 2800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3900 2700 3900 2800
+$Comp
+L RES Rl1
+U 1 1 59E10C5C
+P 3500 2550
+F 0 "Rl1" V 3400 2550 50  0000 C CNN
+F 1 "RES" V 3300 2550 50  0001 C CNN
+F 2 "" V 3430 2550 50  0000 C CNN
+F 3 "" V 3580 2550 50  0000 C CNN
+F 4 "{rload}" V 3600 2550 50  0000 C CNN "r"
+	1    3500 2550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 2300 3500 2400
+$Comp
+L GND #PWR06
+U 1 1 59E10CEE
+P 3500 2800
+F 0 "#PWR06" H 3500 2550 50  0001 C CNN
+F 1 "GND" H 3500 2650 50  0000 C CNN
+F 2 "" H 3500 2800 50  0000 C CNN
+F 3 "" H 3500 2800 50  0000 C CNN
+	1    3500 2800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 2700 3500 2800
+Connection ~ 3500 2300
+Wire Wire Line
+	3900 2300 3900 2400
+Wire Wire Line
+	4100 1550 4100 2400
+Connection ~ 4100 2300
+$Comp
+L SUPPRESS_END A2
+U 1 1 5B7E8725
+P 2500 1050
+F 0 "A2" H 2100 1100 50  0000 L CNN
+F 1 "SUPPRESS_END" H 2500 950 50  0000 C CNN
+F 2 "" H 2500 1050 60  0001 C CNN
+F 3 "" H 2500 1050 60  0001 C CNN
+	1    2500 1050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1100 2650 1450 2650
+Wire Wire Line
+	1450 2650 1450 2450
+Connection ~ 2100 2450
+Wire Wire Line
+	2100 2450 1850 2600
+Wire Wire Line
+	1850 2600 1750 2600
+Text GLabel 2450 1900 1    60   Input ~ 0
+vss
+Wire Wire Line
+	2450 2600 2450 2700
+$Comp
+L VSRC Vss1
+U 1 1 5B7FBA62
+P 1600 3350
+F 0 "Vss1" V 1450 3350 50  0000 C CNN
+F 1 "VSRC" V 1350 3350 50  0001 C CNN
+F 2 "" V 1330 2600 50  0000 C CNN
+F 3 "" V 1400 2600 50  0000 C CNN
+F 4 "dc={-vdd/2}" V 1750 3350 50  0000 C CNN "Specification"
+	1    1600 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR07
+U 1 1 5B7FBA68
+P 1600 3550
+F 0 "#PWR07" H 1600 3300 50  0001 C CNN
+F 1 "GND" H 1600 3400 50  0000 C CNN
+F 2 "" H 1600 3550 50  0000 C CNN
+F 3 "" H 1600 3550 50  0000 C CNN
+	1    1600 3550
+	1    0    0    -1  
+$EndComp
+Text GLabel 1600 3150 1    60   Input ~ 0
+vss
+Wire Wire Line
+	1600 3500 1600 3550
+Wire Wire Line
+	1600 3200 1600 3150
+$EndSCHEMATC

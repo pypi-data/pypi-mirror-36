@@ -1,0 +1,26 @@
+{
+        "Mapping": [
+		[
+			null, "PMOS",
+			{
+				"Parameters": [ "w", "l", "m", "vtmm", "u0mm" ],
+				"OutPattern": "#REF() (#PINS()) #MODEL() #PARAM() #PNV() #PV(Specification)",
+				"SpiceDevice": "subcircuit",
+				"PinMap": [ 1, 2, 3, 4 ],
+				"NamePrefix": "X",
+				"ValueField": null
+			}
+		],
+		[
+			null, "NMOS",
+			{
+				"Parameters": [ "w", "l", "m", "vtmm", "u0mm" ],
+				"OutPattern": "#REF() (#PINS()) #MODEL() #PARAM() #PNV() #PV(Specification)",
+				"SpiceDevice": "subcircuit",
+				"PinMap": [ 1, 2, 3, 4 ],
+				"NamePrefix": "X",
+				"ValueField": null
+			}
+		]
+	]
+}

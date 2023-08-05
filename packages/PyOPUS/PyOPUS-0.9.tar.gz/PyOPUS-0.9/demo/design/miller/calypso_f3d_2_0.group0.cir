@@ -1,0 +1,78 @@
+* Simulator input file for job group 0
+
+.option method=trap
+.param rfb=1000000000.0
+.param gvtnmm=0.0
+.param accom=1.0
+.param tr=1e-09
+.param mp2vt=0.0
+.param mn5vt=0.0
+.param c_out=1.1102e-12
+.param out_w=6.003844e-05
+.param mn2vt=0.0
+.param acvdd=0.0
+.param mp1u0=0.0
+.param cload=1e-12
+.param mn3u0=0.0
+.param pw=1e-05
+.param out_l=4.108898e-07
+.param mirr_w=9.007543e-05
+.param mn3vt=0.0
+.param diff_l=3.247602e-06
+.param mn1vt=0.0
+.param lev1=-0.5
+.param ibias=0.0001
+.param mn5u0=0.0
+.param mp1vt=0.0
+.param mirr_l=7.731257e-07
+.param tstart=1e-05
+.param gvtpmm=0.0
+.param mp3vt=0.0
+.param mn4vt=0.0
+.param mirr_wd=1.878471e-05
+.param acvss=0.0
+.param mp3u0=0.0
+.param cin=0.1
+.option temp=74.99999631093988
+.param mn1u0=0.0
+.param gu0nmm=0.0
+.param diff_w=6.042974e-06
+.param mirr_ld=3.24368e-06
+.param gu0pmm=0.0
+.param tf=1e-09
+.param load_w=5.796995e-05
+.param mn2u0=0.0
+.param mp2u0=0.0
+.param load_l=1.614003e-06
+.param mirr_wo=8.233483e-05
+.param r_out=35749.93
+.param vdd=1.8910419714684943
+.param mn4u0=0.0
+.param rload=100000000.0
+.param lev2=0.5
+.lib 'cmos180n.lib' mc
+.include 'miller.inc'
+.include 'toprr.inc'
+
+.control
+unset *
+delete all
+
+set filetype=binary
+
+* mc.accom
+destroy all
+delete all
+set method=trap
+save all 
+echo Running mc.accom
+ac dec 10 1 1000000000.0
+if $(#plots) gt 1
+  set filetype=binary
+  write calypso_f3d_2_0.job0.mc.accom.raw
+else
+ echo mc.accom analysis failed.
+end
+
+.endc
+.end

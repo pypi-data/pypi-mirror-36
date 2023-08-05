@@ -1,0 +1,910 @@
+{
+  "info": {
+    "version": "1.0",
+    "description": "Analzying a Miller opamp and postprocessing the results"
+  },
+  "files": [
+    [
+      "miller.inc",
+      {
+        "content": "",
+        "external": true
+      }
+    ],
+    [
+      "mosmm.inc",
+      {
+        "content": "",
+        "external": true
+      }
+    ],
+    [
+      "topdc.inc",
+      {
+        "content": "",
+        "external": true
+      }
+    ],
+    [
+      "toprr.inc",
+      {
+        "content": "",
+        "external": true
+      }
+    ],
+    [
+      "cmos180n.lib",
+      {
+        "content": "",
+        "external": true
+      }
+    ]
+  ],
+  "designpar": [
+    [
+      "mirr_w",
+      "7.46e-5",
+      "1e-6",
+      "95e-6"
+    ],
+    [
+      "mirr_wd",
+      "7.46e-5",
+      "1e-6",
+      "95e-6"
+    ],
+    [
+      "mirr_wo",
+      "7.46e-5",
+      "1e-6",
+      "95e-6"
+    ],
+    [
+      "mirr_l",
+      "5.63e-7",
+      "0.18e-6",
+      "4e-6"
+    ],
+    [
+      "mirr_ld",
+      "5.63e-7",
+      "0.18e-6",
+      "4e-6"
+    ],
+    [
+      "out_w",
+      "4.80e-5",
+      "1e-6",
+      "95e-6"
+    ],
+    [
+      "out_l",
+      "3.75e-7",
+      "0.18e-6",
+      "4e-6"
+    ],
+    [
+      "load_w",
+      "3.49e-5",
+      "1e-6",
+      "95e-6"
+    ],
+    [
+      "load_l",
+      "2.57e-6",
+      "0.18e-6",
+      "4e-6"
+    ],
+    [
+      "diff_w",
+      "7.73e-6",
+      "1e-6",
+      "95e-6"
+    ],
+    [
+      "diff_l",
+      "1.08e-6",
+      "0.18e-6",
+      "4e-6"
+    ],
+    [
+      "c_out",
+      "8.21e-12",
+      "1e-15",
+      "50e-12"
+    ],
+    [
+      "r_out",
+      "1.97e+1",
+      "1",
+      "200e3"
+    ]
+  ],
+  "variables": [
+    [
+      "mosList",
+      "xmn1 xmn2 xmn3 xmn4 xmn5 xmp1 xmp2 xmp3"
+    ],
+    [
+      "isNmos",
+      "#[1, 1, 1, 1, 1, 0, 0, 0]"
+    ]
+  ],
+  "heads": [
+    [
+      "opus",
+      {
+        "settings": [],
+        "options": [
+          [
+            "method",
+            "trap"
+          ]
+        ],
+        "params": [
+          [
+            "ibias",
+            "100e-6"
+          ],
+          [
+            "lev1",
+            "-0.5"
+          ],
+          [
+            "lev2",
+            "0.5"
+          ],
+          [
+            "tstart",
+            "10000e-9"
+          ],
+          [
+            "tr",
+            "1e-9"
+          ],
+          [
+            "tf",
+            "1e-9"
+          ],
+          [
+            "pw",
+            "10000e-9"
+          ],
+          [
+            "rload",
+            "100e6"
+          ],
+          [
+            "cload",
+            "1e-12"
+          ]
+        ],
+        "simulator": "SpiceOpus",
+        "moddefs": [
+          [
+            "def",
+            "miller.inc",
+            ""
+          ],
+          [
+            "tb",
+            "topdc.inc",
+            ""
+          ],
+          [
+            "tbrr",
+            "toprr.inc",
+            ""
+          ],
+          [
+            "tm",
+            "cmos180n.lib",
+            "tm"
+          ],
+          [
+            "wp",
+            "cmos180n.lib",
+            "wp"
+          ],
+          [
+            "ws",
+            "cmos180n.lib",
+            "ws"
+          ],
+          [
+            "wo",
+            "cmos180n.lib",
+            "wo"
+          ],
+          [
+            "wz",
+            "cmos180n.lib",
+            "wz"
+          ],
+          [
+            "mc",
+            "cmos180n.lib",
+            "mc"
+          ]
+        ]
+      }
+    ]
+  ],
+  "analyses": [
+    [
+      "op",
+      {
+        "saves": [
+          [
+            "default",
+            ""
+          ],
+          [
+            "devvar",
+            "#ipath(mosList, 'x1', 'm0');#['vgs', 'vth', 'vds', 'vdsat']"
+          ]
+        ],
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tb"
+          ]
+        ],
+        "head": "opus",
+        "options": [],
+        "command": "op()",
+        "params": [
+          [
+            "rin",
+            "1e6"
+          ],
+          [
+            "rfb",
+            "1e6"
+          ]
+        ]
+      }
+    ],
+    [
+      "dc",
+      {
+        "saves": [],
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tb"
+          ]
+        ],
+        "head": "opus",
+        "options": [],
+        "command": "dc(-2.0, 2.0, 'lin', 100, 'vin1', 'dc')",
+        "params": [
+          [
+            "rin",
+            "1e6"
+          ],
+          [
+            "rfb",
+            "1e6"
+          ]
+        ]
+      }
+    ],
+    [
+      "ac",
+      {
+        "saves": [],
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tb"
+          ]
+        ],
+        "head": "opus",
+        "options": [],
+        "command": "ac(1, 1e12, 'dec', 10)",
+        "params": [
+          [
+            "rin",
+            "1e6"
+          ],
+          [
+            "rfb",
+            "1e6"
+          ]
+        ]
+      }
+    ],
+    [
+      "accom",
+      {
+        "saves": [],
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tbrr"
+          ]
+        ],
+        "head": "opus",
+        "options": [],
+        "command": "ac(1, 1e12, 'dec', 10)",
+        "params": [
+          [
+            "rfb",
+            "1e9"
+          ],
+          [
+            "cin",
+            "0.1"
+          ],
+          [
+            "accom",
+            "1"
+          ],
+          [
+            "acvdd",
+            "0"
+          ],
+          [
+            "acvss",
+            "0"
+          ]
+        ]
+      }
+    ],
+    [
+      "acvdd",
+      {
+        "saves": [],
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tbrr"
+          ]
+        ],
+        "head": "opus",
+        "options": [],
+        "command": "ac(1, 1e12, 'dec', 10)",
+        "params": [
+          [
+            "rfb",
+            "1e9"
+          ],
+          [
+            "cin",
+            "0.1"
+          ],
+          [
+            "accom",
+            "0"
+          ],
+          [
+            "acvdd",
+            "1"
+          ],
+          [
+            "acvss",
+            "0"
+          ]
+        ]
+      }
+    ],
+    [
+      "acvss",
+      {
+        "saves": [],
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tbrr"
+          ]
+        ],
+        "head": "opus",
+        "options": [],
+        "command": "ac(1, 1e12, 'dec', 10)",
+        "params": [
+          [
+            "rfb",
+            "1e9"
+          ],
+          [
+            "cin",
+            "0.1"
+          ],
+          [
+            "accom",
+            "0"
+          ],
+          [
+            "acvdd",
+            "0"
+          ],
+          [
+            "acvss",
+            "1"
+          ]
+        ]
+      }
+    ],
+    [
+      "noise",
+      {
+        "saves": [],
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tb"
+          ]
+        ],
+        "head": "opus",
+        "options": [],
+        "command": "noise(1, 1e12, 'dec', 10, 'vin1', 'out')",
+        "params": [
+          [
+            "rin",
+            "1e6"
+          ],
+          [
+            "rfb",
+            "1e6"
+          ]
+        ]
+      }
+    ],
+    [
+      "tran",
+      {
+        "saves": [],
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tb"
+          ]
+        ],
+        "head": "opus",
+        "options": [
+          [
+            "reltol",
+            "1e-4"
+          ]
+        ],
+        "command": "tran(param['tr']*1, param['tstart']+param['pw']*2)",
+        "params": [
+          [
+            "rin",
+            "1e6"
+          ],
+          [
+            "rfb",
+            "1e6"
+          ]
+        ]
+      }
+    ],
+    [
+      "translew",
+      {
+        "saves": [],
+        "modules": [
+          [
+            "def"
+          ],
+          [
+            "tb"
+          ]
+        ],
+        "head": "opus",
+        "options": [
+          [
+            "reltol",
+            "1e-4"
+          ]
+        ],
+        "command": "tran(param['tr']*1, param['tstart']+param['pw']*2)",
+        "params": [
+          [
+            "rin",
+            "1e6"
+          ],
+          [
+            "rfb",
+            "1e6"
+          ],
+          [
+            "lev1",
+            "-0.8"
+          ],
+          [
+            "lev2",
+            "0.8"
+          ]
+        ]
+      }
+    ]
+  ],
+  "measures": [],
+  "oppar": [
+    [
+      "vdd",
+      "1.8",
+      "1.7",
+      "2.0"
+    ],
+    [
+      "temperature",
+      "25",
+      "0",
+      "100"
+    ]
+  ],
+  "tasks": [
+    [
+      "evaluate",
+      {
+        "settings": {
+          "method": "noneFull",
+          "initialstep": "0.25",
+          "maxiter": "",
+          "optimizersettings": [],
+          "stoptol": "1e-5",
+          "failurepenalty": "1e6",
+          "relevantcorners": true,
+          "evaluatorsettings": [],
+          "forwardsolution": true,
+          "tradeoffmultiplier": "0",
+          "stopsatisfied": true,
+          "aggregatorsettings": []
+        },
+        "postprocessing": {
+          "measures": [],
+          "plots": []
+        },
+        "type": "cbd",
+        "designpar": [
+          [
+            "mirr_w",
+            "7.46e-5",
+            "",
+            ""
+          ],
+          [
+            "mirr_wd",
+            "7.46e-5",
+            "",
+            ""
+          ],
+          [
+            "mirr_wo",
+            "7.46e-5",
+            "",
+            ""
+          ],
+          [
+            "mirr_l",
+            "5.63e-7",
+            "",
+            ""
+          ],
+          [
+            "mirr_ld",
+            "5.63e-7",
+            "",
+            ""
+          ],
+          [
+            "out_w",
+            "4.80e-5",
+            "",
+            ""
+          ],
+          [
+            "out_l",
+            "3.75e-7",
+            "",
+            ""
+          ],
+          [
+            "load_w",
+            "3.49e-5",
+            "",
+            ""
+          ],
+          [
+            "load_l",
+            "2.57e-6",
+            "",
+            ""
+          ],
+          [
+            "diff_w",
+            "7.73e-6",
+            "",
+            ""
+          ],
+          [
+            "diff_l",
+            "1.08e-6",
+            "",
+            ""
+          ],
+          [
+            "c_out",
+            "8.21e-12",
+            "",
+            ""
+          ],
+          [
+            "r_out",
+            "1.97e+1",
+            "",
+            ""
+          ]
+        ],
+        "mpi": {
+          "processors": "",
+          "cosdebug": "0",
+          "vmdebug": "0",
+          "persistent": true,
+          "mirror": true
+        },
+        "output": {
+          "savewaveforms": "verification",
+          "simulatordebug": "0",
+          "keepfiles": false,
+          "evaluatordebug": "0",
+          "saveallresults": false,
+          "optimizerdebug": "0",
+          "taskdebug": "1",
+          "aggregatordebug": "0"
+        },
+        "corners": [
+          [
+            "nominal",
+            {
+              "modules": [
+                [
+                  "tm"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "1.8"
+                ],
+                [
+                  "temperature",
+                  "25"
+                ],
+                [
+                  "mp1vt",
+                  "0.0"
+                ],
+                [
+                  "mp1u0",
+                  "0.0"
+                ],
+                [
+                  "mp2vt",
+                  "0.0"
+                ],
+                [
+                  "mp2u0",
+                  "0.0"
+                ],
+                [
+                  "mp3vt",
+                  "0.0"
+                ],
+                [
+                  "mp3u0",
+                  "0.0"
+                ],
+                [
+                  "mn1vt",
+                  "0.0"
+                ],
+                [
+                  "mn1u0",
+                  "0.0"
+                ],
+                [
+                  "mn2vt",
+                  "0.0"
+                ],
+                [
+                  "mn2u0",
+                  "0.0"
+                ],
+                [
+                  "mn3vt",
+                  "0.0"
+                ],
+                [
+                  "mn3u0",
+                  "0.0"
+                ],
+                [
+                  "mn4vt",
+                  "0.0"
+                ],
+                [
+                  "mn4u0",
+                  "0.0"
+                ],
+                [
+                  "mn5vt",
+                  "0.0"
+                ],
+                [
+                  "mn5u0",
+                  "0.0"
+                ],
+                [
+                  "gvtnmm",
+                  "0.0"
+                ],
+                [
+                  "gu0nmm",
+                  "0.0"
+                ],
+                [
+                  "gvtpmm",
+                  "0.0"
+                ],
+                [
+                  "gu0pmm",
+                  "0.0"
+                ]
+              ],
+              "heads": [
+                [
+                  "opus"
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "",
+        "requirements": []
+      }
+    ]
+  ],
+  "statpar": [
+    [
+      "mp1vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mp1u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mp2vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mp2u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mp3vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mp3u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn1vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn1u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn2vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn2u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn3vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn3u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn4vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn4u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn5vt",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "mn5u0",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "gvtnmm",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "gu0nmm",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "gvtpmm",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ],
+    [
+      "gu0pmm",
+      "-10.0",
+      "10.0",
+      "Normal(0.0,1.0)"
+    ]
+  ]
+}

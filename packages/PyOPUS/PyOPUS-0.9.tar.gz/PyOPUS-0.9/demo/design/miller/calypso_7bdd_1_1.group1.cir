@@ -1,0 +1,126 @@
+* Simulator input file for job group 1
+
+.option method=trap
+.option reltol=0.0001
+.param diff_l=6.332443031769948e-07
+.param mirr_w=2.662540766792662e-05
+.param mp2vt=0.0
+.option temp=25
+.param out_l=9.197515997244488e-07
+.param gu0pmm=0.0
+.param ibias=0.0001
+.param lev1=-0.5
+.param mn4vt=0.0
+.param gu0nmm=0.0
+.param tr=1e-09
+.param cload=1e-12
+.param mn4u0=0.0
+.param tstart=1e-05
+.param mirr_ld=3.070684843478804e-06
+.param mn1vt=0.0
+.param pw=1e-05
+.param diff_w=2.60239337405497e-05
+.param mn1u0=0.0
+.param mn2u0=0.0
+.param mp1u0=0.0
+.param mirr_l=3.938949059330266e-06
+.param rfb=1000000.0
+.param mp2u0=0.0
+.param mp3vt=0.0
+.param mn2vt=0.0
+.param c_out=4.7966921262317807e-11
+.param load_w=9.159520067933924e-05
+.param lev2=0.5
+.param gvtpmm=0.0
+.param mirr_wd=6.069463182567639e-06
+.param mn3vt=0.0
+.param out_w=2.7981447546750963e-05
+.param load_l=6.694458689280011e-07
+.param tf=1e-09
+.param mn5u0=0.0
+.param r_out=100385.54240223861
+.param mn3u0=0.0
+.param vdd=1.8
+.param mp3u0=0.0
+.param rin=1000000.0
+.param rload=100000000.0
+.param mn5vt=0.0
+.param gvtnmm=0.0
+.param mirr_wo=5.575376133460765e-05
+.param mp1vt=0.0
+.lib 'cmos180n.lib' tm
+.include 'miller.inc'
+.include 'topdc.inc'
+
+.control
+unset *
+delete all
+
+set filetype=binary
+
+* nom.tran
+destroy all
+delete all
+set method=trap
+set reltol=0.0001
+set temp=25
+save all 
+echo Running nom.tran
+tran 1e-09 3.0000000000000004e-05 0.0
+if $(#plots) gt 1
+  set filetype=binary
+  write calypso_7bdd_1_1.job1.nom.tran.raw
+else
+ echo nom.tran analysis failed.
+end
+
+* nom.ac
+destroy all
+delete all
+set method=trap
+set temp=25
+save all 
+echo Running nom.ac
+ac dec 10 1 1000000000000.0
+if $(#plots) gt 1
+  set filetype=binary
+  write calypso_7bdd_1_1.job2.nom.ac.raw
+else
+ echo nom.ac analysis failed.
+end
+
+* nom.dc
+destroy all
+delete all
+set method=trap
+set temp=25
+
+echo Running nom.dc
+dc @vin1[dc] -2.0 2.0 lin 100
+if $(#plots) gt 1
+  set filetype=binary
+  write calypso_7bdd_1_1.job5.nom.dc.raw
+else
+ echo nom.dc analysis failed.
+end
+
+* nom.op
+destroy all
+delete all
+set method=trap
+set temp=25
+save @m0:xmp3:x1[vth] @m0:xmp1:x1[vds] @m0:xmp3:x1[vdsat] @m0:xmn3:x1[vgs] @m0:xmn2:x1[vds] @m0:xmn1:x1[vth] @m0:xmp2:x1[vdsat] @m0:xmp2:x1[vth] @m0:xmn4:x1[vgs] @m0:xmp2:x1[vds] 
+save @m0:xmp3:x1[vds] @m0:xmn2:x1[vth] @m0:xmn4:x1[vdsat] @m0:xmn5:x1[vth] @m0:xmp2:x1[vgs] @m0:xmn4:x1[vth] @m0:xmn1:x1[vds] @m0:xmn3:x1[vds] @m0:xmn5:x1[vgs] @m0:xmn3:x1[vdsat] 
+save @m0:xmp1:x1[vdsat] @m0:xmp3:x1[vgs] @m0:xmn2:x1[vdsat] @m0:xmp1:x1[vth] @m0:xmn5:x1[vds] @m0:xmn2:x1[vgs] @m0:xmn3:x1[vth] @m0:xmn1:x1[vgs] @m0:xmn1:x1[vdsat] all 
+save @m0:xmn4:x1[vds] @m0:xmn5:x1[vdsat] @m0:xmp1:x1[vgs] 
+echo Running nom.op
+op
+if $(#plots) gt 1
+  set filetype=binary
+  write calypso_7bdd_1_1.job7.nom.op.raw
+else
+ echo nom.op analysis failed.
+end
+
+.endc
+.end

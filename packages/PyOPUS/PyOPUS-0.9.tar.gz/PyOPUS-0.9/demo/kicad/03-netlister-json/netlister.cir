@@ -1,0 +1,21 @@
+*********
+* SPICE OPUS netlister for KiCad
+* (c)2017 EDA Lab FE Uni-Lj
+*
+* Netlister : KiCad -> Spice Opus
+* Config    : /home/arpadb/pytest/demo/kicad/03-netlister-json/netlister.json
+* Source    : /home/arpadb/pytest/demo/kicad/03-netlister-json/netlister.sch
+* XML input : /home/arpadb/pytest/demo/kicad/03-netlister-json/netlister.xml
+* Output    : /home/arpadb/pytest/demo/kicad/03-netlister-json/netlister.cir
+* Date      : Thu 09 Nov 2017 06:10:20 PM CET
+* Tool      : Eeschema 4.0.5+dfsg1-4
+* Sheet 1   : / -- netlister.sch
+*********
+
+
+* Sheet: /
+q4 (c4 b4 0) T2N2222 m=4 area=8 
+vbe4 (b4 0)  dc=0
+vce4 (c4 0)  dc=0
+
+.end

@@ -1,0 +1,4 @@
+[console_scripts]
+pyog = pyopus.gui.mainwindow:main
+pyori = pyopus.design.sqlite:main
+

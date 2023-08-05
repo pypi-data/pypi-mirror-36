@@ -1,0 +1,1033 @@
+{
+  "measures": [
+    [
+      "isup",
+      {
+        "depends": [],
+        "upper": "1000e-6",
+        "expression": "isup=-i('vdd1')",
+        "analysis": "op",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "out_op",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "v('out')",
+        "analysis": "op",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "vgs_drv",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "res=[]\n# Loop over all MOS instances in mosList\nfor inst in mosList:\n\t# Generate full name for MOS instance\n\tfullName=ipath(inst, 'x1', 'm0')\n\t# Extract vgs and vth from results\n\tvgs=p(fullName, 'vgs')\n\tvth=p(fullName, 'vth')\n\t# Compute difference and append to results list\n\tdiff=float(vgs-vth)\n\tres.append(diff)\n\t# Uncomment to print a debug message during evaluation\n\t# m.debug(\"%s: vgs=%f vth=%f\" % (fullName, vgs, vth))\n# Return NumPy array\n__result=np.array(res)",
+        "analysis": "op",
+        "norm": "",
+        "lower": "0",
+        "vector": true,
+        "components": "#mosList"
+      }
+    ],
+    [
+      "vds_drv",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "res=[]\n# Loop over all MOS instances in mosList\nfor inst in mosList:\n\t# Generate full name for MOS instance\n\tfullName=ipath(inst, 'x1', 'm0')\n\t# Extract vds and vdsat from results\n\tvds=p(fullName, 'vds')\n\tvdsat=p(fullName, 'vdsat')\n\t# Compute difference and append to results list\n\tdiff=float(vds-vdsat)\n\tres.append(diff)\n# Return NumPy array\n__result=np.array(res)",
+        "analysis": "op",
+        "norm": "",
+        "lower": "0",
+        "vector": true,
+        "components": "#mosList"
+      }
+    ],
+    [
+      "swing",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.DCswingAtGain(v('out'), v('inp', 'inn'), 0.5, 'out')",
+        "analysis": "dc",
+        "norm": "",
+        "lower": "1",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "gain",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.ACmag(m.ACtf(v('out'), v('inp', 'inn')))[0]",
+        "analysis": "ac",
+        "norm": "",
+        "lower": "60",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "gain_com",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.ACmag(m.ACtf(v('out'), 1.0))[0]",
+        "analysis": "accom",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "gain_vdd",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.ACmag(m.ACtf(v('out'), 1.0))[0]",
+        "analysis": "acvdd",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "gain_vss",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.ACmag(m.ACtf(v('out'), 1.0))[0]",
+        "analysis": "acvss",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "ugbw",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.ACugbw(m.ACtf(v('out'), v('inp', 'inn')), scale())",
+        "analysis": "ac",
+        "norm": "",
+        "lower": "10e6",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "pm",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.ACphaseMargin(m.ACtf(v('out'), v('inp', 'inn')))",
+        "analysis": "ac",
+        "norm": "",
+        "lower": "50",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "overshdn",
+      {
+        "depends": [],
+        "upper": "0.1",
+        "expression": "m.Tundershoot(v('out'), scale(), t1=param['tstart'], t2=(param['pw']+param['tstart']+param['tr']))",
+        "analysis": "tran",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "overshup",
+      {
+        "depends": [],
+        "upper": "0.1",
+        "expression": "m.Tovershoot(v('out'), scale(), t1=(param['pw']+param['tstart']+param['tr']))",
+        "analysis": "tran",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "tsetdn",
+      {
+        "depends": [],
+        "upper": "1000e-9",
+        "expression": "m.TsettlingTime(v('out'), scale(), t1=param['tstart'], t2=(param['pw']+param['tstart']+param['tr']))",
+        "analysis": "tran",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "tsetup",
+      {
+        "depends": [],
+        "upper": "1000e-6",
+        "expression": "m.TsettlingTime(v('out'), scale(), t1=(param['pw']+param['tstart'])+param['tr'])",
+        "analysis": "tran",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "slewdn",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.TslewRate('falling', v('out'), scale(), t1=param['tstart'], t2=(param['pw']+param['tstart']+param['tr']))",
+        "analysis": "translew",
+        "norm": "",
+        "lower": "2e6",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "slewup",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.TslewRate('rising', v('out'), scale(), t1=(param['pw']+param['tstart']+param['tr']))",
+        "analysis": "translew",
+        "norm": "",
+        "lower": "2e6",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "cmrr",
+      {
+        "depends": [
+          [
+            "gain"
+          ],
+          [
+            "gain_com"
+          ]
+        ],
+        "upper": "",
+        "expression": "result['gain'][cornerName]-result['gain_com'][cornerName]",
+        "analysis": "",
+        "norm": "",
+        "lower": "90",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "psrr_vdd",
+      {
+        "depends": [
+          [
+            "gain"
+          ],
+          [
+            "gain_vdd"
+          ]
+        ],
+        "upper": "",
+        "expression": "result['gain'][cornerName]-result['gain_vdd'][cornerName]",
+        "analysis": "",
+        "norm": "",
+        "lower": "60",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "psrr_vss",
+      {
+        "depends": [
+          [
+            "gain"
+          ],
+          [
+            "gain_vss"
+          ]
+        ],
+        "upper": "",
+        "expression": "result['gain'][cornerName]-result['gain_vss'][cornerName]",
+        "analysis": "",
+        "norm": "",
+        "lower": "60",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "onoise1k",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.XatI(ns('output'), m.IatXval(scale(), 1e3)[0])",
+        "analysis": "noise",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "inoise1k",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.XatI(ns('input'), m.IatXval(scale(), 1e3)[0])",
+        "analysis": "noise",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "in1kmn2id",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.XatI(ns('input', ipath('xmn2', 'x1', 'm0'), 'id'), m.IatXval(scale(), 1e3)[0])",
+        "analysis": "noise",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "in1kmn2rd",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.XatI(ns('input', ipath('xmn2', 'x1', 'm0'), 'rd'), m.IatXval(scale(), 1e3)[0])",
+        "analysis": "noise",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "in1kmn2",
+      {
+        "depends": [],
+        "upper": "",
+        "expression": "m.XatI(ns('input', ipath('xmn2', 'x1', 'm0')), m.IatXval(scale(), 1e3)[0])",
+        "analysis": "noise",
+        "norm": "",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ],
+    [
+      "area",
+      {
+        "depends": [],
+        "upper": "9000e-12",
+        "expression": "(\n  (param['mirr_w']+param['mirr_wo'])*param['mirr_l']\n +param['mirr_wd']*param['mirr_ld']\n +param['out_w']*param['out_l']*(2)\n +param['load_w']*param['load_l']*(1+1)\n +param['diff_w']*param['diff_l']*(1+1)\n +param['r_out']/1e3*12e-12\n +param['c_out']/1e-12*100e-12\n)",
+        "analysis": "",
+        "norm": "100e-12",
+        "lower": "",
+        "vector": false,
+        "components": ""
+      }
+    ]
+  ],
+  "plots": [
+    [
+      "DC",
+      {
+        "axes": [
+          [
+            "Response",
+            {
+              "xspan": "1",
+              "yspan": "1",
+              "xpos": "0",
+              "xhi": "0.01",
+              "ypos": "0",
+              "ylabel": "out [V]",
+              "aspect": false,
+              "title": "",
+              "xlo": "-0.01",
+              "traces": [
+                [
+                  "out",
+                  {
+                    "expression": "v('out')",
+                    "scale": "v('inp','inn')",
+                    "analyses": [
+                      [
+                        "dc"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "yhi": "",
+              "ylo": "",
+              "xgrid": true,
+              "ygrid": true,
+              "xlabel": "inp-inn [V]",
+              "type": "lin"
+            }
+          ],
+          [
+            "Gain",
+            {
+              "xspan": "1",
+              "xlo": "",
+              "xpos": "0",
+              "type": "lin",
+              "title": "",
+              "xhi": "",
+              "ylabel": "Differential gain",
+              "aspect": false,
+              "traces": [
+                [
+                  "gain",
+                  {
+                    "expression": "m.dYdX(v('out'),v('inp','inn'))",
+                    "scale": "v('out')",
+                    "analyses": [
+                      [
+                        "dc"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "yhi": "",
+              "ylo": "",
+              "ygrid": true,
+              "xgrid": true,
+              "yspan": "1",
+              "xlabel": "out [V]",
+              "ypos": "1"
+            }
+          ]
+        ],
+        "title": ""
+      }
+    ],
+    [
+      "AC",
+      {
+        "axes": [
+          [
+            "Gain",
+            {
+              "xspan": "1",
+              "xlo": "",
+              "xpos": "0",
+              "type": "xlog",
+              "title": "",
+              "xhi": "",
+              "ylabel": "Gain [dB]",
+              "aspect": false,
+              "traces": [
+                [
+                  "gain",
+                  {
+                    "expression": "m.ACmag(m.ACtf(v('out'), v('inp', 'inn')))",
+                    "scale": "scale()/1e3",
+                    "analyses": [
+                      [
+                        "ac"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "yhi": "",
+              "ylo": "",
+              "ygrid": true,
+              "xgrid": true,
+              "yspan": "1",
+              "xlabel": "f [kHz]",
+              "ypos": "0"
+            }
+          ],
+          [
+            "Phase",
+            {
+              "xspan": "1",
+              "xlo": "",
+              "xpos": "0",
+              "type": "xlog",
+              "title": "",
+              "xhi": "",
+              "ylabel": "Phase [deg]",
+              "aspect": false,
+              "traces": [
+                [
+                  "phase",
+                  {
+                    "expression": "m.ACphase(m.ACtf(v('out'), v('inp', 'inn')))",
+                    "scale": "scale()/1e3",
+                    "analyses": [
+                      [
+                        "ac"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "yhi": "",
+              "ylo": "",
+              "ygrid": true,
+              "xgrid": true,
+              "yspan": "1",
+              "xlabel": "f [kHz]",
+              "ypos": "1"
+            }
+          ]
+        ],
+        "title": ""
+      }
+    ],
+    [
+      "CMRR",
+      {
+        "axes": [
+          [
+            "CMRR",
+            {
+              "xspan": "1",
+              "xlo": "",
+              "xpos": "0",
+              "type": "xlog",
+              "title": "",
+              "xhi": "",
+              "ylabel": "CMRR [dB]",
+              "aspect": false,
+              "traces": [
+                [
+                  "cmrr",
+                  {
+                    "expression": "m.ACmag(ac.v('out')/ac.v('inp','inn'))-m.ACmag(accom.v('out'))",
+                    "scale": "ac.scale()/1e3",
+                    "analyses": [
+                      [
+                        "ac"
+                      ],
+                      [
+                        "accom"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "yhi": "",
+              "ylo": "",
+              "ygrid": true,
+              "xgrid": true,
+              "yspan": "1",
+              "xlabel": "f [kHz]",
+              "ypos": "0"
+            }
+          ]
+        ],
+        "title": ""
+      }
+    ],
+    [
+      "PSRR_Vdd",
+      {
+        "axes": [
+          [
+            "PSRR",
+            {
+              "xspan": "1",
+              "xlo": "",
+              "ylo": "",
+              "ypos": "0",
+              "xhi": "",
+              "title": "",
+              "ylabel": "PSRR_Vdd [dB]",
+              "aspect": false,
+              "traces": [
+                [
+                  "psrr",
+                  {
+                    "scale": "ac.scale()/1e3",
+                    "expression": "m.ACmag(ac.v('out')/ac.v('inp','inn'))-m.ACmag(acvdd.v('out'))",
+                    "analyses": [
+                      [
+                        "ac"
+                      ],
+                      [
+                        "acvdd"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "yhi": "",
+              "xpos": "0",
+              "xgrid": true,
+              "ygrid": true,
+              "yspan": "1",
+              "xlabel": "f [kHz]",
+              "type": "xlog"
+            }
+          ]
+        ],
+        "title": ""
+      }
+    ],
+    [
+      "PSRR_Vss",
+      {
+        "axes": [
+          [
+            "PSRR",
+            {
+              "xspan": "1",
+              "xlo": "",
+              "xpos": "0",
+              "xhi": "",
+              "title": "",
+              "ylabel": "PSRR_Vss [dB]",
+              "aspect": false,
+              "traces": [
+                [
+                  "psrr",
+                  {
+                    "expression": "m.ACmag(ac.v('out')/ac.v('inp','inn'))-m.ACmag(acvss.v('out'))",
+                    "scale": "ac.scale()/1e3",
+                    "analyses": [
+                      [
+                        "ac"
+                      ],
+                      [
+                        "acvss"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "ypos": "0",
+              "ylo": "",
+              "type": "xlog",
+              "xgrid": true,
+              "ygrid": true,
+              "yspan": "1",
+              "xlabel": "f [kHz]",
+              "yhi": ""
+            }
+          ]
+        ],
+        "title": ""
+      }
+    ],
+    [
+      "Noise",
+      {
+        "axes": [
+          [
+            "output",
+            {
+              "xspan": "1",
+              "xlo": "",
+              "xpos": "0",
+              "type": "log",
+              "title": "",
+              "xhi": "",
+              "ylabel": "Output noise [V^2/Hz]",
+              "aspect": false,
+              "traces": [
+                [
+                  "noise",
+                  {
+                    "expression": "ns('output')",
+                    "scale": "scale()/1e3",
+                    "analyses": [
+                      [
+                        "noise"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "yhi": "",
+              "ylo": "",
+              "ygrid": true,
+              "xgrid": true,
+              "yspan": "1",
+              "xlabel": "f [kHz]",
+              "ypos": "0"
+            }
+          ],
+          [
+            "input",
+            {
+              "xspan": "1",
+              "xlo": "",
+              "ylo": "",
+              "ypos": "1",
+              "xhi": "",
+              "title": "",
+              "ylabel": "Equivalent input noise [V^2/Hz]",
+              "aspect": false,
+              "traces": [
+                [
+                  "noise",
+                  {
+                    "scale": "scale()/1e3",
+                    "expression": "ns('input')",
+                    "analyses": [
+                      [
+                        "noise"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "yhi": "",
+              "xpos": "0",
+              "xgrid": true,
+              "ygrid": true,
+              "yspan": "1",
+              "xlabel": "f [kHz]",
+              "type": "log"
+            }
+          ]
+        ],
+        "title": ""
+      }
+    ],
+    [
+      "Rise",
+      {
+        "axes": [
+          [
+            "Input",
+            {
+              "xspan": "1",
+              "xlo": "19.9",
+              "ylo": "",
+              "ypos": "0",
+              "xhi": "20.5",
+              "title": "",
+              "ylabel": "in [V]",
+              "aspect": false,
+              "traces": [
+                [
+                  "in",
+                  {
+                    "scale": "scale()/1e-6",
+                    "expression": "v('in')",
+                    "analyses": [
+                      [
+                        "tran"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "yhi": "",
+              "xpos": "0",
+              "xgrid": true,
+              "ygrid": true,
+              "yspan": "1",
+              "xlabel": "time [us]",
+              "type": "lin"
+            }
+          ],
+          [
+            "Output",
+            {
+              "xspan": "1",
+              "xlo": "19.9",
+              "xpos": "0",
+              "xhi": "20.5",
+              "title": "",
+              "ylabel": "out [V]",
+              "aspect": false,
+              "traces": [
+                [
+                  "out",
+                  {
+                    "expression": "v('out')",
+                    "scale": "scale()/1e-6",
+                    "analyses": [
+                      [
+                        "tran"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "ypos": "1",
+              "ylo": "",
+              "type": "lin",
+              "xgrid": true,
+              "ygrid": true,
+              "yspan": "1",
+              "xlabel": "time [us]",
+              "yhi": ""
+            }
+          ]
+        ],
+        "title": ""
+      }
+    ],
+    [
+      "Fall",
+      {
+        "axes": [
+          [
+            "Input",
+            {
+              "xspan": "1",
+              "xlo": "9.9",
+              "xpos": "0",
+              "type": "lin",
+              "title": "",
+              "xhi": "10.5",
+              "ylabel": "in [V]",
+              "aspect": false,
+              "traces": [
+                [
+                  "in",
+                  {
+                    "expression": "v('in')",
+                    "scale": "scale()/1e-6",
+                    "analyses": [
+                      [
+                        "tran"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "yhi": "",
+              "ylo": "",
+              "ygrid": true,
+              "xgrid": true,
+              "yspan": "1",
+              "xlabel": "time [us]",
+              "ypos": "0"
+            }
+          ],
+          [
+            "Output",
+            {
+              "xspan": "1",
+              "xlo": "9.9",
+              "ylo": "",
+              "ypos": "1",
+              "xhi": "10.5",
+              "title": "",
+              "ylabel": "out [V]",
+              "aspect": false,
+              "traces": [
+                [
+                  "out",
+                  {
+                    "scale": "scale()/1e-6",
+                    "expression": "v('out')",
+                    "analyses": [
+                      [
+                        "tran"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "yhi": "",
+              "xpos": "0",
+              "xgrid": true,
+              "ygrid": true,
+              "yspan": "1",
+              "xlabel": "time [us]",
+              "type": "lin"
+            }
+          ]
+        ],
+        "title": ""
+      }
+    ],
+    [
+      "Slew_rise",
+      {
+        "axes": [
+          [
+            "Input",
+            {
+              "xspan": "1",
+              "xlo": "19.9",
+              "xpos": "0",
+              "xhi": "20.5",
+              "title": "",
+              "ylabel": "in [V]",
+              "aspect": false,
+              "traces": [
+                [
+                  "in",
+                  {
+                    "expression": "v('in')",
+                    "scale": "scale()/1e-6",
+                    "analyses": [
+                      [
+                        "translew"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "ypos": "0",
+              "ylo": "",
+              "type": "lin",
+              "xgrid": true,
+              "ygrid": true,
+              "yspan": "1",
+              "xlabel": "time [us]",
+              "yhi": ""
+            }
+          ],
+          [
+            "Output",
+            {
+              "xspan": "1",
+              "xlo": "19.9",
+              "ylo": "",
+              "yhi": "",
+              "xhi": "20.5",
+              "title": "",
+              "ylabel": "out [V]",
+              "aspect": false,
+              "traces": [
+                [
+                  "out",
+                  {
+                    "scale": "scale()/1e-6",
+                    "expression": "v('out')",
+                    "analyses": [
+                      [
+                        "translew"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "ypos": "1",
+              "xpos": "0",
+              "xgrid": true,
+              "ygrid": true,
+              "yspan": "1",
+              "xlabel": "time [us]",
+              "type": "lin"
+            }
+          ]
+        ],
+        "title": ""
+      }
+    ],
+    [
+      "Slew_fall",
+      {
+        "axes": [
+          [
+            "Input",
+            {
+              "xspan": "1",
+              "xlo": "9.9",
+              "ylo": "",
+              "ypos": "0",
+              "xhi": "10.5",
+              "title": "",
+              "ylabel": "in [V]",
+              "aspect": false,
+              "traces": [
+                [
+                  "in",
+                  {
+                    "scale": "scale()/1e-6",
+                    "expression": "v('in')",
+                    "analyses": [
+                      [
+                        "translew"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "yhi": "",
+              "xpos": "0",
+              "xgrid": true,
+              "ygrid": true,
+              "yspan": "1",
+              "xlabel": "time [us]",
+              "type": "lin"
+            }
+          ],
+          [
+            "Output",
+            {
+              "xspan": "1",
+              "xlo": "9.9",
+              "xpos": "0",
+              "xhi": "10.5",
+              "title": "",
+              "ylabel": "out [V]",
+              "aspect": false,
+              "traces": [
+                [
+                  "out",
+                  {
+                    "expression": "v('out')",
+                    "scale": "scale()/1e-6",
+                    "analyses": [
+                      [
+                        "translew"
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "ypos": "1",
+              "ylo": "",
+              "type": "lin",
+              "xgrid": true,
+              "ygrid": true,
+              "yspan": "1",
+              "xlabel": "time [us]",
+              "yhi": ""
+            }
+          ]
+        ],
+        "title": ""
+      }
+    ]
+  ],
+  "version": "1.0"
+}

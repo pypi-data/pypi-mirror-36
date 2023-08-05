@@ -1,0 +1,330 @@
+Authors
+=======
+Arpad Buermen
+
+parts of the code contributed by 
+
+Janez Puhan (HSPICE file interface)
+Jernej Olensek (global optimization test problems)
+Gregor Cijan (cost collector)
+
+
+Credits 
+=======
+PyOpus uses code from the following packages
+- FORTRAN test problems implemented by
+  - Napsu Karmitsa
+  - Ladislav Luksan and Jan Vlcek
+  - Jorge More and Stefan Wild
+- MADS test problems MDO and STYRENE implemented by Sebastien Le Digabel,
+  Charles Audet, et. al. 
+
+See src/*.zip and src/*.tar.gz for details on respective licenses. 
+
+
+Installation from wheel files
+=============================
+
+Installation for Linux
+----------------------
+Tested under Debian 9.1 (Stretch) amd64
+
+1. Install Spice Opus (if you are not using some other supported simulator)
+	Download from http://www.spiceopus.si
+	Install to /usr/local
+
+2. Install prerequisites (Debian packages)
+	Become root
+	Type
+		apt-get install libstdc++6 libopenmpi-dev liblapack3 liblapack-dev libblas3 libblas-dev kicad python3.5 python3-pip python3-wheel python3-setuptools python3-numpy python3-scipy python3-matplotlib python3-greenlet python3-mpi4py python3-pyqt5 python3-lxml python3-pyqtgraph gfortran
+		
+	This installs packages
+		libstdc++6
+		libopenmpi-dev
+		liblapack3
+		liblapack-dev
+		libblas3
+		libblas-dev
+		kicad (needed for schematic entry)
+		python3.5
+		python3-pip
+		python3-wheel
+		python3-setuptools
+		python3-numpy
+		python3-scipy
+		python3-matplotlib
+		python3-greenlet
+		python3-mpi4py
+		python3-pyqt5
+		python3-lxml
+		python3-pyqtgraph
+		gfortran (for CUTEr support)
+       
+3. Install cvxopt and PyOPUS
+	Get the PyOPUS .whl file for Linux from
+		http://fides.fe.uni-lj.si/pyopus/download/0.9/PyOPUS-0.9-cp35-cp35m-linux_x86_64.whl
+	
+	Under Debian Stretch cvxopt is not available for python3. 
+	You must install it with pip. Become root and type
+		pip3 install cvxopt
+		
+	Now you can install PyOPUS. Become root and type 
+		pip3 install PyOPUS-0.9-cp35-cp35m-linux_x86_64.whl --no-deps
+	
+	The --no-deps option is needed because pip does not detect PyQt5 
+	when it is installed as a Debian package (the Stretch version is 
+	missing the corresponding .egg-info file). Without this option pip will 
+	download PyQt5 as a .whl file and install it to /usr/local. 
+	
+	If you will keep this pip-installed version of PyQt5 you could run 
+	into problems because it is linked against a different version of Qt 
+	than the one provided by Debian. To remove it, type
+		pip3 uninstall pyqt5
+		pip3 uninstall pyqt5-sip
+
+
+Installation for Windows (quickstart)
+-------------------------------------
+Tested under Windows 10
+
+1. Install KiCad (for schematic entry)
+	Download from http://kicad-pcb.org/
+    	Install
+
+2. Install Spice Opus (if you are not using some other supported simulator)
+	Download from http://www.spiceopus.si
+    	Install to c:\SpiceOpus
+	Reboot. 
+
+3. Download PyOPUS 0.9 Windows quickstart from 
+	http://fides.fe.uni-lj.si/pyopus/download/0.9/PyOPUS-0.9-quickstart-win_amd64.zip
+	
+   Unpack the zip file to c:\. 
+   This will create folder c:\PyOPUS-0.9-quickstart-win_amd64
+   
+4. Install Python3
+   In c:\PyOPUS-0.9-quickstart-win_amd64 run the Python3 installer
+	python-3.5.4-amd64.exe
+		Check "Add Python to path"
+		Click "Customize installation"
+		Check "PIP"
+		Check "TCL/TK and Idle"
+		Click "Next"
+		Check "Install for all users"
+		Check "Associate files with Python"
+		Check "Add Python to environment variables"
+		Check "Precompile standard library"
+		Install to c:\Python35
+
+5. Install Microsoft MPI
+   In c:\PyOPUS-0.9-quickstart-win_amd64 run the MSMPI installer
+	MSMpiSetup.exe
+
+6. Install prerequisite wheel files and PyOPUS
+   There is no binary wheel available for cvxopt in PyPI. Because building 
+   stuff under Windows is not as trivial as under Linux the simplest 
+   solution is to use packages from Christoph Gohlke's site 
+	http://www.lfd.uci.edu/~gohlke/pythonlibs/
+	
+   The required wheel files from that site are in c:\PyOPUS-0.9-quickstart-win_amd64
+   along with the PyOPUS wheel file. Install them by running 
+   	install.bat
+
+7. Now you can delete
+	c:\PyOPUS-0.9-quickstart-win_amd64
+
+
+Installation for Windows (with Anaconda 5)
+------------------------------------------
+1. Go through steps 1-2 of Installation for Windows (quickstart)
+
+2. Download Anaconda for AMD64 Windows and install it. 
+   Update it by opening the command prompt and typing
+	conda update --all
+
+3. Create an Anaconda environment for Python 3.5.x by opening a command prompt and typing
+	conda create -n py35 anaconda python=3.5
+	conda update all
+	activate py35
+	
+   If youare going to use multiple versions of Python with Anaconda, you must type
+	activate py35 
+   before working with PyOPUS. 
+
+4. Install Microsoft MPI. You can get it from the following zip archive
+	http://fides.fe.uni-lj.si/pyopus/download/0.9/PyOPUS-0.9-quickstart-win_amd64.zip
+   Look for file 
+	MSMpiSetup.exe
+	
+5. Open command prompt, install the Anaconda cvxopt package
+	conda install cvxopt
+	
+   Install mpi4py, PyQt5, and pyqtgraph with pip
+	pip install mpi4py
+	pip install pyqt5
+	pip install pyqtgraph
+	
+6. Download PyOPUS from 
+	http://fides.fe.uni-lj.si/pyopus/download/0.9/PyOPUS-0.9-cp35-cp35m-win_amd64.whl
+   
+   Install it by opening the command prompt and typing
+	pip install PyOPUS-0.9-cp35-cp35m-win_amd64.whl
+	
+	
+Installation for Windows (from your own package sources)
+--------------------------------------------------------
+Tested under Windows 10
+
+1. Go through steps 1-3 of Installation for Windows (quickstart)
+
+2. Download Python 3.5.x and install it to c:\Python35. 
+   Make sure the Python interpreter is in the system path, i.e. add
+   c:\Python35 and c:\Python35\Scripts to the PATH environmental variable. 
+
+3. Download Microsoft MPI and install it. 
+
+4. Install Python libraries
+   wheel setuptools numpy scipy cvxopt matplotlib greenlet mpi4py lxml pyqt5 pyqtgraph
+   
+   Make sure mpi4py you are using is linked against Microsoft MPI. 
+   
+5. Download PyOPUS from 
+	http://fides.fe.uni-lj.si/pyopus/download/0.9/PyOPUS-0.9-cp35-cp35m-win_amd64.whl
+   
+   Install it by opening the command prompt and typing
+	pip install PyOPUS-0.9-cp35-cp35m-win_amd64.whl
+
+
+Configuring KiCad
+=================
+Select Tools/Generate Netlist File in Eeschema menu. 
+Click "Add Plugin". Under "Title" enter
+	Spice Opus
+	
+Under "Netlist command" enter: 
+	python3 -m pyopus.netlister.kicad -i "%I" -o "%O"
+
+For Windows the command for running the netlister is: 
+	C:\Python35\pythonw.exe -m pyopus.netlister.kicad -i "%I" -o "%O"
+
+Click "OK". A tab will appear for generating Spice Opus netlists. 
+
+This procedure needs to be done only once. 
+
+
+Preparing PyOPUS for parallel processing with MPI 
+=================================================
+If you intend to run parallel processes on your local machine, there is 
+nothing further to do. 
+
+If you intend to run parallel processes on a computer farm and your home 
+folder /home/<username> is nfs-mounted on all worker computers as 
+/home/<username> there is nothing further to do. If this is not the case
+see the documentation of pyopus.parallel.base and set the 
+	PARALLEL_MIRRORED_STORAGE 
+
+environmental variable on all computers participating in parallel 
+processing. 
+
+If you want your workers to use local copies of files (mirroring) for 
+faster processing and you intend to use /tmp folder for storing the 
+local copies, there is nothing further to do. If you want to store the 
+local copies somewhere else see the documentation of pyopus.parallel.base 
+and set the 
+	PARALLEL_LOCAL_STORAGE 
+	
+environmentral variable on all computers participating in parallel 
+processing. 
+
+Under Windows you must start 
+	
+	smpd -d 3
+
+in a command prompt on all hosts where you want to start MPI processes 
+before starting any parallel runs. The ``-d 3`` option will produce debug 
+output which will help you solve problems with your MPI setup. The smpd 
+executable is a part of Microsoft MPI. 
+
+Parallel processing on a computer farm was not tested under Windows. 
+This is uncharted territory. Reports are welcome. 
+
+
+Demos and documentation
+=======================
+Demos and documentation in html format are available as a .tar.gz archive at 
+	http://fides.fe.uni-lj.si/pyopus/download/0.9/PyOPUS-0.9-doc-demo.tar.gz
+
+Unpacked demos are available for browsing at
+	http://fides.fe.uni-lj.si/pyopus/download/0.9/demo
+
+Unpacked docs can be browsed at
+	http://fides.fe.uni-lj.si/pyopus/download/0.9/docsrc/_build/html
+	
+	
+Building PyOPUS from sources
+============================
+Download the source package from 
+	http://fides.fe.uni-lj.si/pyopus/download/0.9/PyOPUS-0.9.tar.gz
+and unpack it. 
+
+Building for Linux (wheel, demos and documentation, and source)
+---------------------------------------------------------------
+Tested under Debian 9.1 (Stretch) amd64
+
+1. Install prerequisites for Linux PyOPUS installation
+
+2. Install prerequisites for building. Type
+	apt-get install gcc g++ libstdc++-6-dev make texlive texlive-latex-extra dvipng graphviz python3-wheel python3-dev python3-sphinx python3-setuptools
+
+   This installs packages
+	gcc
+	g++
+	libstdc++-6-dev
+	make
+	texlive
+	texlive-latex-extra
+	dvipng
+	graphviz
+	python3-dev
+	python3-sphinx
+	python3-wheel
+	python3-setuptools
+	
+3. In the folder where PyOPUS sources are located type
+	./pack
+   
+   The wheel file, demos and documentation, and the source package 
+   will be placed under dist/
+
+   
+Building for Windows (wheel only)
+---------------------------------
+Tested under Windows 10
+
+1. Install prerequisites for Windows PyOPUS installation
+
+2. Install prerequisites for building
+	Visual Studio 2015
+	Python libraries (in command prompt)
+		pip install setuptools
+		pip install wheel
+	
+3. Start VS 2015 x64 Native Tools Command Prompt, 
+   go to the folder where PyOPUS sources are located, and type
+	pack.bat
+   
+   The wheel file will be placed under dist/
+
+
+Install PyOPUS for development (in source folders)
+--------------------------------------------------
+Add the source folder to the PYTHONPATH environmental variable. 
+
+After building PyOPUS with 
+	python3 setup.py build
+	
+type:
+	python3 setup.py develop --no-deps --install-dir .
+	
+Note that this step is automatically performed by the pack script 
+for Linux. pack.bat for Windows does not perform this step. 

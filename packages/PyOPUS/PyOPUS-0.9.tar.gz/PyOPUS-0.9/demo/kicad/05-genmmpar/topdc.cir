@@ -1,0 +1,63 @@
+*********
+* SPICE OPUS netlister for KiCad
+* (c)2017 EDA Lab FE Uni-Lj
+*
+* Netlister : KiCad -> Spice Opus
+* Config    : /mnt/data/Data/pytest/demo/kicad/05-genmmpar/netlister.json
+* Source    : /mnt/data/Data/pytest/demo/kicad/05-genmmpar/topdc.sch
+* XML input : /mnt/data/Data/pytest/demo/kicad/05-genmmpar/topdc.xml
+* Output    : /mnt/data/Data/pytest/demo/kicad/05-genmmpar/topdc.cir
+* Date      : Thu 26 Oct 2017 03:26:29 PM CEST
+* Tool      : Eeschema 4.0.5+dfsg1-4
+* Sheet 1   : / -- topdc.sch
+*********
+
+.include miller.inc
+.lib 'cmos180n.lib' tm
+.include mosmm.inc
+
+* Verbatim block Text1 from sheet /
+.param m1vt=0
+.param m1u0=0
+.param m2vt=0
+.param m2u0=0
+.param m3vt=0
+.param m3u0=0
+.param m4vt=0
+.param m4u0=0
+.param m5vt=0
+.param m5u0=0
+.param m6vt=0
+.param m6u0=0
+.param m7vt=0
+.param m7u0=0
+.param m8vt=0
+.param m8u0=0
+
+
+* Sheet: /
+x1 (inp inn net001 vdd vss) miller   
+vdd1 (vdd 0)  dc=0.9
+r2 (out inn) r=1meg 
+r1 (inn in) r=1meg 
+vcom1 (inp 0)  dc=0
+vin1 (in 0)  dc=0 ac=1
+vss1 (vss 0)  dc=-0.9
+cl1 (net001 0) c=1p 
+e1 (out 0 net001 0) gain=1 
+rl1 (net001 0) r=100meg 
+
+* Verbatim block Text2 from sheet /
+.control
+destroy all
+delete all
+
+dc vin1 -0.9 0.9 lin 500
+plot v(out) vs v(inp,inn) xl -5m 2m
+
+set units=degrees
+ac dec 100 1 1g
+plot db(v(out)/v(inp,inn)) unwrap(phase(v(out)/v(inp,inn)))
+.endc
+
+.end

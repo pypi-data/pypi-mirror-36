@@ -1,0 +1,356 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:pyopus
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L NMOS Mn4
+U 1 1 59CE21E6
+P 3950 5250
+F 0 "Mn4" H 4150 5450 50  0000 L CNN
+F 1 "NMOS" H 4150 5550 50  0001 L CNN
+F 2 "" H 4150 5550 50  0000 C CNN
+F 3 "" H 3950 5250 50  0000 C CNN
+F 4 "submodn" H 3650 5000 50  0000 L CNN "Model"
+F 5 "{mirr_wd}" H 3900 5450 50  0000 R CNB "w"
+F 6 "{mirr_ld}" H 3900 5350 50  0000 R CNN "l"
+F 7 "1" H 3900 5100 50  0000 R CNN "m"
+	1    3950 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L NMOS Mn3
+U 1 1 59CE2249
+P 2650 5250
+F 0 "Mn3" H 2850 5450 50  0000 L CNN
+F 1 "NMOS" H 2850 5550 50  0001 L CNN
+F 2 "" H 2850 5550 50  0000 C CNN
+F 3 "" H 2650 5250 50  0000 C CNN
+F 4 "submodn" H 2850 5350 50  0000 L CNN "Model"
+F 5 "{mirr_w}" H 2600 5450 50  0000 R CNB "w"
+F 6 "{mirr_l}" H 2600 5350 50  0000 R CNN "l"
+F 7 "1" H 2600 5100 50  0000 R CNN "m"
+	1    2650 5250
+	-1   0    0    -1  
+$EndComp
+$Comp
+L NMOS Mn5
+U 1 1 59CE22B1
+P 5850 5250
+F 0 "Mn5" H 6050 5450 50  0000 L CNN
+F 1 "NMOS" H 6050 5550 50  0001 L CNN
+F 2 "" H 6050 5550 50  0000 C CNN
+F 3 "" H 5850 5250 50  0000 C CNN
+F 4 "submodn" H 6050 5350 50  0000 L CNN "Model"
+F 5 "{mirr_wo}" H 5800 5450 50  0000 R CNB "w"
+F 6 "{mirr_l}" H 5800 5350 50  0000 R CNN "l"
+F 7 "1" H 5800 5100 50  0000 R CNN "m"
+	1    5850 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L PMOS Mp1
+U 1 1 59CE2309
+P 3600 3300
+F 0 "Mp1" H 3800 3500 50  0000 L CNN
+F 1 "PMOS" H 3800 3600 50  0001 L CNN
+F 2 "" H 3800 3550 50  0000 C CNN
+F 3 "" H 3800 3500 50  0000 C CNN
+F 4 "submodp" H 3800 3400 50  0000 L CNN "Model"
+F 5 "{load_w}" H 3550 3500 50  0000 R CNB "w"
+F 6 "{load_l}" H 3550 3400 50  0000 R CNN "l"
+F 7 "1" H 3550 3150 50  0000 R CNN "m"
+	1    3600 3300
+	-1   0    0    1   
+$EndComp
+$Comp
+L PMOS Mp2
+U 1 1 59CE23A0
+P 4500 3300
+F 0 "Mp2" H 4700 3500 50  0000 L CNN
+F 1 "PMOS" H 4700 3600 50  0001 L CNN
+F 2 "" H 4700 3550 50  0000 C CNN
+F 3 "" H 4700 3500 50  0000 C CNN
+F 4 "submodp" H 4700 3400 50  0000 L CNN "Model"
+F 5 "{load_w}" H 4450 3500 50  0000 R CNB "w"
+F 6 "{load_l}" H 4450 3400 50  0000 R CNN "l"
+F 7 "1" H 4450 3150 50  0000 R CNN "m"
+	1    4500 3300
+	1    0    0    1   
+$EndComp
+$Comp
+L PMOS Mp3
+U 1 1 59CE2470
+P 5850 3300
+F 0 "Mp3" H 6050 3500 50  0000 L CNN
+F 1 "PMOS" H 6050 3600 50  0001 L CNN
+F 2 "" H 6050 3550 50  0000 C CNN
+F 3 "" H 6050 3500 50  0000 C CNN
+F 4 "submodp" H 6050 3400 50  0000 L CNN "Model"
+F 5 "{out_w}" H 5800 3500 50  0000 R CNB "w"
+F 6 "{out_l}" H 5800 3400 50  0000 R CNN "l"
+F 7 "2" H 5800 3150 50  0000 R CNN "m"
+	1    5850 3300
+	1    0    0    1   
+$EndComp
+$Comp
+L ISRC I1
+U 1 1 59CE2F9A
+P 2550 3950
+F 0 "I1" V 2400 3950 50  0000 C CNN
+F 1 "ISRC" V 2300 3950 50  0001 C CNN
+F 2 "" V 2280 3200 50  0000 C CNN
+F 3 "" V 2350 3200 50  0000 C CNN
+F 4 "dc={ibias}" V 2700 3950 50  0000 C CNN "Specification"
+	1    2550 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L RES R1
+U 1 1 59CE39B2
+P 5750 3900
+F 0 "R1" V 5650 3900 50  0000 C CNN
+F 1 "RES" V 5550 3900 50  0001 C CNN
+F 2 "" V 5680 3900 50  0000 C CNN
+F 3 "" V 5830 3900 50  0000 C CNN
+F 4 "{r_out}" V 5850 3900 50  0000 C CNN "r"
+	1    5750 3900
+	0    1    1    0   
+$EndComp
+$Comp
+L CAP C1
+U 1 1 59CE3A28
+P 5350 3900
+F 0 "C1" V 5200 3900 50  0000 C CNN
+F 1 "CAP" V 5100 3900 50  0001 C CNN
+F 2 "" V 5388 3750 50  0000 C CNN
+F 3 "" V 5200 3900 50  0000 C CNN
+F 4 "{c_out}" V 5500 3900 50  0000 C CNN "c"
+	1    5350 3900
+	0    1    1    0   
+$EndComp
+Text GLabel 6050 3900 2    60   Input ~ 0
+out
+Text GLabel 5000 4400 2    60   Input ~ 0
+inp
+Text GLabel 3100 4400 0    60   Input ~ 0
+inn
+Text GLabel 2150 2950 0    60   Input ~ 0
+vdd
+Text GLabel 2150 5600 0    60   Input ~ 0
+vss
+$Comp
+L NMOS Mn1
+U 1 1 59CE412B
+P 3400 4400
+F 0 "Mn1" H 3600 4600 50  0000 L CNN
+F 1 "NMOS" H 3600 4700 50  0001 L CNN
+F 2 "" H 3600 4700 50  0000 C CNN
+F 3 "" H 3400 4400 50  0000 C CNN
+F 4 "submodn" H 3600 4500 50  0000 L CNN "Model"
+F 5 "{diff_w}" H 3350 4600 50  0000 R CNB "w"
+F 6 "{diff_l}" H 3350 4500 50  0000 R CNN "l"
+F 7 "1" H 3350 4250 50  0000 R CNN "m"
+	1    3400 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L NMOS Mn2
+U 1 1 59CE41C7
+P 4700 4400
+F 0 "Mn2" H 4900 4600 50  0000 L CNN
+F 1 "NMOS" H 4900 4700 50  0001 L CNN
+F 2 "" H 4900 4700 50  0000 C CNN
+F 3 "" H 4700 4400 50  0000 C CNN
+F 4 "submodn" H 4900 4500 50  0000 L CNN "Model"
+F 5 "{diff_w}" H 4650 4600 50  0000 R CNB "w"
+F 6 "{diff_l}" H 4650 4500 50  0000 R CNN "l"
+F 7 "1" H 4650 4250 50  0000 R CNN "m"
+	1    4700 4400
+	-1   0    0    -1  
+$EndComp
+$Comp
+L SUBCKT A3
+U 1 1 59CE4A2A
+P 6950 4000
+F 0 "A3" H 6550 4050 50  0000 L CNN
+F 1 "SUBCKT" H 6950 3900 50  0000 C CNN
+F 2 "" H 6950 4000 60  0001 C CNN
+F 3 "" H 6950 4000 60  0001 C CNN
+F 4 "miller" H 6550 3750 50  0000 L CNN "Name"
+F 5 "inp inn out vdd vss" H 6550 3650 50  0000 L CNN "Pins"
+	1    6950 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L OUTPUT_FILE A1
+U 1 1 59CE4ADD
+P 6950 3000
+F 0 "A1" H 6550 3050 50  0000 L CNN
+F 1 "OUTPUT_FILE" H 6950 2900 50  0000 C CNN
+F 2 "" H 6950 3000 60  0001 C CNN
+F 3 "" H 6950 3000 60  0001 C CNN
+F 4 "miller.inc" H 6550 2750 50  0000 L CNN "Name"
+	1    6950 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5950 5600 5950 5450
+Wire Wire Line
+	4050 5600 4050 5450
+Connection ~ 4050 5600
+Wire Wire Line
+	2550 5600 2550 5450
+Wire Wire Line
+	4600 3100 4600 2950
+Connection ~ 4600 2950
+Wire Wire Line
+	3500 3100 3500 2950
+Connection ~ 3500 2950
+Wire Wire Line
+	3350 3300 3350 2950
+Connection ~ 3350 2950
+Wire Wire Line
+	4750 3300 4750 2950
+Connection ~ 4750 2950
+Wire Wire Line
+	4200 5600 4200 5250
+Connection ~ 4200 5600
+Wire Wire Line
+	6100 5600 6100 5250
+Connection ~ 5950 5600
+Wire Wire Line
+	3500 3500 3500 4200
+Wire Wire Line
+	4600 3500 4600 4200
+Wire Wire Line
+	3500 4600 3500 4750
+Wire Wire Line
+	3500 4750 4600 4750
+Wire Wire Line
+	4600 4750 4600 4600
+Wire Wire Line
+	4050 5050 4050 4750
+Connection ~ 4050 4750
+Wire Wire Line
+	3800 3300 4300 3300
+Wire Wire Line
+	4050 3300 4050 3700
+Wire Wire Line
+	4050 3700 3500 3700
+Connection ~ 3500 3700
+Connection ~ 4050 3300
+Connection ~ 4600 3900
+Wire Wire Line
+	5950 3100 5950 2950
+Connection ~ 5950 2950
+Wire Wire Line
+	5950 3500 5950 5050
+Wire Wire Line
+	6100 2950 6100 3300
+Wire Wire Line
+	2550 4100 2550 5050
+Wire Wire Line
+	3500 4950 3500 5250
+Wire Wire Line
+	3500 5250 3750 5250
+Wire Wire Line
+	5500 5250 5650 5250
+Connection ~ 3500 4950
+Wire Wire Line
+	2150 5600 6100 5600
+Wire Wire Line
+	2550 3800 2550 2950
+Connection ~ 2550 2950
+Wire Wire Line
+	2150 2950 6100 2950
+Connection ~ 2550 5600
+Wire Wire Line
+	5500 3900 5600 3900
+Wire Wire Line
+	5900 3900 6050 3900
+Connection ~ 5950 3900
+Wire Wire Line
+	4600 3900 5200 3900
+Connection ~ 5150 3900
+Wire Wire Line
+	3100 4400 3200 4400
+Wire Wire Line
+	4900 4400 5000 4400
+Wire Wire Line
+	3650 4400 4450 4400
+Wire Wire Line
+	4350 4400 4350 5600
+Connection ~ 4350 5600
+Connection ~ 4350 4400
+Wire Wire Line
+	2850 5250 3150 5250
+Wire Wire Line
+	3150 5250 3150 4950
+Connection ~ 3150 4950
+Connection ~ 2550 4950
+Wire Wire Line
+	2400 5250 2400 5600
+Connection ~ 2400 5600
+Wire Wire Line
+	5500 4950 5500 5250
+Wire Wire Line
+	2550 4950 5500 4950
+Wire Wire Line
+	5150 3300 5650 3300
+Wire Wire Line
+	5150 3900 5150 3300
+$Comp
+L INCLUDE A2
+U 1 1 5B7E92E6
+P 6950 3500
+F 0 "A2" H 6550 3550 50  0000 L CNN
+F 1 "INCLUDE" H 6950 3400 50  0000 C CNN
+F 2 "" H 6950 3500 60  0001 C CNN
+F 3 "" H 6950 3500 60  0001 C CNN
+F 4 "mosmm.inc" H 6550 3250 50  0000 L CNN "Filename"
+F 5 "top" H 7350 3550 50  0000 R CNN "Position"
+	1    6950 3500
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC

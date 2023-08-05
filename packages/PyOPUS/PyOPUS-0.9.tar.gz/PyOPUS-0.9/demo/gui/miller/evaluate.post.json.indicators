@@ -1,0 +1,149 @@
+{
+  "measures": [
+    [
+      "unspecified_failed",
+      {
+        "analysis": "op",
+        "upper": "",
+        "vector": false,
+        "depends": [],
+        "expression": "None",
+        "lower": "",
+        "components": "",
+        "norm": ""
+      }
+    ],
+    [
+      "unspecified",
+      {
+        "analysis": "op",
+        "upper": "",
+        "vector": false,
+        "depends": [],
+        "expression": "0",
+        "lower": "",
+        "components": "",
+        "norm": ""
+      }
+    ],
+    [
+      "above_below_failed",
+      {
+        "analysis": "op",
+        "upper": "",
+        "vector": false,
+        "depends": [],
+        "expression": "None",
+        "lower": "0",
+        "components": "",
+        "norm": "1"
+      }
+    ],
+    [
+      "above_too_low",
+      {
+        "analysis": "op",
+        "upper": "",
+        "vector": false,
+        "depends": [],
+        "expression": "-5",
+        "lower": "0",
+        "components": "",
+        "norm": "1"
+      }
+    ],
+    [
+      "above_ok",
+      {
+        "analysis": "op",
+        "upper": "",
+        "vector": false,
+        "depends": [],
+        "expression": "5",
+        "lower": "0",
+        "components": "",
+        "norm": "1"
+      }
+    ],
+    [
+      "below_too_high",
+      {
+        "analysis": "op",
+        "upper": "0",
+        "vector": false,
+        "depends": [],
+        "expression": "5",
+        "lower": "",
+        "components": "",
+        "norm": "1"
+      }
+    ],
+    [
+      "below_ok",
+      {
+        "analysis": "op",
+        "upper": "0",
+        "vector": false,
+        "depends": [],
+        "expression": "-5",
+        "lower": "",
+        "components": "",
+        "norm": "1"
+      }
+    ],
+    [
+      "between_failed",
+      {
+        "analysis": "op",
+        "upper": "5",
+        "vector": false,
+        "depends": [],
+        "expression": "None",
+        "lower": "-5",
+        "components": "",
+        "norm": "1"
+      }
+    ],
+    [
+      "between_too_low",
+      {
+        "analysis": "op",
+        "upper": "5",
+        "vector": false,
+        "depends": [],
+        "expression": "-8",
+        "lower": "-5",
+        "components": "",
+        "norm": "1"
+      }
+    ],
+    [
+      "between_too_high",
+      {
+        "analysis": "op",
+        "upper": "5",
+        "vector": false,
+        "depends": [],
+        "expression": "8",
+        "lower": "-5",
+        "components": "",
+        "norm": "1"
+      }
+    ],
+    [
+      "between_ok",
+      {
+        "analysis": "op",
+        "upper": "5",
+        "vector": false,
+        "depends": [],
+        "expression": "3",
+        "lower": "-5",
+        "components": "",
+        "norm": "1"
+      }
+    ]
+  ],
+  "version": "1.0",
+  "plots": []
+}

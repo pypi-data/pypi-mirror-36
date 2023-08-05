@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>/mnt/data/Data/pytest/demo/kicad/05-genmmpar/topdc.sch</source>
+    <date>Thu 26 Oct 2017 03:26:29 PM CEST</date>
+    <tool>Eeschema 4.0.5+dfsg1-4</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>topdc.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="X1">
+      <value>miller</value>
+      <libsource lib="pyopus" part="OPAMP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2C92</tstamp>
+    </comp>
+    <comp ref="Vdd1">
+      <value>VSRC</value>
+      <fields>
+        <field name="Specification">dc=0.9</field>
+      </fields>
+      <libsource lib="pyopus" part="VSRC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2D2E</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>RES</value>
+      <fields>
+        <field name="r">1meg</field>
+      </fields>
+      <libsource lib="pyopus" part="RES"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2DAF</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>RES</value>
+      <fields>
+        <field name="r">1meg</field>
+      </fields>
+      <libsource lib="pyopus" part="RES"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2DEC</tstamp>
+    </comp>
+    <comp ref="Vcom1">
+      <value>VSRC</value>
+      <fields>
+        <field name="Specification">dc=0</field>
+      </fields>
+      <libsource lib="pyopus" part="VSRC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2E3F</tstamp>
+    </comp>
+    <comp ref="Vin1">
+      <value>VSRC</value>
+      <fields>
+        <field name="Specification">dc=0 ac=1</field>
+      </fields>
+      <libsource lib="pyopus" part="VSRC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE307C</tstamp>
+    </comp>
+    <comp ref="Vss1">
+      <value>VSRC</value>
+      <fields>
+        <field name="Specification">dc=-0.9</field>
+      </fields>
+      <libsource lib="pyopus" part="VSRC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE2CF9</tstamp>
+    </comp>
+    <comp ref="A1">
+      <value>OUTPUT_FILE</value>
+      <fields>
+        <field name="Name">topdc.cir</field>
+      </fields>
+      <libsource lib="pyopus" part="OUTPUT_FILE"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE4456</tstamp>
+    </comp>
+    <comp ref="A2">
+      <value>INCLUDE</value>
+      <fields>
+        <field name="Filename">miller.inc</field>
+        <field name="Position">top</field>
+      </fields>
+      <libsource lib="pyopus" part="INCLUDE"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE450E</tstamp>
+    </comp>
+    <comp ref="A3">
+      <value>LIB</value>
+      <fields>
+        <field name="Filename">cmos180n.lib</field>
+        <field name="Section">tm</field>
+        <field name="Position">top</field>
+      </fields>
+      <libsource lib="pyopus" part="LIB"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59CE4601</tstamp>
+    </comp>
+    <comp ref="Cl1">
+      <value>CAP</value>
+      <fields>
+        <field name="c">1p</field>
+      </fields>
+      <libsource lib="pyopus" part="CAP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D772E6</tstamp>
+    </comp>
+    <comp ref="E1">
+      <value>VCVS</value>
+      <fields>
+        <field name="gain">1</field>
+      </fields>
+      <libsource lib="pyopus" part="VCVS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59E105E0</tstamp>
+    </comp>
+    <comp ref="Rl1">
+      <value>RES</value>
+      <fields>
+        <field name="r">100meg</field>
+      </fields>
+      <libsource lib="pyopus" part="RES"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59E10C5C</tstamp>
+    </comp>
+    <comp ref="A4">
+      <value>INCLUDE</value>
+      <fields>
+        <field name="Filename">mosmm.inc</field>
+        <field name="Position">top</field>
+      </fields>
+      <libsource lib="pyopus" part="INCLUDE"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59E103E9</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="pyopus" part="CAP">
+      <description>Built-in capacitor</description>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">CAP</field>
+        <field name="c">&lt;capacitance&gt;</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="INCLUDE">
+      <description>Include file</description>
+      <fields>
+        <field name="Reference">A</field>
+        <field name="Value">INCLUDE</field>
+        <field name="Filename">&lt;file name&gt;</field>
+        <field name="Position">top</field>
+      </fields>
+    </libpart>
+    <libpart lib="pyopus" part="LIB">
+      <description>Include library section</description>
+      <fields>
+        <field name="Reference">A</field>
+        <field name="Value">LIB</field>
+        <field name="Filename">&lt;file name&gt;</field>
+        <field name="Section">&lt;section&gt;</field>
+        <field name="Position">top</field>
+      </fields>
+    </libpart>
+    <libpart lib="pyopus" part="OPAMP">
+      <description>Operational amplifier</description>
+      <fields>
+        <field name="Reference">X</field>
+        <field name="Value">OPAMP</field>
+      </fields>
+      <pins>
+        <pin num="1" name="+" type="input"/>
+        <pin num="2" name="-" type="input"/>
+        <pin num="3" name="out" type="output"/>
+        <pin num="4" name="vdd" type="input"/>
+        <pin num="5" name="vss" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="OUTPUT_FILE">
+      <description>Define subcircuit</description>
+      <fields>
+        <field name="Reference">A</field>
+        <field name="Value">OUTPUT_FILE</field>
+        <field name="Name">&lt;file name&gt;</field>
+      </fields>
+    </libpart>
+    <libpart lib="pyopus" part="RES">
+      <description>Built-in resistor</description>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">RES</field>
+        <field name="r">&lt;resistance&gt;</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="VCVS">
+      <description>Built-in voltage-controlled voltage source</description>
+      <fields>
+        <field name="Reference">E</field>
+        <field name="Value">VCVS</field>
+        <field name="gain">&lt;gain&gt;</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P" type="passive"/>
+        <pin num="2" name="N" type="power_out"/>
+        <pin num="3" name="CP" type="input"/>
+        <pin num="4" name="CN" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="pyopus" part="VSRC">
+      <description>Built-in independent voltage source</description>
+      <fields>
+        <field name="Reference">V</field>
+        <field name="Value">VSRC</field>
+        <field name="Specification">dc=0</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P" type="passive"/>
+        <pin num="2" name="N" type="power_out"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="pyopus">
+      <uri>pyopus.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="vss">
+      <node ref="X1" pin="5"/>
+      <node ref="Vss1" pin="1"/>
+    </net>
+    <net code="2" name="inn">
+      <node ref="R1" pin="1"/>
+      <node ref="X1" pin="2"/>
+      <node ref="R2" pin="2"/>
+    </net>
+    <net code="3" name="inp">
+      <node ref="Vcom1" pin="1"/>
+      <node ref="X1" pin="1"/>
+    </net>
+    <net code="4" name="in">
+      <node ref="Vin1" pin="1"/>
+      <node ref="R1" pin="2"/>
+    </net>
+    <net code="5" name="vdd">
+      <node ref="X1" pin="4"/>
+      <node ref="Vdd1" pin="1"/>
+    </net>
+    <net code="6" name="out">
+      <node ref="E1" pin="1"/>
+      <node ref="R2" pin="1"/>
+    </net>
+    <net code="7" name="GND">
+      <node ref="Rl1" pin="2"/>
+      <node ref="Vdd1" pin="2"/>
+      <node ref="E1" pin="4"/>
+      <node ref="E1" pin="2"/>
+      <node ref="Vss1" pin="2"/>
+      <node ref="Cl1" pin="2"/>
+      <node ref="Vin1" pin="2"/>
+      <node ref="Vcom1" pin="2"/>
+    </net>
+    <net code="8" name="Net-(Cl1-Pad1)">
+      <node ref="X1" pin="3"/>
+      <node ref="Cl1" pin="1"/>
+      <node ref="E1" pin="3"/>
+      <node ref="Rl1" pin="1"/>
+    </net>
+  </nets>
+</export>

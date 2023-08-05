@@ -1,0 +1,27 @@
+// Miller OTA, 0.18u, 1.8V, Spectre
+
+simulator lang=spectre
+
+// Any include or lib that is set from pyopus (specified in problem definition) 
+// must not be specified here. 
+
+// Include files - fixed
+include "mosmm.scs"
+
+// Any parameter that is set from pyopus (specified in problem definition) 
+// must not be specified here. 
+
+subckt amp (inp inn out vdd vss bias slp slpx)
+xmp1  (n9 n10 vdd vdd)     submodp w=load_w  l=load_l  m=1  vtmm=p1vt  u0mm=p1u0
+xmp2  (n10 n10 vdd vdd)    submodp w=load_w  l=load_l  m=1  vtmm=p2vt  u0mm=p2u0
+xmp1s (n9 slpx vdd vdd)    submodp w=1u        l=0.5u           
+xmp3  (out n9 vdd vdd)     submodp w=out_w   l=out_l   m=2  vtmm=p3vt  u0mm=p3u0
+xmn2  (n9 inp n8 vss)      submodn w=dif_w   l=dif_l        vtmm=n2vt  u0mm=n2u0
+xmn3  (n10 inn n8 vss)     submodn w=dif_w   l=dif_l        vtmm=n3vt  u0mm=n3u0
+xmn1s (bias slp vss vss)   submodn w=1u        l=0.5u           
+xmn1b (bias bias vss vss)  submodn w=mirr_w  l=mirr_l  m=1  vtmm=n1bvt u0mm=n1bu0
+xmn1  (n8 bias vss vss)    submodn w=mirr_wd l=mirr_ld m=1  vtmm=n1vt  u0mm=n1u0
+xmn4  (out bias vss vss)    submodn w=mirr_wo l=mirr_l  m=1  vtmm=n4vt  u0mm=n4u0
+cout  (n55 n9)             capacitor c=c_out
+rout  (n5 n55)             resistor  r=r_out
+ends amp

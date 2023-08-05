@@ -1,0 +1,19 @@
+{
+        "NetPrefix": "net",
+        "EnumerateNets": true,
+        "NetNumbers": 3,
+        "SuppressEnd": false, 
+        "Mapping": [
+		[
+			null, "Q_NPN_BEC",
+			{
+				"Parameters": [ "m", "area" ],
+				"OutPattern": "#REF() (#PINS()) #MODEL() #PNV() #PV(Specification)",
+				"SpiceDevice": "npn",
+				"PinMap": [ 3, 1, 2 ],
+				"NamePrefix": "Q",
+				"ValueField": "Model"
+			}
+		]
+	]
+}

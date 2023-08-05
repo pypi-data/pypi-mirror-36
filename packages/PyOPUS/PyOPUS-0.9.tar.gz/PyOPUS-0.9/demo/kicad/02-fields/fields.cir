@@ -1,0 +1,30 @@
+*********
+* SPICE OPUS netlister for KiCad
+* (c)2017 EDA Lab FE Uni-Lj
+*
+* Netlister : KiCad -> Spice Opus
+* Config    : default used
+* Source    : /mnt/data/Data/pytest/demo/kicad/02-fields/fields.sch
+* XML input : /mnt/data/Data/pytest/demo/kicad/02-fields/fields.xml
+* Output    : /mnt/data/Data/pytest/demo/kicad/02-fields/fields.cir
+* Date      : Thu 26 Oct 2017 03:24:37 PM CEST
+* Tool      : Eeschema 4.0.5+dfsg1-4
+* Sheet 1   : / -- fields.sch
+*********
+
+
+* Sheet: /
+xq1 (c1 b1 0) T2N2222   
+vbe1 (b1 0)  dc=0
+vce1 (c1 0)  dc=0
+q2 (c2 b2 0) T2N2222   
+vbe2 (b2 0)  dc=0
+vce2 (c2 0)  dc=0
+q3 (c3 b3 0) T2N2222 param: m=4 area=8 
+vbe3 (b3 0)  dc=0
+vce3 (c3 0)  dc=0
+q4 (c4 b4 0) T2N2222 m=4 area=8 
+vbe4 (b4 0)  dc=0
+vce4 (c4 0)  dc=0
+
+.end

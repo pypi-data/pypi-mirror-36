@@ -1,0 +1,189 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 1_PORT
+D 1-port network
+K n-ports
+$ENDCMP
+#
+$CMP 2_PIN
+D 2-pin component
+K n-pins
+$ENDCMP
+#
+$CMP 2_PORT
+D 2-port network
+K n-ports
+$ENDCMP
+#
+$CMP 3_PIN
+D 3-pin component
+K n-pins
+$ENDCMP
+#
+$CMP CAP
+D Built-in capacitor
+$ENDCMP
+#
+$CMP CAP_SEMI
+D Built-in semiconductor capacitor
+$ENDCMP
+#
+$CMP CCCS
+D Built-in current-controlled current source
+$ENDCMP
+#
+$CMP CCVS
+D Built-in current-controlled voltage source
+$ENDCMP
+#
+$CMP CSW
+D Built-in current-controlled switch
+$ENDCMP
+#
+$CMP DIO
+D Built-in semiconductor diode
+$ENDCMP
+#
+$CMP INCLUDE
+D Include file
+$ENDCMP
+#
+$CMP IND
+D Built-in inductor
+$ENDCMP
+#
+$CMP IND_COUPLING
+D Built-in inductive coupling
+$ENDCMP
+#
+$CMP ISRC
+D Built-in independent current source
+$ENDCMP
+#
+$CMP ISRC_NONLIN
+D Built-in nonlinear controlled current source
+$ENDCMP
+#
+$CMP LIB
+D Include library section
+$ENDCMP
+#
+$CMP LOSSLESS_LINE
+D Lossless transmission line
+$ENDCMP
+#
+$CMP LOSSY_LINE
+D Lossy transmission line
+$ENDCMP
+#
+$CMP MODEL
+D Model definition
+$ENDCMP
+#
+$CMP NJF
+D Built-in NJFET transistor
+$ENDCMP
+#
+$CMP NMF
+D Built-in NMESFET transistor
+$ENDCMP
+#
+$CMP NMOS
+D Built-in NMOS transistor
+$ENDCMP
+#
+$CMP NPN
+D Built-in NPN transistor
+$ENDCMP
+#
+$CMP OPAMP
+D Operational amplifier
+K op amp amplifier operational 
+$ENDCMP
+#
+$CMP OPAMP_DIFF
+D Operational amplifier (diff. output)
+K op amp amplifier operational 
+$ENDCMP
+#
+$CMP OTA
+D Operational transconductance amplifier
+K op amp amplifier transconductance operational 
+$ENDCMP
+#
+$CMP OTA_DIFF
+D Operational transconductance amplifier (diff. output)
+K op amp amplifier transconductance operational 
+$ENDCMP
+#
+$CMP OUTPUT_FILE
+D Define subcircuit
+$ENDCMP
+#
+$CMP PARAM
+D Define new parameter
+$ENDCMP
+#
+$CMP PJF
+D Built-in PJFET transistor
+$ENDCMP
+#
+$CMP PMF
+D Built-in PMESFET transistor
+$ENDCMP
+#
+$CMP PMOS
+D Built-in PMOS transistor
+$ENDCMP
+#
+$CMP PNP
+D Built-in PNP transistor
+$ENDCMP
+#
+$CMP RES
+D Built-in resistor
+K r res resistor
+$ENDCMP
+#
+$CMP RES_SEMI
+D Built-in semiconductor resistor
+K r res resistor
+$ENDCMP
+#
+$CMP SUBCKT
+D Define subcircuit
+$ENDCMP
+#
+$CMP SUBCKT_PARAM
+D Define subcircuit parameter
+$ENDCMP
+#
+$CMP SUPPRESS_END
+D Suppress adding .end to netlist
+$ENDCMP
+#
+$CMP SW
+D Built-in voltage-controlled switch
+$ENDCMP
+#
+$CMP URC_LINE
+D Uniform distributed RC line
+$ENDCMP
+#
+$CMP VCCS
+D Built-in voltage-controlled current source
+$ENDCMP
+#
+$CMP VCVS
+D Built-in voltage-controlled voltage source
+$ENDCMP
+#
+$CMP VSRC
+D Built-in independent voltage source
+$ENDCMP
+#
+$CMP VSRC_NONLIN
+D Built-in nonlinear controlled voltage source
+$ENDCMP
+#
+#End Doc Library

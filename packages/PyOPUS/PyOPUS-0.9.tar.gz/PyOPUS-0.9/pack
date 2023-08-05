@@ -1,0 +1,59 @@
+#!/bin/bash
+
+basename="PyOPUS-0.9"
+
+docdemofile=$basename-doc-demo.tar.gz
+
+#######
+
+echo Cleaning up
+rm -rf build
+rm -rf dist
+
+echo
+echo Building wheel
+python3 setup.py build
+python3 setup.py bdist_wheel
+
+# Set PYTHONPATH to . so that  --install-lib will work in .
+# Ignore the errors regarding write permission to /usr/local
+# We need to install binary modules to avoid import problems 
+# when sphinx is generating the docs.
+echo 
+echo Developer install
+export PYTHONPATH=`pwd`
+rm -f easy-install.pth
+rm -rf PyOPUS.egg-info
+rm -f PyOPUS.egg-link 
+rm -f site.py*
+python3 setup.py develop --no-deps --install-dir .
+
+echo
+echo Building documentation
+cd docsrc
+make clean
+make html
+cd ..
+
+echo
+echo Building source distribution
+python3 setup.py sdist
+
+echo
+echo Collecting files for docs and demos
+mkdir -p build/$basename/docsrc/_build/html
+cp -R docsrc/_build/html/* build/$basename/docsrc/_build/html
+
+mkdir -p build/$basename/demo
+cp -R demo/* build/$basename/demo
+find build/$basename/demo/gui -name pyopusgui.config -exec rm \{\} \;
+
+echo
+echo Packing
+cd build
+tar cf ../dist/$docdemofile $basename
+
+echo
+echo Final cleanup
+cd ..
+rm -rf build/$basename
