@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: heartwave
+Version: 0.8.0
+Summary: Heart rate measurement from webcam or video
+Home-page: https://github.com/erdewit/heartwave
+Author: Ewald R. de Wit
+Author-email: ewald.de.wit@gmail.com
+License: BSD
+Keywords: PPG photoplethysmogram heart rate webcam
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Healthcare Industry
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Dist: PyQt5
+Requires-Dist: PyQtChart
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: opencv-contrib-python
+
+UNKNOWN
+
+
