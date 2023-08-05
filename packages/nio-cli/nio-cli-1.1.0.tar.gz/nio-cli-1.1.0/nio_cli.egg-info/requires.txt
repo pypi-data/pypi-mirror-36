@@ -1,0 +1,8 @@
+nio
+requests
+docopts
+pycodestyle
+bcrypt
+
+[dev]
+responses
