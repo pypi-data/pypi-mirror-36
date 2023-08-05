@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: pyqpanda
+Version: 2.2.4
+Summary: pyQPanda is Python wrapper of QPanda.
+Home-page: http://originqc.com.cn/QPanda/download.html
+Author: OriginQ
+Author-email: czy@originqc.com
+License: Apache Licence
+Platform: all
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries
+
+Project description
+===================
+
+	pyQPanda is Python wrapper of QPanda. QPanda is a?Quantum Programming Environment?for realistic quantum computers, more information of QPanda can be found 
+`Homepage <http://www.originqc.com.cn/QPanda/download.html>`__.
+pyQPanda is used to facilitate the use of QPanda. 
+Before getting started, you have to read Readme/Installation first to install the QPanda system on your computer to master the function of QPanda.
+The main functionalites are distributed in pyQPanda. That includes:
+* pyqpanda: essential API for users.
+* pyqpanda: essential API for users.
+* pyqpanda.utils: extended API.
+* pyqpanda.Algorithm: algorithm pack.
+* pyqpanda.Hamiltonian: representation of Hamiltonian.
+
+
+
+
