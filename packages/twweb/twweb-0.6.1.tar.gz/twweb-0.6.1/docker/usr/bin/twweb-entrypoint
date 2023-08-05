@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Create default TWWeb's settings
+if [ ! -e "$TWWEB_SETTINGS" ]; then
+    if [ -z "$TWW_CFG_SECRET" ]; then
+        TWW_CFG_SECRET=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
+    fi
+
+    touch "$TWWEB_SETTINGS"
+    echo "SECRET_KEY='$TWW_CFG_SECRET'" >> "$TWWEB_SETTINGS"
+    echo "PIN='$TWW_CFG_PIN'" >> "$TWWEB_SETTINGS"
+    echo "DB_ENGINE='$TWW_CFG_DB_ENGINE'" >> "$TWWEB_SETTINGS"
+    echo "DB_HOST='$TWW_CFG_DB_HOST'" >> "$TWWEB_SETTINGS"
+    echo "TW_TASKRC='$TWW_CFG_TW_TASKRC'" >> "$TWWEB_SETTINGS"
+
+fi
+
+mkdir -p /data/.task
+
+exec "$@"
