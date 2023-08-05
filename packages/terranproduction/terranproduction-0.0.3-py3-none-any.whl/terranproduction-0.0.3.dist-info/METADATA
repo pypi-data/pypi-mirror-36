@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: terranproduction
+Version: 0.0.3
+Summary: SC2 Replay Analyser which visualises a player's Terran Production Efficiency
+Home-page: https://github.com/frugs/allin-terranproduction
+Author: Hugo Wainwright
+Author-email: wainwrighthugo@gmail.com
+License: UNKNOWN
+Keywords: sc2,replay,sc2reader
+Platform: UNKNOWN
+Requires-Dist: techlabreactor
+Requires-Dist: requests (>=2.19.1)
+Requires-Dist: requests-toolbelt (>=0.8.0)
+Requires-Dist: pyrebase
+Requires-Dist: flask
+Requires-Dist: google-cloud-datastore
+
+UNKNOWN
+
+
