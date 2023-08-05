@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: rddl2tf
+Version: 0.1.0
+Summary: RDDL2TensorFlow compiler.
+Home-page: https://github.com/thiagopbueno/rddl2tf
+Author: Thiago P. Bueno
+Author-email: thiago.pbueno@gmail.com
+License: GNU General Public License v3.0
+Description: # rddl2tf
+        RDDL2TensorFlow compiler.
+        
+Keywords: rddl,tensorflow
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
