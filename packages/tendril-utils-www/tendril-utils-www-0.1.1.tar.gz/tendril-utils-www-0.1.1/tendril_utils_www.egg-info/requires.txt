@@ -1,0 +1,8 @@
+tendril-utils-core
+six
+lxml
+beautifulsoup4
+cachecontrol[filecache]
+requests
+suds
+fs==0.5.4
