@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: ixnetwork-restpy
+Version: 0.1.28
+Summary: IxNetwork REST API Python Client
+Home-page: https://keysight.com
+Author: Keysight ISG IxNetwork team
+Author-email: ixnetwork@keysight.com
+License: MIT
+Keywords: ixnetwork l2l3 test tool ixia automation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=2.7, <4
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+# IxNetwork REST API Client
+**This is an alpha build and is subject to change!**
+
+## Features
+- classes are generated from the latest released version of IxNetwork
+  - the only class that can be directly instantiated is the TestPlatform class
+  - all other classes are accessed via a child property on the parent class
+  - classes have helper methods depending on the type of class
+	- classes that represent a required node are automatically populated with one and only one instance of the node's data
+	- classes that represent a user managed list have `add, remove, find` helper methods
+	- classes that represent a system managed list have a `find` helper method
+  - every instantiated class encapsulates instances retrieved from the server 
+  - encapsulated instances can be accessed using iterators or indexes
+  - class iterator/index support includes: `__iter__ __next__ __getitem__ __len__`
+- `find` method
+	- offers named parameters for all properties in the class
+	- named parameters can be populated with regex to allow for **finding** specific instances
+	- allows the encapsulated data to be reduced to specific instances
+	- e.g., to find all virtual ports that have a type of ethernet, the following  `IxNetwork.Vport.find(type='ethernet')` returns a single vport instance that encapsulates all the those vport instances on the server that have type **ethernet**
+- installs via pip  
+  - pip install -U ixnetwork-restpy
+- documentation is inlined in all generated classes  
+  - documentation is also available via a static documentation browser distributed with the package under the docs folder
+  - there is no need to connect to a running instance of IxNetwork to get API documentation
+- samples distributed with the package under the tests folder
+	- these samples are also used to sanity test the package before posting it to pypi
+
+## Limitations
+- minimum IxNetwork support is 8.42
+
+## Getting Started
+```
+from ixnetwork_restpy.testplatform.testplatform import TestPlatform
+
+# create the connection to a test platform
+test_platform = TestPlatform('127.0.0.1')
+test_platform.Authenticate('admin', 'admin')
+
+# add a session
+sessions = test_platform.Sessions.add()
+
+# get the root node of the IxNetwork hierarchy
+ixnetwork = sessions.Ixnetwork
+
+# add 3 virtual ports
+vports = ixnetwork.Vport.add().add().add()
+
+# create a raw traffic item with the 3 virtual ports
+traffic_item = ixnetwork.Traffic.TrafficItem.add(name='Raw Traffic')
+endpoint_set = traffic_item.EndpointSet.add(sources=vports)
+```
+
