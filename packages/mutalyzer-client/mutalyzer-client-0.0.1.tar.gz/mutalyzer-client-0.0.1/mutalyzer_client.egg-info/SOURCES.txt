@@ -1,0 +1,15 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+mutalyzer_client/__init__.py
+mutalyzer_client/cli.py
+mutalyzer_client/mutalyzer_client.py
+mutalyzer_client/setup.cfg
+mutalyzer_client.egg-info/PKG-INFO
+mutalyzer_client.egg-info/SOURCES.txt
+mutalyzer_client.egg-info/dependency_links.txt
+mutalyzer_client.egg-info/entry_points.txt
+mutalyzer_client.egg-info/not-zip-safe
+mutalyzer_client.egg-info/requires.txt
+mutalyzer_client.egg-info/top_level.txt
