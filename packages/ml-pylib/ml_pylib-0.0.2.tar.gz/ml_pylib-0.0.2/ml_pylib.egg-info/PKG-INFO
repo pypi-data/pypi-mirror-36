@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: ml-pylib
+Version: 0.0.2
+Summary: A lot of handy python methods encapsulated on many commonly used build-in modules(os, sys, etc.) or popular libs (numpy, tensorflow, cv2, etc. ).
+Home-page: https://github.com/DewMaple/pylib
+Author: dew.maple
+Author-email: dew.maple@gmail.com
+License: MIT
+Project-URL: Bug Reports, https://github.com/DewMaple/pylib/issues
+Project-URL: Source, https://github.com/DewMaple/pylib
+Description: UNKNOWN
+Keywords: computer vision,image processing,opencv,numpy,tensorflow,plt
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
