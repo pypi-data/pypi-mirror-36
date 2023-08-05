@@ -1,0 +1,4 @@
+#!python
+
+from docker_push_ssh import cli
+cli.main()
