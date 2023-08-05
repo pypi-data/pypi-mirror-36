@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: pch
+Version: 0.1
+Summary: Extra hooks for pre-commit.
+Home-page: https://github.com/saxix/pre-commit-hooks
+Author: Stefano Apostolico
+Author-email: s.apostolico@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7

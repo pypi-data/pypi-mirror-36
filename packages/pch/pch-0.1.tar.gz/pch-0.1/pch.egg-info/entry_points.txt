@@ -1,0 +1,5 @@
+[console_scripts]
+check-env-template = pch.check_env_template:main
+check-missed-migrations = pch.check_missed_migrations:main
+check-untracked = pch.check_untracked:main
+
