@@ -1,0 +1,9 @@
+PyPDF3>=1.0.0
+pdfrw
+PyMuPDF
+Pillow
+reportlab
+PySimpleGUI>=3.0.3
+looptools
+tqdm
+pybundle
