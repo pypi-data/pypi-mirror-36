@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: releasy-uff
+Version: 1.0.0
+Summary: Releasy is a tool that collects provenance data from releases by parsing the software version control and issue tracking systems.
+Home-page: https://github.com/gems-uff/releasy
+Author: Felipe Curty
+Author-email: felipecrp@gmail.com
+License: UNKNOWN
+Description: Releasy
+        =======
+        
+        Releasy is a tool that collects provenance data from releases 
+        by parsing the software version control and issue tracking
+        systems.
+        
+        Usage
+        =====
+        
+        ```
+        $ releasy [release-name] <command> [options]
+        ```
+        
+        ## E.g.:
+        
+        List commits of the release 1.0.0
+        ```
+        $ releasy 1.0.0 ls commit
+        ```
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
