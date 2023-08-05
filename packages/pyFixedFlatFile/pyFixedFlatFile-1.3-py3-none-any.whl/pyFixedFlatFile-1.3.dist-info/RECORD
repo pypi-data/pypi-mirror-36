@@ -1,0 +1,12 @@
+pyFixedFlatFile/__init__.py,sha256=Ezt8c2cPN6I9iH5IeX1pC1r6al_PfJOqYjm_xy3AgvI,135
+pyFixedFlatFile/exceptions.py,sha256=reuKqv1MzWmgc6h44VPFXaLLEJbsHKf0rz_CdKbBQ6Q,110
+pyFixedFlatFile/pyFixedFlatFile.py,sha256=3GF3NlC7a15hSAflr6hZassFC9FOOlxE82Zwd-0_NI0,5177
+pyFixedFlatFile/specs.py,sha256=ewkaqpNEyGlLqyqWkmo8q91ZSap8OAC8Dt_P04OiZjI,1986
+pyFixedFlatFile/cnabs/__init__.py,sha256=XJPK_cd1RqIB55S5TQN3y7uTXDeMYjA7r5iyecSpKrI,95
+pyFixedFlatFile/cnabs/bradesco.py,sha256=5PwHgHwLeQQviSrkedph1mc9kVFGzgOI5JQ8Tr4JqYQ,5173
+pyFixedFlatFile/cnabs/itau.py,sha256=zXH6FWW_uQ8nwwVQxX6Qrlz7JTMlLizW4T7hneWC-bQ,5560
+pyFixedFlatFile/cnabs/santander.py,sha256=5l1Juas1ZkQWVCGYMX2jvw8_a2qpPTRq2E2T5rn3R9I,2288
+pyFixedFlatFile-1.3.dist-info/LICENSE.txt,sha256=t__32HPJHp_CX9YLeycass5nQZ5GdS3ikSQVCu8oiU8,1082
+pyFixedFlatFile-1.3.dist-info/WHEEL,sha256=FiUeJaDw4XYhaBV_yhW-XPenLpAB74w_Lsov4o5LaT8,79
+pyFixedFlatFile-1.3.dist-info/METADATA,sha256=zeJGiRbdShrWEdE8EA8ALmBCC-NWA56mFEMSErAaDiU,9783
+pyFixedFlatFile-1.3.dist-info/RECORD,,
