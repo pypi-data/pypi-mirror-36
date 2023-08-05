@@ -1,0 +1,16 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.py
+aioisotp/__init__.py
+aioisotp/constants.py
+aioisotp/exceptions.py
+aioisotp/network.py
+aioisotp/socketcan.py
+aioisotp/transport.py
+aioisotp/version.py
+aioisotp.egg-info/PKG-INFO
+aioisotp.egg-info/SOURCES.txt
+aioisotp.egg-info/dependency_links.txt
+aioisotp.egg-info/requires.txt
+aioisotp.egg-info/top_level.txt
