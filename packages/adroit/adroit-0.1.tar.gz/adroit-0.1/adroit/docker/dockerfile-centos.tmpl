@@ -1,0 +1,16 @@
+FROM centos:{version}
+
+RUN yum -y update && yum -y install systemd
+# python-pip requires epel, let's avoid that
+RUN curl -sSL https://bootstrap.pypa.io/get-pip.py | python
+
+# prevent systemd from stealing host matchine tty and more
+RUN find /etc/systemd/system/*.wants /lib/systemd/system/*.wants -type l \
+	| grep -v -e dbus -e journal -e tmpfiles | xargs rm -fv
+
+# install ansible and additional modules needed
+RUN pip install --no-cache-dir ansible netaddr
+
+RUN mkdir -p /etc/ansible/roles /etc/ansible/group_vars/all
+RUN printf '{apply_role_playbook}' > /etc/ansible/apply-role.yml
+RUN printf '{hosts}' > /etc/ansible/hosts
