@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+ezcfg/__init__.py
+ezcfg/config.py
+ezcfg.egg-info/PKG-INFO
+ezcfg.egg-info/SOURCES.txt
+ezcfg.egg-info/dependency_links.txt
+ezcfg.egg-info/top_level.txt
