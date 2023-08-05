@@ -1,0 +1,3 @@
+[console_scripts]
+prynt = prynter.__main__:main
+
