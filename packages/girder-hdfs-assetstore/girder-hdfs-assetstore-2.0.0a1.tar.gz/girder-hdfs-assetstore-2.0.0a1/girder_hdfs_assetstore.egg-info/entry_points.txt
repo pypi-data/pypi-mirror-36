@@ -1,0 +1,3 @@
+[girder.plugin]
+hdfs_assetstore = girder_hdfs_assetstore:HDFSAssetstorePlugin
+
