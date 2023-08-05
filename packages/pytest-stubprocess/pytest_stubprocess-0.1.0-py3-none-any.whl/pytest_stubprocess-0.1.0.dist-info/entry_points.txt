@@ -1,0 +1,3 @@
+[pytest11]
+stubprocess = pytest_stubprocess
+
