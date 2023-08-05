@@ -1,0 +1,5 @@
+[console_scripts]
+astrodash = astrodash:run_gui
+dash = astrodash:run_gui
+sample = astrodash:main
+
