@@ -1,0 +1,13 @@
+README.md
+setup.py
+py_eth_sig_utils/__init__.py
+py_eth_sig_utils/signing.py
+py_eth_sig_utils.egg-info/PKG-INFO
+py_eth_sig_utils.egg-info/SOURCES.txt
+py_eth_sig_utils.egg-info/dependency_links.txt
+py_eth_sig_utils.egg-info/top_level.txt
+py_eth_sig_utils/eip712/__init__.py
+py_eth_sig_utils/eip712/encoding.py
+py_eth_sig_utils/tests/__init__.py
+py_eth_sig_utils/tests/test_eip712_encode.py
+py_eth_sig_utils/tests/test_sign_typed_data.py
