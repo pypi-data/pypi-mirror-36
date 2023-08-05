@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: pipver
+Version: 0.1.4
+Summary: Python package versioning the right way.
+Home-page: https://github.com/shanahanjrs/pipver
+Author: John Shanahan
+Author-email: shanahan.jrs@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: gitpython
+Requires-Dist: click
+
+UNKNOWN
+
+
