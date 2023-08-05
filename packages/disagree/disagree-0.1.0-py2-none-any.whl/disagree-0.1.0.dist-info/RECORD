@@ -1,0 +1,14 @@
+disagree/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+disagree/agreements.py,sha256=jViT5_8GAn-3qNcXHy_E7R1NYwnb3KPP0xcCUCp35Tk,6835
+disagree/metrics.py,sha256=0j3RNGh6-N4TGNu2ZU2Izw3wKd2DrpwHYMGU9Ooc3RM,13960
+disagree/plot_utils.py,sha256=3GHlQlf6AUB8IvZ_8egnjALsqOOXJYzextCR4mtzSlo,787
+disagree/test/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+disagree/test/test_metrics.py,sha256=lX37a4yaLK1mjfKWygKIZ_OnMW33jlZaX2Hxxt-oQns,1331
+disagree/test/test_visualisation.py,sha256=7yChXS2hDpbIcskJpDnX00pZzMIjmtBw8Fk36029bnA,1406
+disagree-0.1.0.data/scripts/plot_utils.py,sha256=3GHlQlf6AUB8IvZ_8egnjALsqOOXJYzextCR4mtzSlo,787
+disagree-0.1.0.dist-info/DESCRIPTION.rst,sha256=VHuDlLesQBjlezXpPCiHwcJ8VLSldZHRdxfw7RvYZvk,5185
+disagree-0.1.0.dist-info/METADATA,sha256=EVR8I94tHVEN5r7uttGB4G8DpIe4dHP0JlOudFq5ui4,5613
+disagree-0.1.0.dist-info/RECORD,,
+disagree-0.1.0.dist-info/WHEEL,sha256=JTb7YztR8fkPg6aSjc571Q4eiVHCwmUDlX8PhuuqIIE,92
+disagree-0.1.0.dist-info/metadata.json,sha256=OdsjG2kEiEcPBKUlPZC-Kgh_pBjryslSL5DKnDN1PDo,619
+disagree-0.1.0.dist-info/top_level.txt,sha256=CzTGhT1Ci_Y1q_7L-jZVFFVyRzqSzRxGHiZBhlydQHs,9
