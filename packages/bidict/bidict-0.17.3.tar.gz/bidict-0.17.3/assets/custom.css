@@ -1,0 +1,28 @@
+/*
+ * Copyright 2018 Joshua Bronson. All Rights Reserved.
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+div.document {
+  width: inherit;  /* override the inherited "1000px" so status badges fit on 1 line */
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold !important;
+}
+
+ul.simple li {
+  margin-bottom: 8px;
+}
+
+/* Can remove this when https://github.com/bitprophet/alabaster/pull/125 lands */
+a.image-reference:hover {
+  border-bottom: 0 !important;
+}
+
+#status img {
+  max-width: inherit;  /* override the inherited "max-width: 100%" in case a badge fails to load */
+}
