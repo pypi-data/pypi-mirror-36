@@ -1,0 +1,15 @@
+CHANGES.txt
+LICENSE.txt
+MANIFEST.in
+README.txt
+setup.py
+hapiclient/__init__.py
+hapiclient/hapi.py
+hapiclient/hapiplot.py
+hapiclient.egg-info/PKG-INFO
+hapiclient.egg-info/SOURCES.txt
+hapiclient.egg-info/dependency_links.txt
+hapiclient.egg-info/requires.txt
+hapiclient.egg-info/top_level.txt
+hapiclient/test/test_hapi.py
+hapiclient/util/datetick.py
