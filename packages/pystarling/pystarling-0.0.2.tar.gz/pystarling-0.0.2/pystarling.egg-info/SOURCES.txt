@@ -1,0 +1,14 @@
+README.md
+setup.py
+pystarling.egg-info/PKG-INFO
+pystarling.egg-info/SOURCES.txt
+pystarling.egg-info/dependency_links.txt
+pystarling.egg-info/requires.txt
+pystarling.egg-info/top_level.txt
+starling/__init__.py
+starling/errors.py
+starling/starling.py
+test/__init__.py
+test/test_oauth_spec.py
+test/test_starling_spec.py
+test/testsupport.py
