@@ -1,0 +1,12 @@
+LICENSE.md
+MANIFEST.in
+README.md
+setup.py
+convert2geojson/__init__.py
+convert2geojson/base.py
+convert2geojson/shapes.py
+convert2geojson.egg-info/PKG-INFO
+convert2geojson.egg-info/SOURCES.txt
+convert2geojson.egg-info/dependency_links.txt
+convert2geojson.egg-info/requires.txt
+convert2geojson.egg-info/top_level.txt
