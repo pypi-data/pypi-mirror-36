@@ -1,0 +1,14 @@
+gpkg.mnist-0.5.0.dev2-py3.6-nspkg.pth,sha256=3xb90dBivDFXdtzoeCL9KXHrd-f6F3608fOH6f5Ond0,529
+gpkg/mnist/README.md,sha256=J2-ZtNVyUyD67gWOzrRyYRE-nNRjBG1rfywcgLg-27U,224
+gpkg/mnist/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+gpkg/mnist/cnn.py,sha256=BVLjzeo8ELHqLYEY50fg-gdKOjv4OOHO6kF2cv9GbeY,6861
+gpkg/mnist/guild.yml,sha256=dxQl8aCd-INkmJFU02kj4A7SDpRF-aJ0fTW-MxmPb4k,4011
+gpkg/mnist/samples.py,sha256=IyL--t4_TG4RFcklZNoxFJPSJunWYsMMeVFmfnQtymk,1978
+gpkg/mnist/softmax.py,sha256=STdElyIIpsn1l6fvPCeScYoc1G3vgbBpZSeIE89Z9Zg,6115
+gpkg.mnist-0.5.0.dev2.dist-info/METADATA,sha256=qsEvjCNt0eUtU7iL1fIjvfiP-lS9YuXjsr82fmZtJXw,1184
+gpkg.mnist-0.5.0.dev2.dist-info/PACKAGE,sha256=GFIRZb3EKqpPcSLh18QQZcWk8CKVBrKtH3Z0wAPNx4w,284
+gpkg.mnist-0.5.0.dev2.dist-info/RECORD,,
+gpkg.mnist-0.5.0.dev2.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+gpkg.mnist-0.5.0.dev2.dist-info/entry_points.txt,sha256=zgOSmw0l6505353-KQQjsRuXY0vp8HU-I6Jo45xZzE4,410
+gpkg.mnist-0.5.0.dev2.dist-info/namespace_packages.txt,sha256=VrTSvcvxGXQd3LAVUBekNvO1L5FXEzrCdpdy7XtwqRc,5
+gpkg.mnist-0.5.0.dev2.dist-info/top_level.txt,sha256=VrTSvcvxGXQd3LAVUBekNvO1L5FXEzrCdpdy7XtwqRc,5
