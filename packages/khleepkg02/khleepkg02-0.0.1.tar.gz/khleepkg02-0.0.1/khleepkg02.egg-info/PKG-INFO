@@ -1,0 +1,59 @@
+Metadata-Version: 1.1
+Name: khleepkg02
+Version: 0.0.1
+Summary: SSL-Seminar-test repository:: Topic - Package Test and Deployment
+Home-page: https://github.com/KeonHeeLee/ssl-lab-test
+Author: Keon-Hee Lee
+Author-email: beta1360@naver.com
+License: MIT
+Description: # SSL-Lab-seminar-test
+        
+        SSL-Seminar-test repository:: Topic - Package Test and Deployment
+        
+        ## Synopsis
+        
+        ```python
+        from ssllabtest import Caculator 
+        
+        calc = Caculator(isAdd=True,
+                         isSub=False,
+                         isMul=False,
+                         isDiv=False,
+                         isRem=False)
+        sum = calc.adder(1, 2)
+        print(sum) # sum = 3
+        ```
+        
+        ## Installaion
+        
+        ```bash
+        $ pip3 install ssllabtest
+        ``` 
+        
+        Only install module with pip
+        
+        ## Dependancy
+        
+        - pytest
+        
+        ```bash
+        $ pip3 install -U pytest
+        ```
+        
+        ## Document Index
+        
+        1. TDD (Test-Driven Development)
+        2. From unit-test to module-test
+        3. Package deployment (using pypi)
+        
+        
+Keywords: Test,TDD,Deployment,Seminar
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
