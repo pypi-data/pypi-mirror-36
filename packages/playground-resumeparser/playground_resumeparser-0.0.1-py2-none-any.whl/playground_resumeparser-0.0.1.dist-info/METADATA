@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: playground-resumeparser
+Version: 0.0.1
+Summary: Playground Resume Parser
+Home-page: UNKNOWN
+Author: skondapalli
+Author-email: skondapalli@altimetrik.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: pdfminer
+Requires-Dist: nltk
+Requires-Dist: docx2txt
+Requires-Dist: Flask
+
+UNKNOWN
+
+

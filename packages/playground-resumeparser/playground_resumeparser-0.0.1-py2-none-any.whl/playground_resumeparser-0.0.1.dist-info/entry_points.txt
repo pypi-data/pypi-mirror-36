@@ -1,0 +1,3 @@
+[console_scripts]
+resumeparser = resumeparser.resume_parser:cli
+
