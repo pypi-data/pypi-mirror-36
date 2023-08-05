@@ -1,0 +1,12 @@
+Metadata-Version: 1.2
+Name: paybybot
+Version: 0.0.0
+Summary: Notifications for https://www.paybyphone.fr/
+Home-page: https://github.com/louisabraham/paybybot
+Author: Louis Abraham
+Author-email: louis.abraham@yahoo.fr
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Topic :: Utilities
+Requires-Python: >=3.5
