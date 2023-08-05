@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: Ciruitpy
+Version: 0.0.1
+Summary: A module to do the most circuit equations
+Home-page: https://gitlab.com/thom.quirk180/CircuitPy
+Author: 404_brain_not_found
+Author-email: thom.quirk180@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: openpyxl
+Requires-Dist: python-docx
+Requires-Dist: tqdm
+Requires-Dist: pyvisa
+
+Python module to help with Circuit labs.
+
+
