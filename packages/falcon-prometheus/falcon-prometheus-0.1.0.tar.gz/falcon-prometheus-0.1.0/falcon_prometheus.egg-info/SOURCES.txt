@@ -1,0 +1,9 @@
+README.md
+setup.py
+falcon_prometheus/__init__.py
+falcon_prometheus/middleware.py
+falcon_prometheus.egg-info/PKG-INFO
+falcon_prometheus.egg-info/SOURCES.txt
+falcon_prometheus.egg-info/dependency_links.txt
+falcon_prometheus.egg-info/requires.txt
+falcon_prometheus.egg-info/top_level.txt
