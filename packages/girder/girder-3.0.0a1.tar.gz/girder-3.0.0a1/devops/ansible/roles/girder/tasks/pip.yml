@@ -1,0 +1,57 @@
+- block:
+    - name: Update Pip
+      pip:
+        name: "{{ item }}"
+        state: latest
+        virtualenv: "{{ girder_virtualenv }}"
+        virtualenv_python: "{{ girder_python | default(ansible_python.executable) }}"
+      with_items:
+        - pip
+        - setuptools
+
+    - name: Install Girder
+      pip:
+        name: "."
+        extra_args: "-e"
+        chdir: "{{ girder_path }}"
+        virtualenv: "{{ girder_virtualenv }}"
+        virtualenv_python: "{{ girder_python | default(ansible_python.executable) }}"
+
+    - set_fact:
+        girder_build_executable: "{{ girder_virtualenv }}/bin/girder"
+  when: girder_virtualenv is defined
+
+- block:
+    - name: Update Pip
+      pip:
+        name: "{{ item }}"
+        state: latest
+        executable: "{{ girder_pip | default(omit) }}"
+      with_items:
+        - pip
+        - setuptools
+
+    - name: Force install of requests and six
+      pip:
+        name: "{{ item }}"
+        extra_args: "--ignore-installed"
+        executable: "{{ girder_pip | default(omit) }}"
+      with_items:
+        - six
+        - requests
+
+    - name: Install Girder
+      pip:
+        name: "."
+        extra_args: "-e"
+        executable: "{{ girder_pip | default(omit) }}"
+
+    - name: Find girder executable
+      shell: "which girder"
+      register: executable
+      environment:
+        PATH: "{{ ansible_env.PATH }}:/usr/local/bin"
+
+    - set_fact:
+        girder_build_executable: "{{ executable.stdout_lines[0] }}"
+  when: girder_virtualenv is not defined
