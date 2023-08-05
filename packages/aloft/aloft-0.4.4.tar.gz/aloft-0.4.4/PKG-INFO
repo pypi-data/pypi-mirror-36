@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: aloft
+Version: 0.4.4
+Summary: Tool to manage Kubernetes clusters and helm charts across multiple AWS accounts and clusters
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.6
