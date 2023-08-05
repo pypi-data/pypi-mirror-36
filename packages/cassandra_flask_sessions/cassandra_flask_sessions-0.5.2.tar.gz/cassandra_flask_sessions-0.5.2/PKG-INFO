@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: cassandra_flask_sessions
+Version: 0.5.2
+Summary: Server side sessions with Apache Cassandra
+Home-page: https://github.com/mikicaivosevic/flask-cassandra-sessions
+Author: Mikica Ivosevic
+Author-email: mikica.ivosevic@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: flask,cassandra,sessions
+Platform: UNKNOWN
