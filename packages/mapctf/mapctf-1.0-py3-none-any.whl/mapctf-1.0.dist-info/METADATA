@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: mapctf
+Version: 1.0
+Summary: map coordinate transform betweem google and baidu
+Home-page: UNKNOWN
+Author: YK
+Author-email: 
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# mapctf - map coordinate transform
+# 此模块用于百度坐标系(bd-09)、
+# 火星坐标系(国测局坐标系、gcj02、高德)、
+# WGS84坐标系(google)的相互转换，
+# 仅使用Python标准模块，无其他依赖。
+python3 setup.py sdist bdist_wheel
+# for test.pypi
+python -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+pip install --index-url https://test.pypi.org/simple/ coordTransform
+# for pypi
+python -m twine upload dist/*
+pip install mapctf
+# Usage
+import mapctf
+ctf.baidu2google(lng, lat)
+
+
