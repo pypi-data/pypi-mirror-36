@@ -1,0 +1,17 @@
+teradatasql/__init__.py,sha256=oR0HL5WSCG6JIz7NU4gWlS-uF9nd3xpOepVIFgKthiw,32124
+teradatasql/teradatasql.dll,sha256=JYJpExsnLP2FHuhCcdBAT788NPP5SxUpooIRb46r-zQ,9934945
+teradatasql/teradatasql.dylib,sha256=OCQ_6EmPlxCXSy15-dHm4t0PDhBce7me3d-bGeUlwZs,13414052
+teradatasql/teradatasql.so,sha256=Z2sYl0qTsIWkueXxfHq1us_s0_nRH4PUwmxFW2hRVZg,13295683
+teradatasql/vernumber.py,sha256=_incfigU11jbfmCxvf09GyeA2jy8u0h63xvjYvLir_I,97
+teradatasql-16.20.0.32.data/data/teradatasql/LICENSE,sha256=yzNmc_NWb_K75P1NQPkdigAJEjZ9gmBqi-LSvIGmYyk,13938
+teradatasql-16.20.0.32.data/data/teradatasql/README.md,sha256=d2fDJtPfOuWuBJkBjeKAaVuU7BqpbZgsdyLGuuJ9m3o,42581
+teradatasql-16.20.0.32.data/data/teradatasql/THIRDPARTYLICENSE,sha256=mARljBgq_nOCDI7aeJwGbooVagC4bYxv-jdkss0K7IY,8574
+teradatasql-16.20.0.32.data/data/teradatasql/samples/ElicitFile.py,sha256=FR0wIZbtBRSk55SEtRxI2p9ZbjR6N5x3TI-UDsN357s,935
+teradatasql-16.20.0.32.data/data/teradatasql/samples/LoadCSVFile.py,sha256=zT12YXOZA2X-ouZC8Xk5NAEzkKVwvgITJSfyIbBI9zU,941
+teradatasql-16.20.0.32.data/data/teradatasql/samples/MetadataFromPrepare.py,sha256=Okqm4_86qBI2MRj0O9As9RTU7odPPna0SSB00av2lls,1238
+teradatasql-16.20.0.32.data/data/teradatasql/samples/airports.csv,sha256=aLoEc_Nwk1VC9xcMYaJBfpvLFpFgxdi2K5UTuk5vFtM,229
+teradatasql-16.20.0.32.data/data/teradatasql/samples/udfinc.c,sha256=9UzAXL2CbyP-FdhOsSy-iIA0QEzB0av6jh8OQFNin60,155
+teradatasql-16.20.0.32.dist-info/METADATA,sha256=ecs2bHwtVIN4O_NXxkXxmJXRy1erzyHG2fgC86I1T7s,42799
+teradatasql-16.20.0.32.dist-info/RECORD,,
+teradatasql-16.20.0.32.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+teradatasql-16.20.0.32.dist-info/top_level.txt,sha256=DpMYxefWP3qw2HoWA15vZzDyIogb-6e08htXO2z-0yg,12
