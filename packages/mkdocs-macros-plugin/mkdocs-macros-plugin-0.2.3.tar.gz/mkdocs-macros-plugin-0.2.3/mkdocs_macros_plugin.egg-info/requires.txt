@@ -1,0 +1,4 @@
+mkdocs>=0.17
+repackage
+jinja2
+mkdocs
