@@ -1,0 +1,3 @@
+[console_scripts]
+creapy = creacli.__main__:main
+
