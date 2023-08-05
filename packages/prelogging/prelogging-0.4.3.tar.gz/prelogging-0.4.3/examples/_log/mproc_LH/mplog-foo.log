@@ -1,0 +1,7 @@
+2018-09-09 17:20:27,377 foo.bar         INFO     worker 5   Message no. 4
+2018-09-09 17:20:27,448 foo             WARNING  worker 5   Message no. 5
+2018-09-09 17:20:27,538 foo             ERROR    worker 1   Message no. 7
+2018-09-09 17:20:27,541 foo.bar         INFO     worker 1   Message no. 8
+2018-09-09 17:20:27,567 foo.bar         WARNING  worker 1   Message no. 9
+2018-09-09 17:20:27,648 foo.bar.baz     ERROR    worker 1   Message no. 102018-09-09 17:20:27,692 foo             CRITICAL worker 3   Message no. 10
+018-09-09 17:20:27,618 foo.bar         ERROR    worker 4   Message no. 10

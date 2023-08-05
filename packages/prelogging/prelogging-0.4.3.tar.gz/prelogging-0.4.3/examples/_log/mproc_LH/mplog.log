@@ -1,0 +1,10 @@
+2018-09-09 17:20:27,110 foo.bar         DEBUG    worker 4   Message no. 1
+2018-09-09 17:20:27,225 foo             CRITICAL worker 4   Message no. 2
+2018-09-09 17:20:27,288 spam.ham        ERROR    worker 1   Message no. 3
+2018-09-09 17:20:27,378 foo.bar.baz     DEBUG    worker 7   Message no. 4
+2018-09-09 17:20:27,448 foo             WARNING  worker 5   Message no. 5
+2018-09-09 17:20:27,508 spam.ham.eggs   CRITICAL worker 3   Message no. 6
+2018-09-09 17:20:27,560 foo.bar.baz     CRITICAL worker 3   Message no. 7
+2018-09-09 17:20:27,599 foo             WARNING  worker 3   Message no. 8
+2018-09-09 17:20:27,687 spam            INFO     worker 3   Message no. 9
+2018-09-09 17:20:27,757 spam.ham.eggs   INFO     worker 5   Message no. 10
