@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+dailei_testPypi.egg-info/PKG-INFO
+dailei_testPypi.egg-info/SOURCES.txt
+dailei_testPypi.egg-info/dependency_links.txt
+dailei_testPypi.egg-info/top_level.txt
+mypackage/__init__.py
+mypackage/__version__.py
+mypackage/core.py
