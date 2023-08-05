@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: heartwave
+Version: 0.8.3
+Summary: Heart rate measurement from webcam or video
+Home-page: https://github.com/erdewit/heartwave
+Author: Ewald R. de Wit
+Author-email: ewald.de.wit@gmail.com
+License: BSD
+Keywords: PPG photoplethysmogram heart rate webcam
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Healthcare Industry
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Dist: PyQt5
+Requires-Dist: PyQtChart
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: opencv-contrib-python
+
+|PyVersion| |Status| |PyPiVersion| |License|
+
+Introduction
+------------
+
+Measure heart rate from video or webcam.
+
+Installation
+------------
+
+::
+
+    pip3 install heartwave
+
+
+.. |PyPiVersion| image:: https://img.shields.io/pypi/v/heartwave.svg
+   :alt: PyPi
+   :target: https://pypi.python.org/pypi/heartwave
+
+.. |PyVersion| image:: https://img.shields.io/badge/python-3.6+-blue.svg
+   :alt:
+
+.. |Status| image:: https://img.shields.io/badge/status-beta-green.svg
+   :alt:
+
+.. |License| image:: https://img.shields.io/badge/license-BSD-blue.svg
+   :alt:
+
+
