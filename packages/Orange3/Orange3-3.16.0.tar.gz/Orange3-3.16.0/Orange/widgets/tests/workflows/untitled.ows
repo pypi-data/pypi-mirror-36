@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme description="" title="" version="2.0">
+	<nodes>
+		<node id="0" name="Import Images" position="(150, 150)" project_name="Orange3-ImageAnalytics" qualified_name="orangecontrib.imageanalytics.widgets.owimageimport.OWImportImages" title="Import Images" version="" />
+		<node id="1" name="Image Embedding" position="(484.0, 236.0)" project_name="Orange3-ImageAnalytics" qualified_name="orangecontrib.imageanalytics.widgets.owimageembedding.OWImageEmbedding" title="Image Embedding" version="" />
+	</nodes>
+	<links>
+		<link enabled="true" id="0" sink_channel="Images" sink_node_id="1" source_channel="Data" source_node_id="0" />
+	</links>
+	<annotations />
+	<thumbnail />
+	<node_properties>
+		<properties format="pickle" node_id="0">gAN9cQAoWBIAAABjb250cm9sQXJlYVZpc2libGVxAYhYCwAAAGN1cnJlbnRQYXRocQJYOQAAAC9V
+c2Vycy9wcmltb3ovRGVza3RvcC90ZXN0IGltYWdlcy90aW55LWltYWdlbmV0LTIwMC90cmFpbnED
+WAwAAAByZWNlbnRfcGF0aHNxBF1xBWNPcmFuZ2Uud2lkZ2V0cy51dGlscy5maWxlZGlhbG9ncwpS
+ZWNlbnRQYXRoCnEGKYFxB31xCChYBwAAAGFic3BhdGhxCWgDWAYAAABwcmVmaXhxCk5YBwAAAHJl
+bHBhdGhxC05YBQAAAHRpdGxlcQxYAAAAAHENWAUAAABzaGVldHEOaA1YCwAAAGZpbGVfZm9ybWF0
+cQ9OdWJhWBMAAABzYXZlZFdpZGdldEdlb21ldHJ5cRBDMgHZ0MsAAgAAAAAF5wAAAkEAAAd1AAAC
+9wAABecAAAJXAAAHdQAAAvcAAAAAAAAAAA1wcRFYCwAAAF9fdmVyc2lvbl9fcRJLAXUu
+</properties>
+		<properties format="literal" node_id="1">{'_auto_apply': True, 'cb_embedder_current_id': 0, 'cb_image_attr_current_id': 0, 'controlAreaVisible': True, 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x02\x00\x00\x00\x00\x07\xa6\x00\x00\x01=\x00\x00\x08\xf8\x00\x00\x02\x90\x00\x00\x07\xa6\x00\x00\x01S\x00\x00\x08\xf8\x00\x00\x02\x90\x00\x00\x00\x00\x00\x00\x00\x00\rp', '__version__': 1}</properties>
+	</node_properties>
+</scheme>
