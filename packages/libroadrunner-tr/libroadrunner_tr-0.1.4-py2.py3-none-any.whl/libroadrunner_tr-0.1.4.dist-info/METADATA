@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: libroadrunner-tr
+Version: 0.1.4
+Summary: SBML Test Suite Runner for libRoadRunner
+Home-page: UNKNOWN
+Author: J. Kyle Medley
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: libroadrunner
+Requires-Dist: pandas
+
+UNKNOWN
+
+
