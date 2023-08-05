@@ -1,0 +1,4 @@
+
+ [pygments.lexers]
+ enaml = pygments_enaml.lexer:EnamlLexer
+ 
