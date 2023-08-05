@@ -1,0 +1,202 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="static/styles/main.css">
+
+  <title>Zerg Macro Mechanics Visualiser</title>
+  <meta name="description" content="Zerg Macro Mechanics Visualiser">
+  <meta name="author" content="frugs">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+  <script src="https://unpkg.com/pako@1.0.5/dist/pako_inflate.min.js"></script>
+</head>
+
+<body>
+
+  <div class="header">
+    <img class="logo" src="static/images/allin_official.png" alt="All Inspiration">
+  </div>
+
+  <h2 class="heading">
+    Zerg Macro Mechanics Visualiser
+  </h2>
+
+  <div class="subheading"><em id="replayName"></em></div>
+
+  <div class="subsubheading hidden">
+    <span id="playerName0"></span>
+  </div>
+
+  <div class="chart-container-outer hidden">
+    <div id="chartContainer0" class="chart-container hidden">
+      <canvas id="myChart0" width="800" height="600"></canvas>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="subsubheading hidden">
+    <span id="playerName1"></span>
+  </div>
+
+  <div class="chart-container-outer hidden">
+    <div id="chartContainer1" class="chart-container hidden">
+      <canvas id="myChart1" width="800" height="600"></canvas>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+
+    colours = [
+      "#39A2AE",
+      "#498467",
+      "#9B8816",
+      "#503D3F",
+      "#2F4B26",
+      "#A4243B",
+      "#84828F"
+    ]
+
+    rawInputData = JSON.parse('{{analysis_data | safe}}')
+
+    document.getElementById("replayName").innerHTML = rawInputData.replayName
+
+    for (var i = 0, len = rawInputData.players.length; i < Math.min(len, 2); i++) {
+      player = rawInputData.players[i]
+
+      document.getElementById("playerName" + i).parentElement.classList.remove("hidden")
+      document.getElementById("playerName" + i).innerHTML = player.playerName
+
+      document.getElementById("chartContainer" + i).parentElement.classList.remove("hidden")
+      document.getElementById("chartContainer" + i).classList.remove("hidden")
+      document.getElementById("chartContainer" + i).style.width = "" + (800 * player.widthScaling) + "px"
+
+      chartData = {
+        datasets: player.chartData.map((data, index) => {
+          switch (player.chartData.length - index) {
+            case 1:
+              label = "Supply Block";
+              fill = true;
+              colour = "rgba(224, 76, 108, 0.4)";
+              steppedLine = 'before';
+              break;
+            case 2:
+              label = "Unspent Vespene Gas";
+              fill = false;
+              colour = "rgba(50, 192, 50, 0.2)";
+              steppedLine = false;
+              break;
+            case 3:
+              label = "Unspent Minerals";
+              fill = false;
+              colour = "rgba(50, 150, 255, 0.2)";
+              steppedLine = false;
+              break;
+            case 4:
+              label = "Creep Production";
+              fill = false;
+              colour = "#181F1C";
+              steppedLine = 'before';
+              break;
+            default:
+              steppedLine = 'before';
+              hatcheryIndex = Math.floor(index / 3);
+
+              if (index % 3 == 0) {
+                // injects
+                label = "Hatchery " + (hatcheryIndex + 1) + " Injects";
+                fill = false;
+                colour = colours[hatcheryIndex];
+              } else if (index % 3 == 1) {
+                // larva blocks
+                label = "Hatchery Larvae Blocks";
+                fill = "+1";
+                colour = "rgba(192, 192, 192, 0.6)";
+              } else {
+                // hidden dataset
+                label = "";
+                fill = false;
+                colour = "rgba(0, 0, 0, 0)";
+              }
+              break;
+          }
+
+          return {
+            label: label,
+            data: data.map((dataPoint) => { return {x: dataPoint[0], y: dataPoint[1] != "NaN" ? dataPoint[1] : NaN } }),
+            steppedLine: steppedLine,
+            fill: fill,
+            backgroundColor: colour,
+            pointRadius: 0,
+            borderColor: colour
+          }
+        })
+      }
+
+      document.getElementById("myChart" + i).parentElement.classList.remove("hidden")
+      var ctx = document.getElementById("myChart" + i).getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: {
+          title: {
+            display: false,
+          },
+          scales: {
+            xAxes: [
+              {
+                type: 'time',
+                position: 'bottom',
+                time: {
+                  unit: 'minute',
+                  unitStepSize: 1,
+                  displayFormats: {
+                    minute: 'mm:ss'
+                  }
+                }
+              }
+            ],
+            yAxes: [
+              {
+                display: true,
+                labelString: "Resource count",
+                ticks: {
+                  suggestedMin: -1,
+                  beginAtZero: true,
+                  stepSize: 10,
+                  callback: function(value, index, values) {
+                      return value >= 0 ? value * 20 : "";
+                  }
+                }
+              }
+            ]
+          },
+          tooltip: {
+            enabled: false
+          },
+          layout: {
+            padding: 20
+          },
+          animation: {
+            easing: 'easeOutCubic'
+          },
+          maintainAspectRatio: false,
+          legend: {
+            position: "left",
+            labels: {
+              filter: (legendItem) =>
+                legendItem.datasetIndex > player.chartData.length - 4
+                  || legendItem.datasetIndex == player.chartData.length - 6
+                  || legendItem.datasetIndex % 3 == 0
+            }
+          }
+        }
+      });
+    }
+
+  </script>
+</body>
+</html>
