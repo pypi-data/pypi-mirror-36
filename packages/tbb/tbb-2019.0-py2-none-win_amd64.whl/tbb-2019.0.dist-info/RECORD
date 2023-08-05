@@ -1,0 +1,13 @@
+tbb-2019.0.data/data/Library/bin/tbb.dll,sha256=Mbms5neysJe3L2u5Qaa0w2puRO00ik3V4w8KcQXgpiU,587496
+tbb-2019.0.data/data/Library/bin/tbbmalloc.dll,sha256=65vhkJktYj22OvvUn-4X6T8r-_dIoYMjtq3nyo0G_U8,380648
+tbb-2019.0.data/data/Library/bin/tbbmalloc_proxy.dll,sha256=DY1rErtRSr1GLbXK-_nhIDDqcIkO5-V4yCPoKU0ytho,209128
+tbb-2019.0.data/data/Library/lib/tbb.lib,sha256=Dh0PsKfdKvRS1MQcRONGSzHmu1WJF_5aqHO8sUH-4rQ,100718
+tbb-2019.0.data/data/Library/lib/tbbmalloc.lib,sha256=ayraxtT4thFN-i7FHSJwiv7deOaeEDfi0mQCwj2ONuU,9268
+tbb-2019.0.data/data/Library/share/doc/tbb/attributions.txt,sha256=TCosMEjUxJFUa9xpL5OV4JZxBRCVSBF0JCRe6dHUtII,1326
+tbb-2019.0.data/data/Library/share/doc/tbb/license.txt,sha256=yS3CyK32hR4pwpUCMJQXupw5t8QeC0pmBwFUOZ8rTqg,4411
+tbb-2019.0.data/data/Library/share/doc/tbb/third-party-programs.txt,sha256=pz2IcaUzTaYOJgZ4MtlfAN2he-WuO1fN1XzM7oQTm7I,318
+tbb-2019.0.dist-info/LICENSE.txt,sha256=yS3CyK32hR4pwpUCMJQXupw5t8QeC0pmBwFUOZ8rTqg,4411
+tbb-2019.0.dist-info/METADATA,sha256=Yxny-AS078VhWnLAL_w-R8eV8OoE09EbSRLSTt63l_0,824
+tbb-2019.0.dist-info/RECORD,,
+tbb-2019.0.dist-info/WHEEL,sha256=bbpIygv3eoZ1Yil5cnqqodaG9B8PuQAMl2PfmJj2aUA,98
+tbb-2019.0.dist-info/top_level.txt,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
