@@ -1,0 +1,8 @@
+README.rst
+setup.py
+wildblue/__init__.py
+wildblue/_version.py
+wildblue.egg-info/PKG-INFO
+wildblue.egg-info/SOURCES.txt
+wildblue.egg-info/dependency_links.txt
+wildblue.egg-info/top_level.txt
