@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: crypty
+Version: 0.0.5
+Summary: Encrypt and decrypt text easily
+Home-page: https://github.com/foreverfighter/crypty
+Author: Yi Sheng Siow
+Author-email: siowyisheng@gmail.com
+License: UNKNOWN
+Description: # crypty
+        
+        Usability wrapper around cryptography.fernet
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
