@@ -1,0 +1,14 @@
+MANIFEST.in
+Pipfile
+Pipfile.lock
+README.md
+setup.py
+coauthors/__init__.py
+coauthors/coauthors.py
+coauthors.egg-info/PKG-INFO
+coauthors.egg-info/SOURCES.txt
+coauthors.egg-info/dependency_links.txt
+coauthors.egg-info/entry_points.txt
+coauthors.egg-info/not-zip-safe
+coauthors.egg-info/requires.txt
+coauthors.egg-info/top_level.txt
