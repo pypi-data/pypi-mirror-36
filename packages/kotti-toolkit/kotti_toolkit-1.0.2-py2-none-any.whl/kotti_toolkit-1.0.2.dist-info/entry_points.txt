@@ -1,0 +1,4 @@
+[console_scripts]
+create-user = kotti_toolkit.scripts.importer:create_user
+new-site = kotti_toolkit.scripts.importer:new_site
+
