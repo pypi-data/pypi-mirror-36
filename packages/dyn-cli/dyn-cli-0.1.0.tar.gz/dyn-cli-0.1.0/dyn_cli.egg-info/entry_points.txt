@@ -1,0 +1,3 @@
+[console_scripts]
+dyn = dyncli.__main__:main
+
