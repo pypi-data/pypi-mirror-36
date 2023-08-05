@@ -1,0 +1,13 @@
+erlei/__init__.py,sha256=PL1d8VrTsEQhQDeOCmt072_TF3VtyqS_43w3pic7Yic,213
+erlei/pipe.py,sha256=tTm_xvuB44uk-mjKM2xEmWAZGUdzqprAjj9Y0figozs,1834
+erlei/underscore.py,sha256=3o6UlqSqXCz5uLD93YWKdPrsS4BZLps0Zvqqj8HG6ek,5283
+erlei/decorators/__init__.py,sha256=vRNU_DscvdOQO6aoJsoKk9vp2JNIXeA22T-fZLEudBk,294
+erlei/decorators/currying.py,sha256=MzXj_Ca_rWGhDXwqAMLcbiM9evyNj0bLgEFj4rS8hNY,785
+erlei/decorators/infix.py,sha256=yK2OUHo5O1AcMF-wC0yEnOLm9DYTYfZ1wOhlCnR1gb8,1048
+erlei/decorators/tailrecurve.py,sha256=HlgyG-2nkq-GUJpsxmZmfvH4n4ukx2f9mO_MpiR9MIY,1354
+erlei-1.0.0.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+erlei-1.0.0.dist-info/METADATA,sha256=_rmM5srrUKV7vKg9QmvopHLzr58tM3b046U92oT90h0,414
+erlei-1.0.0.dist-info/RECORD,,
+erlei-1.0.0.dist-info/WHEEL,sha256=Ds0ba8WsPJtjBPzEMyPOBG3qfPa6B4mlzB-vhzorIZs,97
+erlei-1.0.0.dist-info/metadata.json,sha256=M1FH5psXTdi7xUIYvXC6xib1upyGQrIm8tkYiq_XTc0,526
+erlei-1.0.0.dist-info/top_level.txt,sha256=uOjkNWrUzLXgLkfKjXBjmK4YZgfYrn7ae4kyYpFFUTA,6
