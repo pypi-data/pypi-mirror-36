@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: wildblue
+Version: 0.0.1
+Summary: Interface between wildqat and blueqat
+Home-page: https://github.com/mdrft/wildblue
+Author: MDR Inc.
+Author-email: kato@mdrft.com
+License: Apache 2
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Development Status :: 3 - Alpha
+Description-Content-Type: text/x-rst
+
+# Wildblue
+Interface between [Wildqat](https://github.com/mdrft/wildqat) and [Blueqat](https://github.com/mdrft/blueqat)
+
+
