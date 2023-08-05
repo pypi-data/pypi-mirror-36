@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+test/test.py
+test/test2.py
+test/test4.py
+tractography.egg-info/PKG-INFO
+tractography.egg-info/SOURCES.txt
+tractography.egg-info/dependency_links.txt
+tractography.egg-info/requires.txt
+tractography.egg-info/top_level.txt
