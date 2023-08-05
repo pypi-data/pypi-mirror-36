@@ -1,0 +1,9 @@
+setup.py
+visdom_observer/__init__.py
+visdom_observer/visdom_observer.py
+visdom_observer.egg-info/PKG-INFO
+visdom_observer.egg-info/SOURCES.txt
+visdom_observer.egg-info/dependency_links.txt
+visdom_observer.egg-info/not-zip-safe
+visdom_observer.egg-info/requires.txt
+visdom_observer.egg-info/top_level.txt
