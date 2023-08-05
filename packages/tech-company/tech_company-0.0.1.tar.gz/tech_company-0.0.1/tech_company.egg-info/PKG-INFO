@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: tech-company
+Version: 0.0.1
+Summary: A Tech Company
+Home-page: https://example.org
+Author: T Smith
+Author-email: dev@null.org
+License: UNKNOWN
+Description: # Tech Company
+        
+        A module to simulate the robust and reliable infrastructure stack of a 21st-century cloud hosting company.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
