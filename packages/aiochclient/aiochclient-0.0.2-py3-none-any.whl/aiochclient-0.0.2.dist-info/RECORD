@@ -1,0 +1,11 @@
+aiochclient/__init__.py,sha256=30wdVCIbAjiMj_pAh7quv_RLcJ3BBMJ3y5TcuEaXhtQ,134
+aiochclient/client.py,sha256=mtai9JHXdsiIJoT_uTE1MjMFgXrBZlccPYQLs_CjcJM,6676
+aiochclient/exceptions.py,sha256=9J0ISvjyO86uZn1ZSvd_hJ3twgzJ0iEzw7bT_ITBKKA,41
+aiochclient/records.py,sha256=GvjEqbr6lrTlgIWM3AV-77QPSztJhlwrZKa36B_n2R8,448
+aiochclient/types.py,sha256=qKEHmK9kiLy27DwCe0s_2w0rvxmsjt8uCW7NgvXcVqE,6292
+aiochclient-0.0.2.dist-info/DESCRIPTION.rst,sha256=hpQanooEIeNbcTPCe1KzbryjMk7jwL8WjhTV5tiAQpo,2972
+aiochclient-0.0.2.dist-info/METADATA,sha256=MupnLggD2hzQaGmAeawKhUXezJCOaf_aSOeJzb-qYl4,3636
+aiochclient-0.0.2.dist-info/RECORD,,
+aiochclient-0.0.2.dist-info/WHEEL,sha256=rNo05PbNqwnXiIHFsYm0m22u4Zm6YJtugFG2THx4w3g,92
+aiochclient-0.0.2.dist-info/metadata.json,sha256=mw7gHpOIsTvoZ1xca8hEwAGJiqUwrY_fDOSzzAKY25k,856
+aiochclient-0.0.2.dist-info/top_level.txt,sha256=tmUERfwmxEBndokUj_2JuSTg6ShMI3sfZljaKGUFql4,12
