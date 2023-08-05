@@ -1,0 +1,14 @@
+#!python
+
+import sys
+from fmtlabels.lines import lbl_fmtlines
+
+assert sys.version_info >= (3,5)
+
+if len(sys.argv) < 2:
+    raise Exception('Usage: fmtlines <category> [input]')
+
+category = sys.argv[1]
+input = open(sys.argv[2], 'r') if len(sys.argv) >= 3 else sys.stdin
+
+lbl_fmtlines(sys.stdout, category, input)
