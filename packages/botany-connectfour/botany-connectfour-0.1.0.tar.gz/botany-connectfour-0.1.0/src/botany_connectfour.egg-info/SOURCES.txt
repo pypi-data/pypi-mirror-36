@@ -1,0 +1,9 @@
+setup.cfg
+setup.py
+src/botany_connectfour/__init__.py
+src/botany_connectfour/game.py
+src/botany_connectfour.egg-info/PKG-INFO
+src/botany_connectfour.egg-info/SOURCES.txt
+src/botany_connectfour.egg-info/dependency_links.txt
+src/botany_connectfour.egg-info/requires.txt
+src/botany_connectfour.egg-info/top_level.txt
