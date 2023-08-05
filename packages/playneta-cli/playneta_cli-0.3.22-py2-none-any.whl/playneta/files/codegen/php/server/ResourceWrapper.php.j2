@@ -1,0 +1,57 @@
+{%- import 'playneta.php' as playneta with context -%}
+<?php namespace {{ info.title|namespace('php', True)|join('\\') }};
+
+use {{ info.title|namespace('php', True)|join('\\') }}CoreInterface;
+
+class {{ key|classname }}ResourceWrapper
+{
+    /**
+     * @type {{ info.title|classname }}CoreInterface
+     */
+    private $core;
+
+    /**
+     * @type {{ key|classname }}ResourceInterface
+     */
+    private $resource = null;
+
+    /**
+     * @param {{ info.title|classname }}CoreInterface $core
+     */
+    function __construct({{ info.title|classname }}CoreInterface $core)
+    {
+        $this->core = $core;
+    }
+{% for method, data in paths|methods(key)|sort %}
+    /**
+     * @param string $payload
+     * @return string
+     */
+    public function {{ method|methodname }}(string $payload): string {
+        {% if data.input is defined %}
+            {%- set decoder %}{{ playneta.input_decoder(data.input, 'Definition\\', 'Definition') }}{% endset %}
+            {%- if decoder == '' %}
+        $input = json_decode($payload, true);
+            {% else %}
+        $decoder = {{ decoder }};
+        $input = $decoder(json_decode($payload, true));
+            {% endif -%}
+        {%- endif %}
+        {% if data.output is defined %}$result = {% endif -%}$this->getResource()->{{ method|methodname }}({% if data.input is defined %}$input{% endif -%});
+
+        return {% if data.output is defined %}json_encode($result){% else %}''{% endif -%};
+    }
+{%- endfor %}
+
+    /**
+     * @return {{ key|classname }}ResourceInterface
+     */
+    private function getResource(): {{ key|classname }}ResourceInterface
+    {
+        if ($this->resource === null) {
+            $this->resource = $this->core->get{{ key|classname }}Resource();
+        }
+
+        return $this->resource;
+    }
+}

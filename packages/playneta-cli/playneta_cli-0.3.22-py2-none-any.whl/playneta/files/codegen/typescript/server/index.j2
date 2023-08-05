@@ -1,0 +1,9 @@
+{% import 'playneta' as playneta with context %}
+
+{{ playneta.file('root-package.ts', meta.root + '/' + meta.package + '.ts') }}
+
+{%- if resources -%}
+  {%- for resource, methods in resources|dictsort %}
+    {{ playneta.file('resource-package.ts', meta.root + '/' + resource + '/' + resource + '.ts', resource) }}
+  {%- endfor -%}
+{%- endif %}

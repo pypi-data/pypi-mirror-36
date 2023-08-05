@@ -1,0 +1,17 @@
+{%- import 'playneta.php' as playneta with context -%}
+<?php namespace {{ info.title|namespace('php', True)|join('\\') }};
+
+interface {{ key|classname }}ResourceInterface
+{
+{% for method, data in paths|methods(key)|sort %}
+    /**
+    {%- if data.input is defined -%}
+    {{ '\n     ' }}* @param {{ playneta.comment_type(data.input, 'Definition\\', 'Definition') }} $input
+    {%- endif %}
+    {%- if data.output is defined -%}
+    {{ '\n     ' }}* @return {{ playneta.comment_type(data.output, 'Definition\\', 'Definition') }}
+    {%- endif %}
+     */
+    public function {{ method|methodname }}({%- if data.input is defined -%}$input{%- endif %});
+{% endfor %}
+}
