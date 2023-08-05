@@ -1,0 +1,11 @@
+Django_Template_Preprocess-0.0.1.dist-info/METADATA,sha256=lRqEXhs6AMbzLHHjsu29u62AO4RZUmApwAenQVvOLmw,599
+Django_Template_Preprocess-0.0.1.dist-info/RECORD,,
+Django_Template_Preprocess-0.0.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+Django_Template_Preprocess-0.0.1.dist-info/top_level.txt,sha256=5hH9FGFBibsvJ5viV3vMTLJhjHpxG_GWva9ou2RdHuM,20
+template_preprocess/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+template_preprocess/admin.py,sha256=suMo4x8I3JBxAFBVIdE-5qnqZ6JAZV0FESABHOSc-vg,63
+template_preprocess/apps.py,sha256=yDp3dLhf3EprwpmgPf0n89Fi__TSN84aAH7ONAK_DAY,153
+template_preprocess/models.py,sha256=BNycBTpc7yVsHcWyMT3dY06eIkWlmwVMy4rAZ8x99eY,98
+template_preprocess/processor.py,sha256=lKSaUnpwpOKs4zBOlAjDwEWhFN1mXi1pWomeK0C2St0,3634
+template_preprocess/tests.py,sha256=YGVNjxh4t1-c-RVLdB_Xg8US_HnBZdyRdLhtAiDbXdg,307
+template_preprocess/views.py,sha256=xc1IQHrsij7j33TUbo-_oewy3vs03pw_etpBWaMYJl0,63
