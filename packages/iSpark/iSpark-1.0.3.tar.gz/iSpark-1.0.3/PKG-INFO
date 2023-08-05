@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: iSpark
+Version: 1.0.3
+Summary: Spark human utils
+Home-page: https://github.com/Jie-Yuan/iSpark
+Author: JieYuan
+Author-email: 313303303@qq.com
+Maintainer: JieYuan
+Maintainer-email: 313303303@qq.com
+License: MIT
+Description: <h1 align = "center">:rocket: iSpark :facepunch:</h1>
+        
+        ---
+        
+        ## [Require][1]
+        - `pip install pyspark`
+        
+        ## Install
+        - `pip install iSpark`  **or**  `pip install git+https://github.com/Jie-Yuan/iSpark.git`
+        
+        ## Usage
+        ```python
+        from ispark import *
+        sc, spark = SparkStarter('/opt/BigData/spark').sc_spark
+        ```
+        
+        
+        ---
+        [1]: https://github.com/apache/spark
+        
+        
+Keywords: Spark,313303303@qq.com
+Platform: all
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=2.7, <4
+Description-Content-Type: text/markdown
