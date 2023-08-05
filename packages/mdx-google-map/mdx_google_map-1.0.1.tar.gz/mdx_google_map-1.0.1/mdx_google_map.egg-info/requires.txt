@@ -1,0 +1,4 @@
+markdown>=2.6.11
+
+[dev]
+beautifulsoup4
