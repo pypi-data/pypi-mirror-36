@@ -1,0 +1,35 @@
+Metadata-Version: 1.2
+Name: beamism
+Version: 0.1.2
+Summary: welcome to beamism
+Home-page: https://github.com/kyu999/beamism
+Author: kyu999
+Author-email: kyukokkyou999@gmail.com
+Maintainer: kyu999
+Maintainer-email: kyukokkyou999@gmail.com
+License: MIT
+Description: # beamism
+        
+        beamism is a tiny framework to run apache beam based software.
+        
+        ### Installation
+        
+        ```
+        pip install beamism
+        ```
+        
+        ### Quick Start(Examples)
+        ```
+        # run locally
+        python examples/wordcount_streaming.py
+        
+        # deploy to Google Cloud Dataflow
+        python examples/wordcount_streaming.py --runner DataflowRunner --project {YOUR_PROJECT}--setup_file {ABSOLUTE_PATH_TO_SETUP.PY} --requirements_file {ABSOLUTE_PATH_TO_REQUIREMENTS.TXT} --temp_location {GCP_STORAGE_PATH} --staging_location {GCP_STORAGE_PATH}
+        ```
+        
+        ※ This module is inspired by [Apache Beam](https://github.com/apache/beam), and some codes are modified based on it.
+Platform: Linux
+Platform: Darwin
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: License :: OSI Approved :: MIT License

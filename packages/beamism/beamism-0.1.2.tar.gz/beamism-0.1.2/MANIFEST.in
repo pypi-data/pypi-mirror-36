@@ -1,0 +1,2 @@
+include version.cache
+include requirements.txt
