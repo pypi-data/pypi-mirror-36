@@ -1,0 +1,13 @@
+MANIFEST.in
+README.txt
+google_speak
+setup.py
+python_google_speak/__init__.py
+python_google_speak/cli.py
+python_google_speak/speech_generator.py
+python_google_speak/speech_output.py
+python_google_speak.egg-info/PKG-INFO
+python_google_speak.egg-info/SOURCES.txt
+python_google_speak.egg-info/dependency_links.txt
+python_google_speak.egg-info/requires.txt
+python_google_speak.egg-info/top_level.txt
