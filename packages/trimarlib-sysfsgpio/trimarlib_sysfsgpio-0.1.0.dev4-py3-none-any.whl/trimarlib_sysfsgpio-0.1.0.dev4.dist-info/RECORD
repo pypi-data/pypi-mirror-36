@@ -1,0 +1,11 @@
+sysfsgpio/__init__.py,sha256=Qu77fkdsIWOwtDquVuTjRe0_zPcSSG5-aQ0h4qjbxHM,138
+sysfsgpio/pin.py,sha256=cdTp7xLdNoTQbUE86jSqLxh_o0yZ7VGgupNao5O9Ke0,11528
+sysfsgpio/utils.py,sha256=8LoHPquV_LQ_TL7-Jb7BODrZfxG9a_2H-G9OwWiMfI8,6415
+sysfsgpio/version.py,sha256=sApJ8liexHFtDmTnck38EL_ibWXt3tAkrd-eb4yAtc4,23
+sysfsgpio/resources/gpio-exporter.service,sha256=v1B8d6ig8xv1ltG8rWBCuFuN2vgK1xEUb3dS04-F2b8,313
+sysfsgpio/resources/sysfsgpio.rules,sha256=4N6Aq-pU2m6N4F_2a2WSeYSVoRintbKYzPIPbJd4GfE,151
+trimarlib_sysfsgpio-0.1.0.dev4.dist-info/METADATA,sha256=FhpiwlC7ytJYr5TSwipyKWYCNhJfCYnugzHS5RIgH4E,5179
+trimarlib_sysfsgpio-0.1.0.dev4.dist-info/RECORD,,
+trimarlib_sysfsgpio-0.1.0.dev4.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+trimarlib_sysfsgpio-0.1.0.dev4.dist-info/entry_points.txt,sha256=1jesMti0RLRwuu7xLZNU_y6wBvHmS96ITL9ui7aYtlA,179
+trimarlib_sysfsgpio-0.1.0.dev4.dist-info/top_level.txt,sha256=o1xdnz2s-XuNDJwSMKnaDb7vEVsPfy27k0_cJYodpUU,10
