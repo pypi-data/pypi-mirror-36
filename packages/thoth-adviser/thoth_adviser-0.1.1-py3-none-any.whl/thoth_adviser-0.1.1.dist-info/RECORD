@@ -1,0 +1,17 @@
+thoth/adviser/__init__.py,sha256=6ivlXoQakxVNeyIZMYha4WjjFNIdtqoTlvba2lkN1rs,85
+thoth/adviser/cli.py,sha256=tV7ONU42YUHlWptnXgWHErRd4TrRnbDFn5HahHJ13Ns,9953
+thoth/adviser/configuration.py,sha256=w52jlo_qvRXWOFU0k_DlqXxvzYjqfxRmK1BdCTCgshs,1405
+thoth/adviser/enums.py,sha256=5qjFHTqABWo0C9OvqZB2GU2XAXlXI0987VQ-fgRNDmA,1701
+thoth/adviser/exceptions.py,sha256=6w7I4JbJC9qCzp2yN_mu6rDhJiAaDXj-9kD0v-e0wj8,1319
+thoth/adviser/python/__init__.py,sha256=BL77BOEOSDkqn691bRek4JjluNtcnEcV1GUi5b52Xec,956
+thoth/adviser/python/exceptions.py,sha256=8lvdVPap-ddrr49dKfethIP1HyFSSNNU-qZCpP4xDxU,1034
+thoth/adviser/python/package_version.py,sha256=3yBykhfP_Ojp6PRXAMyXX6aoI3LRcsiIeK3j5uSlNfU,8041
+thoth/adviser/python/packages.py,sha256=bdQjFGQ0UVMvnVNS8xBoYD1AOKznCDg2gI_m20Zi9Y0,3754
+thoth/adviser/python/pipfile.py,sha256=OUnboNEfAEQR3li4TxZ-UD08u05avHLnUUEqb-eTTDc,12063
+thoth/adviser/python/project.py,sha256=w93m8ONZLMp3H6Y7B4Jy5h2wqBm-dnDnnq3vT7fujx4,17770
+thoth/adviser/python/source.py,sha256=CzTiUkuZLPVsQQOQscsyUENj8IwCoFQMfpujoWGRMT8,11757
+thoth_adviser-0.1.1.dist-info/METADATA,sha256=45AWN4RfJcl0tOSWVe981pjVyintI4iJO8WZ8bMAajk,443
+thoth_adviser-0.1.1.dist-info/RECORD,,
+thoth_adviser-0.1.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+thoth_adviser-0.1.1.dist-info/entry_points.txt,sha256=BRBRcH99rIZzFsMUvLbYrT8-exO0BgKhiKoM8Jgc1XU,57
+thoth_adviser-0.1.1.dist-info/top_level.txt,sha256=c8JaaYuJlrd-trXiXD9l4fSkVuHvV1zFYn_x4Ij-0I0,6
