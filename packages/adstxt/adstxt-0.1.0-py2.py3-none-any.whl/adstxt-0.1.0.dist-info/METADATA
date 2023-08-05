@@ -1,0 +1,58 @@
+Metadata-Version: 2.0
+Name: adstxt
+Version: 0.1.0
+Summary: Validate ads.txt files against the official ads.txt specs.
+Home-page: https://github.com/maxrodrigo/adstxt
+Author: Max Rodrigo
+Author-email: contact@maxrodrigo.com
+License: MIT license
+Keywords: adstxt ads.txt validation GAM IAB
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: Click (>=6.0)
+
+======
+Adstxt
+======
+
+
+.. image:: https://img.shields.io/pypi/v/adstxt.svg
+        :target: https://pypi.python.org/pypi/adstxt
+
+.. image:: https://img.shields.io/travis/maxrodrigo/adstxt.svg
+        :target: https://travis-ci.org/maxrodrigo/adstxt
+
+.. image:: https://readthedocs.org/projects/adstxt/badge/?version=latest
+        :target: https://adstxt.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+
+
+
+Validate ads.txt files against the official ads.txt specs.
+
+
+* Free software: MIT license
+* Documentation: https://adstxt.readthedocs.io.
+
+
+=======
+History
+=======
+
+0.1.0 (2018-09-15)
+------------------
+
+* First release on PyPI.
+
+
