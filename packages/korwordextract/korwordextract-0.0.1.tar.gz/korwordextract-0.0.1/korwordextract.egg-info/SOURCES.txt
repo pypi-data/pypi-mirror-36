@@ -1,0 +1,8 @@
+README.md
+setup.py
+korwordextract/__init__.py
+korwordextract/noun_extractor.py
+korwordextract.egg-info/PKG-INFO
+korwordextract.egg-info/SOURCES.txt
+korwordextract.egg-info/dependency_links.txt
+korwordextract.egg-info/top_level.txt
