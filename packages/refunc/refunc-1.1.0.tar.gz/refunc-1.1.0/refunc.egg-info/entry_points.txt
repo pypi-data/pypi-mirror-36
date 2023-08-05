@@ -1,0 +1,4 @@
+[console_scripts]
+refunc = refunc.entry:run_from_file
+refunc-dev = refunc.entry:run_from_file_dev
+

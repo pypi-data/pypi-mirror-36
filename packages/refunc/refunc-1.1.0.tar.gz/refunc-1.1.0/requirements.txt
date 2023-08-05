@@ -1,0 +1,5 @@
+# required packages one package per line
+pyyaml>=3.12
+requests
+minio>=3.0.3
+asyncio-nats-client==0.7.0
