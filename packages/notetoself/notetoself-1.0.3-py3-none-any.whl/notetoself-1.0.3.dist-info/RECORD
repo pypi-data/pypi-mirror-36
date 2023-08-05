@@ -1,0 +1,14 @@
+notetoself.py,sha256=5P5OisfYhwyeLdPKmKXotSIiLqSpWkyyc4b-WZUgWIs,1806
+notetoself-1.0.3.dist-info/METADATA,sha256=EttFtLX9KBuQ-IYbHjONFHAxkM2Hm9DZVIMcR8NBGKg,965
+notetoself-1.0.3.dist-info/RECORD,,
+notetoself-1.0.3.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+notetoself-1.0.3.dist-info/entry_points.txt,sha256=OOFzgW6rhN3xgALcCSVcD37_a1Ulydeq2XSRPZamKFw,40
+notetoself-1.0.3.dist-info/top_level.txt,sha256=5_4Ph68pY4Q95G_VwYaS_ywiwh5x_6vSC8dm4xLJ7xY,15
+nts/__init__.py,sha256=2plzdEEb24FLjE2I2XyBBcJEPYWHccNL4SgtLC_6erg,22
+nts/api.py,sha256=cPX44HqQtMzWpZ_2E_u6L9_zL4eYIxSpWP3e60GSm9U,1441
+nts/fstring.py,sha256=BxZ0Su1lT1NscXAedup-AQjEuQyGhjSzbuoWQ-Sau4c,816
+nts/ui/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+nts/ui/create.py,sha256=bYhzy1Lk1eHqhmLp75cd06d6jWCqeXainsAfxNo5Ucw,1351
+nts/ui/delete.py,sha256=EJib52hbDf33DGc8zJtfXgtwRNbENC82o6Al2K_cOo4,358
+nts/ui/edit.py,sha256=PcpXgMnMYT0AkCpQ5uHILQqxXvL-GlEBAlow7_j7DJc,772
+nts/ui/search.py,sha256=7qO72x_0wWu8NphJvyKvA9H8RROXcp1EgqASKXqfT7w,332
