@@ -1,0 +1,17 @@
+README.md
+setup.py
+fdfdpy/__init__.py
+fdfdpy/constants.py
+fdfdpy/derivatives.py
+fdfdpy/linalg.py
+fdfdpy/nonlinear_solvers.py
+fdfdpy/plot.py
+fdfdpy/pml.py
+fdfdpy/simulation.py
+fdfdpy.egg-info/PKG-INFO
+fdfdpy.egg-info/SOURCES.txt
+fdfdpy.egg-info/dependency_links.txt
+fdfdpy.egg-info/requires.txt
+fdfdpy.egg-info/top_level.txt
+fdfdpy/source/__init__.py
+fdfdpy/source/mode.py
