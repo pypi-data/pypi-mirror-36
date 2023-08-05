@@ -1,0 +1,17 @@
+MANIFEST.in
+setup.cfg
+setup.py
+csefemerideak/__init__.py
+csefemerideak/admin.py
+csefemerideak/models.py
+csefemerideak/urls.py
+csefemerideak/views.py
+csefemerideak.egg-info/PKG-INFO
+csefemerideak.egg-info/SOURCES.txt
+csefemerideak.egg-info/dependency_links.txt
+csefemerideak.egg-info/entry_points.txt
+csefemerideak.egg-info/not-zip-safe
+csefemerideak.egg-info/requires.txt
+csefemerideak.egg-info/top_level.txt
+csefemerideak/utils/__init__.py
+csefemerideak/utils/text.py
