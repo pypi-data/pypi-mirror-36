@@ -1,0 +1,16 @@
+CHANGES
+=======
+
+0.0.1
+-----
+
+* add license header to all build files
+* change package name for dependency
+* minor fixes to build scripts
+* add neutron-bsn-lldp service file
+* add build scripts
+* add tox and do basic sanity check
+* add gitignore
+* move original files from networking-bigswitch
+* neutron\_bsn\_lldp python package cookiecutter create
+* Initial commit
