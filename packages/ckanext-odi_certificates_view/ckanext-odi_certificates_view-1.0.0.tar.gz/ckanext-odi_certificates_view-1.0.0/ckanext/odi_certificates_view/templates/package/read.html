@@ -1,0 +1,17 @@
+{% ckan_extends %}
+
+{% block package_notes %}
+    {% set odi_certificate_level = h.get_pkg_dict_extra(c.pkg_dict, 'odi_certificate_level') %}
+        <div style="float:left; margin-right: 25px; margin-bottom: 25px; display: flex; flex-direction: row;">
+            {% if odi_certificate_level %}
+                <div style="overflow: auto; text-align: left; margin-right: 25px;">
+                    {{_("Open Data Certificate:")}}
+                </div>
+                <tr>
+                    <td class="dataset-details">{{ odi_certificate_level.capitalize() }}</td>
+                </tr>
+            {% endif %}
+        </div>
+    <div class="clearfix"></div>
+    {{ super() }}
+{% endblock %}

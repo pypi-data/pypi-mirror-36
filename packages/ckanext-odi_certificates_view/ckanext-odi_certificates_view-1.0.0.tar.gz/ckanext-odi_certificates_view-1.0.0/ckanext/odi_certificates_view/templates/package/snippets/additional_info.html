@@ -1,0 +1,14 @@
+{% ckan_extends %}
+
+{% block extras scoped %}
+    <!--auto_clean: capitalize any extras titles -->
+    {% for extra in h.sorted_extras(pkg_dict.extras) %}
+        {% set key, value = extra %}
+        {%- if key != 'odi_certificate_level' -%}
+            <tr rel="dc:relation" resource="_:extra{{ i }}">
+                <th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
+                <td class="dataset-details" property="rdf:value">{{ value }}</td>
+            </tr>
+        {%- endif %}
+    {% endfor %}
+{% endblock %}
