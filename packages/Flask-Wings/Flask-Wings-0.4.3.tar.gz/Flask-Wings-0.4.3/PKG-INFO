@@ -1,0 +1,67 @@
+Metadata-Version: 1.1
+Name: Flask-Wings
+Version: 0.4.3
+Summary: Boilerplate Flask extension.
+Home-page: http://github.com/vmlaker/flask-wings
+Author: Velimir Mlaker
+Author-email: vel.i.mir.mlaker@gmail.com
+License: MIT
+Description: ===========
+        Flask-Wings
+        ===========
+        
+        .. image:: https://img.shields.io/pypi/v/flask-wings.svg
+            :target: https://pypi.python.org/pypi/flask-wings
+        
+        .. image:: https://img.shields.io/travis/vmlaker/flask-wings.svg
+           :target: https://travis-ci.org/vmlaker/flask-wings
+        
+        .. image:: https://img.shields.io/coveralls/vmlaker/flask-wings.svg
+           :target: https://coveralls.io/r/vmlaker/flask-wings
+        
+        .. image:: https://img.shields.io/github/license/vmlaker/flask-wings.svg
+            :target: https://github.com/vmlaker/flask-wings/blob/master/LICENSE
+        
+        Flask-Wings is a boilerplate for writing
+        `Flask <http://flask.pocoo.org>`_ extensions.
+        
+        Itself it is a tiny Flask extension that just adds some views and templates
+        to the parent app. Take a look at ``tests/app.py`` for a usage example.
+        
+        Use Flask-Wings as a starting point for creating your own
+        Flask extensions as fully-fledged, distributable Python packages.
+        
+        Minimalistic source code comes with a few extras you can use
+        to make your extension agree with
+        `standard practices <http://flask.pocoo.org/docs/1.0/extensiondev>`_:
+        
+        * tests directory with a minimal set of tests
+        * `docs build <https://vmlaker.github.io/flask-wings>`_ using Sphinx
+        * integration with
+          `Travis CI <https://travis-ci.org/vmlaker/flask-wings>`_ and
+          `Coveralls <https://coveralls.io/github/vmlaker/flask-wings>`_
+        * setuptools config
+        * etc.
+        
+        
+        Developers
+        ----------
+        
+        Check out the makefile to see a micro develpment cycle.
+        
+Platform: any
+Classifier: Framework :: Flask
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
