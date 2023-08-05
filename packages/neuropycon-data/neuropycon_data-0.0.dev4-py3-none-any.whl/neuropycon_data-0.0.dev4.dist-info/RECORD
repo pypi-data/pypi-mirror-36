@@ -1,0 +1,16 @@
+neuropycon_data/__init__.py,sha256=veKRnHtgK6AkxeWQ1DYa7K9skT9a6Nl_iDeLBtlX2xc,75
+neuropycon_data/data/__init__.py,sha256=3ZG_z3CRNRgM11DCF4TQLPoDbThU0VWbhyXjjuIGTmo,79
+neuropycon_data/data/data_con/ROI_MNI_coords-Atlas.txt,sha256=5h-9xSB96Pe7m4_lbwGyRsY0YcLXHHfXjFtqQotDK4E,1576
+neuropycon_data/data/data_con/ROI_labels-Atlas.txt,sha256=bkzfQDVM6q7rJF-IAwuI4FBw2ZnnZ5XH892PioG4J_I,686
+neuropycon_data/data/data_con/Z_cor_mat_resid_ts.npy,sha256=tjLldodpgDlg6jkEwLuOrHN4cpGI6Yjv_ONLcotZ2sA,192328
+neuropycon_data/data/data_con/__init__.py,sha256=3ZG_z3CRNRgM11DCF4TQLPoDbThU0VWbhyXjjuIGTmo,79
+neuropycon_data/data/data_con/data_graph/__init__.py,sha256=3ZG_z3CRNRgM11DCF4TQLPoDbThU0VWbhyXjjuIGTmo,79
+neuropycon_data/data/data_nii/__init__.py,sha256=3ZG_z3CRNRgM11DCF4TQLPoDbThU0VWbhyXjjuIGTmo,79
+neuropycon_data/data/data_nii/sub-test_mask-anatCSF.nii,sha256=H9z5wZq1V_WY2sF3eveEaGRqnu2BB2v0NWGO-V01u0M,139968
+neuropycon_data/data/data_nii/sub-test_mask-anatGM.nii,sha256=DlXw2ba4lFSGY3GN8A5ku6HAFXVVhmW0UsZCK-tnqn0,139968
+neuropycon_data/data/data_nii/sub-test_mask-anatWM.nii,sha256=oxOwc94m1hbzUNd74nS5HDZ5wq4urdm0381_oJJTOjM,139968
+neuropycon_data/data/data_nii/sub-test_task-rs_bold.nii,sha256=m86gK3lVgWvqrH7kJiE24OkrCAgKqaAa_QLuwNzHwKw,11543232
+neuropycon_data-0.0.dev4.dist-info/METADATA,sha256=8WKjyIxvdxnCBLXcfBp-8yAzEimd3JKFFozVjzYQAkk,208
+neuropycon_data-0.0.dev4.dist-info/RECORD,,
+neuropycon_data-0.0.dev4.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+neuropycon_data-0.0.dev4.dist-info/top_level.txt,sha256=XYxS3-oXkTl9GQuAmr3eimCt9aNSWJyP0IgGNJxOZ_A,16
