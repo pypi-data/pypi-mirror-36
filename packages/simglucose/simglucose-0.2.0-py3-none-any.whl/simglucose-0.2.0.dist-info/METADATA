@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: simglucose
+Version: 0.2.0
+Summary: A Type-1 Diabetes Simulator as a Reinforcement Learning Environment in OpenAI gym or rllab (python implementation of UVa/Padova Simulator)
+Home-page: https://github.com/jxx123/simglucose
+Author: Jinyu Xie
+Author-email: xjygr08@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+Requires-Dist: pathos
+Requires-Dist: gym (==0.9.4)
+
+UNKNOWN
+
+
