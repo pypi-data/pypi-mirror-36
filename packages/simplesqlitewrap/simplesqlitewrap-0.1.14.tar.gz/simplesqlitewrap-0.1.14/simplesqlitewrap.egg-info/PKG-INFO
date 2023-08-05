@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: simplesqlitewrap
+Version: 0.1.14
+Summary: Simple util from which I inherit my sqlite classes
+Home-page: UNKNOWN
+Author: zeroone2numeral2
+License: MIT
+Description: Simple class that wraps around the `sqlite3.conn().cursor().execute()` method
+        
+        ```py
+        from simplesqlitewrap import Database
+        
+        class DbWrapper(Database):
+            def create_tables(self):
+            	self._execute('CREATE TABLE IF NOT EXISTS Users (user_id INTEGER PRIMARY KEY, first_name NVARCHAR);')
+        
+            def insert_users(self, users, **kwargs):
+            	return self._execute('INSERT OR IGNORE INTO Users (user_id, first_name) VALUES (?, ?)', users, many=True, **kwargs)
+        
+            def select_users(self, **kwargs):
+            	# returns the list of all the records in 'Users'
+            	return self._execute('SELECT * FROM Users', fetchall=True, **kwargs)
+        
+        db = DbWrapper('database.sqlite')
+        print(db)
+        
+        db.create_tables()
+        
+        params = [(1, 'Bob'), (2, 'Charlie')]
+        rows_inserted = db.insert_users(params, rowcount=True)
+        print('Rows inserted:', rows_inserted)
+        
+        users = db.select_users(as_namedtuple=True)
+        for user in users:
+        	print('ID:', user.user_id, 'first name:', user.first_name)
+        ```
+        
+        ### Concurrent connections
+        
+        This module doesn't implement a persistent database connection, but every time the `_execute()` method is used, a new connection is opened. If the database is locked by another connection, `sqlite3`'s `OperationalError` is raised only if the connection is not released within the passed `timeout` (which defaults to 5 seconds).
+        
+        This module sets the rollback journal mode to [Write-Ahead Logging](https://www.sqlite.org/wal.html) as soon as the class is inited, unless stated otherwise. WAL mode allows concurrent connections as long as they are not executing the same operation (that is, reading _or_ writing). This should allow some flexibility in multithreaded applications.
+        
+        SQLite is not suited for applications that need to rely on an high-performance database, obviously. Frequent and heavy queries will just result in frequent failures due to the connection timeout, and even with a dedicated queries queue, the impossibility to perform concurrent operations will just endlessy stack requests that will never be executed.
+        
+        ### Installation
+        
+        `pip install simplesqlitewrap`
+        
+        ### Disclaimer
+        
+        If you stumbled upon this package, please remember that this is just a small utility I made for myself - breaking changes may be introduced without notice. Also, my first pypi package - will probably use it for tests and sheningans.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Database
+Description-Content-Type: text/markdown
