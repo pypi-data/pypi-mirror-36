@@ -1,0 +1,6 @@
+pyyaml
+simplejson
+msgpack
+pyzmq
+colorama
+build_utils
