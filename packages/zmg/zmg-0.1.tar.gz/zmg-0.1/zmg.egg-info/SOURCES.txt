@@ -1,0 +1,7 @@
+setup.py
+zmg/__init__.py
+zmg.egg-info/PKG-INFO
+zmg.egg-info/SOURCES.txt
+zmg.egg-info/dependency_links.txt
+zmg.egg-info/not-zip-safe
+zmg.egg-info/top_level.txt
