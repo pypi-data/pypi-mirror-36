@@ -1,0 +1,10 @@
+adroit/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+adroit/cli.py,sha256=wAgsus5uAkk6h2LYRFc9Tz7i31_DPwVvUkqHpjbVN7c,8774
+adroit/docker/dockerfile-base.tmpl,sha256=PZ5aZevgLTWtOLv2ZpdabXeRk4xRXnCDUpXcBQwFRyE,143
+adroit/docker/dockerfile-centos.tmpl,sha256=DHD4AhSm_n3N8xAee7KQxN6OMZKRIuEZ4qSJYJJ8l1o,628
+adroit/docker/dockerfile-debian.tmpl,sha256=23Q3CUm09_GSr76i3NUlQ2bB1R3IUCmu9yJSWjYdtxo,725
+adroit-0.1.dist-info/entry_points.txt,sha256=nf66qZZUGHIt0ys3kYzkYM1CA9NXjDEu_SRtL-5PTNY,42
+adroit-0.1.dist-info/LICENSE,sha256=vp4aq4dRnBPp0mPjoeufYmXm-3lWT8TLZZkhOl7JbUQ,1080
+adroit-0.1.dist-info/WHEEL,sha256=tvK973RUi4LzQSHDxPwhdKmEBUziij3RaNrgndLIb3w,84
+adroit-0.1.dist-info/METADATA,sha256=Zjm-QlGsZGj-mQ1u3U0_BbJdsnC8BVTf9GJQMW7yXwk,1021
+adroit-0.1.dist-info/RECORD,,

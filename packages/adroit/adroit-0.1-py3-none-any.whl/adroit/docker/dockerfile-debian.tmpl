@@ -1,0 +1,17 @@
+FROM debian:{version}
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get -y dist-upgrade && \
+	apt-get install -y --no-install-recommends systemd python-pip python-setuptools && \
+	rm -rf /var/lib/apt/lists/* /var/cache/apt /usr/share/doc /usr/share/man
+
+# prevent systemd from stealing host matchine tty and more
+RUN find /etc/systemd/system/*.wants /lib/systemd/system/*.wants -type l \
+	| grep -v -e dbus -e journal -e tmpfiles | xargs rm -fv
+
+# install ansible and additional modules needed
+RUN pip install --no-cache-dir ansible netaddr
+
+RUN mkdir -p /etc/ansible/roles /etc/ansible/group_vars/all
+RUN printf '{apply_role_playbook}' > /etc/ansible/apply-role.yml
+RUN printf '{hosts}' > /etc/ansible/hosts
