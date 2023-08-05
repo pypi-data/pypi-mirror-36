@@ -1,0 +1,9 @@
+Cerberus==1.2
+
+[ci]
+python-coveralls==2.9.1
+
+[test]
+pytest==3.8.0
+pytest-mock==1.10.0
+pytest-cov==2.5.1
