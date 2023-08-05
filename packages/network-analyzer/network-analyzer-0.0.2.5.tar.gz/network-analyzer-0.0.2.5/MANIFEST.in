@@ -1,0 +1,4 @@
+include LICENSE
+include logger.conf
+include pm2.json
+include scripts/*.sh

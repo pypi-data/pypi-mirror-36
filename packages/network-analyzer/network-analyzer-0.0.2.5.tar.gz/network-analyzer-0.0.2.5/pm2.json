@@ -1,0 +1,12 @@
+{
+    "apps": [
+        {
+            "name": "na-rpc-server",
+            "script": "scripts/serve_rpc.sh"
+        },
+        {
+            "name": "na-socketio-server",
+            "script": "scripts/serve_socket.sh"
+        }
+    ]
+}
