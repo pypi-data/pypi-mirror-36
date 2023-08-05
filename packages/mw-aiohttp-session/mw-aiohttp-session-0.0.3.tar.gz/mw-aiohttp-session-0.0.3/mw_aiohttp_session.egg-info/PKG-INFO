@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: mw-aiohttp-session
+Version: 0.0.3
+Summary: only for maxwin aiohttp session
+Home-page: https://github.com/candyABC/mw-aiohttp-session
+Author: candyabc
+Author-email: hfcandyabc@163.com
+License: Apache 2
+Description: mw-aiohttp-session
+        ==================
+        
+        提供给aiohttp session服务，仅适用于maxwin规则下，从redis中根据sessionid检查取得用户信息。
+        
+        使用
+        ----
+        见demo
+        
+            mw_setup_session_middleware
+        
+            get_session
+        
+            default_handle_session_middleware
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Framework :: AsyncIO
+Requires-Python: >=3.5
+Provides-Extra: aioredis
