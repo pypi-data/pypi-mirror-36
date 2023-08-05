@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: redisobjects
+Version: 0.1.0
+Summary: Object-oriented wrapper for aioredis.
+Home-page: https://gitlab.com/jchmb/redisobjects
+Author: Jochem Barelds
+Author-email: barelds.jochem@gmail.com
+License: UNKNOWN
+Description: Redisobjects
+        ============
+        
+        Simple wrapper for [aioredis](https://github.com/aio-libs/aioredis) to provide asynchronous functionality with a clean object-oriented interface for Redis in Python 3.6+.
+        
+Platform: UNKNOWN
+Classifier: Topic :: Database
+Classifier: Topic :: Database :: Database Engines/Servers
+Classifier: License :: OSI Approved :: MIT License
