@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "musicbot"
+version = "0.0.1"
+description = "Music swiss knife, new gen."
+
+authors = [
+    "Adrien Pensart <crunchengine@gmail.com>"
+]
+
+readme = "README.rst"
+repository = "https://github.com/AdrienPensart/musicbot"
+homepage = "https://github.com/AdrienPensart/musicbot"
+
+[tool.poetry.dependencies]
+python = "~3.6"
+toml = "^0.9"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+musicbot = 'musicbot.musicbot:main'
