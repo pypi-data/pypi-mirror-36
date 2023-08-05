@@ -1,0 +1,3 @@
+[console_scripts]
+adroit=adroit.cli:main
+

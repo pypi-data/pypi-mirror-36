@@ -1,0 +1,11 @@
+adroit/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+adroit/cli.py,sha256=WiIAKFvxqU8115iFWpHixkfWGZrCUjRb2ImtWRzUzfA,2129
+adroit/docker/dockerfile-base.tmpl,sha256=PZ5aZevgLTWtOLv2ZpdabXeRk4xRXnCDUpXcBQwFRyE,143
+adroit/docker/dockerfile-centos.tmpl,sha256=-3udXkC-_KeVxLuEel2kmTEQrJS2y-HFifwU3PqDLdg,619
+adroit/docker/dockerfile-debian.tmpl,sha256=Jco5JH7aHK4YVdJbRp1VPdaHfv38N8x5isJsOYGaK10,716
+adroit/tester.py,sha256=3Uaj1trNQLQp9mRD06xdXFWsWoQnfO8dVCCLGEjPAAs,8326
+adroit-0.3.dist-info/entry_points.txt,sha256=nf66qZZUGHIt0ys3kYzkYM1CA9NXjDEu_SRtL-5PTNY,42
+adroit-0.3.dist-info/LICENSE,sha256=vp4aq4dRnBPp0mPjoeufYmXm-3lWT8TLZZkhOl7JbUQ,1080
+adroit-0.3.dist-info/WHEEL,sha256=kHdCpTJzhyw1N1frf4kV6yKKRXuffzPY8J9zMFxvyGg,84
+adroit-0.3.dist-info/METADATA,sha256=N4ORIx1SeF69RJ-rbmaYerG-tUkD2jSOIPEhZYNi2jw,3176
+adroit-0.3.dist-info/RECORD,,
