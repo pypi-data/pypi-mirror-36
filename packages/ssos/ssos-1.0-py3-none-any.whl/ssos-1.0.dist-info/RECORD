@@ -1,0 +1,11 @@
+ssos/__init__.py,sha256=8aJxlgPCxxW9mXRiXGjO8T91AsDgoh6sIZBW8AHjXYc,30
+ssos/__main__.py,sha256=7vDyePUjZoFsspi5jccQKDDXhRipgHW-6VMG55X0yGc,2121
+ssos/core.py,sha256=HOlS0W0OLt-RyBJhpnkkMKzcSTivwVxgxQdMLLF9v5U,24707
+ssos/filt.py,sha256=pnKCdO0pst7sj_9pVY24oWAKbcZC6PtDRmbpAdysITk,11032
+ssos/opt.py,sha256=SUvMjA39zn3DcMZlF93zw_xQZp9sRq0WG7wERuKbG98,13018
+ssos/utils.py,sha256=EUK0Di9n974nTAPIGWdefLdJEh1ZryQ6sunP9ZxfAZc,5364
+ssos-1.0.dist-info/METADATA,sha256=Xfhd08SprIGEjs_e9JmzZNcep-9KGzzJGvJAYRly45g,734
+ssos-1.0.dist-info/RECORD,,
+ssos-1.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+ssos-1.0.dist-info/entry_points.txt,sha256=Ge-_toiAU6jqvag54dxtIkRcFiaKz2ZnBLTQmTWFsyM,45
+ssos-1.0.dist-info/top_level.txt,sha256=c7DaS6KcQ1wPrHeNF2srPmdikrJfvSqj0jih1Jhe6vE,5

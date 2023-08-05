@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: ssos
+Version: 1.0
+Summary: ssos Pipeline
+Home-page: https://github.com/maxmahlke/ssos
+Author: Max Mahlke
+Author-email: max.mahlke@cab.inta-csic.es
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Requires-Dist: astropy
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: statsmodels
+
+# SSO_Recovery_Pipeline
+---
+[![Documentation Status](https://readthedocs.org/projects/sso-pipeline/badge/?version=latest)](https://sso-pipeline.readthedocs.io/en/latest/?badge=latest)
+
+Pipeline to recover astrometry and photometry of Solar System Objects in imaging surveys
+
+Online documentation at https://sso-pipeline.readthedocs.io/en/latest/
+
+
