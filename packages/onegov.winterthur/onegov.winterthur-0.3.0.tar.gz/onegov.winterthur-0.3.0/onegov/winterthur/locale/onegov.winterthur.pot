@@ -1,0 +1,76 @@
+#
+# SOME DESCRIPTIVE TITLE
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE 1.0\n"
+"POT-Creation-Date: 2018-06-13 13:39+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Lingua 3.12\n"
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/layout.py:13
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/layout.py:42
+msgid "Homepage"
+msgstr ""
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/layout.py:14
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/layout.py:43
+msgid "Addresses"
+msgstr ""
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/layout.py:24
+msgid "Update"
+msgstr ""
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/templates/macros.pt:12
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/templates/street.pt:17
+msgid "Back to the overview"
+msgstr ""
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/templates/macros.pt:32
+msgid "Search in ${directory}"
+msgstr ""
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/templates/streets.pt:7
+msgid "Search streets"
+msgstr ""
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/templates/streets.pt:10
+msgid "No streets found."
+msgstr ""
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/templates/street.pt:25
+msgid "Show street on map"
+msgstr ""
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/templates/street.pt:33
+msgid "Address"
+msgstr ""
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/templates/street.pt:34
+msgid "Place"
+msgstr ""
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/templates/street.pt:35
+msgid "City District"
+msgstr ""
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/templates/street.pt:36
+msgid "Neighbourhood"
+msgstr ""
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/views/streets.py:32
+msgid "Streets Directory"
+msgstr ""
+
+#: /Users/denis/Documents/Code/onegov/src/onegov.winterthur/onegov/winterthur/views/streets.py:49
+msgid "The streets directory has been updated"
+msgstr ""
