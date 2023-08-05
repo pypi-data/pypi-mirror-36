@@ -1,0 +1,10 @@
+README.md
+setup.py
+tests/__init__.py
+tests/test_builder.py
+uribuilder/__init__.py
+uribuilder/builder.py
+uribuilder.egg-info/PKG-INFO
+uribuilder.egg-info/SOURCES.txt
+uribuilder.egg-info/dependency_links.txt
+uribuilder.egg-info/top_level.txt
