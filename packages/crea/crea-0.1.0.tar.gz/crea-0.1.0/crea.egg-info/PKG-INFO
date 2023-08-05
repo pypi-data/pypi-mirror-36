@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: crea
+Version: 0.1.0
+Summary: Official Python Crea library.
+Home-page: https://github.com/creativechain/crea-python
+Author: Creativechain Foundation
+Author-email: info@creativechain.org
+License: MIT
+Description: UNKNOWN
+Keywords: crea,dsite,cryptocurrency,blockchain
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Development Status :: 4 - Beta
+Provides-Extra: test
+Provides-Extra: dev
+Provides-Extra: build

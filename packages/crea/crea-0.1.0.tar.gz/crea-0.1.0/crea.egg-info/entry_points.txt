@@ -1,0 +1,5 @@
+[console_scripts]
+creacli = crea.cli:legacyentry
+creapy = crea.cli:legacyentry
+creatail = crea.cli:creatailentry
+
