@@ -1,0 +1,10 @@
+CHANGES.txt
+MANIFEST.in
+README.md
+README.rst
+setup.py
+RuntimeWeb/__init__.py
+bayrell_runtime_web.egg-info/PKG-INFO
+bayrell_runtime_web.egg-info/SOURCES.txt
+bayrell_runtime_web.egg-info/dependency_links.txt
+bayrell_runtime_web.egg-info/top_level.txt
