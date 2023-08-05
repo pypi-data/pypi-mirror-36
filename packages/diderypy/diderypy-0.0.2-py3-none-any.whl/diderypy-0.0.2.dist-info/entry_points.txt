@@ -1,0 +1,3 @@
+[console_scripts]
+didery = diderypy.cli:main
+
