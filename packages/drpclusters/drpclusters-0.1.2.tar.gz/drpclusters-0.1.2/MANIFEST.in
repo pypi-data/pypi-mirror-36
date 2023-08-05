@@ -1,0 +1,10 @@
+include example/dividedPdb.tar.gz
+include example/drp_list.txt
+include example/scop_family_assignment.txt
+include example/exampleDistances/longer_fraction.txt
+include example/exampleDistances/disulfides.txt
+include example/exampleDistances/shorter_fraction.txt
+include example/exampleDistances/similarity_product.txt
+include example/exampleDistances/drp_lengths.txt
+
+
