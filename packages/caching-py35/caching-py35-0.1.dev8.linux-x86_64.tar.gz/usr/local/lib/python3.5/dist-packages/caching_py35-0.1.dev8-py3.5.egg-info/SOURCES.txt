@@ -1,0 +1,12 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+caching/__init__.py
+caching/cache.py
+caching/storage.py
+caching_py35.egg-info/PKG-INFO
+caching_py35.egg-info/SOURCES.txt
+caching_py35.egg-info/dependency_links.txt
+caching_py35.egg-info/top_level.txt
