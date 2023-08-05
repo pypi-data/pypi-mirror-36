@@ -1,0 +1,22 @@
+Metadata-Version: 2.0
+Name: playneta-cli
+Version: 0.3.21
+Summary: UNKNOWN
+Home-page: https://github.com/playneta/playneta-cli
+Author: Sergey Kononenko
+Author-email: skononenko@playneta.gg
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: argparse (>=1.2.1)
+Requires-Dist: docker (==2.6.1)
+Requires-Dist: inflection (>=0.3.1)
+Requires-Dist: jinja2 (>=2.9.6)
+Requires-Dist: pyaml (>=17.10.0)
+Requires-Dist: pyyaml (>=3.11)
+Requires-Dist: requests (>=2.18.4)
+Requires-Dist: semver (>=2.7.9)
+Requires-Dist: sh (>=1.12.14)
+
+UNKNOWN
+
+
