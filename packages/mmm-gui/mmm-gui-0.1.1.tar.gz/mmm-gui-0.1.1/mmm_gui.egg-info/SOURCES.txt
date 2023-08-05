@@ -1,0 +1,13 @@
+LICENSE.GPLv3
+MANIFEST.in
+Makefile
+README.md
+README.rst
+m-gui.py
+setup.py
+bin/m-gui
+mmm_gui.egg-info/PKG-INFO
+mmm_gui.egg-info/SOURCES.txt
+mmm_gui.egg-info/dependency_links.txt
+mmm_gui.egg-info/requires.txt
+mmm_gui.egg-info/top_level.txt
