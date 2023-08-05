@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: datadog-deployer
+Version: 0.0.0
+Summary: Deployment of datadog monitors.
+Home-page: https://github.com/binxio/datadog-deployer
+Author: Mark van Holsteijn
+Author-email: mvanholsteijn@xebia.com
+License: UNKNOWN
+Platform: any
+Requires-Dist: ruamel.yaml
+Requires-Dist: click
+Requires-Dist: datadog
+
+A simple command line utility to deploy datadog monitors from code.
+
+**Options**
+
+**Example**
+
+
+
