@@ -1,0 +1,28 @@
+Metadata-Version: 2.0
+Name: pyjsgf
+Version: 1.5.0
+Summary: JSpeech Grammar Format (JSGF) compiler, matcher and parser package for Python.
+Home-page: https://github.com/Danesprite/pyjsgf
+Author: Dane Finlay
+Author-email: Danesprite@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Multimedia :: Sound/Audio :: Speech
+Classifier: Topic :: Software Development :: Libraries
+Requires-Dist: pyparsing
+Requires-Dist: six
+
+
+pyjsgf can be used to construct JSGF rules and grammars, compile them into
+strings or files, and find grammar rules that match speech hypothesis
+strings. Matching speech strings to tags is also supported. There are also
+parsers for grammars, rules and rule expansions.
+
+
