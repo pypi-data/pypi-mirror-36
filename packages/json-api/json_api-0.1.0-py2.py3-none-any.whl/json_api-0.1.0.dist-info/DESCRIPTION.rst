@@ -1,0 +1,19 @@
+plain text or other unknown local results to corresponding framework.
+Home-page: https://github.com/weaming/json-api
+Author: weaming
+Author-email: garden.yuen@gmail.com
+License: UNKNOWN
+Project-URL: Source, https://github.com/weaming/json-api
+Project-URL: Bug Reports, https://github.com/weaming/json-api
+Description: # JSON API
+        
+        A abstract struct to write helper to handle other's frameworks' response result, whose type is JSON, plain text or other unknown local results to corresponding framework.
+        
+        ```
+        pip3 install json-api
+        ```
+        
+        
+Keywords: abstract json api
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
