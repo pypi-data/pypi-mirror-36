@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: logupdate
+Version: 0.2.1
+Summary: Log by overwriting the previous output in the terminal
+Home-page: https://github.com/AdrieanKhisbe/logupdate.py
+Author: Adriean Khisbe
+Author-email: adriean.khisbe@live.fr
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Logging
+Description-Content-Type: text/markdown
+Requires-Dist: cursor
+Requires-Dist: ansiwrap
+
+# logupdate.py
+
+
+[![PyPI](https://img.shields.io/pypi/v/logupdate.svg)](https://pypi.org/project/logupdate/)
+[![Build Status](https://travis-ci.org/AdrieanKhisbe/logupdate.py.svg?branch=master)](https://travis-ci.org/AdrieanKhisbe/logupdate.py)
+
+
+Log by overwriting the previous output in the terminal in Python. (port of sindresorhus/log-update)
+
+
