@@ -1,0 +1,5 @@
+# pre steps
+    * ensure version number is greater than current distribution (in pySHACL/__init__.py)
+
+# build the distribution egg
+python3 setup.py sdist bdist_wheel
