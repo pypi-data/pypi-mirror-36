@@ -1,0 +1,12 @@
+[anyblok.init]
+bus_config = anyblok_bus:anyblok_init_config
+
+[anyblok.model.plugin]
+bus_consumer = anyblok_bus.consumer:BusConsumerPlugin
+
+[bloks]
+bus = anyblok_bus.bloks.bus:Bus
+
+[console_scripts]
+anyblok_bus = anyblok_bus.scripts:anyblok_bus
+
