@@ -1,0 +1,3 @@
+[console_scripts]
+wpexport = wpexport.__main__:main
+
