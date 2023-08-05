@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: python-ecs-deploy
+Version: 0.0.3
+Summary: This script use ecs client of boto3 to instigate an automatic blue/green deployment.
+Home-page: https://github.com/qiqiming/python-ecs-deploy
+Author: qiqiming
+Author-email: tiedanqi@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: python aws-ecs ecs
+Platform: UNKNOWN
