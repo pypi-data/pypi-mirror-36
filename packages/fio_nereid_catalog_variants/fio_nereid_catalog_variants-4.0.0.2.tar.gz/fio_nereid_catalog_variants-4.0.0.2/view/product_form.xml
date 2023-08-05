@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<data>
+    <xpath expr="//field[@name='attributes']" position="replace">
+    </xpath>
+    <xpath expr="/form/notebook" position="inside">
+        <page name="attributes">
+            <field name="attributes"/>
+        </page>
+    </xpath>
+</data>
