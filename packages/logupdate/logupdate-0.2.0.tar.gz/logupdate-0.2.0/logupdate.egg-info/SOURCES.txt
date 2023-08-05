@@ -1,0 +1,10 @@
+README.md
+setup.py
+logupdate/__init__.py
+logupdate/core.py
+logupdate.egg-info/PKG-INFO
+logupdate.egg-info/SOURCES.txt
+logupdate.egg-info/dependency_links.txt
+logupdate.egg-info/requires.txt
+logupdate.egg-info/top_level.txt
+test/test_logupdate.py
