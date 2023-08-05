@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: option
+Version: 0.1.5
+Summary: Rust like Option type in Python
+Home-page: https://github.com/MaT1g3R/option
+License: MIT
+Author: Peijun Ma
+Author-email: peijun.ma@protonmail.com
+Requires-Python: >=3.6
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries
+Description-Content-Type: text/markdown
+
+# Option
+
