@@ -1,0 +1,11 @@
+README.md
+setup.py
+Analysis/SentimentAnalysis.py
+Analysis/__init__.py
+Analysis/SentimentModels/NLTK.py
+Analysis/SentimentModels/__init__.py
+SMD_Analysis.egg-info/PKG-INFO
+SMD_Analysis.egg-info/SOURCES.txt
+SMD_Analysis.egg-info/dependency_links.txt
+SMD_Analysis.egg-info/requires.txt
+SMD_Analysis.egg-info/top_level.txt
