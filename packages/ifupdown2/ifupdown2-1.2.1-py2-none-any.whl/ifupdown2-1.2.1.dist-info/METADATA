@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: ifupdown2
+Version: 1.2.1
+Summary: interface network manager
+Home-page: https://github.com/CumulusNetworks/ifupdown2
+Author: Roopa Prabhu
+Author-email: roopa@cumulusnetworks.com
+Maintainer: Julien Fortin
+Maintainer-email: julien@cumulusnetworks.com
+License: GNU General Public License v2
+Keywords: ifupdown2
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: System :: Networking
+Classifier: Topic :: System :: Systems Administration
+Requires-Dist: argcomplete
+Requires-Dist: ipaddr
+
+UNKNOWN
+
+
