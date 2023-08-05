@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: labpy
+Version: 0.0.1
+Summary: labpy - python a labor (automation) environment 
+Home-page: https://gitlab.com/LARAsuite/pylab
+Author: mark doerr
+Author-email: mark.doerr@uni-greifswald.de
+License: MIT
+Description: UNKNOWN
+Keywords: lab automation,Qt5,PySide2,laboratory,instruments,experiments,database,evaluation,visualisation,SiLA2,robots
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Utilities
