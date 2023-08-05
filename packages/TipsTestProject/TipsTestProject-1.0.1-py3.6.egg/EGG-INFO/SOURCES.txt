@@ -1,0 +1,11 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.py
+tools.py
+TipsTestProject.egg-info/PKG-INFO
+TipsTestProject.egg-info/SOURCES.txt
+TipsTestProject.egg-info/dependency_links.txt
+TipsTestProject.egg-info/top_level.txt
+Tipstestlib/__init__.py
+Tipstestlib/testlib1.py
