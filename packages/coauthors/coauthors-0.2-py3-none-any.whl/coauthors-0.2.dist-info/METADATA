@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: coauthors
+Version: 0.2
+Summary: Add coauthors to your last git commit message.
+Home-page: https://github.com/quiqueporta/coauthors
+Author: Quique Porta
+Author-email: quiqueporta@gmail.com
+License: GPLv3
+Download-URL: https://github.com/quiqueporta/coauthors/releases
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Utilities
+Requires-Dist: gitpython
+
+# coauthors
+Add coauthors to your last git commit message.
+
+## Install
+
+To install **coauthors**, just run:
+
+```sh
+$ sudo pip install coauthors
+```
+
+## Configure
+
+First create a config file with your coauthors.
+
+Example ~/.coauthors.json:
+
+```javascript
+{
+  "Faemino":
+  {
+    "name": "Juan Carlos Arroyo",
+    "email": "faemino@comedian.com"
+  },
+  "Cansado":
+  {
+    "name": "Angel Javier Pozuelo",
+    "email": "cansado@comedian.com"
+  }
+}
+```
+
+Then you need to create an environment variable
+
+```sh
+COAUTHORS_FILE="~/.coauthors.json"
+```
+
+## Usage
+
+You can coauthor your commit with one friend
+```sh
+$ coauthors Faemino
+```
+
+or with many
+```sh
+$ coauthors Faemino Cansado
+```
+
+You can list your available coauthors
+```sh
+$ coauthors --list
+```
+
+
