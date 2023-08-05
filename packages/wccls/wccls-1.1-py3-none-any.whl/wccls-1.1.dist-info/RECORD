@@ -1,0 +1,10 @@
+tests/__init__.py,sha256=5YAkxLCkWWh4kqe8lncupH89VJFILV_dAkRMShizbPw,76
+tests/test_main.py,sha256=uLjGFFSa3VmAAMPAPZOqCl6FKCJPDxYknfsVIMc8wYc,1171
+wccls/__init__.py,sha256=M0uFjd95XV91GUlj15Qw7Wo7A6g892WMuWdrr3j7SOw,339
+wccls/wccls.py,sha256=SlXafurmIZq-x_qGAew1dgBumJG2hKhLvob42BoRUWg,2709
+wccls/wccls_desktop.py,sha256=IzwNsM-WqjKxLrEVRxROebbtRd9Nd3hqbnkt0KcE7Eo,5768
+wccls/wccls_mobile.py,sha256=qROEq0Uy2-6Rt_qwfv_I5L_26KqBN3NPhzaIPrl7S9w,6242
+wccls-1.1.dist-info/METADATA,sha256=s40EuI735GvLm4SPp0SvhvUcVIM1Z7ujzwaXFZQA6mw,762
+wccls-1.1.dist-info/RECORD,,
+wccls-1.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+wccls-1.1.dist-info/top_level.txt,sha256=RgMBUPdyUbiCsy4MhadYShkvxBNS1-NcQPslyoZ1dTY,12
