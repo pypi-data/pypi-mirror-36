@@ -1,0 +1,5 @@
+{% extends "email_layout.txt" %}
+{% block name %}{% endblock %}
+{% block content %}
+{% include 'email_item.txt' %}
+{% endblock %}

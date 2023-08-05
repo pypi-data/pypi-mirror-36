@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: Newsroom
+Version: 1.0
+Summary: Newsroom app
+Home-page: https://github.com/superdesk/newsroom
+Author: Sourcefabric
+Author-email: UNKNOWN
+License: GPLv3
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Requires-Dist: Flask-Cache (<0.14,>=0.13.1)
+Requires-Dist: Flask-WTF (<0.15,>=0.14.2)
+Requires-Dist: eve (==0.7.8)
+Requires-Dist: flask-babel (<0.12,>=0.11.2)
+Requires-Dist: flask-limiter (<0.9.6,>=0.9.5.1)
+Requires-Dist: flask-webpack (<0.2,>=0.1.0)
+Requires-Dist: flask-pymongo (<1.0,>=0.5.2)
+Requires-Dist: gunicorn (>=19.7.1)
+Requires-Dist: honcho (>=1.0.1)
+Requires-Dist: superdesk-core (<1.16,>=1.15.1)
+
+UNKNOWN
+
+

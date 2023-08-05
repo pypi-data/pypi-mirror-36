@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ gettext('Wire') }}{% endblock %}
+
+{% block breadcrumb %}
+<span class="breadcrumb-item active">{{ gettext('Wire') }}</span>
+<span id="nav-breadcrumb" class="breadcrumb-item active"></span>
+{% endblock %}
+
+{% block content %}
+<div id="wire-app" class="content"></div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        wireData = {{ data | tojson | safe }};
+    </script>
+    {{ javascript_tag('wire_js') | safe }}
+{% endblock %}

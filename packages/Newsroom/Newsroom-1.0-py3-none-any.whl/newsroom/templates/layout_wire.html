@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="content">
+
+        <section class="content-header">
+            {% block contentHeader %}
+
+            {% endblock %}
+        </section>
+
+        <section class="content-main">
+
+                {% block contentMain %}{% endblock %}
+
+            {% block sidebar %}{% endblock %}
+        </section>
+
+    </div>
+
+{% endblock %}
