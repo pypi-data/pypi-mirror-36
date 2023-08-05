@@ -1,0 +1,9 @@
+fl_henchman-0.0.3.1.dist-info/METADATA,sha256=ZgUIcfadVE54lJv6Ksxhcx0IamL0I-I3MINfQ6xQpgE,4686
+fl_henchman-0.0.3.1.dist-info/RECORD,,
+fl_henchman-0.0.3.1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+fl_henchman-0.0.3.1.dist-info/top_level.txt,sha256=UEqMM1yfLlKynYQcB7TSoGyjDnHqzoqa2eRTk6Kh5dA,9
+henchman/__init__.py,sha256=WYOR1cU89HccOEVUFdAOZDI1gBVQOFJh06eIxCc3BTI,295
+henchman/diagnostics.py,sha256=52MrdorBXcrjYKrgfBHOd1ziS8fitW44mAwB1hsYy70,7610
+henchman/learning.py,sha256=sCa3gItPA_pgNpkFPhwB2vodNgjrNdrFLUqJLUIRzGc,5933
+henchman/plotting.py,sha256=2K3gxzqchxFRgck79_FbTFWrx1SecRaKrvc09EAf4xw,35987
+henchman/selection.py,sha256=h3qU0MmsObRCvHt4bGeSiP4EvzNa_1y_zIeZ3NdEtjo,10288
