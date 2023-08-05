@@ -1,0 +1,9 @@
+README.md
+setup.py
+tensorflow_datasets/__init__.py
+tensorflow_datasets/import_test.py
+tf_datasets.egg-info/PKG-INFO
+tf_datasets.egg-info/SOURCES.txt
+tf_datasets.egg-info/dependency_links.txt
+tf_datasets.egg-info/requires.txt
+tf_datasets.egg-info/top_level.txt
