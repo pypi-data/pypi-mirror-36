@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: monsoon
+Version: 0.1.88
+Summary: Monsoon Power Monitor API
+Home-page: https://github.com/msoon/PyMonsoon
+Author: Michael Brinker, Jared Hicks
+Author-email: mikeb@msoon.com, jared@msoon.com
+License: MIT
+Requires-Dist: numpy
+Requires-Dist: pyusb
+Requires-Dist: libusb1
+Requires-Dist: scipy
+
+# PyMonsoon
+
+
