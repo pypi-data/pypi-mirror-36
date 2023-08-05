@@ -1,0 +1,5 @@
+click==6.7
+requests[security]>=2.9.1
+findup==0.3.0
+six==1.11.0
+bravado==9.2.0
