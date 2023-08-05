@@ -1,0 +1,3 @@
+[console_scripts]
+bpndtrustar = bpndtrustar.bpndtrustar:main
+

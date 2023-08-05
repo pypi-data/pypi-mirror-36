@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: bpndtrustar
+Version: 1.0.2
+Summary: command line client for interacting with Trustar TIP
+Home-page: https://github.com/trbpnd/bpndtrustar
+Author: Evan Dygert
+Author-email: evand@dygertconsulting.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >3.5.2
