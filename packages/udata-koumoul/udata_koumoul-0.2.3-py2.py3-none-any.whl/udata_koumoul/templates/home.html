@@ -1,0 +1,32 @@
+{% extends "home.html" %}
+
+{% from theme('sections/datasets.html') import datasets_section with context %}
+{% from theme('sections/reuses.html') import reuses_section with context %}
+
+{% set body_class = 'home' %}
+
+{% block content %}
+{% cache cache_duration, 'home', g.lang_code %}
+<div class="banner">
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Portail Open Data de démonstration</h1>
+      <p>Ce portail est réalisé grâce à l'assemblage de différents logiciels Open Source</p>
+      <ul>
+        <li>Le catalogue de données est assuré par <a href="https://udata.readthedocs.io">uData</a>, qui est également utilisé pour le site <a href="https://data.gouv.fr">data.gouv.fr</a></li>
+        <li><a href="https://koumoul-dev.github.io/data-fair/">DataFair</a>, que nous développons, permet de rendre les données Faciles à Trouver, Accessible, Interopérables et Réutilisables (FAIR).</li>
+        <li>Les statistiques sont prises en charge par <a href="https://matomo.org/">Matomo</a> (anciennement Piwik)</li>
+      </ul>
+      <p>N'hésitez pas à parcourir ce portail pour voir les différentes fonctionnalités offertes. Si vous êtes intéressés par la réalisation d'un portail, n'hésitez pas à <a href="mailto:contact@koumoul.com">nous contacter</a>.</p>
+    </div>
+  </div>
+</div>
+<br>
+{{ reuses_section(nb=4) }}
+<br><br>
+{{ datasets_section(nb=5) }}
+<br><br>
+{% include theme("sections/last-post.html") %}
+
+{% endcache %}
+{% endblock %}
