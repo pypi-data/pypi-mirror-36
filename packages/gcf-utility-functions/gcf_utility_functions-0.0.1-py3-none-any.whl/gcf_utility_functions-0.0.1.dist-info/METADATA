@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: gcf-utility-functions
+Version: 0.0.1
+Summary: Helper functions for use with Google Cloud Functions
+Home-page: UNKNOWN
+Author: David Fort
+Author-email: ptiger10@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: google-api-python-client (<1.8.0,>=1.7.4)
+Requires-Dist: httplib2 (<0.12.0,>=0.11.3)
+Requires-Dist: requests (<2.20.0,>=2.19.1)
+Requires-Dist: oauth2client (<4.2.0,>=4.1.3)
+
+Utility, convenience, and helper functions to be shared across multiple Google Cloud Functions.
+
+
