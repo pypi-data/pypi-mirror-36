@@ -1,0 +1,101 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: https://avwx.rest/api/metar/UGKO?options=info%2Cspeech%2Csummary%2Ctranslate&format=json&onfail=cache
+  response:
+    body: {string: '{"Altimeter":"1015","Cloud-List":[["SCT","026"],["BKN","045"]],"Dewpoint":"20","Flight-Rules":"VFR","Info":{"City":"Kutaisi","Country":"GEO","Elevation":68.0,"Iata":"KUT","Icao":"UGKO","Latitude":42.183,"Longitude":42.483,"Name":"Kopitnari
+        Airport","Priority":6,"State":""},"Meta":{"Cache-Timestamp":"Sat, 15 Sep 2018
+        18:07:13 GMT","Timestamp":"Sat, 15 Sep 2018 18:07:13 GMT"},"Other-List":[],"Raw-Report":"UGKO
+        151800Z 10004KT 9999 SCT026 BKN045 21/20 Q1015 NOSIG","Remarks":"NOSIG","Remarks-Info":{"Dew-Decimal":"","Temp-Decimal":""},"Runway-Vis-List":[],"Sanitized":"UGKO
+        151800Z 10004KT 9999 SCT026 BKN045 21/20 Q1015 NOSIG","Speech":"Winds one
+        zero zero at 4kt. Visibility one zero kilometers. Temperature two one degrees
+        Celsius. Dew point two zero degrees Celsius. Altimeter one zero one five.
+        Scattered clouds at 2600ft. Broken layer at 4500ft","Station":"UGKO","Summary":"Winds
+        E-100 at 4kt, Vis 10km, Temp 21\u00b0C, Dew 20\u00b0C, Alt 1015 hPa, Scattered
+        clouds at 2600ft, Broken layer at 4500ft","Temperature":"21","Time":"151800Z","Translate":{"Altimeter":"1015
+        hPa (29.97 inHg)","Cloud-List":"Scattered clouds at 2600ft, Broken layer at
+        4500ft - Reported AGL","Dewpoint":"20\u00b0C (68\u00b0F)","Other-List":"","Remarks":{},"Temperature":"21\u00b0C
+        (70\u00b0F)","Visibility":"10km (6.2sm)","Wind":"E-100 at 4kt"},"Units":{"Altimeter":"hPa","Altitude":"ft","Temperature":"C","Visibility":"m","Wind-Speed":"kt"},"Visibility":"9999","Wind-Direction":"100","Wind-Gust":"","Wind-Speed":"04","Wind-Variable-Dir":[]}
+
+'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Length: ['1524']
+      Content-Type: [application/json]
+      Date: ['Sat, 15 Sep 2018 18:07:13 GMT']
+      Server: [gunicorn/19.9.0]
+      X-Robots-Tag: [noindex]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: https://avwx.rest/api/metar/UGKO?options=info%2Cspeech%2Csummary%2Ctranslate&format=json&onfail=cache
+  response:
+    body: {string: '{"Altimeter":"1015","Cloud-List":[["SCT","026"],["BKN","045"]],"Dewpoint":"20","Flight-Rules":"VFR","Info":{"City":"Kutaisi","Country":"GEO","Elevation":68.0,"Iata":"KUT","Icao":"UGKO","Latitude":42.183,"Longitude":42.483,"Name":"Kopitnari
+        Airport","Priority":6,"State":""},"Meta":{"Cache-Timestamp":"Sat, 15 Sep 2018
+        18:17:15 GMT","Timestamp":"Sat, 15 Sep 2018 18:17:15 GMT"},"Other-List":[],"Raw-Report":"UGKO
+        151800Z 10004KT 9999 SCT026 BKN045 21/20 Q1015 NOSIG","Remarks":"NOSIG","Remarks-Info":{"Dew-Decimal":"","Temp-Decimal":""},"Runway-Vis-List":[],"Sanitized":"UGKO
+        151800Z 10004KT 9999 SCT026 BKN045 21/20 Q1015 NOSIG","Speech":"Winds one
+        zero zero at 4kt. Visibility one zero kilometers. Temperature two one degrees
+        Celsius. Dew point two zero degrees Celsius. Altimeter one zero one five.
+        Scattered clouds at 2600ft. Broken layer at 4500ft","Station":"UGKO","Summary":"Winds
+        E-100 at 4kt, Vis 10km, Temp 21\u00b0C, Dew 20\u00b0C, Alt 1015 hPa, Scattered
+        clouds at 2600ft, Broken layer at 4500ft","Temperature":"21","Time":"151800Z","Translate":{"Altimeter":"1015
+        hPa (29.97 inHg)","Cloud-List":"Scattered clouds at 2600ft, Broken layer at
+        4500ft - Reported AGL","Dewpoint":"20\u00b0C (68\u00b0F)","Other-List":"","Remarks":{},"Temperature":"21\u00b0C
+        (70\u00b0F)","Visibility":"10km (6.2sm)","Wind":"E-100 at 4kt"},"Units":{"Altimeter":"hPa","Altitude":"ft","Temperature":"C","Visibility":"m","Wind-Speed":"kt"},"Visibility":"9999","Wind-Direction":"100","Wind-Gust":"","Wind-Speed":"04","Wind-Variable-Dir":[]}
+
+'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Length: ['1524']
+      Content-Type: [application/json]
+      Date: ['Sat, 15 Sep 2018 18:17:15 GMT']
+      Server: [gunicorn/19.9.0]
+      X-Robots-Tag: [noindex]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: https://avwx.rest/api/metar/UGKO?options=info%2Cspeech%2Csummary%2Ctranslate&format=json&onfail=cache
+  response:
+    body: {string: '{"Altimeter":"1015","Cloud-List":[["SCT","026"],["BKN","045"]],"Dewpoint":"20","Flight-Rules":"VFR","Info":{"City":"Kutaisi","Country":"GEO","Elevation":68.0,"Iata":"KUT","Icao":"UGKO","Latitude":42.183,"Longitude":42.483,"Name":"Kopitnari
+        Airport","Priority":6,"State":""},"Meta":{"Cache-Timestamp":"Sat, 15 Sep 2018
+        18:17:15 GMT","Timestamp":"Sat, 15 Sep 2018 18:18:12 GMT"},"Other-List":[],"Raw-Report":"UGKO
+        151800Z 10004KT 9999 SCT026 BKN045 21/20 Q1015 NOSIG","Remarks":"NOSIG","Remarks-Info":{"Dew-Decimal":"","Temp-Decimal":""},"Runway-Vis-List":[],"Sanitized":"UGKO
+        151800Z 10004KT 9999 SCT026 BKN045 21/20 Q1015 NOSIG","Speech":"Winds one
+        zero zero at 4kt. Visibility one zero kilometers. Temperature two one degrees
+        Celsius. Dew point two zero degrees Celsius. Altimeter one zero one five.
+        Scattered clouds at 2600ft. Broken layer at 4500ft","Station":"UGKO","Summary":"Winds
+        E-100 at 4kt, Vis 10km, Temp 21\u00b0C, Dew 20\u00b0C, Alt 1015 hPa, Scattered
+        clouds at 2600ft, Broken layer at 4500ft","Temperature":"21","Time":"151800Z","Translate":{"Altimeter":"1015
+        hPa (29.97 inHg)","Cloud-List":"Scattered clouds at 2600ft, Broken layer at
+        4500ft - Reported AGL","Dewpoint":"20\u00b0C (68\u00b0F)","Other-List":"","Remarks":{},"Temperature":"21\u00b0C
+        (70\u00b0F)","Visibility":"10km (6.2sm)","Wind":"E-100 at 4kt"},"Units":{"Altimeter":"hPa","Altitude":"ft","Temperature":"C","Visibility":"m","Wind-Speed":"kt"},"Visibility":"9999","Wind-Direction":"100","Wind-Gust":"","Wind-Speed":"04","Wind-Variable-Dir":[]}
+
+'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Length: ['1524']
+      Content-Type: [application/json]
+      Date: ['Sat, 15 Sep 2018 18:18:12 GMT']
+      Server: [gunicorn/19.9.0]
+      X-Robots-Tag: [noindex]
+    status: {code: 200, message: OK}
+version: 1

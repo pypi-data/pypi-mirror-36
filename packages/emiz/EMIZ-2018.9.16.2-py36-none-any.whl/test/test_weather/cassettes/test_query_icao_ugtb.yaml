@@ -1,0 +1,134 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: https://avwx.rest/api/metar/UGTB?options=info%2Cspeech%2Csummary%2Ctranslate&format=json&onfail=cache
+  response:
+    body: {string: '{"Altimeter":"1015","Cloud-List":[["FEW","050","CB"],["BKN","058"]],"Dewpoint":"15","Flight-Rules":"VFR","Info":{"City":"Tbilisi","Country":"GEO","Elevation":495.0,"Iata":"TBS","Icao":"UGTB","Latitude":41.6692009,"Longitude":44.95470047,"Name":"International
+        Airport","Priority":6,"State":"TB"},"Meta":{"Cache-Timestamp":"Sat, 15 Sep
+        2018 18:09:45 GMT","Timestamp":"Sat, 15 Sep 2018 18:09:45 GMT"},"Other-List":[],"Raw-Report":"UGTB
+        151800Z 31022KT 9999 FEW050CB BKN058 23/15 Q1015 NOSIG","Remarks":"NOSIG","Remarks-Info":{"Dew-Decimal":"","Temp-Decimal":""},"Runway-Vis-List":[],"Sanitized":"UGTB
+        151800Z 31022KT 9999 FEW050CB BKN058 23/15 Q1015 NOSIG","Speech":"Winds three
+        one zero at 22kt. Visibility one zero kilometers. Temperature two three degrees
+        Celsius. Dew point one five degrees Celsius. Altimeter one zero one five.
+        Few clouds at 5000ft (Cumulonimbus). Broken layer at 5800ft","Station":"UGTB","Summary":"Winds
+        NW-310 at 22kt, Vis 10km, Temp 23\u00b0C, Dew 15\u00b0C, Alt 1015 hPa, Few
+        clouds at 5000ft (Cumulonimbus), Broken layer at 5800ft","Temperature":"23","Time":"151800Z","Translate":{"Altimeter":"1015
+        hPa (29.97 inHg)","Cloud-List":"Few clouds at 5000ft (Cumulonimbus), Broken
+        layer at 5800ft - Reported AGL","Dewpoint":"15\u00b0C (59\u00b0F)","Other-List":"","Remarks":{},"Temperature":"23\u00b0C
+        (73\u00b0F)","Visibility":"10km (6.2sm)","Wind":"NW-310 at 22kt"},"Units":{"Altimeter":"hPa","Altitude":"ft","Temperature":"C","Visibility":"m","Wind-Speed":"kt"},"Visibility":"9999","Wind-Direction":"310","Wind-Gust":"","Wind-Speed":"22","Wind-Variable-Dir":[]}
+
+'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Length: ['1584']
+      Content-Type: [application/json]
+      Date: ['Sat, 15 Sep 2018 18:09:44 GMT']
+      Server: [gunicorn/19.9.0]
+      X-Robots-Tag: [noindex]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: https://avwx.rest/api/metar/UGTB?options=info%2Cspeech%2Csummary%2Ctranslate&format=json&onfail=cache
+  response:
+    body: {string: '{"Altimeter":"1015","Cloud-List":[["FEW","050","CB"],["BKN","058"]],"Dewpoint":"15","Flight-Rules":"VFR","Info":{"City":"Tbilisi","Country":"GEO","Elevation":495.0,"Iata":"TBS","Icao":"UGTB","Latitude":41.6692009,"Longitude":44.95470047,"Name":"International
+        Airport","Priority":6,"State":"TB"},"Meta":{"Cache-Timestamp":"Sat, 15 Sep
+        2018 18:17:14 GMT","Timestamp":"Sat, 15 Sep 2018 18:17:14 GMT"},"Other-List":[],"Raw-Report":"UGTB
+        151800Z 31022KT 9999 FEW050CB BKN058 23/15 Q1015 NOSIG","Remarks":"NOSIG","Remarks-Info":{"Dew-Decimal":"","Temp-Decimal":""},"Runway-Vis-List":[],"Sanitized":"UGTB
+        151800Z 31022KT 9999 FEW050CB BKN058 23/15 Q1015 NOSIG","Speech":"Winds three
+        one zero at 22kt. Visibility one zero kilometers. Temperature two three degrees
+        Celsius. Dew point one five degrees Celsius. Altimeter one zero one five.
+        Few clouds at 5000ft (Cumulonimbus). Broken layer at 5800ft","Station":"UGTB","Summary":"Winds
+        NW-310 at 22kt, Vis 10km, Temp 23\u00b0C, Dew 15\u00b0C, Alt 1015 hPa, Few
+        clouds at 5000ft (Cumulonimbus), Broken layer at 5800ft","Temperature":"23","Time":"151800Z","Translate":{"Altimeter":"1015
+        hPa (29.97 inHg)","Cloud-List":"Few clouds at 5000ft (Cumulonimbus), Broken
+        layer at 5800ft - Reported AGL","Dewpoint":"15\u00b0C (59\u00b0F)","Other-List":"","Remarks":{},"Temperature":"23\u00b0C
+        (73\u00b0F)","Visibility":"10km (6.2sm)","Wind":"NW-310 at 22kt"},"Units":{"Altimeter":"hPa","Altitude":"ft","Temperature":"C","Visibility":"m","Wind-Speed":"kt"},"Visibility":"9999","Wind-Direction":"310","Wind-Gust":"","Wind-Speed":"22","Wind-Variable-Dir":[]}
+
+'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Length: ['1584']
+      Content-Type: [application/json]
+      Date: ['Sat, 15 Sep 2018 18:17:14 GMT']
+      Server: [gunicorn/19.9.0]
+      X-Robots-Tag: [noindex]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: https://avwx.rest/api/metar/UGTB?options=info%2Cspeech%2Csummary%2Ctranslate&format=json&onfail=cache
+  response:
+    body: {string: '{"Altimeter":"1015","Cloud-List":[["FEW","050","CB"],["BKN","058"]],"Dewpoint":"15","Flight-Rules":"VFR","Info":{"City":"Tbilisi","Country":"GEO","Elevation":495.0,"Iata":"TBS","Icao":"UGTB","Latitude":41.6692009,"Longitude":44.95470047,"Name":"International
+        Airport","Priority":6,"State":"TB"},"Meta":{"Cache-Timestamp":"Sat, 15 Sep
+        2018 18:17:14 GMT","Timestamp":"Sat, 15 Sep 2018 18:18:11 GMT"},"Other-List":[],"Raw-Report":"UGTB
+        151800Z 31022KT 9999 FEW050CB BKN058 23/15 Q1015 NOSIG","Remarks":"NOSIG","Remarks-Info":{"Dew-Decimal":"","Temp-Decimal":""},"Runway-Vis-List":[],"Sanitized":"UGTB
+        151800Z 31022KT 9999 FEW050CB BKN058 23/15 Q1015 NOSIG","Speech":"Winds three
+        one zero at 22kt. Visibility one zero kilometers. Temperature two three degrees
+        Celsius. Dew point one five degrees Celsius. Altimeter one zero one five.
+        Few clouds at 5000ft (Cumulonimbus). Broken layer at 5800ft","Station":"UGTB","Summary":"Winds
+        NW-310 at 22kt, Vis 10km, Temp 23\u00b0C, Dew 15\u00b0C, Alt 1015 hPa, Few
+        clouds at 5000ft (Cumulonimbus), Broken layer at 5800ft","Temperature":"23","Time":"151800Z","Translate":{"Altimeter":"1015
+        hPa (29.97 inHg)","Cloud-List":"Few clouds at 5000ft (Cumulonimbus), Broken
+        layer at 5800ft - Reported AGL","Dewpoint":"15\u00b0C (59\u00b0F)","Other-List":"","Remarks":{},"Temperature":"23\u00b0C
+        (73\u00b0F)","Visibility":"10km (6.2sm)","Wind":"NW-310 at 22kt"},"Units":{"Altimeter":"hPa","Altitude":"ft","Temperature":"C","Visibility":"m","Wind-Speed":"kt"},"Visibility":"9999","Wind-Direction":"310","Wind-Gust":"","Wind-Speed":"22","Wind-Variable-Dir":[]}
+
+'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Length: ['1584']
+      Content-Type: [application/json]
+      Date: ['Sat, 15 Sep 2018 18:18:11 GMT']
+      Server: [gunicorn/19.9.0]
+      X-Robots-Tag: [noindex]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.19.1]
+    method: GET
+    uri: https://avwx.rest/api/metar/UGTB?options=info%2Cspeech%2Csummary%2Ctranslate&format=json&onfail=cache
+  response:
+    body: {string: '{"Altimeter":"1015","Cloud-List":[["FEW","050","CB"],["BKN","058"]],"Dewpoint":"15","Flight-Rules":"VFR","Info":{"City":"Tbilisi","Country":"GEO","Elevation":495.0,"Iata":"TBS","Icao":"UGTB","Latitude":41.6692009,"Longitude":44.95470047,"Name":"International
+        Airport","Priority":6,"State":"TB"},"Meta":{"Cache-Timestamp":"Sat, 15 Sep
+        2018 18:17:14 GMT","Timestamp":"Sat, 15 Sep 2018 18:19:10 GMT"},"Other-List":[],"Raw-Report":"UGTB
+        151800Z 31022KT 9999 FEW050CB BKN058 23/15 Q1015 NOSIG","Remarks":"NOSIG","Remarks-Info":{"Dew-Decimal":"","Temp-Decimal":""},"Runway-Vis-List":[],"Sanitized":"UGTB
+        151800Z 31022KT 9999 FEW050CB BKN058 23/15 Q1015 NOSIG","Speech":"Winds three
+        one zero at 22kt. Visibility one zero kilometers. Temperature two three degrees
+        Celsius. Dew point one five degrees Celsius. Altimeter one zero one five.
+        Few clouds at 5000ft (Cumulonimbus). Broken layer at 5800ft","Station":"UGTB","Summary":"Winds
+        NW-310 at 22kt, Vis 10km, Temp 23\u00b0C, Dew 15\u00b0C, Alt 1015 hPa, Few
+        clouds at 5000ft (Cumulonimbus), Broken layer at 5800ft","Temperature":"23","Time":"151800Z","Translate":{"Altimeter":"1015
+        hPa (29.97 inHg)","Cloud-List":"Few clouds at 5000ft (Cumulonimbus), Broken
+        layer at 5800ft - Reported AGL","Dewpoint":"15\u00b0C (59\u00b0F)","Other-List":"","Remarks":{},"Temperature":"23\u00b0C
+        (73\u00b0F)","Visibility":"10km (6.2sm)","Wind":"NW-310 at 22kt"},"Units":{"Altimeter":"hPa","Altitude":"ft","Temperature":"C","Visibility":"m","Wind-Speed":"kt"},"Visibility":"9999","Wind-Direction":"310","Wind-Gust":"","Wind-Speed":"22","Wind-Variable-Dir":[]}
+
+'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Content-Length: ['1584']
+      Content-Type: [application/json]
+      Date: ['Sat, 15 Sep 2018 18:19:09 GMT']
+      Server: [gunicorn/19.9.0]
+      X-Robots-Tag: [noindex]
+    status: {code: 200, message: OK}
+version: 1
