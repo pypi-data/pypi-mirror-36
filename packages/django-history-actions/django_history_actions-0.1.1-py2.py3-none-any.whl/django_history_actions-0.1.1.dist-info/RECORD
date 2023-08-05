@@ -1,0 +1,14 @@
+django_history_actions-0.1.1.dist-info/METADATA,sha256=OWyCsbxjdXpOwGWpIwjyzzwX1nv2k5O_zzWDe1Oi_1Q,5193
+django_history_actions-0.1.1.dist-info/RECORD,,
+django_history_actions-0.1.1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+django_history_actions-0.1.1.dist-info/top_level.txt,sha256=64KzU3sny54sVBZG5gd7h_OxLmCsHbIapkANvt7F-6E,16
+history_actions/__init__.py,sha256=9pAJF82FcgNq1qbXxjL9CuiunC0Y0TW6gvZDdpSCCKE,87
+history_actions/admin.py,sha256=wo14nqJwPfEEGQ41aqrgQwyqcKnhqyhAStMExUsB9sg,316
+history_actions/apps.py,sha256=mZFZzohIu084KnKNdrEtHKiVEssInj4x-kpz_wX0S3M,219
+history_actions/history_manager.py,sha256=QgRcuCbxej6h_WEeVX2tVxxGHFyhwvfr1RhxtGihFIg,1987
+history_actions/loader.py,sha256=Tn1kfbXFSz8I8f21MgAdkRPxaMxW5XJPYtYHO0GemgM,403
+history_actions/mixins.py,sha256=Dz-BI-_Nhsh1_q5QmJ71D7xPvTaoF4A30zGqVmzk0Ms,925
+history_actions/models.py,sha256=F8R2UbhgdAP3mHEZNj3D2Yc247hCh_t_QZ6uaRB-tmk,1521
+history_actions/settings.py,sha256=jaRS2w97Pbq2m1zbRbvNTLI1VLHGlHNWJATMgNPexR0,136
+history_actions/migrations/0001_initial.py,sha256=fx9x-_HFJCQ_7p3enWQRPH7aAgqjDr4NR0DiUaImHB8,1780
+history_actions/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
