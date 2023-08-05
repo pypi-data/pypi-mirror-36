@@ -1,0 +1,7 @@
+<div class="panel-body" >
+    <div class="control-panel">
+        {% for item in control_panel.items.all %}
+            {% include "control_element.html" with item=item %}
+        {% endfor %}
+    </div>
+</div>
