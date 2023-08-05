@@ -1,0 +1,14 @@
+gflows/__init__.py,sha256=ig_Nby7Dg8aFSzFI1VRxOdCAdkDgqaB6E2lXy1QQckk,37
+gflows/server.py,sha256=UPcsGPucYoVc3gU3hU01W2Oq1rJWYcm6OP1iYn0s3bQ,4415
+gflows/version.py,sha256=F0DR6kHrrc4PGk6Wna72waqVz5Gv15m9PgTOK00b7Kc,24
+gflows/workflow.py,sha256=Y7c5Q1f2_0aM1cJlhcB1UJoW6kjgsQEK07X3e_uxLPs,899
+gflows/flows/__init__.py,sha256=hVT8E4KFqY3xdGFtq9EuEnV12GBwe9TZvKMZ6ECfpsg,230
+gflows/flows/close_issues_in_column.py,sha256=VkaiQXWpYP9o7_ZXSq_FwOHAiXONiJlwf9L6wX0PvmY,1558
+gflows/flows/move_issues_on_commit.py,sha256=0ycRaL_cOp4nGRC1pn-ncPTCcDxVvzk6mdBtsPSBb8I,3774
+gflows/flows/share_labels_accross_repositories.py,sha256=9PIoEmV66iZu4ibJX4bL8WeFtxvVZGF62B9Ie783Pd4,3407
+gflows/flows/utils.py,sha256=RkKWvZsDhddXUnl4gYT-6REqnS3jZe1OWnVuCSCS_Bw,2689
+gflows-1.0.0a2.dist-info/LICENSE.txt,sha256=ixV8gFC6AJ1agRqLRR_wwIO7jA7GFRWppK6gDFGGDb8,1070
+gflows-1.0.0a2.dist-info/METADATA,sha256=YBKbl9pcV3x2fHbF5LHE_3Mp1OW7x_GkQJbDl8dLF_4,772
+gflows-1.0.0a2.dist-info/RECORD,,
+gflows-1.0.0a2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+gflows-1.0.0a2.dist-info/top_level.txt,sha256=kWCDgI1v1G8kQSgMya__WkC3l_2YA2Rc8ZsTPkN2Bd8,7
