@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: mooda
+Version: 0.1.0
+Summary: Module for Ocean Observatory Data Analysis
+Home-page: https://github.com/rbardaji/mooda
+Author: Raul Bardaji Benach
+Author-email: rbardaji@gmail.com
+License: MIT
+Keywords: ocean,sea,OBSEA,EMODnet,EMSO
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: X11 Applications :: Qt
+Classifier: Environment :: Console
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Microsoft
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Provides-Extra: gui
+Requires-Dist: datetime
+Requires-Dist: matplotlib
+Requires-Dist: numpy (>=1.9.0)
+Requires-Dist: pandas
+Requires-Dist: pip (>=9.0)
+Requires-Dist: requests
+Requires-Dist: seaborn
+Requires-Dist: xarray
+Provides-Extra: gui
+Requires-Dist: pyqt5; extra == 'gui'
+
+
+MOODA - Module for Ocean Observatory Data Analysis
+
+Mooda is a python package designed mainly for oceanographers and marine science students. It is based on a power scripting system for:
+
+direct data access;
+data filtering methods;
+complex visualization tools;
+quality control generation;
+specific data analysis tools for different scientific disciplines.
+The package is designed to be open, adaptable and scalable allowing future contributions from researchers and developers from all the marine science disciplines.
+
+This work is performed in the framework of the European Multidisciplinary Seafloor and Water-Column Observatory development ([EMSOdev](http://www.emsodev.eu/)).
+
+Check the documentation on [mooda.readthedocs.io](http://mooda.readthedocs.io/).
+
+
