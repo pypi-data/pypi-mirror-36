@@ -1,0 +1,16 @@
+jhlangtool/FromExcelToJson.py,sha256=mLPPurtvXbytHN2tvtm4OCBygPj1K4vNoMGAy6E_rkE,6048
+jhlangtool/FromJsonToExcel.py,sha256=cMBvVIxtk_rYQp3g6z7FQDb3eVJNawvxyH124x-A9QQ,8048
+jhlangtool/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+jhlangtool/entrypoint.py,sha256=cpLwFncVbgpbP4riddNxhy_fqEeZLEXCp9GXrIW4dmU,1084
+jhlangtool/processArgs.py,sha256=LtiJvSgj-A9LJIgj86GDthPPYbaZwKiMug9w7lC-nNQ,5716
+jhlangtool/helpMessages/excelToJsonHelp.txt,sha256=IYyoLi3-hs-Og0NJbiBzG_xtBgALeFpYVIH3-uLUN7A,1237
+jhlangtool/helpMessages/generateExcelLongHelp.txt,sha256=x1WJvqsIxdNbb8Tfpvm7n_R32nKMxaSGY8WMfqEzlX8,2574
+jhlangtool/helpMessages/generateExcelShortHelp.txt,sha256=c2waQdIJJMwG7zbOfaKH3YJhSxfm8jdz-TFJU129yoQ,781
+jhlangtool/helpMessages/toolHelp.txt,sha256=eyxx5-fRi2zUZGMQWTxkoNZ5vwcqkRKE7UStbe8Qii8,980
+jhlangtool-0.8.1.dist-info/DESCRIPTION.rst,sha256=1p0ihhdiw_I0TnChZPA0yNgLB3EjejKP9rXOTnAKnOc,5044
+jhlangtool-0.8.1.dist-info/METADATA,sha256=YdXGbfmvXGt2iiOn2SZdm6m0FGVcnLyNUAK5bNkEtjc,5450
+jhlangtool-0.8.1.dist-info/RECORD,,
+jhlangtool-0.8.1.dist-info/WHEEL,sha256=Vlaj2XNMTTJ893zWX-JvKeZUIs7q5E7d7Gise2Vouzc,97
+jhlangtool-0.8.1.dist-info/entry_points.txt,sha256=7yTPtfzBQleO-MF5DrWQXwXx35USt9izXz4MKRJsHEY,59
+jhlangtool-0.8.1.dist-info/metadata.json,sha256=qZt6PEy5747YNMe1IaU_amckqpBx40yNeFiRuLLzXqs,756
+jhlangtool-0.8.1.dist-info/top_level.txt,sha256=MG3DyKsr6yEd0C8pxKIsAWO6eq19JMZjwXJKDq6sHtY,11
