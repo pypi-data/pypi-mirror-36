@@ -1,0 +1,13 @@
+pytorch_utils/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pytorch_utils/nb_figure.py,sha256=SfR60PJKFNDwsrYLAAvwGxRIB6Oyz04nNpSm0XPt_DY,3729
+pytorch_utils/sacred_trainer.py,sha256=du2N_zLEijK9FtdS9K0Sw-UH_MQcEMLGaMbNZexk3Pc,6119
+pytorch_utils/train_utils.py,sha256=ioB6nJM6bQN73m7HgidI3le2qA8y38NZcraWrW4oIaE,16046
+pytorch_utils/updaters.py,sha256=zrqexjzFird5aRMvZMosonAzc24jn8Y0BGpEtfCa4aU,647
+pytorch_utils/wrapped_lstm.py,sha256=aj9cCXZ4-0IbRQgC79B8jlnv7ylNtw3npqvwDJlMjYk,1637
+pytorch_utils/wrapped_rnn.py,sha256=H3-jHj3tQ0Nb80jNJsw044wB0-H7PzmrjwHjCnLCzCE,4455
+pytorch_utils-0.3.dist-info/DESCRIPTION.rst,sha256=01XS3gcQJQyA1CpNgdATKK-8XkIwGqvukQ5GkhRrmRI,172
+pytorch_utils-0.3.dist-info/METADATA,sha256=YvTBLNlxKm4lGtJafOMeVy9COOKOJS-MNjXazmKVEKI,483
+pytorch_utils-0.3.dist-info/RECORD,,
+pytorch_utils-0.3.dist-info/WHEEL,sha256=Vlaj2XNMTTJ893zWX-JvKeZUIs7q5E7d7Gise2Vouzc,97
+pytorch_utils-0.3.dist-info/metadata.json,sha256=ujznM8eAVy1O1cTNiWeGyqhFR9LgG9ErGNhgFkspoSM,521
+pytorch_utils-0.3.dist-info/top_level.txt,sha256=mraQvJB07kYNu6xcS5hADsDBeEY3DzHnDOgO-AI8Yk4,14
