@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: openfoundry-tree
+Version: 0.1.0
+Summary: OpenFoundry's Tree object code.
+Home-page: https://gitlab.com/koeng/openfoundry-tree
+Author: Keoni Gandall
+Author-email: koeng101@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# openfoundry_tree
+
+This is the OpenFoundry's Tree code. The tree is a virtual representation of the physical layout of a laboratory space. Transitions between two trees are human or robotic actions. In order to do anything, simply generate the desired tree representation of the end result and map transitions from the original tree to the end tree. 
+
+This repo stores the OpenFoundry Tree objects and code assiocated with them.  
+
+
