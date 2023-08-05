@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: cranial-modeling
+Version: 0.2.0
+Summary: Standard model interface, where "model" means any stateless or stateful transformation of data & scripts for deploying Models as services.
+Home-page: https://github.com/tribune/cranial-modeling
+License: GPL-3.0+
+Author: Mikhail Erekhinsky
+Author-email: merekhinsky@tribuneinteractive.com
+Requires-Python: >=3.5
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: cranial-datastore (>=0.2.0,<0.3.0)
+Requires-Dist: cranial-messaging (>=0.2.0,<0.3.0)
+Requires-Dist: docopt (>=0.6.2,<0.7.0)
+Requires-Dist: pathos (>=0.2.2,<0.3.0)
