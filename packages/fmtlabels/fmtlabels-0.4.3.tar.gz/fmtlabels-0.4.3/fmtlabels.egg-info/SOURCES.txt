@@ -1,0 +1,15 @@
+README.md
+setup.py
+bin/cntaspect
+bin/fmtlines
+bin/fmttab
+fmtlabels/__init__.py
+fmtlabels/fmt.py
+fmtlabels/lines.py
+fmtlabels/tab.py
+fmtlabels.egg-info/PKG-INFO
+fmtlabels.egg-info/SOURCES.txt
+fmtlabels.egg-info/dependency_links.txt
+fmtlabels.egg-info/not-zip-safe
+fmtlabels.egg-info/requires.txt
+fmtlabels.egg-info/top_level.txt

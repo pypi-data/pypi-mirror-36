@@ -1,0 +1,33 @@
+#!python3
+
+import sys
+import os
+from fmtlabels.tab import lbl_fmttab
+import tablib
+import csv
+
+assert sys.version_info >= (3,5)
+
+if len(sys.argv) < 2:
+    raise Exception('Usage: fmtlbl <category> [input, intput...]')
+
+category = sys.argv[1]
+input = open(sys.argv[2], 'r') if len(sys.argv) >= 3 else sys.stdin
+
+rows = []
+for inputfile in sys.argv[2:]:
+    ext = os.path.splitext(inputfile)[1]
+    if ext == '.csv':
+        f = open(inputfile, 'r')
+        for row in csv.DictReader(f):
+            rows.append(row)
+    elif ext == '.xlsx':
+        bytes = open(inputfile, 'rb').read()
+        book = tablib.Databook().load('xlsx', bytes)
+        for dataset in book.sheets():
+            for row in dataset.dict:
+                rows.append(row)
+    else:
+        raise Exception('unknown file ext:' + ext)
+
+lbl_fmttab(sys.stdout, category, rows, False)
