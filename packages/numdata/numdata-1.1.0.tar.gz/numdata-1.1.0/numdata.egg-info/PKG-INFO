@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: numdata
+Version: 1.1.0
+Summary: A simple package calculating values for a simgle number and created in my Udemy course
+Home-page: UNKNOWN
+Author: Vinay Phadnis
+Author-email: abc@xyz.com
+License: UNKNOWN
+Description: # NumData Documentation
+        ***
+        ## Installation
+        numdata can be installed using python pip. The package is hosted on [PYPI](https://pypi.org/) and [PYPI-test](https://test.pypi.org/)
+        ```sh
+        pip install numdata
+        ```
+        ***
+        ## Usage
+        Initialization is not required for using methods in numdata
+        ```python
+        from numdata import calculate
+        
+        # Calculate square of a number
+        print(calculate.calculateSquare(8))
+        # 64
+        
+        # Calculate cube of a number
+        print(calculate.calculateCube(8))
+        # 512
+        ```
+        ***
+Keywords: package numbers calculations
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
