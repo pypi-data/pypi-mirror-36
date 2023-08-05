@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: wfst
+Version: 0.1.0
+Summary: Weighted Finite State Transducers
+Home-page: https://github.com/demitasse/wfstpy
+Author: Daniel van Niekerk
+Author-email: dvn.demitasse@gmail.com
+License: Apache/MIT
+Description: ## Weighted Finite State Transducers
+        
+        This is a port of the n-best strings algorithm:
+        
+          Mohri, M. and Riley, M. 2002. __An efficient algorithm for the n-best-strings problem__. In Proc. ICSLP.
+        
+        from [OpenFST](http://www.openfst.org) to Python 3.
+        
+        
+        ## Running tests
+        
+        ```bash
+        python setup.py test
+        
+        ```
+        
+Platform: UNKNOWN
+Requires-Python: >=3
+Description-Content-Type: text/markdown
