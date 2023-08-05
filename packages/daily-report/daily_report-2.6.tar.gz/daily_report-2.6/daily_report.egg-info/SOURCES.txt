@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+daily_report/__init__.py
+daily_report/main.py
+daily_report/session.py
+daily_report/settings.ini
+daily_report.egg-info/PKG-INFO
+daily_report.egg-info/SOURCES.txt
+daily_report.egg-info/dependency_links.txt
+daily_report.egg-info/top_level.txt
+daily_report/reports/__init__.py
+daily_report/reports/report_daily.py
+daily_report/reports/report_inter_session.py
