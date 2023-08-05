@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        ether_sql=ether_sql.cli:cli
+    
