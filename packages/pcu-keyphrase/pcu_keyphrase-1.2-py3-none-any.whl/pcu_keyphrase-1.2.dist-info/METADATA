@@ -1,0 +1,39 @@
+Metadata-Version: 2.0
+Name: pcu-keyphrase
+Version: 1.2
+Summary: Keyphrase extraction for PCU project
+Home-page: https://github.com/zevio/pcu_keyphrase
+Author: Stella Zevio
+Author-email: stella.zevio@lipn.univ-paris13.fr
+Maintainer: Stella Zevio
+Maintainer-email: stella.zevio@lipn.univ-paris13.fr
+License: GNU General Public License v3 or later (GPLv3+)
+Platform: Any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: English
+Classifier: Natural Language :: French
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+
+# pcu_keyphrase (Keyphrase extraction for PCU project)
+
+Keyphrase extraction component (kleis) for PCU project.
+From a text, extract its keyphrases.
+
+----
+
+Based on the keyphrase extraction algorithm [kleis][kleis].
+[Check PCU project][pcu].
+
+[pcu]: https://github.com/zevio/pcu_chain
+[kleis]: https://github.com/sdhdez/kleis-keyphrase-extraction
+
