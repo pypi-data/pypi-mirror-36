@@ -1,0 +1,12 @@
+README.rst
+setup.cfg
+setup.py
+django_form_utils_bootstrap3.egg-info/PKG-INFO
+django_form_utils_bootstrap3.egg-info/SOURCES.txt
+django_form_utils_bootstrap3.egg-info/dependency_links.txt
+django_form_utils_bootstrap3.egg-info/requires.txt
+django_form_utils_bootstrap3.egg-info/top_level.txt
+form_utils_bootstrap3/__init__.py
+form_utils_bootstrap3/renderers.py
+form_utils_bootstrap3/tests/__init__.py
+form_utils_bootstrap3/tests/test_renderers.py
