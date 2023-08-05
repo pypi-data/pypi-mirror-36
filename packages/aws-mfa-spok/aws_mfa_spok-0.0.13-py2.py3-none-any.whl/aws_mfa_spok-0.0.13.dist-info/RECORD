@@ -1,0 +1,10 @@
+aws_mfa_spok-0.0.13.data/scripts/aws-mfa,sha256=gEdKT4QSV87jNJBJ5AMMhmVmKY79XVFGbtTKyzbKqmc,113
+aws_mfa_spok-0.0.13.data/scripts/aws-mfa-spok,sha256=gEdKT4QSV87jNJBJ5AMMhmVmKY79XVFGbtTKyzbKqmc,113
+aws_mfa_spok-0.0.13.dist-info/METADATA,sha256=EzrEXvl0EL3SUUjHwBV-LidExss8BWGyrWyRG0g6Vuk,13497
+aws_mfa_spok-0.0.13.dist-info/RECORD,,
+aws_mfa_spok-0.0.13.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+aws_mfa_spok-0.0.13.dist-info/entry_points.txt,sha256=u0r6dsi7Xu-ioAD75CiXVRF8CuX07mA1MCM2AWaJXf0,46
+aws_mfa_spok-0.0.13.dist-info/top_level.txt,sha256=sgS1UuCmw0ZqNGeuaCLVCE2IPRvjhDR7yfeoH8K4abs,7
+awsmfa/__init__.py,sha256=SgGBtZNO8Hc56zTyy_uquUrRVQJQXFpPzTkXhZdW94s,15689
+awsmfa/config.py,sha256=YQk_7kobArI79yyckMDg9TIUGnSuELiGV3M96lgI3Gw,1264
+awsmfa/util.py,sha256=s5G8_hxP90eTX0vEdL8A0hi_vi5kYvJqaBkxbTrrc_Q,286
