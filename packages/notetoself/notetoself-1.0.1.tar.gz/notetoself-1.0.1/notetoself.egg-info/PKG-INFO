@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: notetoself
+Version: 1.0.1
+Summary: Note To Self -- Quick note taking tool
+Home-page: https://gitlab.com/admicos/nts
+Author: Ecmel B. CANLIER
+Author-email: me@ecmelberk.com
+License: Apache License Version 2.0
+Description: # note to self
+        A quick and easy note taking tool.
+        
+        # Setup
+        
+        ## Though pip
+        1. `pip install notetoself`
+        
+        ## From source
+        1. Clone the repo
+        2. Install pipenv
+        3. `pipenv install`
+        4. `pipenv run ./nts.py` to run
+        
+        # Usage
+        `nts -h` for help
+        
+        
+Keywords: note
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
