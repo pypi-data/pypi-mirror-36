@@ -1,0 +1,20 @@
+Metadata-Version: 1.2
+Name: sschema
+Version: 0.1
+Summary: A library and prebuilt schemas for handling edge sensor data
+Home-page: UNKNOWN
+Author: Martin Kelly
+Author-email: mkelly@xevo.com
+License: Apache
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Software Development :: Embedded Systems
+Classifier: Topic :: Software Development :: Testing :: Acceptance
+Requires-Python: >=3
