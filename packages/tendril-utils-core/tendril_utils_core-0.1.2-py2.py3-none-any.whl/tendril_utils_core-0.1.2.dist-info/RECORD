@@ -1,0 +1,12 @@
+tendril/__init__.py,sha256=CyBA-t_7hHvwim5oh7A3IAtD-rOa6LxmGeEtaH83ta0,851
+tendril/utils/__init__.py,sha256=CyBA-t_7hHvwim5oh7A3IAtD-rOa6LxmGeEtaH83ta0,851
+tendril/utils/colors.py,sha256=2D0ankuHX8vj4xJnwFv5vBBwniLZLEjbF21ZGRl6HNw,2422
+tendril/utils/config/__init__.py,sha256=GepT-MWI7BeWxPw8roLfHchlAuKPieZVbt8YtmzAl6w,27308
+tendril/utils/fsutils/__init__.py,sha256=pxBRp6nBYs5YfV7RuEA_6iBlzSTRBzHiXI2ZHDe7A-Y,14644
+tendril/utils/log/__init__.py,sha256=lMBHXaN5vqiaj8gwZH7lr-TYiVyloDPI8x3ijCxy__c,3872
+tendril_utils_core-0.1.2.dist-info/DESCRIPTION.rst,sha256=AzZ2Jgs8V9Y3pM1e-nIlkcrZw8MxlQpF2UaIhdhEO0s,725
+tendril_utils_core-0.1.2.dist-info/METADATA,sha256=ck6T4AL4CfKLaCH-3jXiPwcIgFocoeJAJckOv2_Vd-A,1170
+tendril_utils_core-0.1.2.dist-info/RECORD,,
+tendril_utils_core-0.1.2.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+tendril_utils_core-0.1.2.dist-info/metadata.json,sha256=M38l0GRSUKScI1LFTHZCe6ePcHBmYNLxUgNKKxWKuQU,652
+tendril_utils_core-0.1.2.dist-info/top_level.txt,sha256=cZ37ntjo8Mlxd4OJ5PNxFU0yufka_b2hcfS80URElIM,8
