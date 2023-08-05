@@ -1,0 +1,9 @@
+diku_server/__init__.py,sha256=w_IqREf5Bq740rntjIkUHn16ktyFbzjIjUkwrDvdRj8,416
+diku_server/tools.py,sha256=X0KyggU6qRlUPUbyym1mGAJsMuuZJFLScr1SAh1jyDE,610
+diku_server/endpoints/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+diku_server/endpoints/authentication.py,sha256=48BlepsN58nmnkFoH9UiQln8P4yJARwCjAtOi136Drk,839
+diku_server/endpoints/calendars.py,sha256=66fmJQBc0P4CCykSm93Lc6l8tak-fmDhQ_HYVHfRiTc,449
+diku_server-1.0.1.dist-info/METADATA,sha256=23exXfwt0PU2s0wMngofrwakR8AobM9W-fLzCCYxL8I,410
+diku_server-1.0.1.dist-info/RECORD,,
+diku_server-1.0.1.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+diku_server-1.0.1.dist-info/top_level.txt,sha256=T58akzhp0WZyn0xxYvAr-a6C1UmnBOUoXCskoIMT-4Q,12
