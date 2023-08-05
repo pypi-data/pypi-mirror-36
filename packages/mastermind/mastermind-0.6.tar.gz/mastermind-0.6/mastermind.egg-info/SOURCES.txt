@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.py
+mastermind/__init__.py
+mastermind/mastermind_notebook.py
+mastermind.egg-info/PKG-INFO
+mastermind.egg-info/SOURCES.txt
+mastermind.egg-info/dependency_links.txt
+mastermind.egg-info/not-zip-safe
+mastermind.egg-info/requires.txt
+mastermind.egg-info/top_level.txt
