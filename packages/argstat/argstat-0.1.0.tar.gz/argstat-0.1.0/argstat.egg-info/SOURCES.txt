@@ -1,0 +1,11 @@
+README.md
+setup.py
+argstat/__init__.py
+argstat/argstat.py
+argstat/test_argstat.py
+argstat.egg-info/PKG-INFO
+argstat.egg-info/SOURCES.txt
+argstat.egg-info/dependency_links.txt
+argstat.egg-info/not-zip-safe
+argstat.egg-info/requires.txt
+argstat.egg-info/top_level.txt
