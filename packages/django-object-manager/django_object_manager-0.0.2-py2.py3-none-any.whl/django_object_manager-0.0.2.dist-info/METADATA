@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: django-object-manager
+Version: 0.0.2
+Summary: Django object manager for tests
+Home-page: https://github.com/K0Te/django-object-manager
+License: BSD
+Project-URL: Bug Reports, https://github.com/K0Te/django-object-manager/issues
+Project-URL: Source, https://github.com/K0Te/django-object-manager
+Keywords: django tests
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: django
+
+# django-object-manager
+Simple object management for Django tests
+
+
