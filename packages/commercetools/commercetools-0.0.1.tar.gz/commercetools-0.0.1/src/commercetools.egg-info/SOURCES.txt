@@ -1,0 +1,10 @@
+README.rst
+setup.cfg
+setup.py
+src/commercetools/__init__.py
+src/commercetools.egg-info/PKG-INFO
+src/commercetools.egg-info/SOURCES.txt
+src/commercetools.egg-info/dependency_links.txt
+src/commercetools.egg-info/not-zip-safe
+src/commercetools.egg-info/requires.txt
+src/commercetools.egg-info/top_level.txt
