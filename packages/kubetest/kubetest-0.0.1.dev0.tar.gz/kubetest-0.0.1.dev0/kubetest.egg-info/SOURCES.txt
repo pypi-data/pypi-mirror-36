@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+kubetest/__init__.py
+kubetest.egg-info/PKG-INFO
+kubetest.egg-info/SOURCES.txt
+kubetest.egg-info/dependency_links.txt
+kubetest.egg-info/entry_points.txt
+kubetest.egg-info/not-zip-safe
+kubetest.egg-info/requires.txt
+kubetest.egg-info/top_level.txt
