@@ -1,0 +1,10 @@
+README.md
+setup.py
+cfn_man/__init__.py
+cfn_man/cfn_man.py
+cfn_man.egg-info/PKG-INFO
+cfn_man.egg-info/SOURCES.txt
+cfn_man.egg-info/dependency_links.txt
+cfn_man.egg-info/entry_points.txt
+cfn_man.egg-info/requires.txt
+cfn_man.egg-info/top_level.txt
