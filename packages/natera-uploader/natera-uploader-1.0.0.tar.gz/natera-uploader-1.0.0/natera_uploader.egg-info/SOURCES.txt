@@ -1,0 +1,17 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+natera_uploader.egg-info/PKG-INFO
+natera_uploader.egg-info/SOURCES.txt
+natera_uploader.egg-info/dependency_links.txt
+natera_uploader.egg-info/entry_points.txt
+natera_uploader.egg-info/requires.txt
+natera_uploader.egg-info/top_level.txt
+soyuz/__init__.py
+soyuz/configuration.py
+soyuz/data.py
+soyuz/dx.py
+soyuz/entrypoint.py
+soyuz/utils.py
