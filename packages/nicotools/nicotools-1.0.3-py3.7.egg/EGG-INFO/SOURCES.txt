@@ -1,0 +1,12 @@
+README.rst
+setup.py
+nicotools/__init__.py
+nicotools/download.py
+nicotools/mylist.py
+nicotools/utils.py
+nicotools.egg-info/PKG-INFO
+nicotools.egg-info/SOURCES.txt
+nicotools.egg-info/dependency_links.txt
+nicotools.egg-info/entry_points.txt
+nicotools.egg-info/requires.txt
+nicotools.egg-info/top_level.txt
