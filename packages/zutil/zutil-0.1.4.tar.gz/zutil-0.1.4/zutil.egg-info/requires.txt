@@ -1,0 +1,8 @@
+mpi4py
+ipython<6.0
+Fabric
+ipywidgets
+matplotlib
+numpy
+pandas
+PyYAML
