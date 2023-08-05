@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+django_yeouia.egg-info/PKG-INFO
+django_yeouia.egg-info/SOURCES.txt
+django_yeouia.egg-info/dependency_links.txt
+django_yeouia.egg-info/top_level.txt
+yeouia/__init__.py
+yeouia/apps.py
+yeouia/backends.py
+yeouia/tests.py
