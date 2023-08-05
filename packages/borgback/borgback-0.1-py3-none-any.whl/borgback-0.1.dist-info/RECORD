@@ -1,0 +1,9 @@
+borgback/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+borgback/backup.py,sha256=1Hbg3NvKLKgqCAlCcYR4uluhx9agsQK6VErmu7GawwM,4284
+borgback-0.1.dist-info/METADATA,sha256=TQ-hsNgnMh9SKUzfOShYzPzUYgNKDFv6XfHsxAtIYMA,797
+borgback-0.1.dist-info/RECORD,,
+borgback-0.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+borgback-0.1.dist-info/entry_points.txt,sha256=JQyYW9suE7oKlsCUdv3XQykPH5MOqa9jiMAtuNN6-x4,51
+borgback-0.1.dist-info/top_level.txt,sha256=zOZgKhJZd4aCUBJsRg4gI0zsub-0_BDQURFFjkuMr8k,9
+src/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+src/backup.py,sha256=fvsWkPKzDBhd_2pv9LEMIniqZx03DKzNIhf_qLOaWqI,4092
