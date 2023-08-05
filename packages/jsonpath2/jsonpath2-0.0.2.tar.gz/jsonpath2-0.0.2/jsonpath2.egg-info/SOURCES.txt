@@ -1,0 +1,17 @@
+.gitignore
+.pre-commit-config.yaml
+.travis.yml
+LICENSE
+README.md
+pylintrc
+requirements-dev.txt
+requirements.txt
+setup.py
+.github/ISSUE_TEMPLATE.md
+.github/PULL_REQUEST_TEMPLATE.md
+jsonpath2/__init__.py
+jsonpath2.egg-info/PKG-INFO
+jsonpath2.egg-info/SOURCES.txt
+jsonpath2.egg-info/dependency_links.txt
+jsonpath2.egg-info/top_level.txt
+jsonpath2/test/example_test.py
