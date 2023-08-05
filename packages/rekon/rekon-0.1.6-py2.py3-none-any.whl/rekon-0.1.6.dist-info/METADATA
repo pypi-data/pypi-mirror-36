@@ -1,0 +1,113 @@
+Metadata-Version: 2.1
+Name: rekon
+Version: 0.1.6
+Summary: rekon provides a suite of reconciliation tools for operations and finance
+Home-page: https://github.com/rjdscott/rekon
+Author: Rob Scott
+Author-email: rob@rjdscott.com
+License: MIT license
+Keywords: rekon
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: Click (>=6.0)
+Requires-Dist: pandas
+Requires-Dist: Jinja2
+Requires-Dist: openpyxl
+
+=====
+rekon
+=====
+
+
+.. image:: https://img.shields.io/pypi/v/rekon.svg
+        :target: https://pypi.python.org/pypi/rekon
+
+.. image:: https://img.shields.io/travis/rjdscott/rekon.svg
+        :target: https://travis-ci.org/rjdscott/rekon
+
+.. image:: https://readthedocs.org/projects/rekon/badge/?version=latest
+        :target: https://rekon.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+
+
+
+rekon provides a suite of reconciliation tools for operations and finance
+
+
+* Free software: MIT license
+* Documentation: https://rekon.readthedocs.io.
+
+
+
+How to use this library
+----------------------
+
+Set-up virtualenv and import rekon
+
+.. code-block:: console
+
+    $ pip install --user virtualenv
+    $ virtualenv .env
+    $ pip install rekon
+
+Reconciliation inputs:
+
+.. code-block:: python
+
+    # import rekon library
+    from rekon import rekon
+
+    # instantiate an reconciliation instance
+    rec = rekon.Reconciliation()
+
+    # load sample data from package
+    rec.load_sample_data()
+
+    # run reconciliation on first column in col mapping and use sqlite db in memory
+    rec.reconcile(rec_col=1, sqlite_db=":memory:")
+
+    # view results (in pretty format)
+    rec.rec_results_pretty
+
+    # to output results to a zip and open file location
+    rec.output_report(output_dir='~/Desktop/EXAMPLE_OUTPUT',
+                      file_name='rec-file',
+                      output_format='zip',
+                      open_file=True)
+
+    # to output results to a spreadsheet (i.e. 'xlsx') and open file location
+    rec.output_report(output_dir='~/Desktop/EXAMPLE_OUTPUT',
+                      file_name='rec-file',
+                      output_format='xlsx',
+                      open_file=True)
+
+
+=======
+History
+=======
+
+0.1.6 (2018-09-18)
+------------------
+
+* Added ability to output reconciliation report to 'zip' or 'xlsx'
+* Added reconciliation stats for quick reference
+
+0.1.5 (2018-09-17)
+------------------
+
+* First release on PyPI.
+* ability to output reconciliations within console or in a jupyter notebook
+
+
+
