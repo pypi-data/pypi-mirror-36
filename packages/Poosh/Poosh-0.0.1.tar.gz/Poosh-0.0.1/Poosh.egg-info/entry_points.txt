@@ -1,0 +1,3 @@
+[console_scripts]
+poosh = poosh.main:main
+

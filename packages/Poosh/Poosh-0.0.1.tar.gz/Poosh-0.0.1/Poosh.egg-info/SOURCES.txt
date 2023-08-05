@@ -1,0 +1,9 @@
+README.md
+setup.py
+Poosh.egg-info/PKG-INFO
+Poosh.egg-info/SOURCES.txt
+Poosh.egg-info/dependency_links.txt
+Poosh.egg-info/entry_points.txt
+Poosh.egg-info/requires.txt
+Poosh.egg-info/top_level.txt
+poosh/main.py
