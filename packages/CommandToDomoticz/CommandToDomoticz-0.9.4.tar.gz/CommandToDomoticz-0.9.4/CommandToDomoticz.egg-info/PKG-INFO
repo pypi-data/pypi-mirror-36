@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: CommandToDomoticz
+Version: 0.9.4
+Summary: Control Domoticz via Commands
+Home-page: https://github.com/Joe-houghton/CommandToDomoticz
+Author: Joe Houghton
+Author-email: github_joe_Houghton@outlook.com
+License: UNKNOWN
+Description: # CommandToDomoticz [Under Development]
+        A library that takes textual commands and sends them to Domoticz
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
