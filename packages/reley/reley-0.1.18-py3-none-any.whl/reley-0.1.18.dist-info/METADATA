@@ -1,0 +1,89 @@
+Metadata-Version: 2.1
+Name: reley
+Version: 0.1.18
+Summary: A static compiled language on Python with type safety, efficiency and syntax sugars.
+Home-page: https://github.com/thautwarm/reley
+Author: thautwarm
+Author-email: twshere@outlook.com
+License: MIT
+Keywords: haskell,language,static typed,compiled
+Platform: any
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: Redy
+Requires-Dist: rbnf (>=0.3.21)
+Requires-Dist: wisepy
+Requires-Dist: bytecode (==0.7.0)
+
+[![Build Status](https://travis-ci.org/thautwarm/reley.svg?branch=master)](https://travis-ci.org/thautwarm/reley)
+
+See examples at `haskell_test/*.hs`.
+Currently you can install reley compiler with `python setup.py install`.
+
+Usage
+============
+
+- Compile:
+
+```
+> reley cc <filename>.hs -o <out>.pyc
+> python <out>.pyc
+```
+
+- Run Reley
+
+```
+> reley run <filename>.hs
+```
+
+- Import reley programs in Python
+
+If you have a reley source file `haskell_test/sum_n.hs`:
+
+```haskell
+module
+    m_sum, (==) -- export `m_sum` and  `(==)`
+where
+
+import operator (add, eq)
+import functools (reduce)
+import toolz (curry)
+import reley.prelude ((+))
+
+infix 5 (==)
+infix 0 ($)
+(==) = curry eq
+($) a b = a b
+(+) = curry add
+
+
+m_sum lst = if lst == [] then 0
+            else destruct lst
+            where
+                destruct (a, b) = a + m_sum(b)
+
+main () =
+    print $ m_sum [1, 2, 3, 4, 5, 6]
+
+```
+
+Then you can import it in Python
+
+```python
+import reley.impl.pycompat
+
+from haskell_test.sum_n import m_sum
+lst = (5, (2, (1, ())))
+print(m_sum(lst))
+
+```
+
+About Reley
+====================
+It's in an early stage with many shortages.
+Most of the crucial Haskell features are missing.
+
+
