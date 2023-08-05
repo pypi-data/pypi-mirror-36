@@ -1,0 +1,6 @@
+future
+python-dateutil
+
+[dev]
+mock
+tox
