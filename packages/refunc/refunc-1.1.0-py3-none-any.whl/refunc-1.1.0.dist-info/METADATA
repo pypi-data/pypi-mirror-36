@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: refunc
+Version: 1.1.0
+Summary: Python client for refunc
+Home-page: https://github.com/refunc/py-refunc
+Author: binzhao
+Author-email: wo@zhaob.in
+License: Apache License Version 2.0
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Dist: pyyaml (>=3.12)
+Requires-Dist: requests
+Requires-Dist: minio (>=3.0.3)
+Requires-Dist: asyncio-nats-client (==0.7.0)
+
+Python client for refunc http://refunc.io/
+
+
