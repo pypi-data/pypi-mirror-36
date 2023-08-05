@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: dev-ip
+Version: 0.1.0
+Summary: Find a suitable IP host to access local network-based applications.
+Home-page: https://github.com/jorgebg/devip
+Author: Jorge Barata
+Author-email: jorge.barata.gonzalez@gmail.com
+License: MIT
+Keywords: ip
+Platform: UNKNOWN
+Requires-Dist: click (==6.7)
+Requires-Dist: netifaces (==0.10.7)
+
+UNKNOWN
+
+
