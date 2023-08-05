@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: zergmacroplot
+Version: 0.0.11
+Summary: SC2 Replay Analyser which visualises a player's Zerg Macro Mechanics
+Home-page: https://github.com/frugs/allin-zergmacroplot
+Author: Hugo Wainwright
+Author-email: wainwrighthugo@gmail.com
+License: UNKNOWN
+Keywords: sc2,replay,sc2reader
+Platform: UNKNOWN
+Requires-Dist: techlabreactor
+Requires-Dist: requests-toolbelt (>=0.8.0)
+Requires-Dist: pyrebase
+Requires-Dist: flask
+Requires-Dist: google-cloud-datastore
+
+UNKNOWN
+
+
