@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: lektor-asciidoctor
+Version: 0.1
+Summary: Adds AsciiDoc field type to Lektor.
+Home-page: https://github.com/andresperezcera/lektor-asciidoctor.git
+Author: Andres Perez C.
+Author-email: andresperezcera@gmail.com
+License: MIT
+Description: # Lektor AsciiDoc Plugin
+        
+        A [Lektor](https://www.getlektor.com/) plugin to add an AsciiDoc field type. This is a fork of the plugin [lektor_asciidoc](https://github.com/nixjdm/lektor-asciidoc) published by [@nixjdm](https://github.com/nixjdm).This version, now called lektor asciidoctor requires ruby and asciidoctor which is the origin of the for as agreed in [this](https://github.com/nixjdm/lektor-asciidoc/pull/4) pull request.
+        
+        ## Requirements
+        
+        Go to [ruby-lang.org](https://asciidoctor.org/docs/install-toolchain/) and [asciidoctor.org](https://asciidoctor.org/docs/install-toolchain/)for installation instructions of both.
+        
+        ## Installation
+        
+        Add lektor-asciidoc to your project from command line:
+        
+        ```
+        lektor plugins add lektor-asciidoctor
+        ```
+        
+        
+Keywords: Lektor plugin static-site blog asciidoc,using Asciidoctor Ruby Gem
+Platform: UNKNOWN
+Classifier: Environment :: Plugins
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Lektor
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown

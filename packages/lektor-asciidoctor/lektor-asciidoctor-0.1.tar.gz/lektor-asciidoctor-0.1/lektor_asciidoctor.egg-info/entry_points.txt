@@ -1,0 +1,3 @@
+[lektor.plugins]
+asciidoctor = lektor_asciidoctor:AsciiDoctorPlugin
+
