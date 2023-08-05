@@ -1,0 +1,12 @@
+Lektor
+
+[dev]
+flake8
+ipdb
+ipython
+pytest
+pytest-cov
+pytest-mock
+pytest-click
+pytest-pylint
+black
