@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: area_weighted_join
+Version: 0.1
+Summary: Spatially join misaligned polygons
+Home-page: http://github.com/azavea/area-weighted-join
+Author: Simon Kassel
+Author-email: skassel@azavea.com
+License: UNKNOWN
+Description: # Area Weighted Join
+        
+        A small package for spatially joining misaligned polygons
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
