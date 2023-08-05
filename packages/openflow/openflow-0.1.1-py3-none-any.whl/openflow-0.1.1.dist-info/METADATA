@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: openflow
+Version: 0.1.1
+Summary: Automate data flows for machine learning
+Home-page: http://github.com/shoprunback/openflow
+Author: Quentin Lapointe
+Author-email: quentin@shoprunback.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: numpy
+Requires-Dist: minio
+Requires-Dist: pandas
+Requires-Dist: psycopg2-binary
+Requires-Dist: scikit-learn
+Requires-Dist: scipy
+
+UNKNOWN
+
+
