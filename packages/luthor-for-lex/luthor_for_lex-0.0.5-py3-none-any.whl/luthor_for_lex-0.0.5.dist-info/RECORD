@@ -1,0 +1,14 @@
+cli/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cli/main.py,sha256=EIoPMSdN6040DNDugBZf5_kNDPD41L-_h4vOwJseoXc,2827
+lex/__init__.py,sha256=XeJs8UTxVE9kFjesFe_ke8naErQGX27tbj79FqqcoXk,23294
+lex/bots/PollexyHygieneBot.py,sha256=wv8DFPLmgrL_OsYiyiSN5XJM5TNd1_rA55Z3RM0rPn8,2229
+lex/bots/PollexySecondaryBot.py,sha256=tkpgBUlyKTeZUr4ti6Ywr_Ksn8l14KisizOKhWEPxgE,1436
+lex/bots/PollexySetAlarmBot.py,sha256=55g5oZmy0wfGkmU2XVDbSyiXjDtf7a1HPGR0AX0H5q8,1038
+lex/bots/__init__.py,sha256=NjJDPzv68f6crVDw8To4aW1nHSzky1l3TndouSq_L8k,482
+luthor_for_lex-0.0.5.dist-info/METADATA,sha256=x-o6o3frAVuSOTUELDe3XBXNojx7E1-RZ80jANTtZ6g,473
+luthor_for_lex-0.0.5.dist-info/RECORD,,
+luthor_for_lex-0.0.5.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+luthor_for_lex-0.0.5.dist-info/entry_points.txt,sha256=y9mAsZ3mWxVDwEON8uSmxP4ObD_CtniCQHqJxryg6c0,41
+luthor_for_lex-0.0.5.dist-info/top_level.txt,sha256=AyqJGAwYvgs79b-uSQ1NNsC2uL-_V_ORr22feLQlXU4,16
+speaker/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+speaker/speaker.py,sha256=8KFUbUD5d5jZcUYXj5y6--MWeKasruhOyQH3yd0dU4A,3740
