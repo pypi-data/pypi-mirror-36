@@ -1,0 +1,10 @@
+tkDocViewer-1.0.1.dist-info/DESCRIPTION.rst,sha256=LaGjS8xzx5uxRT2ojI5jZrr5SajLbRVt5yKv8CPQGrs,1806
+tkDocViewer-1.0.1.dist-info/METADATA,sha256=ZYKCVUa9TMhV5uysmR9wT9_ObqxQL9_0QgLR1v-8evg,2325
+tkDocViewer-1.0.1.dist-info/RECORD,,
+tkDocViewer-1.0.1.dist-info/WHEEL,sha256=5wvfB7GvgZAbKBSE9uX9Zbi6LCL-_KgezgHblXhCRnM,113
+tkDocViewer-1.0.1.dist-info/metadata.json,sha256=lkzWE8TQmeFY8qIhavBVlSZzDvQ2OMmpnGP4bs-Z8VU,663
+tkDocViewer-1.0.1.dist-info/top_level.txt,sha256=JqV7WLzbeg5DPQeXKE91ju5SG17-lUpJFp6r6FBkASM,12
+tkdocviewer/__init__.py,sha256=KTWpI-HM91Rt5vw5U_6R05LDGOPJqb-BB-Kh2thyM1c,912
+tkdocviewer/__main__.py,sha256=UI3P59hMDRhWksLlAplQ2xh2jndITIpYmK9z685gzeY,4298
+tkdocviewer/backend_gs.py,sha256=bfVnRq5U7u1EaH2u7ztgcXz8ds5RFEtMhIzeQ8MIATQ,16527
+tkdocviewer/widget.py,sha256=kqNzEyCWTO0UDkNDJ8ilLsLrLWHLWO1iY9UC7OIpA3Y,22030
