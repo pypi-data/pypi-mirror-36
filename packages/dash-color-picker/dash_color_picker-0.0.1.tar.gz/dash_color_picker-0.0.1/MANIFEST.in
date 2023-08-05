@@ -1,0 +1,4 @@
+include dash_color_picker/bundle.js
+include dash_color_picker/metadata.json
+include dash_color_picker/package.json
+include README.md
