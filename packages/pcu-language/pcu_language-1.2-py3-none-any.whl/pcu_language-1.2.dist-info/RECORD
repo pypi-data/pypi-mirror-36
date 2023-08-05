@@ -1,0 +1,11 @@
+pcu_language/__init__.py,sha256=I0Av5d1mDO_mzfX5163sGbijkgbky8hn8_G48BnYVIo,21
+pcu_language/pcu_language.py,sha256=JJihzTHtddIVVVbBrax7gD0N0gVrR_Jh-FwLai2BsOc,1017
+pcu_language-1.2.dist-info/DESCRIPTION.rst,sha256=2tdf8O2Eq0D12XmPPf9zs687qnx4tQXcdfluVufZOWA,723
+pcu_language-1.2.dist-info/LICENSE.txt,sha256=jOtLnuWt7d5Hsx6XXB2QxzrSe2sWWh3NgMfFRetluQM,35147
+pcu_language-1.2.dist-info/METADATA,sha256=rzfNhONjzEdeKkuWuvh1_F3n2zWehV4xCsj4Cqqu2io,1766
+pcu_language-1.2.dist-info/RECORD,,
+pcu_language-1.2.dist-info/WHEEL,sha256=8Lm45v9gcYRm70DrgFGVe4WsUtUMi1_0Tso1hqPGMjA,92
+pcu_language-1.2.dist-info/metadata.json,sha256=sFIxHnhvxF12j5vcGv5NQzxJ3SkMKzSQs6ujxzzHWPo,1214
+pcu_language-1.2.dist-info/top_level.txt,sha256=SAbGqCjqYIAzwP1GwbQNT3owOWNoK0kCy44i74fnRcI,19
+tests/__init__.py,sha256=YNhSZv3O8jvPbzjjGF7u6ccX4CopKN38dCEog6W2iLo,63
+tests/test_pcu_language.py,sha256=nAFCHhq1DzayPVLOYoyzZc6hcLWa7fVTgOh4ECcUVuk,322
