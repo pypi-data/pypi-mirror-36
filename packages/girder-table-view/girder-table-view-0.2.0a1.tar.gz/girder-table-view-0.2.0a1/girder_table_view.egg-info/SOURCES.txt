@@ -1,0 +1,17 @@
+plugin.cmake
+setup.py
+girder_table_view/__init__.py
+girder_table_view.egg-info/PKG-INFO
+girder_table_view.egg-info/SOURCES.txt
+girder_table_view.egg-info/dependency_links.txt
+girder_table_view.egg-info/entry_points.txt
+girder_table_view.egg-info/not-zip-safe
+girder_table_view.egg-info/requires.txt
+girder_table_view.egg-info/top_level.txt
+girder_table_view/web_client/main.js
+girder_table_view/web_client/package.json
+girder_table_view/web_client/stylesheets/tableWidget.styl
+girder_table_view/web_client/templates/tableWidget.pug
+girder_table_view/web_client/views/ItemView.js
+girder_table_view/web_client/views/TableWidget.js
+plugin_tests/tableViewSpec.js

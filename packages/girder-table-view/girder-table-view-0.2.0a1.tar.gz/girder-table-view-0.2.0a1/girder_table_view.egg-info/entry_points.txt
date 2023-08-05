@@ -1,0 +1,3 @@
+[girder.plugin]
+table_view = girder_table_view:TableViewPlugin
+
