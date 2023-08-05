@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: modm-cli
+Version: 0.1.0
+Summary: modm command line interface.
+Home-page: https://github.com/modm-io/modm-cli
+Author: Niklas Hauser
+Author-email: niklas@salkinium.com
+License: MPLv2
+Description: UNKNOWN
+Keywords: modm cli
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Embedded Systems
+Requires-Python: >=3.5.0
+Provides-Extra: test

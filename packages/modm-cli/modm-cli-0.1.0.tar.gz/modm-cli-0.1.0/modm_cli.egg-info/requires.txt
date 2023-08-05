@@ -1,0 +1,9 @@
+lbuild
+lxml
+colorful
+pyelftools
+pathlib
+
+[test]
+testfixtures
+coverage
