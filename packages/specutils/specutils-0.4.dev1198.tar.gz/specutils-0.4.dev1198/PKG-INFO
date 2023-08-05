@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: specutils
+Version: 0.4.dev1198
+Summary: Package for spectroscopic astronomical data
+Home-page: http://specutils.astropy.org/
+Author: Nicholas Earl
+Author-email: nearl@stsci.edu
+License: BSD
+Description: Provides data objects and analysis tools for creating and manipulating spectroscopic astronomical data.
+Platform: UNKNOWN
