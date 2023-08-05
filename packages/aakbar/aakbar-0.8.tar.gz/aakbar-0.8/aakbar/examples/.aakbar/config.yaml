@@ -1,0 +1,17 @@
+S.aglac: {dir: Streptococcus_agalactiae, label: Streptococcus agalactiae}
+S.gordon: {dir: Streptococcus_gordonii, label: Streptococcus gordonii}
+S.horse: {dir: Streptococcus_equinus, label: Streptococcus equinus}
+S.infant: {dir: Streptococcus_infantis, label: Streptococcus infantis}
+S.mutans: {dir: Streptococcus_mutans, label: Streptococcus mutans}
+S.oral: {dir: Streptococcus_oralis, label: Streptococcus oralis}
+S.pyogenes: {dir: Streptococcus_pyogenes, label: Streptococcus pyogenes}
+S.suis: {dir: Streptococcus_suis, label: Streptococcus suis}
+S.thermo: {dir: Streptococcus_thermophilus, label: Streptococcus thermophilus}
+letterfreq_window: 12
+plot_type: png
+sets: [strep, S.horse, S.gordon, S.infant, S.mutans, S.oral, S.aglac, S.pyogenes,
+  S.suis, S.thermo]
+simplicity_object_label: letterfreq12
+strep: {dir: Streptococcus_pneumoniae, label: Streptococcus pneumoniae}
+summary: {dir: strep10, label: strep+S.horse+S.gordon+S.infant+S.mutans+S.oral+S.aglac+S.pyogenes+S.suis+S.thermo}
+version: 0.7.7.dev3+dirty
