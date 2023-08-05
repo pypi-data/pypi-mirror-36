@@ -1,0 +1,11 @@
+json_api/__init__.py,sha256=PsHhf2LZftu3McMruG1j657n39M7GI8gQHAxLg_SEQg,36
+json_api/magic.py,sha256=o_e_IB0qR94fKtqEyM3xAzSidNmx1u6xsQ3YCY9Xx4c,4575
+json_api/magic_sanic.py,sha256=VlTrw1nneh6U3ShR9qql3SzthfXEumaMplCvaoE3Bls,402
+json_api/signature.py,sha256=rVJ5Tv2hs4kUf3vOT9_ugrUuPbFZz2wJLcvBOO2ClMY,536
+json_api/validate.py,sha256=XVy6vxfxR441NheZKMomQ-e4q06qazEtI_lJYpE3KzQ,1086
+json_api-0.1.1.dist-info/DESCRIPTION.rst,sha256=tGca8g_DMjrGpjbanBlX3SKXloGogSYcbuTKsXWsrno,684
+json_api-0.1.1.dist-info/METADATA,sha256=WE69lfjAm_SFjyHIath1rGdT70r-XYbnQSP3H9L7ifM,847
+json_api-0.1.1.dist-info/RECORD,,
+json_api-0.1.1.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+json_api-0.1.1.dist-info/metadata.json,sha256=1hA6ken06wYwnDAtOgZT251R4Id13scN2VE1wZ_nBSY,309
+json_api-0.1.1.dist-info/top_level.txt,sha256=A5O5khxHCvMFSEFKaqE_k_UoqAYUKX9qeJJTv8CLU-Q,9
