@@ -1,0 +1,21 @@
+Metadata-Version: 2.0
+Name: FastMBAR
+Version: 0.0.0a2
+Summary: A fast solver for large scale MBAR/UWHAM equations
+Home-page: https://github.com/xqding/MBAR_PyTorch
+Author: Xinqiang (Shawn) Ding
+Author-email: xqding@umich.edu
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.14.0)
+Requires-Dist: scipy (>=1.1.0)
+Requires-Dist: torch (>=0.4.0)
+
+# A Fast Solver for Large Scale MBAR/UWHAM Equations
+
+
+
