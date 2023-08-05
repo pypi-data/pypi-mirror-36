@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.py
+bin/tmp.sh
+gtrends_tools.egg-info/PKG-INFO
+gtrends_tools.egg-info/SOURCES.txt
+gtrends_tools.egg-info/dependency_links.txt
+gtrends_tools.egg-info/requires.txt
+gtrends_tools.egg-info/top_level.txt
+healthtrends/__init__.py
+healthtrends/decorators.py
+healthtrends/request.py
