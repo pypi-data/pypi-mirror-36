@@ -1,0 +1,43 @@
+# 1.Introduction to pyMd2Doc
+
+Use python to convert markdown to a directory document with retractable text content.
+
+
+# 2. Method of use
+
+This program requires a python environment of python3 or above.
+
+
+## 2.1 Prepare Markdown file
+
+Prepare the Markdown file that needs to be converted into a document.
+
+
+## 2.2 Install pyMd2Doc
+
+Install the program using PIP install pyMd2Doc
+
+
+## 2.3 Start the conversion
+
+> creates [yourFileName].py file to prepare the markdown file that needs to be converted, such as mymarkdown.md
+
+> introduces the required module, calls the function and passes in the markdown file to be converted, as shown in the following example:
+
+
+
+The from pymd2doc import createDoc
+
+
+Create (" myMarkdown ")
+
+
+The successful execution of > will generate the mymarkdown.html file
+
+
+
+## 2.4 Check the documentation
+
+Open the mymarkdown.html file you just generated with your browser.
+
+Click the directory to jump to the corresponding document content.
