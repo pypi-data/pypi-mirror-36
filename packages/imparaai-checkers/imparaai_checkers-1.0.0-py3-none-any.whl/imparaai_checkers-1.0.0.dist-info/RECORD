@@ -1,0 +1,14 @@
+checkers/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+checkers/board.py,sha256=YCXgBkh5YGzGWF7orpsrFalVmglfHoCxj1wIjCh6KV0,2873
+checkers/board_initializer.py,sha256=ClTpz8SmTCe3cu_Y0gVikarEYuZuxZT_cksF4nNAmyc,1286
+checkers/board_searcher.py,sha256=F-_GGs4_w1qerPypBx8sGv0UKU691mz2ZyN_EtMSe8s,2018
+checkers/game.py,sha256=1wEjXeIJPVO0OT_9ANZVyzKsdZOZIF8yaVs3-45Xpn8,921
+checkers/piece.py,sha256=2szMRzA0vE7hjeM1TdhqevyTgTdsgBbOoqau4-pRtAE,3694
+imparaai_checkers-1.0.0.dist-info/METADATA,sha256=BxomtTyRGRI_bEigwuH3i5aMKqiAoqSRFdqU_QC4AZg,2872
+imparaai_checkers-1.0.0.dist-info/RECORD,,
+imparaai_checkers-1.0.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+imparaai_checkers-1.0.0.dist-info/top_level.txt,sha256=dHi__nvUjbAkEjo9vq3T5VeKQEYj7kDQdnqL_FC4mFA,14
+test/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+test/test_game_over.py,sha256=_FxmSP071e-T3YaRZ7mFBnhWXSSAy6QjgEGa1RIn_tQ,1594
+test/test_possible_moves.py,sha256=F9iWlWVfyfPsLj3pvKznK7Au9s6FVPCa2t2D1xYygkc,2993
+test/test_winner.py,sha256=tDN8nzYgOx8ImZnNRRyRKi2gqd-YrjIEY3DzoEjdwEg,1902
