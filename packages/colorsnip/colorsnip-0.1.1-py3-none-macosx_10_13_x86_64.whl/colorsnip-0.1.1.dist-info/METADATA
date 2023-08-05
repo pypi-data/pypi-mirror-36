@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: colorsnip
+Version: 0.1.1
+Summary: "Colorize snippets and copy to rich text clipboard"
+Home-page: https://github.com/ewjoachim/colorsnip
+Author: Joachim Jablon
+Author-email: ewjoachim@gmail.com
+License: MIT
+Keywords: code,color,copy,clipboard,highlight,powerpoint,keynote
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Description-Content-Type: text/markdown
+Provides-Extra: lint
+Provides-Extra: test
+Provides-Extra: dev
+Requires-Dist: pygments
+Requires-Dist: richxerox; platform_system == "Darwin"
+Requires-Dist: klembord; platform_system == "Linux" or platform_system == "Windows"
+Provides-Extra: dev
+Requires-Dist: twine; extra == 'dev'
+Provides-Extra: lint
+Provides-Extra: test
+
+# ColorSnip
+
+Command line tool: Copies the content of the given file (or stdin) to the clipboard
+with syntax coloring, so it can be pasted into a format-retaining software.
+
+## Installation
+
+Compatible with:
+- MacOS via [richxerox](https://pypi.org/project/richxerox/)
+- Linux and Windows (untested) via [klemboard](https://pypi.org/project/klembord/)
+
+```console
+$ pip install colorsnip
+```
+
+## Usage:
+
+```console
+$ colorsnip [filename|-]
+```
+
+## Use case
+
+Pasting formatted code for a presentation in Keynote or the like.
+
+If you want to access the `HTML`/`RTF` content directly, use `pygments` and the CLI tool
+`pygmentize` that it provides.
+
+## Caveats
+
+- richxerox dependency seems to install half of PyPI
+- Untested on Linux and Windows
+- Linux and Windows get the `HTML` rich text format only, while MacOS get HTML and RTF.
+
+## License
+
+MIT (see top of code file)
+
+## Code of conduct
+
+This project follows the [contributor covenant](https://www.contributor-covenant.org/).
+
+For any feedback, contact the author via an issue, or [twitter](https://twitter.com/ewjoachim)
+or by email (first name at last name dot fr).
+
+
