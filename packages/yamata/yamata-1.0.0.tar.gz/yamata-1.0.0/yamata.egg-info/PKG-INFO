@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: yamata
+Version: 1.0.0
+Summary: a web frameware
+Home-page: https://github.com/yamata-web/yamata/
+Author: edward Zhang
+Author-email: dingding@edwardzhang.cn
+Maintainer-email: dingding@edwardzhang.cn
+License: MIT
+Description: Think about the ideal way to write a web app. Write the code to make it happen.
+Platform: linux
