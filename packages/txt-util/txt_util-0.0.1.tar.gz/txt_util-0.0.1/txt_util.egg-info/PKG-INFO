@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: txt-util
+Version: 0.0.1
+Summary: file_op;abs_path;cosine_sim;get_ngram;load_json;pos_tagging;time_printer.
+Home-page: UNKNOWN
+Author: Meeyeong Im
+Author-email: meeyeong1211@gmail.com
+License: BSD
+Description: UNKNOWN
+Keywords: some txt parsing util
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: BSD License
