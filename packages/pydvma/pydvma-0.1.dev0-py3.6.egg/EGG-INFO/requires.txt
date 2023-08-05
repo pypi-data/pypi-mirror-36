@@ -1,0 +1,11 @@
+distutils
+numpy
+scipy
+time
+datetime
+pyqtgraph
+copy
+tk
+matplotlib
+pyaudio
+pandas
