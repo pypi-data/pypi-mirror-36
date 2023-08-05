@@ -1,0 +1,33 @@
+Metadata-Version: 1.2
+Name: convert2geojson
+Version: 0.0.1
+Summary: Tools for converting dataframes to GeoJSON format.
+Home-page: https://github.com/computational-antiquity/convert2geojson/
+Author: Malte Vogl
+Author-email: mvogl@mpiwg-berlin.mpg.de
+License: GPLv3
+Project-URL: Home, https://github.com/computational-antiquity/convert2geojson/
+Project-URL: Tracker, https://github.com/computational-antiquity/convert2geojson/issues
+Project-URL: Download, https://github.com/computational-antiquity/convert2geojson/archive/0.0.1.tar.gz
+Description: # convert2geojson
+        Convert databases to geojson, useful for displaying datasets on maps.
+        
+        A FeatureCollection is generated from those dataframe rows containing values for
+        latitude and longitude.
+        
+        _Note:_ To limit the size of the GeoJSON file, lookup tables are generated
+        automatically for fields with a limited number of values (<20). This is not part of the
+        GeoJSON standard and can lead to problems with linters.
+        
+        ## Example Application
+        
+        Have a look at the [notebook](/example/Loading_dataset.ipynb) in the `/example` folder
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Text Processing :: General
+Classifier: Topic :: Text Processing :: Indexing
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3
