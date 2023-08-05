@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+django_yournotifier.egg-info/PKG-INFO
+django_yournotifier.egg-info/SOURCES.txt
+django_yournotifier.egg-info/dependency_links.txt
+django_yournotifier.egg-info/pbr.json
+django_yournotifier.egg-info/requires.txt
+django_yournotifier.egg-info/top_level.txt
+yournotifier/__init__.py

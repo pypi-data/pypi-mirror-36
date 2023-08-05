@@ -1,0 +1,50 @@
+Metadata-Version: 1.1
+Name: django-yournotifier
+Version: 1.0.1
+Summary: A simple integration for use yournotifier.com
+Home-page: https://github.com/1vank1n/django-yournotifier
+Author: Ivan Lukyanets
+Author-email: lukyanets.ivan@gmail.com
+License: MIT
+Description: =====
+        Yournotifier
+        =====
+        
+        Quick start
+        -----------
+        
+        1. Install
+        
+            pip install django-yournotifier
+        
+        2. Use
+        
+        Create account at `YourNotifier <https://yournotifier.com>`_
+        
+        Add in `settings.py`:
+        
+            NOTIFIER_APIKEY = '...'
+        
+        Use:
+        
+            from yournotifier import send_notify
+        
+            send_notify(
+                channel_name='name',
+                text='Text message...'
+            )
+        
+Keywords: django yournotifier
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.6
