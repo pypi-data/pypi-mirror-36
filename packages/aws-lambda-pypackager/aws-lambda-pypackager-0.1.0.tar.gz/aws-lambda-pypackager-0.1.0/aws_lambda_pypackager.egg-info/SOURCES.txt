@@ -1,0 +1,10 @@
+README.md
+setup.py
+aws_lambda_pypackager.egg-info/PKG-INFO
+aws_lambda_pypackager.egg-info/SOURCES.txt
+aws_lambda_pypackager.egg-info/dependency_links.txt
+aws_lambda_pypackager.egg-info/entry_points.txt
+aws_lambda_pypackager.egg-info/requires.txt
+aws_lambda_pypackager.egg-info/top_level.txt
+pypackager/__init__.py
+pypackager/shell.py

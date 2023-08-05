@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: aws-lambda-pypackager
+Version: 0.1.0
+Summary: Opinionated packaging helper for Python AWS Lambda Projects.
+Home-page: https://github.com/jarosser06/aws-lambda-pypackager
+Author: Jim Rosser
+Maintainer-email: jarosser06@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: aws lambda serverless
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Provides-Extra: test
+Provides-Extra: lint
+Provides-Extra: style
+Provides-Extra: test-requirements
