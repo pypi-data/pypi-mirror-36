@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: Django-Template-Preprocess
+Version: 0.0.1
+Summary: Cut down on django template CPU time by doing work early.
+Home-page: UNKNOWN
+Author: UW-IT AXDD
+Author-email: aca-it@uw.edu
+License: Apache License, Version 2.0
+Description: 
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6

@@ -1,0 +1,14 @@
+README.md
+setup.py
+Django_Template_Preprocess.egg-info/PKG-INFO
+Django_Template_Preprocess.egg-info/SOURCES.txt
+Django_Template_Preprocess.egg-info/dependency_links.txt
+Django_Template_Preprocess.egg-info/requires.txt
+Django_Template_Preprocess.egg-info/top_level.txt
+template_preprocess/__init__.py
+template_preprocess/admin.py
+template_preprocess/apps.py
+template_preprocess/models.py
+template_preprocess/processor.py
+template_preprocess/tests.py
+template_preprocess/views.py
