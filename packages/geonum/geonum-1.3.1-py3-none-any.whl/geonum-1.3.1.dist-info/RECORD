@@ -1,0 +1,14 @@
+geonum/__init__.py,sha256=1QXsM11zgGyQuDnkVZGdrx5dGKJDU7ogMlj_nrkS8_M,2699
+geonum/atmosphere.py,sha256=oZydwQC9DnLwYgg6fq_3FXMpVOhZqRKl_IfZBy2vtV4,18895
+geonum/base.py,sha256=bc7GLk0D5HLLKQ3m2S14kiUks7x4w5bNkJVvqemmgEk,30195
+geonum/geosetup.py,sha256=IA5RAktpZa9SUxOmuD-csIi7S0T4zOm_dAiaRydsDtI,24914
+geonum/helpers.py,sha256=tJYZl2Jt65CiAnd6Cefbk-l9nGlIWBR_BIHhkT6D4Fo,4840
+geonum/mapping.py,sha256=t-HovRWJHhmxZNe9_lXdMtso6AJn7YUL8O-U-jE8rf4,39775
+geonum/processing.py,sha256=VhEa3H--gZDZ8aajfkB6V655CYJ1hkak3lLzUcNodcw,22380
+geonum/topodata.py,sha256=miuAQQiWCwd8GgjqAcOd183XCBZywWj3MbZeTyDMlpM,32694
+geonum/local_topo_data/LOCAL_TOPO_PATHS.txt,sha256=6Ez2b-Iw8kBcfvlg1YVvISU4cLvXxV1YupW3tVXzKJE,3
+geonum/local_topo_data/README.rst,sha256=tDhaBMpg2twbrubCi-ucJnLIwrVMAdOSrWO2PJ8EQT0,1017
+geonum-1.3.1.dist-info/METADATA,sha256=IgHWVBrCKriBDxFsvO6udMhGT6SKW4jRyATIERlNZmg,5937
+geonum-1.3.1.dist-info/RECORD,,
+geonum-1.3.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+geonum-1.3.1.dist-info/top_level.txt,sha256=rlkQm9Bx48ZvgxMHiXbnTEntz3kIBfQhk-URlf0Rm8k,7
