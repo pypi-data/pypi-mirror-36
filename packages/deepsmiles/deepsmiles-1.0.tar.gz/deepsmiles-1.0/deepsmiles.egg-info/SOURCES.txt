@@ -1,0 +1,14 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.py
+deepsmiles/__init__.py
+deepsmiles/converter.py
+deepsmiles/decode.py
+deepsmiles/encode.py
+deepsmiles/exceptions.py
+deepsmiles/testsuite.py
+deepsmiles.egg-info/PKG-INFO
+deepsmiles.egg-info/SOURCES.txt
+deepsmiles.egg-info/dependency_links.txt
+deepsmiles.egg-info/top_level.txt
