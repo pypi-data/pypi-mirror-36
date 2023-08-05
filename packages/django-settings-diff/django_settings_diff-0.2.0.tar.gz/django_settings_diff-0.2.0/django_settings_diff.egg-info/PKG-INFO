@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: django-settings-diff
+Version: 0.2.0
+Summary: Tool to help diff two Django settings modules
+Home-page: UNKNOWN
+Author: Thomas Chamberlin
+Author-email: thomaswchamberlin@gmail.com
+License: MIT
+Description: Tool to help diff two Django settings modules
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python

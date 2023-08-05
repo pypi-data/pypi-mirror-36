@@ -1,0 +1,13 @@
+CHANGES
+=======
+
+0.2.0
+-----
+
+* Added ability to dump to text files instead of pickling
+* README got name of wrapper script wrong
+
+0.1.0
+-----
+
+* Initial commit
