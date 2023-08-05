@@ -1,0 +1,9 @@
+gspread_db/__init__.py,sha256=ngT7n198AsZI_7R2f3HMOUEPxwLn0ADfbPPeBXiCQ2k,348
+gspread_db/client.py,sha256=q8_tGtRtaU6hU52NbE12PQOg-409UKkvajRTVgKkKjA,950
+gspread_db/models.py,sha256=ln9hP_5r6HiKz_jPuxkb_XVrEtA0s368G1WdFWor4CU,12728
+gspread_db-1.0.dist-info/METADATA,sha256=WCCyyToN1bKavNCGPUk_lCorsBla-nBN6WoKxLKNs0k,4555
+gspread_db-1.0.dist-info/RECORD,,
+gspread_db-1.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+gspread_db-1.0.dist-info/top_level.txt,sha256=OEq5cRxJoQX3PvNVXfZErJJdrwkpMMUmQNi4wQcHJuY,17
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/models_tests.py,sha256=r5buOJlZJP4XgXILS3jWbxGgP0Sy7u0mVOIXzDENzLU,2224
