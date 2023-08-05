@@ -1,0 +1,613 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>cv.views &#8212; Django-CV 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for cv.views</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.conf</span> <span class="k">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="k">import</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="k">import</span> <span class="n">get_object_or_404</span><span class="p">,</span> <span class="n">render</span><span class="p">,</span> <span class="n">redirect</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="k">import</span> <span class="n">loader</span><span class="p">,</span> <span class="n">Context</span><span class="p">,</span> <span class="n">RequestContext</span>
+<span class="kn">from</span> <span class="nn">django.views</span> <span class="k">import</span> <span class="n">generic</span>
+
+<span class="kn">from</span> <span class="nn">.models</span> <span class="k">import</span> <span class="n">Collaborator</span><span class="p">,</span> <span class="n">Journal</span><span class="p">,</span> <span class="n">Discipline</span><span class="p">,</span> <span class="n">Award</span><span class="p">,</span> \
+                    <span class="n">Position</span><span class="p">,</span> <span class="n">Degree</span><span class="p">,</span> \
+                    <span class="n">Grant</span><span class="p">,</span> <span class="n">GrantCollaboration</span><span class="p">,</span> \
+                    <span class="n">Article</span><span class="p">,</span> <span class="n">ArticleAuthorship</span><span class="p">,</span> \
+                    <span class="n">Chapter</span><span class="p">,</span> <span class="n">ChapterAuthorship</span><span class="p">,</span>\
+                    <span class="n">Book</span><span class="p">,</span> <span class="n">BookAuthorship</span><span class="p">,</span> <span class="n">BookEdition</span><span class="p">,</span> \
+                    <span class="n">Report</span><span class="p">,</span> <span class="n">ReportAuthorship</span><span class="p">,</span> \
+                    <span class="n">Talk</span><span class="p">,</span> <span class="n">Presentation</span><span class="p">,</span> <span class="n">OtherWriting</span><span class="p">,</span> \
+                    <span class="n">MediaMention</span><span class="p">,</span> <span class="n">Service</span><span class="p">,</span> <span class="n">JournalService</span><span class="p">,</span> <span class="n">Student</span> 
+
+<span class="c1">#from .forms import DegreeForm, AwardForm</span>
+
+<span class="c1">## Helper functions to gather data about different parts of CV</span>
+<div class="viewcode-block" id="sum_items"><a class="viewcode-back" href="../../reference/views.html#cv.views.sum_items">[docs]</a><span class="k">def</span> <span class="nf">sum_items</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sum items across dictionaries.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">dict</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span></div>
+
+<div class="viewcode-block" id="get_cv_primary_positions"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_primary_positions">[docs]</a><span class="k">def</span> <span class="nf">get_cv_primary_positions</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of CV data with current positions.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;primary_positions&#39;</span><span class="p">:</span> <span class="n">Position</span><span class="o">.</span><span class="n">primarypositions</span><span class="o">.</span><span class="n">all</span><span class="p">()}</span></div>
+            
+<div class="viewcode-block" id="get_cv_personnel_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_personnel_data">[docs]</a><span class="k">def</span> <span class="nf">get_cv_personnel_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of CV data related to personnel and awards.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;award_list&#39;</span><span class="p">:</span> <span class="n">Award</span><span class="o">.</span><span class="n">displayable</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="s1">&#39;degree_list&#39;</span><span class="p">:</span> <span class="n">Degree</span><span class="o">.</span><span class="n">displayable</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="s1">&#39;position_list&#39;</span><span class="p">:</span> <span class="n">Position</span><span class="o">.</span><span class="n">displayable</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> 
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="get_cv_service_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_service_data">[docs]</a><span class="k">def</span> <span class="nf">get_cv_service_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of services at different levels.&quot;&quot;&quot;</span>
+    <span class="n">service_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;department_service_list&#39;</span> <span class="p">:</span> <span class="n">Service</span><span class="o">.</span><span class="n">department_services</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="s1">&#39;university_service_list&#39;</span> <span class="p">:</span> <span class="n">Service</span><span class="o">.</span><span class="n">university_services</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="s1">&#39;discipline_service_list&#39;</span> <span class="p">:</span> <span class="n">Service</span><span class="o">.</span><span class="n">discipline_services</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="n">service_dict</span><span class="p">[</span><span class="s1">&#39;total_service&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">sum_items</span><span class="p">(</span><span class="n">service_dict</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">service_dict</span></div>
+
+<div class="viewcode-block" id="get_cv_journal_service_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_journal_service_data">[docs]</a><span class="k">def</span> <span class="nf">get_cv_journal_service_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of journals served.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;journal_service_list&#39;</span> <span class="p">:</span> <span class="n">JournalService</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">is_reviewer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="get_cv_article_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_article_data">[docs]</a><span class="k">def</span> <span class="nf">get_cv_article_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of articles in different stages of publication.&quot;&quot;&quot;</span>
+    <span class="n">article_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;article_published_list&#39;</span><span class="p">:</span> <span class="n">Article</span><span class="o">.</span><span class="n">published</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="s1">&#39;article_revise_list&#39;</span><span class="p">:</span> <span class="n">Article</span><span class="o">.</span><span class="n">revise</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="s1">&#39;article_inprep_list&#39;</span><span class="p">:</span> <span class="n">Article</span><span class="o">.</span><span class="n">inprep</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="n">article_dict</span><span class="p">[</span><span class="s1">&#39;total_articles&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">sum_items</span><span class="p">(</span><span class="n">article_dict</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">article_dict</span></div>
+
+<div class="viewcode-block" id="get_cv_chapter_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_chapter_data">[docs]</a><span class="k">def</span> <span class="nf">get_cv_chapter_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of chapters in different stages of publication.&quot;&quot;&quot;</span>
+    <span class="n">chapter_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;chapter_published_list&#39;</span><span class="p">:</span> <span class="n">Chapter</span><span class="o">.</span><span class="n">published</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="s1">&#39;chapter_revise_list&#39;</span><span class="p">:</span> <span class="n">Chapter</span><span class="o">.</span><span class="n">revise</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="s1">&#39;chapter_inprep_list&#39;</span><span class="p">:</span> <span class="n">Chapter</span><span class="o">.</span><span class="n">inprep</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="n">chapter_dict</span><span class="p">[</span><span class="s1">&#39;total_chapters&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">sum_items</span><span class="p">(</span><span class="n">chapter_dict</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">chapter_dict</span></div>
+
+<div class="viewcode-block" id="get_cv_book_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_book_data">[docs]</a><span class="k">def</span> <span class="nf">get_cv_book_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of books in different stages of publication.&quot;&quot;&quot;</span>
+    <span class="n">book_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;book_published_list&#39;</span><span class="p">:</span> <span class="n">Book</span><span class="o">.</span><span class="n">published</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="s1">&#39;book_revise_list&#39;</span><span class="p">:</span> <span class="n">Book</span><span class="o">.</span><span class="n">revise</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="s1">&#39;book_inprep_list&#39;</span><span class="p">:</span> <span class="n">Book</span><span class="o">.</span><span class="n">inprep</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="n">book_dict</span><span class="p">[</span><span class="s1">&#39;total_books&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">sum_items</span><span class="p">(</span><span class="n">book_dict</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">book_dict</span></div>
+
+<div class="viewcode-block" id="get_cv_grant_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_grant_data">[docs]</a><span class="k">def</span> <span class="nf">get_cv_grant_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of grants.&quot;&quot;&quot;</span>
+    <span class="n">grant_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;internal_grants&#39;</span><span class="p">:</span> <span class="n">Grant</span><span class="o">.</span><span class="n">internal_grants</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="s1">&#39;external_grants&#39;</span><span class="p">:</span> <span class="n">Grant</span><span class="o">.</span><span class="n">external_grants</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="n">grant_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;total_grants&#39;</span><span class="p">:</span><span class="n">sum_items</span><span class="p">(</span><span class="n">grant_dict</span><span class="p">)})</span>
+    <span class="k">return</span> <span class="n">grant_dict</span></div>
+
+<div class="viewcode-block" id="get_cv_report_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_report_data">[docs]</a><span class="k">def</span> <span class="nf">get_cv_report_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of reports in different stages of publication.&quot;&quot;&quot;</span>
+    <span class="n">report_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;report_published_list&#39;</span><span class="p">:</span> <span class="n">Report</span><span class="o">.</span><span class="n">published</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="s1">&#39;report_revise_list&#39;</span><span class="p">:</span> <span class="n">Report</span><span class="o">.</span><span class="n">revise</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="s1">&#39;report_inprep_list&#39;</span><span class="p">:</span> <span class="n">Report</span><span class="o">.</span><span class="n">inprep</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="n">report_dict</span><span class="p">[</span><span class="s1">&#39;total_reports&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">sum_items</span><span class="p">(</span><span class="n">report_dict</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">report_dict</span></div>
+
+<div class="viewcode-block" id="get_cv_otherwriting_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_otherwriting_data">[docs]</a><span class="k">def</span> <span class="nf">get_cv_otherwriting_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of other writing objects.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;otherwriting_list&#39;</span><span class="p">:</span> <span class="n">OtherWriting</span><span class="o">.</span><span class="n">displayable</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="get_cv_talk_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_talk_data">[docs]</a><span class="k">def</span> <span class="nf">get_cv_talk_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of talks.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;talk_list&#39;</span><span class="p">:</span> <span class="n">Talk</span><span class="o">.</span><span class="n">displayable</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="get_cv_media_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_media_data">[docs]</a><span class="k">def</span> <span class="nf">get_cv_media_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of media mentions.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;media_mention_list&#39;</span><span class="p">:</span> <span class="n">MediaMention</span><span class="o">.</span><span class="n">displayable</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="get_cv_teaching_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_teaching_data">[docs]</a><span class="k">def</span> <span class="nf">get_cv_teaching_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of teaching and mentoring.&quot;&quot;&quot;</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;student_list&#39;</span><span class="p">:</span> <span class="n">Student</span><span class="o">.</span><span class="n">displayable</span><span class="o">.</span><span class="n">all</span><span class="p">()}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">courses.models</span> <span class="k">import</span> <span class="n">Course</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;course_list&#39;</span><span class="p">:</span> <span class="n">Course</span><span class="o">.</span><span class="n">displayable</span><span class="o">.</span><span class="n">all</span><span class="p">()})</span>
+        <span class="k">return</span> <span class="n">context</span>
+    <span class="c1"># except ImportError:</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">context</span></div>
+
+<div class="viewcode-block" id="get_cv_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.get_cv_data">[docs]</a><span class="k">def</span> <span class="nf">get_cv_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return dictionary of different types of CV entries.&quot;&quot;&quot;</span>
+    <span class="n">cv_entry_list</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">get_cv_primary_positions</span><span class="p">(),</span> <span class="n">get_cv_personnel_data</span><span class="p">(),</span> <span class="n">get_cv_service_data</span><span class="p">(),</span> 
+        <span class="n">get_cv_journal_service_data</span><span class="p">(),</span> <span class="n">get_cv_article_data</span><span class="p">(),</span> <span class="n">get_cv_chapter_data</span><span class="p">(),</span> 
+        <span class="n">get_cv_book_data</span><span class="p">(),</span> <span class="n">get_cv_talk_data</span><span class="p">(),</span> <span class="n">get_cv_otherwriting_data</span><span class="p">(),</span>
+        <span class="n">get_cv_media_data</span><span class="p">(),</span> <span class="n">get_cv_teaching_data</span><span class="p">(),</span> <span class="n">get_cv_grant_data</span><span class="p">()</span>
+        <span class="p">]</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">cv_entry_list</span><span class="p">:</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">context</span></div>
+
+<span class="c1">## Views</span>
+<div class="viewcode-block" id="cv_list"><a class="viewcode-back" href="../../reference/views.html#cv.views.cv_list">[docs]</a><span class="k">def</span> <span class="nf">cv_list</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>   
+    <span class="sd">&quot;&quot;&quot;Create view of entire CV for printing in `html`.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;cv/cv.html&#39;</span><span class="p">,</span> <span class="n">get_cv_data</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="ArticleListView"><a class="viewcode-back" href="../../reference/views.html#cv.views.ArticleListView">[docs]</a><span class="k">class</span> <span class="nc">ArticleListView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">ListView</span><span class="p">):</span>
+    
+    <span class="sd">&quot;&quot;&quot;Return list of articles&quot;&quot;&quot;</span>
+    
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cv/lists/article_list.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;article_objects&#39;</span>
+    
+<div class="viewcode-block" id="ArticleListView.get_queryset"><a class="viewcode-back" href="../../reference/views.html#cv.views.ArticleListView.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">get_cv_article_data</span><span class="p">()</span></div></div>
+            
+<div class="viewcode-block" id="ArticleDetailView"><a class="viewcode-back" href="../../reference/views.html#cv.views.ArticleDetailView">[docs]</a><span class="k">class</span> <span class="nc">ArticleDetailView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">DetailView</span><span class="p">):</span>
+    
+    <span class="sd">&quot;&quot;&quot;Return view of a single article&quot;&quot;&quot;</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cv/details/article_detail.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;article&#39;</span> </div>
+
+<div class="viewcode-block" id="article_citation_view"><a class="viewcode-back" href="../../reference/views.html#cv.views.article_citation_view">[docs]</a><span class="k">def</span> <span class="nf">article_citation_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="n">slug</span><span class="p">,</span><span class="nb">format</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns view to allow citation to be downloaded to citation management </span>
+<span class="sd">    software.&quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Article</span><span class="p">,</span><span class="n">slug</span><span class="o">=</span><span class="n">slug</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">format</span><span class="o">==</span><span class="s2">&quot;ris&quot;</span><span class="p">:</span>
+        <span class="n">template_file</span> <span class="o">=</span> <span class="s1">&#39;cv/citations/article.ris&#39;</span>
+        <span class="n">mime</span><span class="o">=</span><span class="s1">&#39;application/x-research-info-systems&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">template_file</span> <span class="o">=</span> <span class="s1">&#39;cv/citations/article.bib&#39;</span>
+        <span class="n">mime</span><span class="o">=</span><span class="s1">&#39;application/x-bibtex&#39;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template_file</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;article&#39;</span><span class="p">:</span><span class="n">p</span><span class="p">},</span><span class="n">content_type</span><span class="o">=</span><span class="n">mime</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BookListView"><a class="viewcode-back" href="../../reference/views.html#cv.views.BookListView">[docs]</a><span class="k">class</span> <span class="nc">BookListView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">ListView</span><span class="p">):</span>
+    
+    <span class="sd">&quot;&quot;&quot;Return list of books&quot;&quot;&quot;</span>
+
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cv/lists/book_list.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;book_objects&#39;</span>
+
+<div class="viewcode-block" id="BookListView.get_queryset"><a class="viewcode-back" href="../../reference/views.html#cv.views.BookListView.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">get_cv_book_data</span><span class="p">()</span></div></div>
+
+<div class="viewcode-block" id="BookDetailView"><a class="viewcode-back" href="../../reference/views.html#cv.views.BookDetailView">[docs]</a><span class="k">class</span> <span class="nc">BookDetailView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">DetailView</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Return view of single book&quot;&quot;&quot;</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Book</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cv/details/book_detail.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;book&#39;</span></div>
+
+<div class="viewcode-block" id="book_citation_view"><a class="viewcode-back" href="../../reference/views.html#cv.views.book_citation_view">[docs]</a><span class="k">def</span> <span class="nf">book_citation_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">slug</span><span class="p">,</span> <span class="nb">format</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns view to allow citation to be downloaded to citation management</span>
+<span class="sd">    software in RIS or BibTeX formats.&quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Book</span><span class="p">,</span> <span class="n">slug</span><span class="o">=</span><span class="n">slug</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">format</span> <span class="o">==</span> <span class="s2">&quot;ris&quot;</span><span class="p">:</span>
+        <span class="n">template_file</span> <span class="o">=</span> <span class="s1">&#39;cv/citations/book.ris&#39;</span>
+        <span class="n">mime</span> <span class="o">=</span> <span class="s1">&#39;application/x-research-info-systems&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">template_file</span> <span class="o">=</span> <span class="s1">&#39;cv/citations/book.bib&#39;</span>
+        <span class="n">mime</span> <span class="o">=</span> <span class="s1">&#39;application/x-bibtex&#39;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template_file</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;book&#39;</span><span class="p">:</span><span class="n">p</span><span class="p">},</span> <span class="n">content_type</span><span class="o">=</span><span class="n">mime</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ChapterListView"><a class="viewcode-back" href="../../reference/views.html#cv.views.ChapterListView">[docs]</a><span class="k">class</span> <span class="nc">ChapterListView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">ListView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return view containing list of chapters.&quot;&quot;&quot;</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cv/lists/chapter_list.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;chapter_objects&#39;</span>
+
+<div class="viewcode-block" id="ChapterListView.get_queryset"><a class="viewcode-back" href="../../reference/views.html#cv.views.ChapterListView.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">get_cv_chapter_data</span><span class="p">()</span></div></div>
+
+<div class="viewcode-block" id="ChapterDetailView"><a class="viewcode-back" href="../../reference/views.html#cv.views.ChapterDetailView">[docs]</a><span class="k">class</span> <span class="nc">ChapterDetailView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">DetailView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return view containing details of single chapter.&quot;&quot;&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Chapter</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cv/details/chapter_detail.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;chapter&#39;</span></div>
+
+
+<div class="viewcode-block" id="chapter_citation_view"><a class="viewcode-back" href="../../reference/views.html#cv.views.chapter_citation_view">[docs]</a><span class="k">def</span> <span class="nf">chapter_citation_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">slug</span><span class="p">,</span> <span class="nb">format</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns citation to be downloaded to citation management software.&quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Chapter</span><span class="p">,</span> <span class="n">slug</span><span class="o">=</span><span class="n">slug</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">format</span> <span class="o">==</span> <span class="s2">&quot;ris&quot;</span><span class="p">:</span>
+        <span class="n">template_file</span> <span class="o">=</span> <span class="s1">&#39;cv/citations/chapter.ris&#39;</span>
+        <span class="n">mime</span> <span class="o">=</span> <span class="s1">&#39;application/x-research-info-systems&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">template_file</span> <span class="o">=</span> <span class="s1">&#39;cv/citations/chapter.bib&#39;</span>
+        <span class="n">mime</span> <span class="o">=</span> <span class="s1">&#39;application/x-bibtex&#39;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template_file</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;report&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">},</span> <span class="n">content_type</span><span class="o">=</span><span class="n">mime</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ReportListView"><a class="viewcode-back" href="../../reference/views.html#cv.views.ReportListView">[docs]</a><span class="k">class</span> <span class="nc">ReportListView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">ListView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return view containing list of reports.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cv/lists/report_list.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;report_objects&#39;</span>
+    
+<div class="viewcode-block" id="ReportListView.get_queryset"><a class="viewcode-back" href="../../reference/views.html#cv.views.ReportListView.get_queryset">[docs]</a>    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">get_cv_report_data</span><span class="p">()</span></div></div>
+    
+<div class="viewcode-block" id="ReportDetailView"><a class="viewcode-back" href="../../reference/views.html#cv.views.ReportDetailView">[docs]</a><span class="k">class</span> <span class="nc">ReportDetailView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">DetailView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return view containing details of single report.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Report</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cv/details/report_detail.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;report&#39;</span></div>
+    
+<div class="viewcode-block" id="report_citation_view"><a class="viewcode-back" href="../../reference/views.html#cv.views.report_citation_view">[docs]</a><span class="k">def</span> <span class="nf">report_citation_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="n">slug</span><span class="p">,</span><span class="nb">format</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns view to allow citation to be downloaded to citation management software.&quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Report</span><span class="p">,</span><span class="n">slug</span><span class="o">=</span><span class="n">slug</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">format</span><span class="o">==</span><span class="s2">&quot;ris&quot;</span><span class="p">:</span>
+        <span class="n">template_file</span> <span class="o">=</span> <span class="s1">&#39;cv/citations/report.ris&#39;</span>
+        <span class="n">mime</span><span class="o">=</span><span class="s1">&#39;application/x-research-info-systems&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">template_file</span> <span class="o">=</span> <span class="s1">&#39;cv/citations/report.bib&#39;</span>
+        <span class="n">mime</span><span class="o">=</span><span class="s1">&#39;application/x-bibtex&#39;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template_file</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;report&#39;</span><span class="p">:</span><span class="n">p</span><span class="p">},</span><span class="n">content_type</span><span class="o">=</span><span class="n">mime</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TalkListView"><a class="viewcode-back" href="../../reference/views.html#cv.views.TalkListView">[docs]</a><span class="k">class</span> <span class="nc">TalkListView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">ListView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return list of articles.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">model</span><span class="o">=</span><span class="n">Talk</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cv/lists/talk_list.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;talk_list&#39;</span></div>
+    
+<div class="viewcode-block" id="TalkDetailView"><a class="viewcode-back" href="../../reference/views.html#cv.views.TalkDetailView">[docs]</a><span class="k">class</span> <span class="nc">TalkDetailView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">DetailView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return view of a single talk.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Talk</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cv/details/talk_detail.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;talk&#39;</span>    </div>
+
+<div class="viewcode-block" id="talk_citation_view"><a class="viewcode-back" href="../../reference/views.html#cv.views.talk_citation_view">[docs]</a><span class="k">def</span> <span class="nf">talk_citation_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="n">slug</span><span class="p">,</span><span class="nb">format</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns view to allow citation to be downloaded to citation management software.&quot;&quot;&quot;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Talk</span><span class="p">,</span><span class="n">slug</span><span class="o">=</span><span class="n">slug</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">format</span><span class="o">==</span><span class="s2">&quot;ris&quot;</span><span class="p">:</span>
+        <span class="n">template_file</span> <span class="o">=</span> <span class="s1">&#39;cv/citations/talk.ris&#39;</span>
+        <span class="n">mime</span><span class="o">=</span><span class="s1">&#39;application/x-research-info-systems&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">template_file</span> <span class="o">=</span> <span class="s1">&#39;cv/citations/talk.bib&#39;</span>
+        <span class="n">mime</span><span class="o">=</span><span class="s1">&#39;application/x-bibtex&#39;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">template_file</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;talk&#39;</span><span class="p">:</span><span class="n">p</span><span class="p">},</span><span class="n">content_type</span><span class="o">=</span><span class="n">mime</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GrantListView"><a class="viewcode-back" href="../../reference/views.html#cv.views.GrantListView">[docs]</a><span class="k">class</span> <span class="nc">GrantListView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">ListView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return list of grants.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">model</span><span class="o">=</span><span class="n">Grant</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cv/lists/grant_list.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;grant_list&#39;</span></div>
+    
+<div class="viewcode-block" id="GrantDetailView"><a class="viewcode-back" href="../../reference/views.html#cv.views.GrantDetailView">[docs]</a><span class="k">class</span> <span class="nc">GrantDetailView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">DetailView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return view of a single grant.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Grant</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cv/details/grant_detail.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;grant&#39;</span>   </div>
+
+
+<span class="c1"># Abstracted Model Views</span>
+<div class="viewcode-block" id="CVListView"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVListView">[docs]</a><span class="k">class</span> <span class="nc">CVListView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">ListView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns view of all instances for a particular object.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CVListView.dispatch"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVListView.dispatch">[docs]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set class parameters based on URL and dispatch.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">apps</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;cv&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context_object_name</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">verbose_name_plural</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CVListView.get_template_names"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVListView.get_template_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_template_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the name template to use to display a list of model instances.</span>
+
+<span class="sd">        Currently returns ``cv/lists/&lt;model_name&gt;_list.html``.</span>
+
+<span class="sd">        Might add a generic template for vitae models in the future.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;cv/lists/</span><span class="si">%s</span><span class="s1">_list.html&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">)]</span></div></div>
+
+
+<div class="viewcode-block" id="CVDetailView"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVDetailView">[docs]</a><span class="k">class</span> <span class="nc">CVDetailView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">DetailView</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">apps</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;cv&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context_object_name</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">verbose_name</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CVDetailView.get_template_names"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVDetailView.get_template_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_template_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;cv/details/</span><span class="si">%s</span><span class="s1">_detail.html&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">)]</span></div></div>
+
+<span class="c1"># Forms</span>
+<span class="kn">from</span> <span class="nn">django.views.generic.edit</span> <span class="k">import</span> <span class="n">CreateView</span><span class="p">,</span> <span class="n">UpdateView</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">,</span> <span class="n">SingleObjectTemplateResponseMixin</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="k">import</span> <span class="n">reverse_lazy</span>
+<span class="kn">from</span> <span class="nn">django.apps</span> <span class="k">import</span> <span class="n">apps</span>
+<span class="kn">from</span> <span class="nn">.forms</span> <span class="k">import</span> <span class="n">authorship_formset_factory</span><span class="p">,</span> <span class="n">edition_formset_factory</span>
+
+<span class="k">def</span> <span class="nf">template_name</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">suffix</span><span class="p">):</span>
+<span class="c1">#   model_name = model.__name__.lower()</span>
+    <span class="k">return</span> <span class="s2">&quot;cv/forms/</span><span class="si">%s%s</span><span class="s2">.html&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">model_name</span><span class="p">,</span><span class="n">suffix</span><span class="p">)</span>
+
+
+<span class="n">fieldsets</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;award&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;organization&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;degree&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;degree&#39;</span><span class="p">,</span> <span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="s1">&#39;date_earned&#39;</span><span class="p">,</span> <span class="s1">&#39;institution&#39;</span><span class="p">,</span> <span class="s1">&#39;city&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;honors&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;start_date&#39;</span><span class="p">,</span> <span class="s1">&#39;end_date&#39;</span><span class="p">,</span> <span class="s1">&#39;project&#39;</span><span class="p">,</span> 
+                 <span class="s1">&#39;department&#39;</span><span class="p">,</span> <span class="s1">&#39;institution&#39;</span><span class="p">,</span> <span class="s1">&#39;current_position&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;primary_position&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;service&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;role&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="s1">&#39;organization&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;start_date&#39;</span><span class="p">,</span> 
+                <span class="s1">&#39;end_date&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;student&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="s1">&#39;middle_name&#39;</span><span class="p">,</span> <span class="s1">&#39;student_level&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;role&#39;</span><span class="p">,</span> <span class="s1">&#39;thesis_title&#39;</span><span class="p">,</span> <span class="s1">&#39;is_current_student&#39;</span><span class="p">,</span> 
+                <span class="s1">&#39;graduation_date&#39;</span><span class="p">,</span> <span class="s1">&#39;first_position&#39;</span><span class="p">,</span> <span class="s1">&#39;current_position&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;article&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;submission_date&#39;</span><span class="p">,</span> <span class="s1">&#39;pub_date&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;short_title&#39;</span><span class="p">,</span> <span class="s1">&#39;slug&#39;</span><span class="p">,</span> <span class="s1">&#39;abstract&#39;</span><span class="p">,</span> <span class="s1">&#39;journal&#39;</span><span class="p">,</span> <span class="s1">&#39;volume&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;issue&#39;</span><span class="p">,</span> <span class="s1">&#39;start_page&#39;</span><span class="p">,</span> <span class="s1">&#39;end_page&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;series&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="s1">&#39;doi&#39;</span><span class="p">,</span> <span class="s1">&#39;pmcid&#39;</span><span class="p">,</span> <span class="s1">&#39;pmid&#39;</span><span class="p">,</span> <span class="s1">&#39;grants&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;primary_discipline&#39;</span><span class="p">,</span> <span class="s1">&#39;other_disciplines&#39;</span><span class="p">,</span> <span class="s1">&#39;extra&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;book&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;short_title&#39;</span><span class="p">,</span> <span class="s1">&#39;slug&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;display&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;submission_date&#39;</span><span class="p">,</span> <span class="s1">&#39;pub_date&#39;</span><span class="p">,</span> <span class="s1">&#39;abstract&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;place&#39;</span><span class="p">,</span> <span class="s1">&#39;volume&#39;</span><span class="p">,</span> <span class="s1">&#39;series&#39;</span><span class="p">,</span> <span class="s1">&#39;series_number&#39;</span><span class="p">,</span> <span class="s1">&#39;num_pages&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;isbn&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;grants&#39;</span><span class="p">,</span><span class="s1">&#39;primary_discipline&#39;</span><span class="p">,</span> <span class="s1">&#39;other_disciplines&#39;</span><span class="p">,</span> 
+             <span class="s1">&#39;extra&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;otherwriting&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;short_title&#39;</span><span class="p">,</span> <span class="s1">&#39;slug&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;venue&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;pages&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;place&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;volume&#39;</span><span class="p">,</span> <span class="s1">&#39;issue&#39;</span><span class="p">,</span> <span class="s1">&#39;abstract&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="CVSingleObjectMixin"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVSingleObjectMixin">[docs]</a><span class="k">class</span> <span class="nc">CVSingleObjectMixin</span><span class="p">(</span><span class="n">SingleObjectTemplateResponseMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Provide basic methods for manipulating CV views.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="CVSingleObjectMixin.dispatch"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVSingleObjectMixin.dispatch">[docs]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set class parameters and dispatch to right method.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">apps</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;cv&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="o">=</span> <span class="n">fieldsets</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CVSingleObjectMixin.get_context_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVSingleObjectMixin.get_context_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set common context variables for CV views and set value of</span>
+<span class="sd">        authorship formset</span>
+
+<span class="sd">        ``self.formset`` will be:</span>
+<span class="sd">        * ``inlineformset_factory`` for the authorship model if one exists</span>
+<span class="sd">        * ``None`` otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">CVSingleObjectMixin</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">formset</span> <span class="o">=</span> <span class="n">authorship_formset_factory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edition_formset</span> <span class="o">=</span> <span class="n">edition_formset_factory</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="o">==</span><span class="s1">&#39;book&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edition_formset</span> <span class="o">=</span> <span class="n">edition_formset_factory</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">context</span></div>
+
+<div class="viewcode-block" id="CVSingleObjectMixin.get_template_names"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVSingleObjectMixin.get_template_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_template_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a list of template names to be used for the form to create</span>
+<span class="sd">        a new object. Returns either:</span>
+<span class="sd">        * ``cv/forms/&lt;model_name&gt;_add_form.html`` or</span>
+<span class="sd">        * the ``template_name`` defined for the view</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;cv/forms/</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">_form.html&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">template_name</span><span class="p">,</span>
+                <span class="s1">&#39;cv/forms/cv_</span><span class="si">%s</span><span class="s1">_form.html&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">)]</span></div></div>
+
+
+<div class="viewcode-block" id="CVCreateView"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVCreateView">[docs]</a><span class="k">class</span> <span class="nc">CVCreateView</span><span class="p">(</span><span class="n">CreateView</span><span class="p">,</span> <span class="n">CVSingleObjectMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;View to create CV objects &quot;&quot;&quot;</span>
+
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;add&#39;</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;cv/forms/cv_add_form.html&quot;</span>
+    <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;cv:cv_list&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CVCreateView.get_context_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVCreateView.get_context_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Insert authorship formset into the context dict.&quot;&quot;&quot;</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">CVCreateView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">formset</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">:</span>
+                <span class="n">context</span><span class="p">[</span><span class="s1">&#39;authorship_formset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">formset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">context</span><span class="p">[</span><span class="s1">&#39;authorship_formset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">formset</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">edition_formset</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">:</span>
+                <span class="n">context</span><span class="p">[</span><span class="s1">&#39;edition_formset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edition_formset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">context</span><span class="p">[</span><span class="s1">&#39;edition_formset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edition_formset</span><span class="p">()</span>
+
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;action_url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span>
+            <span class="s1">&#39;cv:cv_add&#39;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;model_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">context</span></div>
+
+<div class="viewcode-block" id="CVCreateView.form_valid"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVCreateView.form_valid">[docs]</a>    <span class="k">def</span> <span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Save authorship formset data if valid.&quot;&quot;&quot;</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">formset</span><span class="p">:</span>
+            <span class="n">formset</span> <span class="o">=</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;authorship_formset&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">formset</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">object</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+                <span class="n">formset</span><span class="o">.</span><span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">object</span>
+                <span class="n">formset</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_to_response</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">))</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">success_url</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="CVUpdateView"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVUpdateView">[docs]</a><span class="k">class</span> <span class="nc">CVUpdateView</span><span class="p">(</span><span class="n">UpdateView</span><span class="p">,</span> <span class="n">CVSingleObjectMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;View to edit CV objects.&quot;&quot;&quot;</span>
+
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;edit&#39;</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;cv/forms/cv_edit_form.html&quot;</span>
+
+<div class="viewcode-block" id="CVUpdateView.get_context_data"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVUpdateView.get_context_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">CVUpdateView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">formset</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">:</span>
+                <span class="n">context</span><span class="p">[</span><span class="s1">&#39;authorship_formset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">formset</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span>
+                    <span class="n">instance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
+                <span class="n">context</span><span class="p">[</span><span class="s1">&#39;authorship_formset&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">full_clean</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">context</span><span class="p">[</span><span class="s1">&#39;authorship_formset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">formset</span><span class="p">(</span>
+                    <span class="n">instance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;action_url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span>
+            <span class="s1">&#39;cv:cv_edit&#39;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                    <span class="s1">&#39;model_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s1">&#39;delete_url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span>
+            <span class="s1">&#39;cv:cv_delete&#39;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="n">context</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                    <span class="s1">&#39;model_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">context</span></div></div>
+
+<div class="viewcode-block" id="CVDeleteView"><a class="viewcode-back" href="../../reference/views.html#cv.views.CVDeleteView">[docs]</a><span class="k">class</span> <span class="nc">CVDeleteView</span><span class="p">(</span><span class="n">DeleteView</span><span class="p">):</span>
+    <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;cv:cv_list&#39;</span><span class="p">)</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cv/forms/cv_confirm_delete.html&#39;</span>
+
+    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">apps</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;cv&#39;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Django-CV</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../topics/index.html">Sections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../shortcuts.html">Shortcuts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../settings.html">Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Michael Bader.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
