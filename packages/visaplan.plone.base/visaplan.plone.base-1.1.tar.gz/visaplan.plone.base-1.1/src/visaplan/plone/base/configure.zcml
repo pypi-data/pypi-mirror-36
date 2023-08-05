@@ -1,0 +1,12 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+    <include package=".adapter" />
+    <include package=".browserview" />
+    <include package=".exceptions" />
+    <include package=".mixin" />
+    <include package=".permissions" />
+    <include package=".typestr" />
+
+</configure>
