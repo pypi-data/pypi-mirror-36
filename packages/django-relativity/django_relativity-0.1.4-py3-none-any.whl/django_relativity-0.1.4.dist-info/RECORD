@@ -1,0 +1,9 @@
+django_relativity-0.1.4.dist-info/METADATA,sha256=FMS8oZTJ0FWU-bzrY7it64V_Dy2qEhEyK6J_MLypLuk,9311
+django_relativity-0.1.4.dist-info/RECORD,,
+django_relativity-0.1.4.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+django_relativity-0.1.4.dist-info/top_level.txt,sha256=Ro9i8euRFQh7sp38MbHWIjHynZf0VrTr0phVuO27J1I,11
+relativity/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+relativity/compat.py,sha256=1mZiN-EC2hq84l8gUCmT2LzqqyNdAF2N5RYQzugf_Ig,1308
+relativity/fields.py,sha256=W5Mg2TAzDZ97KTHLlslAtY4z40w679m_q7GPKxmJIcE,13389
+relativity/mptt.py,sha256=cZfkjy6kZG-q5FuKwFkeNhYJG6AKwMcb2vifpHeFqIg,2045
+relativity/treebeard.py,sha256=G-hnJVBHEH2KGA0IP7sU2xFdJvW4czVq2wQ5Zn6jYvQ,1469
