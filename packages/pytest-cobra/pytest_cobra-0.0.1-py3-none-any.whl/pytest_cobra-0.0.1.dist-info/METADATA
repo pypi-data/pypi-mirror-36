@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: pytest-cobra
+Version: 0.0.1
+Summary: pytest plugin for testing Ethereum Smart Contracts
+Home-page: https://github.com/Cobraframework/pytest-cobra
+Author: Meheret Tesfaye
+Author-email: meherett@zoho.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Framework :: Pytest
+Requires-Python: >=3.6
+Requires-Dist: pytest (<4.0.0,>=3.7.1)
+Requires-Dist: eth-tester[py-evm] (<0.2.0,>=0.1.0-beta.28)
+Requires-Dist: web3 (<5.0.0,>=4.4.1)
+Requires-Dist: PyYAML (<4.0,>=3.13)
+
+TODO
+
+
