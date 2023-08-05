@@ -1,0 +1,77 @@
+{%- import 'playneta.php' as playneta with context -%}
+<?php namespace {{ info.title|namespace('php', True)|join('\\') }}\Definition;
+
+use JsonSerializable;
+
+class {{ key|classname }}Definition implements JsonSerializable
+{
+    /**
+     * @type callable
+     */
+    const DECODER = array(__CLASS__, 'decode');
+
+    /**
+     * @param array $data
+     * @return {{ key|classname }}Definition
+     */
+    public static function decode(array $data): {{ key|classname }}Definition
+    {
+{%- for name, schema in definitions[key].properties|dictsort %}
+    {%- set decoder %}{{ playneta.input_decoder(schema, '', 'Definition') }}{% endset %}
+    {%- if decoder == '' %}
+        ${{ name|methodname }} = $data['{{ name }}'];
+    {%- else %}
+        ${{ name|methodname }}Decoder = {{ decoder }};
+        ${{ name|methodname }} = ${{ name|methodname }}Decoder($data['{{ name }}']);
+    {%- endif -%}
+{%- endfor %}
+
+        return new {{ key|classname }}Definition(
+{%- for name, schema in definitions[key].properties|dictsort -%}
+{% if loop.index > 1 %}, {% endif %}
+            ${{ name|methodname }}
+{%- endfor %}
+        );
+    }
+
+    /**
+{%- for name, schema in definitions[key].properties|dictsort -%}
+    {{ '\n     ' }}* @param {{ playneta.comment_type(schema, '', 'Definition') }} ${{ name|methodname }}
+{%- endfor %}
+     */
+    public function __construct(
+{%- for name, schema in definitions[key].properties|dictsort -%}
+        {% if loop.index > 1 %}, {% endif %}${{ name|methodname }}
+{%- endfor %}) {
+{%- for name, schema in definitions[key].properties|dictsort %}
+        $this->{{ name|methodname }} = ${{ name|methodname }};
+{%- endfor %}
+    }
+{% for name, schema in definitions[key].properties|dictsort %}
+    /**
+     * @type {{ playneta.comment_type(schema, '', 'Definition') }}
+     */
+    private ${{ name|methodname }};
+{% endfor %}
+{% for name, schema in definitions[key].properties|dictsort %}
+    /**
+     * @return {{ playneta.comment_type(schema, '', 'Definition') }}
+     */
+    public function get{{ name|classname }}()
+    {
+        return $this->{{ name|methodname }};
+    }
+{% endfor %}
+
+    /**
+     * @return mixed
+     */
+    public function jsonSerialize(): array
+    {
+        return array(
+{%- for name, schema in definitions[key].properties|dictsort %}
+            '{{ name }}' => $this->{{ name|methodname }},
+{%- endfor %}
+        );
+    }
+}

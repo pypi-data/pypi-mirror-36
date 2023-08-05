@@ -1,0 +1,101 @@
+{%- import 'playneta.js' as playneta with context -%}
+namespace {{ info.title|namespace('js', True)|join('.') }} {
+
+    function nop(): void {}
+    function createParser(path: string) {
+      return (data: string) => {
+        try {
+          return JSON.parse(data);
+        } catch (err) {
+          throw new Error('Unable to parse response for request: ' + path);
+        }
+      };
+    }
+
+    {% if definitions -%}
+    {%- for class, data in definitions|dictsort %}
+    export interface {{ class|classname }} {
+      {%- for name, schema in data.properties|dictsort %}
+      readonly {{ name|methodname }}?: {{ playneta.type(schema) }};
+      {%- endfor %}
+    }
+    {% endfor %}
+    {% endif -%}
+
+    {% for resource in paths|resources|sort %}
+    export interface I{{ resource|classname }}Resource {
+      {%- for method, data in paths|methods(resource)|sort %}
+      {{ method|methodname }}(
+        {%- if data.input is defined -%}
+        input: {{ playneta.type(data.input) }}
+        {%- endif -%}
+      ): Promise<
+          {%- if data.output is defined -%}
+          {{ playneta.type(data.output) }}
+          {%- else -%}
+          void
+          {%- endif -%}
+        >;
+      {%- endfor %}
+    }
+    class {{ resource|classname }}Resource implements I{{ resource|classname }}Resource {
+
+      constructor(private readonly transport: ITransport) {}
+      {%- for method, data in paths|methods(resource)|sort %}
+
+      {{ method|methodname }}(
+        {%- if data.input is defined -%}
+        input: {{ playneta.type(data.input) }}
+        {%- endif -%}
+      ): Promise<
+        {%- if data.output is defined -%}
+        {{ playneta.type(data.output) }}
+        {%- else -%}
+        void
+        {%- endif -%}
+      > {
+        return this.transport
+          .request('/{{ resource }}/{{ method|methodname }}'
+            {%- if data.input is defined -%}
+            , JSON.stringify(input)
+            {%- endif -%}
+          )
+          .then(
+            {%- if data.output is defined -%}
+            createParser('/{{ resource }}/{{ method|methodname }}')
+            {%- else -%}
+            nop
+            {%- endif -%}
+          );
+      }
+      {%- endfor %}
+    }
+    {% endfor %}
+
+    export interface I{{ info.title|classname }}Entrypoint {
+      {%- for resource in paths|resources|sort %}
+      readonly {{ resource|methodname }}: I{{ resource|classname }}Resource
+      {%- endfor %}
+    }
+
+    class {{ info.title|classname }}Entrypoint implements I{{ info.title|classname }}Entrypoint {
+      {%- for resource in paths|resources|sort %}
+      public readonly {{ resource|methodname }}: I{{ resource|classname }}Resource;
+      {%- endfor %}
+
+      constructor(transport: ITransport) {
+        {%- for resource in paths|resources|sort %}
+        this.{{ resource|methodname }} = new {{ resource|classname }}Resource(transport);
+        {%- endfor %}
+      }
+    }
+
+    export interface ITransport {
+      request(path: string, body?: string): Promise<string>
+    }
+
+    export function createEntrypoint(transport: ITransport): I{{ info.title|classname }}Entrypoint {
+      return new {{ info.title|classname }}Entrypoint(transport);
+    }
+
+}

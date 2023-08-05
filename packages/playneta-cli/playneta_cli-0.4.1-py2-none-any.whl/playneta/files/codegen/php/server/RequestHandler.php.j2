@@ -1,0 +1,66 @@
+<?php namespace {{ info.title|namespace('php')|join('\\') }};
+
+class RequestHandler
+{
+    /**
+     * @var array
+     */
+    private $resources = [];
+
+    /**
+     * @param string $prefix
+     * @param $resource
+     */
+    public function register(string $prefix, $resource)
+    {
+        $tail = strlen($prefix) - 1;
+
+        if ($tail >= 0 && $prefix[$tail] === '/') {
+            $prefix = substr($prefix, $tail);
+        }
+
+        $this->resources[$prefix] = $resource;
+    }
+
+    /**
+     * @param string|null $path
+     * @param string|null $payload
+     */
+    public function handle(string $path = null, string $payload = null)
+    {
+        if ($path === null) {
+            $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        }
+
+        $targetResource = null;
+        $targetMethod = '';
+
+        foreach ($this->resources as $prefix => $resource) {
+            if (strpos($path, $prefix) === 0) {
+                $targetResource = $resource;
+                $targetMethod = $this->camelize(substr($path, strlen($prefix)));
+
+                break;
+            }
+        }
+
+        if ($targetResource !== null) {
+            if ($payload === null) {
+                $payload = file_get_contents('php://input');
+            }
+
+            return $targetResource->$targetMethod($payload);
+        }
+
+        return null;
+    }
+
+    private function camelize($word, $delimiters = '/-_'){
+        $word = strtolower($word);
+        $word = ucwords($word, $delimiters);
+        $word = str_replace(str_split($delimiters), '', $word);
+
+        return lcfirst($word);
+    }
+}
+

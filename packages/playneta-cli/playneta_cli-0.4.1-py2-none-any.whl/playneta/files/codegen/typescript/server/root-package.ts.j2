@@ -1,0 +1,49 @@
+{%- import 'playneta' as playneta with context -%}
+{%- if resources -%}
+{%- for name, methods in resources|dictsort -%}
+///<reference path="{{ name|methodname }}/{{ name|methodname }}.ts"/>
+{% endfor %}
+{%- endif -%}
+namespace {{ meta.namespace }} {
+
+  {%- if model -%}
+  {%- for class, data in model|dictsort %}
+
+  export type {{ class|classname }} = {
+        {%- for name, schema in data.properties|dictsort %}
+    readonly {{ name|methodname }}{%- if schema|optional -%}?{%- endif -%}: {{ playneta.type(schema) }};
+        {%- endfor %}
+  };
+
+  {%- endfor -%}
+  {%- endif %}
+
+  {% if resources -%}
+  export type ApiRouter = (method: string, args: any, session: any) => Promise<any>;
+  export type ApiKernel<Session> = {
+    {%- for resource, methods in resources|dictsort %}
+    readonly {{ resource|methodname }}: {{ resource|methodname }}.{{ resource|classname + 'Resource' }}<Session>;
+    {%- endfor %}
+  };
+
+  export function createRouter<Session>(kernel: ApiKernel<Session>): ApiRouter {
+    function router(method: string, args: any, session: any): Promise<any> {
+
+    {%- for resource, methods in resources|dictsort %}
+      {%- for method, data in methods|dictsort %}
+      if (method === '/{{ resource }}/{{ method|methodname }}') {
+        return kernel.{{ resource|methodname }}.{{ method|methodname }}(args, session);
+      }
+      {%- endfor %}
+    {%- endfor %}
+
+      return Promise.reject(`Unknown '${method}' method`);
+    }
+
+    return router;
+  }
+
+  {%- endif %}
+
+
+}

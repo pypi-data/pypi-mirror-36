@@ -1,0 +1,55 @@
+{%- import 'playneta' as playneta with context -%}
+
+namespace {{ meta.namespace }}.{{ key }} {
+
+  {%- for method, data in resources[key]|dictsort -%}
+
+    {%- if 'in' in data %}
+      {%- set input_type = playneta.type(data['in']) %}
+      {%- if input_type == 'unknown' %}
+
+  export type {{ method|classname + 'Args' }} = {
+        {%- for name, schema in data['in'].properties|dictsort %}
+    readonly {{ name|methodname }}{%- if schema|optional -%}?{%- endif -%}: {{ playneta.type(schema) }};
+        {%- endfor %}
+  };
+
+      {%- else %}
+
+  export type {{ method|classname + 'Args' }} = {{ input_type }};
+      {%- endif -%}
+    {%- else %}
+
+  export type {{ method|classname + 'Args' }} = void;
+    {%- endif -%}
+
+    {%- if 'out' in data %}
+
+      {%- set output_type = playneta.type(data['out']) %}
+      {%- if output_type == 'unknown' %}
+
+  export type {{ method|classname + 'Result' }} = {
+
+      {%- for name, schema in data['out'].properties|dictsort %}
+    readonly {{ name|methodname }}{%- if schema|optional -%}?{%- endif -%}: {{ playneta.type(schema) }};
+      {%- endfor %}
+
+  }
+      {%- else %}
+
+  export type {{ method|classname + 'Result' }} = {{ output_type }};
+      {%- endif -%}
+
+    {%- else %}
+
+  export type {{ method|classname + 'Result' }} = void;
+    {%- endif -%}
+  {%- endfor %}
+
+
+  export interface I{{ key|classname + 'Resource' }}<Session> {
+    {%- for method, data in resources[key]|dictsort %}
+    {{ method|methodname }}(args: {{ method|classname + 'Args' }}, session: Session): Promise<{{ method|classname + 'Result' }}>;
+    {%- endfor %}
+  }
+}

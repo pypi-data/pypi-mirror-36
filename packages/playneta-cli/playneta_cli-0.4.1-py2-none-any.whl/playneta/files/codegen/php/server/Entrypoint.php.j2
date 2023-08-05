@@ -1,0 +1,20 @@
+<?php namespace {{ info.title|namespace('php')|join('\\') }};
+
+{% for resource in paths|resources|sort -%}
+use {{ info.title|namespace('php', True)|join('\\') }}\{{ resource|classname }}ResourceWrapper;
+{% endfor %}
+
+class {{ info.title|classname }}Entrypoint
+{
+    /**
+     * @param {{ info.title|classname }}CoreInterface $core
+     * @return RequestHandler
+     */
+    public static function route({{ info.title|classname }}CoreInterface $core): RequestHandler {
+        $handler = new RequestHandler();
+{% for resource in paths|resources|sort %}
+        $handler->register('/{{ resource }}', new {{ resource|classname }}ResourceWrapper($core));
+{% endfor %}
+        return $handler;
+    }
+}
