@@ -1,0 +1,63 @@
+system:
+    EventLoop: feed
+    EventLoopThrottle: 0.16 # secs
+    network:
+        ssl:
+            CertFile: dd
+
+orders:
+    ActiveDepth: 10
+
+venues:
+    bem:
+        Username: BEMUser123
+        Password: BEMUserPWD123!
+        APIDomain: dd
+        APIID: asdsdvsv
+        ConnectSignalR: true
+
+instruments:
+- "XTN/EUR"
+- "RCC/Euro"
+- "ETH4/EUR"
+
+feeds:
+    cryptocompare:
+        type: stream
+        endpoint: https://streamer.cryptocompare.com
+        port: 443
+        framework: socket.io
+        instruments:
+            "XTN/EUR":
+                Ticker: "XRP"
+                BaseCCY: "BTC"
+            "RCC/Euro":
+                BaseCCY: "ETH"
+            "ETH4/EUR":
+                Ticker: "ETH"
+                BaseCCY: "ETH"
+feed:
+    Primary: cryptocompare
+
+pricers:
+    Default: nullpricer
+    settings:
+        nullpricer:
+            nop: nop
+
+strategy:
+    type: noddy_floater
+    settings:
+        noddy_floater:
+            Spread: 0.20
+            MaxSpread: 0.5
+            instrument_settings:
+                "XTN/EUR":
+                    MinVol: 5
+                    MaxVol: 10
+                "RCC/Euro":
+                    MinVol: 5
+                    MaxVol: 10
+                "ETH4/EUR":
+                    MinVol: 5
+                    MaxVol: 10
