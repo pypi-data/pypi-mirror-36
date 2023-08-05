@@ -1,0 +1,12 @@
+notetoself-1.0.1.dist-info/METADATA,sha256=QVkgsg0IiOW-5mGjdbxxyO7nZkw_dwirb1HPRJIhuu0,894
+notetoself-1.0.1.dist-info/RECORD,,
+notetoself-1.0.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+notetoself-1.0.1.dist-info/entry_points.txt,sha256=OOFzgW6rhN3xgALcCSVcD37_a1Ulydeq2XSRPZamKFw,40
+notetoself-1.0.1.dist-info/top_level.txt,sha256=z5PE5bUSoAWhZszjodOiB2OhpxVQm1ifDy5eotItHxg,4
+nts/__init__.py,sha256=d4QHYmS_30j0hPN8NmNPnQ_Z0TphDRbu4MtQj9cT9e8,22
+nts/api.py,sha256=cPX44HqQtMzWpZ_2E_u6L9_zL4eYIxSpWP3e60GSm9U,1441
+nts/ui/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+nts/ui/create.py,sha256=xkpeR6b_QrtgF23c7LVILY-T9U-Qe8juumqWocXCq1A,1321
+nts/ui/delete.py,sha256=MCDGVbDn2uR2JvM6IOF3fzkIqFBZEY6oZlMgXkuCxIM,328
+nts/ui/edit.py,sha256=J5ZL7PtN3aJgku-QGrG2Tm0e-V5H0i-Mgn8JByefd2c,738
+nts/ui/search.py,sha256=pAdVYQAxgelxAU8HpUluFs_LscSN14DLrMRe8EvC03Q,302
