@@ -1,0 +1,3 @@
+[console_scripts]
+csgrid2unstr = csgrid2unstr.main:main
+
