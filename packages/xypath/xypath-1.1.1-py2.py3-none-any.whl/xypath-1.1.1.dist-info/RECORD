@@ -1,0 +1,15 @@
+xypath/__init__.py,sha256=c213H31rCw8jmIi2Mwn1MnkZ1XkdK-5Aicd40P-pnWw,81
+xypath/loader.py,sha256=ujSZ14txDpizFIzo29npMUKvg2eslchjCuSScVrDYDI,1809
+xypath/matchers.py,sha256=NhRDQYzmUff9QiaN-ZYKYgvOUw9dmX82pZUr9KXgFAI,689
+xypath/xypath.py,sha256=Kku5LXN8B-KbFtfWbhWX0O9gTb8Uko75VkDrsCD5l48,31182
+xypath/xyzzy.py,sha256=2CPM9IgEtPQCZ3M0wMBaQ1rJR4JRiA06kp1D2o1y_0U,2070
+xypath/contrib/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+xypath/contrib/excel.py,sha256=qXlehxR6SYiz7v_ngTSg9T7D4VB_I2ZA7zy2k0nBWXo,5727
+xypath/extern/__init__.py,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+xypath/extern/tabulate.py,sha256=ZCkIVqZzUK6pQNsDPMoClsxtCR390HpdKfytRL-qx0I,27041
+xypath-1.1.1.dist-info/METADATA,sha256=L_VYdW-SHf2wOhjKi7lS20e0NVrtMJdSPTQ9w_JznZQ,873
+xypath-1.1.1.dist-info/RECORD,,
+xypath-1.1.1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+xypath-1.1.1.dist-info/entry_points.txt,sha256=TcUB1mzXiQO4GxpTRZ0EMpOXKMU3u-n_q1WrgVIcs1I,5
+xypath-1.1.1.dist-info/namespace_packages.txt,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+xypath-1.1.1.dist-info/top_level.txt,sha256=x8ScRAHko10j35tFeOQOfxNDtSLNn3y9EGKvN9Z4VRg,7
