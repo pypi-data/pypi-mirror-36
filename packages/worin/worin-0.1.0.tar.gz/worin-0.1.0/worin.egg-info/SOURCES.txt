@@ -1,0 +1,11 @@
+README.md
+setup.py
+worin/__init__.py
+worin/model.hdf5
+worin/preproc.py
+worin/tag.py
+worin.egg-info/PKG-INFO
+worin.egg-info/SOURCES.txt
+worin.egg-info/dependency_links.txt
+worin.egg-info/requires.txt
+worin.egg-info/top_level.txt
