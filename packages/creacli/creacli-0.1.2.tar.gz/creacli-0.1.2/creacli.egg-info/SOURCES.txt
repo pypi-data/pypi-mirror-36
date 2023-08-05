@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+creacli/__init__.py
+creacli/__main__.py
+creacli/ui.py
+creacli.egg-info/PKG-INFO
+creacli.egg-info/SOURCES.txt
+creacli.egg-info/dependency_links.txt
+creacli.egg-info/entry_points.txt
+creacli.egg-info/not-zip-safe
+creacli.egg-info/requires.txt
+creacli.egg-info/top_level.txt
