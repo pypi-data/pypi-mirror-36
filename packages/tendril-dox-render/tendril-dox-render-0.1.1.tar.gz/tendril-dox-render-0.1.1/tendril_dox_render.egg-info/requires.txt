@@ -1,0 +1,7 @@
+tendril-utils-core
+tendril-utils-types
+fs==0.5.4
+jinja2
+arrow
+numpy
+matplotlib
