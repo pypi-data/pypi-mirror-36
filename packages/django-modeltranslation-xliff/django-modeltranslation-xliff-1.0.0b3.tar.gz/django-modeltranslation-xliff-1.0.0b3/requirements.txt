@@ -1,0 +1,5 @@
+-r requirements-base.txt
+django-tinymce4-lite
+pytest
+pytest-cov
+pytest-django
