@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: flask-python-ldap
+Version: 0.1.1
+Summary: A basic ORM around python-ldap, influenced by flask-ldapconn
+Home-page: https://github.com/jagheterfredrik/flask-python-ldap
+Author: Fredrik Gustafsson
+Author-email: jagheterfredrik@gmail.com
+License: UNKNOWN
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Framework :: Flask
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: flask (>=1.0.2)
+Requires-Dist: python-ldap (>=3.1.0)
+Requires-Dist: certifi (>=certifi-2018.8.24)
+
+UNKNOWN
+
+
