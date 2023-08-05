@@ -1,0 +1,9 @@
+django_mysql_fuzzycount-0.4.dist-info/METADATA,sha256=STSqNRdiUfiKaDpItQB51bspnGZmOlA9Cg2IXmQdTqA,2776
+django_mysql_fuzzycount-0.4.dist-info/RECORD,,
+django_mysql_fuzzycount-0.4.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+django_mysql_fuzzycount-0.4.dist-info/top_level.txt,sha256=1aFq_RzqcMusviVbfULg2AdxhPpcULMM-5Gb_yDuQTg,17
+mysql_fuzzycount/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+mysql_fuzzycount/admin.py,sha256=1mdfLtURM-7noGZ7NuycM0zYOjCWjaBN5fu77aRwuqU,381
+mysql_fuzzycount/managers.py,sha256=VPuMiuAwu55YGbE-WIOgxBBekg2bt0BIjToL8CJi7Ic,190
+mysql_fuzzycount/models.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+mysql_fuzzycount/queryset.py,sha256=XZiZR5yB6Enw4Uy1AXdcjUmMuhMcJ8TlgVLYD5wWwow,1997
