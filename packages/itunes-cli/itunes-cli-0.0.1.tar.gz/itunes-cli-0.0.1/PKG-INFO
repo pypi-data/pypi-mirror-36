@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: itunes-cli
+Version: 0.0.1
+Summary: iTunes.app cli
+Home-page: https://github.com/looking-for-a-job/itunes-cli
+License: UNKNOWN
+Description: [![](https://img.shields.io/badge/OS-Unix-blue.svg?longCache=True)]()
+        [![](https://img.shields.io/badge/language-AppleScript-blue.svg?longCache=True)]()
+        
+        ### Install
+        ```bash
+        $ [sudo] pip install itunes-cli
+        ```
+        
+        ### Usage
+        ```bash
+        usage: itunes command [args]
+        
+        Available commands:
+        
+            play        play current track
+            pause       pause current track
+            next        next track
+            prev        previous track
+            stop        stop play
+        
+            playlists   playlists names
+        
+            volume      get/set iTunes volume
+        
+            kill        kill iTunes.app
+            pid         iTunes.app pid
+        
+        run `itunes COMMAND --help` for more infos
+        ```
+        
+        ### Examples
+        ```bash
+        $ itunes play
+        $ itunes pause
+        $ itunes stop
+        $ itunes next
+        $ itunes previous
+        ```
+        
+        volume
+        ```bash
+        $ itunes volume 50
+        $ itunes volume
+        50
+        ```
+        
+        process
+        ```bash
+        $ itunes pid
+        42
+        $ itunes kill
+        ```
+Keywords: itunes
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: Unix
+Classifier: Topic :: Multimedia :: Sound/Audio :: Players :: MP3
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
