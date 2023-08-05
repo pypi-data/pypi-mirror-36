@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: pystarling
+Version: 0.0.3
+Summary: A python SDK for interacting with the Starling V1 API.
+Home-page: https://github.com/aranscope/starling-python-sdk
+Author: Aran Long
+Author-email: me@aran.site
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: requests
+
+UNKNOWN
+
+
