@@ -1,0 +1,3 @@
+attrs
+pytest>=3.5.0
+pytest-mock
