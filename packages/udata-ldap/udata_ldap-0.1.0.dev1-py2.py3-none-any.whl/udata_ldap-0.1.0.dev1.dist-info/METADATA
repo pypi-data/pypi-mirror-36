@@ -1,0 +1,76 @@
+Metadata-Version: 2.1
+Name: udata-ldap
+Version: 0.1.0.dev1
+Summary: LDAP authentification for udata with optionnal Kerberos suppport.
+Home-page: https://github.com/opendatateam/udata-ldap
+Author: Open Data Team
+Author-email: contact@opendata.team
+License: MIT
+Keywords: udata LDAP
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python
+Classifier: Environment :: Web Environment
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: System :: Software Distribution
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Requires-Dist: udata (>=1.4.0.dev)
+Requires-Dist: gssapi (==1.5.0)
+Requires-Dist: flask-ldap3-login (==0.9.15)
+Provides-Extra: test
+Requires-Dist: httpretty (==0.9.5); extra == 'test'
+Requires-Dist: mock (==2.0.0); extra == 'test'
+Requires-Dist: pytest-flask (==0.11.0); extra == 'test'
+Requires-Dist: pytest-sugar (==0.9.1); extra == 'test'
+Requires-Dist: pytest (==3.7.4); extra == 'test'
+
+# udata-ldap
+
+LDAP authentification for udata with optionnal Kerberos suppport.
+
+## Usage
+
+Install the plugin package in you udata environement:
+
+```bash
+pip install udata-ldap
+```
+
+Then activate it in your `udata.cfg`:
+
+```python
+PLUGINS = ['ldap']
+```
+
+## Configuration
+
+## Testing localy with docker
+
+An example `docker-compose.yml` is provided to test localy.
+
+To use it, you need to copy the file `ipa-server-install-options.example` to `ipa-server-install-options` and edit it with your own parameters.
+
+**ex:**
+
+```
+--unattended
+--realm=DATA.XPS
+--domain=data.xps
+--ds-password=password
+--admin-password=password
+```
+
+# Changelog
+
+## Current (in progress)
+
+Initial release
+
+
+

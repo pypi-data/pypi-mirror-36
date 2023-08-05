@@ -1,0 +1,3 @@
+[udata.plugins]
+ldap = udata_ldap
+
