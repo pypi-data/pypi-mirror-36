@@ -1,0 +1,16 @@
+xdepy/__init__.py,sha256=zn2gw6fHpzkC8-xZiuRv1RyAP9gKejDgIVME3JeKrxw,263
+xdepy/DBXde/XdeMysql.py,sha256=_7vuXrgdYjqRE0qowJ_RxxlSCgNeT7XTb0hCiEgB5PU,9060
+xdepy/DBXde/XdeRedis.py,sha256=ag61YiXpOxsmKpX3uKs9SUAkV2yhvPghA3DMPfoEoa4,5596
+xdepy/DBXde/__init__.py,sha256=CTehlCCamAiBLLsv2y_ZGqDZKLtYMdNB1mKTDVh0dew,88
+xdepy/DataXde/XdeTestData.py,sha256=FFLlmWvZeCquI4uCU7HyI3nzoy98rej0CE9C1Uo6buQ,111
+xdepy/DataXde/__init__.py,sha256=q0nGOtybOtnf1cJFPjrfgD-9OFVU0YYMwiHbErWcsOY,105
+xdepy/MLXde/XdeTestML.py,sha256=gDDJePzgjyvdDzLyhoPWZtKIn7qKpPnFg0tM7SBry6M,109
+xdepy/MLXde/__init__.py,sha256=7PQIiZYrxWfJfw_GXvAN6Oh22TdC2ejyeB2CzaiywlQ,101
+xdepy/UtilsXde/XdeCurl.py,sha256=RgVC73CRTTe7uclY-y7G-eORJTATNSAz5jXh-Apb168,9217
+xdepy/UtilsXde/XdeLogger.py,sha256=S3AsJYiBUszgYkWO0hS5csKFNvo18GZ0xCzG8YBUPp0,938
+xdepy/UtilsXde/XdeTestUtils.py,sha256=Kn33jg0fnj2R71GgnCWmsevnv2pmjWD-WeYLxlnFq78,112
+xdepy/UtilsXde/__init__.py,sha256=wk07FqkdKA-tQZZYxof4V05QEA4GcBuHjKPs3RnBezk,88
+xdepy-0.0.2.dist-info/METADATA,sha256=Unuj2zq3tbvNtgGMPrX2LrdTMqfvJ72FEa3Y15m6CLc,233
+xdepy-0.0.2.dist-info/RECORD,,
+xdepy-0.0.2.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+xdepy-0.0.2.dist-info/top_level.txt,sha256=Ay50ru4iZy8lMoPNcEyB06COhXieNNMypnnbwwyFN6k,6
