@@ -1,0 +1,49 @@
+Metadata-Version: 1.0
+Name: batchbook-python
+Version: 0.1.0
+Summary: Batchbook API written in python
+Home-page: https://github.com/GearPlug/batchbook-python
+Author: Lelia Rubiano
+Author-email: lrubiano5@gmail.com
+License: GPL
+Description: # Batchbook-python
+        Batchbook API wrapper written in python.
+        
+        ## Installing
+        ```
+        pip install batchbook-python
+        ```
+        
+        ## Usage
+        ### Simple access with API KEY
+        ```
+        from batchbool.client import Client
+        
+        client = Client('API_KEY')
+        ```
+        
+        Get Contacts
+        ```
+        client.get_contacts()
+        ```
+        
+        Get an specific contact
+        ```
+        client.get_contact(contact_id)
+        ```
+        ## Requirements
+        
+        ```
+        -Requests
+        -Urllib
+        ```
+        
+        ## TODO
+        - Companies
+        - Custom Fields
+        - Users
+        - Roles
+        - Communications
+        
+Keywords: batchbook
+Platform: UNKNOWN

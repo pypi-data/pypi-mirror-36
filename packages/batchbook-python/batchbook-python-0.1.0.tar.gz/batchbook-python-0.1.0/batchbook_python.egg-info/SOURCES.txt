@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.py
+batchbook/__init__.py
+batchbook/client.py
+batchbook/exception.py
+batchbook_python.egg-info/PKG-INFO
+batchbook_python.egg-info/SOURCES.txt
+batchbook_python.egg-info/dependency_links.txt
+batchbook_python.egg-info/not-zip-safe
+batchbook_python.egg-info/requires.txt
+batchbook_python.egg-info/top_level.txt
