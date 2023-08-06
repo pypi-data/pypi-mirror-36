@@ -1,0 +1,3 @@
+[console_scripts]
+lpad = launchpadcli.cli:lpad
+

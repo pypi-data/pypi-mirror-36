@@ -1,0 +1,7 @@
+six
+launchpadlib
+click
+
+[dev]
+pytest
+tox
