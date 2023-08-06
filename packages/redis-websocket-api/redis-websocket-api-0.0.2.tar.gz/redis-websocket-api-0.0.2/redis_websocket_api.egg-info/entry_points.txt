@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        redis_websocket_api_example=redis_websocket_api.example:main
+    
