@@ -1,0 +1,34 @@
+[![pipeline status](https://git.coop/aptivate/internal-tools/aptivate-cli/badges/master/pipeline.svg)](https://git.coop/aptivate/internal-tools/aptivate-cli/commits/master)
+[![coverage report](https://git.coop/aptivate/internal-tools/aptivate-cli/badges/master/coverage.svg)](https://git.coop/aptivate/internal-tools/aptivate-cli/commits/master)
+[![PyPI version](https://badge.fury.io/py/aptivate-cli.svg)](https://badge.fury.io/py/aptivate-cli)
+
+# aptivate-cli
+
+Fully automated luxury Aptivate command line interface.
+
+## Install It
+
+```bash
+$ bash <(curl -s https://git.coop/aptivate/internal-tools/aptivate-cli/raw/master/bin/apc-install)
+```
+
+## Hack On It
+
+You'll have to install [pipenv] and [pyenv]. Then run:
+
+[pipenv]: https://github.com/pypa/pipenv#installation
+[pyenv]: https://github.com/pyenv/pyenv
+
+```bash
+$ git clone git@git.coop:aptivate/aptivate-cli.git
+$ cd aptivate-cli
+$ pipenv install --dev --python 3.7
+$ pipenv run pip install --editable .
+```
+
+## Release It
+
+```bash
+$ make test-publish
+$ make publish
+```
