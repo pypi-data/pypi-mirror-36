@@ -1,0 +1,11 @@
+zoopla/__init__.py,sha256=xg0FBuEEhsdwOGTpR3kxPCtcLfhfiUPCrUaS1T_oBIE,44
+zoopla/__version__.py,sha256=J-j-u0itpEFT6irdmWmixQqYMadNl1X91TxUmoiLHMI,22
+zoopla/api.py,sha256=ARA9dnEF1eD5t6DpD_tCUYuJ6pmfB4Z75hs_FFuxMM0,7582
+zoopla/enums.py,sha256=okJziDxId6I_ODjDYuy3m1rxOHeKthZYIySqPrc1LYw,580
+zoopla/exceptions.py,sha256=1QtONrs5ffTQTsQ3c60MsptbV6xW_MLMqb1DWOhZVpA,279
+zoopla/fields.py,sha256=GiOju8b3ni5tX6F_J1mNf114U959ulDSbxWiIKOkKzc,232
+zoopla/schemas.py,sha256=ZTXI0QD9Lv-GtGtB64teTiQX9G7WFEu4gd0j3jB8we4,9362
+zoopla-1.0.0.dist-info/METADATA,sha256=jb6YgCMOrQTqVATC2V-wZjfLPeq911MO1d-zBu54oMo,4033
+zoopla-1.0.0.dist-info/WHEEL,sha256=8T8fxefr_r-A79qbOJ9d_AaEgkpCGmEPHc-gpCq5BRg,110
+zoopla-1.0.0.dist-info/top_level.txt,sha256=7InT-easzQMN4T1cUfhdI_SXlRNAew0rWc7ssI53zvk,7
+zoopla-1.0.0.dist-info/RECORD,,
