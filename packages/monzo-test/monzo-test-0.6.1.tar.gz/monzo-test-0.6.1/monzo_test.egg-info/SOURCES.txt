@@ -1,0 +1,11 @@
+README.md
+setup.py
+monzo/__init__.py
+monzo/auth.py
+monzo/errors.py
+monzo/monzo.py
+monzo_test.egg-info/PKG-INFO
+monzo_test.egg-info/SOURCES.txt
+monzo_test.egg-info/dependency_links.txt
+monzo_test.egg-info/requires.txt
+monzo_test.egg-info/top_level.txt
