@@ -1,0 +1,8 @@
+setup.py
+greg_scraper.egg-info/PKG-INFO
+greg_scraper.egg-info/SOURCES.txt
+greg_scraper.egg-info/dependency_links.txt
+greg_scraper.egg-info/requires.txt
+greg_scraper.egg-info/top_level.txt
+src/__init__.py
+src/scraper.py
