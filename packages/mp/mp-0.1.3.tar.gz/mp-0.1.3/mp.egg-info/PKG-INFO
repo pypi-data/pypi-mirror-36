@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: mp
+Version: 0.1.3
+Summary: Machine Pseudo-Code
+Home-page: https://github.com/kerryeon/mp
+Author: kerryeon
+Author-email: besqer996@gnu.ac.kr
+License: MIT
+Description: # Machine Pseudo-Code
+        
+        for Software Exhibition in *GNU, Republic of Korea*. (now 181002)
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
