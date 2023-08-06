@@ -1,0 +1,15 @@
+README.md
+setup.py
+chineseflashcards/__init__.py
+chineseflashcards/__main__.py
+chineseflashcards/add_pinyin_diacritics_and_color.js
+chineseflashcards/cards.css
+chineseflashcards/cedict.txt
+chineseflashcards/fields.json
+chineseflashcards/templates.yaml
+chineseflashcards.egg-info/PKG-INFO
+chineseflashcards.egg-info/SOURCES.txt
+chineseflashcards.egg-info/dependency_links.txt
+chineseflashcards.egg-info/not-zip-safe
+chineseflashcards.egg-info/requires.txt
+chineseflashcards.egg-info/top_level.txt
