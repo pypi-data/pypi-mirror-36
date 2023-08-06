@@ -1,0 +1,37 @@
+#!python
+from __future__ import absolute_import
+
+import utils.helper as utils;
+import ecs_helper as ecs;
+import sys;
+import docker_helper as docker;
+import commons.config as config 
+
+arg = sys.argv[1]
+
+
+if arg == 'clean':
+    docker.clean_up();
+elif arg == 'deploy' :
+    ecs.deploy();
+elif arg == 'clean-all':
+    docker.clean_all();
+elif arg == 'lecs':
+    ecs.login_ecs()
+elif arg == 'tag':
+    docker.add_build_tag()
+elif arg == 'ip':
+    ecs.find_ip()
+elif arg == 'push':  
+    docker.push_image();
+elif arg == 'mcstatus':
+	mctest.test_machine()
+elif arg == 'log':
+	ecs.ecs_log() 
+elif arg == 'deploy':
+	ecs.deploy()
+elif arg == '--version':
+	config.find_version()
+else:
+    utils.helper();
+    
