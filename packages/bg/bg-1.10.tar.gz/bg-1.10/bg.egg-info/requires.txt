@@ -1,0 +1,12 @@
+coverage
+decorator
+networkx>=2
+nose
+marshmallow
+ete3
+six
+mock
+pytest
+scipy
+numpy
+enum-compat
