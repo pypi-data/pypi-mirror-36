@@ -1,0 +1,16 @@
+Flask-Mail==0.9.*
+Jinja2==2.9.*
+Markdown==2.6.*
+argparse==1.4
+biopython==1.70
+drmaa==0.7.*
+flask==0.12.*
+intervaltree==2.1.*
+matplotlib==2.1.*
+numpy
+peewee==2.10.2
+psutil==5.4.*
+python-crontab==2.2.*
+pyyaml==3.12
+requests==2.18.*
+tendo==0.2.*
