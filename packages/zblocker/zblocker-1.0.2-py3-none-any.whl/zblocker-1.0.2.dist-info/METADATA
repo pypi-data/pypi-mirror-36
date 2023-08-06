@@ -1,0 +1,80 @@
+Metadata-Version: 2.1
+Name: zblocker
+Version: 1.0.2
+Summary: 阻塞器, 单人阻塞器和多人阻塞器
+Home-page: https://pypi.org/
+Author: zlyuan
+Author-email: 1277260932@qq.com
+License: GNU GENERAL PUBLIC LICENSE
+Platform: all
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+
+阻塞器, 单人阻塞器和多人阻塞器
+
+
+单人阻塞器:
+    一个线程调用lock()会立即阻塞, 直到另一个线程调用unlock()为止, 同一个阻塞器只能阻塞一个线程
+测试代码:
+if __name__ == '__main__':
+    print('测试单人阻塞器')
+
+
+    def fun():
+        for i in range(5):
+            time.sleep(1)
+            a.unlock()
+
+
+    import threading
+    import time
+
+    a = BLock()
+    threading.Thread(target=fun).start()
+
+    for i in range(5):
+        print('开始锁定', i, time.strftime('%H:%M:%S', time.localtime()))
+        a.lock()  # 阻塞
+        print('  解除', i, time.strftime('%H:%M:%S', time.localtime()))
+
+    print('结束\n\n')
+
+
+多人阻塞器:
+    任何线程在调用lock()的时候都会被阻塞, 直到有一个线程调用一次unlock()来解除所有阻塞
+测试代码
+if __name__ == '__main__':
+    print('测试多人阻塞器')
+
+
+    def fun1(value):
+        print('阻塞', value)
+        a.lock()
+        print('  解除', value)
+
+
+    def fun2():
+        print('--2秒后解除所有阻塞--', time.strftime('%H:%M:%S', time.localtime()))
+        time.sleep(2)
+        print('--即将解除所有阻塞--', time.strftime('%H:%M:%S', time.localtime()))
+        a.unlock()
+
+
+    import threading
+    import time
+
+    a = BLock_more()
+
+    for i in range(5):
+        threading.Thread(target=fun1, args=(i,)).start()
+    threading.Thread(target=fun2).start()
+
+    a.join()
+    print('结束')
+
+
