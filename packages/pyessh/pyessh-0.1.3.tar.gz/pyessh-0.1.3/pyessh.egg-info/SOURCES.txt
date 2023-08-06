@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+pyessh.conf
+setup.py
+pyessh/__init__.py
+pyessh/pyessh.py
+pyessh.egg-info/PKG-INFO
+pyessh.egg-info/SOURCES.txt
+pyessh.egg-info/dependency_links.txt
+pyessh.egg-info/entry_points.txt
+pyessh.egg-info/requires.txt
+pyessh.egg-info/top_level.txt
