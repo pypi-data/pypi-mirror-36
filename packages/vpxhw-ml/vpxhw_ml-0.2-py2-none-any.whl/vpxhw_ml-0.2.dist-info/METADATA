@@ -1,0 +1,19 @@
+Metadata-Version: 2.0
+Name: vpxhw-ml
+Version: 0.2
+Summary: package for machine learning in vpxhw
+Home-page: UNKNOWN
+Author: Ray Xu
+Author-email: rxuniverse@google.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: vpxhw-db-data-uploader
+Requires-Dist: vpxhw-db-job-locator
+
+UNKNOWN
+
+
