@@ -1,0 +1,11 @@
+packaging_repositories/__init__.py,sha256=RLc59yBA_iskSQKmUslZZhbMR5VQXGPkQQN5r7FgxYs,430
+packaging_repositories/entries.py,sha256=LxsP7GRsv-HMlMnLPF7eEF2SMOL-1pvnEt8Q9mV9t9o,4809
+packaging_repositories/fetchers.py,sha256=o9JlT0Nq81F2mLgf2WmHiuBEoMJPPk_cSRAhJyyX2iM,974
+packaging_repositories/filters.py,sha256=Z9ZGgIDruiA0ACGh8Gcagl7ItwvbfxC787BbFDf3GKs,2241
+packaging_repositories/repositories.py,sha256=EQDJVIjMpvverN97OeiwDFH3L1ThHNlKDmM7mMiJBrI,2759
+packaging_repositories/utils.py,sha256=0KOpOQfpgtE2y1ercCVWF9-Z-NF72Y_WLOjh4sAFKv4,1953
+packaging_repositories-0.2.0.dist-info/METADATA,sha256=koCIcNo7UbUeYIMa2QJ-B6q1MgfGJ_lBS-PM6BScfWI,1196
+packaging_repositories-0.2.0.dist-info/RECORD,,
+packaging_repositories-0.2.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+packaging_repositories-0.2.0.dist-info/top_level.txt,sha256=A_3k2_UCG4vv7AySV4JqsX6C49zF8Stt1mXms0x7Xsk,23
+packaging_repositories-0.2.0.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
