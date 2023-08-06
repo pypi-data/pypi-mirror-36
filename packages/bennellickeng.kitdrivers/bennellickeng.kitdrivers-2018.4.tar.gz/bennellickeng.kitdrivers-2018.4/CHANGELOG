@@ -1,0 +1,22 @@
+2018.4 (2018-09-27)
+-------------------
+
+- Add ability to open PSU and Electronic load from USB serial number
+- Add more intense resetting to DMM6500 reset method
+
+
+2018.3 (2018-09-24)
+-------------------
+
+- Add ability to open USBTMC device from serial number
+- Add basic Keithley DMM6500 bench multimeter USBTMC driver
+
+
+2018.2 (2018-08-29)
+-------------------
+
+- Add ability to set PSU output voltage and read output current
+
+
+2018.1 (2018-08-28)
+-------------------
