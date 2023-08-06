@@ -1,0 +1,9 @@
+README.md
+setup.py
+h2ospawner/__init__.py
+h2ospawner/h2ospawner.py
+jupyterhub_h2ospawner.egg-info/PKG-INFO
+jupyterhub_h2ospawner.egg-info/SOURCES.txt
+jupyterhub_h2ospawner.egg-info/dependency_links.txt
+jupyterhub_h2ospawner.egg-info/requires.txt
+jupyterhub_h2ospawner.egg-info/top_level.txt

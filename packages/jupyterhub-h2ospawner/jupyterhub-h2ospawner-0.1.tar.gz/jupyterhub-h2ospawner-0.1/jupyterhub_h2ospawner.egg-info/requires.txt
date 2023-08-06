@@ -1,0 +1,2 @@
+jupyterhub>=0.9
+jupyterhub-systemdspawner>=0.11
