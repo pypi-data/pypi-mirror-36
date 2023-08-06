@@ -1,0 +1,12 @@
+README.md
+setup.py
+src/krok/__init__.py
+src/krok/__main__.py
+src/krok/kubectl.py
+src/krok/ssh.py
+src/krok/utils.py
+src/krok.egg-info/PKG-INFO
+src/krok.egg-info/SOURCES.txt
+src/krok.egg-info/dependency_links.txt
+src/krok.egg-info/entry_points.txt
+src/krok.egg-info/top_level.txt

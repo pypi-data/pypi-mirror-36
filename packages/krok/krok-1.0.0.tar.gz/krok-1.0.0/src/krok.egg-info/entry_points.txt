@@ -1,0 +1,3 @@
+[console_scripts]
+krok = krok.__main__:main
+
