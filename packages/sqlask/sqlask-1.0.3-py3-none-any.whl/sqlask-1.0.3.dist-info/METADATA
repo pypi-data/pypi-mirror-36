@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: sqlask
+Version: 1.0.3
+Summary: lightweight python framework for webapplications
+Home-page: http://github.com/codejunker1/sqlask
+Author: Venkata Sai Katepalli
+Author-email: venkatasaisoft@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: flasgger (==0.8.0)
+Requires-Dist: Flask (==0.12.2)
+Requires-Dist: Flask-Cors (==3.0.3)
+Requires-Dist: Flask-JWT (==0.3.2)
+Requires-Dist: Flask-RESTful (==0.3.6)
+Requires-Dist: marshmallow (==2.15.0)
+Requires-Dist: bcrypt (==3.1.4)
+Requires-Dist: pandas (==0.23.0)
+
+UNKNOWN
+
+
