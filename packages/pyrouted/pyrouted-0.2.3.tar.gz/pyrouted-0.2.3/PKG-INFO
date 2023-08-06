@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: pyrouted
+Version: 0.2.3
+Summary: Python Network Database
+Home-page: https://github.com/svinota/pyrouted
+Author: Peter V. Saveliev
+Author-email: peter@svinota.eu
+License: dual license GPLv2+ and Apache v2
+Description: # pyrouted
+        pyroute2 network database: system service
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Networking
+Classifier: Topic :: System :: Systems Administration
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Telecommunications Industry
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 4 - Beta
