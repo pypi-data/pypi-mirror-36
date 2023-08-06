@@ -1,0 +1,4 @@
+[console_scripts]
+py-clean = pyclean.cli:main
+pyclean = pyclean.cli:main
+
