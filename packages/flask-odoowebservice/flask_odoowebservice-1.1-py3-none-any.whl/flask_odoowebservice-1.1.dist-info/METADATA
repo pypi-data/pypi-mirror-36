@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: flask-odoowebservice
+Version: 1.1
+Summary: odoo web service extension from flask
+Home-page: https://github.com/FranciscoCarbonell/flask-odoowebservice
+Author: Francisco Carbonell
+Author-email: francabezo@gmail.com
+License: MIT
+Platform: any
+Requires-Dist: Flask
+Requires-Dist: pymongo
+Requires-Dist: mongokat
+Requires-Dist: flask-mongokat
+
+UNKNOWN
+
+
