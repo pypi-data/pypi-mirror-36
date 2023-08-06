@@ -1,0 +1,469 @@
+{
+  "src/components/Alert.js": {
+    "description": "",
+    "displayName": "Alert",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "color": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Alert color, options: primary, secondary, success, info, warning, danger,\nlink. Default is secondary"
+      },
+      "isOpen": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether alert is open, default: true"
+      },
+      "fade": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Fade on close."
+      }
+    }
+  },
+  "src/components/Badge.js": {
+    "description": "",
+    "displayName": "Badge",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "color": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Badge color, options: primary, secondary, success, info, warning, danger,\nlink. Default is secondary"
+      },
+      "pill": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Make badge \"pill\" shaped (rounded ends, like a pill), default: false"
+      },
+      "href": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Attach link to badge."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the Badge, default: span"
+      }
+    }
+  },
+  "src/components/Button.js": {
+    "description": "",
+    "displayName": "Button",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "n_clicks": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "An integer that represents the number of times\nthat this element has been clicked on.",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "n_clicks_timestamp": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "An integer that represents the time (in ms since 1970)\nat which n_clicks changed. This can be used to tell\nwhich button was changed most recently.",
+        "defaultValue": {
+          "value": "-1",
+          "computed": false
+        }
+      },
+      "key": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "A unique identifier for the component, used to improve\nperformance by React.js while rendering components\nSee https://reactjs.org/docs/lists-and-keys.html for more info"
+      },
+      "active": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether button is in active state"
+      },
+      "block": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Create block button."
+      },
+      "color": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Button color, options: primary, secondary, success, info, warning, danger,\nlink. Default is secondary"
+      },
+      "disabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Disable button (make unclickable)."
+      },
+      "size": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Button size, options: lg, md, sm."
+      },
+      "outline": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Set outline button style"
+      },
+      "fireEvent": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "A callback for firing events to dash."
+      },
+      "dashEvents": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'click'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      }
+    }
+  },
+  "src/components/ButtonGroup.js": {
+    "description": "",
+    "displayName": "ButtonGroup",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Class for the button group"
+      },
+      "vertical": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Stack buttons vertically"
+      },
+      "size": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Size of button group"
+      }
+    }
+  },
+  "src/components/layout/Col.js": {
+    "description": "",
+    "displayName": "Col",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "xs": {
+        "type": {
+          "name": "custom",
+          "raw": "columnProps"
+        },
+        "required": false,
+        "description": "Specify column behaviour on an extra small screen"
+      },
+      "sm": {
+        "type": {
+          "name": "custom",
+          "raw": "columnProps"
+        },
+        "required": false,
+        "description": "Specify column behaviour on a small screen"
+      },
+      "md": {
+        "type": {
+          "name": "custom",
+          "raw": "columnProps"
+        },
+        "required": false,
+        "description": "Specify column behaviour on a medium screen"
+      },
+      "lg": {
+        "type": {
+          "name": "custom",
+          "raw": "columnProps"
+        },
+        "required": false,
+        "description": "Specify column behaviour on a large screen"
+      },
+      "xl": {
+        "type": {
+          "name": "custom",
+          "raw": "columnProps"
+        },
+        "required": false,
+        "description": "Specify column behaviour on an extra large screen"
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to apply the col classes to, default: div"
+      }
+    }
+  },
+  "src/components/layout/Container.js": {
+    "description": "",
+    "displayName": "Container",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "fluid": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Should container be fluid or not"
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to apply the container class to, default: div"
+      }
+    }
+  },
+  "src/components/layout/Row.js": {
+    "description": "",
+    "displayName": "Row",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "noGutters": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Remove the \"gutters\" between columns in this row.\nsee https://getbootstrap.com/docs/4.0/layout/grid/#no-gutters"
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the row, default: div"
+      }
+    }
+  }
+}
