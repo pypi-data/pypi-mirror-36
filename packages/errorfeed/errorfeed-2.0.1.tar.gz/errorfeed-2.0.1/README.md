@@ -1,0 +1,53 @@
+# ErrorFeed Python Client
+
+Welcome to the ErrorFeed Python client, which makes it super-duper easy to integrate
+[ErrorFeed](https://www.errorfeed.com/) exception tracking into your Python project.
+
+To get started tracking errors,
+
+1. Create an account on ErrorFeed.com
+2. Create a new project
+3. Get your API token
+4. Add ErrorFeed to your WSGI Middleware, or use it directly.
+
+## Installation
+ErrorFeed is in pypi:
+
+    # easy_install errorfeed
+    
+or
+
+    # pip install errorfeed
+
+## Directly use the client
+
+Here's how to get started:
+
+    >>> import ErrorFeed
+    >>> errorfeed_client = ErrorFeed.ErrorFeedClient(
+    ...     api_token='-- YOUR ACCOUNT TOKEN --',
+    ...     environment='development-experiment', tags=['documentation-test'])
+    >>> print errorfeed_client
+    <ErrorFeed.ErrorFeedClient object at 0x10bcfbb90>
+    >>> try:
+    ...     oops = 1 / 0
+    ... except:
+    ...     errorfeed_client.handle_exception()
+    ...
+    
+Then you can use the WSGI Middleware:
+    
+    >>> app = ErrorFeedMiddleware(app, errorfeed_client)
+
+# Compatibility
+This ErrorFeed Python Client is compatible with Python 2.7 and 3.x and ErrorFeed API v1.
+
+# License
+Copyright 2015-2018 ErrorFeed. All Rights Reserved.
+
+This software is licensed under the Apache License, version 2.0.
+
+See LICENSE for full details.
+
+# Getting Help
+Email support@errorfeed.com with your questions.
