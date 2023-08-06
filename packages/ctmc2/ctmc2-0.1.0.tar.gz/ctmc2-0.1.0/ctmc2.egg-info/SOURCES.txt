@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+setup.py
+ctmc2/__init__.py
+ctmc2/aggregateevents.py
+ctmc2/ctmc_func.py
+ctmc2/generatormatrix.py
+ctmc2.egg-info/PKG-INFO
+ctmc2.egg-info/SOURCES.txt
+ctmc2.egg-info/dependency_links.txt
+ctmc2.egg-info/not-zip-safe
+ctmc2.egg-info/requires.txt
+ctmc2.egg-info/top_level.txt
