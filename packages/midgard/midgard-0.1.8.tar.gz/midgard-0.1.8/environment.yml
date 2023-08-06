@@ -1,0 +1,15 @@
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python>=3.6
+  - bumpversion
+  - flit
+  - ipython
+  - mypy
+  - numpy
+  - pandas
+  - pint
+  - pytest
+  - pytest-cov
+  - scipy
