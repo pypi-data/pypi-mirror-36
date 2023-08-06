@@ -1,0 +1,6 @@
+starting...
+-I- Read magic file  /Users/ltauxe/Programs/PmagPy/GIT/PmagPy/data_files/measurement_import/livdb_magic/TH_IZZI+/measurements.txt
+-I- Done calculating non linear TRM parameters for all specimens
+-E- ERROR: skipping specimen ATPIPV22-10B, not enough measurements - moving forward 
+-I- number of specimens in this project directory: 27
+-I- number of samples in this project directory: 1
