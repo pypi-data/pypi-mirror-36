@@ -1,0 +1,15 @@
+requirements.txt,sha256=QJODi95tf71Klivu-WeXGxokiiquV9t2L3WFBWOaiZ0,391
+model_zoo/VERSION,sha256=atlhOkVXmNbZLl9fOQq0uqcFlryGntaxf1zdKyhjXwY,5
+model_zoo/__init__.py,sha256=a5AakySoqm5WDXlrZtnKWl9U6k9JxdtxX6Z_AXHaOek,155
+model_zoo/__version__.py,sha256=8I_bWJ3sO_2dDyRyGOB9_cYMqSJ7N9mdKZh_UTblG30,62
+model_zoo/callbacks.py,sha256=gfFwZcDvesYJFDDvYP3sOC4cxdkOueCDhaAfmB7FyZM,4851
+model_zoo/evaluater.py,sha256=g4ett-V6Ywe4ostj4zCGmy6p9VEYc_r-jDy62qfmUpI,1351
+model_zoo/inferer.py,sha256=AvxRuK74EAR-c7slJQnLifyRpwT6CJs9ckHyLe6hK5Q,1293
+model_zoo/model.py,sha256=zNsDbB3mUw-ulOqFhp1nZDaj6Z0VaW8IBJs6w3588F4,2968
+model_zoo/trainer.py,sha256=GXPo8utpGFGWI_G31ZYciYjHqchBYonE9gJ2CkAQfVo,2011
+model_zoo/utils.py,sha256=kt0VzWTe-gSpsVTDGlJ77YSsVHje9Ojkoc9Y6u7yTrg,1601
+model_zoo-0.1.5.dist-info/LICENSE,sha256=kq_VTM_Y8otzNTaJ8G_MUrAyczjxfKmjQ4BEfmSuWtg,1056
+model_zoo-0.1.5.dist-info/METADATA,sha256=SVVyFRVLTSenumWJccHz-I-1t2DVOPcJxSpXvOmk25w,6012
+model_zoo-0.1.5.dist-info/WHEEL,sha256=CrDFromy0BmNYzyZFyVIlKdTa5Zg2RBBtjMkE7goq78,110
+model_zoo-0.1.5.dist-info/top_level.txt,sha256=8o72LRXdn-Lwc96WMc8_F_OcfGgCbaBpkykXM29GJHs,10
+model_zoo-0.1.5.dist-info/RECORD,,
