@@ -1,0 +1,3 @@
+[console_scripts]
+aws-target-discovery = aws_target_discovery.main:main
+
