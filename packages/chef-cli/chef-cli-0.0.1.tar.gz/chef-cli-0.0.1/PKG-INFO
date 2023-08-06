@@ -1,0 +1,21 @@
+Metadata-Version: 1.2
+Name: chef-cli
+Version: 0.0.1
+Summary: CodeChef command line interface. ChefCLI helps competitive coders to search, view,                 and submit problems in CodeChef.
+Home-page: https://github.com/mkfeuhrer/chef-cli
+Author: Abhey Rana
+Author-email: abhey.mnnit@gmail.com
+License: MIT
+Description: 
+        
+        # chef-cli
+        Codechef on command line with much more features
+        
+Keywords: chef-cli codechef cli programming
+Platform: UNKNOWN
+Requires: decouple
+Requires: mdv
+Requires: requests
+Requires: termgraph
+Requires: termcolor
+Requires-Python: >=3.5
