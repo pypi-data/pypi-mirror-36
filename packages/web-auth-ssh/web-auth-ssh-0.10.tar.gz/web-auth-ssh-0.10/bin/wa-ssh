@@ -1,0 +1,79 @@
+#!/bin/bash
+
+usage() {
+  echo "usage: wa-ssh [-h] [-i identity_file ] [ -f config_file ] user@example.com [ ssh_arg ... ]" >&2
+  echo "" >&2
+  echo "Fetches a private key from a keyserver protected with web authentication such as OAuth and" >&2
+  echo "uses that to log in. The corresponding public key is then provided to the ssh server" >&2
+  echo "when it asks for it, as configured by the AuthorizedKeysCommand configuration option.">&2
+  echo "" >&2
+  echo "positional arguments" >&2
+  echo "  user@example.com   The user and host to match in wa-ssh configuration" >&2
+  echo "                     and to log into once keys are set up." >&2
+  echo "" >&2
+  echo "optional arguments:" >&2
+  echo "  -i          additional identity to add for the ssh-agent session for this connection."  >&2
+  echo "              Several allowed" >&2
+  echo "  -f          Additional wa-ssh configuration file to read. Default configuration files" >&2
+  echo "              \"/etc/web-auth-ssh.conf\", \"C:\\Windows\\web-auth-ssh.conf\" and" >&2
+  echo "              \"~/.web-auth-ssh\" are read before these argument files, if readable" >&2
+  echo "  -h, --help  show this help message and exit" >&2
+  exit 1
+}
+
+if [ "$1" = "--help" -o "$1" = "-h" ]; then
+  usage
+fi
+
+unset SSH_AUTH_SOCK
+unset SSH_AGENT_PID
+cleanup() {
+  if [ -n "$TMP" ]; then
+    rm -f $TMP
+  fi
+  if [ -n "$SSH_AGENT_PID" ]; then
+    if [ -z "$IOTMP" ]; then
+      IOTMP=$(mktemp)
+    fi
+    eval $(ssh-agent -k) > $IOTMP
+  fi
+  if [ -n "$IOTMP" ]; then
+    rm -f $IOTMP
+  fi
+}
+trap cleanup EXIT
+IOTMP=$(mktemp)
+while [ "$1" = "-i" ] || [ "$1" = "-f" ]; do
+  if [ "$1" = "-i" ]; then
+    shift
+    KEY_NAMES="$KEY_NAMES $1"
+    shift
+  elif [ "$1" = "-f" ]; then
+    shift
+    CONF_FILES="$CONF_FILES $1"
+    shift
+  fi
+done
+
+UHOST=$1
+shift
+USER_HOST=( $(wa-user-host $UHOST -c $CONF_FILES) )
+if  ! eval "$(ssh-agent)" > $IOTMP; then
+  echo "Failed to start ssh agent"
+  cat $IOTMP
+  exit 1
+fi
+
+if ! wa-privkey ${UHOST} -c $CONF_FILES | ssh-add - > $IOTMP 2>&1; then
+    echo "Failed to add dynamic key"
+    cat $IOTMP
+    exit 1
+fi
+for KEY_NAME in $KEY_NAMES; do
+  if ! ssh-add $KEY_NAME > $IOTMP 2>&1; then
+    echo "Failed to add key $KEY_NAME"
+    cat $IOTMP
+    exit 1
+  fi
+done
+ssh -A -l "${USER_HOST[0]}" "${USER_HOST[1]}" "$@"
