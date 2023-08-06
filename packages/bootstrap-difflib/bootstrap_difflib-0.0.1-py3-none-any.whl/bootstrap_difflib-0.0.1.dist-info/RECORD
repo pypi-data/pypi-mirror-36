@@ -1,0 +1,13 @@
+bootstrap_difflib-0.0.1.dist-info/DESCRIPTION.rst,sha256=y6qN4SDf6CVf-Vih0OEd9eQIJuWcKWfhMxAReesBDQw,169
+bootstrap_difflib-0.0.1.dist-info/METADATA,sha256=Hv6uKRXHdq8OE9RQ3Hqiiq3WfMCJrQNJQDh6Anf2-zs,585
+bootstrap_difflib-0.0.1.dist-info/RECORD,,
+bootstrap_difflib-0.0.1.dist-info/WHEEL,sha256=rNo05PbNqwnXiIHFsYm0m22u4Zm6YJtugFG2THx4w3g,92
+bootstrap_difflib-0.0.1.dist-info/metadata.json,sha256=-yOFmm2c5xkZPRspqiCyNmpWgoqgeGApWBKwJragZDU,570
+bootstrap_difflib-0.0.1.dist-info/top_level.txt,sha256=wev1zwB_YoImTkHA5Nlf5v6qxjYdJlU8Gr6G32-G8A0,15
+demo/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+demo/demo.py,sha256=T28EsQnRwVazDGERfFzGO5K2Rpg-9KrjkMm3hVFOKh4,666
+lib/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+lib/bootstrap_difflib.py,sha256=E5vU_aFAxpyONwTkxVi2efcdvgsthup0zm6NOhe3iUM,2153
+lib/utils.py,sha256=3sIpcvyPQMwWocUyxrtr3yryTB1VwjnjSvBTbf0pRug,90
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_bootstrap_difflib.py,sha256=U9jQh1SI0sxwyPczfFFwdgkad4Qkcq5P2P77TD9qaj4,421
