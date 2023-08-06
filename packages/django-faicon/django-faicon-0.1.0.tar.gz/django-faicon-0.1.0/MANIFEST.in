@@ -1,0 +1,6 @@
+include LICENSE
+include README.md
+recursive-include faicon/static *
+recursive-include faicon/templates *
+ecursive-exclude * *.pyc
+exclude admin_preview.gif
