@@ -1,0 +1,4 @@
+[console_scripts]
+map2model = openschemas.cli.map2model:main
+openschemas = openschemas.cli:main
+
