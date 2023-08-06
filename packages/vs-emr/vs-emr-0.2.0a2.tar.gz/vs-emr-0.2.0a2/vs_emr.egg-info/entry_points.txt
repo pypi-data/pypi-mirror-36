@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        vs-emr=vs_emr.cli:cli
+    

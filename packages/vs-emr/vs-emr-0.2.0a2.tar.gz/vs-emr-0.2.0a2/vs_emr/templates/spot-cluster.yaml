@@ -1,0 +1,96 @@
+--- 
+defaults:
+  releaseLabel: "emr-5.8.0"
+  autoTerminate: true
+  instanceType: "m4.large"
+  ebsRootVolumeSize: 10
+  ebsSizeInGB: 32
+  bidPrice: null
+  variantSparkReleaseUrl: null
+  variantSparkBootstrap: "{{variantSparkReleaseUrl}}/bootstrap/install-variant-spark.sh"
+  master:
+    instanceType: {{instanceType}}
+    ebsSizeInGB: {{ebsSizeInGB}}
+    bidPrice: {{bidPrice}}
+  worker:
+    instanceCount: 1
+    instanceType: {{instanceType}}
+    ebsSizeInGB: {{ebsSizeInGB}}
+    bidPrice: {{bidPrice}}
+  conf:
+    emrClasspath: "/etc/hadoop/conf:/usr/lib/hadoop/*:/usr/lib/hadoop-hdfs/*:/usr/lib/hadoop-yarn/*:/usr/lib/hadoop-lzo/lib/*:/usr/share/aws/aws-java-sdk/*:/usr/share/aws/emr/emrfs/conf:/usr/share/aws/emr/emrfs/lib/*:/usr/share/aws/emr/emrfs/auxlib/*"
+    logBucketUri: null
+    hail:
+      enabled: false
+      releaseUrl: null
+      bootstrap: "{{conf.hail.releaseUrl}}/install-hail.sh"
+  ec2Attributes: {}
+# these are almost liteally passed to aws emr `create-clustr` as corrsponding option
+# e.g. `name` is  passed as `--name` etc.
+options:  
+  name: "variant-spark_{{worker.instanceType}}-{{worker.instanceCount}}"
+  release-label: "{{releaseLabel}}"
+  auto-terminate: {{autoTerminate}}
+  applications:
+  - Name: Ganglia
+  - Name: Spark 
+  tags:
+    application: "variant-spark"
+    use: "testing"
+  ec2-attributes: {{ec2Attributes}}
+  {{#conf.logBucketUri}}log-uri: "{{conf.logBucketUri}}"{{/conf.logBucketUri}}
+  {{#conf.logBucketUri}}enable-debugging: true{{/conf.logBucketUri}}
+  ebs-root-volume-size: {{ebsRootVolumeSize}} 
+  service-role: "EMR_DefaultRole"
+  instance-groups: 
+  - Name: "Master Instance Group"
+    InstanceCount: 1
+    InstanceGroupType: "MASTER"
+    InstanceType: "{{master.instanceType}}"
+    {{#master.bidPrice}}BidPrice: "{{master.bidPrice}}"{{/master.bidPrice}}
+    EbsConfiguration:
+      EbsBlockDeviceConfigs:
+      - VolumeSpecification:
+          SizeInGB: {{master.ebsSizeInGB}}
+          VolumeType: "gp2"
+        VolumesPerInstance: 1
+  - Name: "Core Instance Group"
+    InstanceCount: {{worker.instanceCount}}
+    InstanceGroupType: "CORE"
+    InstanceType: {{worker.instanceType}}
+    {{#worker.bidPrice}}BidPrice: "{{worker.bidPrice}}"{{/worker.bidPrice}}
+    EbsConfiguration:
+      EbsBlockDeviceConfigs:
+      - VolumeSpecification:
+          SizeInGB: 32
+          VolumeType: "gp2"
+        VolumesPerInstance: 1
+  configurations:
+  - Classification: "emrfs-site"
+    Properties:
+      fs.s3.maxConnections: "500"
+  - Classification: "spark"
+    Properties:
+      maximizeResourceAllocation: "true" 
+  - Classification: "spark-defaults"
+    Properties:
+      spark.dynamicAllocation.enabled: "false"
+      spark.serializer: "org.apache.spark.serializer.KryoSerializer"
+      spark.locality.wait: "10s"
+{{#conf.hail.enabled}}
+      spark.hadoop.io.compression.codecs: "org.apache.hadoop.io.compress.DefaultCodec,is.hail.io.compress.BGzipCodec,org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.BZip2Codec"
+      spark.executor.extraClassPath: "{{conf.emrClasspath}}:/mnt/hail/hail-all-spark_2.0.2_2.11.jar"
+      spark.driver.extraClassPath: "{{conf.emrClasspath}}:/mnt/hail/hail-all-spark_2.0.2_2.11.jar"
+{{/conf.hail.enabled}}
+  bootstrap-actions:
+  - Name: "Install Variant Spark"
+    Path: {{variantSparkBootstrap}}
+    Args: ["--release-url", "{{variantSparkReleaseUrl}}"]
+{{#conf.hail.enabled}}
+  - Name: "Install Hail"
+    Path: {{conf.hail.bootstrap}}
+    Args: ["--release-url", "{{conf.hail.releaseUrl}}"]
+{{/conf.hail.enabled}}
+
+
+

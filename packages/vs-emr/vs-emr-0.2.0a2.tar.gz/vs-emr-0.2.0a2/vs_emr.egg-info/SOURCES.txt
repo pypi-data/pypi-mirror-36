@@ -1,0 +1,13 @@
+MANIFEST.in
+setup.cfg
+setup.py
+vs_emr/__init__.py
+vs_emr/cli.py
+vs_emr.egg-info/PKG-INFO
+vs_emr.egg-info/SOURCES.txt
+vs_emr.egg-info/dependency_links.txt
+vs_emr.egg-info/entry_points.txt
+vs_emr.egg-info/requires.txt
+vs_emr.egg-info/top_level.txt
+vs_emr/config/config.min.yaml
+vs_emr/templates/spot-cluster.yaml

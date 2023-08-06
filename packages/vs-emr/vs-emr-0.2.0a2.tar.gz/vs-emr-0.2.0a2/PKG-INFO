@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: vs-emr
+Version: 0.2.0a2
+Summary: VariantSpark AWS EMR Tool
+Home-page: https://bioinformatics.csiro.au/variantspark
+Author: Piotr Szul et. al
+Author-email: piotr.szul@csiro.au
+License: CSIRO Non-Commercial Source Code Licence Agreement v1.0
+Project-URL: Bug Tracker, https://github.com/aehrc/VariantSpark/issues
+Project-URL: Documentation, http://variantspark.readthedocs.io/en/latest
+Project-URL: Source Code, https://github.com/aehrc/VariantSpark
+Description: A command line utility to facilitate running of VariantSpark on AWS EMR 
+Keywords: gwas vcf random-forest association-studies variant-spark
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Programming Language :: Python :: 2.7
