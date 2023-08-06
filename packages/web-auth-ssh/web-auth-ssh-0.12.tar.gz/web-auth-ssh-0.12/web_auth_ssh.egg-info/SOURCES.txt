@@ -1,0 +1,16 @@
+README.md
+setup.cfg
+setup.py
+bin/wa-ssh
+wa_ssh/__init__.py
+wa_ssh/cli.py
+wa_ssh/keygen.py
+wa_ssh/keyserver.py
+wa_ssh/utils.py
+web_auth_ssh.egg-info/PKG-INFO
+web_auth_ssh.egg-info/SOURCES.txt
+web_auth_ssh.egg-info/dependency_links.txt
+web_auth_ssh.egg-info/entry_points.txt
+web_auth_ssh.egg-info/not-zip-safe
+web_auth_ssh.egg-info/requires.txt
+web_auth_ssh.egg-info/top_level.txt
