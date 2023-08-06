@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: zappix
+Version: 0.0.3
+Summary: A Python replacement for Zabbix sender and get.
+Home-page: https://gitlab.com/szuro/zappix
+Author: Robert Szulist
+Author-email: r.szulist@gmail.com
+License: UNKNOWN
+Keywords: zabbix get sender
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: System :: Monitoring
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+
+Zappix - a package for Zabbix sender and get.
+
+
