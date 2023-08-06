@@ -1,0 +1,4 @@
+
+        [distutils.setup_keywords]
+        git_version = pypigit_version:git_version
+    
