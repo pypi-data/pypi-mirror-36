@@ -1,0 +1,21 @@
+Metadata-Version: 1.2
+Name: cmapy
+Version: 0.1.2
+Summary: Use Matplotlib colormaps with OpenCV in Python.
+Home-page: https://gitlab.com/cvejarano-oss/cmapy/
+Author: Camilo Vejarano
+License: MIT
+Project-URL: Bug Reports, https://gitlab.com/cvejarano-oss/cmapy/issues/
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research 
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Requires-Python: >=3
