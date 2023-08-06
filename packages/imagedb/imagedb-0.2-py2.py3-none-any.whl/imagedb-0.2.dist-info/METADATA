@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: imagedb
+Version: 0.2
+Summary: Store images, especially from Clipboard, in a database, and spin an image server (for usage in Jupyter Notebook).
+Home-page: https://github.com/patarapolw/ImageDB
+License: UNKOWN
+Author: Pacharapol Withayasakpunt
+Author-email: patarapolw@gmail.com
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: flask (>=1.0,<2.0)
+Requires-Dist: imagehash (>=4.0,<5.0)
+Requires-Dist: jupyter (>=1.0,<2.0)
+Requires-Dist: nonrepeat (>=0.1.1,<0.2.0)
+Requires-Dist: notebook (>=5.6,<6.0)
+Requires-Dist: pillow (>=5.2,<6.0)
+Requires-Dist: python-slugify (>=1.2,<2.0)
+Requires-Dist: send2trash (>=1.5,<2.0)
+Requires-Dist: sqlalchemy (>=1.2,<2.0)
+Description-Content-Type: text/markdown
+
+# ImageDB
+
+Store images, especially from Clipboard, in a database, and spin an image server (for usage in Jupyter Notebook).
+
+## Installation
+
+```commandline
+$ pip install imagedb
+```
+
+Or
+
+1. Clone the project from GitHub
+2. `poetry add imagedb --path path/to/imagedb/folder`
+
+## Usage
+
+### Run an image server
+
+In a Python script (outside Jupyter Notebook).
+
+```python
+from imagedb import ImageDB
+ImageDB('images.db').runserver()
+# Then, go to `http://localhost:8000` in your browser to register an image (from the clipboard).
+```
+
+### Get images from the image server
+
+In Jupyter Notebook
+
+```pydocstring
+>>> from imagedb import ImageDB
+>>> idb = ImageDB('images.db')
+>>> idb.last()
+# The latest image in the server will be shown.  `idb.last(5)` is also supported.
+>>> from IPython.display import display
+>>> for image in idb.search(tags='bar'):
+...     display(image)
+# All images corresponding to the tag 'bar' will be shown.
+```
+
+## Screenshots
+
+<img src="https://raw.githubusercontent.com/patarapolw/ImageDB/master/screenshots/jupyter1.png" />
+<img src="https://raw.githubusercontent.com/patarapolw/ImageDB/master/screenshots/jupyter2.png" />
+<img src="https://raw.githubusercontent.com/patarapolw/ImageDB/master/screenshots/browser1.png" />
+<img src="https://raw.githubusercontent.com/patarapolw/ImageDB/master/screenshots/browser2.png" />
+

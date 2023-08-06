@@ -1,0 +1,14 @@
+imagedb/__init__.py,sha256=JpbYCwLq725faMNFT7HphqAQ0b2X7Goc-Hdt-rCcZ1g,154
+imagedb/api.py,sha256=aecNO9cXdyBY0WTcZ7e5IYF3wz67X79EjzzsqaX5BVs,1639
+imagedb/config.py,sha256=UymJsT8Opq25bgAfbTwmPSntxDbi7XdBJCXhZ6Q-7FA,30
+imagedb/db.py,sha256=3FDXO4_Xpn5UQkJLXtp0ibdSRsVjLAkkvkY4_ujbHJs,12863
+imagedb/main.py,sha256=aHU7DBGSxJNg6lMCMuTM0rgBfWE6zi-fhLBZlY-abeo,6186
+imagedb/static/index.css,sha256=aCL0gZW5gq1Dxp0-8KStmMnHbWNm5MZsHXDRrkh_KG8,170
+imagedb/static/index.js,sha256=0TLzGkJXbZqbZqrvDrdQrjaWZ_6ybVhIsx2YzBnC1nc,3196
+imagedb/templates/index.html,sha256=DWGeDWAr87jXUtbrRw_WkuzZXUXNEbBMYn8lW0oloYk,540
+imagedb/util.py,sha256=wPbvKUOcegqBcXGBrwDqBV4a26KmAxL0CH3u1n6oFqI,1342
+imagedb/views.py,sha256=PgAqGSYjgb65R4mYhQb7B3YGyExdbcmqrngGqVMuLrk,306
+imagedb-0.2.dist-info/LICENSE,sha256=8UmO4O0vGEotUnolM6lBCFtXf-s4veRYVbiM9ZCKrQg,1082
+imagedb-0.2.dist-info/WHEEL,sha256=4p5tkGYU5jgQ_R_MzjRyfjVTOldk8ADioKgp0j9QG_U,88
+imagedb-0.2.dist-info/METADATA,sha256=yta-n2jHzlbi6OJvEmWUcOmpK5BmOV-RqPr76S87yyA,2384
+imagedb-0.2.dist-info/RECORD,,
