@@ -1,0 +1,14 @@
+numpy
+scipy
+pwkit
+sdmpy
+pyfftw
+bokeh
+cython
+scikit-learn
+attrs
+future
+astropy<3.0
+pyyaml
+numba
+hdbscan
