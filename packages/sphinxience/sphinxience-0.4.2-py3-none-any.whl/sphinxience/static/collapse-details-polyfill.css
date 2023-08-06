@@ -1,0 +1,63 @@
+/* from the polyfill at
+   http://mathiasbynens.be/notes/html5-details-jquery */
+
+details {
+	display: block;
+	border: 1px #666;
+	border-style: none none none solid;
+	border-radius: .4em;
+	margin: .4em 0em;
+	padding: .2em .3em;
+}
+
+/* The grey button you can click to open/close the directive in HTML. */
+summary {
+	padding: .2em;
+	margin: .1em 0em;
+	display: block;
+	color: #333;
+	font-size: smaller;
+	background-color: #ddd;
+	border: thin solid #bbb;
+	border-radius: .2em;
+}
+
+/* Apply a pointer cursor and style the background upon hover to indicate <summary> is a clickable element. */
+/* These styles can be applied regardless of whether the fallback is needed */
+summary {
+	cursor: pointer;
+}
+summary:hover, summary:focus {
+	background: #ccc;
+}
+
+/* The following styles are not really needed, since the jQuery script takes care of hiding/displaying the elements. */
+
+/* However, we’re still gonna use CSS as well to prevent FOUC in browsers that understand these selectors. */
+
+/* Remember: by default (and probably most of the time), the contents of the <details> element are hidden. */
+.no-details details > * {
+	display: none;
+}
+
+/* And yes, it should really be ::before, but that doesn’t work in IE8 */
+.no-details details > summary:before {
+	float: left;
+	width: 20px;
+	content: '► ';
+}
+
+.no-details details.open > summary:before {
+	content: '▼ ';
+}
+
+/* Make sure summary remains visible */
+.no-details details summary {
+	display: block;
+}
+
+/* Make sure that list bullets fall inside the collapse-box, not outside */
+
+details > ul, details > ol, details > div > ul, details > div > ol {
+	padding-left: 40px;
+}
