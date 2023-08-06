@@ -1,0 +1,11 @@
+MANIFEST.in
+README.rst
+setup.py
+create_django_app/__init__.py
+create_django_app/__main__.py
+create_django_app/cli.py
+create_django_app.egg-info/PKG-INFO
+create_django_app.egg-info/SOURCES.txt
+create_django_app.egg-info/dependency_links.txt
+create_django_app.egg-info/entry_points.txt
+create_django_app.egg-info/top_level.txt
