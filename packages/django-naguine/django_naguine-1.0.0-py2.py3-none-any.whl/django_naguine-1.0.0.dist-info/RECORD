@@ -1,0 +1,13 @@
+django_naguine-1.0.0.dist-info/DESCRIPTION.rst,sha256=2c4g5zWmWCV59GMczO-JgKv8peXe5xn6RVi_z46gGD4,556
+django_naguine-1.0.0.dist-info/METADATA,sha256=UNFfWjvdgNhq40F3U8RJ9EoxyynRn06HlWJP60ur5eo,1313
+django_naguine-1.0.0.dist-info/RECORD,,
+django_naguine-1.0.0.dist-info/WHEEL,sha256=kdsN-5OJAZIiHN-iO4Rhl82KyS0bDWf4uBwMbkNafr8,110
+django_naguine-1.0.0.dist-info/metadata.json,sha256=FERSz9SKqWeeVcS3H0qVpJiJkhLqkV7XIb7dtRp69Lk,927
+django_naguine-1.0.0.dist-info/top_level.txt,sha256=aRpcjZuQfbuWrKNHzZSQBzZZeomfjCrUcJFPhCPNlGg,8
+naguine/__init__.py,sha256=c0sUnHiwjtOg7ZtcQAFxw_pNNyDmAK12lwWzTahDo9c,88
+naguine/apps/__init__.py,sha256=RCIFqPEhtyD4ZoDiH_obyB9pKqj_tTVIUwmK-i5XjL0,84
+naguine/apps/models.py,sha256=vq4Um6aZegg7-MEUoLYEfb6PiL3rxvU2Uu2gJRqX-go,859
+naguine/conf/__init__.py,sha256=-pwmXRw-PEM8xLLeOJMjmkerODPyEgxKqHYBWRv96pM,127
+naguine/core/__init__.py,sha256=PCj8Bd-S3ia4WaGcrSLAtF5ngbl415vv3GAxmHi5zU4,176
+naguine/core/composedfunction.py,sha256=6o4rX97Hmz8YkeP_EhOA7ObScHFAxiP7BeHwfEvYeXE,2918
+naguine/core/fork.py,sha256=GHCNhAvCwok2c0GTsRh3cXMRdtg6rG-ALAKHHBBdJLs,2913
