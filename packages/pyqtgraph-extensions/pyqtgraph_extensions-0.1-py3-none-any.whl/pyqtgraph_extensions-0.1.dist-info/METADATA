@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: pyqtgraph-extensions
+Version: 0.1
+Summary: Extensions for pyqtgraph
+Home-page: https://bitbucket.org/draustin/pyqtgraph_extensions
+Author: Dane Austin
+Author-email: dane_austin@fastmail.com.au
+License: BSD
+Platform: UNKNOWN
+Requires-Dist: pyqtgraph
+
+pyqtgraph_extensions many add-ons for pyqtgraph.
+
+
