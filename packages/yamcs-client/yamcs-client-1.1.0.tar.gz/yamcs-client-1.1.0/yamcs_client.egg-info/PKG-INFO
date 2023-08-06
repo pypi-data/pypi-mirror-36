@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: yamcs-client
+Version: 1.1.0
+Summary: Yamcs API client library
+Home-page: https://github.com/yamcs/yamcs-python
+Author: Space Applications Services
+Author-email: yamcs@spaceapplications.com
+License: LGPL
+Description: # Client library for Yamcs.
+        [![Website](https://img.shields.io/website/http/shields.io.svg?label=docs)](https://www.yamcs.org/yamcs-python/yamcs-client)
+        [![Build Status](https://travis-ci.org/yamcs/yamcs-python.svg?branch=master)](https://travis-ci.org/yamcs/yamcs-python)
+        [![PyPI](https://img.shields.io/pypi/v/yamcs-client.svg)](https://pypi.python.org/pypi/yamcs-client)
+        [![PyPI pyversions](https://img.shields.io/pypi/pyversions/yamcs-client.svg)](https://pypi.python.org/pypi/yamcs-client/)
+        
+        ## Documentation
+        https://www.yamcs.org/yamcs-python/yamcs-client
+        
+        ## Development Setup
+        
+        Install build dependencies (you may want to do this in a virtualenv):
+        
+            pip install -r requirements.txt
+        
+        
+        Install `yamcs-client` from the source base:
+        
+            python setup.py develop
+        
+        Changes to any source file have immediate impact.
+        
+        
+        ## License
+        
+        LGPL-3.0. See [LICENSE](https://github.com/yamcs/yamcs-python/blob/master/LICENSE)
+        
+Platform: Posix; MacOS X; Windows
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet
+Description-Content-Type: text/markdown
