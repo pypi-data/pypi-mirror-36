@@ -1,0 +1,12 @@
+azure/cli/command_modules/signalr/__init__.py,sha256=XFm79Sc-dCiDenGobXuzlQSxKFAm9IMseTdvjFiKvB4,1044
+azure/cli/command_modules/signalr/_client_factory.py,sha256=tCIXbGqJ7wYDN0nOZVYEZjgONCOxV_VhY26WM8iGRKs,680
+azure/cli/command_modules/signalr/_constants.py,sha256=xEn_vPGJneqYwA6nWmExSWElJ5WtWZ0drC3Gaop-jT8,450
+azure/cli/command_modules/signalr/_help.py,sha256=JzIzsxK1a0EDw_z2vX1htFMKN8CnaZe6H8Fi-97Ha2E,2414
+azure/cli/command_modules/signalr/_params.py,sha256=2LztUA9n3OvqCrjmcipzszj7-J9ejOTjRBFVNpnRgws,1735
+azure/cli/command_modules/signalr/commands.py,sha256=01X_8AXbyp6FDEmGybIHNAL38SCzWRprpqp5jvBzqJs,1262
+azure/cli/command_modules/signalr/custom.py,sha256=zHqBo5iZqdvOAxm6s-kERf7W9XacIyjCKjOv3G7Otmc,1443
+azure/cli/command_modules/signalr/key.py,sha256=ilINjlLoKhAh4-aMgsGELM0Gwm4-wSxsLzK0yKWDj48,806
+azure_cli_signalr-1.0.0.dist-info/METADATA,sha256=V8I_PM2C14ddrFegQWrWh_XSvY0bGQ45YDxv0kYrG1s,1198
+azure_cli_signalr-1.0.0.dist-info/RECORD,,
+azure_cli_signalr-1.0.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+azure_cli_signalr-1.0.0.dist-info/top_level.txt,sha256=S7DhWV9m80TBzAhOFjxDUiNbKszzoThbnrSz5MpbHSQ,6
