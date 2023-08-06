@@ -1,0 +1,10 @@
+README.md
+setup.py
+survivorlib/__init__.py
+survivorlib/__main__.py
+survivorlib.egg-info/PKG-INFO
+survivorlib.egg-info/SOURCES.txt
+survivorlib.egg-info/dependency_links.txt
+survivorlib.egg-info/entry_points.txt
+survivorlib.egg-info/requires.txt
+survivorlib.egg-info/top_level.txt
