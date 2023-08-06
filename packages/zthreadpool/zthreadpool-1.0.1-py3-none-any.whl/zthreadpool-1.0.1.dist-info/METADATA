@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: zthreadpool
+Version: 1.0.1
+Summary: 线程池, 固定指定数量的线程来执行任务, 避免重复创建和销毁线程时的资源消耗
+Home-page: https://pypi.org/
+Author: zlyuan
+Author-email: 1277260932@qq.com
+License: GNU GENERAL PUBLIC LICENSE
+Platform: all
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: zqueue (>=1.2.0)
+Requires-Dist: zblocker
+
+线程池, 固定指定数量的线程来执行任务, 避免重复创建和销毁线程时的资源消耗
+
+注意:
+    如果任务数量超过线程数量, 超出的任务会等待有正在执行的任务执行完毕后, 在有空闲线程时才会执行
+
+测试代码:
+if __name__ == '__main__':
+    import time
+    import threading
+
+    p = ThreadPool(2)
+
+
+    @p.task()
+    def fun(a, c):
+        print(a, '开始', time.strftime('  %H:%M:%S', time.localtime()))
+        for i in range(c):
+            time.sleep(0.01)
+        print(a, '  结束', time.strftime('  %H:%M:%S', time.localtime()))
+
+
+    fun('aa', 100)
+    fun('bb', 100)
+    fun('cc', 100)
+    fun('dd', 100)
+    p.close()
+    p.join()
+    print('--end--')
+
+
