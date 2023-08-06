@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: apistar-dynamic
+Version: 0.1.0
+Summary: API Star Dynamic model and handler generator.
+Home-page: https://github.com/bendog/apistar-dynamic
+Author: Ben Fitzhardinge
+Author-email: ben@fitzhardinge.net
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >3.5.0
+Requires-Dist: psycopg2
+Requires-Dist: apistar (<0.6.0,>0.5.0)
+Requires-Dist: apistar-jwt (>=0.4.2)
+
+UNKNOWN
+
+
