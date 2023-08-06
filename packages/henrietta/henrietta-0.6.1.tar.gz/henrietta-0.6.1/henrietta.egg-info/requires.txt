@@ -1,0 +1,17 @@
+numpy
+astropy
+scipy
+ipython
+matplotlib
+lightkurve
+tqdm
+thefriendlystars
+
+[docs]
+sphinx
+nbsphinx
+sphinx_rtd_theme
+numpydoc
+
+[models]
+batman-package
