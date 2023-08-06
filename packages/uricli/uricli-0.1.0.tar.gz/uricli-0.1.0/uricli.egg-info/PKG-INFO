@@ -1,0 +1,12 @@
+Metadata-Version: 1.0
+Name: uricli
+Version: 0.1.0
+Summary: Utility CLI for submitting solutions to URI Online Judge.
+Home-page: https://github.com/rafael-telles/uri-cli
+Author: Rafael Telles
+Author-email: rafael@telles.pw
+License: UNKNOWN
+Description: # uri-cli
+        Utility CLI for submitting solutions to URI Online Judge
+        
+Platform: UNKNOWN
