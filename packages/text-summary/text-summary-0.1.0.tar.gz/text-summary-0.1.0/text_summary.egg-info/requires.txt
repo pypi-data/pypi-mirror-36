@@ -1,0 +1,9 @@
+ProsperCommon
+plumbum
+nltk
+newspaper3k
+
+[dev]
+sphinx
+sphinxcontrib-napoleon
+semantic-version
