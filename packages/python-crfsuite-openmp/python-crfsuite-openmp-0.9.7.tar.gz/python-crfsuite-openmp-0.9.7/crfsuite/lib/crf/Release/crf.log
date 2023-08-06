@@ -1,0 +1,45 @@
+﻿cl : Command line warning D9002: ignoring unknown option '/arch:SSE2'
+  crf1d_encode.c
+  crfsuite.c
+  crfsuite_train.c
+  dataset.c
+  dictionary.c
+  holdout.c
+  lbfgs.c
+  logging.c
+  params.c
+  quark.c
+  rumavl.c
+  crf1d_context.c
+  crf1d_feature.c
+  crf1d_model.c
+  crf1d_tag.c
+  train_arow.c
+  train_averaged_perceptron.c
+  train_l2sgd.c
+  train_lbfgs.c
+  train_passive_aggressive.c
+  Generating Code...
+  Appending x64\Release\cqdb.obj
+  Appending x64\Release\lookup3.obj
+  Appending Release\train_passive_aggressive.obj
+  Appending Release\train_lbfgs.obj
+  Appending Release\train_l2sgd.obj
+  Appending Release\train_averaged_perceptron.obj
+  Appending Release\train_arow.obj
+  Appending Release\crf1d_tag.obj
+  Appending Release\crf1d_model.obj
+  Appending Release\crf1d_feature.obj
+  Appending Release\crf1d_context.obj
+  Appending Release\rumavl.obj
+  Appending Release\quark.obj
+  Appending Release\params.obj
+  Appending Release\logging.obj
+  Appending Release\lbfgs.obj
+  Appending Release\holdout.obj
+  Appending Release\dictionary.obj
+  Appending Release\dataset.obj
+  Appending Release\crfsuite_train.obj
+  Appending Release\crfsuite.obj
+  Appending Release\crf1d_encode.obj
+  crf.vcxproj -> E:\Projetos\temp\novo crfsuite\crfsuite-openmp-master\crfsuite-openmp-master\Release\crf.lib
