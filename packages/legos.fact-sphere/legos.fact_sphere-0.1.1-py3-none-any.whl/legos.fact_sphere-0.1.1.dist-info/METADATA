@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: legos.fact-sphere
+Version: 0.1.1
+Summary: Lego for getting a random "fact" from the Portal 2 Fact Sphere
+Home-page: https://github.com/Legobot/legos.fact_sphere
+Author: drewpearce
+Author-email: UNKNOWN
+License: GPL3
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 3 - Alpha
+Requires-Dist: legobot
+Requires-Dist: pyyaml
+
+UNKNOWN
+
+
