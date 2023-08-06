@@ -1,0 +1,10 @@
+README.md
+setup.py
+icw_lib.egg-info/PKG-INFO
+icw_lib.egg-info/SOURCES.txt
+icw_lib.egg-info/dependency_links.txt
+icw_lib.egg-info/top_level.txt
+lib/Crawler.py
+lib/Downloader.py
+lib/Validator.py
+lib/__init__.py
