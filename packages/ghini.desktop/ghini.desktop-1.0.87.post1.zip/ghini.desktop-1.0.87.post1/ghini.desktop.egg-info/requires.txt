@@ -1,0 +1,14 @@
+Pillow==2.3.0
+SQLAlchemy==1.0.8
+fibra==0.0.17
+gdata==2.0.18
+lxml
+mako==0.9.1
+pyparsing==2.0.1
+pyqrcode==1.2.1
+python-dateutil<2.0
+raven==6.7.0
+requests
+
+[docs]
+sphinx==1.6.7
