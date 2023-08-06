@@ -1,0 +1,4 @@
+---
+
+create_migration_resource_script: create-resources.sh.j2
+resource_suffix: "pre"
