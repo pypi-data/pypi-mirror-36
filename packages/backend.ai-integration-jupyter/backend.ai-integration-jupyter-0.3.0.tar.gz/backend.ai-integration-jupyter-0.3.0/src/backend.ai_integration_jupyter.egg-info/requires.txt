@@ -1,0 +1,9 @@
+backend.ai-client>=1.4.0
+metakernel>=0.20.14
+
+[dev]
+pytest
+flake8
+
+[test]
+pytest
