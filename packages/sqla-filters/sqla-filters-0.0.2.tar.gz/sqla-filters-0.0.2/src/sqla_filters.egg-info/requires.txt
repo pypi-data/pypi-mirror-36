@@ -1,0 +1,11 @@
+SQLAlchemy==1.2.10
+
+[dev]
+pylint
+pep8
+autopep8
+ipython
+mypy
+pytest
+rope
+sphinx
