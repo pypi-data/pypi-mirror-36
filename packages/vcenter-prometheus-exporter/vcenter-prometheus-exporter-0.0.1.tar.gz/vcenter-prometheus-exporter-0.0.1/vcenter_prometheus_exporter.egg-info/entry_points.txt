@@ -1,0 +1,3 @@
+[console_scripts]
+vcenter_exporter = vcenter_exporter.__main__:main
+
