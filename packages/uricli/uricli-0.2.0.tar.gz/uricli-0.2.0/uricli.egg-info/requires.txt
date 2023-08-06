@@ -1,0 +1,6 @@
+PyInquirer==1.0.2
+demjson==2.2.4
+docopt==0.6.2
+mechanicalSoup==0.11.0
+requests==2.19.1
+websocket-client==0.53.0

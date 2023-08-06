@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+uricli/__init__.py
+uricli/__main__.py
+uricli/lib.py
+uricli/live.py
+uricli/uricli.py
+uricli.egg-info/PKG-INFO
+uricli.egg-info/SOURCES.txt
+uricli.egg-info/dependency_links.txt
+uricli.egg-info/entry_points.txt
+uricli.egg-info/requires.txt
+uricli.egg-info/top_level.txt
