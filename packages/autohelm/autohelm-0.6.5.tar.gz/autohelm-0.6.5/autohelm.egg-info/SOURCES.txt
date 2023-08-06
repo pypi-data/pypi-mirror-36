@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+autohelm/__init__.py
+autohelm/__init__.pyc
+autohelm/autohelm.py
+autohelm/example-course.yml
+autohelm/meta.py
+autohelm/meta.pyc
+autohelm.egg-info/PKG-INFO
+autohelm.egg-info/SOURCES.txt
+autohelm.egg-info/dependency_links.txt
+autohelm.egg-info/requires.txt
+autohelm.egg-info/top_level.txt
+bin/autohelm
