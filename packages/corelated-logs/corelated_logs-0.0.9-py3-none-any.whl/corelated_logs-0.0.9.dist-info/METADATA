@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: corelated-logs
+Version: 0.0.9
+Summary: A python library to generate corelation id and bind it to headers in outgoing request
+Home-page: UNKNOWN
+Author: sohit kumar
+Author-email: sumitk002@gmail.com
+License: BSD
+Platform: UNKNOWN
+Requires-Dist: structlog (==18.2.0)
+Requires-Dist: wrapt (==1.10.11)
+Requires-Dist: pre-commit-hooks (==1.4.0)
+
+UNKNOWN
+
+
