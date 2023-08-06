@@ -1,0 +1,14 @@
+beancount_portfolio_allocation/__init__.py,sha256=aw3_5RIsbSY30_dia69abh6dvpdFUZfqmqWULUICrgI,40
+beancount_portfolio_allocation/allocation.py,sha256=j5K7_bwcWvMtDEik-k7kx-hKJUQgISpdjQ72SFHowe8,1852
+beancount_portfolio_allocation/allocation_report.py,sha256=YR9PvPXamvig4V2tkHEZX78z3rWnp9jwLgsy3floMjc,2406
+beancount_portfolio_allocation/loader.py,sha256=YbN-BH8gAlp8Rmcf21wRw_Jw7rQR97k3PxWyYwxF-BM,2693
+beancount_portfolio_allocation-0.3.0.dist-info/METADATA,sha256=Ngc0t2jDIHC-P6TxvizsMjJzrIFDPYYoRmNui8YtE2o,5172
+beancount_portfolio_allocation-0.3.0.dist-info/RECORD,,
+beancount_portfolio_allocation-0.3.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+beancount_portfolio_allocation-0.3.0.dist-info/entry_points.txt,sha256=2NTijtFKH9ChuBK1WHMuKfl3pogq-Yu7sXBBQkqchKo,108
+beancount_portfolio_allocation-0.3.0.dist-info/top_level.txt,sha256=ikqS33Gf5hEVNeTOZMDQxV7Y3arZR_AHRCo4on_m0yY,37
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/missing_prices_test.py,sha256=J6-7XBc4Tmo3bw-ACQK3ZtcBjwqmXO0EYd1f7c1PYJ8,1370
+tests/no_operating_currency_test.py,sha256=wXLzsvuwrvsDzS6g2WwOJi7q_5EUvxd4o_bPAkHJueE,780
+tests/valid_reports_test.py,sha256=a7pDD1xXmfG9PXHzdf5ip99OWQ4HYy3umOVRUJESihM,3645
+tests/zero_position_test.py,sha256=T1f2L8lnLpggTWMc_IPulVVy_IsBopSt_JrKz11OY8c,667
