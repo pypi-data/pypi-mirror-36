@@ -1,0 +1,16 @@
+AUTHORS.rst
+HISTORY.rst
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+djangorestframework_camel_case2/__init__.py
+djangorestframework_camel_case2/parser.py
+djangorestframework_camel_case2/render.py
+djangorestframework_camel_case2/settings.py
+djangorestframework_camel_case2/util.py
+djangorestframework_camel_case2.egg-info/PKG-INFO
+djangorestframework_camel_case2.egg-info/SOURCES.txt
+djangorestframework_camel_case2.egg-info/dependency_links.txt
+djangorestframework_camel_case2.egg-info/not-zip-safe
+djangorestframework_camel_case2.egg-info/top_level.txt
