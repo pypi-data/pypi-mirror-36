@@ -1,0 +1,10 @@
+README.md
+setup.py
+awmproxy/Awm.py
+awmproxy/Exceptions.py
+awmproxy/__init__.py
+awmproxy.egg-info/PKG-INFO
+awmproxy.egg-info/SOURCES.txt
+awmproxy.egg-info/dependency_links.txt
+awmproxy.egg-info/requires.txt
+awmproxy.egg-info/top_level.txt
