@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+jakopicevca2017/__init__.py
+jakopicevca2017/__main__.py
+jakopicevca2017/jakopicevca.py
+jakopicevca2017.egg-info/PKG-INFO
+jakopicevca2017.egg-info/SOURCES.txt
+jakopicevca2017.egg-info/dependency_links.txt
+jakopicevca2017.egg-info/entry_points.txt
+jakopicevca2017.egg-info/requires.txt
+jakopicevca2017.egg-info/top_level.txt
