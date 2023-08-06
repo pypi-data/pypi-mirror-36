@@ -1,0 +1,3 @@
+[console_scripts]
+fact-sphere=fact_sphere_cli.cli:fact_sphere_cli
+
