@@ -1,0 +1,13 @@
+fserver/__init__.py,sha256=6bYuj2CtmO58Q2l0j7Dm8ZoY7DKHaFH_fZfhzTSSCfY,20
+fserver/command_line.py,sha256=QES9aH3dIvyhaNRNJnQnWgLv4orfNJUYJQsunTF7adg,2322
+fserver/fserver_app.py,sha256=3LekOdQip1QtWSP2bcRscO1_JzRJhcX3Ve1NBci8NdA,6088
+fserver/util.py,sha256=27l9gFIXSD2z3N40a_KZ1aX8-jM40SlHHihTdOq2DF0,315
+fserver/templates/error.html,sha256=H76c1IfbJ9Mtl4ZssCbM5FDvES6MH8qm-Euj6vmGIIk,141
+fserver/templates/list.html,sha256=kgwvmefim1xEG-cr6fUPLW2mEdPI_4JjV03S3aUJ6cU,1452
+fserver/templates/video.html,sha256=L0OjZMi4XF3UM9cWfJSAveXb5k9IznPrbzxuxIe2X-k,1758
+fserver-0.0.5.dist-info/LICENSE,sha256=2UaApPJkcwXdCbf3CGlLmWRIiwp2zoPnYTdFPu8qKoo,1082
+fserver-0.0.5.dist-info/METADATA,sha256=OFcLDjN5H0uLXsa8t34cXd7Mk_oh4rIhQuoU0evwKj8,300
+fserver-0.0.5.dist-info/WHEEL,sha256=ekss6qCJcIZ1jvsOZb3ewnzAyJD9JSfQQg87sLq_G8M,97
+fserver-0.0.5.dist-info/entry_points.txt,sha256=J427H32uDXBiv6J3FUcBG2j7j-Bk9Nb5O4AL9tx7fno,62
+fserver-0.0.5.dist-info/top_level.txt,sha256=56EI1AYI934kS1Q9uQ0BDwC1LQNopOYBQ3v2cznxTUs,8
+fserver-0.0.5.dist-info/RECORD,,
