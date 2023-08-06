@@ -1,0 +1,9 @@
+README.md
+setup.py
+kanka/__init__.py
+kanka/main.py
+kanka.egg-info/PKG-INFO
+kanka.egg-info/SOURCES.txt
+kanka.egg-info/dependency_links.txt
+kanka.egg-info/requires.txt
+kanka.egg-info/top_level.txt
