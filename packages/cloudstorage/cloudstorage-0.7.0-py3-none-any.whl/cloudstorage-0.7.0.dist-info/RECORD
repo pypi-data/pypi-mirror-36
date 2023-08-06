@@ -1,0 +1,17 @@
+cloudstorage/__init__.py,sha256=l6nHh7adwG5M8idc0-Zg1RbTwYHw9w9aFXSda80zEfU,2869
+cloudstorage/base.py,sha256=GwLA-78v-jVdXdqWB7rpjt0uaO9g_XZgeCZ_OR5rIzU,47007
+cloudstorage/exceptions.py,sha256=rxUfXU4-TD5s0LMPr_2a7cyMxVM7MbnT6Quh1aO6WyU,884
+cloudstorage/helpers.py,sha256=wq1mKqD75AInToYTS3NMxqG9BN8eQ_zW0PNvxzNGNdU,5655
+cloudstorage/messages.py,sha256=zHVKXzXwGOctMW5Ps_H4pV6jUv2BqXiirIeXjAK3Ai0,611
+cloudstorage/typed.py,sha256=KdE73P059tIz53kmIQr-14QALK2kM2mP0u6-NugLuzs,331
+cloudstorage/utils.py,sha256=YTE1tJSr7ZIQZchJdMk7goKWlTN_ujLFm1E9mS1fyf4,1676
+cloudstorage/drivers/__init__.py,sha256=EvkeiuuIGlUpi09iCtBfFI31rzm5FWzSJYQtwuJScek,40
+cloudstorage/drivers/amazon.py,sha256=A2b7JDb1p3azMF5FBVxBnnUndpkRCRywniFxK8FdDCA,21368
+cloudstorage/drivers/google.py,sha256=osoFeZDS6GMhRYtPiC8EJ10_B-28vzn9ORbIgFJyDQA,18020
+cloudstorage/drivers/local.py,sha256=agh6X94ExjdOs274dkva4qFsnYAb7suYJMOMUdy5P0s,20448
+cloudstorage/drivers/microsoft.py,sha256=sWONxQIht1alevCWhkRRpPmGjPaCs5ycl990cTIpYaU,18026
+cloudstorage/drivers/rackspace.py,sha256=Qrq4mp5_hh9X0-6UP624yyRtTJszlWN_iyIBBlaBOmU,28350
+cloudstorage-0.7.0.dist-info/METADATA,sha256=mkRZINkvQfDocO4KNqNbeVLymEMmsm_a9E3lZ__XOjo,5859
+cloudstorage-0.7.0.dist-info/RECORD,,
+cloudstorage-0.7.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+cloudstorage-0.7.0.dist-info/top_level.txt,sha256=_v7scHekFLFMVDclCtnqY3uWN1hZa79_qcUjCw8kOaQ,13
