@@ -1,0 +1,13 @@
+Metadata-Version: 1.0
+Name: visdom-observer
+Version: 0.2.1
+Summary: A sacred `RunObserver` which uses visdom to plot metrics and artifacts
+Home-page: https://github.com/rajatvd/VisdomObserver
+Author: Rajat Vadiraj Dwaraknath
+Author-email: rajatvd@gmail.com
+License: MIT
+Description: 
+        A sacred `RunObserver` which uses `visdom` to plot logged metrics and image artifacts. Supports creation
+        of dynamically updating plots with different sets of metrics easily.
+        
+Platform: UNKNOWN
