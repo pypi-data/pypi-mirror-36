@@ -1,0 +1,11 @@
+README.rst
+setup.py
+find_my_favorite_cat/__init__.py
+find_my_favorite_cat/discriminate_cat_face.py
+find_my_favorite_cat/retrieve_cat_info.py
+find_my_favorite_cat.egg-info/PKG-INFO
+find_my_favorite_cat.egg-info/SOURCES.txt
+find_my_favorite_cat.egg-info/dependency_links.txt
+find_my_favorite_cat.egg-info/not-zip-safe
+find_my_favorite_cat.egg-info/requires.txt
+find_my_favorite_cat.egg-info/top_level.txt

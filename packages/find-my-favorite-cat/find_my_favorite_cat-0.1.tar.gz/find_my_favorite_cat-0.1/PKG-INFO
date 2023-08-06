@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: find_my_favorite_cat
+Version: 0.1
+Summary: Find cat information that matches the input from user.
+Home-page: https://github.com/hong-chen/find-my-favorite-cat
+Author: Hong Chen, Yixing Shao
+Author-email: me@hongchen.cz, yixingshao@foxmail.com
+License: MIT
+Description: Find My Favorite Cat
+        ~~~~~~~~~~~~~~~~~~~~
+        
+        It's a modern web-based app that can find cats' information from Boulder Humane Society website
+        to match user's input keywords and/or uploaded pictures.
+        
+        
+        ====================
+        Under Development...
+        ====================
+        
+        
+Keywords: find cat
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Requires-Python: ~=3.6
+Description-Content-Type: text/x-rst
