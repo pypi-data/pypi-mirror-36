@@ -1,0 +1,8 @@
+
+[:python_version > "3.4"]
+portalocker
+concurrent-log-handler
+pypiwin32
+
+[full]
+natsort
