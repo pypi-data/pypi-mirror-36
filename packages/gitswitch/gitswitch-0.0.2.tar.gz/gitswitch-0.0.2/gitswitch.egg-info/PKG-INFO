@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: gitswitch
+Version: 0.0.2
+Summary: A small utility to switch different ssh folders
+Home-page: https://github.com/bizoru/git-switch
+Author: Steven Sierra
+Author-email: bizoru@gmail.com
+License: UNKNOWN
+Description: # git-switch
+        Switch between git accounts
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
