@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: callpass
+Version: 0.3.1
+Summary: A library for generating APRS callpasses!
+Home-page: UNKNOWN
+License: UNKNOWN
+Author: Kyle Jones
+Author-email: kyle@kf5jwc.us
+Requires-Python: >=3.7
+Requires-Dist: requests
+Requires-Dist: cachecontrol
