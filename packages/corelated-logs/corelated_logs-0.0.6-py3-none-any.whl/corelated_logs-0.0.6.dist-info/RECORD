@@ -1,0 +1,14 @@
+corelated_logs/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+corelated_logs/django_corelation_middleware.py,sha256=QFEAWG6xu-NiTVNLPDyDUlmC6Ez5iHNpLUvvxXwAko8,868
+corelated_logs/flask_corelation_middleware.py,sha256=2KTd_hh6x3a028_SOFPDwWgQuMbSKjMytE6Hgg8JyBo,966
+corelated_logs/patcher.py,sha256=9SiLRszdhG_U6VPboLfr-2dN8w5X4cVoQQ_o-qJqBvY,1482
+corelated_logs/ext/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+corelated_logs/ext/kombu/__init__.py,sha256=oUaDY1XLk9BImCf2EJq14T2FEiS3IpeiK-lV3ST3XIM,46
+corelated_logs/ext/kombu/patch.py,sha256=1xbtYIvRqI6Dgp4_VCf3cvF5FPzXttqc0kL96xMHKQw,628
+corelated_logs/ext/requests/__init__.py,sha256=oUaDY1XLk9BImCf2EJq14T2FEiS3IpeiK-lV3ST3XIM,46
+corelated_logs/ext/requests/patch.py,sha256=jwNFdLTswnGdpPSLong3ZAIGFqWNQr6-nhDa7kmSR0E,687
+corelated_logs-0.0.6.dist-info/LICENSE,sha256=CZhpxlmYWFp5U7GeZ_4qDT_dFatIFtbNzUKqwQNGF58,1070
+corelated_logs-0.0.6.dist-info/METADATA,sha256=JGLVCjQYzwwtzckznd5wbro3kEkm2-ilzfsd-SKThkI,379
+corelated_logs-0.0.6.dist-info/WHEEL,sha256=YO0P_oFqt6DWX0LhbH7jsyzb3BUtoq2kERtqGsXDJHs,92
+corelated_logs-0.0.6.dist-info/top_level.txt,sha256=ziN3DfDglqghAHb6iaIzZOQNdReIjvnITe-lcTzxBIA,15
+corelated_logs-0.0.6.dist-info/RECORD,,
