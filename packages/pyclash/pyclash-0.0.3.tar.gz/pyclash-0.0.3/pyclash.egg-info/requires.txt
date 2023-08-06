@@ -1,0 +1,7 @@
+jinja2
+google-api-python-client
+pyyaml
+click
+google-cloud-pubsub
+google-cloud-logging
+halo
