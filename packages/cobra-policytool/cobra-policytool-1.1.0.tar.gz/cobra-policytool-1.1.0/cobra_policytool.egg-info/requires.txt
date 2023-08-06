@@ -1,0 +1,5 @@
+requests<2.19,>=2.18.4
+requests-kerberos
+click
+pyhive
+thrift
