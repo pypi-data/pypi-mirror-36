@@ -1,0 +1,8 @@
+README.md
+setup.py
+trackimo.egg-info/PKG-INFO
+trackimo.egg-info/SOURCES.txt
+trackimo.egg-info/dependency_links.txt
+trackimo.egg-info/top_level.txt
+trackimo_lib/__init__.py
+trackimo_lib/trackimo.py
