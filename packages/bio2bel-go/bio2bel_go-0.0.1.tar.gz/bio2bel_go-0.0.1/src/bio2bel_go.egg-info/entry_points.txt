@@ -1,0 +1,6 @@
+[bio2bel]
+go = bio2bel_go
+
+[console_scripts]
+bio2bel_go = bio2bel_go.cli:main
+
