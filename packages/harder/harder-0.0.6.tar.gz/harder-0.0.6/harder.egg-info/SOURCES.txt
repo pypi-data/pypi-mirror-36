@@ -1,0 +1,11 @@
+setup.py
+harder/__init__.py
+harder/gym.py
+harder/policy.py
+harder/q.py
+harder.egg-info/PKG-INFO
+harder.egg-info/SOURCES.txt
+harder.egg-info/dependency_links.txt
+harder.egg-info/not-zip-safe
+harder.egg-info/requires.txt
+harder.egg-info/top_level.txt
