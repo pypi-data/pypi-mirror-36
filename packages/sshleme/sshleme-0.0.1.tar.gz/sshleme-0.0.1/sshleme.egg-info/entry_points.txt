@@ -1,0 +1,3 @@
+[console_scripts]
+sshleme = sshleme.run:main
+
