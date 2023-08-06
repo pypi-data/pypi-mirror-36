@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: mac-youtube
+Version: 0.0.0
+Summary: MacOS Google Chrome.app + youtube.com + python
+Home-page: https://github.com/looking-for-a-job/mac-youtube.py
+License: UNKNOWN
+Description: [![](https://img.shields.io/badge/OS-MacOS-blue.svg?longCache=True)]()
+        [![](https://img.shields.io/pypi/pyversions/mac-youtube.svg?longCache=True)](https://pypi.org/pypi/mac-youtube/)
+        
+        ### Install
+        ```bash
+        $ [sudo] pip install mac-youtube
+        ```
+        
+        ### Features
+        `Google Chrome.app` only
+        
+        ### Examples
+        ```python
+        >>> import mac_youtube
+        >>> mac_youtube.urls()
+        ['https://www.youtube.com/watch?v=cvaIgq5j2Q8','https://www.youtube.com/watch?v=YrhYhI3L32c']
+        >>> mac_youtube.play()
+        >>> mac_youtube.playing()
+        ['https://www.youtube.com/watch?v=cvaIgq5j2Q8']
+        >>> mac_youtube.pause()
+        ```
+Keywords: youtube
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: MacOS X
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development
+Description-Content-Type: text/markdown
