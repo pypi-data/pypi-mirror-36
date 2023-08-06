@@ -1,0 +1,15 @@
+Metadata-Version: 1.2
+Name: pocket-dictionary
+Version: 0.1.0
+Summary: Your handy dict
+Home-page: https://github.com/sunghyunzz/pocket-dictionary
+Author: Sunghyun Hwang
+Author-email: me@sunghyunzz.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.7
