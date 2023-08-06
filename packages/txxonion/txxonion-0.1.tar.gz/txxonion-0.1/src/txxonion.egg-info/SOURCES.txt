@@ -1,0 +1,9 @@
+setup.cfg
+setup.py
+src/twisted/plugins/onion_service_endpoint_dropin.py
+src/txxonion.egg-info/PKG-INFO
+src/txxonion.egg-info/SOURCES.txt
+src/txxonion.egg-info/dependency_links.txt
+src/txxonion.egg-info/not-zip-safe
+src/txxonion.egg-info/requires.txt
+src/txxonion.egg-info/top_level.txt
