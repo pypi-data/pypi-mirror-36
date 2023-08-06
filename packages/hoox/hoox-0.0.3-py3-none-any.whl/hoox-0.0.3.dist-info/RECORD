@@ -1,0 +1,12 @@
+hoox/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+hoox/hoox.py,sha256=9I69WzBDb9eCeofm1cARYrt1TkRiXXfTBUztdMerBOk,4446
+hoox/resources/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+hoox/resources/hook-runner.sh,sha256=mshvkn1oCS8kUrEZyD40qAUN6QI7UPjKARZmrSNchoo,126
+hoox/resources/hoox.py,sha256=eH5jNbIdNqz0aUIBXRjEvDmBVD6aUMymb-hfPBoZ7Gg,498
+hoox-0.0.3.data/data/README.md,sha256=Ym_-5lGAU6OmKzmQRrkVP5xujwfWZgXc8sVNvmZkW70,25
+hoox-0.0.3.data/data/hoox.version,sha256=TKwna27F1Mcc2Wyi57di6xJUOa28hyHeVhMQbRNF_i0,6
+hoox-0.0.3.dist-info/METADATA,sha256=0IiguV5aL8fG2zZPzWhJU2_gKDwVDZe60Wfgp37Iwlc,557
+hoox-0.0.3.dist-info/RECORD,,
+hoox-0.0.3.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+hoox-0.0.3.dist-info/entry_points.txt,sha256=Y0pcPfX9H4u0jRbYO96ZZBwUsB5P8OzJPHw_jA3UfHY,41
+hoox-0.0.3.dist-info/top_level.txt,sha256=zUuBdIgByTkbL75ca5AEzCNGX5TtSGPu8QQYkznoG2o,5
