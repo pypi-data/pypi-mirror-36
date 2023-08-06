@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+
+function __trap_clean_up {
+  gcloud pubsub topics delete {{ vm_name }} --quiet &>> /tmp/gcloud.log
+  gcloud compute instances delete {{ vm_name }} --quiet --zone {{ zone }} &>> /tmp/gcloud.log
+}
+
+trap __trap_clean_up EXIT
+
+set +e
+bash /var/script.sh
+success=$?
+set -e
+
+gcloud pubsub topics publish {{ vm_name }} --message="{\"status\": $success}" &>> /tmp/gcloud.log
