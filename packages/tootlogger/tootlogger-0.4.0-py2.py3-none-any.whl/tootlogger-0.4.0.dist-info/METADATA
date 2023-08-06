@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: tootlogger
+Version: 0.4.0
+Summary: Log your Matodon toots to DayOne
+Home-page: https://onlyhavecans.works/amy/tootlogger
+Author: Amy Aronsohn
+Author-email: WagThatTail@Me.com
+License: BSD
+Platform: UNKNOWN
+Requires-Dist: html2text
+Requires-Dist: jinja2
+Requires-Dist: mastodon.py
+Requires-Dist: toml
+
+UNKNOWN
+
+
