@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: atc-gym
+Version: 0.1
+Summary: Gym environment for an ATC simulation
+Home-page: https://github.com/vivek3141/atc-ai
+Author: Vivek Verma
+Author-email: vivnps.verma@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# ATC AI
+Contains
+* A program that helps minimize air crashes by 
+using Machine Learning to control air traffic.
+* A gym environment for ATC simulation
+## Implementing
+* `env.render()` is not implemented, running it will raise `NotImplementedError`.
+* `env.reset()` opens the GUI.
+* `env.fps` contains the fps to run the game at. You can set it using:
+    ```python
+    env.fps = 60
+    ```
+## Installation
+For the latest installation (may be unstable) 
+```bash
+git clone https://github.com/vivek3141/atc-ai
+pip install -e .
+```
+Install stable release by
+```bash
+pip install snake_gym
+```
+
+## Creating The Environment
+The environment can be created by doing the following:
+```python
+import gym
+import atc_gym
+env = gym.make("atc-v0")
+```
+
+## Environments
+* `atc-v0` Returns a NxN RGB image in the form of a numpy array for the observations
+* `atc-tiled-v0` Returns a NxN matrix for the observations.
+<br>
+N is undecided until implementation 
+
