@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: dmind
+Version: 0.0.1
+Summary: a mindmap tool for jupyter notebook
+Home-page: https://github.com/dust8/dmind
+Author: dust8
+License: UNKNOWN
+Description: 
+        # DXind
+        
+        `DXind` 是一个 `Jupyter notebook` 的脑图插件.    
+        利用百度脑图的开源库实现渲染, 支持 `json`, `markdown`, `text` 格式.
+        
+        ## 安装
+        通过 `pip` 安装
+        ```bash
+            pip install dxind
+        ```
+        
+        ## 使用
+        [查看示例](./example/example.ipynb)
+        
+Keywords: dmind mind mindmap
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: IPython
+Description-Content-Type: text/markdown
