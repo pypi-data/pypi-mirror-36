@@ -1,0 +1,187 @@
+{
+ "definitions": {
+  "aliases": {
+   "NSEventModifierFlagCommand": { "ignore": true },
+   "NSEventModifierFlagControl": { "ignore": true },
+   "NSEventModifierFlagOption": { "ignore": true },
+   "NSEventModifierFlagShift": { "ignore": true }
+  },
+  "enum": {
+   "kMASShortcutGlyphEject": { "value": 9167 },
+   "kMASShortcutGlyphClear": { "value": 10005  },
+   "kMASShortcutGlyphDeleteLeft": { "value": 9003  },
+   "kMASShortcutGlyphDeleteRight": { "value": 8998  },
+   "kMASShortcutGlyphLeftArrow": { "value": 8592  },
+   "kMASShortcutGlyphRightArrow": { "value": 8594  },
+   "kMASShortcutGlyphUpArrow": { "value": 8593  },
+   "kMASShortcutGlyphDownArrow": { "value": 8595  },
+   "kMASShortcutGlyphEscape": { "value": 9099  },
+   "kMASShortcutGlyphHelp": { "value": 63  },
+   "kMASShortcutGlyphPageDown": { "value": 8671  },
+   "kMASShortcutGlyphPageUp": { "value": 8670  },
+   "kMASShortcutGlyphTabRight": { "value": 8677  },
+   "kMASShortcutGlyphReturn": { "value": 8965  },
+   "kMASShortcutGlyphReturnR2L": { "value": 8617  },
+   "kMASShortcutGlyphPadClear": { "value": 8999  },
+   "kMASShortcutGlyphNorthwestArrow": { "value": 8598  },
+   "kMASShortcutGlyphSoutheastArrow": { "value": 8600  },
+   "MASShortcutViewStyleDefault": { "value": 0 },
+   "MASShortcutViewStyleTexturedRect": { "value": 1 },
+   "MASShortcutViewStyleRounded": { "value": 2 },
+   "MASShortcutViewStyleFlat": { "value": 3 }
+  },
+  "classes": {
+   "MASShortcutMonitor": {
+    "methods": [
+     {
+      "class_method": false,
+      "selector": "registerShortcut:withAction:",
+      "retval": { "type_override": "Z" }
+     },
+     {
+      "class_method": false,
+      "selector": "isShortcutRegistered:",
+      "retval": { "type_override": "Z" }
+     }
+    ]
+   },
+   "MASShortcutView": {
+    "methods": [
+     {
+      "class_method": false,
+      "selector": "shortcutValueChange",
+      "retval": {
+       "callable": {
+        "arguments": {
+	 "0": { "type": "^v" },
+	 "1": { "type": "@" }
+	},
+	"retval": { "type": "v" }
+       }
+      }
+     },
+     {
+      "class_method": false,
+      "selector": "setShortcutValueChange:",
+      "args": {
+       "0": {
+        "callable": {
+         "arguments": {
+	  "0": { "type": "^v" },
+	  "1": { "type": "@" }
+	 },
+	 "retval": { "type": "v" }
+        }
+       }
+      }
+     },
+     {
+      "class_method": false,
+      "selector": "setAcceptsFirstResponder:",
+      "args": {
+       "0": { "type_override": "Z" }
+      }
+     },
+     {
+      "class_method": false,
+      "selector": "isRecording",
+      "retval": { "type_override": "Z" }
+     },
+     {
+      "class_method": false,
+      "selector": "setRecording:",
+      "args": {
+       "0": { "type_override": "Z" }
+      }
+     },
+     {
+      "class_method": false,
+      "selector": "isEnabled",
+      "retval": { "type_override": "Z" }
+     },
+     {
+      "class_method": false,
+      "selector": "setEnabled:",
+      "args": {
+       "0": { "type_override": "Z" }
+      }
+     }
+    ]
+   },
+   "MASShortcutValidator": {
+    "methods": [
+     {
+      "class_method": false,
+      "selector": "isShortcutValid:",
+      "retval": { "type_override": "Z" }
+     },
+     {
+      "class_method": false,
+      "selector": "isShortcut:alreadyTakenInMenu:explanation:",
+      "retval": { "type_override": "Z" },
+      "args": {
+       "2": { "type_modifier": "o" }
+      }
+     },
+     {
+      "class_method": false,
+      "selector": "isShortcutAlreadyTakenBySystem:explanation:",
+      "retval": { "type_override": "Z" },
+      "args": {
+       "1": { "type_modifier": "o" }
+      }
+     },
+     {
+      "class_method": false,
+      "selector": "allowAnyShortcutWithOptionModifier",
+      "retval": { "type_override": "Z" }
+     },
+     {
+      "class_method": false,
+      "selector": "setAllowAnyShortcutWithOptionModifier:",
+      "args": {
+       "0": { "type_override": "Z" }
+      }
+     },
+
+     {
+      "class_method": false,
+      "selector": "isShortcut:alreadyTakenInMenu:explanation:",
+      "args": {
+       "2": { "type_modifier": "o" }
+      }
+     },
+     {
+      "class_method": false,
+      "selector": "isShortcutAlreadyTakenBySystem:explanation:",
+      "args": {
+       "2": { "type_modifier": "o" }
+      }
+     }
+    ]
+   }
+  },
+  "formal_protocols": {},
+  "functions": {
+   "NSStringFromMASKeyCode": {
+    "args": {
+     "0": { "type_override": "S" }
+    },
+    "retval": { "type_override": "@" }
+   },
+   "MASPickCocoaModifiers": {
+    "args": {
+     "0": { "type_override": ["i", "q" ] }
+    },
+    "retval": { "type_override": ["i", "q"] }
+   },
+   "MASCarbonModifiersFromCocoaModifiers": {
+    "args": {
+     "0": { "type_override": ["I", "Q" ] }
+    },
+    "retval": { "type_override": "I" }
+   }
+  },
+  "informal_protocols": {}
+ }
+}
