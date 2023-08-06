@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: jakopicevca2017
+Version: 1.1.post0
+Summary: Program for Astro Pi 2017/18 - Mission Space Lab - Team Jakopičevca
+Home-page: https://github.com/filips123/jakopicevca/tree/2017/
+Author: Team Jakopičevca
+Author-email: filip.stamcar@hotmail.com
+License: GPLv3+
+Requires-Dist: ephem
+Provides-Extra: pandoc
+Requires-Dist: pypandoc; extra == 'pandoc'
+
+Astro Pi 2017/18 - Team Jakopičevca
+
+
