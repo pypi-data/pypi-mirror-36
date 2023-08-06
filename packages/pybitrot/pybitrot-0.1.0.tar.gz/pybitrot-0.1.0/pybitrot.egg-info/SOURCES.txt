@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+pybitrot/__init__.py
+pybitrot/__version__.py
+pybitrot/pybitrot.py
+pybitrot.egg-info/PKG-INFO
+pybitrot.egg-info/SOURCES.txt
+pybitrot.egg-info/dependency_links.txt
+pybitrot.egg-info/top_level.txt
