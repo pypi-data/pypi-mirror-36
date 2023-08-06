@@ -1,0 +1,25 @@
+#+TITLE: Quasi
+
+Simple server which wraps requests and rewrites urls, useful for tests it will load a cached version if it exists 
+
+* Building
+
+#+BEGIN_SRC shell :results raw
+docker build -t quasi:latest .
+#+END_SRC
+
+* Launching
+#+BEGIN_SRC shell
+docker run quasi:latest
+#+END_SRC
+
+* Environment
+** QUASI_DEBUG
+Set this to true or false to enable debugging
+** QUASI_STUBBED_DOMAIN
+This is the real domain point your app at quasi and set this to the real url, first time a
+page is accessed quasi will get from the original domain and use the cached version going forward.
+** QUASI_TOKEN
+If you need an auth token you can set one in this env for your remote domain
+** QUASI_STORE
+The location you wish to store the requests, usually in a git test folder so it always works with your tests.

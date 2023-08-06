@@ -1,0 +1,11 @@
+LICENSE
+readme.org
+setup.py
+quasi/__init__.py
+quasi/quasi.py
+quasi/version.py
+quasi.egg-info/PKG-INFO
+quasi.egg-info/SOURCES.txt
+quasi.egg-info/dependency_links.txt
+quasi.egg-info/requires.txt
+quasi.egg-info/top_level.txt
