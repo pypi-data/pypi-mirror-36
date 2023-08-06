@@ -1,0 +1,13 @@
+*.swp
+*.pyc
+build/
+*.egg-info/
+dist/
+*.c
+*.so
+*.html
+build.sh
+.eggs/
+*~
+*.swo
+test/
