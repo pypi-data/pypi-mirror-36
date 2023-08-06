@@ -1,0 +1,73 @@
+{% extends "template.html" %}
+{% block title %}News{% endblock %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    <form action="{{ url_for('getNews') }}" style="padding:15px;">
+        <fieldset id="country" onChange="this.form.submit()" data-role="controlgroup" data-type="horizontal" style="overflow-x:scroll;">
+            <div class="scroller" style="overflow:auto;white-space:nowrap;padding:5px;">
+                {% for editions in client.editions %}
+                    <div class="form-check form-check-inline d-inline-block">
+                        <input class="form-check-input" type="radio" id="{{editions}}" value="{{editions}}" name="country">
+                        <label class="form-check-label" for="{{editions}}">{{editions}}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </fieldset>
+        <fieldset id="language" onChange="this.form.submit()" data-role="controlgroup" data-type="horizontal" style="overflow-x:scroll;">
+            <div class="scroller" style="overflow:auto;white-space:nowrap;padding:5px;">
+                {% for languages in client.languages %}
+                    <div class="form-check form-check-inline d-inline-block">
+                        <input class="form-check-input" type="radio" id="{{languages}}" value="{{languages}}" name="language">
+                        <label class="form-check-label" for="{{languages}}">{{languages}}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </fieldset>
+        <fieldset id="topic" onChange="this.form.submit()" data-role="controlgroup" data-type="horizontal" style="overflow-x:scroll;">
+            <div class="scroller" style="overflow:auto;white-space:nowrap;padding:5px;">
+                {% for topics in client.topics %}
+                    <div class="form-check form-check-inline d-inline-block">
+                        <input class="form-check-input" type="radio" id="{{topics}}" value="{{topics}}" name="topic">
+                        <label class="form-check-label" for="{{topics}}">{{topics}}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </fieldset>
+    </form>
+
+    {% if country %}
+        <script>
+            document.getElementById('{{country}}').checked = true;
+        </script>
+    {% endif %}
+
+    {% if language %}
+        <script>
+            document.getElementById('{{language}}').checked = true;
+        </script>
+    {% endif %}
+
+    {% if topic %}
+        <script>
+            document.getElementById('{{topic}}').checked = true;
+        </script>
+    {% endif %}
+
+    <div style="overflow-y:auto;flex:1;padding:15px;">
+        {% set articles = client.get_news() %}
+        {% if articles %}
+            <ol>
+                {% for news in articles %}
+                <li>
+                    <a href="{{news['link']}}"><h3>{{news['title']}}</h3></a>
+                    <img src="{{news['img']}}"/>
+                </li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+    </div>
+{% endblock %}
