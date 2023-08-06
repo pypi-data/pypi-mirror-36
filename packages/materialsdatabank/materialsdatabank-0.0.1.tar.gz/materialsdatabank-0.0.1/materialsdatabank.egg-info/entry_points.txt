@@ -1,0 +1,6 @@
+[console_scripts]
+mdb = materialsdatabank:cli
+
+[girder_worker_plugins]
+mdb = materialsdatabank.girder_worker:MDBPlugin
+

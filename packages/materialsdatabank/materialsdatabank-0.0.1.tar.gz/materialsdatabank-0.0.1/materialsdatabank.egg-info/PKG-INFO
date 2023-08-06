@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: materialsdatabank
+Version: 0.0.1
+Summary: An Information Portal for 3D atomic electron tomography data
+Home-page: https://github.com/OpenChemistry/materialdatabank
+Author: Kitware Inc
+License: BSD 3-Clause
+Description: An Information Portal for 3D atomic electron tomography data
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.5
+Provides-Extra: worker

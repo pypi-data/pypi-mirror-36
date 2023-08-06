@@ -1,0 +1,12 @@
+girder_client>=2.3.0
+click
+jsonpath-rw
+bibtexparser
+numpy
+scipy
+periodictable
+h5py
+
+[worker]
+girder_worker
+pillow
