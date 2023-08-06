@@ -1,0 +1,54 @@
+# Comments are lost on YAML loading, so "#cloud-config" is added via code
+
+# Other setup info for template (removed once processed)
+ec2mc_template_info:
+  instance_type: t2.small
+  volume_size: 8
+  security_groups:
+  - minecraft_sg
+  ip_handler: mc_handler.py
+  write_directories:
+  - local_dir: crontabs
+    instance_dir: /etc/cron.d/
+  - local_dir: manage_scripts
+    instance_dir: /home/ec2-user/manage-scripts/
+    chmod: "0775"
+  - local_dir: mc_folder
+    instance_dir: /home/ec2-user/minecraft/
+
+# add security patches and bug fixes
+repo_update: true
+repo_upgrade: all
+
+# If you need certain packages installed
+packages:
+- screen
+- java-1.8.0-openjdk
+
+# Files copied from user_data template subdirectory(s) to write_files
+
+# Commands to run on instance's first boot
+runcmd:
+- mkdir -p /home/ec2-user/minecraft/ && cd "$_"
+# 1.12.2 Forge installer (14.23.4.2759)
+- [ curl, "https://files.minecraftforge.net/maven/net/minecraftforge/forge/\
+  1.12.2-14.23.4.2759/forge-1.12.2-14.23.4.2759-installer.jar",
+  -o, forge_installer.jar ]
+- java -Xms1024M -Xmx1024M -jar forge_installer.jar nogui --installServer
+- rm forge_installer.jar
+# The actual Forge server
+- mv *universal.jar forge.jar
+- java -Xms1024M -Xmx1024M -jar forge.jar nogui & wait $!
+- sed -i 's/eula=false/eula=true/g' eula.txt
+- mkdir -p mods && cd "$_"
+# 1.12.2 Chisels & Bits (14.24)
+- curl -O https://media.forgecdn.net/files/2617/805/chiselsandbits-14.24.jar
+
+# Reboot instance after completing setup
+power_state:
+  mode: reboot
+  message: Rebooting
+  timeout: 120
+
+# Capture all subprocess output into logfile (for debugging)
+output: { all: "| tee -a /var/log/cloud-init-output.log" }

@@ -1,0 +1,55 @@
+{
+    "type": "object",
+    "properties": {
+        "Modified": {"type" : "boolean"},
+        "Namespace": {"type" : "string"},
+        "IAM": {
+            "type": "object",
+            "properties": {
+                "Policies": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^[a-z0-9_]+$": {"type": "string"}
+                    },
+                    "minProperties": 1,
+                    "additionalProperties": false
+                },
+                "Groups": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^[a-z0-9_]+$": {
+                            "type": "object",
+                            "properties": {
+                                "Policies": {
+                                    "type" : "array",
+                                    "items": {"type": "string"},
+                                    "minItems": 1,
+                                    "uniqueItems": true
+                                }
+                            },
+                            "required": ["Policies"]
+                        }
+                    },
+                    "minProperties": 1,
+                    "additionalProperties": false
+                }
+            },
+            "required": ["Policies", "Groups"]
+        },
+        "VPC": {
+            "type": "object",
+            "properties": {
+                "SecurityGroups": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^[a-z0-9_]+$": {"type": "string"}
+                    },
+                    "minProperties": 1,
+                    "additionalProperties": false
+                }
+            },
+            "required": ["SecurityGroups"]
+        }
+    },
+    "required": ["Modified", "Namespace", "IAM", "VPC"]
+}

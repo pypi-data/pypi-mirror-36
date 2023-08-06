@@ -1,0 +1,38 @@
+{
+    "Modified": false,
+    "Namespace": "ec2mc",
+    "IAM": {
+        "Policies": {
+            "setup_perms": "Permissions to manage AWS account setup.",
+            "power_perms": "Permissions to manage IPs, instances, and users.",
+            "admin_perms": "Permissions to manage existing instances.",
+            "basic_perms": "Basic permissions for ec2mc script user."
+        },
+        "Groups": {
+            "setup_users": {
+                "Policies": [
+                    "setup_perms",
+                    "power_perms",
+                    "admin_perms",
+                    "basic_perms"
+                ]
+            },
+            "admin_users": {
+                "Policies": [
+                    "admin_perms",
+                    "basic_perms"
+                ]
+            },
+            "basic_users": {
+                "Policies": [
+                    "basic_perms"
+                ]
+            }
+        }
+    },
+    "VPC": {
+        "SecurityGroups": {
+            "minecraft_sg": "Allow all traffic through ports 22 and 25565."
+        }
+    }
+}
