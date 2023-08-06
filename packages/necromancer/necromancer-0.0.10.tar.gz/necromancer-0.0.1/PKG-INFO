@@ -1,0 +1,24 @@
+Metadata-Version: 1.0
+Name: necromancer
+Version: 0.0.1
+Summary: Python Package Boilerplate
+Home-page: http://github.com/SeedyROM/necromancer
+Author: Chris Hayden and Zack Kollar
+Author-email: me@seedyrom.io
+License: MIT License
+Description: # ☠️ necromancer ☠️
+        
+        [![Build Status](https://travis-ci.com/SeedyROM/necromancer.svg?branch=master)](https://travis-ci.com/SeedyROM/necromancer)
+        [![Coverage Status](https://coveralls.io/repos/github/SeedyROM/necromancer/badge.svg?branch=master)](https://coveralls.io/github/SeedyROM/necromancer?branch=master)
+        
+        It's here, it's free as in beer!
+        
+        ## For development run this
+        
+        `python -m necromancer`
+        
+        ## Install locally
+        
+        `pip install -e .`
+Keywords: boilerplate generator
+Platform: UNKNOWN
