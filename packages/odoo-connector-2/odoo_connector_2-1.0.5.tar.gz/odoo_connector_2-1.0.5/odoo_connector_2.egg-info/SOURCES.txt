@@ -1,0 +1,9 @@
+README.md
+setup.py
+odoo_connector/__init__.py
+odoo_connector/connectors.py
+odoo_connector/protocols.py
+odoo_connector_2.egg-info/PKG-INFO
+odoo_connector_2.egg-info/SOURCES.txt
+odoo_connector_2.egg-info/dependency_links.txt
+odoo_connector_2.egg-info/top_level.txt
