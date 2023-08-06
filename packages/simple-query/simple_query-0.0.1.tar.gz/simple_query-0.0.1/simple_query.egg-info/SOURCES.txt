@@ -1,0 +1,10 @@
+README.md
+setup.py
+simple_query/__init__.py
+simple_query/query.py
+simple_query.egg-info/PKG-INFO
+simple_query.egg-info/SOURCES.txt
+simple_query.egg-info/dependency_links.txt
+simple_query.egg-info/top_level.txt
+tests/__init__.py
+tests/test_query.py
