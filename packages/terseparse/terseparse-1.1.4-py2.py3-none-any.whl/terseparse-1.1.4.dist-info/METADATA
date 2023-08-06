@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: terseparse
+Version: 1.1.4
+Summary: A minimal boilerplate, composeable wrapper for argument parsing
+Home-page: https://github.com/jthacker/terseparse
+Author: jthacker
+Author-email: thacker.jon@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/jthacker/terseparse/archive/v1.1.4.tar.gz
+Keywords: argument,parsing
+Platform: UNKNOWN
+Requires-Dist: six (>=1.10.0)
+
+How to Install
+--------------
+
+.. code:: bash
+
+    pip install terseparse
+
+
+
