@@ -1,0 +1,61 @@
+Metadata-Version: 2.0
+Name: temp-ssh
+Version: 0.0.1
+Summary: Temporary SSH Tool
+Home-page: https://github.com/benclancycr/temp_ssh
+Author: Ben Clancy
+Author-email: me@benclancy.com
+License: Apache2
+Description-Content-Type: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: boto3 (<2,>=1.3.0)
+Requires-Dist: setuptools (==37.0.0)
+Requires-Dist: six (==1.11.0)
+Requires-Dist: wheel (==0.30.0)
+
+=======
+temp_ssh
+=======
+
+About
+------
+
+temp_ssh is a tool to allow your current public ip address ssh access to a provided security group. It speeds up the process of temporary ssh access.
+
+Example
+--------
+
+temp_ssh is a command line tool, below are example argurements.
+
+CLI::
+
+        usage: temp_ssh [ARGS] ....
+
+        optional arguments:
+          --sg SG                       Provide the security group to be updated
+          --sg-clean-up SG_CLEAN_UP     Provide an security group to be cleaned up
+          --env ENV                     Provide an enviroment file
+          --env-clean-up ENV_CLEAN_UP   Provide an environment to be cleaned up
+
+        temp_ssh --env Sandbox 
+
+To make use of an environment file, populate config.json.example and convert the file to config.json. --env by deafult looks for config.json in the directory it is ran from
+
+Install
+---------
+
+::      
+
+        $ pip install temp_ssh
+
+To Do
+-----------
+[] Create lambda for clean-up
+
+
