@@ -1,0 +1,15 @@
+generic_rest_client-0.1.0.dist-info/RECORD,,
+generic_rest_client-0.1.0.dist-info/metadata.json,sha256=8yC_T9PQ826m3do9Efgs3Snq5BxSyiivecLSkjQBscw,817
+generic_rest_client-0.1.0.dist-info/WHEEL,sha256=AvR0WeTpDaxT645bl5FQxUK6NPsTls2ttpcGJg3j1Xg,110
+generic_rest_client-0.1.0.dist-info/DESCRIPTION.rst,sha256=3aMwoH11AqFg5uimA3vZkza_IoYt8V1gYEHXS4CnuAQ,3041
+generic_rest_client-0.1.0.dist-info/top_level.txt,sha256=64C8j8V49xRrseBGV75alpArDWNmUS4baYN-1hEZPF8,20
+generic_rest_client-0.1.0.dist-info/METADATA,sha256=QSbfeggCz-w8ctCNFB6wI8d8xi6hoKO0RGtvQMYJm3E,3673
+generic-rest-client/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+generic-rest-client/__version__.py,sha256=P_AyCeVFD88ocPNWVRhjZraTpJVFlxWXG4jhUg6PFK0,472
+generic-rest-client/exceptions.py,sha256=_vd21VpO82tss86FW0d3SJ1V20lNgrW4whiFrxPgDkg,735
+generic-rest-client/generic_rest_client.py,sha256=yUsZpDLMNePwpBMsslegM428jHTag0pxglVVTngm8hI,4059
+generic-rest-client/tests/test_api_client.py,sha256=ggDTH4NTecS3ZihsEImsoM1XMkD1xwoKy1c2FQVOsvM,2880
+generic-rest-client/tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+generic-rest-client/tests/test_mocky_rest_client.py,sha256=-l-ndRDUrouNMmDvmV04skle6_G7fR38tf5YaF2PRg8,964
+generic-rest-client/examples/mocky_rest_client.py,sha256=uT4LCfuTlmA9kuHSyP7Rlu9-L3Ss2Tiq3xXw2wKtI5c,685
+generic-rest-client/examples/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
