@@ -1,0 +1,15 @@
+ncephes/__init__.py,sha256=rR-iLuKB6mTYiUyz3XZynys8dHQS8Ly8WPFkVpECa5g,7331
+ncephes/_ffi.cp37-win_amd64.pyd,sha256=6i6oPn0PXljqg1r7-bqRlV9PQF00lLBgcIdOvwCVvg4,73216
+ncephes/_testit.py,sha256=iaqZQzDuPIqVMF1ORTGhU-5esQJDf3OL0jPC5g_BTkk,474
+ncephes/interface.h,sha256=b8E_9S5x4FkzA2aKnrTBeoRDHBYDsxbERONPVZ5u3xc,5347
+ncephes/test/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ncephes/test/test_bessel.py,sha256=BlePxhQcbZeVr-IPFwkGl8BpZJoI25TT7tkxFAgPcHc,631
+ncephes/test/test_cprob.py,sha256=jVrkKe_cb6vG2Mx2LikoTWAtX5jJF2uazr2EaU1DsgY,3026
+ncephes/test/test_ellf.py,sha256=bAkupfFvRXx6uEe5T9H3hpYKWgPUCvSrfx57IuBsW-o,445
+ncephes/test/test_misc.py,sha256=Lx1tymkCiRlpin4YILLhGN0xEgPBgZf0l8yLAR7BXNc,193
+ncephes/test/test_numba.py,sha256=yLht9G6zh-sT5vqcm0kZEDKqvZ74BqZBfFpaTlRTpiA,498
+ncephes-1.1.0.dist-info/LICENSE,sha256=ZgLbd0yvI0kDyTvDGFYIMpMJRo76DHrY6O7HL7EmRNA,1056
+ncephes-1.1.0.dist-info/METADATA,sha256=xx8AEBsbA9A_PqFG8jwdMnnHzsML7wwnCfweE1FAq3Y,2726
+ncephes-1.1.0.dist-info/WHEEL,sha256=wLK2Kd12r6a2CO5cdda9UfXZYZO9nakqbY9QPm63LzQ,106
+ncephes-1.1.0.dist-info/top_level.txt,sha256=wp5cCvbJhYmni3BZV_5PRVDZaDkLeF8aP4HbUV1CvR4,8
+ncephes-1.1.0.dist-info/RECORD,,
