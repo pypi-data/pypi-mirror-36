@@ -1,0 +1,9 @@
+README.md
+setup.py
+keras_loves_torchtext.egg-info/PKG-INFO
+keras_loves_torchtext.egg-info/SOURCES.txt
+keras_loves_torchtext.egg-info/dependency_links.txt
+keras_loves_torchtext.egg-info/top_level.txt
+keras_loves_torchtext.egg-info/zip-safe
+kltt/__init__.py
+test/test_wrappers.py
