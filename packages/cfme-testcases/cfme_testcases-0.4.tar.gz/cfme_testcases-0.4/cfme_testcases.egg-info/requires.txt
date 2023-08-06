@@ -1,0 +1,3 @@
+pytest
+dump2polarion>=0.25
+six
