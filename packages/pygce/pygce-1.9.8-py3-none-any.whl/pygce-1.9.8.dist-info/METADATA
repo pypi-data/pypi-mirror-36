@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: pygce
+Version: 1.9.8
+Summary: pygce is an unofficial Garmin Connect data exporter.
+Home-page: https://github.com/sirfoga/pygce
+Author: sirfoga
+Author-email: sirfoga@protonmail.com
+License: UNKNOWN
+Keywords: garmin data parser
+Platform: UNKNOWN
+Requires-Dist: bs4
+Requires-Dist: pyhal
+Requires-Dist: lxml
+Requires-Dist: numpy
+Requires-Dist: sklearn
+
+pygce
+
+A tool to export, save, and analyze your  Garmin Connect data.
+
+Install
+
+- $ python3 setup.py (install from source)
+
+Questions and issues
+
+The github issue tracker is only for bug reports and feature requests.
+
