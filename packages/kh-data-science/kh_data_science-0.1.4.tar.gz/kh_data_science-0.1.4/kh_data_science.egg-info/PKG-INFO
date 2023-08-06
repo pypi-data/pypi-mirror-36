@@ -1,0 +1,56 @@
+Metadata-Version: 1.1
+Name: kh-data-science
+Version: 0.1.4
+Summary: Functions for use within KisanHub's data science environments
+Home-page: https://github.com/KisanHub/kh_data_science
+Author: KisanHub Data Science
+Author-email: ds@kisanhub.com
+License: UNKNOWN
+Description: ===============
+        kh-data-science
+        ===============
+        
+        
+        
+        
+        
+        
+        Functions for use within KisanHub's data science environments
+        
+        
+        
+        Features
+        --------
+        
+        * TODO
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        =======
+        History
+        =======
+        
+        0.1.0 (2018-10-03)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: kh_data_science
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
