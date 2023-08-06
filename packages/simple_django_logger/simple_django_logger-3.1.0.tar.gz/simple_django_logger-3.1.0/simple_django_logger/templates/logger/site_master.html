@@ -1,0 +1,54 @@
+<!doctype html>
+{% load staticfiles %}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="{% static 'logger/bootstrap-3.3.6/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'logger/jquery-ui-1.11.4.custom/jquery-ui.min.css' %}">
+
+        {% block header_block %}{% endblock %}
+    </head>
+    <body>
+        {% block hidden_block %}{% endblock %}
+
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <a data-toggle="collapse" href="#collapse1">
+                <h4 class="panel-title">
+                  Logs Menu
+                </h4>
+              </a>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-4 text-center">
+                    <a target="_blank" class="btn btn-info" href="{% url 'logger:all_logs' %}">All Logs</a>
+                  </div>
+                  <div class="col-md-4 text-center">
+                    <a target="_blank" class="btn btn-info" href="{% url 'logger:all_request_logs' %}">All Requests</a>
+                  </div>
+                  <div class="col-md-4 text-center">
+                    <a target="_blank" class="btn btn-info" href="{% url 'logger:all_event_logs' %}">All Events</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% block body_block %}{% endblock %}
+
+        {% block footer_block %}{% endblock %}
+    
+        <!-- ----------------------------- JAVASCRIPT SECTION ------------------------------- -->
+        <script type="text/javascript" src="{% static 'logger/jquery-2.2.2.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'logger/bootstrap-3.3.6/js/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'logger/jquery-ui-1.11.4.custom/jquery-ui.min.js' %}"></script>
+        {% block js_block %}{% endblock %}
+    </body>
+<html>
