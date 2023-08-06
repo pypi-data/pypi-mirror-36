@@ -1,0 +1,3 @@
+[console_scripts]
+pgt = pgt.cli:main
+
