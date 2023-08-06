@@ -1,0 +1,15 @@
+charlette/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+charlette/__main__.py,sha256=qLlMtQ0OaWOS_UaBgYfVBd_nt3FaAWm7f8yw5Ew_3dk,70
+charlette/__version__.py,sha256=QvlVh4JTl3JL7jQAja76yKtT-IvF4631ASjWY1wS6AQ,22
+charlette/apps.py,sha256=hH1YTAtUF4WWbDRDuVxINkq1TG6Jvz_olTqTXWpfytw,93
+charlette/cli.py,sha256=yVuS2fo2Y5r-mhFH22WNGeSPgocCkoGKOOBXgLeu1nM,700
+charlette/endpoints.py,sha256=sxdCpCe8l6s0gSPhVek-ktIs8hP-s-yN4hMyuKnOfyQ,280
+charlette/utils.py,sha256=aljog-GTeEjeISB9RIRMVGt-1uRh17f0V-FWmU0DhIY,292
+charlette/app_template/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+charlette/app_template/endpoints.py,sha256=kPX7WldGsLuA9SkY4v3UZU-dOs4QZ8FQMnXr9GXt3ak,272
+charlette/app_template/models.py,sha256=Vjc0p2XbAPgE6HyTF6vll98A4eDhA5AvaQqsc4kQ9AQ,57
+charlette-0.0.2.dist-info/METADATA,sha256=QXROOkZQZf2QrglFSyeJbQZ3H14sPTeRsA4RR727j8A,374
+charlette-0.0.2.dist-info/RECORD,,
+charlette-0.0.2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+charlette-0.0.2.dist-info/entry_points.txt,sha256=1xTBW-2Yo8_RuEOlmFVTE7ZTARQEj4KB1BZc_GC3yUI,61
+charlette-0.0.2.dist-info/top_level.txt,sha256=cYRNA6_TAgKqjQFrC3hrD_NiCAkxHlGT0qz45O_VYcs,10
