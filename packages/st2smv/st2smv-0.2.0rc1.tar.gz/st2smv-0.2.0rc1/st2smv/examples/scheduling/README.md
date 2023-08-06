@@ -1,0 +1,310 @@
+# Overview
+
+`st2smv` can be used to check whether a given automation system will
+allow a proposed schedule of operations to proceed.  This mode of
+operation assumes that the schedule defines a sequence of future tasks
+that are supposed to occur at specific times in the future, and that
+some of the transitions in the automation system have a known minimum
+amount of time associated with them.
+
+The relevant command-line options are:
+-   `--read-timing-data`, which reads a data file (specified using the
+    `--input` option) and creates a corresponding file that defines the
+    timing dynamics in SMV syntax
+-   `--check-schedule`, which reads a schedule and the current state of
+    the process (specified *in that order* using the `--input` option)
+    along with the relevant dynamics (listed in a metadata file which is
+    specified using the `--metadata` option)
+-   `--solver-path`, which specifies the path to the solver executable
+    to use when analyzing the schedule (SynthSMV is known to work, and
+    NuSMV may also work)
+
+A complete example showing how to use those options and the required
+format of the input files is included below.
+
+# Example
+
+Consider a process that consists of three steps.  Steps 1 and 3 always
+require a fixed amount of time to be completed, while the amount of
+time required to complete Step 2 depends on the outcome of Step 1.
+
+(the following sequence of commands will run the entire example)
+
+    ./create_model.sh
+    ./create_timing.sh
+    ./check-t0.sh
+    ./check-t5-no_delay.sh
+    ./check-t5-delay.sh
+
+## Automation Logic
+
+The following PLC code (a function block, written in Structured Text)
+implements the step transitions and fault detection logic:
+
+    FUNCTION_BLOCK process
+    
+        VAR_INPUT
+            move_to_next_step : BOOL;
+            fault_signal : BOOL;
+        END_VAR
+    
+        VAR
+            step_0 : BOOL := TRUE;
+            step_1 : BOOL := FALSE;
+            step_2 : BOOL := FALSE;
+            step_3 : BOOL := FALSE;
+            fault_occurred_in_step_1 : BOOL := FALSE;
+        END_VAR
+    
+    BEGIN
+    
+        // Record any fault that occurs during Step 1.
+        IF step_1 AND fault_signal THEN
+            fault_occurred_in_step_1 := TRUE;
+        END_IF;
+    
+        // Step transitions (0 -> 1 -> 2 -> 3 -> 0).
+        IF step_0 AND move_to_next_step THEN
+            step_0 := FALSE;
+            step_1 := TRUE;
+        ELSIF step_1 AND move_to_next_step THEN
+            step_1 := FALSE;
+            step_2 := TRUE;
+        ELSIF step_2 AND move_to_next_step THEN
+            step_2 := FALSE;
+            step_3 := TRUE;
+            fault_occurred_in_step_1 := FALSE; // reset the "fault status"
+        ELSIF step_3 AND move_to_next_step THEN
+            step_3 := FALSE;
+            step_0 := TRUE;
+        END_IF;
+    
+    END_FUNCTION_BLOCK
+
+An additional step (Step 0) is included to indicate that the process
+is waiting to start.
+
+The following command converts the ST code to a model:
+
+    st2smv --convert --input process.st --output-directory dynamics
+
+## Timing
+
+The following data file (written in JSON) lists the amount of time
+that each step takes:
+
+    {
+        "process": {
+            "step_0": 0,
+            "step_1": 5,
+            "step_2": {
+                "(! fault_occurred_in_step_1)": 2,
+                "fault_occurred_in_step_1": 4
+            },
+            "step_3": 1
+        }
+    }
+
+-   There is no minimum amount of time that the process is required to
+    wait before starting, so a time of 0 is given for Step 0.
+-   Steps 1 and 3 each have a fixed duration (of 5 minutes and 1 minute,
+    respectively).
+-   The duration of Step 2 depends on whether the
+    `fault_occurred_in_step_1` variable is `true`: if not, it takes 2
+    minutes, otherwise, it takes 4 minutes.
+
+The following command converts the timing data to a set of constraints
+in SMV format, which will be used to augment the model of the
+automation logic:
+
+    st2smv --read-timing-data --input timing.json --output-directory dynamics
+
+## Completion of Tasks
+
+Because the automation system doesn't explicitly track the completion
+of tasks, the following additional SMV code is used to track the
+number of tasks that have been completed (i.e., the number of times
+that the process has finished Step 3 and moved back to Step 0 to wait
+for the next task):
+
+    TRANS next(COUNT_process_task) = (
+        step_3 & next(step_0)
+        ? COUNT_process_task + 1
+        : COUNT_process_task
+    );
+
+## Metadata
+
+A metadata file (written in JSON) describes which of the dynamics
+pertain to which tasks:
+
+    {
+        "*": [
+            "dynamics/model.json",
+            "dynamics/timing.smv"
+        ],
+        "process": {
+            "task": ["counter-process_task.smv"]
+        }
+    }
+
+The special value `*` indicates dynamics which must always be included
+(in this case, the model of the automation logic itself and the timing
+information).  The other values indicate task-specific dynamics &#x2014; in
+this case, the counter that tracks the number of tasks that the
+process has completed.
+
+## A Feasible Schedule
+
+In the following schedule (written in JSON), the process is scheduled
+to start a single task at time 0 and finish it at time 8 (the empty
+string after the task's start and end times is an optional label,
+which is simply left blank here):
+
+    {
+        "horizon": [
+            0,
+            10
+        ],
+        "tasks": {
+            "process": [
+                [
+                    "task",
+                    [
+                        0,
+                        8
+                    ],
+                    ""
+                ]
+            ]
+        }
+    }
+
+The following file (written in JSON) indicates the initial state of
+the process, which is in Step 0 at time 0:
+
+    {
+        "step_0": true,
+        "step_1": false,
+        "step_2": false,
+        "step_3": false,
+        "fault_occurred_in_step_1": false,
+        "_absolute_time": 0,
+        "time": 0
+    }
+
+The `_absolute_time` variable represents the amount of time that has
+passed since the beginning of the entire operation, and `time`
+represents the current time relative to the start of the current
+schedule; they are both 0 in this case, because the schedule begins at
+the start of the operation.
+
+The following command (written as a shell script here, but easily
+adapted to other platforms) checks whether the schedule is feasible
+(i.e., can be completed on time) if the system is in the given state:
+
+    st2smv --check-schedule \
+        --input schedule-t0.json state-t0.json \
+        --metadata metadata.json \
+        --output-directory results-t0 \
+        --verbosity debug \
+        --solver-path SynthSMV \
+    ;
+
+In this case, it *is* feasible, because the process can complete Steps
+1, 2, and 3 in 5 minutes, 2 minutes, and 1 minute, respectively, for a
+total of 8 minutes, which meets the scheduled deadline.  Note that
+this requires that the task start immediately and not spend any time
+waiting in Step 0, and it also requires that Step 2 finish in 2
+minutes (not 4), meaning that no fault can occur in Step 1.
+
+## Another Feasible Schedule
+
+After 5 minutes have passed and Step 1 is finished, the following
+partial schedule remains to be completed (5 minutes of the initial
+horizon and 3 minutes of the time allotted to the first task remain):
+
+    {
+        "horizon": [
+            0,
+            5
+        ],
+        "tasks": {
+            "process": [
+                [
+                    "task",
+                    [
+                        0,
+                        3
+                    ],
+                    ""
+                ]
+            ]
+        }
+    }
+
+If no fault occurred during Step 1, then the current state will be the
+following:
+
+    {
+        "step_0": false,
+        "step_1": false,
+        "step_2": true,
+        "step_3": false,
+        "fault_occurred_in_step_1": false,
+        "_absolute_time": 5,
+        "time": 0
+    }
+
+where `_absolute_time` is 5 (because 5 minutes have passed since the
+beginning of the operation) and the relative time is still 0, because
+the schedule has been updated to only include the remaining part of
+the original schedule.
+
+The following command confirms that the schedule is still feasible:
+
+    st2smv --check-schedule \
+        --input schedule-t5.json state-t5-no_delay.json \
+        --metadata metadata.json \
+        --output-directory results-t5_no_delay \
+        --verbosity debug \
+        --solver-path SynthSMV \
+    ;
+
+## An *Infeasible* Schedule
+
+If a fault *did* occur during Step 1, then the state would be the
+following:
+
+    {
+        "step_0": false,
+        "step_1": false,
+        "step_2": true,
+        "step_3": false,
+        "fault_occurred_in_step_1": true,
+        "_absolute_time": 5,
+        "time": 0
+    }
+
+where `fault_occurred_in_step_1` is now `true`.
+
+Checking the previous schedule against *this* state indicates that the
+task can no longer finish by the scheduled deadline:
+
+    st2smv --check-schedule \
+        --input schedule-t5.json state-t5-delay.json \
+        --metadata metadata.json \
+        --output-directory results-t5_delay \
+        --verbosity debug \
+        --solver-path SynthSMV \
+    ;
+
+In this case, the task will require at least 5 more minutes
+to finish (4 minutes for Step 2, due to the fault during Step 1, and 1
+minute for Step 3, as usual), which will run past the deadline of 3
+minutes.
+
+An output file (`results-t5_delay/delay.json`) is produced that
+contains the information about the delay, including the time at which
+it occurred and the minimum amount by which the task will be delayed
+(2 minutes, in this case).

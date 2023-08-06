@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Using st2smv to Analyze Schedules</title>
+<!-- 2018-10-05 Fri 14:01 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Blake C. Rawlings" />
+<style type="text/css"> html { font-family: sans-serif; } </style>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Using st2smv to Analyze Schedules</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<code>st2smv</code> can be used to check whether a given automation system will
+allow a proposed schedule of operations to proceed.  This mode of
+operation assumes that the schedule defines a sequence of future tasks
+that are supposed to occur at specific times in the future, and that
+some of the transitions in the automation system have a known minimum
+amount of time associated with them.
+</p>
+
+<p>
+The relevant command-line options are:
+</p>
+<ul class="org-ul">
+<li><code>--read-timing-data</code>, which reads a data file (specified using the
+<code>--input</code> option) and creates a corresponding file that defines the
+timing dynamics in SMV syntax
+</li>
+<li><code>--check-schedule</code>, which reads a schedule and the current state of
+the process (specified <i>in that order</i> using the <code>--input</code> option)
+along with the relevant dynamics (listed in a metadata file which is
+specified using the <code>--metadata</code> option)
+</li>
+<li><code>--solver-path</code>, which specifies the path to the solver executable
+to use when analyzing the schedule (SynthSMV is known to work, and
+NuSMV may also work)
+</li>
+</ul>
+<p>
+A complete example showing how to use those options and the required
+format of the input files is included below.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Example</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Consider a process that consists of three steps.  Steps 1 and 3 always
+require a fixed amount of time to be completed, while the amount of
+time required to complete Step 2 depends on the outcome of Step 1.
+</p>
+
+<p>
+(the following sequence of commands will run the entire example)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">./create_model.sh
+./create_timing.sh
+./check-t0.sh
+./check-t5-no_delay.sh
+./check-t5-delay.sh
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Automation Logic</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The following PLC code (a function block, written in Structured Text)
+implements the step transitions and fault detection logic:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-fundamental">FUNCTION_BLOCK process
+
+    VAR_INPUT
+	move_to_next_step : BOOL;
+	fault_signal : BOOL;
+    END_VAR
+
+    VAR
+	step_0 : BOOL := TRUE;
+	step_1 : BOOL := FALSE;
+	step_2 : BOOL := FALSE;
+	step_3 : BOOL := FALSE;
+	fault_occurred_in_step_1 : BOOL := FALSE;
+    END_VAR
+
+BEGIN
+
+    // Record any fault that occurs during Step 1.
+    IF step_1 AND fault_signal THEN
+	fault_occurred_in_step_1 := TRUE;
+    END_IF;
+
+    // Step transitions (0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 0).
+    IF step_0 AND move_to_next_step THEN
+	step_0 := FALSE;
+	step_1 := TRUE;
+    ELSIF step_1 AND move_to_next_step THEN
+	step_1 := FALSE;
+	step_2 := TRUE;
+    ELSIF step_2 AND move_to_next_step THEN
+	step_2 := FALSE;
+	step_3 := TRUE;
+	fault_occurred_in_step_1 := FALSE; // reset the "fault status"
+    ELSIF step_3 AND move_to_next_step THEN
+	step_3 := FALSE;
+	step_0 := TRUE;
+    END_IF;
+
+END_FUNCTION_BLOCK
+</pre>
+</div>
+<p>
+An additional step (Step 0) is included to indicate that the process
+is waiting to start.
+</p>
+
+<p>
+The following command converts the ST code to a model:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">st2smv --convert --input process.st --output-directory dynamics
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">Timing</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The following data file (written in JSON) lists the amount of time
+that each step takes:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">{
+    "process": {
+	"step_0": 0,
+	"step_1": 5,
+	"step_2": {
+	    "(! fault_occurred_in_step_1)": 2,
+	    "fault_occurred_in_step_1": 4
+	},
+	"step_3": 1
+    }
+}
+</pre>
+</div>
+<ul class="org-ul">
+<li>There is no minimum amount of time that the process is required to
+wait before starting, so a time of 0 is given for Step 0.
+</li>
+<li>Steps 1 and 3 each have a fixed duration (of 5 minutes and 1 minute,
+respectively).
+</li>
+<li>The duration of Step 2 depends on whether the
+<code>fault_occurred_in_step_1</code> variable is <code>true</code>: if not, it takes 2
+minutes, otherwise, it takes 4 minutes.
+</li>
+</ul>
+
+<p>
+The following command converts the timing data to a set of constraints
+in SMV format, which will be used to augment the model of the
+automation logic:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">st2smv --read-timing-data --input timing.json --output-directory dynamics
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">Completion of Tasks</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Because the automation system doesn't explicitly track the completion
+of tasks, the following additional SMV code is used to track the
+number of tasks that have been completed (i.e., the number of times
+that the process has finished Step 3 and moved back to Step 0 to wait
+for the next task):
+</p>
+<div class="org-src-container">
+
+<pre class="src src-synthsmv">TRANS next(COUNT_process_task) = (
+    step_3 &amp; next(step_0)
+    ? COUNT_process_task + 1
+    : COUNT_process_task
+);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">Metadata</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+A metadata file (written in JSON) describes which of the dynamics
+pertain to which tasks:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">{
+    "*": [
+	"dynamics/model.json",
+	"dynamics/timing.smv"
+    ],
+    "process": {
+	"task": ["counter-process_task.smv"]
+    }
+}
+</pre>
+</div>
+<p>
+The special value <code>*</code> indicates dynamics which must always be included
+(in this case, the model of the automation logic itself and the timing
+information).  The other values indicate task-specific dynamics &#x2014; in
+this case, the counter that tracks the number of tasks that the
+process has completed.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5">A Feasible Schedule</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+In the following schedule (written in JSON), the process is scheduled
+to start a single task at time 0 and finish it at time 8 (the empty
+string after the task's start and end times is an optional label,
+which is simply left blank here):
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">{
+    "horizon": [
+	0,
+	10
+    ],
+    "tasks": {
+	"process": [
+	    [
+		"task",
+		[
+		    0,
+		    8
+		],
+		""
+	    ]
+	]
+    }
+}
+</pre>
+</div>
+
+<p>
+The following file (written in JSON) indicates the initial state of
+the process, which is in Step 0 at time 0:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">{
+    "step_0": true,
+    "step_1": false,
+    "step_2": false,
+    "step_3": false,
+    "fault_occurred_in_step_1": false,
+    "_absolute_time": 0,
+    "time": 0
+}
+</pre>
+</div>
+<p>
+The <code>_absolute_time</code> variable represents the amount of time that has
+passed since the beginning of the entire operation, and <code>time</code>
+represents the current time relative to the start of the current
+schedule; they are both 0 in this case, because the schedule begins at
+the start of the operation.
+</p>
+
+<p>
+The following command (written as a shell script here, but easily
+adapted to other platforms) checks whether the schedule is feasible
+(i.e., can be completed on time) if the system is in the given state:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">st2smv --check-schedule \
+    --input schedule-t0.json state-t0.json \
+    --metadata metadata.json \
+    --output-directory results-t0 \
+    --verbosity debug \
+    --solver-path SynthSMV \
+;
+</pre>
+</div>
+<p>
+In this case, it <i>is</i> feasible, because the process can complete Steps
+1, 2, and 3 in 5 minutes, 2 minutes, and 1 minute, respectively, for a
+total of 8 minutes, which meets the scheduled deadline.  Note that
+this requires that the task start immediately and not spend any time
+waiting in Step 0, and it also requires that Step 2 finish in 2
+minutes (not 4), meaning that no fault can occur in Step 1.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6">Another Feasible Schedule</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+After 5 minutes have passed and Step 1 is finished, the following
+partial schedule remains to be completed (5 minutes of the initial
+horizon and 3 minutes of the time allotted to the first task remain):
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">{
+    "horizon": [
+	0,
+	5
+    ],
+    "tasks": {
+	"process": [
+	    [
+		"task",
+		[
+		    0,
+		    3
+		],
+		""
+	    ]
+	]
+    }
+}
+</pre>
+</div>
+
+<p>
+If no fault occurred during Step 1, then the current state will be the
+following:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">{
+    "step_0": false,
+    "step_1": false,
+    "step_2": true,
+    "step_3": false,
+    "fault_occurred_in_step_1": false,
+    "_absolute_time": 5,
+    "time": 0
+}
+</pre>
+</div>
+<p>
+where <code>_absolute_time</code> is 5 (because 5 minutes have passed since the
+beginning of the operation) and the relative time is still 0, because
+the schedule has been updated to only include the remaining part of
+the original schedule.
+</p>
+
+<p>
+The following command confirms that the schedule is still feasible:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">st2smv --check-schedule \
+    --input schedule-t5.json state-t5-no_delay.json \
+    --metadata metadata.json \
+    --output-directory results-t5_no_delay \
+    --verbosity debug \
+    --solver-path SynthSMV \
+;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7">An <i>Infeasible</i> Schedule</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+If a fault <i>did</i> occur during Step 1, then the state would be the
+following:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">{
+    "step_0": false,
+    "step_1": false,
+    "step_2": true,
+    "step_3": false,
+    "fault_occurred_in_step_1": true,
+    "_absolute_time": 5,
+    "time": 0
+}
+</pre>
+</div>
+<p>
+where <code>fault_occurred_in_step_1</code> is now <code>true</code>.
+</p>
+
+<p>
+Checking the previous schedule against <i>this</i> state indicates that the
+task can no longer finish by the scheduled deadline:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">st2smv --check-schedule \
+    --input schedule-t5.json state-t5-delay.json \
+    --metadata metadata.json \
+    --output-directory results-t5_delay \
+    --verbosity debug \
+    --solver-path SynthSMV \
+;
+</pre>
+</div>
+<p>
+In this case, the task will require at least 5 more minutes
+to finish (4 minutes for Step 2, due to the fault during Step 1, and 1
+minute for Step 3, as usual), which will run past the deadline of 3
+minutes.
+</p>
+
+<p>
+An output file (<code>results-t5_delay/delay.json</code>) is produced that
+contains the information about the delay, including the time at which
+it occurred and the minimum amount by which the task will be delayed
+(2 minutes, in this case).
+</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

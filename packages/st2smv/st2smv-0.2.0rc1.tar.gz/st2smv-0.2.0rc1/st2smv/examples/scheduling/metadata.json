@@ -1,0 +1,10 @@
+
+{
+    "*": [
+        "dynamics/model.json",
+        "dynamics/timing.smv"
+    ],
+    "process": {
+        "task": ["counter-process_task.smv"]
+    }
+}

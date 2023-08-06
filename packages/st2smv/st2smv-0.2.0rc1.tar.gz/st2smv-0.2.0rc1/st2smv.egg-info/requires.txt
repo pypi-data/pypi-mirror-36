@@ -1,0 +1,8 @@
+networkx<2.0
+pyparsing
+six
+lark-parser
+
+[predicates]
+PySMT
+networkx
