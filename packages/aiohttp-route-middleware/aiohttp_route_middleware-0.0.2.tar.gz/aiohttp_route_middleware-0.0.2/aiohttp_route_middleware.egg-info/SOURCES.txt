@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+aiohttp_route_middleware/__init__.py
+aiohttp_route_middleware/web_urldispatcher.py
+aiohttp_route_middleware.egg-info/PKG-INFO
+aiohttp_route_middleware.egg-info/SOURCES.txt
+aiohttp_route_middleware.egg-info/dependency_links.txt
+aiohttp_route_middleware.egg-info/requires.txt
+aiohttp_route_middleware.egg-info/top_level.txt
