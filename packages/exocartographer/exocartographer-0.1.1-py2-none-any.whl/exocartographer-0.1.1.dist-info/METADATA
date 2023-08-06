@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: exocartographer
+Version: 0.1.1
+Summary: Map some exoplanets
+Home-page: https://github.com/bfarr/exocartographer
+Author: Ben Farr, Will Farr, Nick Cowan
+Author-email: bfarr@uoregon.edu, w.farr@bham.ac.uk, nicolas.cowan@mcgill.ca
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: numpy
+Requires-Dist: healpy
+Requires-Dist: scipy
+
+UNKNOWN
+
+
