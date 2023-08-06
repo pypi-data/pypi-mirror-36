@@ -1,0 +1,23 @@
+sudo: false
+cache: pip
+language: python
+matrix:
+  include:
+    - python: 3.6
+      env: TOXENV=py36
+    - python: 3.6
+      env: TOXENV=pep8
+  fast_finish: true
+before_install: pip install codecov
+install: pip install tox
+script: tox
+after_success: codecov
+deploy:
+  provider: pypi
+  user: genpage
+  distributions: sdist bdist_wheel
+  password: ${PYPI_PASSWORD}
+  on:
+    tags: true
+    repo: GenPage/icingapy
+    condition: "$TOXENV = py36"
