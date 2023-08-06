@@ -1,0 +1,165 @@
+# Botox
+
+Botox is a lightweight dependency injection implementation based on Python typing.
+It helps deliver the configured functional objects, decreasing coupling between a class and its dependencies.
+
+### Delivery 
+
+Global variables? Proxy objects? Application context?
+
+There should be one (and preferably only one) obvious way to do it.
+
+Botox helps you isolate a class from the impact of different design changes and defects. 
+Meaning that, instead of thinking about interdependence between software modules
+you will now find yourself spending much of your time having to focus a class on the task it is designed for.
+
+### Configuration
+
+Monkey-patching? Decorators?
+
+Explicit is better than implicit.
+
+Botox allows a class the flexibility of being configurable.
+The class may act on anything that supports the intrinsic interface the class expects.
+Explicit configurations can be written separately for different
+situations that require different implementations of dependencies.
+  
+### Usage
+
+Now is better than never.
+
+Botox doesn’t require any change in code behavior it can be applied to legacy code as a refactoring.
+
+## Installation
+
+Install and update using [pip](https://pip.pypa.io/en/stable/quickstart/):
+
+```bash
+pip install -U botox-di
+```
+
+## Examples
+
+### Class Injection
+
+Can be used to reduce boilerplate code in the application classes since 
+all work to initialize or set up dependencies is handled separately.
+
+```python
+class PaymentService:
+    ...
+    
+class BillingService:
+    ...
+    
+class SalesService:
+
+    def __init__(self, payment_service: PaymentService, billing_service: BillingService):
+        self.payment_service = payment_service
+        self.billing_service = billing_service
+    
+    ...
+        
+   
+injector = Injector()
+injector.prepare(PaymentService)
+injector.prepare(BillingService)
+injector.prepare(SalesService)
+
+sales = injector.deliver(SalesService)
+sales.do_something()
+```
+
+The result is class that is easier to unit test in 
+isolation using stubs or mock objects that simulate other objects.
+
+```python
+# test_sales.py
+
+injector.prepare(PaymentService, PaymentServiceStub)
+```
+
+### Value Injection
+
+Can be used when exactly one object is needed to coordinate actions across the system.
+
+```python
+class AppSettings:
+    ...
+    
+settings = AppSettings()
+
+injector = Injector()
+injector.prepare(AppSettings, settings)
+
+assert injector.deliver(AppSettings) is settings
+```
+
+### Lambda Injection
+
+Can be used to wrap Proxy objects in legacy code as refactoring.
+
+```python
+from flask import g, current_app
+
+injector = Injector()
+injector.prepare(Flask, lambda: current_app)
+injector.prepare(Something, lambda: g.something)
+
+```
+
+### Function Injection
+
+Can be used to make factory functions with dependencies.
+
+```python
+def create_api_client(settings: Settings):
+    with open(settings.api_configuration_file) as file:
+        key, url = file.read(...)
+        return ApiClient(key, url)
+    
+injector = Injector()
+injector.provide(Settings)
+injector.provide(ApiClient, create_api_client)
+```
+
+### Advanced
+
+```python
+from aiohttp import web
+from botox import Injector
+
+class TemplateRepository:
+    def get_template(self):
+        return "Hello, {}!"
+
+class HelloService:
+    def __init__(self, template_repository: TemplateRepository):
+        self.template_repository = template_repository
+
+    def get_hello_message(self, name):
+        template = self.template_repository.get_template()
+        return template.format(name)
+
+
+async def handle(request):
+    service = request.app.injector.deliver(HelloService)
+    name = request.match_info.get('name', "Anonymous")
+    text = service.get_hello_message(name)
+    return web.Response(text=text)
+
+
+app = web.Application()
+
+app.injector = Injector()
+app.injector.prepare(HelloService)
+app.injector.prepare(TemplateRepository)
+
+app.add_routes([
+    web.get('/', handle),
+    web.get('/{name}', handle)
+])
+
+web.run_app(app)
+```
+
