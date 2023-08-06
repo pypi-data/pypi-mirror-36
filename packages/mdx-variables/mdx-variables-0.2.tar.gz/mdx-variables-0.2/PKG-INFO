@@ -1,0 +1,108 @@
+Metadata-Version: 1.1
+Name: mdx-variables
+Version: 0.2
+Summary: A variables extension for Markdown
+Home-page: http://github.com/CTPUG/mdx_variables
+Author: CTPUG
+Author-email: ctpug@googlegroups.com
+License: MIT
+Description: mdx_variables
+        =============
+        
+        |variables-ci-badge|
+        
+        .. |variables-ci-badge| image:: https://travis-ci.org/CTPUG/mdx_variables.png?branch=master
+            :alt: Travis CI build status
+            :scale: 100%
+            :target: https://travis-ci.org/CTPUG/mdx_variables
+        
+        A Markdown extension to add support for variables.
+        
+        Licensed under the `ISC License`_.
+        
+        .. _ISC License: https://github.com/CTPUG/mdx_variables/blob/master/LICENSE
+        
+        
+        Requirements
+        ============
+        
+        The mdx_variables plugin requires only the base `markdown`_ library.
+        
+        .. _markdown: http://pythonhosted.org/Markdown/
+        
+        
+        Installation
+        ============
+        
+        Install with ``pip install mdx_variables``.
+        
+        
+        Documentation
+        =============
+        
+        Allows inserting variables into Markdown.
+        
+        The following Markdown example:
+        
+        .. code:: markdown
+        
+          This paragraph contains ${chickens} chickens.
+        
+          This paragraph contains no chickens but ${foxes} foxes.
+        
+          Are there ninjas here? ${ninjas}.
+        
+        Might result in:
+        
+        .. code:: markdown
+        
+          This paragraph contains 5 chickens.
+        
+          This paragraph contains no chickens but 3 foxes.
+        
+          Are there ninjas here? ninjas not found.
+        
+        
+        Python usage:
+        
+        .. code:: python
+        
+          md = markdown.Markdown(
+              extensions=[
+                  'variables',
+              ],
+              extension_configs={
+                  'variables': {
+                      'vars': {
+                        'chickens': '5',
+                        'foxes': (lambda: 3),
+                        '__getattr__': (lambda name: "{} not found".format(name)),
+                      },
+                  }
+              })
+        
+        Configuration options:
+        
+        * ``vars``: A dictionary mapping variable names to variable values.
+        
+          If a value is a function, that function will be called without arguments and
+          the result will be used as the variable value.
+        
+          The special variable ``__getattr__`` may specify a function
+          ``f(name) -> value`` to call when no matching variable is found.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Framework :: Django
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet :: WWW/HTTP

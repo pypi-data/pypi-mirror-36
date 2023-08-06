@@ -1,0 +1,15 @@
+.gitignore
+.travis.yml
+LICENSE
+README.rst
+mdx_variables.py
+requirements-dev.txt
+requirements.txt
+setup.cfg
+setup.py
+tests.py
+mdx_variables.egg-info/PKG-INFO
+mdx_variables.egg-info/SOURCES.txt
+mdx_variables.egg-info/dependency_links.txt
+mdx_variables.egg-info/requires.txt
+mdx_variables.egg-info/top_level.txt
