@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: PyXMLStreamParser
+Version: 0.1.1
+Summary: Python library to parse XML streams easily 
+Home-page: https://github.com/alfred82santa/PyXMLStreamParser
+Author: alfred82santa
+Author-email: alfred82santa@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Development Status :: 4 - Beta
+
+=================
+PyXMLStreamParser
+=================
+
+Python library to parse XML streams easily
+
+
