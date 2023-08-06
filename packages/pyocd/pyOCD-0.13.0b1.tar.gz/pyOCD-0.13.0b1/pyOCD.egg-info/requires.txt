@@ -1,0 +1,13 @@
+intelhex
+six
+enum34
+future
+websocket-client
+intervaltree
+colorama
+pyelftools
+pyusb>=1.0.0b2
+hidapi
+
+[dissassembler]
+capstone
