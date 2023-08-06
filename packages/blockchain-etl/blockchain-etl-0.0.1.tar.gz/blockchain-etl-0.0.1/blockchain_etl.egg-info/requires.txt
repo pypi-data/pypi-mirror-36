@@ -1,0 +1,4 @@
+neocore==0.4.11
+octopus==0.1.5
+switcheo==0.2.2
+pymongo[srv,tls]>=3.7.1
