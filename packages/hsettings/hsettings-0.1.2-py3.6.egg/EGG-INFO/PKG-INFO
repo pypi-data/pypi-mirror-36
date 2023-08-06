@@ -1,0 +1,29 @@
+Metadata-Version: 1.2
+Name: hsettings
+Version: 0.1.2
+Summary: Hybrid settings from multiple sources.
+Home-page: https://github.com/wwtg99/hsettings
+Author: wuwentao
+Author-email: wwtg99@126.com
+License: MIT
+Description: 
+        HSettings
+        ---------
+        
+        Description
+        ===========
+        
+        Hybrid settings from multiple sources.
+        
+        Load settings from dict, json file, yaml file, environment or other sources, merge into one dict-like object.
+        Support some useful methods to search and operate in the deep dict.
+        
+        
+Keywords: settings
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.5
