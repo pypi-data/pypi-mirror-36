@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: pdbear
+Version: 0.1
+Summary: Converts long pdb filenames to base32 4-letter codes and vice-versa
+Home-page: http://github.com/gregorpatof/pdbear
+Author: gregorpatof
+Author-email: gr3gorpatof@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
