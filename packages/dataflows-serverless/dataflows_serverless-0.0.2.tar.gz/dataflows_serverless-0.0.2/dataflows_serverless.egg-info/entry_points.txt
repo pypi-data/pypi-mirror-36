@@ -1,0 +1,4 @@
+[console_scripts]
+dataflows_serverless_bin = dataflows_serverless.cli:bin
+dataflows_serverless_image = dataflows_serverless.cli:image
+
