@@ -1,0 +1,14 @@
+gitpython
+texttable
+base58
+ecdsa
+python-dateutil
+SystemCmd
+PyContracts
+whichcraft
+termcolor
+PyYAML
+docker
+requests
+requests[security]
+duckietown-challenges>=0.2.2
