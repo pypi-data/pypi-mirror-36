@@ -1,0 +1,5 @@
+[console_scripts]
+gsm_new_project = gsmodutils.gsm_project:main
+gsmodutils = gsmodutils.cliutils:cli
+scrumpy_to_cobra = gsmodutils.scrumpy:scrumpy_to_cobra
+
