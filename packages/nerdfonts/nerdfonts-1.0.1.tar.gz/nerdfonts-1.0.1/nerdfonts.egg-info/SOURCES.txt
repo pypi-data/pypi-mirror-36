@@ -1,0 +1,10 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+nerdfonts/__init__.py
+nerdfonts/icons.py
+nerdfonts.egg-info/PKG-INFO
+nerdfonts.egg-info/SOURCES.txt
+nerdfonts.egg-info/dependency_links.txt
+nerdfonts.egg-info/top_level.txt
