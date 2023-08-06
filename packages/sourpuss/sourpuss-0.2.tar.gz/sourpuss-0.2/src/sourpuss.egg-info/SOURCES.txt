@@ -1,0 +1,13 @@
+MANIFEST.in
+NEWS.txt
+README.rst
+setup.cfg
+setup.py
+src/sourpuss/__init__.py
+src/sourpuss.egg-info/PKG-INFO
+src/sourpuss.egg-info/SOURCES.txt
+src/sourpuss.egg-info/dependency_links.txt
+src/sourpuss.egg-info/entry_points.txt
+src/sourpuss.egg-info/not-zip-safe
+src/sourpuss.egg-info/requires.txt
+src/sourpuss.egg-info/top_level.txt
