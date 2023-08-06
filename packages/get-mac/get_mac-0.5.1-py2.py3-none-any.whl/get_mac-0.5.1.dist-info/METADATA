@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: get-mac
+Version: 0.5.1
+Summary: get-mac has changed names and moved to "getmac" on PyPI
+Home-page: https://github.com/GhostofGoes/getmac
+Author: Christopher Goes
+Author-email: ghostofgoes@gmail.com
+License: MIT
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+
+'get-mac' has changed names and moved to 'getmac' on PyPI.
+Please update your dependencies or notify the maintainer of the application.
+
+New PyPI location: https://pypi.org/project/getmac/
+
+
