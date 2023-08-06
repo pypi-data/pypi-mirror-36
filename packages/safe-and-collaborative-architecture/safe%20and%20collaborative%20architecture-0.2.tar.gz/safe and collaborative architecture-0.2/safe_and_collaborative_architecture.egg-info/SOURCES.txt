@@ -1,0 +1,17 @@
+README.md
+setup.py
+safe_and_collaborative_architecture.egg-info/PKG-INFO
+safe_and_collaborative_architecture.egg-info/SOURCES.txt
+safe_and_collaborative_architecture.egg-info/dependency_links.txt
+safe_and_collaborative_architecture.egg-info/requires.txt
+safe_and_collaborative_architecture.egg-info/top_level.txt
+sca/__init__.py
+sca/format_flags.py
+sca/formats/__init__.py
+sca/formats/csv.py
+sca/formats/json.py
+sca/storage/__init__.py
+sca/storage/repository.py
+sca/utils/__init__.py
+sca/utils/hash_utils.py
+sca/utils/send2trash_wrapper.py
