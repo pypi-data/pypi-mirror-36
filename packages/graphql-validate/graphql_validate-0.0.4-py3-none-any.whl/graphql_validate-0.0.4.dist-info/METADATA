@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: graphql-validate
+Version: 0.0.4
+Summary: GraphQL API Validation toolkit.
+Home-page: https://github.com/danpalmer/graphql-validate
+Author: Dan Palmer
+Author-email: dan@danpalmer.me
+License: MIT
+Keywords: graphql
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: graphql-core-next
+Requires-Dist: click
+Requires-Dist: requests
+
+# graphql-validate
+
+---
+
+[![CircleCI](https://circleci.com/gh/danpalmer/graphql-validate.svg?style=shield&circle-token=3973777302b4f7f00f5b9eb1c07e3c681ea94f35)](https://circleci.com/gh/danpalmer/graphql-validate)
+
+
