@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: getbook
+Version: 0.1
+Summary: Generate e-books in EPUB or MOBI from websites
+Home-page: https://github.com/lepture/getbook
+Author: Hsiaoming Yang
+Author-email: me@lepture.com
+License: GNU AGPLv3+
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: beautifulsoup4
+Requires-Dist: Jinja2
+Requires-Dist: lxml
+Requires-Dist: Pillow
+Requires-Dist: python-dateutil
+Requires-Dist: requests
+
+# Getbook
+
+Generate ebooks to EPUB and MOBI from a collection of web links.
+
+## Installation
+
+Install with pip::
+
+    $ pip install getbook
+
+## Guide
+
+There are serval ways to generate books.
+
+From Feed::
+
+    $ getbook -u http://example.com/feed
+
+提示，rsshub.app 提供了許多 feed.
+
+From File::
+
+    $ getbook -f ./book.json
+
+You can find demo of **book.json** in https://github.com/lepture/getbook
+
+
