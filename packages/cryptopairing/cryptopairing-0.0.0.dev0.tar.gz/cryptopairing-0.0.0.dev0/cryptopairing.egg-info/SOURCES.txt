@@ -1,0 +1,10 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+cryptopairing/__init__.py
+cryptopairing/__version__.py
+cryptopairing.egg-info/PKG-INFO
+cryptopairing.egg-info/SOURCES.txt
+cryptopairing.egg-info/dependency_links.txt
+cryptopairing.egg-info/top_level.txt
