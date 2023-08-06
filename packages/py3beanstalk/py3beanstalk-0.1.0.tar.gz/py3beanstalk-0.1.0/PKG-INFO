@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: py3beanstalk
+Version: 0.1.0
+Summary: beanstalkd de yi ge python3 ke hu duan ku
+Home-page: https://github.com/jingwu15/py3-beanstalk.git
+Author: jingwu
+Author-email: jingwu@vip.163.com
+License: Apache License, Version 2.0
+Description: 
+        py3beanstalk shi beanstalkd de yi ge python3 ke hu duan ku. 
+        beanstalkd<http://kr.github.com/beanstalkd/> shi yi ge gao su ,fen bu shi , nei cun ji de xiao xi dui lie fu wu.
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
