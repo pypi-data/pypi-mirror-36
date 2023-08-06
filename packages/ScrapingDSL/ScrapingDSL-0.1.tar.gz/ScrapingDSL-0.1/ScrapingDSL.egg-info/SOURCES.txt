@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+ScrapingDSL.egg-info/PKG-INFO
+ScrapingDSL.egg-info/SOURCES.txt
+ScrapingDSL.egg-info/dependency_links.txt
+ScrapingDSL.egg-info/requires.txt
+ScrapingDSL.egg-info/top_level.txt
+scraping_dsl/__init__.py
+scraping_dsl/base_generator.py
+scraping_dsl/execute.py
+scraping_dsl/generate.py
+scraping_dsl/generate_spider.py
+scraping_dsl/root.py
