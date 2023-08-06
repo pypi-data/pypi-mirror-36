@@ -1,0 +1,10 @@
+pyfakefs/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pyfakefs/fake_filesystem.py,sha256=TU3mQdevjcraki7dIekbY3YC_H699M_H_pPpPvbwJug,112680
+pyfakefs/fake_filesystem_glob.py,sha256=UiMe5Y0OQGPYZVZBrJYc0HBraXJwgMx2mIwkkFWXSYE,9217
+pyfakefs/fake_filesystem_shutil.py,sha256=PrkHlCjPg4PZzw2rzYSSNnnViUwgaziUa_Zri0OQuAE,12876
+pyfakefs/fake_filesystem_unittest.py,sha256=4LICYU_l2AtbQNfdsqqS6dneRSFCOnnIhnxv1_KwZho,10069
+pyfakefs/fake_tempfile.py,sha256=u6b6AmkrpbWkNaDMRj_Z9uKiwOuwnTAIkOHdoJg9IzA,14556
+pyfakefs-2.9.dist-info/METADATA,sha256=do9QJqP1DBaXxgOp9tzhJuofJxEs0-q81ACZg3_moyc,1497
+pyfakefs-2.9.dist-info/RECORD,,
+pyfakefs-2.9.dist-info/WHEEL,sha256=saUSQBLOUjf5ACZdNkhQ0lB6XrHU-l4vpzxq_W1n_AY,116
+pyfakefs-2.9.dist-info/top_level.txt,sha256=RjJk0MUaoyY24IlA5aXRjEE1HcLScXXL17orRtU7E2o,9
