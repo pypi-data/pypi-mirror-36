@@ -1,0 +1,6 @@
+pyyaml
+
+[test]
+pytest
+pytest-mock
+pytest-xdist
