@@ -1,0 +1,12 @@
+openstep_plist/__init__.py,sha256=PJ0wU5ogKq8Ku-Gp6tWdhzAyWxhMvkoY05vvdjPtePI,198
+openstep_plist/__main__.py,sha256=QAjKqrINR8-V1RA4ma4DYSVqWj3knUkDNeTzEwdmxrA,1271
+openstep_plist/_parser.c,sha256=dUEJZCp_8cgOEFjcdOhHU5CJIiMKY7OsrP8dsKplS_U,383195
+openstep_plist/_parser.pxd,sha256=g01p9vW8QnBLweNbtu7-ymtSY3n0jbUJaRq7X9QTSaQ,1138
+openstep_plist/_parser.pyd,sha256=DqzhmPeXR4U3M131bxEP3KbEemduTd1RQGuKgl5yC_c,47616
+openstep_plist/_parser.pyx,sha256=RDkV4sA_0TYcJdrarAiG-79heUNTfXVN680KE9owIWE,16036
+openstep_plist/_version.py,sha256=ng3_rEDcKuobflG3hMIpNRLP0psy-_a_9pboRDe2yZA,127
+openstep_plist-0.1.0.post4.dist-info/LICENSE.txt,sha256=nG5HcvGH5jdeVDTpC1lFbsfp0uqg2AVqtT5XMcGrUSw,1066
+openstep_plist-0.1.0.post4.dist-info/METADATA,sha256=JlXF3sZLAz3R4GPwM5EV916Eieo8qD5eQ3mZazAg-k8,1128
+openstep_plist-0.1.0.post4.dist-info/RECORD,,
+openstep_plist-0.1.0.post4.dist-info/WHEEL,sha256=mEGGDJH-mHZ8pDhVgz9c64tGylcl0dBgp5u8nwkC9pE,102
+openstep_plist-0.1.0.post4.dist-info/top_level.txt,sha256=lC7drDQN0jidLs11eP5vSE2zs581LsDV_vwdjK72D6Y,15
