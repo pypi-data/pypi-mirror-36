@@ -1,0 +1,3 @@
+[console_scripts]
+fetch-ethercodes = fetch_ethercodes:main
+
