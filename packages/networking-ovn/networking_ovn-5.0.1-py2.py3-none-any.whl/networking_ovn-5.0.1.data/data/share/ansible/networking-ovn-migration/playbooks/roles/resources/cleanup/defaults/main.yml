@@ -1,0 +1,4 @@
+---
+
+cleanup_resource_script: cleanup-resources.sh.j2
+resource_suffix: "pre"

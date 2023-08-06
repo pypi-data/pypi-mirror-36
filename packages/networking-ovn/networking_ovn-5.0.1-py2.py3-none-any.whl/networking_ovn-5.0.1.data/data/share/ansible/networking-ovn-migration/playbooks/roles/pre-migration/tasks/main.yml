@@ -1,0 +1,13 @@
+- name: Create the pre migration resource stack
+  include_role:
+    name: resources/create
+  vars:
+      ovn_migration_temp_dir: "{{ working_dir }}/pre_migration_resources"
+  when: validate_migration|bool
+
+- name: Validate the pre migration resources
+  include_role:
+    name: resources/validate
+  vars:
+      ovn_migration_temp_dir: "{{ working_dir }}/pre_migration_resources"
+  when: validate_migration|bool
