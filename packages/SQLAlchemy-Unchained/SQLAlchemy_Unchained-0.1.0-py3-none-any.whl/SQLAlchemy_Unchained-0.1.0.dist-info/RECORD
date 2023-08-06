@@ -1,0 +1,13 @@
+SQLAlchemy_Unchained-0.1.0.dist-info/METADATA,sha256=8_uGYTK_91K8ffYQE3q_Ibrg1OiprhQU74Uy4v8IAIw,929
+SQLAlchemy_Unchained-0.1.0.dist-info/RECORD,,
+SQLAlchemy_Unchained-0.1.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+SQLAlchemy_Unchained-0.1.0.dist-info/top_level.txt,sha256=UKaop2q6DnOq4lnKif3Cr729BW0PwWMdNzXo4DNbA_M,21
+sqlalchemy_unchained/__init__.py,sha256=WFpCQrG8cqvIN4Xu5HxDl8t3on_QfW20Ljknc67WSnY,2760
+sqlalchemy_unchained/base_model.py,sha256=_rdH4XUHGnEvCP82iZFiDwGJNk7TWnu__ihZg_zMAmo,2710
+sqlalchemy_unchained/foreign_key.py,sha256=VAoyCUY9jon5EWw0i7nR-BDRJqWXmkJnizg8X9A_VTA,2441
+sqlalchemy_unchained/utils.py,sha256=hX_O_2UGLb-xwabq2KiQ0vKYU_Af-Dg8p2a3IxkBg5k,770
+sqlalchemy_unchained/meta/__init__.py,sha256=63LMTXLjvS3ayC3LGou3C7ht1niUFdE5l9NznkKniDU,1277
+sqlalchemy_unchained/meta/base_model_metaclass.py,sha256=vNJC436P28SvmLNNFwbR8wOI9vb7cTK_pHwd6uPYLeU,7038
+sqlalchemy_unchained/meta/model_meta_options.py,sha256=wneafXDdGLx46SjBrzIgKndrZnC1wWq24ujW3B7ixR4,8609
+sqlalchemy_unchained/meta/model_meta_options_factory.py,sha256=QXtV1y1UWTK71SXdCDVmPQ0YgvcTz5afVz5HqrOOVEg,3032
+sqlalchemy_unchained/meta/model_registry.py,sha256=PBh-kfM5d1WJi21sou9udS6BJXpJSHTz5ApDBR91kj8,6679
