@@ -1,0 +1,15 @@
+pytest_axe.egg-info/
+.cache/
+build/
+dist/
+*.egg
+__pycache__
+*.pyc
+*.json
+*.log
+*.html
+.tox
+update.sh
+.pytest_cache
+!pytest_axe/tests/index.html
+!pytest_axe/tests/results.json
