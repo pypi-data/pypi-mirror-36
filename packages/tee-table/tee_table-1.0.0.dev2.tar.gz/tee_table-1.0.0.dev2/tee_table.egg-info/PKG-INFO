@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: tee-table
+Version: 1.0.0.dev2
+Summary: A table for keeping data in memory, on screen and on disk simultaneously
+Home-page: https://github.com/erelsgl/tee_table.py
+Author: Erel Segal-Halevi
+Author-email: erelsgl@gmail.com
+License: UNKNOWN
+Description: # tee_table.py
+        
+        A table for keeping data in memory, on screen and on disk simultaneously
+        
+Keywords: pandas tables
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
