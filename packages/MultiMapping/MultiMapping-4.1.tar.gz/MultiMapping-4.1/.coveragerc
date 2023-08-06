@@ -1,0 +1,6 @@
+[run]
+branch = True
+source = MultiMapping
+
+[report]
+precision = 2
