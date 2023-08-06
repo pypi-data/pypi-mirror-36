@@ -1,0 +1,11 @@
+webhelpers2
+
+[dev]
+coverage
+pytest
+tox
+mock
+jinja2
+
+[lint]
+black
