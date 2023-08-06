@@ -1,0 +1,10 @@
+cython
+numpy
+pysam
+h5py
+pandas
+slugid
+numpy
+scipy==1.0.1
+cooler
+pybbi==0.1.3
