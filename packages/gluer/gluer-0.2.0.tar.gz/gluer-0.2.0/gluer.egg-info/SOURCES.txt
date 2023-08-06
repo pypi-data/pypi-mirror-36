@@ -1,0 +1,14 @@
+README.md
+setup.cfg
+setup.py
+gluer/Factory.py
+gluer/Gluer.py
+gluer/Registration.py
+gluer/__init__.py
+gluer/container.py
+gluer/exceptions.py
+gluer/typing_helpers.py
+gluer.egg-info/PKG-INFO
+gluer.egg-info/SOURCES.txt
+gluer.egg-info/dependency_links.txt
+gluer.egg-info/top_level.txt
