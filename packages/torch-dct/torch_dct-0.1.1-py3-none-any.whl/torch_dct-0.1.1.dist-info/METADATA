@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: torch-dct
+Version: 0.1.1
+Summary: Discrete Cosine Transform (DCT) for pytorch
+Home-page: https://github.com/zh217/torch-dct
+Author: Ziyang Hu
+Author-email: hu.ziyang@cantab.net
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: torch (>=0.4.1)
+
+UNKNOWN
+
+
