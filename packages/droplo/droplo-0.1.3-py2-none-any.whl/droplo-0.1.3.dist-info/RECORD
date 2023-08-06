@@ -1,0 +1,13 @@
+droplo/__init__.py,sha256=ARBZkmO62-fCt0VjxWzvHUw1saTULe32bSXoqdVp8H4,211
+droplo/api.py,sha256=-stgmDu4Bq1fr5wHPZC49fOw9JssaxylpXFXrYw8dAg,2247
+droplo/cache.py,sha256=LBW1u9G8xUu-3yGElTyt0uuzJBRiB-XqBpICJTdJ3SA,1974
+droplo/connection.py,sha256=U0m5owgP5VH-rUd4-wyB_fwtQ9y00i3kzWgc4ARbL70,1464
+droplo/exceptions.py,sha256=d7nqaiECjFR6g1lO6aRu4hdH4EHQirq6BuFQfLB3eTo,1178
+droplo/resource.py,sha256=8KIQq7ATc-mC8GUhyloe4-2-yyuV9x5xfvooExxEMpg,872
+droplo-0.1.3.dist-info/METADATA,sha256=6no2S7x1cGJTLSQ8GE_C9gNm6uIxawWTyOHAsM7jrzA,1939
+droplo-0.1.3.dist-info/RECORD,,
+droplo-0.1.3.dist-info/WHEEL,sha256=_V8uWu5F_h-lvAz5Mbq4oZqV_uCfL4cHgm4IIlDevzU,92
+droplo-0.1.3.dist-info/top_level.txt,sha256=Tnu5VC152YT077NbaEPH4iSXXQv3dsyrLfleGE2xXD8,13
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_api.py,sha256=N9u50_cBY5JQlMTK-vyJMyGargqdx2aNQXXjuvNMOwc,818
+tests/test_cache.py,sha256=I0SKVJcY1WJMWwBBnPbPcGLlchMUi4zs6kpFzojV7Oc,505
