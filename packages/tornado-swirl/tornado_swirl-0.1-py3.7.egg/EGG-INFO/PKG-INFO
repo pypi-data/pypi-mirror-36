@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: tornado-swirl
+Version: 0.1
+Summary: Extract swagger specs from your tornado project
+Home-page: https://github.com/rduldulao/tornado-swirl
+Author: Rodolfo Duldulao
+License: MIT
+Description: Please see documentation here: https://github.com/rduldulao/tornado-swirl
+        
+Platform: UNKNOWN
+Requires-Python: >=3.7.0
