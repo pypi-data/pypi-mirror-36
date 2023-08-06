@@ -1,0 +1,13 @@
+disagree/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+disagree/agreements.py,sha256=keFKykq_niezis5NrWKG14Uq_5ovrbd5PQH7SYWiHpY,6771
+disagree/metrics.py,sha256=0j3RNGh6-N4TGNu2ZU2Izw3wKd2DrpwHYMGU9Ooc3RM,13960
+disagree/plot_utils.py,sha256=gnHqP3eKF9VoXw_waNGHYb5RLNFeTKi5_CX7edgv9kc,754
+disagree/try.py,sha256=nqkVZpkc9cjmnXRr1ko9JkgbHBieeF4HZTs4UUkCDOA,1113
+disagree/test/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+disagree/test/test_metrics.py,sha256=TLvLQXc8dr4GMJhkWWv_-pRQ1gaNtXX-rU7tnX_JLrE,1330
+disagree/test/test_visualisation.py,sha256=7yChXS2hDpbIcskJpDnX00pZzMIjmtBw8Fk36029bnA,1406
+disagree-0.1.7.data/scripts/plot_utils.py,sha256=3GHlQlf6AUB8IvZ_8egnjALsqOOXJYzextCR4mtzSlo,787
+disagree-0.1.7.dist-info/METADATA,sha256=vLqCoXLGqemAYsYl8VON9Me9GngqBgyE9R8Bd_biUNE,5720
+disagree-0.1.7.dist-info/RECORD,,
+disagree-0.1.7.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+disagree-0.1.7.dist-info/top_level.txt,sha256=CzTGhT1Ci_Y1q_7L-jZVFFVyRzqSzRxGHiZBhlydQHs,9
