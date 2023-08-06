@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        lzo_indexer=lzo_indexer.cli:cli
+    
