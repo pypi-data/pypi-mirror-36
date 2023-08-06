@@ -1,0 +1,10 @@
+README.md
+setup.py
+bayesian_sgm/__init__.py
+bayesian_sgm/normalize.py
+bayesian_sgm/segmentator.py
+bayesian_sgm.egg-info/PKG-INFO
+bayesian_sgm.egg-info/SOURCES.txt
+bayesian_sgm.egg-info/dependency_links.txt
+bayesian_sgm.egg-info/requires.txt
+bayesian_sgm.egg-info/top_level.txt
