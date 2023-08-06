@@ -1,0 +1,29 @@
+{% if not snippet %}
+    {% extends "template.html" %}
+    {% block title %}Weather{% endblock %}
+
+    {% block head %}
+        {{ super() }}
+        <link href='https://fonts.googleapis.com/css?family=Almendra' rel='stylesheet'>
+    {% endblock %}
+    
+    {% block bodyOnLoad %}
+    {% endblock %}
+{% endif %}
+
+{% block content %}
+    <div style="font-family:'Almendra';font-size: 18px;">
+        {{ cityName }}
+        <br>
+        <b>{{ weather.City }}, {{ weather.State }}, {{ weather.Country }}</b>
+        <br>
+        <span style="font-size:22px" >{{ weather.Temp }}</span> <img src="{{ url_for('static', filename='images/weather/png/051-celsius.png') }}" alt=" Temperature" width="15">
+        <br>
+        <br>
+        <img src="{{ url_for('static', filename='images/weather/png/033-sunrise.png') }}" alt="Sunrise:" width="30"> {{ weather.Sunrise }}
+        <img src="{{ url_for('static', filename='images/weather/png/032-sunset.png') }}" alt="Sunset:" width="30"> {{ weather.Sunset }}
+        <br>
+        <img src="{{ url_for('static', filename='images/weather/png/005-humidity.png') }}" alt="Humidity:" width="30"> {{ weather.Humidity }}
+        <img src="{{ url_for('static', filename='images/weather/png/051-celsius.png') }}" alt="Temperature:" width="30"> {{ weather.Condition }}
+    </div>
+{% endblock %}
