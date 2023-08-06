@@ -1,0 +1,11 @@
+README.rst
+setup.py
+tensor4/__init__.py
+tensor4/emitters.py
+tensor4/generator.py
+tensor4/trace_parser.py
+tensor4/var_table.py
+tensor4.egg-info/PKG-INFO
+tensor4.egg-info/SOURCES.txt
+tensor4.egg-info/dependency_links.txt
+tensor4.egg-info/top_level.txt
