@@ -1,0 +1,14 @@
+setuptools
+docutils
+Flask==1.0
+Jinja2
+Flask-Cache
+Frozen-Flask
+Flask-Markdown
+psycopg2
+sqlalchemy
+PyYAML
+gevent
+docopt
+pyselect
+MarkupSafe
