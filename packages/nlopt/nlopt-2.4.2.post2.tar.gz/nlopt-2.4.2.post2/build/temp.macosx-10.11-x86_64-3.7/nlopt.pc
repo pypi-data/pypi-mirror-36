@@ -1,0 +1,10 @@
+prefix=/Users/javier/OneDrive/python/nlopt/build/temp.macosx-10.11-x86_64-3.7
+exec_prefix=${prefix}
+libdir=/Users/javier/OneDrive/python/nlopt/build/lib.macosx-10.11-x86_64-3.7
+includedir=${prefix}/include
+
+Name: NLopt
+Description: nonlinear optimization libary
+Version: 2.4.2
+Libs: -L${libdir} -lnlopt -lm
+Cflags: -I${includedir}
