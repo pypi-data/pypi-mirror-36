@@ -1,0 +1,4 @@
+[console_scripts]
+daron-crypt = PyDaron.crypto:main
+daron-decrypt = PyDaron.decrypto:main
+
