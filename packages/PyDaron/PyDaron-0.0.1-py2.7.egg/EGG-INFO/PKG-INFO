@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: PyDaron
+Version: 0.0.1
+Summary: encrypt and decrypt strings
+Home-page: UNKNOWN
+Author: Drake
+Author-email: eclairbleu12@gmail.com
+License: MIT    
+Description: Use daron-crypt to encrypt & daron-decrypt to decrypt
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved
+Classifier: Natural Language :: French
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Communications
