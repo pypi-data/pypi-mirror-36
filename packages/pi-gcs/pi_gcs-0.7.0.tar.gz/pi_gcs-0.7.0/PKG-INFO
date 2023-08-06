@@ -1,0 +1,32 @@
+Metadata-Version: 1.1
+Name: pi_gcs
+Version: 0.7.0
+Summary: Unofficial python wrapper for Physik Instrumente General Command Set API
+Home-page: https://github.com/lbusoni/pi_gcs
+Author: Lorenzo Busoni
+Author-email: lorenzo.busoni@inaf.it
+License: MIT
+Description-Content-Type: UNKNOWN
+Description: # PI GCS python wrapper
+        
+        [![Build Status][travis]][travislink]  [![Coverage Status][coveralls]][coverallslink]  [![PyPI version][pypiversion]][pypiversionlink]
+        
+        A python wrapper around Physik Instrument General Command Set API.
+        
+        The PI GCS2 library is distributed by PI. This is a Python wrapper around the GCS2 library
+        
+        [travis]: https://travis-ci.com/lbusoni/pi_gcs.svg?branch=master "go to travis"
+        [travislink]: https://travis-ci.com/lbusoni/pi_gcs
+        [coveralls]: https://coveralls.io/repos/github/lbusoni/pi_gcs/badge.svg?branch=master "go to coveralls"
+        [coverallslink]: https://coveralls.io/github/lbusoni/pi_gcs
+        [pypiversion]: https://badge.fury.io/py/pi_gcs.svg
+        [pypiversionlink]: https://badge.fury.io/py/pi_gcs
+        
+Keywords: PI, GCS2, GCS, plico, Physik Instrument, piezo, laboratory, instrumentation control
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
