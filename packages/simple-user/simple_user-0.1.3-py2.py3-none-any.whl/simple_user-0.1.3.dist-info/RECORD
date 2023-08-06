@@ -1,0 +1,16 @@
+auth_uuid/__init__.py,sha256=elLrYz7SCj21--Fjd1ZAmuMGU2zf_HaWaItTEBL_puQ,71
+auth_uuid/admin.py,sha256=vkiJrvbswQYd77EUHkoeli7sFVprhLOfuO2aCavI64I,95
+auth_uuid/apps.py,sha256=AR6d4ItGUGHvs3n_BSUdgAj_R6fC35zPCIuO8B_pAiw,108
+auth_uuid/conf.py,sha256=oxtHeJpB6eIAUhDcHI975e6gd-qroDVFFYYIyCq54GU,376
+auth_uuid/helper_jwt.py,sha256=c0o37wM8UP_fOEuv_PioUMB2AVkVWTMm97ucnpt7sLo,524
+auth_uuid/manager.py,sha256=JGn0rJb6-i2XEy92_2ZTtWj4P_zB2jN1jArvV5xpw18,1008
+auth_uuid/models.py,sha256=LJsIFRyYK5aFO8sL5M1V4HKjGqUbZS8ZOFGefrETh4A,786
+auth_uuid/settings.py,sha256=bI92wchAAokZ2UixS_ZJelQLdO8q4loWSg95bRQQK7M,731
+auth_uuid/migrations/0001_initial.py,sha256=rnqUm4B1a2QEeZmamiPjW0CprZfiYc28k64J_tEc4es,1805
+auth_uuid/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+simple_user-0.1.3.dist-info/DESCRIPTION.rst,sha256=HZ-FSCB4UBitw2VrzarufO3tv3SMK9dpyxkmrZ2t7Vo,1612
+simple_user-0.1.3.dist-info/METADATA,sha256=xlBajhDaAtTaqnUeEev7Ww2AabbSYPn5eI3j2tEnCJk,2537
+simple_user-0.1.3.dist-info/RECORD,,
+simple_user-0.1.3.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+simple_user-0.1.3.dist-info/metadata.json,sha256=R4GX6xcbaVqHx9Cn4-Xevzpfclnccr2AOUjqjvSVQJ8,1063
+simple_user-0.1.3.dist-info/top_level.txt,sha256=6qdI4OtJCuCiLuLwM_gD5QWcA56bEeN0ROJE9bAGrdI,10
