@@ -1,0 +1,14 @@
+g2p_en/__init__.py,sha256=QFfXESTswTDoKcAK3SvB9YJz7vPRDFXyWMTEPiy7DDA,30
+g2p_en/expand.py,sha256=sx-fIXMoD0R53hJy1XVAOC1kSWZi7xJ89NBa9aSdcNs,2492
+g2p_en/g2p.py,sha256=fCQVdjrlOQwfZv2d2AgUTA4rNlcrCzCO3voROsO_IBo,5771
+g2p_en/homographs.en,sha256=BAPtzGrv6JRfiYe-OYJ5_Zi_a3Z-VLdBMx07yZowcHE,18711
+g2p_en/train.py,sha256=4KUPbrFhIpHCJCPiLOStWD0tM4333jGqCSWDkiq7XII,6663
+g2p_en/logdir/checkpoint,sha256=VC9jRg-maBMGB7RQjxdqCRgifZRPgD-SXcTSN70_DhQ,319
+g2p_en/logdir/model_epoch_14_gs_27956.data-00000-of-00001,sha256=_8DX1ewaswRe6NsC77U1zO_8CFpkFH_Cb78nl2ylccw,4264812
+g2p_en/logdir/model_epoch_14_gs_27956.index,sha256=ZEb_Uw-hT4i2k-rwDg5VILGSb4ZR_QDUKZ3a7hkAQDM,2199
+g2p_en/logdir/model_epoch_14_gs_27956.meta,sha256=rhe6y4tx8iynFZNhqtCYoRMFNjJHJFAq5x9AoSvCIjY,807456
+g2p_en-1.0.1.dist-info/LICENSE.txt,sha256=tAkwu8-AdEyGxGoSvJ2gVmQdcicWw3j1ZZueVV74M-E,11357
+g2p_en-1.0.1.dist-info/METADATA,sha256=IjNktzVtiu-8YPpUF3a7LRawdBZ7FETHnBQSVFanis0,4091
+g2p_en-1.0.1.dist-info/WHEEL,sha256=YO0P_oFqt6DWX0LhbH7jsyzb3BUtoq2kERtqGsXDJHs,92
+g2p_en-1.0.1.dist-info/top_level.txt,sha256=5hXLPdy6h4XEuKTv_qLm7WAUrcoIIMWxg-TK76F_fQc,7
+g2p_en-1.0.1.dist-info/RECORD,,
