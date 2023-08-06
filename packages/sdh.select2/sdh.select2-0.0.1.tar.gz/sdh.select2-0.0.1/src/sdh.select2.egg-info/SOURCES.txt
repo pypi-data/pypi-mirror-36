@@ -1,0 +1,16 @@
+MANIFEST.in
+README.rst
+setup.py
+src/sdh/__init__.py
+src/sdh.select2.egg-info/PKG-INFO
+src/sdh.select2.egg-info/SOURCES.txt
+src/sdh.select2.egg-info/dependency_links.txt
+src/sdh.select2.egg-info/eager_resources.txt
+src/sdh.select2.egg-info/namespace_packages.txt
+src/sdh.select2.egg-info/not-zip-safe
+src/sdh.select2.egg-info/top_level.txt
+src/sdh/select2/__init__.py
+src/sdh/select2/filters.py
+src/sdh/select2/mixins.py
+src/sdh/select2/paginators.py
+src/sdh/select2/serializers.py
