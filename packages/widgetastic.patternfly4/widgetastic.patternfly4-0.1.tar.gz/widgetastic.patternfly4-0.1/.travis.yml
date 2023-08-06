@@ -1,0 +1,43 @@
+addons:
+  chrome: stable
+  firefox: latest
+language: python
+python:
+  - 2.7
+  - 3.6
+stages:
+  - test
+  - name: deploy
+    if: tag IS true
+env:
+  - BROWSER=chrome
+  - BROWSER=firefox
+jobs:
+  include:
+    - stage: deploy
+      addons:
+      python: 3.6
+      env:
+      before_install:
+      after_success:
+      install: pip install -U setuptools setuptools_scm
+      script: skip
+      deploy:
+        provider: pypi
+        user: misharov
+        distributions: sdist bdist_wheel
+        skip_upload_docs: true
+        password:
+          secure: N+4qB6wgb2UmNF8BvpvzRR87sStw9kSzFK/JT+UOwrKcnhAt5SNpXEIzGyWzZLhkgOcGFUnji8nzYAcKk/CarGRq+VU0I8q8m40xoW8ZHca18dz7wb2UxVXQ0EVFxR7itTMfZlEdPaxKtvc2/9vsGpNJg8GKAVx+mC9bXHTfijQwOmh0L0UBWcxqCrhAYUXauei16rGGDazA8XqFaT/Mak+rd5EIHYnvnfkxbDoFg/3xQtWX8Ap9VY7gfv1KwEywoNLBkC5XubtPGOOznXaP6c+xms5BGwlYJfGY88CuPj1nc02RV0HDHhcCT6nHPn9uAP4iE/T23IeVpPq+KXUA8s0pp5qBuG3FQ7J60W8K4P5bn388INpphZn9544EdJHqhuf9wWrx2o8A1QMY83ws9Y2Ss1+GzVSHrGcihVcQK00aSjLA5kRegesXk2VbHB0NSfOIZ/YJd6w7uz1YYLhDd4JgpEUtYz2f6g9jXJBKzcokaUw/RY5uobWwHVj1xjhzwo826N5I1q8TZCK1GKVwkO4PxXK3V5KvT49w8lK3GbZRmVp5xHdqK+JvjXv4Mg3Tcq+El3flbRSKtThEoElvayJ9nemWvMNd6agweb+kZYcnYcIn/DJ/U3Og3Vpq4DQgDO3QdOCOPkFBBZFcz4WHrynZquznMs6frUGGpAn4b2g=
+        on:
+          tags: true
+before_install:
+  - pip install -U setuptools pip
+  - pip install flake8 pytest pytest-cov coveralls
+  - pip install git+https://github.com/quarckster/webdriverdownloader.git@geckodriver_fix
+  - webdriverdownloader $BROWSER
+install: python setup.py install
+script:
+  - flake8 src testing --max-line-length=100
+  - py.test -v --cov widgetastic_patternfly4 --cov-report term-missing
+after_success: coveralls
