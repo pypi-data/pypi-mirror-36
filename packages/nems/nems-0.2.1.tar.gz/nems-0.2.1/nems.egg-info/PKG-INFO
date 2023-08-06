@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: nems
+Version: 0.2.1
+Summary: Neural encoding models
+Home-page: https://github.com/ganguli-lab/nems
+Author: Niru Maheshwaranathan
+Author-email: nirum@stanford.edu
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Requires: scipy
+Requires: numpy
+Requires: pandas
+Requires: tableprint
+Requires: h5py
+Requires: sklearn
+Requires: proxalgs
+Requires: tqdm
