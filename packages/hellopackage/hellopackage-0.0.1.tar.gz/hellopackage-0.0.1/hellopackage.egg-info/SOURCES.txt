@@ -1,0 +1,9 @@
+README.md
+setup.py
+hellopackage/__init__.py
+hellopackage/hello.py
+hellopackage.egg-info/PKG-INFO
+hellopackage.egg-info/SOURCES.txt
+hellopackage.egg-info/dependency_links.txt
+hellopackage.egg-info/requires.txt
+hellopackage.egg-info/top_level.txt
