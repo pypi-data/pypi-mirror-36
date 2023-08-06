@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: mammon
+Version: 0.0.1
+Summary: Configuration Management for distributed systems
+Home-page: https://github.com/pypa/sampleproject
+Author: Martin Klapproth
+Author-email: martin.klapproth@googlemail.com
+License: UNKNOWN
+Description-Content-Type: text/markdown
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+
+TODO: write some readme
+
+
