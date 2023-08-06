@@ -1,0 +1,14 @@
+bdcli/HELP.txt,sha256=lTuIi9qsKWCalYdT1u-jwr_KBwuoxpi6bqAMJI5j7bk,1800
+bdcli/__init__.py,sha256=ltfWDooqn0vQ6zQPHIo5Vc8hJ_D4McNOPdBI3l5GckI,69
+bdcli/bd.py,sha256=rkeei5hQV5k82JTXACTyDl313hJSUyLl4xR7TkIWwLk,11705
+bdcli/key_token.py,sha256=TjvqjhF-24d2QHYDvWSkrWo11D24Z1_y_OxwW01Nt2Q,6821
+bdcli/messages.py,sha256=HUfq38N_H7nuB8xDbE4SH8EHcW-CAnD71j4xH-Maz9k,2229
+bdcli/string_constants.py,sha256=TS3SGAXb5yOZwwyzPgKye9E5VW4WyrSNXKanWqrkkIY,3591
+bdcli/utils.py,sha256=UERypo1tgLzCjyJHg3sgx7Jan5knIhagzJGegGtsdfU,1648
+bdcli-0.4.1.dist-info/DESCRIPTION.rst,sha256=NxAojsJWji063tJioGXNwywq_uzrH-zeOVU4WGo4zKk,403
+bdcli-0.4.1.dist-info/METADATA,sha256=NhUSsDqzeoKu_fWd00pX6KuKFged0_QrRRPEtkRd_XY,1357
+bdcli-0.4.1.dist-info/RECORD,,
+bdcli-0.4.1.dist-info/WHEEL,sha256=hZvi-8L6mc2COqhOUWREM_h2lvnJbaHycZt8eohtmso,92
+bdcli-0.4.1.dist-info/entry_points.txt,sha256=kM7jsdeh5uw1hy84rinWfTwH4xS2oFND8522U-VRzwA,35
+bdcli-0.4.1.dist-info/metadata.json,sha256=nnGyylCs6LqnE_Iu03zWJfgliJt5FqSIRmis-6Tpu80,1213
+bdcli-0.4.1.dist-info/top_level.txt,sha256=QlwGEkbwH-wu7wZd8IqcuK8obJ3_7hzq07xHguyu4zY,6
