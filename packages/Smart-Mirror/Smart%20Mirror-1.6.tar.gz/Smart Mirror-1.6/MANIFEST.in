@@ -1,0 +1,3 @@
+recursive-include smart_mirror *
+recursive-include smart_mirror/templates *
+recursive-include smart_mirror/static *
