@@ -1,0 +1,10 @@
+machfs/__init__.py,sha256=8D5a8oKgqd6WA1RUkiKCn4l_PVemtyuckxQut0vDHXM,20
+machfs/bitmanip.py,sha256=J5XGDJQmkzLDIwoID-hA7E6_GbB3TRUN4R1g7RPDtGM,971
+machfs/btree.py,sha256=0qc5W9pICS0uPOzcKE-BEdbZ95uEOUdKjJL4acSwvgo,6470
+machfs/directory.py,sha256=WbyNpIJv3IMtniCAr8TD2ZgH6FsT9oLaaYYE-fApr38,2030
+machfs/main.py,sha256=2BUgaIPOGoEgs9aowiaA0Duvy1I9DHEJAaqaVGflc-8,15558
+machfs-0.3.dev0.dist-info/LICENSE,sha256=HfiCBCy2fAi02Ls-1I9PS2L0A_PD597iFRpN1ThRPc8,1068
+machfs-0.3.dev0.dist-info/METADATA,sha256=9WYp2Okhiuc65xw5NS6yuFooK1H-vIeQUIzw-Suvy4s,1050
+machfs-0.3.dev0.dist-info/WHEEL,sha256=8T8fxefr_r-A79qbOJ9d_AaEgkpCGmEPHc-gpCq5BRg,110
+machfs-0.3.dev0.dist-info/top_level.txt,sha256=A60v16G0hQlcyNVJaK62Z_coJQ7fBSosdBJPdJWhcps,7
+machfs-0.3.dev0.dist-info/RECORD,,
