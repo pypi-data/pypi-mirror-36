@@ -1,0 +1,11 @@
+README.rst
+setup.py
+bluepandas/__init__.py
+bluepandas/bluepandas.py
+bluepandas.egg-info/PKG-INFO
+bluepandas.egg-info/SOURCES.txt
+bluepandas.egg-info/dependency_links.txt
+bluepandas.egg-info/requires.txt
+bluepandas.egg-info/top_level.txt
+test/__init__.py
+test/test_bluepandas.py
