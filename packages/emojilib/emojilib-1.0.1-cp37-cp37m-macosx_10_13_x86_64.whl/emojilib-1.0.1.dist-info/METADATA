@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: emojilib
+Version: 1.0.1
+Summary: Ultimate Emoji Generator library using Skia and Python C Extension
+Home-page: https://github.com/emoji-gen/emojilib
+Author: Emoji Generator
+Author-email: ultimate.emoji.gen@gmail.com
+License: MIT License
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+
+UNKNOWN
+
+
