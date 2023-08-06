@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: quicknn
+Version: 1.0.3
+Summary: A package for quick&dirty DNN
+Home-page: https://gitlab.com/deeplego/quicknn
+Author: Lorenzo Palloni
+Author-email: palloni.lorenzo@gmail.com
+License: UNKNOWN
+Description: 
+        # QuickNN
+        
+        An implementation sklearn-like of FeedForward Neural Networks for quick applications. It can handle categorical
+        variables with one-hot-encoding(OHE) method batch-wise as well as continuous variables.
+        
+        ## Example
+        
+        ```python
+        from quicknn import QuickNN
+        
+        # load X_train, X_test, y_train, y_test
+        
+        qdnn = QuickNN(list_neurons=[100, 100, 1])
+        qnn.fit(X_train, y_train)
+        y_pred = qnn.predict(X_test)
+        ```
+        
+        ## Installing
+        
+        ```bash
+        $ pip install quicknn
+        ```
+        
+        ## License
+        
+        This project is licensed under the MIT License - see the [LICENSE.md](License.md) file for details.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
