@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: sndr
+Version: 0.1.2
+Summary: Super simple json request wrapper over TCP (to be used with rcvr)
+Home-page: UNKNOWN
+Author: Rodolfo Castilll Mateluna
+Author-email: rodolfocastillomateluna@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# SNDR - PY
+
+
