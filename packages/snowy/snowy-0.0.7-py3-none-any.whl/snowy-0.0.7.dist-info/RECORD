@@ -1,0 +1,13 @@
+snowy/__init__.py,sha256=rPOEv3KhTig5pn8ZWSzH-6C78xdz8z_r9YBbzjrsFUY,940
+snowy/color.py,sha256=LGBHGZOmc3QBiOiDmJMumTGl77_2RgbYnvS1p9TKUxM,1420
+snowy/distance.py,sha256=FyBrXR9XIQSMTaxHsoUx2XE8ZcQ32rnGbpgh-n0XNtc,6210
+snowy/filtering.py,sha256=X3QhEZGg4Q5gYIBKVSWQ-DVGbDq1IsbnFly8Eb24NH0,6125
+snowy/io.py,sha256=z1Oru2gC3ebky6EYCdXBFWoVMAqhA2WYomhR3-7TlKI,6443
+snowy/lighting.py,sha256=kGhGGlABUvmPpeilYYq29_pKYO6aN-b9pwfuy5XwGMY,4804
+snowy/noise.py,sha256=w41_NQ14yGtOy5mZRBdVXxHyZCnsuORvE_0qbGl0owk,3603
+snowy/ops.py,sha256=C8giY8YrTOQ6mibrF8Ee-RtntMCWn8HlON5yB617czY,7247
+snowy-0.0.7.dist-info/LICENSE,sha256=JK-1NEYOQI_sO9dbwsbX76CpjyZJEE8nvNXRAldDkok,1071
+snowy-0.0.7.dist-info/METADATA,sha256=CvVZVGm16TMABcPFcSZHaVMXgwBAeHMhbj8X9MQgb_w,3519
+snowy-0.0.7.dist-info/WHEEL,sha256=-ZFxwj8mZJPIVcZGLrsQ8UGRcxVAOExzPLVBGR7u7bE,92
+snowy-0.0.7.dist-info/top_level.txt,sha256=VNSrxE2--X8fguMCL4isZvKPY3-R1YJjSvydx9mVces,6
+snowy-0.0.7.dist-info/RECORD,,
