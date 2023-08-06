@@ -1,0 +1,14 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+versioneer.py
+perceptible/__init__.py
+perceptible/_version.py
+perceptible/observable.py
+perceptible/observableDictionary.py
+perceptible/observableList.py
+perceptible.egg-info/PKG-INFO
+perceptible.egg-info/SOURCES.txt
+perceptible.egg-info/dependency_links.txt
+perceptible.egg-info/top_level.txt
