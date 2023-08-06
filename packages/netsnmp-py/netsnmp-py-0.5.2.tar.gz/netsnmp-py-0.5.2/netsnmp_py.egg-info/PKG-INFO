@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: netsnmp-py
+Version: 0.5.2
+Summary: Python NET-SNMP Bindings
+Home-page: https://github.com/xstaticxgpx/netsnmp-py3
+Author: Gabe Pacuilla
+Author-email: root@un1x.su
+License: MIT License
+Download-URL: https://github.com/xstaticxgpx/netsnmp-py3/archive/v0.5.2.tar.gz
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries
