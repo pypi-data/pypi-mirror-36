@@ -1,0 +1,381 @@
+Metadata-Version: 2.1
+Name: Fortuna
+Version: 0.13.2
+Summary: Fast & Flexible Random Value Generator
+Home-page: https://sharpdesigndigital.com
+Author: Robert Sharp
+Author-email: webmaster@sharpdesigndigital.com
+License: UNKNOWN
+Keywords: Fortuna,Dice,Random Patterns,Data Perturbation,Game Dice,Weighted Choice,Random Cycle,Random Value,Gaussian Distribution,Linear Geometric Distribution,The Truffle Shuffle
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires: Cython
+Description-Content-Type: text/markdown
+
+# Fortuna
+##### Fast & Flexible Random Value Generator
+Copyright (c) 2018 Robert Sharp
+
+
+## Primary Functions
+
+`Fortuna.random_range(int A, int B) -> int` \
+Returns a random integer within the range (A, B), inclusive uniform distribution.
+Input order doesnt matter (A, B) == (B, A).
+Nearly ten times faster than random.randrange() or random.randint().
+
+`Fortuna.d(int sides) -> int` \
+Returns a random integer in the range (1, sides), inclusive uniform distribution.
+Represents a single die roll.
+
+`Fortuna.dice(int rolls, int sides) -> int` \
+Returns a geometric distribution based on number and size of dice rolled.
+Represents the sum of multiple die rolls.
+
+`Fortuna.plus_or_minus(int N) -> int` \
+Returns random integer in the range (-N, N), inclusive uniform distribution.
+
+`Fortuna.plus_or_minus_linear(int N) -> int` \
+Returns random integer in the range (-N, N), inclusive zero peak geometric distribution.
+
+`Fortuna.plus_or_minus_curve(int N) -> int` \
+Returns random integer in the range (-N, N), inclusive zero peak gaussian distribution.
+
+`Fortuna.percent_true(int N) -> bool` \
+Returns a random Bool based on N: the probability of True as a percentage.
+
+`Fortuna.random_value(list) -> value` \
+Returns a random value from a list or tuple, non-destructive. Replaces random.choice().
+
+## Abstractions
+
+### Mostly:
+- Constructor will take a sequence of unique values.
+- Sequence must have 3 or more items, works best with 10 or more.
+- Values can be any object, not just strings as in the example below.
+- Provides a variety of methods for choosing a random value.
+<pre>
+some_sequence = ["Alpha", "Beta", "Delta", "Eta", "Gamma", "Kappa", "Zeta"]
+random_monty = Fortuna.Mostly(some_sequence)
+</pre>
+`random_monty.mostly_front() -> value` \
+Returns a random value, mostly from the front of the list (geometric)
+
+`random_monty.mostly_middle() -> value` \
+Returns a random value, mostly from the middle of the list (geometric)
+
+`random_monty.mostly_back() -> value` \
+Returns a random value, mostly from the back of the list (geometric)
+
+`random_monty.mostly_flat() -> value` \
+Returns a random value, mostly flat uniform distribution (boring)
+
+`random_monty.mostly_first() -> value` \
+Returns a random value, mostly from the very front of the list (gaussian)
+
+`random_monty.mostly_center() -> value` \
+Returns a random value, mostly from the very center of the list (gaussian)
+
+`random_monty.mostly_last() -> value` \
+Returns a random value, mostly from the very back of the list (gaussian)
+
+`random_monty() -> value` \
+Returns a random value, calls a random method above (complex)
+
+### Random Cycle: Truffle Shuffle
+- Constructor takes a sequence (list or tuple) of unique arbitrary values.
+- Sequence must have 3 or more items. Works best with 10 or more.
+- Values can be virtually any Python object that can be passed around... string, int, list, function etc.
+- Features continuous smart micro-shuffling: The Truffle Shuffle.
+<pre>
+some_sequence = ["Alpha", "Beta", "Delta", "Eta", "Gamma", "Kappa", "Zeta"]
+random_cycle = Fortuna.RandomCycle(some_sequence)
+random_cycle() -> value
+</pre>
+Returns a random value, produces a uniform distribution with no consecutive duplicates and relatively few nearby duplicates. 
+Output sequences from RandomCycle() may seem much less mechanical compared to output of other random_value methods.
+
+### Weighted Choice: Custom Rarity by Relative or Cumulative Weight
+- Constructors will take a 2d sequence (list or tuple) of weighted values... `[(weight, value), ... ]`
+- Sequence must not be empty.
+- Weights must be integers. 
+- Values can be virtually any Python object that can be passed around... string, int, list, function etc.
+
+The following examples produce equivalent distributions.
+
+#### - Relative Weights:
+- Returns a random value, produces a custom distribution based on relative weights.
+<pre>
+relative_weighted_table = (
+    (7, "Apple"),
+    (4, "Banana"),
+    (2, "Cherry"),
+    (10, "Grape"),
+    (3, "Lime"),
+    (4, "Orange"),
+)
+relative_weighted_choice = Fortuna.RelativeWeightedChoice(relative_weighted_table)
+relative_weighted_choice() -> value
+</pre>
+
+#### - Cumulative Weights: 
+- Logic dictates Cumulative Weights must be unique.
+- Returns a random value, produces a custom distribution based on cumulative weights.
+<pre>
+cumulative_weighted_table = (
+    (7, "Apple"),
+    (11, "Banana"),
+    (13, "Cherry"),
+    (23, "Grape"),
+    (26, "Lime"),
+    (30, "Orange"),
+)
+cumulative_weighted_choice = Fortuna.CumulativeWeightedChoice(cumulative_weighted_table)
+cumulative_weighted_choice() -> value
+</pre>
+
+
+## Sample Distribution and Performance Test Suite
+<pre>
+.../fortuna_extras/fortuna_tests.py
+
+Running 100000 cycles...
+
+Base Case:
+random.randrange(10) x 100000: 109.64 ms
+ 0: 10.225
+ 1: 9.959
+ 2: 10.07
+ 3: 10.159
+ 4: 9.91
+ 5: 9.901
+ 6: 9.899
+ 7: 9.911
+ 8: 9.987
+ 9: 9.979
+
+Base Case:
+random.randint(1, 10) x 100000: 131.81 ms
+ 1: 9.867
+ 2: 10.022
+ 3: 9.968
+ 4: 9.951
+ 5: 10.078
+ 6: 10.023
+ 7: 9.924
+ 8: 10.005
+ 9: 9.996
+ 10: 10.166
+
+random_range(1, 10) x 100000: 10.05 ms
+ 1: 9.903
+ 2: 9.995
+ 3: 9.913
+ 4: 10.07
+ 5: 10.066
+ 6: 9.958
+ 7: 10.016
+ 8: 10.122
+ 9: 9.982
+ 10: 9.975
+
+random_below(10) x 100000: 9.54 ms
+ 0: 9.864
+ 1: 9.951
+ 2: 9.878
+ 3: 10.079
+ 4: 9.972
+ 5: 9.986
+ 6: 10.067
+ 7: 10.066
+ 8: 10.122
+ 9: 10.015
+
+d(6) x 100000: 9.88 ms
+ 1: 16.737
+ 2: 16.79
+ 3: 16.475
+ 4: 16.694
+ 5: 16.722
+ 6: 16.582
+
+dice(2, 6) x 100000: 12.53 ms
+ 2: 2.841
+ 3: 5.591
+ 4: 8.314
+ 5: 11.179
+ 6: 13.986
+ 7: 16.471
+ 8: 13.958
+ 9: 11.066
+ 10: 8.299
+ 11: 5.46
+ 12: 2.835
+
+plus_or_minus(5) x 100000: 9.16 ms
+ -5: 9.165
+ -4: 9.124
+ -3: 8.957
+ -2: 8.97
+ -1: 9.25
+ 0: 9.101
+ 1: 9.187
+ 2: 9.054
+ 3: 9.003
+ 4: 9.089
+ 5: 9.1
+
+plus_or_minus_linear(5) x 100000: 12.64 ms
+ -5: 2.783
+ -4: 5.46
+ -3: 8.375
+ -2: 11.075
+ -1: 13.714
+ 0: 16.724
+ 1: 14.067
+ 2: 10.978
+ 3: 8.479
+ 4: 5.491
+ 5: 2.854
+
+plus_or_minus_curve(5) x 100000: 14.32 ms
+ -5: 0.198
+ -4: 1.197
+ -3: 4.433
+ -2: 11.542
+ -1: 20.379
+ 0: 24.575
+ 1: 20.321
+ 2: 11.592
+ 3: 4.397
+ 4: 1.139
+ 5: 0.227
+
+percent_true(25) x 100000: 11.46 ms
+ False: 75.028
+ True: 24.972
+
+Base Case:
+random.choice(some_list) x 100000: 108.96 ms
+ Alpha: 14.029
+ Beta: 14.186
+ Delta: 14.25
+ Eta: 14.494
+ Gamma: 14.19
+ Kappa: 14.359
+ Zeta: 14.492
+
+random_value(some_list) x 100000: 15.55 ms
+ Alpha: 14.161
+ Beta: 14.385
+ Delta: 14.214
+ Eta: 14.343
+ Gamma: 14.358
+ Kappa: 14.348
+ Zeta: 14.191
+
+Mostly.mostly_flat() x 100000: 20.94 ms
+ Alpha: 14.355
+ Beta: 14.331
+ Delta: 14.495
+ Eta: 14.152
+ Gamma: 14.204
+ Kappa: 14.255
+ Zeta: 14.208
+
+Mostly.mostly_front() x 100000: 32.99 ms
+ Alpha: 25.077
+ Beta: 21.46
+ Delta: 17.884
+ Eta: 14.269
+ Gamma: 10.751
+ Kappa: 7.083
+ Zeta: 3.476
+
+Mostly.mostly_middle() x 100000: 32.9 ms
+ Alpha: 6.222
+ Beta: 12.307
+ Delta: 18.803
+ Eta: 25.018
+ Gamma: 18.788
+ Kappa: 12.627
+ Zeta: 6.235
+
+Mostly.mostly_back() x 100000: 37.67 ms
+ Alpha: 3.562
+ Beta: 7.377
+ Delta: 10.579
+ Eta: 14.287
+ Gamma: 17.957
+ Kappa: 21.275
+ Zeta: 24.963
+
+Mostly.mostly_first() x 100000: 35.53 ms
+ Alpha: 34.146
+ Beta: 30.006
+ Delta: 20.007
+ Eta: 10.337
+ Gamma: 4.052
+ Kappa: 1.189
+ Zeta: 0.263
+
+Mostly.mostly_center() x 100000: 27.08 ms
+ Alpha: 0.43
+ Beta: 5.447
+ Delta: 24.246
+ Eta: 39.813
+ Gamma: 24.292
+ Kappa: 5.317
+ Zeta: 0.455
+
+Mostly.mostly_last() x 100000: 43.31 ms
+ Alpha: 0.274
+ Beta: 1.187
+ Delta: 4.044
+ Eta: 10.149
+ Gamma: 20.2
+ Kappa: 30.061
+ Zeta: 34.085
+
+Mostly() x 100000: 87.88 ms
+ Alpha: 10.738
+ Beta: 13.039
+ Delta: 16.126
+ Eta: 19.891
+ Gamma: 16.554
+ Kappa: 12.91
+ Zeta: 10.742
+
+RandomCycle() x 100000: 73.87 ms
+ Alpha: 14.332
+ Beta: 14.188
+ Delta: 14.242
+ Eta: 14.262
+ Gamma: 14.3
+ Kappa: 14.292
+ Zeta: 14.384
+
+RelativeWeightedChoice() x 100000: 37.82 ms
+ Apple: 23.205
+ Banana: 13.374
+ Cherry: 6.524
+ Grape: 33.497
+ Lime: 10.079
+ Orange: 13.321
+
+CumulativeWeightedChoice() x 100000: 43.9 ms
+ Apple: 23.28
+ Banana: 13.174
+ Cherry: 6.658
+ Grape: 33.475
+ Lime: 10.023
+ Orange: 13.39
+
+Total Test Time: 1.26 sec
+
+</pre>
+
+
