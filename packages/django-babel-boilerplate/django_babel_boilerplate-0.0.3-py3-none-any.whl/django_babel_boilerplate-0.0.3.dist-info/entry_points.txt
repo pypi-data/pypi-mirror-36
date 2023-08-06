@@ -1,0 +1,3 @@
+[console_scripts]
+django-babel = django_babel.command_line:main
+

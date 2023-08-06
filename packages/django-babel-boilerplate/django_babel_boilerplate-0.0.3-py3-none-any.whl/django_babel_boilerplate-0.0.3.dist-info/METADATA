@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: django-babel-boilerplate
+Version: 0.0.3
+Summary: A package which create django babel boilerplate.
+Home-page: https://github.com/pypa/sampleproject
+Author: Navaneeth Nagesh
+Author-email: navaneethnagesh56@gmail.com
+License: UNKNOWN
+Keywords: Django babel boilerplate
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: Django (>=2.1.1)
+Requires-Dist: django-inline-svg (>=0.1.1)
+
+# Django Babel Package
+
+This is a package to create a boilerplate of django and babel with a efficient method of file structure
+[Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+
