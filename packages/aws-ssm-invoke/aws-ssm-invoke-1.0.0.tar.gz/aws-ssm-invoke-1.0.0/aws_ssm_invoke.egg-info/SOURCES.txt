@@ -1,0 +1,13 @@
+README.rst
+setup.cfg
+setup.py
+aws_ssm_invoke.egg-info/PKG-INFO
+aws_ssm_invoke.egg-info/SOURCES.txt
+aws_ssm_invoke.egg-info/dependency_links.txt
+aws_ssm_invoke.egg-info/entry_points.txt
+aws_ssm_invoke.egg-info/top_level.txt
+ssm/__init__.py
+ssm/_version.py
+ssm/main.py
+ssm/tests/__init__.py
+ssm/tests/test_main.py
