@@ -1,0 +1,134 @@
+CHANGES
+=======
+
+1.8.23
+------
+
+* Revert "Try again to upgrade to pytype 2018.9.26 now using /var/tmp."
+* Some OFAs require minimum idle time so add config check
+* Try again to upgrade to pytype 2018.9.26 now using /var/tmp
+* ND timer config message
+* Implement idle\_eth workaround for broken idle time reset on flow refresh, and test
+* Bail out of pytype early if one fails
+* 2018.9.26 OOMs
+* Avoid /tmp which may be RAM
+* pytype upgrade and use temporary directory
+* Revert "Allow 0-idle on dst rules."
+* Revert "Need idle\_dst in slots."
+* use add\_vlan in valve\_flood when initialising a vlan flood rules
+* initialise VIPs in ValveRouteManagers
+* add add\_vlan function for initialising a vlan in managers
+* tidying and lint
+* Initialise eth\_src table in valve\_host
+* refactor initialise\_tables to use base class
+* create base class for ValveManager objects
+* Need idle\_dst in slots
+* Allow 0-idle on dst rules
+* Initialise flood table in ValveFloodManager
+* Initialise classification table in valve\_pipeline
+* remove unnecessary reference to classification\_table
+* Use valve\_pipeline to manage egress table
+* Pipeline manager manages hosts
+* wait\_for\_route\_as\_flow() needs to be more patient (10s sometimes not enough to wait for unresponsive nexthops while re-resolving during test)
+* Move pytype options to setup.cfg
+* Pipeline manager controls L3 flows
+* Add valve\_pipeline class, and goto\_this() table method
+* FaucetUntaggedHostPermanentLearnTest
+* Revert "delete\_existing always."
+* delete\_existing always
+* Revert "Remember idle\_timeout and jitter it."
+* Remember idle\_timeout and jitter it
+* nd\_neighor\_timeout
+* pylint
+* Better default for cache guard timer
+* ARP/ND timeout check
+* Default ARP timeout should be much lower
+* Update table definitions
+* Bump version for release
+* Take opportunity learn L3 source when proactive learning
+* Common call to proactive resolver
+* Improve wait for flow diagnostics
+* Incremental python3 cleanup
+* Incremental python3-cleanup
+* flowdel() return type inconsistent
+* pylint
+* Simplify dot1x reset
+* tcpdump\_helper() uses terminate not kill
+* flowdump diagnostics
+* pylint
+* Verify length of IPv6 RA
+* Add random shuffle for packet out ports always (in case sent in same packet out)
+* Rand VID test might pick same VID
+* Group test needs to reset combinatorial\_port\_flood
+* Exclude multiple LACP members from controller initiated flooding
+* Consistently enable combinatorial flooding for special cases
+* Don't add no-op pop vlan if no untagged ports to flood to
+* pylint
+* pylint
+* pylint
+* Two state Prometheus filter
+* flow dumper now requires table ID always, and keeps most recent table dump
+* Use Prometheus not log scraping for StackRingTest
+* readd only
+* Build VM images on gitlab
+* Pre-version 1.8.23
+
+1.8.22
+------
+
+* Move LACP active to fast\_advertise()
+* Rename services, reduce slow advertise to 15s
+* Add config for fast interval, incremental refactor
+* Revert "Refactor into fast/regular expiry/advertise."
+* Refactor into fast/regular expiry/advertise
+* Bump version for release
+* LACP can cause a loop
+* Right size LACP packet on receipt
+* debug log LACP
+* LACP active should set active flag
+* Some OFAs can't get mask on eth\_dst rule
+* Avoid unnnecessary flowmods cold starting LACP port. Strictly verify LACP packet size
+* LACP content change
+* Rate limit LACP response
+* Reply to LACP packets if different at all, or only after 1s if the same
+* Only attempt to set non-0 metadata fields in TFM
+* Disable metadata write/match if egress pipeline not in use
+* Increase max len for LACP
+* Use actor sync flag for LACP state not local
+* test lacp\_active both sides
+* Basic test for active LACP
+* Clear last LACP packet
+* pylint
+* pylint
+* Don't set LACP sync until received a packet
+* Check defaults/types is synchronized
+* Missing default type for lacp\_timeout
+* fix logic in metadata mask writing
+* pylint
+* pylint
+* dependencies upgrade
+* pylint
+* finalize() compact syntax
+* test\_gauge mock confusion
+* pylint
+* ACL change reporting
+* Deconflict port ACLs and 802.1x
+* finalizing must be recursive
+* Disable 8021X success test until fix for conflict with ACL change detection
+* pylint
+* ACL logging
+* More efficient OrderedDict init
+* Handle dict with any kind of key
+* Dict ordering affects conf hash
+* Simplify 8021x config check
+* OTT check that new config has been written
+* with syntax config file write
+* Revert "del\_auth\_mac() returns a list."
+* Chewie won't do IPv6 yet
+* Test coverage for dot1x config. Free RADIUS uses IPv6 port
+* Chewie format MAC addresses
+* Deflake 8021x test
+* pkt\_meta.port
+* Experimental active LACP
+* Allow multi\_out: False (one packet out per port)
+* Allow strict cookie check to be disabled
