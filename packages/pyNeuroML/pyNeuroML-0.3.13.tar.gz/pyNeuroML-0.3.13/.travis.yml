@@ -1,0 +1,27 @@
+
+dist: trusty
+sudo: false 
+
+language: python
+
+addons:
+  apt:
+    packages:
+    - python-matplotlib 
+
+python: 
+  # - "2.6" Issues on Travis...
+  - "2.7"
+  # - "3.2" Issues on Travis...
+  - "3.4"
+  
+install:
+    #  This requires numpy etc...
+    #- pip install git+https://github.com/NeuralEnsemble/pyelectro.git
+    
+    - pip install . -r requirements.txt
+    
+script:
+    - pynml -h
+    - ./test.sh
+    - ls -alt
