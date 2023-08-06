@@ -1,0 +1,12 @@
+README.rst
+setup.py
+jwt_user/Request.py
+jwt_user/User.py
+jwt_user/UserAuthorization.py
+jwt_user/__init__.py
+jwt_user/settings.py
+jwt_user.egg-info/PKG-INFO
+jwt_user.egg-info/SOURCES.txt
+jwt_user.egg-info/dependency_links.txt
+jwt_user.egg-info/requires.txt
+jwt_user.egg-info/top_level.txt
