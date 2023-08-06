@@ -1,0 +1,18 @@
+Metadata-Version: 1.0
+Name: termtitle
+Version: 0.1.0
+Summary: A command line program to change macOS terminal's title
+Home-page: https://github.com/grimmer0125/terminal-title-change
+Author: Grimmer
+Author-email: UNKNOWN
+License: MIT
+Description: terminal title change
+        =============
+        
+        ^^^^^^^^^^^^^^^^^^^
+        Usage
+        ^^^^^^^^^^^^^^^^^^^
+        
+        - ``termtitle demo_project_root``
+        
+Platform: UNKNOWN
