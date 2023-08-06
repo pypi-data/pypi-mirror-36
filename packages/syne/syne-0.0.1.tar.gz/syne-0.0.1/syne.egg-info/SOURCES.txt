@@ -1,0 +1,16 @@
+MANIFEST.in
+README.mkd
+setup.cfg
+setup.py
+syne/__init__.py
+syne/__main__.py
+syne/playsound.py
+syne/soundpoint.py
+syne/synepoint.py
+syne/utils.py
+syne.egg-info/PKG-INFO
+syne.egg-info/SOURCES.txt
+syne.egg-info/dependency_links.txt
+syne.egg-info/not-zip-safe
+syne.egg-info/requires.txt
+syne.egg-info/top_level.txt
