@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: engagespark
+Version: 0.1
+Summary: Python integration with engageSPARK
+Home-page: https://engagespark.com
+Author: engageSPARK
+Author-email: helpteam@engagespark.com
+License: MIT
+Project-URL: Source Code, https://github.com/engagespark/python-sdk
+Keywords: sms calls engage spark engagespark scale mobile data telco
+Platform: UNKNOWN
+Requires-Python: >=3
+Requires-Dist: requests (>=2.19.1)
+
+UNKNOWN
+
+
