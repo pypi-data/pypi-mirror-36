@@ -1,0 +1,72 @@
+CHANGES
+=======
+
+1.2.0
+-----
+
+* Switches to openstack-python templates for jobs adding py3.6
+* Making sure we're ready for python3
+* Add Apache license headers to the .py files
+* Stop setting version manually
+* Trivial: Update pypi url to new url
+* Parse message logs containining timestamps with microseconds
+* Enable py27 and py35 unit testing
+* Setup tox.ini for unit and pep8 testing
+* Python 3.x compatibility
+* Make iter(LogFile) return an independent generator
+* Add --default-tz
+* Fix incorrect auto-detection as timestamp log
+* Delete some dead code
+* Add auto-detect parser for raw syslog
+* Add auto-detect parser for libvirt domain logs
+* Allow zero positional arguments
+* Implement format auto-detection
+* Refactor log parsing into separate parser classes
+* README.rst: fix typo
+* Always merge sort input files with heapq.merge
+
+1.1.0
+-----
+
+* Bump version to 1.1.0 for release
+* Guard against all exceptions when processing a line
+* Guard against null-strings in lines
+* Add .gitreview file
+* clean empty bullet at the end of the changelog section
+* Add spec file for Fedora distros
+* Fix variable size timestamp for OS LogEntry
+* Add Gorka as author too
+* Remove README.rst from datafiles to avoid warnings in pip
+* Updated netprobe, and added netprobe.log to auto alias
+* Added a new probe: netprobe
+* Fix #7: Add support for timestamped logs
+* Add Support /var/log/messages type of logs
+* Fix #23: auto alias with absolute paths
+* Fix #22: duplicated auto generated aliases
+* Fix #21: KeyError with auto alias level >= 2
+* Fix #19: Empty output with -m option
+* Update README file
+* Fix #13: Don't modify datetime format on output
+* Add shields to README file
+* Fix pep8 errors
+* Optionally reduce memory footprint
+* Add CHANGELOG file
+* Add Apache license
+* Fix #11: Add auto alias generation
+* Fix #9: Remove dependency from oslo\_config
+* Do not append slash to logbase
+* Introduced log-base and log-postfix options
+* Update README.rst with new exec name
+* Add missing example scripts from RDO day presentation
+* Update from the RDO day presentation details
+
+1.0.3
+-----
+
+* Ignore initial non-dated lines
+* Support for URLS instead of local log files, simple caching
+* Include contrib script to debug live migrations
+* Version bumped
+* More robust processing of out of order log lines
+* Fixed rst file, bumped version, fixed homepage link
+* Initial commit
