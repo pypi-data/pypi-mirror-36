@@ -1,0 +1,14 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+phys/__init__.py
+phys/constants.py
+phys/elements.py
+phys/pdg_2017_elements.dat
+phys/units.py
+phys.egg-info/PKG-INFO
+phys.egg-info/SOURCES.txt
+phys.egg-info/dependency_links.txt
+phys.egg-info/top_level.txt
