@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: tsumiki
+Version: 0.0.2
+Summary: tsumiki is a markup language to process multiple columns.
+Home-page: https://github.com/drillan/tsumiki
+Author: driller
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Requires-Dist: markdown
+Requires-Dist: py-gfm
+Requires-Dist: jinja2
+Requires-Dist: jinja2schema
+Requires-Dist: Click
+
+=======
+tsumiki
+=======
+
+tsumiki is a markup language to process multiple columns.
+
+* Write with Markdown and HTML mixdely.  
+* Can lay out in multiple columns.
+
+Install
+=======
+
+.. code-block:: bash
+
+   pip install tsumiki
+
+Usage
+=====
+
+via the command line
+--------------------
+
+.. code-block:: bash
+
+   tsumiki source [target]
+
+with Jupyter Notebook
+---------------------
+
+* `Tutorial <http://nbviewer.jupyter.org/github/drillan/tsumiki/blob/master/examples/Tutorial.ipynb>`_
+* `With Jinja2 <http://nbviewer.jupyter.org/github/drillan/tsumiki/blob/master/examples/jinja2_template.ipynb>`_
+
+
+
