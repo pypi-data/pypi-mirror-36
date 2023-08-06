@@ -1,0 +1,10 @@
+admin-extra-urls
+
+[test]
+django-webtest
+pytest
+pytest-coverage
+pytest-django
+pytest-echo
+pytest-pythonpath
+tox
