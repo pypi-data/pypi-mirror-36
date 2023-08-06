@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: undopy
+Version: 0.1
+Summary: Simple Python list and dict with undo/redo
+Home-page: https://github.com/UndoPy/UndoPy
+Author: Jayme Bird
+Author-email: jayme.cbird@gmail.com
+License: UNKNOWN
+Description: A simple Python list and dict with callbacks when they are changed and undo/redo using these callbacks
+Keywords: undo for list and dict
+Platform: UNKNOWN
