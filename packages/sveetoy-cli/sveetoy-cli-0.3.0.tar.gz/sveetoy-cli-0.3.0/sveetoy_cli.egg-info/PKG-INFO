@@ -1,0 +1,48 @@
+Metadata-Version: 1.1
+Name: sveetoy-cli
+Version: 0.3.0
+Summary: Commandline tools around Sveetoy Sass library
+Home-page: https://github.com/sveetch/sveetoy-cli
+Author: David Thenon
+Author-email: sveetch@gmail.com
+License: MIT
+Description-Content-Type: UNKNOWN
+Description: .. _six: https://pythonhosted.org/six/
+        .. _click: http://click.pocoo.org/5/
+        .. _colorama: https://github.com/tartley/colorama
+        .. _colorlog: https://github.com/borntyping/python-colorlog
+        .. _Sveetoy: https://sveetch.github.io/Sveetoy/
+        .. _colour: https://github.com/vaab/colour
+        
+        ===================
+        Sveetoy Commandline
+        ===================
+        
+        Commandline tools around `Sveetoy`_ Sass library.
+        
+        Links
+        *****
+        
+        * Download its `PyPi package <http://pypi.python.org/pypi/sveetoy-cli>`_;
+        * Clone it on its `Github repository <https://github.com/sveetch/sveetoy-cli>`_;
+        
+        Dependancies
+        ************
+        
+        * ``python-venv`` package;
+        * `six`_;
+        * `click`_ >=5.1, <6.0;
+        * `colorama`_;
+        * `colorlog`_;
+        * `colour`_;
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
