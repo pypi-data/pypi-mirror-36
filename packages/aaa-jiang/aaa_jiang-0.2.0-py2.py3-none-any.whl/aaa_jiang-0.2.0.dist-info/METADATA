@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: aaa-jiang
+Version: 0.2.0
+Summary: Scalable Reconstruction Framework.
+Home-page: https://github.com/threebegetsallthings/aaa.git
+Author: hongjiang
+Author-email: hushangjituan@outlook.com
+License: Apache
+Platform: UNKNOWN
+Requires-Dist: dxl-learn (>0.0.13)
+Requires-Dist: dxl-core
+Requires-Dist: tensorflow
+Requires-Dist: doufo
+
+UNKNOWN
+
+
