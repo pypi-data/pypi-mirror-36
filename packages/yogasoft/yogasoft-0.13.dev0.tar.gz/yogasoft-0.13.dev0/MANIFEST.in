@@ -1,0 +1,6 @@
+include requirements.txt
+recursive-include app
+recursive-include logs
+recursive-include locale
+recursive-include templates
+global-exclude *.pyc *pyo *~ *.mo
