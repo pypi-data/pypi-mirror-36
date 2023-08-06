@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: feiyan
+Version: 1.0.3
+Summary: iot feiyan package
+Home-page: UNKNOWN
+Author: jerrygaoyang
+Author-email: 917616767@qq.com
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+iot feiyan package
+
+
