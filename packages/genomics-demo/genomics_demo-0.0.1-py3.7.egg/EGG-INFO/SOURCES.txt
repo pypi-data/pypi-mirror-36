@@ -1,0 +1,11 @@
+README.md
+setup.py
+genomics_demo/__init__.py
+genomics_demo/dna.py
+genomics_demo/rna.py
+genomics_demo/scripts.py
+genomics_demo.egg-info/PKG-INFO
+genomics_demo.egg-info/SOURCES.txt
+genomics_demo.egg-info/dependency_links.txt
+genomics_demo.egg-info/entry_points.txt
+genomics_demo.egg-info/top_level.txt
