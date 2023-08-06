@@ -1,0 +1,14 @@
+README.md
+setup.cfg
+setup.py
+pyanimate/__init__.py
+pyanimate/array.py
+pyanimate/compose.py
+pyanimate/geom.py
+pyanimate/graph.py
+pyanimate/image.py
+pyanimate/tween.py
+pyanimate.egg-info/PKG-INFO
+pyanimate.egg-info/SOURCES.txt
+pyanimate.egg-info/dependency_links.txt
+pyanimate.egg-info/top_level.txt
