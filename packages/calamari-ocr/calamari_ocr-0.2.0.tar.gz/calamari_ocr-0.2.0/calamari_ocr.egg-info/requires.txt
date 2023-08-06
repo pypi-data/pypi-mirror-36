@@ -1,0 +1,7 @@
+tensorflow!=1.10.*,!=1.9.*,>=1.6
+numpy
+tqdm
+scikit-image
+python-bidi
+edit_distance
+xlsxwriter
