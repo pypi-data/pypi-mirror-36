@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: utilitarian-queue-consumer
+Version: 0.0.1.dev0
+Summary: A micro framework for writing consumers of AMR-UM or other AMQP messages.
+Home-page: https://www.pwit.se
+Author: Henrik Palmlund Wahlgren @ Palmlund Wahlgren Innovative Technology AB
+Author-email: henrik@pwit.se
+License: BSD 3-Clause License
+Platform: UNKNOWN
+Requires-Python: ~=3.6
+Requires-Dist: kombu
+
+==========================
+Utilitarian Queue Consumer
+==========================
+
+A micro framework for writing consumers of AMR-UM or other AMQP messages.
+
+
+
+
+
+=========
+Changelog
+=========
+
+
+The format is based on `Keep a Changelog: https://keepachangelog.com/en/1.0.0/`,
+and this project adheres to `Semantic Versioning: https://semver.org/spec/v2.0.0.html`
+
+Unreleased
+^^^^^^^^^^
+
+
+
+v0.0.1
+------
+
+Changed
+^^^^^^^
+
+
+
