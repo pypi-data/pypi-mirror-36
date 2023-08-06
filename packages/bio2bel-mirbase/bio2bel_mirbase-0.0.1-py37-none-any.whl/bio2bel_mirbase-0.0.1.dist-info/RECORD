@@ -1,0 +1,15 @@
+bio2bel_mirbase/__init__.py,sha256=tkEmZKhv6_LDJYXXEpvESHKg29zc_riEUjwir-OMm40,220
+bio2bel_mirbase/cli.py,sha256=ov3gi1mJ6yWt88jYaVbUGg3H46rBvPcfLLI2s9olTZo,906
+bio2bel_mirbase/constants.py,sha256=4SQ6Jqtxy4ejoyRtRWDadqrBEuG5nCLTkAP1o3L3mw8,305
+bio2bel_mirbase/download.py,sha256=ultlXq9sXyuG4kV5ZpUR4oOxP4EoGym2nCxGEb-ihJA,684
+bio2bel_mirbase/manager.py,sha256=9DSZ8OtphyOMqA15QR5KS4AUUawn-VI2xWkG5s-UqYo,3557
+bio2bel_mirbase/models.py,sha256=V1liMBZFmqx3r1FY8Z8QHBcxWll46PLFEmDZ9-zDUW0,2132
+bio2bel_mirbase/parser.py,sha256=7pTIA8tM9GgeAcAKyhFhUoUx1GzVag5YO87Qiub1mEI,3064
+bio2bel_mirbase/utils.py,sha256=DblX_nOUKS7WXEFMfQzuKgsz6FStuV16GE0JgwGk5vM,193
+bio2bel_mirbase-0.0.1.dist-info/LICENSE,sha256=yTGeNQLgojfKl4nFjxhaNeJu7KO5xj2NalWkEdNTPxM,1076
+bio2bel_mirbase-0.0.1.dist-info/METADATA,sha256=il4WW96CKUZTSN-uUyD1OEUAmy4PCUGY2Va8m1FWtJ8,2242
+bio2bel_mirbase-0.0.1.dist-info/WHEEL,sha256=xNScvt2mtzUWuI8egP1vlF2Ochy0ZTanQF1ZyA5Wc7k,93
+bio2bel_mirbase-0.0.1.dist-info/entry_points.txt,sha256=mV6o4OmjnDhT_hSscCE2YN-L0TNKtO0ru6YEyGcBQYQ,62
+bio2bel_mirbase-0.0.1.dist-info/top_level.txt,sha256=GfBbqyYINsff2TyhXSUKeB2eJfKuT328suWpI9ojxpA,16
+bio2bel_mirbase-0.0.1.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+bio2bel_mirbase-0.0.1.dist-info/RECORD,,
