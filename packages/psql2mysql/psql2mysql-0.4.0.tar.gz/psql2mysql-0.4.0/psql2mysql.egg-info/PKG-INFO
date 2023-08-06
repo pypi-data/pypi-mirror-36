@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: psql2mysql
+Version: 0.4.0
+Summary: Copy data from PostgreSQL databases to MySQL
+Home-page: https://github.com/SUSE/psql2mysql
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: Apache-2
+Description: False
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
