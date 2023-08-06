@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: git-task
+Version: 0.0.33
+Summary: Git-task
+Home-page: https://github.com/bessbd/git-task
+Author: bessbd
+Author-email: bessbd@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: fire
+
+# git-task
+
+[![Build Status](https://travis-ci.com/bessbd/git-task.svg?branch=master)](https://travis-ci.com/bessbd/git-task)
+
+## Dependencies
+* [Python >=3.7](https://www.python.org/downloads/release/python-370/)
+
+## Installation
+
+```
+pip install git-task
+python -m git-task install
+```
+
+
