@@ -1,0 +1,4 @@
+[console_scripts]
+Qserver = Reserver.main:main
+Qwechat = msgplugins.wechat:StartWeRobot
+
