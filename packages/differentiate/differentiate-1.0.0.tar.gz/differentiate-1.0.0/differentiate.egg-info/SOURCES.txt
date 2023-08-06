@@ -1,0 +1,8 @@
+setup.py
+differentiate/__init__.py
+differentiate/_version.py
+differentiate/differentiate.py
+differentiate.egg-info/PKG-INFO
+differentiate.egg-info/SOURCES.txt
+differentiate.egg-info/dependency_links.txt
+differentiate.egg-info/top_level.txt
