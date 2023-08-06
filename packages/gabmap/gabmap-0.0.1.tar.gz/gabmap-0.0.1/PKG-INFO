@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: gabmap
+Version: 0.0.1
+Summary: Python module with tools to prepare gabmap data. (Currently) Only supports conversion from geojson to gabmap-supported kml. Tested on Python3.6, probably also works in 2.7 and 3.x
+Home-page: https://www.gabmap.nl/
+Author: Martijn Wieling, Herbert Kruitbosch, Research and Innovation Support
+Author-email: H.T.Kruitbosch@rug.nl
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
