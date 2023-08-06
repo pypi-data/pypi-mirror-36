@@ -1,0 +1,17 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+primordial/__init__.py
+primordial/equations.py
+primordial/equations_t.py
+primordial/events.py
+primordial/potentials.py
+primordial/solver.py
+primordial.egg-info/PKG-INFO
+primordial.egg-info/SOURCES.txt
+primordial.egg-info/dependency_links.txt
+primordial.egg-info/requires.txt
+primordial.egg-info/top_level.txt
+primordial/test/__init__.py
+primordial/test/test_solver.py
