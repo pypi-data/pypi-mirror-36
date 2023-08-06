@@ -1,0 +1,11 @@
+mds_project_durationcolumn-4.8.0.dist-info/METADATA,sha256=9U-_LeqPZAzMCtDtVIZ_QwFz-hJC4-WqwMoeCCbjVVU,1403
+mds_project_durationcolumn-4.8.0.dist-info/RECORD,,
+mds_project_durationcolumn-4.8.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+mds_project_durationcolumn-4.8.0.dist-info/entry_points.txt,sha256=ApgEcOwj8dynaau5nvTolMdoYhWdYKBVWaYxkp_6KdA,96
+mds_project_durationcolumn-4.8.0.dist-info/top_level.txt,sha256=1UNriCfRfjRjutJbJ_B8i13huVUoV_Otp9RlW3mCfw4,8
+trytond/modules/project_durationcolumn/README.rst,sha256=sBld-8yKrlMvz-CoevJU38V1CdTTU8wFIn9oXAkv7RE,255
+trytond/modules/project_durationcolumn/__init__.py,sha256=qim7TGmcj_fFrweW38IL8BR7wVAJ0Ff0hdGh6KUfxJY,176
+trytond/modules/project_durationcolumn/tryton.cfg,sha256=Ce7QggL_ZcaJwZn0xE3znJ_3F877Uo1UWHYYiXHiM40,82
+trytond/modules/project_durationcolumn/versiondep.txt,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+trytond/modules/project_durationcolumn/work.xml,sha256=YI9NCujF4FVWShjSIG84ZAaXEA96Pn6ZQXO6vu6tQ2o,958
+trytond/modules/project_durationcolumn/view/work_tree.xml,sha256=LONZ-27elFL9GZVW_VTcTRQuq09-C0Paku_tQxxjCe4,313
