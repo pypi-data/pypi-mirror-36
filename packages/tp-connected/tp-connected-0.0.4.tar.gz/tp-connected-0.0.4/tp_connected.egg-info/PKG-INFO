@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: tp-connected
+Version: 0.0.4
+Summary: TP-Link LTE modem API
+Home-page: https://github.com/andtos90/tp-connected
+Author: Andrea Tosatto
+Author-email: UNKNOWN
+License: MIT
+Description: UNKNOWN
+Keywords: tp-link,lte,MR6400
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3 :: Only
