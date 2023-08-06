@@ -1,0 +1,3 @@
+graft flaskdemo/static
+graft flaskdemo/templates
+global-exclude *.pyc
