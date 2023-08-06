@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: hmt-escrow
+Version: 0.1
+Summary: A python library to launch escrow contracts to the HUMAN network.
+Home-page: https://github.com/hCaptcha/hmt_escrow
+Author: HUMAN Protocol
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Requires-Dist: devp2p (==0.9.3)
+Requires-Dist: hypothesis
+Requires-Dist: ipfsapi (==0.4.2.post1)
+Requires-Dist: mypy
+Requires-Dist: py-solc (==3.0.0)
+Requires-Dist: schematics
+Requires-Dist: secp256k1 (==0.13.2)
+Requires-Dist: web3 (==v4.2.0)
+
+UNKNOWN
+
+
