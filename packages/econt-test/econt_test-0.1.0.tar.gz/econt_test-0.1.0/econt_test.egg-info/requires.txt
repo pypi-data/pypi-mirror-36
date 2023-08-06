@@ -1,0 +1,7 @@
+dicttoxml~=1.7.4
+lxml~=4.2.5
+nested-lookup~=0.1.5
+requests~=2.18.4
+unittest-xml~=0.2.2
+xmltodict~=0.11.0
+six~=1.11.0
