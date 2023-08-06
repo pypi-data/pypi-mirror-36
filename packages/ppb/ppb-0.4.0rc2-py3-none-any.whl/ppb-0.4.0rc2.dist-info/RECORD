@@ -1,0 +1,15 @@
+ppb/__init__.py,sha256=mTAnXaCHyoD6keBCL8J-RUgTXjT36P0yE3auZF8z7aw,252
+ppb/abc.py,sha256=cYii5K-GaKd7CELPSydHco3Zku5wZjkN6FMDyjs1OD4,1928
+ppb/camera.py,sha256=s-RnjvFPjFVoZHrD2jVJK1tk5UuJgD4mx3uflDTrjz0,3423
+ppb/engine.py,sha256=cvOu-BasvtzE-uVoYokA4yHAYXQjdAQK6NVmMOson2o,4054
+ppb/events.py,sha256=AbEkS4hTn0B2l27WAszi0m7I4_RBLNRm5C9luYlthpQ,2778
+ppb/flags.py,sha256=DzEYLWFl3U-7XrcXH4kyNfjSXMoitRoiGDNwipBbENk,369
+ppb/mouse.py,sha256=Y8pquPrW_NFR_vt3UOHWLjugC0T1JJRB054U9rjvA4o,1344
+ppb/scenes.py,sha256=nRCYF6KXwZJRKUPs5mk-WoAWJLxmgZSuyL8uOGZgTvk,5724
+ppb/sprites.py,sha256=TpT8EZ3zStO6QQcET1t_CsaeRZBjiNHzlyfBeWC8J7M,5788
+ppb/systems.py,sha256=uqzhD2A-4DHZy2WoPgLcqBs-uwLbaEEwKu2MzE5WTjE,6637
+ppb/vector.py,sha256=waZ7HaNMVTQOulxZ8PJ3HbiY6Tprh3sQEj1CazqOII4,64
+ppb-0.4.0rc2.dist-info/METADATA,sha256=sw0Sc5Wd9bF4ASOxh5SYEboAUQCom7_kzeNaZeL1iQc,4244
+ppb-0.4.0rc2.dist-info/RECORD,,
+ppb-0.4.0rc2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+ppb-0.4.0rc2.dist-info/top_level.txt,sha256=93V7u3mslC28O77jTmUTSS-h9rbyp2QIDxUA7SoCXDk,4
