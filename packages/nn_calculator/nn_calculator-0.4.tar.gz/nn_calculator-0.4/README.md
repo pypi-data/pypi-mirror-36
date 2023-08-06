@@ -1,0 +1,20 @@
+# calculator CICD pipeline
+Example project to show developers and testers what a CICD pipeline looks like
+Uses python so that non-developers can participate.
+Uses GitLab because it is becoming the default tool within the organisation. 
+Currently uses PyPI for storing artifacts. 
+Deployments are done to an AWS env that is created and removed after each run. 
+
+
+Features still to add:
+
+- version in file
+- provision env on AWS (via terraform)
+- deploy to env
+- multiple env
+- publish unit test and code quality reports
+- manual approval for prod
+- web page where users can run the calculator
+- smoke test
+- API test
+- UI test
