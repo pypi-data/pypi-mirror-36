@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: pysoem
+Version: 0.0.13
+Summary: Cython wrapper for the SOEM Library
+Home-page: https://github.com/bnjmnp/pysoem
+Author: Benjamin Partzsch
+Author-email: benjamin_partzsch@web.de
+License: GPLv2
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Cython
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Scientific/Engineering
+
+PySOEM
+======
+
+PySOEM is a Cython wrapper for the Simple Open EtherCAT Master Library (https://github.com/OpenEtherCATsociety/SOEM).
+
+
+Requirements
+------------
+* Python 3
+* Cython
+* GCC (under Linux)
+* VS (under Windows, `here <http://matthew-brett.github.io/pydagogue/python_msvc.html>`_ [*]_ you may get help on this)
+* Git
+* WinPcap (under Windows)
+
+
+Installation
+------------
+
+::
+
+  pip install git+https://github.com/bnjmnp/pysoem.git
+
+* consider using a `virtualenv <https://virtualenv.pypa.io/en/stable/>`_ 
+
+.. [*] I'm not responsible for this external content nor is it my work.
+
+
