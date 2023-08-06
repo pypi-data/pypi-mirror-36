@@ -1,0 +1,16 @@
+setup.py
+EroManga2Epub.egg-info/PKG-INFO
+EroManga2Epub.egg-info/SOURCES.txt
+EroManga2Epub.egg-info/dependency_links.txt
+EroManga2Epub.egg-info/entry_points.txt
+EroManga2Epub.egg-info/requires.txt
+EroManga2Epub.egg-info/top_level.txt
+eroepub/__init__.py
+eroepub/main.py
+eroepub/utils.py
+eroepub/epub_generator/__init__.py
+eroepub/epub_generator/epub_builder.py
+eroepub/epub_generator/file_templates.py
+eroepub/epub_generator/images_processor.py
+eroepub/epub_generator/manifest_generator.py
+eroepub/epub_generator/xhtml_generator.py
