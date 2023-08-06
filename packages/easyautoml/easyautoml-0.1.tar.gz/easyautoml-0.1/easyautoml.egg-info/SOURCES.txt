@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.py
+easyautoml/__init__.py
+easyautoml/command_line.py
+easyautoml/ftutils.py
+easyautoml/tpotutils.py
+easyautoml/utils.py
+easyautoml.egg-info/PKG-INFO
+easyautoml.egg-info/SOURCES.txt
+easyautoml.egg-info/dependency_links.txt
+easyautoml.egg-info/entry_points.txt
+easyautoml.egg-info/not-zip-safe
+easyautoml.egg-info/requires.txt
+easyautoml.egg-info/top_level.txt

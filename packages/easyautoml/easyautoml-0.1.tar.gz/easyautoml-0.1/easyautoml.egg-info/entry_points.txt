@@ -1,0 +1,3 @@
+[console_scripts]
+easyautoml = easyautoml.command_line:main
+
