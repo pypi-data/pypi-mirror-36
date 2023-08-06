@@ -1,0 +1,16 @@
+hutils/__init__.py,sha256=GINyEGDA00QFk7Ef1-Jh_AuFflP45Z9JP1fYShVIW_4,1449
+hutils/classes.py,sha256=U_Mo_5Ul7QoeC7dBIkNgsljsXoQfvjtUIFypjHw4fBA,1961
+hutils/data_types.py,sha256=VAtlqqUAtueVgpVQ5YkFh8Tq26UeULFIYL02Y7B43bs,3432
+hutils/decorators.py,sha256=mWatSD-yHZo-UaKL6jxKzBkNuQqGlFnI6vo4ToorRkg,1567
+hutils/schemas.py,sha256=p0JfegYgUR2jFjT9rsReMt5Qrk_T-m4g0vIs1IEEXpI,2084
+hutils/shortcuts.py,sha256=iePyA8c5UKSYQEOc5veTVOR3-h-NaFvtq1YGaiaPcyE,4622
+hutils/validators.py,sha256=rAKB0GsYvI5nwuEc5DOi08NowHqepzKIOZ4KI3_uPGI,1078
+hutils/django/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+hutils/django/apis.py,sha256=HqX7yT-_JGTvSdU1_OcsGv3LdPSE0VnSk4YVPu1AhIk,1606
+hutils/django/databases.py,sha256=u9bX7Otc801mNnpM5Tkblk8zDv5CMGRudt5prENgiIM,4955
+hutils-0.3.4.dist-info/DESCRIPTION.rst,sha256=M1Nc_bZPrDZ4LhecGdYBI2You0J500yjpPQnrdsp8_k,1971
+hutils-0.3.4.dist-info/METADATA,sha256=HSsfh0ydCGnA4ch6l4q71Tq5bVuZ1oacO1AA_SqhodE,2545
+hutils-0.3.4.dist-info/RECORD,,
+hutils-0.3.4.dist-info/WHEEL,sha256=Vlaj2XNMTTJ893zWX-JvKeZUIs7q5E7d7Gise2Vouzc,97
+hutils-0.3.4.dist-info/metadata.json,sha256=Aaqj1jeYcLneU00y_D_p7NxPRMCI7gNhVO1FTw8iMgs,792
+hutils-0.3.4.dist-info/top_level.txt,sha256=RO_5bKI5oUpINZTFxyN23SSaLX4sE6ObqVKtg93XDCM,7
