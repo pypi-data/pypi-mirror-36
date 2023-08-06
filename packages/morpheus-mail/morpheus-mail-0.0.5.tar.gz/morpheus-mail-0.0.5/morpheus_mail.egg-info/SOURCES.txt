@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+morpheus/app/render/__init__.py
+morpheus/app/render/main.py
+morpheus_mail.egg-info/PKG-INFO
+morpheus_mail.egg-info/SOURCES.txt
+morpheus_mail.egg-info/dependency_links.txt
+morpheus_mail.egg-info/requires.txt
+morpheus_mail.egg-info/top_level.txt
+morpheus_mail.egg-info/zip-safe
