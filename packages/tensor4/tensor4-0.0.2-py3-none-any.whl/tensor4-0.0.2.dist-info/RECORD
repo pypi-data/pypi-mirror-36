@@ -1,0 +1,11 @@
+tensor4/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tensor4/emitters.py,sha256=m5Zty_9Q4k2omb4JutkOELz9uN7bd1YhkZA7mznbXtk,11434
+tensor4/generator.py,sha256=UN3GddeHr8yPoDkwGuTmNeZjfYLDQ83eDwau3LmDNLo,3680
+tensor4/trace_parser.py,sha256=dyvV1z_5YGeRIk9WQDRxfYFhtW1US4IAVx2KLScsTiI,13024
+tensor4/var_table.py,sha256=eHvWzeikM6DvbjgSICvnyT8ey8wk6Zb7ZYetJ43AT7A,7006
+tensor4-0.0.2.dist-info/DESCRIPTION.rst,sha256=c8hcekpVOWAZj8toYJANKCMWyhmo_5Y0wPeWcgC0MUs,123
+tensor4-0.0.2.dist-info/METADATA,sha256=vz-AlKr-J9H0lofSpIxD_dNcKh1bVh2h9UdezV9TtIQ,772
+tensor4-0.0.2.dist-info/RECORD,,
+tensor4-0.0.2.dist-info/WHEEL,sha256=Ds0ba8WsPJtjBPzEMyPOBG3qfPa6B4mlzB-vhzorIZs,97
+tensor4-0.0.2.dist-info/metadata.json,sha256=JfqZ3euf4r3XPX2GvEH7FblIWP9IMuvt1BCRHWDU4CE,781
+tensor4-0.0.2.dist-info/top_level.txt,sha256=8-TDKjQqh6At0aGD4DW_nnedH-LWWW6Rvgwc7yV5Cn8,8
