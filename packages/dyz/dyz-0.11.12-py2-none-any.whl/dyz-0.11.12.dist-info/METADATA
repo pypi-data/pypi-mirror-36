@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: dyz
+Version: 0.11.12
+Summary: dyz
+Home-page: https://example.org
+Author: me
+Author-email: me@example.org
+License: LGPL v3
+Keywords: dyz
+Platform: UNKNOWN
+Requires-Dist: click
+Requires-Dist: odoorpc
+Requires-Dist: prettytable
+Requires-Dist: ConfigParser
+Requires-Dist: XlsxWriter
+Requires-Dist: lxml
+Requires-Dist: pyyaml
+Requires-Dist: validictory
+Requires-Dist: python-dateutil
+Requires-Dist: dyools
+Requires-Dist: psycopg2
+Requires-Dist: faker
+Requires-Dist: wrapt
+Requires-Dist: future
+Requires-Dist: six
+
+UNKNOWN
+
+
