@@ -1,0 +1,9 @@
+README.rst
+setup.py
+dirbpy/__init__.py
+dirbpy/dirbpy.py
+dirbpy.egg-info/PKG-INFO
+dirbpy.egg-info/SOURCES.txt
+dirbpy.egg-info/dependency_links.txt
+dirbpy.egg-info/requires.txt
+dirbpy.egg-info/top_level.txt
