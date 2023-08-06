@@ -1,0 +1,11 @@
+include LICENSE
+include README.md
+recursive-include smartshare/static *
+recursive-include smartshare/templates *
+prune smartshareserver
+prune .git
+exclude .gitignore
+exclude db.sqlite3
+exclude manage.py
+global-exclude __pycache__
+global-exclude *.py[co]
