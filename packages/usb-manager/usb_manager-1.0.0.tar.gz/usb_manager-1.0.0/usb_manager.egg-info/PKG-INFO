@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: usb-manager
+Version: 1.0.0
+Summary: A Python library to interact with USB devices.
+Home-page: https://github.com/M-Gregoire/usb_manager
+Author: Grégoire Martinache
+Author-email: gregoire@martinache.net
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: usb
+Platform: UNKNOWN

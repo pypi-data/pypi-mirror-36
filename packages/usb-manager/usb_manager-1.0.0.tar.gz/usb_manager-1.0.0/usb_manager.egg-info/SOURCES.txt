@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+usb_manager/__init__.py
+usb_manager/test_serial.py
+usb_manager.egg-info/PKG-INFO
+usb_manager.egg-info/SOURCES.txt
+usb_manager.egg-info/dependency_links.txt
+usb_manager.egg-info/requires.txt
+usb_manager.egg-info/top_level.txt
