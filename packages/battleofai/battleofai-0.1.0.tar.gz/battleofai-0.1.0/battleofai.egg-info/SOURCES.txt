@@ -1,0 +1,15 @@
+setup.py
+battleofai/__init__.py
+battleofai/abc.py
+battleofai/ais.py
+battleofai/client.py
+battleofai/config.py
+battleofai/enums.py
+battleofai/game.py
+battleofai/game_types.py
+battleofai/utils.py
+battleofai.egg-info/PKG-INFO
+battleofai.egg-info/SOURCES.txt
+battleofai.egg-info/dependency_links.txt
+battleofai.egg-info/requires.txt
+battleofai.egg-info/top_level.txt
