@@ -1,0 +1,74 @@
+Metadata-Version: 2.0
+Name: ulib
+Version: 1.0.4
+Summary: talib wrapper for intellisense
+Home-page: https://github.com/ueqt/ulib
+Author: ueqt
+Author-email: ueqtxu@gmail.com
+License: GPL v2
+Description-Content-Type: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Cython
+Classifier: Topic :: Office/Business :: Financial
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Financial and Insurance Industry
+Requires-Dist: TA-Lib
+
+# ulib
+wrapper for TA-Lib, provide intellisense in vscode and PyCharm
+
+support tdx like expression functions
+
+让TA-Lib支持智能感知
+
+提供类似通达信、同花顺、文华财经、麦语言等方式的函数
+
+## Usage
+
+```bash
+pip install ulib
+```
+
+```python
+import numpy
+import ulib
+close = numpy.random.random(100)
+ulib.SMA(close)
+```
+
+or
+
+```python
+import numpy
+from ulib import *
+close = numpy.random.random(100)
+SMA(close)
+```
+
+# Publish
+
+```bash
+python3 setup.py clean bdist_wheel upload
+```
+
+## Reference
+
+[ta-lib](https://github.com/mrjbq7/ta-lib)
+[talib-document](https://github.com/HuaRongSAO/talib-document)
+[funcat](https://github.com/cedricporter/funcat)
+
