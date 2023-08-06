@@ -1,0 +1,12 @@
+inapp_purchases/__init__.py,sha256=b4aIkE_WzG_VLvK7Mp39Bw8StvlOaLFKym_2tgxnX3I,64
+inapp_purchases/app_store.py,sha256=9k12GsSXhJXxUFWOqpvJ_BMRev9aC4OafOKAOzTUOOs,7751
+inapp_purchases/google_play.py,sha256=r3fD-k1M-ausYsTrEwBk9KBInpk08vd3zCEIlJHaE8U,9221
+inapp_purchases/inapp_service.py,sha256=baEw4_kyluQaCipqSJz-TwH_h2cadyNsFThBzSiKBtc,769
+inapp_purchases/response.py,sha256=-6RzAFpGHy3-kS5Q729I8AG9xWPRYR1F_yep9I1COrY,643
+inapp_purchases/subscription_status.py,sha256=RmlOQ2cT2CBMo8TLghwhKK6yoLMMgb3IVGzD432ay3o,149
+inapp_purchases-0.4.1.dist-info/DESCRIPTION.rst,sha256=NMx-4V-_aKzv-2k4tAFzIVPuyvQKUA6Q6QpmLXYyUTs,2026
+inapp_purchases-0.4.1.dist-info/METADATA,sha256=pmGWo6_2x53r2SBalcJ2xOJJA03cxr29Z4p4kTtLxRU,2607
+inapp_purchases-0.4.1.dist-info/RECORD,,
+inapp_purchases-0.4.1.dist-info/WHEEL,sha256=bee59qcPjkyXfMaxNWjl2CGotqfumWx9pC1hlVLr2mM,92
+inapp_purchases-0.4.1.dist-info/metadata.json,sha256=aNhIju00AiZQ1Qx4nWQCf4DenZPmHm3J6TdNwf8qHdI,834
+inapp_purchases-0.4.1.dist-info/top_level.txt,sha256=EG_p0lc-d_CJPAozZ_5ehJVUW_UcIScPxX1OhSEWtag,16
