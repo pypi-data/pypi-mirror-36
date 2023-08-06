@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+pytest_smartcollect/__init__.py
+pytest_smartcollect/helpers.py
+pytest_smartcollect/plugin.py
+pytest_smartcollect.egg-info/PKG-INFO
+pytest_smartcollect.egg-info/SOURCES.txt
+pytest_smartcollect.egg-info/dependency_links.txt
+pytest_smartcollect.egg-info/entry_points.txt
+pytest_smartcollect.egg-info/requires.txt
+pytest_smartcollect.egg-info/top_level.txt
