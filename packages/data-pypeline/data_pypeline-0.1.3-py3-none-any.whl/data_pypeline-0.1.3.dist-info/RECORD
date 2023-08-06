@@ -1,0 +1,9 @@
+data_pypeline-0.1.3.dist-info/LICENSE.txt,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+data_pypeline-0.1.3.dist-info/METADATA,sha256=X6wAFnSnq7QmIrUfCgLsuUqjQVI3sqD2MfSSp7uOfDU,2638
+data_pypeline-0.1.3.dist-info/RECORD,,
+data_pypeline-0.1.3.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+data_pypeline-0.1.3.dist-info/top_level.txt,sha256=HY746yIkgNOIsQ9cKxWtv-APBCMBjurZSoph9da7qkQ,9
+pypeline/__init__.py,sha256=-mw8oG_ZSFgOA7ldXYEO9V4guZGpIT26gox1IloH_vk,1784
+pypeline/_db.py,sha256=sPWXmm_GZbE7YG1keNiCfGMrEqJ9VyeLAL_QEXNfeVU,1220
+pypeline/off_heap.py,sha256=PPmS89yFib0fYLc-v309xmrqnozrUdp87ut81XZxPQU,1602
+pypeline/pypeline.py,sha256=kms1GleTbyvrq6Sg8ddMyADkE0q7Jtm9PUMx0O1pSkQ,18480
