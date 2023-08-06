@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: rtv-downloader
+Version: 2.0.6
+Summary: Command-line program to download videos from various sites.
+Home-page: https://github.com/radzak/rtv-downloader
+Author: Radek Krzak
+Author-email: radek.krzak@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Topic :: Multimedia :: Video
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3.6
+Requires-Dist: requests
+Requires-Dist: dateparser
+Requires-Dist: Js2Py
+Requires-Dist: youtube-dl
+Requires-Dist: validators
+Requires-Dist: beautifulsoup4
+Requires-Dist: tldextract
+
+UNKNOWN
+
+
