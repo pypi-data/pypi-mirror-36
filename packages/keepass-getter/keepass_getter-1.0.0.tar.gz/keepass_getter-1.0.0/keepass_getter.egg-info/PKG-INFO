@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: keepass-getter
+Version: 1.0.0
+Summary: Python library to retrieve passwords from CLI & Python using KeepassHTTP
+Home-page: https://github.com/M-Gregoire/keepass-getter
+Author: Grégoire Martinache
+Author-email: UNKNOWN
+License: Apache-2.0
+Description: UNKNOWN
+Platform: UNKNOWN

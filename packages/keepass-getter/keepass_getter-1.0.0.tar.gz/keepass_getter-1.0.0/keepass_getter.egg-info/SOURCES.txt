@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+setup.py
+keepass_getter/__init__.py
+keepass_getter/__main__.py
+keepass_getter/crypto.py
+keepass_getter/protocol.py
+keepass_getter/session.py
+keepass_getter.egg-info/PKG-INFO
+keepass_getter.egg-info/SOURCES.txt
+keepass_getter.egg-info/dependency_links.txt
+keepass_getter.egg-info/requires.txt
+keepass_getter.egg-info/top_level.txt
