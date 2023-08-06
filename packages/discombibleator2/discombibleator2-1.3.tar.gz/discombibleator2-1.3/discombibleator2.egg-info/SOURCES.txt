@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+discombibleator/__init__.py
+discombibleator/algs.py
+discombibleator/inputs.py
+discombibleator/main.py
+discombibleator/reference_lists.py
+discombibleator2.egg-info/PKG-INFO
+discombibleator2.egg-info/SOURCES.txt
+discombibleator2.egg-info/dependency_links.txt
+discombibleator2.egg-info/not-zip-safe
+discombibleator2.egg-info/top_level.txt
