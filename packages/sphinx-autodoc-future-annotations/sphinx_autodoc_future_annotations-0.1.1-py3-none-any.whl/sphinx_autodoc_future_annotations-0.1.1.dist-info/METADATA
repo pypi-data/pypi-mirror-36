@@ -1,0 +1,136 @@
+Metadata-Version: 2.1
+Name: sphinx-autodoc-future-annotations
+Version: 0.1.1
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Ismo Toijala
+Author-email: ismo.toijala@gmail.com
+License: MIT
+Project-URL: Bug Tracker, https://gitlab.com/itoijala/sphinx_autodoc_future_annotations/issues
+Project-URL: Source Code, https://gitlab.com/itoijala/sphinx_autodoc_future_annotations
+Platform: UNKNOWN
+Classifier: Framework :: Sphinx :: Extension
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Documentation :: Sphinx
+Requires-Python: >= 3.7
+Requires-Dist: astor (>=0.7.1)
+Requires-Dist: sphinx (>=1.8)
+
+sphinx_autodoc_future_annotations
+=================================
+
+This extension allows you to use Python 3 type annotations for documenting module and class attributes and
+function arguments and return types.
+The extension also has support for cyclic imports needed due to type annotations.
+The extension only works for Python 3.7 and higher and requires the use of ``from __future__ import annotations``.
+
+Example:
+
+.. code-block:: python
+   :caption: a_module.py
+
+    from __future__ import annotations
+
+    import typing as t
+
+    if t.TYPE_CHECKING:
+        import another_module
+
+    module_attribute: t.Optional[another_module.SomeClass] = None
+    '''An attribute of the module.'''
+
+    class AClass:
+        '''A class.'''
+
+        instance_attribute: int
+        '''An instance attribute.'''
+
+        class_attribute: float = 3.0
+        '''A class attribute.'''
+
+        def __init__(self, arg: t.Union[int, str]):
+            pass
+
+        def method(self) -> int:
+            '''A method.'''
+            pass
+
+.. code-block:: python
+   :caption: another_module.py
+
+    from __future__ import annotations
+
+    import typing
+
+    if typing.TYPE_CHECKING:
+        import a_module
+
+    def function(arg: a_module.AClass):
+        '''A function.'''
+        pass
+
+
+Installation and setup
+----------------------
+
+First, use pip to download and install the extension::
+
+    $ pip install sphinx_autodoc_future_annotations
+
+Then, add the extension to your ``conf.py``:
+
+.. code-block:: python
+
+    extensions = [
+        'sphinx.ext.autodoc',
+        'sphinx_autodoc_future_annotations',
+    ]
+
+
+How it works
+------------
+
+Cyclic imports needed due to type annotations are supported in the following way.
+First, a hook is monkey-patched into ``sphinx.ext.autodoc`` to act when a module is imported.
+This hook first imports the module normally.
+Then it parses the module's code and finds any top-level ``if``\-statements that are conditional on
+``TYPE_CHECKING`` from the ``typing`` module.
+All statements inside such ``if``-statements are executed in the context of te module.
+This makes the additional imports available to ``typing.get_type_hints``.
+
+The extension listens to the ``autodoc-process-signature`` and ``autodoc-process-docstring``
+Sphinx events. In the former, it strips the annotations from the function signature. In the latter,
+it injects the appropriate ``:type argname:`` and ``:rtype:`` directives into the docstring.
+
+The ``:type argname:`` and ``:rtype:`` directives are added if and only if no existing matching directive is found.
+Empty ``:param argname:`` directives are added if no matching directive is found.
+This allows to document the type of an argument without having to add trivial documentation on its use.
+
+This extension does not currently have any configuration options.
+
+Some of the code is adapted from `sphinx-autodoc-typehints`_.
+
+.. _sphinx-autodoc-typehints: https://github.com/agronholm/sphinx-autodoc-typehints
+
+
+Compatibility with sphinx.ext.napoleon
+--------------------------------------
+
+To use `sphinx.ext.napoleon`_ with sphinx_autodoc_future_annotations, make sure you load
+`sphinx.ext.napoleon`_ first, **before** sphinx_autodoc_future_annotations.
+
+.. _sphinx.ext.napoleon: http://www.sphinx-doc.org/en/stable/ext/napoleon.html
+
+.. code-block:: python
+
+    extensions = [
+        'sphinx.ext.autodoc',
+        'sphinx.ext.napoleon',
+        'sphinx_autodoc_future_annotations',
+    ]
+
+
