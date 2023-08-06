@@ -1,0 +1,14 @@
+checkpointer/__init__.py,sha256=SzjfYPDtkVrRKriEyzyRabqQRs4tTy7AXS1CUFAyXpg,199
+checkpointer/checkpoint.py,sha256=vDT-3IF0V2LGDYBLpN2qyTREY_zEvV3kzkXd93aDyMc,1814
+checkpointer/env.py,sha256=J_lsTdI9U7LIpFVE-ga7bsp6pkZkEUeFeSIcvx0psVI,344
+checkpointer/function_body.py,sha256=o4n_L4zQPp0pHioIfwMXpmrlaUpbxh9wQbfwJekEFDA,2319
+checkpointer/storage.py,sha256=vJm1U8Mup3J66LEounJfzP6av-cfUH1t8TY46BON3Tw,1759
+checkpointer/tf.py,sha256=BsmnTBYPE0X_1DYzYpT9n7WcIdt3ExQ_0Oui9lwmfiM,2187
+checkpointer/storages/bcolz_storage.py,sha256=fL1Z7dhBXhHxrxvZeTWZPYPgxegVm-6bIDgoGLaaoU4,2379
+checkpointer/storages/memory_storage.py,sha256=DDD8I3OmLhrV1gJwTkcxoQfPkP2wXLJFTku9jI1DolQ,332
+checkpointer/storages/mongo_storage.py,sha256=S6PsgWgIACTXZpGppzPaIvyAaZtFfO2OdV2jezEaNZk,874
+checkpointer/storages/pickle_storage.py,sha256=zJQn62xEmgu_so9dzuZUOjvIijC5HtF6kXTh58LpjAQ,1189
+checkpointer-0.2.0.dist-info/METADATA,sha256=8wtJK7gQbvHLwmyUT1ZUG473YBsrmjJeLCCWh-9jL3c,313
+checkpointer-0.2.0.dist-info/RECORD,,
+checkpointer-0.2.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+checkpointer-0.2.0.dist-info/top_level.txt,sha256=uF0eyHpShnsHI3sobErnhQ8LWCT8DPViqAznKeTaZlw,13
