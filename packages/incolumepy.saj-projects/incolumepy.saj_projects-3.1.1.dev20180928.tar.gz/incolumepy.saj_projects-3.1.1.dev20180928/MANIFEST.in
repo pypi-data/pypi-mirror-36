@@ -1,0 +1,11 @@
+global-exclude *.py[co]
+recursive-exclude CCIVIL_03 *
+recursive-exclude exemplos *
+recursive-exclude py?? *
+recursive-exclude relatorios *
+recursive-exclude view *
+include docs/*.rst
+include data/*.csv
+include data/*.xlsx
+include *.md
+include src/incolumepy/saj_projects/version.txt
