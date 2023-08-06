@@ -1,0 +1,2 @@
+recursive-include button_execute/static *.*
+include jupyter-button_execute.json

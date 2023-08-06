@@ -1,0 +1,5 @@
+{
+  "load_extensions": {
+    "jupyter-button_execute/extension": true
+  }
+}

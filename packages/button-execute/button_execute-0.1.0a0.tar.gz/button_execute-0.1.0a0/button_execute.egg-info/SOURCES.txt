@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+jupyter-button_execute.json
+setup.cfg
+setup.py
+button_execute/__init__.py
+button_execute/_version.py
+button_execute/button_execute.py
+button_execute.egg-info/PKG-INFO
+button_execute.egg-info/SOURCES.txt
+button_execute.egg-info/dependency_links.txt
+button_execute.egg-info/not-zip-safe
+button_execute.egg-info/requires.txt
+button_execute.egg-info/top_level.txt
+button_execute/static/extension.js
+button_execute/static/index.js
+button_execute/static/index.js.map
