@@ -1,0 +1,14 @@
+sudo: false
+language: python
+python:
+  - 3.4
+  - 3.5
+  - 3.6
+#  - pypy3.5-5.8.0
+install:
+  - pip install codecov
+  - python setup.py install
+script:
+  - python setup.py test
+after_success:
+  - codecov
