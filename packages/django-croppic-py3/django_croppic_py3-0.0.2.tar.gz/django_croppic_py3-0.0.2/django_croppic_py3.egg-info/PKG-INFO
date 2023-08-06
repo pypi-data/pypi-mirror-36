@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: django-croppic-py3
+Version: 0.0.2
+Summary: A version of the django-croppic module updated to work with django 2+ and Python 3+.
+Home-page: https://mooloomedia.com
+Author: Alex Davies
+Author-email: alex@mooloomedia.com
+License: UNKNOWN
+Description: This is a version of the django_croppic module updated to work with django 2+ and Python 3+.
+        
+        The original module for lower versions can be found here:
+        https://github.com/intellisense/django-croppic
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

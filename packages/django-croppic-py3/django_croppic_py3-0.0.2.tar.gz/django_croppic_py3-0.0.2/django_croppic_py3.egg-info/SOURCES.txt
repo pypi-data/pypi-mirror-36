@@ -1,0 +1,16 @@
+README.txt
+setup.py
+django_croppic_py3/__init__.py
+django_croppic_py3/admin.py
+django_croppic_py3/conf.py
+django_croppic_py3/forms.py
+django_croppic_py3/models.py
+django_croppic_py3/tests.py
+django_croppic_py3/urls.py
+django_croppic_py3/utils.py
+django_croppic_py3/views.py
+django_croppic_py3.egg-info/PKG-INFO
+django_croppic_py3.egg-info/SOURCES.txt
+django_croppic_py3.egg-info/dependency_links.txt
+django_croppic_py3.egg-info/top_level.txt
+django_croppic_py3/migrations/__init__.py
