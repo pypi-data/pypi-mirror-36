@@ -1,0 +1,8 @@
+# pygrowth
+This python package provides analyses tools for public data from the GROWTH (Gamma-Ray Observation of Winter THundercloud) project. 
+
+## Reference for PyPI package
+https://packaging.python.org/tutorials/packaging-projects/#create-an-account
+
+<!--
+-->
