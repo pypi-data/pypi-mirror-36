@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: harpo
+Version: 0.5.2
+Summary: A GPG-based secret storing/sharing library
+Home-page: https://behavox.com/
+Author: Behavox
+Author-email: devops@behavox.com
+License: Apache-2
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python
+Classifier: Topic :: Security :: Cryptography
+Requires-Python: >=2.7
+Requires-Dist: pbr
+Requires-Dist: PyYAML
+Requires-Dist: python-gnupg
+Requires-Dist: GitPython
+
+Harpo
+=====
+
+Description
+-----------
+
+> Harpocrates (Ancient Greek: Ἁρποκράτης) was the god of silence, secrets and confidentiality.
+
+**Harpo** is GPG-based secret storage/sharing library.
+
+Usage
+-----
+
+
+
