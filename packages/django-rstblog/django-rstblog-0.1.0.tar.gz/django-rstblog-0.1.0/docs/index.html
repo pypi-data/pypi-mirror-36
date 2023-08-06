@@ -1,0 +1,227 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to rstblog documentation &#8212; django-rstblog v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="author manual" href="author_manual/author_manual.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-rstblog-documentation">
+<h1>Welcome to rstblog documentation<a class="headerlink" href="#welcome-to-rstblog-documentation" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">rstblog</span></code> project is about a simple blog driven by articles written
+using reStructuredText markup language.</p>
+<p>This is its documentation.</p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="author_manual/author_manual.html">Article author manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="author_manual/author_manual.html#article-organization">Article organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="author_manual/author_manual.html#article-filename">Article filename</a></li>
+<li class="toctree-l2"><a class="reference internal" href="author_manual/author_manual.html#article-fields-aka-attributes">Article fields (aka: attributes)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="author_manual/author_manual.html#content">Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="author_manual/author_manual.html#advanced-attributes">Advanced attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="author_manual/author_manual.html#author-manual-end">Author manual end</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manager_manual/manager_manual.html">(Empty) Site manager manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programmer_manual/programmer_manual.html">(Empty) Details about how it works</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="programmer_manual/programmer_manual.html#load-article">load article</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="general-introduction">
+<h2>General introduction<a class="headerlink" href="#general-introduction" title="Permalink to this headline">¶</a></h2>
+<p>This project is developed using <a class="reference external" href="https://www.djangoproject.com/">Django</a>, a web framework based on the
+<a class="reference external" href="http://www.python.org/">Python</a> language. And this fact is important to you <em>only if you
+wish to modify how the project work</em>. In other words if you need to change
+the programming code of the project.</p>
+<p>Central to this work is also the <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> markup language (for
+short: reST from now on). This is a method to sign a text achieving formatting effects, as
+writing charactes in bold, or creating a table, or an html link
+to another document.</p>
+<p>And this fact is important to you as a user of this project. Why? we’ll see.</p>
+<p>Let’s assume you have an <code class="docutils literal notranslate"><span class="pre">rstblog</span></code> installation functioning and
+responding to address <code class="docutils literal notranslate"><span class="pre">https://my.blog.org</span></code> (original, isn’t it?).
+And, of corse, you know a username (&amp; password) authorized to publish
+an article on it.</p>
+<p>Well, now you have a fantastic idea you need to share with mankind.</p>
+<p>First think first: you write a vibrant article using your favourite
+text editor in your computer, formatting it using <em>reST</em> <a class="footnote-reference" href="#id3" id="id1">[1]</a>.
+Note: by now your work is saved in a file on your PC.</p>
+<p>When you are satisfied of your article, using your web browser, you
+navigate to <code class="docutils literal notranslate"><span class="pre">https://my.blog.org/blog/load-article</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">rstblog</span></code> will request your username and password. If you feed them, it
+will request to you what file you need to load. Browse to it
+and click the send button. <code class="docutils literal notranslate"><span class="pre">rstblog</span></code> will respond you: <em>article xxx loaded</em> <a class="footnote-reference" href="#id4" id="id2">[2]</a></p>
+<p>We are done: homepage at <code class="docutils literal notranslate"><span class="pre">https://my.blog.org</span></code> will show the title
+and summary of your new article. And if you click on title, you’ll
+see your article in all its glory.</p>
+<p>Well, there is some little trick to use to obtain the right result. But
+I swear: it’s all very simple. Otherwise I would not be able to use it.</p>
+<p>Now. I imagine you are asking yourself: “for God’s sake: why I need
+use a text editor and upload a file to my site, if <a class="reference external" href="https://wordpress.org/">wordpress</a> or
+<a class="reference external" href="https://www.drupal.org/">drupal</a> allow me to write it directly in the browser window?”.</p>
+<p>Due to some reasons.</p>
+<p>First of all: never appened while you are writing, something goes wrong (
+power failure at your adsl router, a timeout to your server, …) and do you
+risk to loose your work? It appened to me. From that moment on, I got used to write
+long articles in files <em>before</em> to feed drupal with them.</p>
+<p><em>But</em> … this habit lead to different use of the tools. Long articles
+initially written by files. The short ones written directly using
+the user interface of the blog, without a local file in your computer.</p>
+<p>And when you need to make a little correction to an article, for sure
+you’ll do it using the blog user interface. So your local file in a moment
+will no longer be aligned with the online version of your article.</p>
+<p>So you ask to me: “where is the problem?”. The problem is the fact that your
+articles are stored partially only in the database of your blog software. Partially
+because probably images, and other files that your refer to into your articles
+are in the web server file system. So you need to backup all these informations
+and wish you will not have to change the blog software, or you might
+encounter some (big) problems to transfer them from one kind of system to the other.</p>
+<p>Again: <em>but</em> … if there is a think I know working in IT for over 30 years
+is that <em>for sure</em> your data will have to change system type. Every type
+of system type :-). Even not only the name of software (e.g. from Drupal to
+Wordpress), but from type of software to another (e.g. from specialized Blog to general
+purpouse CMS), or even more complex scenarios.</p>
+<p>In these cases, you have more chance of success if your data are in some
+form of <em>source</em> format. The simpler it is, the better it is.</p>
+<p>So, returning to us, I decided to experiment to use a simple
+markup language, as reSt, or markdown, to write a local copy of the
+articles. And, while I’m living a full copy of them on my PC
+(this is a local backup, from start!), I upload
+them to a web server able to host them and catalog their contents
+by some simple fields written in the article file text.</p>
+<p>So, in case of restore in other server I can load my local copy. And in case
+of a radical software change, I can think to write some (hopefully) simple
+interface to load my files in a future shocking AI.</p>
+<p>If this long introduction did not make you escape, and you are still
+interested to know better how use <code class="docutils literal notranslate"><span class="pre">rstblog</span></code>, I can propose you
+these chapters:</p>
+<ul class="simple">
+<li>an article <a class="reference internal" href="author_manual/author_manual.html#author-manual"><span class="std std-ref">author manual</span></a>;</li>
+<li>an <strong>empty</strong> site <a class="reference internal" href="manager_manual/manager_manual.html#manager-manual"><span class="std std-ref">manager manual</span></a>;</li>
+<li>an <strong>empty</strong> <a class="reference internal" href="programmer_manual/programmer_manual.html#programmer-manual"><span class="std std-ref">programmer manual</span></a>.</li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>This project is open source <a class="reference external" href="https://github.com/l-dfa/base_rstblog">hosted on GitHub</a>.</p>
+<p>And here there is the <a class="reference external" href="https://luciano.defalcoalfano.it">author’s website</a>.
+Its contents are mainly written in italian language.</p>
+<p>This is the <a class="reference external" href="https://luciano.defalcoalfano.it/blog/show/rstblog-project">launch article</a>
+about this project.</p>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>To be honest, you can also use <a class="reference external" href="https://daringfireball.net/projects/markdown/syntax">markdown</a>, or <a class="reference external" href="https://www.w3.org/TR/2017/REC-html52-20171214/">html</a> too. But we are
+a little fanatic about reST; so: this is a link to <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickstart.html">a primer to reST</a>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Or, in case of error, it will prompt you.</td></tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to rstblog documentation</a><ul>
+<li><a class="reference internal" href="#general-introduction">General introduction</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="author_manual/author_manual.html" title="next chapter">author manual</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, luciano de falco alfano.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
