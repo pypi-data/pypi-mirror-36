@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: ajr
+Version: 0.1.0
+Summary: Asyncronous JSON-RPC router.
+Home-page: http://example.com/
+Author: Close Screen
+Author-email: close.screen@gmail.com
+License: MIT
+Project-URL: Bug Tracker, https://bugs.example.com/HelloWorld/
+Project-URL: Documentation, https://docs.example.com/HelloWorld/
+Project-URL: Source Code, https://code.example.com/HelloWorld/
+Keywords: Async JSON-RPC AIOHTTP
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.7
+
+UNKNOWN
+
+
