@@ -1,0 +1,31 @@
+Metadata-Version: 1.2
+Name: hobbit-core
+Version: 1.0.0
+Summary: Hobbit - A flask project generator.
+Home-page: https://github.com/TTWShell/hobbit-core
+Author: Legolas Bloom
+Author-email: zhanhsw@gmail.com
+License: UNKNOWN
+Description: Hobbit-core
+        ===========
+        
+        A flask project generator.
+        
+        `Readmedocs <https://hobbit-core.readthedocs.io/en/latest/>`__
+        
+        Install
+        =======
+        
+        ::
+        
+           pip install hobbit-core
+        
+        Show help
+        =========
+        
+        ::
+        
+           hobbit --help
+        
+Platform: UNKNOWN
+Requires-Python: >=3.6

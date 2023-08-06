@@ -1,0 +1,50 @@
+import logging
+
+from flask import Flask, request
+
+from hobbit_core.flask_hobbit.err_handler import ErrHandler
+
+from {{ project_name }}.exts import db, migrate, ma, hobbit
+from {{ project_name }} import config
+from {{ project_name }} import views
+
+
+def register_extensions(app):
+    db.init_app(app)
+    migrate.init_app(app, db)
+    ma.init_app(app)
+    hobbit.init_app(app)
+
+
+def register_blueprints(app):
+    app.register_blueprint(views.bp, url_prefix='/api')
+
+
+def register_error_handler(app):
+    app.register_error_handler(Exception, ErrHandler.handler)
+
+
+def register_cmds(app):
+    pass
+
+
+def create_app(config):
+    app = Flask(__name__)
+    app.config.from_object(config)
+
+    register_extensions(app)
+    register_blueprints(app)
+    register_error_handler(app)
+    register_cmds(app)
+
+    @app.before_request
+    def log_request_info():
+        logger = logging.getLogger('werkzeug')
+        if request.method in ['POST', 'PUT']:
+            logger.info('Body: %s', request.get_data())
+
+    return app
+
+
+app = create_app(config.get_config())
+
