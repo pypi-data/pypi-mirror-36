@@ -1,0 +1,195 @@
+Metadata-Version: 2.1
+Name: grakel-dev
+Version: 0.1a5
+Summary: A scikit-learn compatible library for graph kernels
+Home-page: https://ysig.github.io/GraKeL/dev/
+Author: Ioannis Siglidis [LiX / DaSciM]
+Author-email: y.siglidis@gmail.com
+License: BSD
+Project-URL: Documentation, https://ysig.github.io/GraKeL/dev/
+Project-URL: Send us Feedback!, http://www.lix.polytechnique.fr/dascim/contact/
+Project-URL: Tracker, https://github.com/ysig/GraKeL/issues
+Project-URL: Source, https://github.com/ysig/GraKeL/tree/develop
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+Classifier: Topic :: Scientific/Engineering
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4
+Description-Content-Type: text/markdown
+Provides-Extra: lovasz
+Requires-Dist: nose (>=1.1.2)
+Requires-Dist: numpy (>=1.14.0)
+Requires-Dist: scikit-learn (>=0.19.0)
+Requires-Dist: scipy (>=1.0.1)
+Requires-Dist: cython (>=0.27.3)
+Requires-Dist: future (>=0.16.0)
+Requires-Dist: six (>=1.11.0)
+Provides-Extra: lovasz
+Requires-Dist: cvxopt (>=1.2.0); extra == 'lovasz'
+
+# GraKeL: A library for graph kernels
+
+[![Travis Status](https://travis-ci.org/ysig/GraKeL.svg?branch=develop)](https://travis-ci.org/ysig/GraKeL)
+[![Coverage Status](https://coveralls.io/repos/github/ysig/GraKeL/badge.svg?branch=develop)](https://coveralls.io/github/ysig/GraKeL?branch=develop)
+[![CircleCI Status](https://circleci.com/gh/ysig/GraKeL/tree/develop.svg?style=shield)](https://circleci.com/gh/ysig/GraKeL/tree/develop)
+[![Appveyor status](https://ci.appveyor.com/api/projects/status/sss4lpfxwgejn6de/branch/develop?svg=true)](https://ci.appveyor.com/project/ysig/grakel)
+
+**grakel** is a library compatible with the project of [scikit-learn](http://scikit-learn.org/)
+
+Installing grakel
+=================
+
+The grakel library requires:
+
+* Python [>=2.7, >=3.5]
+* NumPy [>=1.8.2]
+* SciPy [>=0.13.3]
+* Cython [>=0.27.3]
+* cvxopt [>=1.2.0] [optional: lovasz]
+* future [>=0.16.0] (for python 2.7)
+
+
+Installing Dependencies
+-----------------------
+
+For installing dependencies the procedure is the well known:
+
+```shell
+(sudo) pip install extension>=extension_version
+```
+
+or
+
+```shell
+(sudo) pip install -r requirements.txt
+```
+where (sudo) depends on if `pip` has superuser privilages.
+
+
+Installing the *development-version*
+------------------------------------
+
+To install the *development-version* from [**pip**][https://pypi.org/project/grakel-dev] execute:
+
+```shell
+$ (sudo) pip install grakel-dev
+```
+
+whereas to install it from [**conda**][https://anaconda.org/ysig/grakel-dev]:
+
+```shell
+$ conda install grakel-dev
+```
+
+Usage
+=====
+To learn how to use the GraKeL api **as a user**, please read the [documentation][doc] on sections *Introduction* and *A longer introduction*
+(in case your are full of curiosity).
+
+Testing
+=======
+In order for the following to work you first need to build the package cython extension
+locally by executing:
+```shell
+$ python setup.py build_ext -i
+```
+
+To test the package, execute:
+```shell
+$ nosetests
+```
+
+for executing unit_tests or use a testing-interface for testing the `kernel` module:
+```shell
+$ python  grakel/tests/test_kernels.py --help
+usage: test_kernels.py [-h] [--verbose] [--problematic] [--slow]
+                       [--ignore_warnings] [--dataset DATASET] [--normalize]
+                       [--develop | --all | --main]
+
+A test file for all kernels
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --verbose          print kernels with their outputs on stdout
+  --problematic      allow execution of problematic test cases in development
+  --slow             allow execution of slow test cases in development
+  --ignore_warnings  ignore warnings produced by kernel executions
+  --dataset DATASET  chose the datset you want the tests to be executed
+  --normalize        normalize the kernel output
+  --develop          execute only tests connected with current development
+  --all              execute all tests
+  --main             execute the main tests [default]
+
+```
+
+for testing `graph_kernels`:
+```shell
+$ python grakel/tests/test_graph_kernel.py --help
+usage: test_graph_kernels.py [-h] [--verbose] [--problematic] [--slow]
+                             [--normalize] [--ignore_warnings]
+                             [--dataset DATASET] [--develop | --all | --main]
+
+A test file for all kernels
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --verbose          print kernels with their outputs on stdout
+  --problematic      allow execution of problematic test cases in development
+  --slow             allow execution of slow test cases in development
+  --normalize        normalize the kernel output
+  --ignore_warnings  ignore warnings produced by kernel executions
+  --dataset DATASET  chose the datset you want the tests to be executed
+  --develop          execute only tests connected with current development
+  --all              execute all tests
+  --main             execute the main tests [default]
+
+```
+
+and for testing the `Graph` class:
+```shell
+$ python grakel/tests/test_graph.py --help
+usage: test_graph.py [-h] [--verbose] [--ignore_warnings]
+
+A test file for all `Graph` type objects
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --verbose          verbose outputs on stdout
+  --ignore_warnings  ignore warnings produced by kernel executions
+```
+You can also execute the kernel test locally through a *test-main-function* as
+```shell
+$ python -m grakel.tests
+```
+
+Contributing
+============
+For learning how to integrate your own kernel, please read section *Write your own kernel* inside
+the package [documentation][doc]. 
+For contributing to the GraKeL project, please read section *contributing* inside the package [documentation][doc].
+
+[doc]: https://ysig.github.io/GraKeL/dev/
+
+Citation
+========
+If you use GraKeL in a scientific publication, please cite our paper:
+```
+@article{siglidis2018grakel,
+  title={GraKeL: A Graph Kernel Library in Python},
+  author={Siglidis, Giannis and Nikolentzos, Giannis and Limnios, Stratis and Giatsidis, Christos and Skianis, Konstantinos and Vazirgiannis, Michalis},
+  journal={arXiv preprint arXiv:1806.02193},
+  year={2018}
+}
+```
+
+
