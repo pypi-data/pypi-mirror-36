@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: xweb-router
+Version: 0.1.1
+Summary: Router middleware for xweb.
+Home-page: https://github.com/gaojiuli/xweb_router
+Author: Jiuli Gao
+Author-email: gaojiuli@gmail.com
+License: MIT
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content :: CGI Tools/Libraries
+Classifier: Topic :: Internet :: WWW/HTTP :: HTTP Servers
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: xweb
+Requires-Dist: parse
+
+# xweb-router
+
+> Router middleware for [xweb](https://github.com/gaojiuli/xweb)
+
+
+## Usage
+
+```python
+from xweb import App
+
+from xweb_router import Router
+
+app = App()
+router = Router()
+nested = Router()
+
+app.use(router)
+
+
+@router.use('/')
+async def middleware(ctx, fn):
+    """Router Middleware"""
+    print('middleware')
+    await fn()
+
+
+@router.post('/')
+async def home(ctx):
+    ctx.body = "Home"
+
+
+@router.get('/{name}')
+async def hello(ctx):
+    """URL parameters"""
+    ctx.body = f"Hello {ctx.params.name}"
+
+
+router.use('/post')(nested)
+
+
+@nested.get('/index')
+async def index(ctx):
+    ctx.body = "Nested Index"
+
+
+if __name__ == '__main__':
+    app.listen(8000)
+
+```
+
+## Nested Router
+
+```python
+
+```
+
