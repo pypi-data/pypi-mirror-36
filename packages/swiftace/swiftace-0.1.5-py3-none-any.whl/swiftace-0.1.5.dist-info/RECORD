@@ -1,0 +1,12 @@
+swiftace/__init__.py,sha256=zQ09anf2jE_86U54tBII1Yp9MM3x6SGa64G9jQM7Lr0,2331
+swiftace/cli.py,sha256=fFFLzdWNxU73E4I0x4PLFWnQTfNw3JFCIMYqSot5OY8,1104
+swiftace/utils/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+swiftace/utils/anaconda.py,sha256=Ybo_A3V4oH-vHCf5rEQ5AxEeO2RJJX7wdFN9evURIYg,2350
+swiftace/utils/api.py,sha256=UtE-NrheeRUlB5ljp37dtNNseG0UeVYpU7zxgB9WCpU,881
+swiftace/utils/git.py,sha256=IuLv_OrAWwt1AKOGx0IPRdKqXcicBH2UQoA3Zp6i5Hc,913
+swiftace/utils/jupyter.py,sha256=6DCq7NHI1gHLlVyjSwDu1Ab915L1bNoZ0Nu6E2NMTkc,2789
+swiftace-0.1.5.dist-info/METADATA,sha256=uWEIGJUzxphR881qfF_SWL1au8zyb75WL2rSiKPn-18,971
+swiftace-0.1.5.dist-info/RECORD,,
+swiftace-0.1.5.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+swiftace-0.1.5.dist-info/entry_points.txt,sha256=DQx0SxSUMg-2G9T_UxZrPBYNh2036au4M9R5sR-kiRY,48
+swiftace-0.1.5.dist-info/top_level.txt,sha256=qPlQQWk_z8rt67fWOTeip4N0SvADCoh1gF7RV0nlEzs,9
