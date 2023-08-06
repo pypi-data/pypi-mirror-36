@@ -1,0 +1,10 @@
+README.md
+setup.py
+scroodle/__init__.py
+scroodle/config.py
+scroodle/main.py
+scroodle.egg-info/PKG-INFO
+scroodle.egg-info/SOURCES.txt
+scroodle.egg-info/dependency_links.txt
+scroodle.egg-info/requires.txt
+scroodle.egg-info/top_level.txt
