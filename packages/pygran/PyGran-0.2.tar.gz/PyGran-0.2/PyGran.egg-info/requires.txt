@@ -1,0 +1,6 @@
+cython
+mpi4py
+numpy
+pytools>=2011.2
+pyvtk
+scipy
