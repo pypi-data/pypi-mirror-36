@@ -1,0 +1,10 @@
+riopg/__init__.py,sha256=5pqU83ZR53jfHMnDZwNWHtfBtUPmnHR3z17ezrqWdK8,166
+riopg/connection.py,sha256=o4zwBshuztJyDNJ16VquRJ2WVWxIVURXayupkc3f16M,4368
+riopg/cursor.py,sha256=-zwxWkDHXsHxgtlhnr-38Ijh558bIfSNbtruTb5Zclc,3895
+riopg/pool.py,sha256=BtEuBXms1hM_mSf2F5T82NKEpZqsJWKVF_Unm3-Bf0k,4318
+riopg-0.1.1.dist-info/DESCRIPTION.rst,sha256=2AfDzDXHyk18iyTbY7yXTBafqaOJ_J_6jQoXMzy5EuQ,930
+riopg-0.1.1.dist-info/METADATA,sha256=28thTXBN74V1eweGdbqZ8WvskAQeZ-o9ncaIaVYEWZ4,1529
+riopg-0.1.1.dist-info/RECORD,,
+riopg-0.1.1.dist-info/WHEEL,sha256=8Lm45v9gcYRm70DrgFGVe4WsUtUMi1_0Tso1hqPGMjA,92
+riopg-0.1.1.dist-info/metadata.json,sha256=nd_b2h5c4romzuaB9hczhiACtj-zAbAuVXU5Uk-r5EM,725
+riopg-0.1.1.dist-info/top_level.txt,sha256=9qUV7dl15VbyNighmqHe2iIKgfIb8hcscgi9X2mitB4,6
