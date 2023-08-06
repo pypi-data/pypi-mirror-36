@@ -1,0 +1,62 @@
+========================
+The Machine Learning Hub
+========================
+
+**UNDER DEVELOPMENT**
+
+Introduction
+------------
+
+The machine learning hub is an `open source project`_ aimed at easily
+sharing `pre-built machine learning models`_. The models are accessed
+and managed using the *ml* command from the *mlhub* package designed
+to install the model and run a demonstration within 5 minutes.
+
+Visit the `repository index`_ on `mlhub.ai`_ where the models
+themselves can be browsed from the `main pool`_.
+
+.. _`open source project`: https://github.com/mlhubber/mlhub
+.. _`pre-built machine learning models`: https://github.com/mlhubber/mlmodels
+.. _`repository index`: https://mlhub.ai/Packages.html
+.. _`mlhub.ai`: https://mlhub.ai/
+.. _`main pool`: https://mlhub.ai/pool/main/
+
+Quick Start
+-----------
+
+The command line interface can be installed using `PyPi`_::
+
+  $ pip3 install mlhub
+  
+Once installed you will be able to run the sample rain-tomorrow model
+assuming that you have the free and open source `R statistical
+software package`_ installed. The TL;DR version is below. Note that
+you type the command ``ml ...`` and that everything from the ``#`` to
+the end of the line is ignored (it's a comment)::
+
+  $ ml install   rain-tomorrow # Install the model named rain-tomorrow.
+  $ ml demo      rain-tomorrow # Run the demonstration of the model
+  $ ml display   rain-tomorrow # Graphical display of pre-built model.
+
+The following commands are available and below is a brief description
+of each command::
+
+  $ ml                         # Show a usage message.
+  $ ml available               # List of pre-buld models on the MLHub.
+  $ ml installed               # List of pre-built models installed locally
+  $ ml install   rain-tomorrow # Install the model named rain-tomorrow.
+  $ ml readme    rain-tomorrow # View background information about the model.
+  $ ml commands  rain-tomorrow # List of commands supported by the model.
+  $ ml configure rain-tomorrow # Install required dependencies.
+  $ ml demo      rain-tomorrow # Run the demonstration of the model
+  $ ml print     rain-tomorrow # Textual summary of the model.
+  $ ml display   rain-tomorrow # Graphical display of pre-built model.
+  $ ml score     rain-tomorrow # Run model on your own data.
+
+Different model packages will have different dependencies and these
+will be installed by the *configure* command.
+  
+.. _`PyPi`: https://pypi.org/project/mlhub/
+.. _`R statistical software package`: https://cran.r-project.org
+
+
