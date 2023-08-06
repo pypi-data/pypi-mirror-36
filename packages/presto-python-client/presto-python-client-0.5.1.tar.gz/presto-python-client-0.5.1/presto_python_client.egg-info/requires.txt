@@ -1,0 +1,12 @@
+click
+future
+ipaddress
+requests
+requests_kerberos
+six
+typing
+
+[tests]
+httpretty
+pytest
+pytest-runner
