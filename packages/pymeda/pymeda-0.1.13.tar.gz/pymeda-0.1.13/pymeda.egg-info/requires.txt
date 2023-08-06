@@ -1,0 +1,9 @@
+Cython
+pandas
+numpy
+scipy
+plotly==2.2.2
+matplotlib
+colorlover
+scikit-learn
+knor==0.0.1
