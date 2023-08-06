@@ -1,0 +1,9 @@
+README.md
+setup.py
+torch_dct/__init__.py
+torch_dct/dct.py
+torch_dct.egg-info/PKG-INFO
+torch_dct.egg-info/SOURCES.txt
+torch_dct.egg-info/dependency_links.txt
+torch_dct.egg-info/requires.txt
+torch_dct.egg-info/top_level.txt
