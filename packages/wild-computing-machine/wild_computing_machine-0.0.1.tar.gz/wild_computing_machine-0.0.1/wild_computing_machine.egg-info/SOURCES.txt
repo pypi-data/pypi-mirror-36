@@ -1,0 +1,11 @@
+setup.py
+wild_computing_machine/__init__.py
+wild_computing_machine/common.py
+wild_computing_machine/constants.py
+wild_computing_machine/effector.py
+wild_computing_machine/shaper.py
+wild_computing_machine/wild_comp.py
+wild_computing_machine.egg-info/PKG-INFO
+wild_computing_machine.egg-info/SOURCES.txt
+wild_computing_machine.egg-info/dependency_links.txt
+wild_computing_machine.egg-info/top_level.txt
