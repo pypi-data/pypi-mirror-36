@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: PcapGraph
+Version: 1.0.0
+Summary: Create a graph out of packet captures
+Home-page: https://www.github.com/pocc/pcapgraph/
+Author: Ross Jacobs
+Author-email: whim42+pcapgraph@gmail.com
+License: Apache 2
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
