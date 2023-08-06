@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+src/dicon/__init__.py
+src/dicon/dicon.py
+src/dicon/util.py
+src/dicon.egg-info/PKG-INFO
+src/dicon.egg-info/SOURCES.txt
+src/dicon.egg-info/dependency_links.txt
+src/dicon.egg-info/top_level.txt
+src/dicon/__pycache__/__init__.cpython-36.pyc
+src/dicon/__pycache__/dicon.cpython-36.pyc
+src/dicon/__pycache__/util.cpython-36.pyc
