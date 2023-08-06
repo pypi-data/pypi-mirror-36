@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: impd
+Version: 0.2.3
+Summary: A simple Gtk interface for MPD.
+Home-page: UNKNOWN
+Author: Steven J. Core
+Author-email: UNKNOWN
+License: GPL 3.0
+Platform: UNKNOWN
+Requires-Dist: musicbrainzngs
+Requires-Dist: requests
+Requires-Dist: python-mpd2
+
+UNKNOWN
+
+
