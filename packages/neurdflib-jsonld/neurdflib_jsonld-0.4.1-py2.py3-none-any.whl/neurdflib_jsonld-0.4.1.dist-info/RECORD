@@ -1,0 +1,13 @@
+neurdflib_jsonld-0.4.1.dist-info/METADATA,sha256=XpCr_Zq3uVP97OicS1lWzG3aK_Ce1oAhRA5GQ-3V0MQ,1053
+neurdflib_jsonld-0.4.1.dist-info/RECORD,,
+neurdflib_jsonld-0.4.1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+neurdflib_jsonld-0.4.1.dist-info/entry_points.txt,sha256=vC_OB7e3o5XKmitD5rzN6M7XLT-rxZ2m06rbIjJpn7Y,264
+neurdflib_jsonld-0.4.1.dist-info/top_level.txt,sha256=iUqILgcUBwyrWQTBJp1QprEpgRLGH3lxFtGdUCxvn2M,14
+rdflib_jsonld/__init__.py,sha256=QYTR2loWTigP5Q4CaV_Id30MFx5lbpW3_DU-oZvspQ8,30
+rdflib_jsonld/_compat.py,sha256=Yyfhy5hVOl3mutUNtvGjgnUK8P7Xv-WXgfYxaME-_F0,121
+rdflib_jsonld/context.py,sha256=O5loQnTvA4leYTWgWdcrGdG-jQjq_83sC64-WVupc8c,10800
+rdflib_jsonld/errors.py,sha256=pzwbUo2-DqWKqW2r-qcDF-a2FTu8al8AjJcilhXTs8M,264
+rdflib_jsonld/keys.py,sha256=r8U9tlgjCPQX-sBp2eRVBjYyqQVvu5BvRj3Xgl9aHZU,219
+rdflib_jsonld/parser.py,sha256=inCIn1ae9gEPqB_i_jmXSBfCeE9Ew5cgEFfvaS3Bbvg,12098
+rdflib_jsonld/serializer.py,sha256=6VtXC0uBlbr2371dXzLaD-NxQ3rouGEJ0A6muSl8ECQ,12210
+rdflib_jsonld/util.py,sha256=RcjqicKn43_I5PZPoNkrc9CkbY3GlubwgS2pOX3vmuY,2343
