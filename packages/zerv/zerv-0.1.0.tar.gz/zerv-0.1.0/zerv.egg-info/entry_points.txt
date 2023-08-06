@@ -1,0 +1,3 @@
+[console_scripts]
+zerv = zerv.cli.handler:main
+
