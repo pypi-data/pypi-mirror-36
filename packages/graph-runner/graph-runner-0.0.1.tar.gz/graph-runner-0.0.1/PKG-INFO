@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: graph-runner
+Version: 0.0.1
+Summary: Run your graphs in code
+Home-page: https://github.com/troylar/graph-runner
+Author: Troy Larson
+Author-email: troylar@gmail.com
+License: UNKNOWN
+Description: # tree-runner
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
