@@ -1,0 +1,13 @@
+corelated_logs/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+corelated_logs/django_corelation_middleware.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+corelated_logs/flask_corelation_middleware.py,sha256=ZBwMkNGbUGHUYUrxZIaVZVcMr38_8Plo_VfpvObkqHo,1020
+corelated_logs/patcher.py,sha256=oC-q8RjtsyTs5X-YCE1HGPOLnNFetbsw3GyRnImsQbk,1465
+corelated_logs/ext/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+corelated_logs/ext/kombu/__init__.py,sha256=oUaDY1XLk9BImCf2EJq14T2FEiS3IpeiK-lV3ST3XIM,46
+corelated_logs/ext/kombu/patch.py,sha256=Ml5vabK1RGnalundvGPJo4N3qreyYT5Hv413EzFvwko,529
+corelated_logs/ext/requests/__init__.py,sha256=oUaDY1XLk9BImCf2EJq14T2FEiS3IpeiK-lV3ST3XIM,46
+corelated_logs/ext/requests/patch.py,sha256=qocTHmmjuLHjvEEGEhQSB2kFI_d3fuAaEedT3c1o5Ag,589
+corelated_logs-0.0.4.dist-info/METADATA,sha256=L19-gfO2ozXMI0TQxvaXtRfXEld9Mi__7x2j_oSf5Yg,337
+corelated_logs-0.0.4.dist-info/WHEEL,sha256=YO0P_oFqt6DWX0LhbH7jsyzb3BUtoq2kERtqGsXDJHs,92
+corelated_logs-0.0.4.dist-info/top_level.txt,sha256=ziN3DfDglqghAHb6iaIzZOQNdReIjvnITe-lcTzxBIA,15
+corelated_logs-0.0.4.dist-info/RECORD,,
