@@ -1,0 +1,15 @@
+Metadata-Version: 2.0
+Name: single-beat
+Version: 0.3.0
+Summary: ensures only one instance of your process across your servers
+Home-page: https://github.com/ybrs/single-beat
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: tornado (>=4.2.1)
+Requires-Dist: redis (>=2.9.1)
+
+UNKNOWN
+
+
