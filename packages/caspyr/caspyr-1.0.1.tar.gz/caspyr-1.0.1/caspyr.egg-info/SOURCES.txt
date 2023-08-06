@@ -1,0 +1,13 @@
+.coveragerc
+MANIFEST.in
+README.rst
+setup.cfg
+setup.pyo
+tox.ini
+caspyr.egg-info/PKG-INFO
+caspyr.egg-info/SOURCES.txt
+caspyr.egg-info/dependency_links.txt
+caspyr.egg-info/entry_points.txt
+caspyr.egg-info/top_level.txt
+caspyr/tests/tests_multiprocessing.so
+caspyr/tests/tests_plotting.so

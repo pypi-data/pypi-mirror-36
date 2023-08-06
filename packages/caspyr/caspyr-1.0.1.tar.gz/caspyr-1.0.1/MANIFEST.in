@@ -1,0 +1,10 @@
+# Misc
+include .coveragerc
+include Makefile
+include tox.ini
+
+# Test suite
+recursive-include caspyr/tests *.so
+
+# Examples/Documentation
+include README.rst
