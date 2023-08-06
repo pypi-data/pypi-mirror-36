@@ -1,0 +1,13 @@
+reflink/__init__.py,sha256=qNnipxtVh24VSTnIlnwYX1qDMrk7Omgup-2saOkkgXc,260
+reflink/_backend.cp36-win32.pyd,sha256=v7RV-KbYD9ZzOjUnpLzLkmvz6DJXPuUB2p5Vd5lVwZA,9216
+reflink/backend.py,sha256=pcPMpCx29ZVawv0YP3LmXQXxAb4axjunLJn0-fB-ab4,2434
+reflink/darwin.c,sha256=qDlPJfQg-4kbbtVzVYaJ8eACpOVhHYIzCT0uQ0N9V08,510
+reflink/error.py,sha256=ZA6P37F_NFPcIornOuT81hZEsynSdSEp49RQPRfjRc8,50
+reflink/linux.c,sha256=JatnerHJ23Dkn4JrcsOsZkbLUtmvtkosmfkM01qDCSg,991
+reflink/native.py,sha256=gPr-gy3xnnoPeg23N60IXAWiCqv75r3JhR1-h6-_KWU,454
+reflink/reflink.py,sha256=-vBNeDzthLdyKvmrJTFKxxn3AYMCREQo00SuMhHIkfw,2053
+reflink/win32.c,sha256=Z641UEqJZ_1cU49r2-kBHNiNixHHTk-tc1Gdc7_yh7Q,69
+reflink-0.2.1.dist-info/METADATA,sha256=oEMtLLwx74PSBS3fOkH4t4GKJrqnIjx6r7XKzLFT6N4,3624
+reflink-0.2.1.dist-info/RECORD,,
+reflink-0.2.1.dist-info/WHEEL,sha256=eT4ZiUnwGsVIrXCid4NF4UV4D8QSSvclVbYKANjxOAk,102
+reflink-0.2.1.dist-info/top_level.txt,sha256=d_AcvDbJ5gKbYuvqhJsak0XC5TqZpZ8YMJ-7V7Q_nRQ,8
