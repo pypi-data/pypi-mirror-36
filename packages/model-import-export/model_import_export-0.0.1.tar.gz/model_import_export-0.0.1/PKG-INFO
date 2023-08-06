@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: model_import_export
+Version: 0.0.1
+Summary: Import/Export feature for django models
+Home-page: https://github.com/pypa/sampleproject
+Author: Ajesh Sen Thapa
+Author-email: aj3sshh@gmail.com
+License: UNKNOWN
+Description: This is long description
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
