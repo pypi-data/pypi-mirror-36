@@ -1,0 +1,3 @@
+[console_scripts]
+izi = izi:development_runner.izi.interface.cli
+
