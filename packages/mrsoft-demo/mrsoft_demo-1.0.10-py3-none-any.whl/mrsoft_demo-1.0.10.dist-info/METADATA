@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: mrsoft-demo
+Version: 1.0.10
+Summary: UNKNOWN
+Home-page: https://pypi.org/simple/mr_bmi/
+Author: mrsoft
+Author-email: mingrisoft@mingrisoft.com
+License: UNKNOWN
+Platform: UNKNOWN
+
+This is a small program that can calculate the BMI index based on height and weight.
+
+
