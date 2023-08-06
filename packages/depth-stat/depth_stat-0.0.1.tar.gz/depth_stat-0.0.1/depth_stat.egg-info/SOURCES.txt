@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+depth_stat/__init__.py
+depth_stat/depth_stat.py
+depth_stat.egg-info/PKG-INFO
+depth_stat.egg-info/SOURCES.txt
+depth_stat.egg-info/dependency_links.txt
+depth_stat.egg-info/entry_points.txt
+depth_stat.egg-info/requires.txt
+depth_stat.egg-info/top_level.txt
