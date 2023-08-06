@@ -1,0 +1,17 @@
+static/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+static/bundle.js,sha256=6X2LFqv-QWn54OWWkwygDxNQrm3XkBKUbebTIa8Sip8,3127971
+static/index.html,sha256=mB3Oe9neJgmwnsdhtx_tDNNNFpAz2XvvVKJiLaKfGeE,10222
+wspr/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+wspr/emulator.py,sha256=5Ow3iwwHhHVeNGu9HLau5mcqX19cttOhhTanEj8ZaXs,1817
+wspr/monitor.py,sha256=2t9PWeVgxv2zEauWu1ASeBcYtolFZONUh82YDKTbDws,11400
+wspr/router.py,sha256=ziJfPYeTi8WaE6M80iFnW6vB1nRs8XyG3HEyGrpfIsU,2262
+wspr/server.py,sha256=iGpTEgl4feDcK2VPaaJB8PB09BXVo-VqXQkHYTfdPKQ,1591
+wspr/upgrade.py,sha256=Xi5jwWsbRQ13RfhvzmU7R2zSDlZH4npB1Mv30aHjZE8,1997
+wspr/web_endpoints.py,sha256=PZ7tMwoecLHFCaCvQ0jkCSGk8uS7j5buB9tSKH0mR4M,3852
+wspr/websocket_endpoints.py,sha256=0on60mLqF5Jmi4832R_O-4zFfIieqqlIAwmqpJxsdiI,1412
+wspr/wire_format.py,sha256=o0851YEzIsrYjEGYPWliUcd7V7fjQEnTRt5NWj55-X0,234
+wspr_server-0.1.9.dist-info/METADATA,sha256=Tp6yIptF1CZu2lv-gZhcFJxesY1jT5HdLg6HKXxlNp8,391
+wspr_server-0.1.9.dist-info/RECORD,,
+wspr_server-0.1.9.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+wspr_server-0.1.9.dist-info/entry_points.txt,sha256=QAjkiRZyE_soaHAPZv7NoOjnlMmpJXB-bvhmzu3Q5fU,49
+wspr_server-0.1.9.dist-info/top_level.txt,sha256=19Aaf8vTOV98w3xCN_3TeiS9ZE59B4Ikk21DF9QGsHY,12
