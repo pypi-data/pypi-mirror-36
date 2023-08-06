@@ -1,0 +1,14 @@
+carehome/__init__.py,sha256=WX-DOg4E13lUalpwos6qAksczNfAsUsz2ilGpnkeE-E,426
+carehome/databases.py,sha256=4Xd76PlsuuQgEpL6EnNA830zxQaLEgVDJOkL071c9Gw,6871
+carehome/exc.py,sha256=eJHLne9lmsYXcsoWD21XGzu7vWDkRR_msY6-5GyWYUg,617
+carehome/methods.py,sha256=FSkuJTOHipgk-G8lGeTq6D5zSmoz-wwTqj3lkmXM8-s,852
+carehome/objects.py,sha256=vrOb4YdBYzlH2Z5TpMkE49DFIbm7SAO-mZrgr_YG2nE,5371
+carehome/properties.py,sha256=DarWSoC4YamTUW8Jxezakcl_siKOnCDQ-aJfBGsCSSI,549
+carehome/property_types.py,sha256=0SrpZoctLxEwvShvdm0hhon3CEpXYdJp1NBL7l7cuRY,427
+carehome-1.0.4.dist-info/AUTHORS,sha256=k4MUuiv7QUrXh2oiY_xXY5XzoTdGzT79l4UagAGY6yA,44
+carehome-1.0.4.dist-info/LICENSE,sha256=HyVuytGSiAUQ6ErWBHTqt1iSGHhLmlC8fO7jTCuR8dU,16725
+carehome-1.0.4.dist-info/METADATA,sha256=bX-2hLqsHgvrrgWgtMS_h3GbCQhvSiNaJRWi3SLEZ40,502
+carehome-1.0.4.dist-info/WHEEL,sha256=ekss6qCJcIZ1jvsOZb3ewnzAyJD9JSfQQg87sLq_G8M,97
+carehome-1.0.4.dist-info/pbr.json,sha256=P4fvY5gJ_TJnNrUrmZIKSctDJYLepToZwTORit2H7Es,47
+carehome-1.0.4.dist-info/top_level.txt,sha256=F9ESoZIWSkaSwWcQNoEB_7-WKIjzk5Hwp2wqp07-UtY,9
+carehome-1.0.4.dist-info/RECORD,,
