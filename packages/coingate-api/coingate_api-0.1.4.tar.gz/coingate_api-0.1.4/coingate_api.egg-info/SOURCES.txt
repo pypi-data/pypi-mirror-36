@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+coingate_api/__init__.py
+coingate_api/api_error.py
+coingate_api/coingate.py
+coingate_api/error.py
+coingate_api.egg-info/PKG-INFO
+coingate_api.egg-info/SOURCES.txt
+coingate_api.egg-info/dependency_links.txt
+coingate_api.egg-info/requires.txt
+coingate_api.egg-info/top_level.txt
