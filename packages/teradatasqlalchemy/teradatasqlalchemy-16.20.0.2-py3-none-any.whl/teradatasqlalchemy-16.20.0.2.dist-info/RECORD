@@ -1,0 +1,17 @@
+teradatasqlalchemy/__init__.py,sha256=s7GyLo5WM12KYKJIX8z3AfSkGLbHk3Vj2o28DhDkbsU,1609
+teradatasqlalchemy/base.py,sha256=iTKH_UsyBfz6ytB9ZAI43o-HknfuCpas6l-T-QTKuok,2795
+teradatasqlalchemy/compiler.py,sha256=LVgN6PVoJRkeO0Bn4sxqZcbYV9QNV2YksYgJP4sXCmE,24912
+teradatasqlalchemy/data_type_converter.py,sha256=OP9z3HjCFT_SJyqMh4_l8j6_dr_Y5OTvmbpH2-upB_0,693
+teradatasqlalchemy/dialect.py,sha256=MTQ9RaYsfsEpNRnd4FTn5cei8juRFPRc47ljhIMJGZk,17901
+teradatasqlalchemy/requirements.py,sha256=eeu_ZyuoL2FywoDhXQHEzdf-dVHu1NeZflqIqBr790A,937
+teradatasqlalchemy/resolver.py,sha256=GOxq-BCG_n_LhTlgqvwP7efcqbrtLich84vxPgR9-MM,5113
+teradatasqlalchemy/restricted_words.py,sha256=SiH_OOt49FST7jh1RNXnuEgtGO7VgPHMeurfha7tZnI,5138
+teradatasqlalchemy/types.py,sha256=aL75wBsbe6PH9D4ckQONjh4uFDVOqMoclxks7n_8I0I,45004
+teradatasqlalchemy/vernumber.py,sha256=oK64HCOm-A2tyOsZ1z7BDLAdjlETnqZi9OUEeXONzQ8,96
+teradatasqlalchemy-16.20.0.2.data/data/teradatasqlalchemy/LICENSE,sha256=RoR9p4PTMzffLJM_vhCkjFUUsxhWsz56pqWQa3dvEw4,13962
+teradatasqlalchemy-16.20.0.2.data/data/teradatasqlalchemy/README.md,sha256=tgSWyeUty4jBjKGSw45HIqcnFx98X3-pCYC1A00TKds,7452
+teradatasqlalchemy-16.20.0.2.dist-info/METADATA,sha256=q8hkpq23GYuQMqawB_AEg8DysWb_0rEn-fMtVDXOh7A,8305
+teradatasqlalchemy-16.20.0.2.dist-info/RECORD,,
+teradatasqlalchemy-16.20.0.2.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+teradatasqlalchemy-16.20.0.2.dist-info/entry_points.txt,sha256=zEhsTKbJ1dh3iSwbIEtl6NYlPvsdRc8dQeKULPnaFdQ,80
+teradatasqlalchemy-16.20.0.2.dist-info/top_level.txt,sha256=FdAixz5y2rIkFy8hKfajEHu_8pnvOp51we9z3-eN96c,19
