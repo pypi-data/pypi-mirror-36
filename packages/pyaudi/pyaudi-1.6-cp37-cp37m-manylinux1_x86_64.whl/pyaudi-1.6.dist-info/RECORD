@@ -1,0 +1,12 @@
+pyaudi/core.so,sha256=mmNevitCnKcC-nwhJhVevI8pQR-8M9CssmCeJXNCudg,4658248
+pyaudi/__init__.py,sha256=4BYD_JheuMRvY6ktkBwwyv2bp8c-EE23ZqtdjEiipYc,169
+pyaudi/_version.py,sha256=8psuJD1S_9CzZhv5UYeBf0WEXuW-U5N-vMFk3UwhuMI,20
+pyaudi/test.py,sha256=S7xcBW67NE2NhfrcGv8B-Ru6jn8BEdwo-HlpzllFfNc,23878
+pyaudi/.libs/libboost_serialization-9c76ed21.so.1.67.0,sha256=8uVmeGcJMnnebpAbTJ2wBtAxExtubg5bkCcpxijQ6lA,502080
+pyaudi/.libs/libgmp-cffb35f4.so.10.3.2,sha256=qXhP84e6NmC_2M5TYlsH_hkMgl4hvSkA3cR1dlZkMBc,673344
+pyaudi/.libs/libboost_python37-87939919.so.1.67.0,sha256=et_jfU19HJpOAVfagkjov8vmpo8a926IGnL9BpinZyE,419680
+pyaudi/.libs/libmpfr-9c45e37b.so.4.1.6,sha256=gFE69CfbOCozTRj8Bad0TexALDlOk5qJR0_UAi0yJ9Q,439104
+pyaudi-1.6.dist-info/WHEEL,sha256=AhV6RMqZ2IDfreRJKo44QWYxYeP-0Jr0bezzBLQ1eog,109
+pyaudi-1.6.dist-info/top_level.txt,sha256=CBE_RNJ7XlaA3jfw_HevInpjRb3yHrsrALmLrmoqS3c,7
+pyaudi-1.6.dist-info/METADATA,sha256=0QguBmmjq2hz81EIed3URc09zp6yLlh5ItFl13Z8PDE,1249
+pyaudi-1.6.dist-info/RECORD,,
