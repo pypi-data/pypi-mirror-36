@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: okta-cli
+Version: 1.0.1
+Summary: An Okta CLI tool to perform routine tasks more quickly. Work in progress :) . More information available on the project's GitHub page.
+Home-page: https://github.com/CognotektGmbH/okta-cli
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Download-URL: https://github.com/CognotektGmbH/okta-cli/tarball/1.0.1
+Platform: UNKNOWN
+Requires-Dist: appdirs
+Requires-Dist: click
+Requires-Dist: requests
+Requires-Dist: dotted
+
+UNKNOWN
+
+
