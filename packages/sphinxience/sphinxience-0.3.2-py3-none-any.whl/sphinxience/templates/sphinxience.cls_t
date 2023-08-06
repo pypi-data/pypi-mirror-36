@@ -1,0 +1,14 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{sphinxience}[{{ sphinxience_version_date_latex }} Sphinxience {{ sphinxience_version }}]
+
+{% raw %}
+% Pass all options to the 'article' class
+\DeclareOption*{%
+    \PassOptionsToClass{\CurrentOption}{article}%
+}
+\ProcessOptions\relax
+
+\LoadClass{article}
+
+\RequirePackage{sphinxience}
+{% endraw %}
