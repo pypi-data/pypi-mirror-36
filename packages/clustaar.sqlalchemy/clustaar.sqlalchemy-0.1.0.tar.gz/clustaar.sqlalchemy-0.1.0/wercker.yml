@@ -1,0 +1,25 @@
+box: python:3.6.6
+services:
+    - id: postgres
+      env:
+        POSTGRES_PASSWORD: $APP_POSTGRES_PASSWORD
+        POSTGRES_USER: $APP_POSTGRES_USER
+        POSTGRES_DB: $APP_POSTGRES_DB
+
+build:
+    steps:
+        - script:
+            name: Install virtualenv
+            code: pip install virtualenv
+        - virtualenv:
+            name: Setup virtual environment
+            install_wheel: true
+        - script:
+            name: Install runtime dependencies
+            code: pip install -r requirements.txt  --extra-index-url https://pypi.clustaar.io/$PYPI_S3_KEY
+        - script:
+            name: Install test dependencies
+            code: pip install -r test-requirements.txt  --extra-index-url https://pypi.clustaar.io/$PYPI_S3_KEY
+        - script:
+            name: Run tests
+            code: py.test tests/
