@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: flyt-python
+Version: 0.2.2
+Summary: Python package for Drone Applications
+Home-page: UNKNOWN
+Author: ayush_98
+Author-email: ayush@flytbase.com
+License: LICENSE.txt
+Description: This is a python library which a user can import in the python script and can control the drone through flytbase platform.
+        
+        Steps to use this library:
+        1. Install the package by typing in terminal: `pip install flyt-python` 
+        2. Open terminal and install Redis-server by typing `sudo apt-get install redis-server` 
+        3. Download [Flytsim Docker](http://docs.flytbase.com/docs/FlytSim/docker.html). 
+        4. Follow the Documentation and launch the Docker.
+        5. Activate and Register Flytsim docker device using [Flytbase Platform](https://my.flytbase.com) and get [Vehicle ID](https://my.flytbase.com/devices/) and [Personal Access Token](https://my.flytbase.com/developer/token/).
+        6. Go to the folder where library exists, open terminal and type `python3 daemon.py` and press Enter.
+        7. Now try running the demo apps present in the `Demo Apps` folder.
+        
+            Demo App 1:  This demo app makes the robot takeoff, move in a square trajectory of side length provided as an argument to the script and land once the entire mission is over.
+            
+            ```
+            from flyt_python.flyt_python import DroneApiConnector
+            token = ''                      # Personal Access Token
+            vehicle_id = ''                 # Vehicle ID
+            drone = DroneApiConnector(token,vehicle_id, ip_address='localhost',wait_for_drone_response =True)
+            # Initialize the drone's connection`
+            drone.connect()
+            print("Taking Off")
+            drone.takeoff(5)
+            print("Drawing square with side = 5")
+            drone.set_local_position(x=5, y=0, z=0, body_frame=True)
+            drone.set_local_position(x=0, y=5, z=0, body_frame=True)
+            drone.set_local_position(x=-5, y=0, z=0,body_frame=True)
+            drone.set_local_position(x=0, y=-5, z=0,body_frame=True)
+            drone.land()
+            #disconnect the drone
+            drone.disconnect()
+            ``` 
+         
+            Demo App 2: This demo app make the robot takeoff, and hover, then print the voltage, current and remaining battery percentage.
+            
+            ```
+            from flyt_python.flyt_python import DroneApiConnector
+            token = ''          # Personal Access Token
+            vehicle_id = ''     # Vehicle ID
+            
+            drone = DroneApiConnector(token,vehicle_id, ip='localhost',wait_for_drone_response =True)
+        
+            # Initialize the drone's connection
+            drone.connect()
+        
+            print("Taking Off")
+            drone.takeoff(5)
+        
+            print("Getting Battery Status")
+        
+            battery_status = drone.get_battery_status()
+            print("Voltage: ", battery_status['voltage'])
+            print("Current: ", battery_status['current'])
+            print("Remaining Battery Percentage: ", battery_status['remaining'])
+        
+            #disconnect the drone
+            drone.disconnect()
+            ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
