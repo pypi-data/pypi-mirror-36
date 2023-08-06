@@ -1,0 +1,15 @@
+{
+  "name": "requestnetworkartifacts",
+  "version": "1.5.0",
+  "description": "Artifacts for Request Network Ethereum contracts",
+  "homepage": "https://github.com/RequestNetwork/requestNetwork/tree/master/packages/requestNetworkArtifacts",
+  "keywords": [
+    "ethereum",
+    "request",
+    "requestArtifacts",
+    "requestnetwork"
+  ],
+  "license": "MIT",
+  "repository": "github:RequestNetwork/requestNetwork",
+  "main": "index.js"
+}
