@@ -1,0 +1,16 @@
+CHANGELOG.rst
+CONTRIBUTING.rst
+MANIFEST.in
+README.rst
+mit.LICENSE
+requirements_tests.txt
+setup.cfg
+setup.py
+test-suite-data.json
+test_purl.py
+src/packageurl.py
+src/packageurl_python.egg-info/PKG-INFO
+src/packageurl_python.egg-info/SOURCES.txt
+src/packageurl_python.egg-info/dependency_links.txt
+src/packageurl_python.egg-info/not-zip-safe
+src/packageurl_python.egg-info/top_level.txt
