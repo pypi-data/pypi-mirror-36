@@ -1,0 +1,16 @@
+cli/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cli/account.py,sha256=zOPV_Vi53zb2Ta4Zbx37lpwWVv0oojSRkcaUxmWa0VU,3520
+cli/configuration.py,sha256=PvX7yr6xj8NlLfRBfd2ffyTJvTEm-X2fsoksnq8MfmQ,3803
+cli/data.py,sha256=-zPkX3RksdQXIjznYqtlrtXfXM6ULXFQkP5OqQIr6uM,6552
+cli/data_set.py,sha256=OS-nBxcBolZl2QwAysXs_U6Ln8phwLi-nG6thEGp-sc,6920
+cli/job.py,sha256=CthjwIOITL1D5Sc5LAoRSg9Ib9tR4kTZ48QBSrIN-mg,10400
+cli/kqi.py,sha256=lBLDmb9KUud9gAfnYkTzIDbc3TF_wh7HGxffEo-e4vY,3038
+cli/object_storage.py,sha256=uxX3gVJexD_3hpOJYslX_EOle_uZu1tLIpKtg96FcxA,4131
+cli/pprint.py,sha256=eK3JQxXhhxM8fXITGFnnYpsSx1fLCrkDNtaGs93NOGo,3844
+cli/preprocessing.py,sha256=K_QPLoYBUk9_AsyhT6rZIhorpSL-LwxJHksWi6OS6M0,10456
+cli/util.py,sha256=gXvXl7BoR1jw8dt0IJ10pfb-w9q5qpmi4ydgyYO_R8g,1562
+kamonohashi_cli-0.3.8.dist-info/METADATA,sha256=GsAhA5vxrCh5mU4M1havoyng65BE-XNm_FW0C0Ykbe8,456
+kamonohashi_cli-0.3.8.dist-info/RECORD,,
+kamonohashi_cli-0.3.8.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+kamonohashi_cli-0.3.8.dist-info/entry_points.txt,sha256=OrP5dDXo78VoVNqbcnnBYs8Vzdhv_UwRcsGLb7dNI4M,42
+kamonohashi_cli-0.3.8.dist-info/top_level.txt,sha256=2ImG917oaVHlm0nP9oJE-Qrgs-fq_fGWgba2H1f8fpE,4
