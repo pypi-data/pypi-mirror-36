@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: cheesefactory-docker
+Version: 0.2
+Summary: A helper for working inside a Docker container.
+Home-page: https://bitbucket.org/hellsgrannies/cheesefactory-docker
+Author: Todd Salazar
+Author-email: unixsal@yahoo.com
+License: UNKNOWN
+Description: A helper for working inside a Docker container.
+        
+        ###Features
+        
+        To Be Written
+Keywords: cheesefactory docker secrets configs development
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3.6
