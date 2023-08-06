@@ -1,0 +1,159 @@
+Metadata-Version: 2.1
+Name: mailpapa
+Version: 0.1.5
+Summary: Search for emails in the wild
+Home-page: https://github.com/mainanick/mailpapa
+Author: Maina Nick
+Author-email: contact@nickmaina.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3, !=3.0.*, !=3.1.*, !=3.2.*, <4
+Description-Content-Type: text/markdown
+Requires-Dist: beautifulsoup4 (==4.6.3)
+Requires-Dist: requests (==2.19.1)
+Requires-Dist: tabulate (==0.8.2)
+
+
+# Mailpapa
+
+```bash
+pip install mailpapa
+```
+
+```python
+import mailpapa
+
+res = mailpapa.search(company='safaricom', domain="safaricom.co.ke")
+
+emails = res.emails
+
+for email in emails:
+    print(email.address)
+    print(email.name)
+    print(email.position)
+
+# unfortunately linkedin hates crawling, this causes mailpapa to return an empty response.emails
+
+#To make it easier and avoid Exceptions use
+
+if res.ok:
+  for email in res.emails:
+    print(email.address)
+    print(email.name)
+    print(email.position)
+
+```
+
+Mailpapa accepts diiferent email patterns.
+By defaults it uses *firstname.lastname@domain*
+
+```python
+first_last = mailpapa.ACCEPTED_PATTERNS.FIRST_LAST
+res = mailpapa.search(company='safaricom', domain="safaricom.co.ke", pattern=first_last)
+```
+
+The following patterns are supported
+
+```python
+import mailpapa
+
+mailpapa.ACCEPTED_PATTERNS.FIRSTLAST # johndoe@contosdo.com
+mailpapa.ACCEPTED_PATTERNS.LASTFIRST # doejohn@contosdo.com
+mailpapa.ACCEPTED_PATTERNS.LAST # doe@contosdo.com
+mailpapa.ACCEPTED_PATTERNS.FIRST # john@contosdo.com
+mailpapa.ACCEPTED_PATTERNS.FIRST_LAST # john_doe@contosdo.com
+mailpapa.ACCEPTED_PATTERNS.LAST_FIRST # doe_john@contosdo.com
+mailpapa.ACCEPTED_PATTERNS.FIRSTDOTLAST # john.doe@contosdo.com
+mailpapa.ACCEPTED_PATTERNS.LASTDOTFIRST # doe.john@contosdo.com
+mailpapa.ACCEPTED_PATTERNS.FLAST # jdoe@contosdo.com
+mailpapa.ACCEPTED_PATTERNS.LFIRST # djohn@contosdo.com
+mailpapa.ACCEPTED_PATTERNS.FIRSTL #johnd@contosdo.com
+mailpapa.ACCEPTED_PATTERNS.LASTF # doej@contosdo.com
+```
+
+Mailpapa also allows you to search multiple role. Defaults to *ceo*
+
+```python
+roles = ["sales", "ceo", "finance"]
+
+mailpapa.search(company='safaricom', domain="safaricom.co.ke", positions=roles)
+
+# OR
+
+mailpapa.search(company='safaricom', domain="safaricom.co.ke", positions="sales")
+
+```
+
+
+
+# CLI
+
+```bash
+mailpapa -h
+
+usage: mailpapa [-h] [-p PATTERN] [-r ROLE] [-j file] company domain
+
+Search for Emails in the Wild
+
+positional arguments:
+  company               Company name
+  domain                Company domain
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -p PATTERN, --pattern PATTERN
+                        Email Pattern
+  -r ROLE, --role ROLE  Employee Positions
+
+Save Options:
+  -j file, --json file  Save emails in a JSON file in the given location.
+```
+
+```bash
+>>> mailpapa safaricom safaricom.co.ke -r sales
+
+----------------------  ------------------------------------
+Hidden Name           hidden.name@safaricom.co.ke
+Hidden Name           hidden.name@safaricom.co.ke
+Hidden Name           hidden.name@safaricom.co.ke
+Hidden Name           hidden.name@safaricom.co.ke
+Hidden Name           hidden.name@safaricom.co.ke
+Hidden Name           hidden.name@safaricom.co.ke
+Hidden Name           hidden.name@safaricom.co.ke
+----------------------  ------------------------------------
+
+```
+
+## How about we send email
+
+```python
+config={
+  "password": os.environ.get("SMTP_PASS", None),
+  "host": os.environ.get("SMTP_HOST", None),
+  "port": int(os.environ.get("SMTP_PORT", None))
+}
+
+# Params
+email.sendmail(sender: str = None, subject: str = None, body: str = None, html: bool = False, config: dict =None)
+
+email = res.emails[0]
+email.sendmail(
+    "myemail@contosdo.com", #sender
+    subject="Canton Fair",
+    body="Did you get the ticket to canton?",
+    config=config
+    )
+
+
+```
+<https://support.google.com/accounts/answer/6010255>
+
+<https://myaccount.google.com/lesssecureapps>
+
