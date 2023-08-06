@@ -1,0 +1,15 @@
+CHANGES.txt
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+canonicalwebteam.yaml_responses.egg-info/PKG-INFO
+canonicalwebteam.yaml_responses.egg-info/SOURCES.txt
+canonicalwebteam.yaml_responses.egg-info/dependency_links.txt
+canonicalwebteam.yaml_responses.egg-info/requires.txt
+canonicalwebteam.yaml_responses.egg-info/top_level.txt
+canonicalwebteam/yaml_responses/__init__.py
+canonicalwebteam/yaml_responses/django.py
+canonicalwebteam/yaml_responses/flask.py
+canonicalwebteam/yaml_responses/views_from_yaml.py
