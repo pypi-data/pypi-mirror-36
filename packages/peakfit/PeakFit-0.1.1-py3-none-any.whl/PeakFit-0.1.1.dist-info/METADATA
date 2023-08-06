@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: PeakFit
+Version: 0.1.1
+Summary: PeakFit allow for lineshape fitting in pseudo-3D NMR spectra.
+Home-page: UNKNOWN
+Author: Guillaume Bouvignies
+Author-email: gbouvignies@gmail.com
+License: BSD 3-Clause
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.5
+Requires-Dist: numpy (>=1.0)
+Requires-Dist: scipy (>=1.0)
+Requires-Dist: matplotlib (>=2.0)
+Requires-Dist: natsort (>=2.0)
+Requires-Dist: nmrglue
+Requires-Dist: lmfit (>=0.9.11)
+Requires-Dist: asteval (>=0.9.11)
+
+## Synopsis
+
+PeakFit allow for lineshape fitting in pseudo-3D NMR spectra.
+

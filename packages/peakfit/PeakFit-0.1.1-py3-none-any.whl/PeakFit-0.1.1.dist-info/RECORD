@@ -1,0 +1,16 @@
+PeakFit-0.1.1.dist-info/METADATA,sha256=NyyvADDpuhx-YwAlbNt9l8_fpsdMCaTFp39uLC8-6h8,857
+PeakFit-0.1.1.dist-info/RECORD,,
+PeakFit-0.1.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+PeakFit-0.1.1.dist-info/entry_points.txt,sha256=3dL9w2mVkkJQ8l07NVPGeC3TWCIUaPIFyX69hguake0,120
+PeakFit-0.1.1.dist-info/top_level.txt,sha256=6i_GxpBXxh298PndVhNfmNavm-Yq-tZdbMh_0yiuLJY,8
+peakfit/__init__.py,sha256=t9KZdp_DIvv91kyAlbqfXkrky_63qicYujvE-nd8xlM,93
+peakfit/__main__.py,sha256=yUVKjJGfqYR5nYU0bRBKeF8SfRaprJuvJSZbIZA8LOI,126
+peakfit/_version.py,sha256=ttjXrZRY-qz77o75_myfwNLV7uxR0ZLJu-Kk0qBvD1c,497
+peakfit/clustering.py,sha256=Y3WE3IGa-dHodnxzjMJrnJRFZNs1lA7Am-qfLLkxAZU,2653
+peakfit/computing.py,sha256=PQlntrBRDvaHX0lht9qzkzBuxjCgQEDLjjv3IIb2gJU,1612
+peakfit/monte_carlo.py,sha256=f0emRVovRL8gxws_C4fRkeMvxgjWSD5e1T24xnDhRTw,312
+peakfit/peakfit.py,sha256=D5cNQwf0OY1l_85SX2ItnZcD4cPZ0-wKfQDTnceCTW0,8714
+peakfit/plot_cest.py,sha256=NfASex17V9k_VKWbjoQLNZnPIv1DJtq__-H5-WdJUAY,2163
+peakfit/plot_cpmg.py,sha256=qqwdI_IuXk48TNEGbBYJIrUV71182Gsw7hGrlA49Obw,2599
+peakfit/shapes.py,sha256=TuyawJVQ7ZAt30YsEZfwQpgR3wjkevbZyPmM7QjUraw,1048
+peakfit/util.py,sha256=0sxWM75DuU-kLmQPfHQhxgx8JYe53woM84z74GmzF08,741
