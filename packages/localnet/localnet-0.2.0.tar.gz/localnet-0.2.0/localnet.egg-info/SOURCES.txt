@@ -1,0 +1,12 @@
+CHANGELOG.rst
+MANIFEST.in
+README.rst
+localnet.py
+setup.cfg
+setup.py
+localnet.egg-info/PKG-INFO
+localnet.egg-info/SOURCES.txt
+localnet.egg-info/dependency_links.txt
+localnet.egg-info/entry_points.txt
+localnet.egg-info/not-zip-safe
+localnet.egg-info/top_level.txt
