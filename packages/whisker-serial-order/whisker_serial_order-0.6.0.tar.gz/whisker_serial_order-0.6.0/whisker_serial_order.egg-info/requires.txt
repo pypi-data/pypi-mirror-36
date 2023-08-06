@@ -1,0 +1,10 @@
+alembic==1.0.0
+arrow==0.10.0
+attrdict==2.0.0
+cardinal_pythonlib==1.0.28
+python-dateutil==2.7.3
+PyQt5==5.8
+SQLAlchemy==1.2.12
+sqlalchemy-utils==0.32.5
+sadisplay==0.4.9
+whisker==1.1.0
