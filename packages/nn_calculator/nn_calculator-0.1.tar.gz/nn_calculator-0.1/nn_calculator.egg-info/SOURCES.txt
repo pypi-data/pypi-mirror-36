@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+calculator/__init__.py
+calculator/calculator.py
+nn_calculator.egg-info/PKG-INFO
+nn_calculator.egg-info/SOURCES.txt
+nn_calculator.egg-info/dependency_links.txt
+nn_calculator.egg-info/top_level.txt
