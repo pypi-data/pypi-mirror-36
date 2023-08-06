@@ -1,0 +1,17 @@
+README.md
+setup.cfg
+setup.py
+CodeGra.fs.egg-info/PKG-INFO
+CodeGra.fs.egg-info/SOURCES.txt
+CodeGra.fs.egg-info/dependency_links.txt
+CodeGra.fs.egg-info/entry_points.txt
+CodeGra.fs.egg-info/requires.txt
+CodeGra.fs.egg-info/top_level.txt
+codegra_fs/api_consumer.py
+codegra_fs/cgapi.py
+codegra_fs/cgfs.py
+test/test_api.py
+test/test_fixed.py
+test/test_general.py
+test/test_student.py
+test/test_teacher.py
