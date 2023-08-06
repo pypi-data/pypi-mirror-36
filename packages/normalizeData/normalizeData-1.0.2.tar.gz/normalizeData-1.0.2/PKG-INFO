@@ -1,0 +1,19 @@
+Metadata-Version: 1.0
+Name: normalizeData
+Version: 1.0.2
+Summary: UNKNOWN
+Home-page: https://github.com/sudhir8184/normalizeData
+Author: hebbalkarsudhir
+Author-email: hebbalkarsudhir@gmail.com
+License: AGPL 3.0
+Description: **normalizeData** is designed to generate the *statistical analysis* of any given data set.
+        
+        The following are computed as part of result-set:
+            - Standard Deviation(Population)
+            - Standard Deviation(Sample)
+            - Z-score
+            - Decimal Scaling
+            - Min-Max(0-1)
+        
+Keywords: normalization,data,data cleaning,data normalization
+Platform: UNKNOWN
