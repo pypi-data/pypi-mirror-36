@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: kafkian
+Version: 0.7.0
+Summary: Opinionated Kafka Python client on top of Confluent python library
+Home-page: https://github.com/saabeilin/kafkian
+Author: Sergei Beilin
+Author-email: saabeilin@gmail.com
+License: Apache 2.0
+Description: UNKNOWN
+Platform: UNKNOWN
