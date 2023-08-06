@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: vaunix_api
+Version: 0.2
+Summary: Wrapper around VNX API to control signal generators, attenuators etc by vaunix
+Home-page: https://github.com/qutech/vaunix_api
+Maintainer: Simon Humpohl
+Maintainer-email: simon.humpohl@rwth-aachen.de
+License: GPL
+Description: # Vaunix API
+        
+        This is a small package to download and wrap the C library of LabBrick signal generators.
+        It can be extended for other LabBrick devices. This package is not affiliated with Vaunix Technology Corporation.
+        
+        ```
+        pip install vaunix_api
+        ```
+        
+        The required binaries can be downloaded via `vaunix_api.lsg.download_lsg_binaries()` from
+        [vaunix website](https://vaunix.com/).
+        
+        Example:
+        ```python
+        import vaunix_api.lsg as lsg
+        
+        api = lsg.VNX_LSG_API.default()
+        
+        # necessary to refresh device list
+        api.get_num_devices()
+        
+        for device_id in api.get_dev_info():
+            print(api.get_serial_number(device_id),
+                  api.get_model_name(device_id),
+                  lsg.LSGStatus(api.get_device_status(device_id)))
+        ```
+        
+Keywords: vaunix,labbrick
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Scientific/Engineering
+Description-Content-Type: text/markdown
