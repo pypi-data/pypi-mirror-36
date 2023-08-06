@@ -1,0 +1,16 @@
+- project:
+    check:
+      jobs:
+        - openstack-tox-lower-constraints
+    gate:
+      jobs:
+        - openstack-tox-lower-constraints
+    templates:
+      - openstack-python35-jobs
+      - openstack-python-jobs
+      - publish-openstack-docs-pti
+      - check-requirements
+      - lib-forward-testing
+      - lib-forward-testing-python3
+      - release-notes-jobs-python3
+      - openstack-python36-jobs
