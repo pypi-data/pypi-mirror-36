@@ -1,0 +1,24 @@
+Metadata-Version: 1.2
+Name: neurdflib-jsonld
+Version: 0.4.1
+Summary: TEMP RELEASE OF rdflib extension adding JSON-LD parser and serializer
+Home-page: https://github.com/tgbugs/rdflib-jsonld
+Maintainer: tgbugs
+License: BSD
+Description: This is a temporary convenience package.
+        Unless you have a specific use case for these changes you should
+        install upstream rdflib-jsonld.  https://pypi.org/project/rdflib-jsonld/
+        
+Platform: any
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: English
