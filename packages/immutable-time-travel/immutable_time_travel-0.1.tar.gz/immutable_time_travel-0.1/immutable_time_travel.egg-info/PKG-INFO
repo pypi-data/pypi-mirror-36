@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: immutable-time-travel
+Version: 0.1
+Summary: immutable namespace for python
+Home-page: UNKNOWN
+Author: Jayme Bird
+Author-email: jayme.cbird@gmail.com
+License: UNKNOWN
+Description: A persistent immutable namespace for python with time travel overlay
+Keywords: immutable,namespace,time travel
+Platform: UNKNOWN
