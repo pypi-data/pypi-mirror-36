@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: dirbpy
+Version: 1.2.4
+Summary: This is the new version of dirb in python.
+Home-page: https://github.com/marcolivierbouch/dirbpy
+Author: Marc-Olivier Bouchard
+Author-email: mo.bouchard1997@gmail.com
+License: UNKNOWN
+Platform: unix
+Platform: linux
+Platform: osx
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: OS Independent
+Requires-Dist: argparse
+Requires-Dist: requests
+
+
+This is the new version of dirb in python. 
+[GitHub Dirbpy](https://github.com/marcolivierbouch/dirbpy)
+
+
