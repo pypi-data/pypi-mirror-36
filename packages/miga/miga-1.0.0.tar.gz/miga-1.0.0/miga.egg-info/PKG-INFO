@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: miga
+Version: 1.0.0
+Summary: Python package to optimize mutual information between two multiple sequence alignment.
+Home-page: https://github.com/caioss/miga
+Author: Caio S. Souza
+Author-email: caiobiounb@gmail.com
+License: LGPLv3+
+Project-URL: Documentation, https://miga.readthedocs.io/
+Project-URL: Source, https://github.com/caioss/miga/
+Project-URL: Tracker, https://github.com/caioss/miga/issues/
+Description: ========
+          MIGA
+        ========
+        **MIGA** is a Python package that provides a MSA (Multiple Sequence Alignment) mutual information genetic algorithm optimizer. It sorts two MSAs in a way that maximize or minimize their mutual information. The genetic algorithm solvers may run on both CPU and Nvidia GPUs.
+        
+        Code is hosted at GitHub_.
+        
+        License
+        =======
+        This software is copyright
+            * 2018 Caio Silva Souza and all contributors listed in the file AUTHORS unless stated otherwise in the source files.
+        
+        MIGA is released under the LGPL software license, version 3 or later.
+        
+        Contact
+        =======
+        Please report bugs and feature requests through the `Issues Tracker`_.
+        
+        Documentation
+        =============
+        Plese refer to the examples_ folder in the code repository and to `online documentation`_ to learn how to use this package.
+        
+        Instalation
+        ===========
+        For installation instructions please refer to the `project page`_.
+        
+        .. Footnotes
+        .. _Github: https://github.com/caioss/miga
+        .. _Issues Tracker: https://github.com/caioss/miga/issues
+        .. _examples: https://github.com/caioss/miga/tree/master/examples
+        .. _online documentation: https://miga.readthedocs.io
+        .. _project page: https://github.com/caioss/miga/blob/master/README.rst
+        
+Keywords: mutual information,sequence alignment,cuda,GPU,genetic algorithm
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: C++
+Classifier: Programming Language :: Cython
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Description-Content-Type: text/x-rst
