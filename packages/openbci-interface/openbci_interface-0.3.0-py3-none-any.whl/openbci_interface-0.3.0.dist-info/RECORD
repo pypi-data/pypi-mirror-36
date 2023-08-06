@@ -1,0 +1,13 @@
+openbci_interface/VERSION,sha256=VQYTU3_EiPOzcq90pAAYefASyEZbgW8bhcbTRGss-0k,5
+openbci_interface/__init__.py,sha256=bGsv4OzhVz8_Wf5UWgTGIRnf34os1ME1CTPL8NK_lo8,107
+openbci_interface/__main__.py,sha256=K9YsdNgtmTgRdg5GIiT1Rjp3xsjoR9NcvZRePUWhEvY,1436
+openbci_interface/_version.py,sha256=dDETNkZXbrqCOKzuDGefXACbHr7hKZVpVLuoGtFGnyw,284
+openbci_interface/cyton.py,sha256=AvIabfaO6BJdmHCXLMj-Q-ePv5g1jDlxgx_yY6E2nuI,16877
+openbci_interface/command/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+openbci_interface/command/list_devices.py,sha256=dQ5PFKG-_yyImVCcLB2z26BhnPZLB6TM-qcLQUkTQg8,1124
+openbci_interface/command/stream.py,sha256=y_Sr07J8FNS_zhzyh8ETVcuMXvrNmt4hUewFLhuYwc0,1933
+openbci_interface-0.3.0.dist-info/METADATA,sha256=1qCo9wtwii-XHR-LZFfVldACM_o0-MaXgllOxOeKyU8,1945
+openbci_interface-0.3.0.dist-info/RECORD,,
+openbci_interface-0.3.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+openbci_interface-0.3.0.dist-info/entry_points.txt,sha256=649rYPPSYSLrln05YlopdDva36uqlDp-uGtaixyDISU,71
+openbci_interface-0.3.0.dist-info/top_level.txt,sha256=Lx14oZKmCX2aQg1_oNCVW3_nR5yQW5yUtIBjJ5BBdc4,18
