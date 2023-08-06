@@ -1,0 +1,17 @@
+---
+file-contents:
+  releasenotes/notes/dnsmask-pxe-filter-start-stop-commands-c1f71c6f38f27c78.yaml:
+    fixes: ['Fixes and issue where the PXE filter in ironic-inspectors DHCP server
+        may
+
+        become out of sync with the ironic-inspector service. `Bug 1780421
+
+        <https://bugs.launchpad.net/tripleo/+bug/1780421>`_.
+
+        ']
+notes:
+- files:
+  - - releasenotes/notes/dnsmask-pxe-filter-start-stop-commands-c1f71c6f38f27c78.yaml
+    - !!binary |
+      YWQ2OTI0NDY0MzA3MjNkZjcwMzcyMTMzYjIxNWY5MmZlOTgyZDk2NA==
+  version: 9.4.0
