@@ -1,0 +1,4 @@
+#!python
+
+import src.lineages as lineages
+lineages.main()
