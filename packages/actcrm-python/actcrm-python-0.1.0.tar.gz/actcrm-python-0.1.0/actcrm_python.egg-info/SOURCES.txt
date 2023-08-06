@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.py
+actcrm/__init__.py
+actcrm/client.py
+actcrm/exception.py
+actcrm_python.egg-info/PKG-INFO
+actcrm_python.egg-info/SOURCES.txt
+actcrm_python.egg-info/dependency_links.txt
+actcrm_python.egg-info/not-zip-safe
+actcrm_python.egg-info/requires.txt
+actcrm_python.egg-info/top_level.txt
