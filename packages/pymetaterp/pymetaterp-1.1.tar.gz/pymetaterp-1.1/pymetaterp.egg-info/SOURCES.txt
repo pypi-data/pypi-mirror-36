@@ -1,0 +1,15 @@
+setup.py
+pymetaterp/__init__.py
+pymetaterp/boot.py
+pymetaterp/boot_compiled.py
+pymetaterp/boot_grammar.py
+pymetaterp/boot_stackless.py
+pymetaterp/boot_tree.py
+pymetaterp/python.py
+pymetaterp/python_compiled.py
+pymetaterp/python_grammar.py
+pymetaterp/util.py
+pymetaterp.egg-info/PKG-INFO
+pymetaterp.egg-info/SOURCES.txt
+pymetaterp.egg-info/dependency_links.txt
+pymetaterp.egg-info/top_level.txt
