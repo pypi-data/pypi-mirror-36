@@ -1,0 +1,14 @@
+README.md
+setup.py
+machine_learning/__init__.py
+machine_learning.egg-info/PKG-INFO
+machine_learning.egg-info/SOURCES.txt
+machine_learning.egg-info/dependency_links.txt
+machine_learning.egg-info/top_level.txt
+machine_learning/classes/__init__.py
+machine_learning/classes/predictive_analytics/__init__.py
+machine_learning/classes/predictive_analytics/ashish_pred_analytics/__init__.py
+machine_learning/classes/predictive_analytics/islr/__init__.py
+machine_learning/classes/predictive_analytics/islr/function_estimation.py
+machine_learning/classes/predictive_analytics/islr/islr.py
+machine_learning/classes/predictive_analytics/islr/statistical_learning.py
