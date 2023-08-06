@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+fuzzyfloat/__init__.py
+fuzzyfloat/meta.py
+fuzzyfloat/types.py
+fuzzyfloat.egg-info/PKG-INFO
+fuzzyfloat.egg-info/SOURCES.txt
+fuzzyfloat.egg-info/dependency_links.txt
+fuzzyfloat.egg-info/top_level.txt
+fuzzyfloat.egg-info/zip-safe
