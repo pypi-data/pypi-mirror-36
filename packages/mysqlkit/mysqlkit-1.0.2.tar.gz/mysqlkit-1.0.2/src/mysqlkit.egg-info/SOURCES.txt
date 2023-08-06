@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+test-requirements.txt
+src/mysqlkit/__init__.py
+src/mysqlkit.egg-info/PKG-INFO
+src/mysqlkit.egg-info/SOURCES.txt
+src/mysqlkit.egg-info/dependency_links.txt
+src/mysqlkit.egg-info/top_level.txt
+src/mysqlkit/rpl/__init__.py
+src/mysqlkit/rpl/gtid.py
