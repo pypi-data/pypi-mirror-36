@@ -1,0 +1,9 @@
+README.md
+setup.py
+package_updater/__init__.py
+package_updater/package_updater.py
+package_updater.egg-info/PKG-INFO
+package_updater.egg-info/SOURCES.txt
+package_updater.egg-info/dependency_links.txt
+package_updater.egg-info/requires.txt
+package_updater.egg-info/top_level.txt
