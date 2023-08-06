@@ -1,0 +1,16 @@
+django_simple_options-1.0.dist-info/METADATA,sha256=SH8b424U4YrI4TWMbrti4YrSAt0mLAEWuH_1pMCxnBY,1725
+django_simple_options-1.0.dist-info/RECORD,,
+django_simple_options-1.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+django_simple_options-1.0.dist-info/top_level.txt,sha256=2vpXu0LnJ0uD5WDiw_PP0kVv91h0wldECQxHcviIZGE,8
+options/__init__.py,sha256=JFmZkFKAMbsxbyvgDZjxlOuWOGujfX3zPXP8EVI-bZI,451
+options/admin.py,sha256=wqznIAfefMvZi17O8FGmMvx6CrPSgmQFqnWvAUYluhk,342
+options/apps.py,sha256=qFWkz6OVcn8a6v9M13dlaWT-wcgVS1zO2OOZlQmiWxI,983
+options/context_processors.py,sha256=4EPle_DuzCaDewLZlCg2o3jdMA7LpeIuT0j7Sa6KbAw,307
+options/managers.py,sha256=ry8TeIfNg7A07hNP4b25pMo6P-0ohV4m7RQjHUbb5EU,1279
+options/models.py,sha256=UaQyI0wTOhrXtm_qCRorMALQNmBfjsIBpn0qLTv3Sf4,2255
+options/settings.py,sha256=_jS5WNQ0cQrOK4y59RQQrQsuMS3cXTmV3NvubupUV8o,651
+options/management/commands/__init__.py,sha256=zkI_EMBs3DbTBEMDOp4Oj5IviRtUf_i-HofM5tiB_EU,107
+options/management/commands/export_options.py,sha256=fGzR3p7BGR4hhF_okVPdfdErfK1C4hnO3Ol926g2HHk,642
+options/migrations/0001_initial.py,sha256=tDCH9PXLgCXXOdLCVzRuSvFWZpk68hatrX0wExORn90,1038
+options/migrations/0002_auto_20181002_0254.py,sha256=4aJEhWfYCmtxWiVNiiikuh76gtqFLAHhlYNak9QxTfw,1579
+options/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
