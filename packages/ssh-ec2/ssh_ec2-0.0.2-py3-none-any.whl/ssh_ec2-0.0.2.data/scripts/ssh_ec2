@@ -1,0 +1,5 @@
+#!python
+
+from ec2_ssh import cli
+
+cli.cli()
