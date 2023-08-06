@@ -1,0 +1,13 @@
+.gitignore
+LICENSE
+README.md
+setup.cfg
+setup.py
+testreport/__init__.py
+testreport/report.py
+testreport/sections.py
+testreport.egg-info/PKG-INFO
+testreport.egg-info/SOURCES.txt
+testreport.egg-info/dependency_links.txt
+testreport.egg-info/requires.txt
+testreport.egg-info/top_level.txt
