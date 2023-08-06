@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: findwatt
+Version: 1.0.2
+Summary: Python client for FindWAtt's API
+Home-page: https://bitbucket.org/FwPyClassification/findwatt-python
+Author: FindWAtt
+Author-email: luis@findwatt.com
+License: UNKNOWN
+Platform: any
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: requests (<3.0.0,>=2.18.4)
+Requires-Dist: marshmallow (<3.0.0,>=2.15.2)
+
+# findwatt-python
+
+Python client for FindWAtt's API
+
+# Installation
+```
+pip install findwatt
+```
+
+# Usage
+```python
+import findwatt
+
+api_key = 'my-api-key'
+client = findwatt.Client(api_key)
+```
+
+Uploading a file to a new Catalog
+```python
+p = '/path/to/file.xlsx'
+upload = client.upload_file(p, catalog_name='My New Catalog')
+```
+
+Uploading a file to an existing Catalog
+```python
+p = '/path/to/file.xlsx'
+upload = client.upload_file(p, catalog_id='my-existing-catalog-id')
+```
+
+Listing and searching your Catalogs
+```python
+my_catalogs = client.catalogs.search()
+my_filtered_catalogs = client.catalogs.search(name="Dummy Catalog")
+```
+
+Fetching a particular Catalog
+```python
+my_catalog = client.catalogs.get('dummy-catalog')
+```
+
+Fetching a particular Dataset
+```python
+my_dataset = client.datasets.get('my-dataset')
+```
+
+# Advanced Usage
+findwatt.Client takes an optional api_url parameter that can be set to use a mock or staging API
+```python
+import findwatt
+
+api_key = 'my-api-key'
+client = findwatt.Client(api_key, api_url='http://localhost:3000/')
+```
+

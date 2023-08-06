@@ -1,0 +1,15 @@
+findwatt/__init__.py,sha256=VNicPL_avffKcdLTKCfNk0vkuqZlJiT8RSHCph2_vLg,51
+findwatt/catalogs.py,sha256=tv9oUl2pFhaJIdVxcEV26k6KYChkPM94zpAVq6lYFyA,2144
+findwatt/client.py,sha256=b976zMi0ba2ZaaJzmvLIWspD5zQmCFCElfG2HeHOK90,1125
+findwatt/datasets.py,sha256=Dhjb8mQOAZvbytnO5Y4W6Oaewkw4V9CA_m-PD_F1tQs,1780
+findwatt/exceptions.py,sha256=_V8HQI9z_GjyJ4Zyu9PMQJIU910donnqBsKyXviMNYc,249
+findwatt/uploads.py,sha256=riYuOiYHpE0hFazxco7SjJeXh2s2mms9yA7FCgEwY2w,4382
+findwatt-1.0.2.dist-info/METADATA,sha256=o5e4pd5HX9v0IeMgst_iYWXck0GQlibnkeyDEesQB-g,1679
+findwatt-1.0.2.dist-info/RECORD,,
+findwatt-1.0.2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+findwatt-1.0.2.dist-info/top_level.txt,sha256=iGtfLM3Rpo8O_oHlvAQnAJtmHe19qs_MRZSiK9rusNY,15
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_catalogs.py,sha256=aS0CD0U0l8b4DQ7ka5qzpLn1lNtFp-F850qu1tSZB3k,3341
+tests/test_client.py,sha256=oJQQuzT_cQ02vBZm3XsI-rSnER7W6KkEYyJXBS34sjE,1837
+tests/test_datasets.py,sha256=H5EuzkybFHUva-_bLc9c5Z4cuwYJvSX2cRbZbhMXLL4,2526
+tests/test_uploads.py,sha256=MmVtsDP4mQXhHN0hLGlczWWU0SfIVqesK7SfWDBrRJ4,6974
