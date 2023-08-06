@@ -1,0 +1,9 @@
+README.md
+setup.py
+tfidfmatcher/__init__.py
+tfidfmatcher/tfidfmatcher.py
+tfidfmatcher.egg-info/PKG-INFO
+tfidfmatcher.egg-info/SOURCES.txt
+tfidfmatcher.egg-info/dependency_links.txt
+tfidfmatcher.egg-info/requires.txt
+tfidfmatcher.egg-info/top_level.txt
