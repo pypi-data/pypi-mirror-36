@@ -1,0 +1,15 @@
+{
+	"name": null,
+	"driverProgram": "driver",
+	"description": null,
+	"tags": null,
+	"properties": null,
+	"modelIds": null,
+	"assets": [],
+	"targetRuntime": {
+		"runtimeType": null,
+		"properties": {}
+	},
+	"dockerFileUri": null,
+	"imageType": "Docker"
+}
