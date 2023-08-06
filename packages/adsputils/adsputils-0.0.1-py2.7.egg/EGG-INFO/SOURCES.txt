@@ -1,0 +1,9 @@
+setup.py
+adsputils/__init__.py
+adsputils/exceptions.py
+adsputils/serializer.py
+adsputils.egg-info/PKG-INFO
+adsputils.egg-info/SOURCES.txt
+adsputils.egg-info/dependency_links.txt
+adsputils.egg-info/requires.txt
+adsputils.egg-info/top_level.txt
