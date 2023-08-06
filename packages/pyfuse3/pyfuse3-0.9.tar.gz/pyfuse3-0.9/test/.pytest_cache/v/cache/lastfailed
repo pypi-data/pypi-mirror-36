@@ -1,0 +1,5 @@
+{
+  "test_examples.py::test_lltest": true,
+  "test_examples.py::test_passthroughfs": true,
+  "test_examples.py::test_tmpfs": true
+}
