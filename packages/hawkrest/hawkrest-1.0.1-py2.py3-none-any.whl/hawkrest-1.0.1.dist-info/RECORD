@@ -1,0 +1,12 @@
+hawkrest/__init__.py,sha256=bO16uaGW7wGkvr7vHElhe4JO--WNjAVQQ1gBKYQmuxg,7011
+hawkrest/middleware.py,sha256=SB8Sg8yrNuUwSYa4hziCI0Kv8O9weYvtOdHz0GCOX_M,1356
+hawkrest/models.py,sha256=8zXRlb9dsLOLUDylFM9WjmV0iewuyu15XuQ2ks1JV6I,40
+hawkrest/util.py,sha256=hvaArvMnzPFQ6kiczzV8W_-hKBbZWm4B-qJZxd2w4pk,202
+hawkrest/management/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+hawkrest/management/commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+hawkrest/management/commands/hawkrequest.py,sha256=_3VtZmCcb1nRsHjCkxDXePsM295y4Bg_O0Z1D5iwftc,3480
+hawkrest-1.0.1.dist-info/LICENSE.txt,sha256=x0t7jOieT5-5dr7qVHo1kCFqMZ4HFeJ2-vKuqo9_wpU,1490
+hawkrest-1.0.1.dist-info/METADATA,sha256=BMpUKjPbijOJygwRSLzC6F-ko44l-4f9kbxKKZTc818,860
+hawkrest-1.0.1.dist-info/WHEEL,sha256=8T8fxefr_r-A79qbOJ9d_AaEgkpCGmEPHc-gpCq5BRg,110
+hawkrest-1.0.1.dist-info/top_level.txt,sha256=80bKeEZDT8-k1gviyIn1V_O_EbLxt-pU37MoN6KctI8,9
+hawkrest-1.0.1.dist-info/RECORD,,
