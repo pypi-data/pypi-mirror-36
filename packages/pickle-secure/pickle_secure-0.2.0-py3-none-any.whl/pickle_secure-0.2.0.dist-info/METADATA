@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: pickle-secure
+Version: 0.2.0
+Summary: Easily create encrypted pickle files
+Home-page: https://github.com/spapanik/pickle-secure
+Author: spapanik
+Author-email: spapanik21@gmail.com
+License: MIT
+Download-URL: https://github.com/spapanik/pickle-secure/tarball/0.2.0
+Keywords: pickle,AES,secure storage
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.6
+Requires-Dist: cryptography (<2.4.0,>=2.3.0)
+
+# pickle-secure
+
+
