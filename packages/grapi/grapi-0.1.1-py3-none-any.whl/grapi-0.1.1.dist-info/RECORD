@@ -1,0 +1,10 @@
+grapi/__init__.py,sha256=Lm6Jgy3G7pKfJcdMKq86FRRf97RqMSJ54aA_WZk5RGM,52
+grapi/endpoints.py,sha256=2l6kFoHOYMbLvg9Pa065Z6Zk_gLYc_nC8xcEHGM9dic,7247
+grapi/grapi.py,sha256=RBRekltgFgAcnXn_sccktAyfp-FzHf9IN9ePuYZ95O0,1709
+tests/__init__.py,sha256=bZJOOqsZozPJw-E7iSbO8xi7_cgNTxb7nVw3c4OsK1A,27
+tests/api_test.py,sha256=VrQOLMmHYDGMqiZ6JJudYAdWCAd2uDdgT2CdlKvQmlw,260
+grapi-0.1.1.dist-info/LICENSE,sha256=D3t2OWxc0GwGSuVgWMmzPniUxiKpnuLVP6hWH_X6O0w,1527
+grapi-0.1.1.dist-info/METADATA,sha256=bVApGUhHJvsOhRw44s1D0gqEAGL0ZcT6boX1sLFN9NU,2726
+grapi-0.1.1.dist-info/WHEEL,sha256=YO0P_oFqt6DWX0LhbH7jsyzb3BUtoq2kERtqGsXDJHs,92
+grapi-0.1.1.dist-info/top_level.txt,sha256=J8EdffNPY-lc1pw2VlINDZHjmBqE0kuNtm_YXPA7cxc,12
+grapi-0.1.1.dist-info/RECORD,,
