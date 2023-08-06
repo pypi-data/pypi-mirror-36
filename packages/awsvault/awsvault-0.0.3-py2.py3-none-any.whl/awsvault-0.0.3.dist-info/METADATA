@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: awsvault
+Version: 0.0.3
+Summary: AWS secrets manager helper
+Home-page: https://github.com/spacetimelabs/awsvault
+Author: Spacetime Labs
+Author-email: devs@spacetimeanalytics.com
+License: BSD
+Download-URL: https://github.com/spacetimelabs/awsvault/tarball/0.0.3
+Keywords: AWS Secrets Manager
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: boto3 (==1.9.11)
+Requires-Dist: botocore (==1.12.11)
+Requires-Dist: coverage
+Requires-Dist: pypi-publisher
+Requires-Dist: mock (==2.0.0)
+Requires-Dist: pytest (==3.2.0)
+Requires-Dist: tox (==2.7.0)
+
+aws-vault
+===============================
+
+version number: 0.0.1
+author: Spacetime Labs
+
+Overview
+--------
+
+AWS Secrets Manager helper
+
+Installation / Usage
+--------------------
+
+To install use pip:
+
+    $ pip install awsvault
+
+
+Or clone the repo:
+
+    $ git clone https://github.com/spacetimelabs/awsvault.git
+    $ python setup.py install
+
+Contributing
+------------
+
+pip install requirements.txt
+tox
+
+Example
+-------
+
+    # settings.py
+    vault = Vault("myproject/email_secrets")
+    email_user = vault.get("EMAIL_USER")
+    email_password = vault.get("EMAIL_PASS")
+
+
