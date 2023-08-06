@@ -1,0 +1,14 @@
+graft src
+graft tests
+
+include .coveragerc
+include .flake8
+include .travis.yml
+include codecov.yml
+include mypy.ini
+include tox.ini
+include vulture_whitelist.py
+
+include *.rst
+
+global-exclude *.py[cod] __pycache__ *.so *.dylib .DS_Store *.swp
