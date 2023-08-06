@@ -1,0 +1,3 @@
+include LICENSE
+include scrapy.cfg
+include README.rst
