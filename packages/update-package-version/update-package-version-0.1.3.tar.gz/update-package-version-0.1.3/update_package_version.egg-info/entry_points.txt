@@ -1,0 +1,4 @@
+[console_scripts]
+update-package-version = update_package_version.cli:main
+upv = update_package_version.cli:main
+
