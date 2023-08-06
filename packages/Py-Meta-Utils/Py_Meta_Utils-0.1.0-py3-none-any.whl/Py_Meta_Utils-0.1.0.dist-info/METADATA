@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: Py-Meta-Utils
+Version: 0.1.0
+Summary: Metaclass utilities for Python
+Home-page: https://github.com/briancappello/py-meta-utils
+Author: Brian Cappello
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3.5
+Provides-Extra: docs
+Provides-Extra: docs
+Requires-Dist: m2r; extra == 'docs'
+Requires-Dist: sphinx; extra == 'docs'
+Requires-Dist: sphinx-autobuild; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme; extra == 'docs'
+
+# Py Meta Utils
+
+
