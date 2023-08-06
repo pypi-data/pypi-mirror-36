@@ -1,0 +1,14 @@
+nionswift_plugin/usim/CameraDevice.py,sha256=pRtIdhnOp6Wo0yaURsKJTVs3OWGpI3Mgy_z-whzaAS0,18504
+nionswift_plugin/usim/InstrumentDevice.py,sha256=UVfLcW4GPay9ErbbuFzUPryvW0UG3qem25coVxMj6Sc,37056
+nionswift_plugin/usim/InstrumentPanel.py,sha256=276iU20ATRuYiKwsQFj6y36jZzsdEFZ07FfQkp8xEAQ,6884
+nionswift_plugin/usim/ScanDevice.py,sha256=ZTZCMXPL0BnKwFBYsCtfkJ29uhIut2SD_H3L9kplrYk,12405
+nionswift_plugin/usim/__init__.py,sha256=PrhZYmt2E8cvaAFSeofGAey13tAst4oJ8mFE2yS9p6E,393
+nionswift_plugin/usim/manifest.json,sha256=Nt9KBvk0l84LvkUdOJf0zlIadVEqduS_iszWK-cnWOg,163
+nionswift_plugin/usim/test/Camera_test.py,sha256=I1XPoVP6qqo7cZ8jPPRC4rQ83oGpy9uoV2mI-XVjlzY,4756
+nionswift_plugin/usim/test/Scan_test.py,sha256=iYsdtrXewIuL6mbzVu6UzmWDXKraQMYRYDnTfxa5m6Y,2551
+nionswift_plugin/usim/test/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+nionswift_usim-0.1.4.dist-info/LICENSE,sha256=WJ7YI-moTFb-uVrFjnzzhGJrnL9P2iqQe8NuED3hutI,35141
+nionswift_usim-0.1.4.dist-info/METADATA,sha256=UnXHwllOTV-hOMstZrZ_fsXWFFSr_73gqc_Nh3511B4,1443
+nionswift_usim-0.1.4.dist-info/WHEEL,sha256=YO0P_oFqt6DWX0LhbH7jsyzb3BUtoq2kERtqGsXDJHs,92
+nionswift_usim-0.1.4.dist-info/top_level.txt,sha256=ftKsyiS_1ClrXSGFZwYj_TYdHRsN8YkbF772jLty2mQ,17
+nionswift_usim-0.1.4.dist-info/RECORD,,
