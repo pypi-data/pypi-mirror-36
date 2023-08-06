@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: q2-brocc
+Version: 2018.6.0.dev0
+Summary: QIIME2 plugin for the BROCC taxonomic classifier
+Home-page: https://github.com/kylebittinger/q2-brocc
+Author: Kyle Bittinger
+Author-email: kylebittinger@gmail.com
+License: BSD-3-Clause
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Dist: brocc
+
+UNKNOWN
+
+

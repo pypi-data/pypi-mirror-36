@@ -1,0 +1,16 @@
+q2_brocc/__init__.py,sha256=9Q017AmGfyNwCQM4MxBjVAm9-ehaDi6FbjwMXtXViek,443
+q2_brocc/_version.py,sha256=SaiB_8pfkETkGEiFqQzSZqTc68fQXRvedyEREl_okvk,505
+q2_brocc/citations.bib,sha256=7FHhZJhiolcwm85vPskf6OK8Gsvs0O4JbkRgSV8MCyY,1466
+q2_brocc/plugin_setup.py,sha256=GV9GTQUTAv__jmqU-gr7mOA7O_eU3pfNhX2kNHPnzS4,5099
+q2_brocc/tests/__init__.py,sha256=a1L22Wb9NGxznSIWGcXL8pgMRoh_Dby9907wXRf9mdI,349
+q2_brocc/tests/test_brocc_assignment.py,sha256=vPY_VMrcFk3IZpVdRpqWLHLTWcKV0oaFXPRMLNw-MMk,1308
+q2_brocc/tests/data/query.fasta,sha256=CV7bqWyDssaiCd9QMI776mYClojXLLevTKmz72OrblU,359
+q2_brocc/tests/data/somefungi.fasta,sha256=KNHpIrfN0Y5v5G92_ikbHEFMUsh6spZBOAnpFEhe7ts,9131
+q2_brocc/tests/data/somefungi.fasta.nhr,sha256=Jdrg7UHzNn1wEPhVG1H6rs5a8uR_cjwGkrPczwCxNBQ,2819
+q2_brocc/tests/data/somefungi.fasta.nin,sha256=oFrEwdCnr_SGMdS_Go7HpHurHNUnyiDGz03wYMifqgA,216
+q2_brocc/tests/data/somefungi.fasta.nsq,sha256=wcyh6ZKtMUTGz3FPqgXSjsgMUA8HhxIrIsNNt69d8Lw,1727
+q2_brocc-2018.6.0.dev0.dist-info/METADATA,sha256=UPcXtW29GAnmKV2RIeeNUdyIml9NifyYW5BYAyv7A1k,466
+q2_brocc-2018.6.0.dev0.dist-info/RECORD,,
+q2_brocc-2018.6.0.dev0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+q2_brocc-2018.6.0.dev0.dist-info/entry_points.txt,sha256=D0t5-qAOFt6xx-iNc0DsS9tpg12QUtCI-xQ9aewkxtg,58
+q2_brocc-2018.6.0.dev0.dist-info/top_level.txt,sha256=TCvH6EMsw923-vLbnXS97E44D1LeEbrX7yJAK7SksKw,9
