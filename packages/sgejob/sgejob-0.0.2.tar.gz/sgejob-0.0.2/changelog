@@ -1,0 +1,4 @@
+v0.0.2
+20181001
+
+1. add '-running_only' option, to qstat the jobs which are running only.
