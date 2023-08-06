@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: tinydb-constraint
+Version: 0.1.6
+Summary: Apply constraints before inserting and updating TinyDB records.
+Home-page: https://github.com/patarapolw/tinydb-constraint
+Author: Pacharapol Withyasakpunt
+Author-email: patarapolw@gmail.com
+Keywords: TinyDB
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: python-dateutil (>=2.7,<3.0)
+Requires-Dist: tinydb (>=3.11,<4.0)
