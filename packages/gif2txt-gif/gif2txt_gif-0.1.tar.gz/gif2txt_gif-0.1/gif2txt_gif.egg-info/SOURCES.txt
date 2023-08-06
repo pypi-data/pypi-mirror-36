@@ -1,0 +1,10 @@
+MANIFEST.in
+README.rst
+__init__.py
+setup.py
+gif2txt_gif.egg-info/PKG-INFO
+gif2txt_gif.egg-info/SOURCES.txt
+gif2txt_gif.egg-info/dependency_links.txt
+gif2txt_gif.egg-info/top_level.txt
+modul/__init__.py
+modul/gif2txt.py
