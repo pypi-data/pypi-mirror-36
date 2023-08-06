@@ -1,0 +1,33 @@
+Metadata-Version: 1.1
+Name: ofxstatement-lansforsakringar
+Version: 0.2.0
+Summary: Länsförsäkringar plugin for ofxstatement
+Home-page: https://github.com/lbschenkel/ofxstatement-lansforsakringar
+Author: Leonardo Brondani Schenkel
+Author-email: leonardo@schenkel.net
+License: GPLv3
+Description: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Länsförsakringar plugin for ofxstatement
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        This is a plug-in for `ofxstatement`_. It converts a bank statement downloaded
+        from `Länsförsäkringar`_ in XLS (Excel) format to an OFX file suitable for
+        importing into GnuCash.
+        
+        .. _ofxstatement: https://github.com/kedder/ofxstatement
+        .. _länsförsäkringar: https://www.lansforsakringar.se/privat
+        
+        Usage::
+        
+            ofxstatement convert -t lansforsakringar filename.xls filename.ofx
+        
+Keywords: ofx,banking,statement
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: Natural Language :: English
+Classifier: Topic :: Office/Business :: Financial :: Accounting
+Classifier: Topic :: Utilities
+Classifier: Environment :: Console
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
