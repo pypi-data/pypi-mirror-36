@@ -1,0 +1,79 @@
+Metadata-Version: 2.1
+Name: pytest-atomic
+Version: 1.1
+Summary: atomic pytest suit or even electronic
+Home-page: https://github.com/megachweng/pytest-atomic
+Author: megachweng
+Author-email: megachweng@gmail.com
+Maintainer: megachweng
+Maintainer-email: megachweng@gmail.com
+License: MIT
+Description: # How to Install
+        `pip install pytest-atomic`
+        
+        # How to use
+        ```python
+        import pytest
+        
+        
+        @pytest.mark.atomic
+        class TestCls:
+            def test_1(self):
+                assert 0
+        
+            @pytest.mark.electronic
+            def test_2(self):
+                assert 1
+        
+            def test_3(self):
+                assert 0
+        
+            @pytest.mark.electronic
+            def test_4(self):
+                assert 1
+        
+            def test_5(self):
+                assert 0
+        ```
+        ```
+        (.env)$ pytest tests/ -v --tb=no
+        ============================ test session starts =======================
+        platform darwin -- Python 3.7.0, pytest-3.8.0, py-1.6.0, pluggy-0.7.1 --
+        plugins: atomic-1.0
+        collected 5 items
+        
+        tests/test_atomic.py::TestCls::test_1 FAILED                     [ 20%]
+        tests/test_atomic.py::TestCls::test_2 PASSED                     [ 40%]
+        tests/test_atomic.py::TestCls::test_3 SKIPPED                    [ 60%]
+        tests/test_atomic.py::TestCls::test_4 PASSED                     [ 80%]
+        tests/test_atomic.py::TestCls::test_5 SKIPPED                    [100%]
+        
+        =============== 1 failed, 2 passed, 2 skipped in 0.05 seconds ==========
+        ```
+        # Description
+        Tests after first `atomic` marked failed test in the same or child level will be skipped.
+        You can also specify a skip reason by `@pytest.mark.atomic('My weird skip reason')`.
+        
+        If some test in skip level you want execute, you can easily mark `@pytest.mark.electronic`.
+        ___
+        
+        Feel free to contribute. If you encounter some bugs or have some advice please address a Issue.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Pytest
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Testing
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*
+Description-Content-Type: text/markdown
