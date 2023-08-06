@@ -1,0 +1,12 @@
+CHANGELOG.txt
+MANIFEST.in
+README.rst
+setup.py
+font_fredoka_one.egg-info/PKG-INFO
+font_fredoka_one.egg-info/SOURCES.txt
+font_fredoka_one.egg-info/dependency_links.txt
+font_fredoka_one.egg-info/entry_points.txt
+font_fredoka_one.egg-info/not-zip-safe
+font_fredoka_one.egg-info/top_level.txt
+fonts/__init__.py
+fonts/font_fredoka_one/__init__.py
