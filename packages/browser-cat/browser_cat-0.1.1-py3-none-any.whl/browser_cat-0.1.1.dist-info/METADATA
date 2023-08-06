@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: browser-cat
+Version: 0.1.1
+Summary: Cat to browser
+Home-page: http://github.com/dbalan/browser-cat
+Author: Dhananjay Balan
+Author-email: mail@dbalan.in
+License: BSD
+Project-URL: Bug Tracker, http://github.com/dbalan/browser-cat/issues
+Project-URL: Documentation, http://github.com/dbalan/browser-cat
+Project-URL: Source Code, http://github.com/dbalan/browser-cat
+Keywords: text mua mutt browser cat
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+
+Send stdin to browser, useful when you are on a terminal, and want to renderhtml. This was written originally to pipe html email from text MUAs likeneomutt
+
+
