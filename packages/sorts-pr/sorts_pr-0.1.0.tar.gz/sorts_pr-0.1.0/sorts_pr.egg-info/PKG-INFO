@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: sorts-pr
+Version: 0.1.0
+Summary: four sorting functions
+Home-page: https://gitlab.propulsion-home.ch/pascal_rueegger/daily_work/tree/week3day4/week3/day4/sorts_pr
+Author: Pascal Rueegger
+Author-email: pascalrueegger@gmx.ch
+License: MIT
+Description: includes 4 sorting functions bubble sort, selection sort, insertion sort and quick sort
+Keywords: sort bubble selection insertion quick
+Platform: UNKNOWN

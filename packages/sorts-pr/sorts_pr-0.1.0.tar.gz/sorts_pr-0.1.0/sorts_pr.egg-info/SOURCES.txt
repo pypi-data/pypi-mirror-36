@@ -1,0 +1,14 @@
+MANIFEST.in
+README.rst
+setup.py
+sorts_pr/__init__.py
+sorts_pr/bubble_sort.py
+sorts_pr/insertion_sort.py
+sorts_pr/quick_sort.py
+sorts_pr/selection_sort.py
+sorts_pr/sorting_app.py
+sorts_pr.egg-info/PKG-INFO
+sorts_pr.egg-info/SOURCES.txt
+sorts_pr.egg-info/dependency_links.txt
+sorts_pr.egg-info/not-zip-safe
+sorts_pr.egg-info/top_level.txt
