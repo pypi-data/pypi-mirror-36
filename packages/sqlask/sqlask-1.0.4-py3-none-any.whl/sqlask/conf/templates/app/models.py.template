@@ -1,0 +1,7 @@
+"""
+    Author = Venkata Sai Katepalli
+"""
+
+from sqlask.db import models
+
+# you can create your models here

@@ -1,0 +1,10 @@
+"""
+    Author = Venkata Sai Katepalli
+"""
+from server import app
+from flask_restful import Api
+
+api = Api(app)
+
+# Example
+# api.add_resource(<viewset>, '/example')
