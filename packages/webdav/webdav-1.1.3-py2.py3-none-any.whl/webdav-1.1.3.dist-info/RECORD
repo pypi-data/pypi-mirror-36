@@ -1,0 +1,10 @@
+webdav/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+webdav/client.py,sha256=tEKqQnBkNTaYaHyNZ4FT_wmLrrx1XO9wlNvsm9T1-c8,42926
+webdav/connection.py,sha256=xHaoVYPkYQp3joN1R1NdKnN7CFJMvyL7bOlGKusxezg,2223
+webdav/exceptions.py,sha256=H5mVGAVMocG7bGK_pUKxtvH-j5Y8rkRF0WZLSjpO2bo,2565
+webdav/urn.py,sha256=bW1S9Z-lwoaqcKkmM6Za-5eyB8j28-Yz1m6so0PvSGw,1963
+webdav-1.1.3.dist-info/LICENSE,sha256=jOtLnuWt7d5Hsx6XXB2QxzrSe2sWWh3NgMfFRetluQM,35147
+webdav-1.1.3.dist-info/METADATA,sha256=GuxxJddEioQL2u_UvVBKWruww6cOgsgz9sRX8I-asfw,1715
+webdav-1.1.3.dist-info/WHEEL,sha256=CrDFromy0BmNYzyZFyVIlKdTa5Zg2RBBtjMkE7goq78,110
+webdav-1.1.3.dist-info/top_level.txt,sha256=_q33iieodUlPZ-qcxazn3POQ45eh7N2VlmBDk1FWQoc,7
+webdav-1.1.3.dist-info/RECORD,,
