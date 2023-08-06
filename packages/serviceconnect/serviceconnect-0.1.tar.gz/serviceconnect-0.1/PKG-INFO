@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: serviceconnect
+Version: 0.1
+Summary: A simple, easy to use asynchronous messaging       framework on top of RabbitMQ
+Home-page: https://github.com/R-Suite/ServiceConnect-Python
+Author: Tim Watson
+Author-email: tswatson123@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
