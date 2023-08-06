@@ -1,0 +1,11 @@
+README.md
+setup.py
+knowhere/__init__.py
+knowhere/cache.py
+knowhere/shard.py
+knowhere/test_knowhere.py
+knowhere.egg-info/PKG-INFO
+knowhere.egg-info/SOURCES.txt
+knowhere.egg-info/dependency_links.txt
+knowhere.egg-info/requires.txt
+knowhere.egg-info/top_level.txt
