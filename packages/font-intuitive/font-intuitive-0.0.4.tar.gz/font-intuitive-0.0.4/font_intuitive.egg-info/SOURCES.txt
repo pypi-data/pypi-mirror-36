@@ -1,0 +1,13 @@
+CHANGELOG.txt
+MANIFEST.in
+README.rst
+setup.py
+font_intuitive/__init__.py
+font_intuitive.egg-info/PKG-INFO
+font_intuitive.egg-info/SOURCES.txt
+font_intuitive.egg-info/dependency_links.txt
+font_intuitive.egg-info/entry_points.txt
+font_intuitive.egg-info/not-zip-safe
+font_intuitive.egg-info/top_level.txt
+font_intuitive/files/Intuitive.ttf
+font_intuitive/files/OFL.txt
