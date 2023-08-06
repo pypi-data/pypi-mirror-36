@@ -1,0 +1,10 @@
+README.md
+setup.py
+nixodmlconverter/__init__.py
+nixodmlconverter/convert.py
+nixodmlconverter/test_convert.py
+nixodmlconverter.egg-info/PKG-INFO
+nixodmlconverter.egg-info/SOURCES.txt
+nixodmlconverter.egg-info/dependency_links.txt
+nixodmlconverter.egg-info/requires.txt
+nixodmlconverter.egg-info/top_level.txt
