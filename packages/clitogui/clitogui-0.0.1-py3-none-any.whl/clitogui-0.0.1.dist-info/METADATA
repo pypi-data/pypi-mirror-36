@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: clitogui
+Version: 0.0.1
+Summary: Generate a GUI from (argparse) CLI
+Home-page: https://github.com/nedgang/clitogui
+Author: David Picard
+Author-email: picard.david1310@yahoo.fr
+License: UNKNOWN
+Keywords: GUI,CLI
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Other Audience
+Classifier: Environment :: X11 Applications :: Qt
+Requires-Dist: PyQt5 (==5.11.3)
+Requires-Dist: check-manifest (==0.37)
+Requires-Dist: pyroma (==2.4)
+Requires-Dist: pytest (==3.8.2)
+Requires-Dist: zest.releaser (==6.15.2)
+
+UNKNOWN
+
+
