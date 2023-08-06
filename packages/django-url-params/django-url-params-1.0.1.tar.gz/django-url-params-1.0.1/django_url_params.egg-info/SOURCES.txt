@@ -1,0 +1,7 @@
+setup.py
+django_url_params.egg-info/PKG-INFO
+django_url_params.egg-info/SOURCES.txt
+django_url_params.egg-info/dependency_links.txt
+django_url_params.egg-info/top_level.txt
+urlparams/__init__.py
+urlparams/redirect.py
