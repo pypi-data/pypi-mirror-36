@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="F:\Projects\pptk_builds\build_python35\CMakeFiles\9ce0fd6e6bdf0872144373ed64e69601\pptk.libs.msvcr120.dll.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="F:\Projects\pptk_builds\source\pptk\libs\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="F:\Projects\pptk_builds\build_python35\pptk\libs\CMakeFiles\pptk.libs.msvcr120.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{1C399D52-6836-34ED-8025-8EA411906ED3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
