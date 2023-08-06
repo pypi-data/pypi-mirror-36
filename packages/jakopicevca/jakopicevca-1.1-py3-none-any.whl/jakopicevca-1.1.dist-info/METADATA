@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: jakopicevca
+Version: 1.1
+Summary: Programs for Astro Pi - Mission Space Lab - Team Jakopičevca
+Home-page: https://github.com/filips123/jakopicevca/
+Author: Team Jakopičevca
+Author-email: filip.stamcar@hotmail.com
+License: GPLv3+
+Requires-Dist: jakopicevca2017
+Provides-Extra: pandoc
+Requires-Dist: pypandoc; extra == 'pandoc'
+
+Astro Pi - Team Jakopičevca
+
+
