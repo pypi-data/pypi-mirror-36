@@ -1,0 +1,5 @@
+[console_scripts]
+actorinfo_tool = botw_duplicator_tools.__main__:run_actorinfo_tool
+actorpack_tool = botw_duplicator_tools.actorpack_tool:run_actorpack_tool
+bfres_duplicator = botw_duplicator_tools.bfres_duplicator:run_bfres_duplicator
+
