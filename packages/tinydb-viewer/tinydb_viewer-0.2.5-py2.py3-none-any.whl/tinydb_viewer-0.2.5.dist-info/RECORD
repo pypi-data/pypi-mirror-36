@@ -1,0 +1,14 @@
+tinydb_viewer/__init__.py,sha256=AN9lqV4xPJOKwhGGXKbseQ_2QCvQRbs3AsfIj017jNE,156
+tinydb_viewer/api.py,sha256=KIdG1jitCik1GjuIWrtBlxNva13erW_SJkBgZfF5Dz0,1057
+tinydb_viewer/config.py,sha256=cF6dEH0x6JFSKd5l2QHoxpwbLr2stPibZu7zPmGAuYc,212
+tinydb_viewer/main.py,sha256=wfF66Y88dJiR-Ih3FFXI_-L2PL18TRZp_ypv_9_O22I,1396
+tinydb_viewer/renderer.py,sha256=ak7F1ZMVjTyqP0B0e-2VJwklHvuXryo9jdSJYUP0ijw,2015
+tinydb_viewer/static/viewer.js,sha256=ky0B_yrQbEGmGAwOEXG-39v2dWdWbXta5l8eJeCJjAQ,2476
+tinydb_viewer/table.py,sha256=s8-gwWPq3Aayr3US_H0SZuHRjo561IJLFrl3Mc0WqJQ,2993
+tinydb_viewer/templates/viewer.html,sha256=hqf1Y6F3U-tG1XPkQpagQLYIcZ_nHjlaYvPsKT6OSIs,968
+tinydb_viewer/util.py,sha256=4CHY7VWZNUWTFO0XncB8ykQVQquOXhpvktfLgcZEVts,458
+tinydb_viewer/views.py,sha256=2WznkHhmB_U451czrTWkD_VFJ4f5t7_OhMlpwGsWy8o,184
+tinydb_viewer-0.2.5.dist-info/LICENSE,sha256=8UmO4O0vGEotUnolM6lBCFtXf-s4veRYVbiM9ZCKrQg,1082
+tinydb_viewer-0.2.5.dist-info/WHEEL,sha256=4p5tkGYU5jgQ_R_MzjRyfjVTOldk8ADioKgp0j9QG_U,88
+tinydb_viewer-0.2.5.dist-info/METADATA,sha256=8vI2IdniwGXCaemCJp63Aco3bzzOn__7EgMtukxUQH8,2616
+tinydb_viewer-0.2.5.dist-info/RECORD,,
