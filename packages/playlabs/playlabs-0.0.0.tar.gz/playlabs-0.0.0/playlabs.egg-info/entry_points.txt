@@ -1,0 +1,3 @@
+[console_scripts]
+playlabs = playlabs.main:cli
+

@@ -1,0 +1,58 @@
+---
+
+- include: vars.yml
+  tags: update
+- include: deploy.yml
+- include: home.yml
+- include: backup.yml
+- include: http.yml
+
+- name: Pull project image
+  tags: update
+  register: project_docker_pull
+  async: 300
+  docker_image:
+    name: '{{ project_image }}'
+    force: yes
+
+- name: Create project network
+  docker_network:
+    name: '{{ project_instance }}'
+
+- name: Deploy plugins
+  with_items: '{{ project_plugins }}'
+  include: plugins/{{ item }}/deploy.yml
+
+- name: Docker pull image
+  async_status: jid={{ project_docker_pull.ansible_job_id }}
+  register: job_result
+  until: job_result.finished
+  retries: 30
+
+- name: Docker inspect image
+  docker_image_facts:
+    name: '{{ project_image }}'
+  register: project_image_out
+
+- debug: msg="project_image_out['images'][0]['Config']['Env'].get('PLAYLABS', None)"
+
+- name: Stop container if any
+  failed_when: false
+  docker_container:
+    name: '{{ project_instance }}'
+    state: stopped
+
+- name: Execute backup
+  when: project_backup_password != False
+  tags: [update, migrate]
+  shell: sudo {{ project_home }}/backup.sh
+
+- name: Running deploy.pre.yml for plugins
+  with_items: '{{ project_plugins }}'
+  include: plugins/{{ item }}/deploy.pre.yml
+
+- include: docker.yml
+
+- name: Running deploy.post.yml for plugins
+  with_items: '{{ project_plugins }}'
+  include: plugins/{{ item }}/deploy.post.yml
