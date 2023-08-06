@@ -1,0 +1,12 @@
+setup.py
+dalloriam/__init__.py
+dalloriam.egg-info/PKG-INFO
+dalloriam.egg-info/SOURCES.txt
+dalloriam.egg-info/dependency_links.txt
+dalloriam.egg-info/top_level.txt
+dalloriam/docker/__init__.py
+dalloriam/docker/builder.py
+dalloriam/filesystem/__init__.py
+dalloriam/filesystem/path.py
+dalloriam/shell/__init__.py
+dalloriam/shell/runner.py
