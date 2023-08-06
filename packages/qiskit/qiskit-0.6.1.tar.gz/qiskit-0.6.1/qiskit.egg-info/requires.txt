@@ -1,0 +1,10 @@
+jsonschema<2.7,>=2.6
+IBMQuantumExperience>=2.0.3
+matplotlib>=2.1
+networkx>=2.0
+numpy>=1.13
+ply>=3.10
+scipy!=0.19.1,>=0.19
+sympy>=1.0
+pillow>=4.2.1
+psutil>=5
