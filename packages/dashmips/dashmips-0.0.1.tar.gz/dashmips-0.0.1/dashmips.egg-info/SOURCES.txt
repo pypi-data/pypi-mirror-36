@@ -1,0 +1,16 @@
+README.md
+setup.py
+dashmips/__init__.py
+dashmips/__main__.py
+dashmips/debugger.py
+dashmips/debugserver.py
+dashmips/directives.py
+dashmips/hardware.py
+dashmips/mips.py
+dashmips/preprocessor.py
+dashmips/run.py
+dashmips.egg-info/PKG-INFO
+dashmips.egg-info/SOURCES.txt
+dashmips.egg-info/dependency_links.txt
+dashmips.egg-info/entry_points.txt
+dashmips.egg-info/top_level.txt
