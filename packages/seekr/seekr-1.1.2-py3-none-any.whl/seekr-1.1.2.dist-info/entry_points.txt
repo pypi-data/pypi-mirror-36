@@ -1,0 +1,5 @@
+[console_scripts]
+kmer_counts = seekr.console_scripts:console_kmer_counts
+norm_vectors = seekr.console_scripts:console_norm_vectors
+pearson = seekr.console_scripts:console_pearson
+

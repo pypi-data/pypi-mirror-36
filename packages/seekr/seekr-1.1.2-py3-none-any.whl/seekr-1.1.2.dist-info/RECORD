@@ -1,0 +1,11 @@
+seekr/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+seekr/console_scripts.py,sha256=2s5d_5xhRNt3jg-UAieMSykt7YxbvwDQx7VejtJ1kt4,7322
+seekr/fasta_reader.py,sha256=X0d5UDtWfSVEk6WJX1MDUnJ_5C5N-aohHETcwX1PnH8,3245
+seekr/kmer_counts.py,sha256=34OBxyWsjWGlALdQvnW_h5BnJCGz3pnoaOPN59N7QuA,6919
+seekr/my_tqdm.py,sha256=-rsAIwtMbfxqc5xMyFA_NCJk87G6c6N1Yh-ydqw4Rn0,705
+seekr/pearson.py,sha256=l8k33XDQlVDPQHAv4fFKJ-pyehXq8JBO4CrnYJgWg8Q,6729
+seekr-1.1.2.dist-info/METADATA,sha256=QhI7ftPVXVi00NSVqayob1AGlRh7ONqT6Ki7IYYJBrA,8955
+seekr-1.1.2.dist-info/RECORD,,
+seekr-1.1.2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+seekr-1.1.2.dist-info/entry_points.txt,sha256=D62ruB8KKOMucVc2O_hTzrZaYCrdIeSFzm3Gj2vjlEY,181
+seekr-1.1.2.dist-info/top_level.txt,sha256=-hbTc6AYqRaD1tIReX2yEYLqccKdhB7NwUqEbZTbDWA,6
