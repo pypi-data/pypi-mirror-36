@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: python-pypeline
+Version: 0.1.0
+Summary: This is a package which will allow for easy implementation of basic Data Structures.
+Home-page: https://github.com/akiljames83/Pypeline
+Author: Akil Hamilton
+Author-email: akil.james83@gmail.com
+License: PSF
+Keywords: data structures implementation
+Platform: UNKNOWN
+Requires-Dist: docutils (>=0.3)
+Requires-Dist: numpy (>=0.1)
+
+UNKNOWN
+
+
