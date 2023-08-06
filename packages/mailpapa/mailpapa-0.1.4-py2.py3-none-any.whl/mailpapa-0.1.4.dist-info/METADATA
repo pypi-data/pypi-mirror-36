@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: mailpapa
+Version: 0.1.4
+Summary: Search for emails in the wild
+Home-page: https://github.com/mainanick/mailpapa
+Author: Maina Nick
+Author-email: contact@nickmaina.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3, !=3.0.*, !=3.1.*, !=3.2.*, <4
+Description-Content-Type: text/markdown
+Requires-Dist: beautifulsoup4 (==4.6.3)
+Requires-Dist: requests (==2.19.1)
+Requires-Dist: tabulate (==0.8.2)
+
+
+# Mailpapa
+
+```python
+import mailpapa
+
+mailpapa.search(company='google', pattern='{first}.{last}@google.com')
+
+```
+
+<https://support.google.com/accounts/answer/6010255>
+<https://myaccount.google.com/lesssecureapps>
+
