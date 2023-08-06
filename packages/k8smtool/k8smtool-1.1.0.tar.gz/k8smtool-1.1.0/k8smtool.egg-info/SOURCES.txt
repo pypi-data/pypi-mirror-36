@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+bin/just.py
+bin/pod.py
+bin/search.py
+k8smtool/__init__.py
+k8smtool/filter.py
+k8smtool/table.py
+k8smtool.egg-info/PKG-INFO
+k8smtool.egg-info/SOURCES.txt
+k8smtool.egg-info/dependency_links.txt
+k8smtool.egg-info/requires.txt
+k8smtool.egg-info/top_level.txt
