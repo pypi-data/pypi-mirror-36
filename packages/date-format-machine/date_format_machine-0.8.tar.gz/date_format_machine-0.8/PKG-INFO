@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: date_format_machine
+Version: 0.8
+Summary: Tool for manipulating date strings
+Home-page: https://github.com/ryantownshend/date_format_machine
+Author: Ryan Townshend
+Author-email: citizen.townshend@gmail.com
+License: UNKNOWN
+Description: tool for converting a collection of known
+            timestamps and date formats
+Platform: UNKNOWN

@@ -1,0 +1,4 @@
+[console_scripts]
+date_format_machine = dfm.dfm:cli
+dfm = dfm.dfm:cli
+
