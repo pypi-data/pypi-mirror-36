@@ -1,0 +1,17 @@
+^\|:chapter:|:chapter:$
+^doc/_build/
+^doc/index\.rst\.auto$
+^doc/index\.rst\.generated$
+^doc/module\.rst_template$
+^doc/overview\.rst\.auto$
+^\.newer$
+\.pyc$
+__pycache__/
+^README\.html$
+^README\.pdf$
+^\.sync\.def$
+^\.sync\.rc$
+^sync\.sh$
+^\.sync\.stop$
+^dist/
+^snappets.egg-info/

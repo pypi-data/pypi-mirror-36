@@ -1,0 +1,32 @@
+include .hgignore
+include .snippets/.snips.rc
+include .version
+include README.txt
+include doc/Makefile
+include doc/abbrevs.inc
+include doc/chapter-footer.snip
+include doc/chapter-header.snip
+include doc/conf.py
+include doc/conf.pyc
+include doc/doc_defs.inc
+include doc/doc_defs.snip
+include doc/doc_defs_combined.inc
+include doc/doc_defs_standalone.inc
+include doc/docutils.conf
+include doc/index-footer.snip
+include doc/index-header.snip
+include doc/index.rst.auto
+include doc/index.rst.generated
+include doc/make.bat
+include doc/module.rst_template
+include doc/overview-footer.snip
+include doc/overview-header.snip
+include doc/overview.rst.auto
+include doc/standalone-footer.snip
+include doc/standalone-header.snip
+recursive-include doc/_static *
+recursive-include doc/_templates *
+prune doc/_build
+include setup.py
+include snappets/__init__.py
+recursive-include snappets *.py

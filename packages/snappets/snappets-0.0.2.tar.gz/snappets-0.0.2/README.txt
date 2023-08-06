@@ -1,0 +1,332 @@
+.. -*- coding: utf-8 -*-
+.. \||<-snip->|| start
+.. \||<-snap->|| include ^doc_defs.snip$
+.. \||<-snap->|| part_top
+.. Copyright (C) 2018, Wolfgang Scherer, <Wolfgang.Scherer at gmx.de>
+.. Sponsored by Wiedenmann-Seile GmbH, http://ws-gruppe.de
+..
+.. This file is part of Snappets.
+..
+.. Permission is granted to copy, distribute and/or modify this document
+.. under the terms of the GNU Free Documentation License, Version 1.3
+.. or any later version published by the Free Software Foundation;
+.. with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+.. A copy of the license is included in the main documentation of Snappets.
+
+.. inline comments (with du_comment_role)
+.. role:: rem(comment)
+.. role:: html(raw)
+   :format: html
+.. role:: shx(code)
+   :language: sh
+
+.. \||<-snap->|| part_top
+.. \||<-snap->|| part_title
+
+##################################################
+:rem:`|||:sec:|||`\ Snappets
+##################################################
+.. \||<-snap->|| part_title
+.. \||<-snap->|| part_contents
+
+The `full HTML document <doc/_build/html/index.html>`_ is available in
+the `Sphinx HTML build directory <doc/_build/html/>`_
+
+:Author: `Wolfgang Scherer`_
+
+.. \||<-snap->|| part_contents
+.. \||<-snap->|| part_abstract
+.. >>CODD See `the components of a doctoral dissertation and their order <http://site.uit.no/english/writing-style/bookstructure/>`_
+.. >>CODD Dedication
+.. >>CODD Epigraph
+.. >>CODD Abstract
+.. \||<-snap->|| subst seclevel section
+.. \||<-snap->|| not_doc_standalone
+.. \||<-snap->|| subst seclevel chapter
+.. \||<-snap->|| not_doc_standalone
+
+.. raw:: latex
+
+   \iffalse
+
+.. rubric:: Quickstart
+.. raw:: latex
+
+   \fi
+   \section*{Quickstart}
+   \addcontentsline{toc}{@seclevel@}{Quickstart}%
+   \markboth{Quickstart}{Quickstart}%
+   \phantomsection
+
+.. \|:here:|
+
+.. \||<-snap->|| not_doc_chapter
+
+.. raw:: latex
+
+   \iffalse
+
+.. rubric:: Abstract
+.. raw:: latex
+
+   \fi
+   \section*{Abstract}
+   \addcontentsline{toc}{@seclevel@}{Abstract}%
+   \markboth{Abstract}{Abstract}%
+   \phantomsection
+
+.. \||<-snap->|| not_doc_chapter
+
+.. compound::
+
+   Snap-on snippets for web and CLI.
+
+   .. \|:here:|
+
+.. \||<-snap->|| part_abstract
+.. \||<-snap->|| part_contents
+.. >>CODD Contents page
+
+.. contents::
+..
+
+.. >>CODD List of Illustrations
+.. >>CODD List of Tables
+.. \||<-snap->|| part_contents
+.. \||<-snap->|| part_abstract
+.. \||<-snap->|| not_doc_overview
+.. \||<-snap->|| not_doc_chapter
+.. >>CODD Acknowledgements
+.. >>CODD Note on Transliterations
+.. >>CODD List of Abbreviations
+
+.. raw:: latex
+
+   \iffalse
+
+.. rubric:: Abbreviations
+.. raw:: latex
+
+   \fi
+   \section*{Abbreviations}
+   \addcontentsline{toc}{@seclevel@}{Abbreviations}%
+   \markboth{Abbreviations}{Abbreviations}%
+   \phantomsection
+
+.. \||<-snap->|| doc_standalone
+.. include:: doc/abbrevs.inc
+.. \||<-snap->|| doc_standalone
+.. \||<-snap->|| not_doc_standalone
+.. @include_directive_combined@  abbrevs.inc
+.. \||<-snap->|| not_doc_standalone
+.. \||<-snap->|| not_doc_chapter
+.. \||<-snap->|| not_doc_overview
+.. \||<-snap->|| part_abstract
+.. \||<-snap->|| inc_standalone ^standalone-header.snip$
+.. \||<-snap->|| inc_index ^index-header.snip$
+.. \||<-snap->|| inc_overview ^overview-header.snip$
+.. \||<-snap->|| inc_chapter ^chapter-header.snip$
+.. \||<-snap->|| part_body
+.. >>CODD Introduction
+
+==================================================
+:rem:`|||:sec:|||`\ Introduction
+==================================================
+
+.. >>CODD Chapter
+.. >>CODD Conclusion
+.. >>CODD Appendix A
+
+.. \|:here:|
+
+.. >>CODD Notes
+.. ==================================================
+.. :rem:`|||:sec:|||`\ Footnotes
+.. ==================================================
+
+:html:`<hr>`
+
+.. \[#]
+
+.. >>CODD Reference List/Bibliography
+.. ==================================================
+.. :rem:`|||:sec:|||`\ References
+.. ==================================================
+
+.. \||<-snap->|| part_body
+.. \||<-snap->|| part_defs
+.. \||<-snap->|| doc_standalone
+.. include:: doc/doc_defs.inc
+.. include:: doc/doc_defs_standalone.inc
+.. \||<-snap->|| doc_standalone
+.. \||<-snap->|| not_doc_standalone
+.. @include_directive_combined@ doc_defs.inc
+.. @include_directive_combined@ doc_defs_combined.inc
+.. \||<-snap->|| not_doc_standalone
+.. \||<-snap->|| part_defs
+.. \||<-snap->|| inc_standalone ^standalone-footer.snip$
+.. \||<-snap->|| inc_index ^index-footer.snip$
+.. \||<-snap->|| inc_overview ^overview-footer.snip$
+.. \||<-snap->|| inc_chapter ^chapter-footer.snip$
+.. \||<-snap->|| part_bottom
+.. \||<-snap->|| doc_standalone
+
+:rem:`|||:sec:|||`\ **Copyright**
+
+Copyright (C) 2018, `Wolfgang Scherer`_.
+Sponsored by `Wiedenmann-Seile GmbH`_.
+See the document source for conditions of use under the GNU Free
+Documentation License.
+
+.. \||<-snap->|| doc_standalone
+
+.. _`Wiedenmann-Seile GmbH`: http://ws-gruppe.de
+.. _`Wolfgang Scherer`: wolfgang.scherer@ws-gruppe.de
+
+.. \||<-snap->|| part_bottom
+.. \||<-snip->|| stop
+
+.. ==================================================
+.. :rem:`|||:sec:|||`\ END
+.. ==================================================
+
+.. (progn (forward-line 1) (snip-insert "rst_t.ide-update" t t "rst") (insert "\n"))
+.. 
+.. :ide-menu: Emacs IDE Main Menu - Buffer @BUFFER@
+.. . M-x `eIDE-menu' ()(eIDE-menu "z")
+
+.. :ide: DELIM: SNIPPETS (ABOUT)       |q|<- SYM ->||,   ||<- SYM ->||,  @| SYM @
+.. . (let nil (symbol-tag-normalize-delimiter (cons (cons nil "||<-") (cons "->||" nil)) t) (symbol-tag-switch-delimiter-sets) (symbol-tag-normalize-delimiter (cons (cons nil "||<-") (cons "->||" nil)) t) (setq symbol-tag-match-rx "sn[i]p") (setq symbol-tag-enclose-delimiter-set (symbol-tag-normalize-delimiter (cons (cons nil "@|") (cons "@" nil)))))
+
+.. :ide: DELIM: SNIPPETS (DOC)          ||<- SYM ->||,     |: SYM :|,     ` SYM `
+.. . (let nil (symbol-tag-normalize-delimiter (cons (cons nil "|:") (cons ":|" nil)) t) (symbol-tag-switch-delimiter-sets) (symbol-tag-normalize-delimiter (cons (cons nil "||<-") (cons "->||" nil)) t) (setq symbol-tag-match-rx "sn[i]p") (setq symbol-tag-enclose-delimiter-set (symbol-tag-normalize-delimiter (cons (cons "\\(\\`\\|[^\\]\\)" "`") (cons "`" nil)))))
+
+.. :ide: DELIM: SNIPPETS (SNIP DOC)     ||<- SYM ->||,     |: SYM :|,     @ SYM @
+.. . (let nil (symbol-tag-normalize-delimiter (cons (cons nil "|:") (cons ":|" nil)) t) (symbol-tag-switch-delimiter-sets) (symbol-tag-normalize-delimiter (cons (cons nil "||<-") (cons "->||" nil)) t) (setq symbol-tag-match-rx "sn[i]p") (setq symbol-tag-enclose-delimiter-set (symbol-tag-normalize-delimiter (cons (cons nil "@") (cons "@" nil)))))
+
+.. :ide: DELIM: SNIPPETS (FILLME)       ||<- SYM ->||,     :: SYM ::,     @ SYM @
+.. . (let nil (symbol-tag-normalize-delimiter (cons (cons nil "::") (cons "::" nil)) t) (symbol-tag-switch-delimiter-sets) (symbol-tag-normalize-delimiter (cons (cons nil "||<-") (cons "->||" nil)) t) (setq symbol-tag-match-rx "sn[i]p") (setq symbol-tag-enclose-delimiter-set (symbol-tag-normalize-delimiter (cons (cons nil "@") (cons "@" nil)))))
+
+.. :ide: DELIM: SNIPPETS (SUBST)        ||<- SYM ->||,      @ SYM @,      @ SYM @
+.. . (let nil (symbol-tag-normalize-delimiter (cons (cons nil "@") (cons "@" nil)) t) (symbol-tag-switch-delimiter-sets) (symbol-tag-normalize-delimiter (cons (cons nil "||<-") (cons "->||" nil)) t) (setq symbol-tag-match-rx "sn[i]p") (setq symbol-tag-enclose-delimiter-set (symbol-tag-normalize-delimiter (cons (cons "[^\\]" "`") (cons "`" nil)))))
+
+.. :ide: +#-
+.. . Snippet Delimiter Sets ()
+
+.. :ide: DELIM: ReST (links)              ` SYM `_,    .. _` SYM `,      ` SYM `
+.. . (let nil (symbol-tag-normalize-delimiter (cons (cons "[^\\]" "`") (cons "`_" nil)) t) (symbol-tag-switch-delimiter-sets) (symbol-tag-normalize-delimiter (cons (cons nil ".. _`") (cons "`:" nil)) t) (setq symbol-tag-enclose-delimiter-set (symbol-tag-normalize-delimiter (cons (cons "\\(\\`\\|[^\\]\\)" "`") (cons "`" nil)))))
+
+.. :ide: DELIM: STANDARD (GNU quoting)    |: SYM :|,       :: SYM ::,     ` SYM '
+.. . (let nil (symbol-tag-normalize-delimiter (cons (cons nil "::") (cons "::" nil)) t) (symbol-tag-switch-delimiter-sets) (symbol-tag-normalize-delimiter (cons (cons nil "|:") (cons ":|" nil)) t) (setq symbol-tag-enclose-delimiter-set (symbol-tag-normalize-delimiter (cons (cons nil "`") (cons "'" nil)))))
+
+.. :ide: DELIM: STANDARD (ReST quoting)   |: SYM :|,       :: SYM ::,     ` SYM `
+.. . (let nil (symbol-tag-normalize-delimiter (cons (cons nil "::") (cons "::" nil)) t) (symbol-tag-switch-delimiter-sets) (symbol-tag-normalize-delimiter (cons (cons nil "|:") (cons ":|" nil)) t) (setq symbol-tag-enclose-delimiter-set (symbol-tag-normalize-delimiter (cons (cons "[^\\]" "`") (cons "`" nil)))))
+
+.. :ide: +#-
+.. . Delimiter Sets ()
+
+.. :ide: COMPILE: render reST as LaTeX
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp))) (save-match-data (if (string-match-t "[.][^.]*$" fn) (setq fn (replace-match "" nil t fn)))) (let ((args (concat " " (shell-quote-argument fp) " | ws_rst2latex.py --traceback | tee " (shell-quote-argument fn) ".tex"))) (save-buffer) (compile (concat "PATH=\".:$PATH\"; cat " args))))
+
+.. :ide: COMPILE: render reST as MAN
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp))) (save-match-data (if (string-match-t "[.][^.]*$" fn) (setq fn (replace-match "" nil t fn)))) (let ((args (concat " " (shell-quote-argument fp) " | ws_rst2man.py --traceback "))) (save-buffer) (compile (concat "PATH=\".:$PATH\"; cat " args))))
+
+.. :ide: COMPILE: render reST as TXT (via MAN)
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp))) (save-match-data (if (string-match-t "[.][^.]*$" fn) (setq fn (replace-match "" nil t fn)))) (let ((args (concat " " (shell-quote-argument fp) " | ws_rst2man.py --traceback | man -l -"))) (save-buffer) (compile (concat "PATH=\".:$PATH\"; snr " args))))
+
+.. :ide: COMPILE: render reST as ODT --strip-comments
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp))) (save-match-data (if (string-match-t "[.][^.]*$" fn) (setq fn (replace-match "" nil t fn)))) (let ((args (concat " " (shell-quote-argument fp) " | ws_rst2odt.py --traceback --strip-comments | cat >" (shell-quote-argument fn) ".odt "))) (save-buffer) (compile (concat "PATH=\".:$PATH\"; cat " args))))
+
+.. :ide: COMPILE: render reST as LaTeX, compile PDF and view with xdg-open
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp))) (save-match-data (if (string-match-t "[.][^.]*$" fn) (setq fn (replace-match "" nil t fn)))) (let ((args (concat " " (shell-quote-argument fp) " | ws_rst2latex.py --traceback | tee " (shell-quote-argument fn) ".tex && pdflatex '\\nonstopmode\\input " (shell-quote-argument fn) ".tex' && xdg-open " (shell-quote-argument fn) ".pdf"))) (save-buffer) (compile (concat "PATH=\".:$PATH\"; cat " args))))
+
+.. :ide: COMPILE: render reST as PDF
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp))) (save-match-data (if (string-match-t "[.][^.]*$" fn) (setq fn (replace-match "" nil t fn)))) (let ((args (concat " " (shell-quote-argument fp) " | ws_rst2pdf -e ws_docutils.raw_role >" (shell-quote-argument fn) ".pdf"))) (save-buffer) (compile (concat "PATH=\".:$PATH\"; cat " args))))
+
+.. :ide: COMPILE: render reST as HTML
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp))) (save-match-data (if (string-match-t "[.][^.]*$" fn) (setq fn (replace-match "" nil t fn)))) (let ((args (concat " " (shell-quote-argument fp) " | ws_rst2html.py --traceback --cloak-email-addresses | ${SED__PROG-sed} '\n/<\\/head>/i\\\n<style type=\"text/css\">\\\nimg { max-width\: 1200px; }\\\n</style>\n' | tee " (shell-quote-argument fn) ".html "))) (save-buffer) (compile (concat "PATH=\".:$PATH\"; cat " args))))
+
+.. :ide: +#-
+.. . Process with ws_rst2xxx ()
+
+.. :ide: CMD: show doc/_build PDF output
+.. . (let* ((fp (buffer-file-name)) (fd (file-name-directory fp))) (shell-command (concat "xdg-open \"$( ls " fd "doc/_build/latex/*.aux | sed 's,\\.aux,.pdf,' )\"" ) nil))
+
+.. :ide: CMD: show doc/_build HTML output
+.. . (let* ((fp (buffer-file-name)) (fd (file-name-directory fp))) (shell-command (concat "xdg-open " fd "doc/_build/html/index.html" ) nil))
+
+.. :ide: CMD: show PDF output
+.. . (let* ((fp (buffer-file-name)) (fb (file-name-sans-extension fp))) (shell-command (concat "xdg-open '" fb ".pdf'")))
+
+.. :ide: CMD: show HTML output
+.. . (let* ((fp (buffer-file-name)) (fb (file-name-sans-extension fp))) (shell-command (concat "xdg-open '" fb ".html'")))
+
+.. :ide: +#-
+.. . Show Ouput ()
+
+.. :ide: COMPILE: clean _build directory
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp)) (fd (file-name-directory fp))) (compile (concat "cd " fd " && cd doc && rm -rf _build *.rst.auto" ) nil))
+
+.. :ide: #
+.. . ()
+
+.. :ide: COMPILE: Complete versions (HTML/PDF)
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp)) (fd (file-name-directory fp))) (compile (concat "cd " fd " && cd doc && make html && make latexpdf" ) nil))
+
+.. :ide: COMPILE: Standalone Versions (HTML/PDF)
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp)) (fd (file-name-directory fp))) (compile (concat "cd " fd " && PATH=\".:$PATH\" && sphinx-readme.sh  --format singlehtml " fn " && PATH=\".:$PATH\" && sphinx-readme.sh  --format pdf " fn ) nil))
+
+.. :ide: COMPILE: All versions (HTML/PDF)
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp)) (fd (file-name-directory fp))) (compile (concat "cd " fd " && PATH=\".:$PATH\" && sphinx-readme.sh  --format singlehtml " fn " && PATH=\".:$PATH\" && sphinx-readme.sh  --format pdf " fn " && cd doc && make html && make latexpdf" ) nil))
+
+.. :ide: #
+.. . ()
+
+.. :ide: COMPILE: render reST as EPUB (sphinx-readme.sh)
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp))) (save-match-data (if (string-match-t "[.][^.]*$" fn) (setq fn (replace-match "" nil t fn)))) (let ((args (concat " --format epub " (shell-quote-argument fp)))) (save-buffer) (compile (concat "PATH=\".:$PATH\"; sphinx-readme.sh " args))))
+
+.. :ide: COMPILE: render reST as PDF  (sphinx-readme.sh)
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp))) (save-match-data (if (string-match-t "[.][^.]*$" fn) (setq fn (replace-match "" nil t fn)))) (let ((args (concat " --format pdf " (shell-quote-argument fp)))) (save-buffer) (compile (concat "PATH=\".:$PATH\"; sphinx-readme.sh " args))))
+
+.. :ide: COMPILE: render doc as HTML  (sphinx-build in doc)
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp))) (save-match-data (if (string-match-t "[.][^.]*$" fn) (setq fn (replace-match "" nil t fn)))) (let () (save-buffer) (compile (concat "cd doc && make html"))))
+
+.. :ide: COMPILE: render reST as HTML (sphinx-readme.sh)
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp))) (save-match-data (if (string-match-t "[.][^.]*$" fn) (setq fn (replace-match "" nil t fn)))) (let ((args (concat " --format singlehtml " (shell-quote-argument fp)))) (save-buffer) (compile (concat "PATH=\".:$PATH\"; sphinx-readme.sh " args))))
+
+.. :ide: +#-
+.. . Process with sphinx-readme.sh ()
+
+.. :ide: COMPILE: render reST as pseudoXML
+.. . (let* ((fp (buffer-file-name)) (fn (file-name-nondirectory fp))) (save-match-data (if (string-match-t "[.][^.]*$" fn) (setq fn (replace-match "" nil t fn)))) (let ((args (concat " --traceback " (shell-quote-argument fp) " 2>&1 #| tee " (shell-quote-argument fn) ".pxml"))) (save-buffer) (compile (concat "PATH=\".:$PATH\"; ws_rst2pseudoxml.py " args))))
+
+.. :ide: +#-
+.. . Process ()
+
+.. :ide: QUO: ~~ Subsubsection ~~
+.. . (insert "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\:rem\:`|\:sec\:|`\\ ::fillme\::\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" )
+
+.. :ide: QUO: -- Subsection --
+.. . (insert "--------------------------------------------------\n\:rem\:`||\:sec\:||`\\ ::fillme\::\n--------------------------------------------------\n" )
+
+.. :ide: QUO: == Section ==
+.. . (insert "==================================================\n\:rem\:`|||\:sec\:|||`\\ ::fillme\::\n==================================================\n" )
+
+.. :ide: +#-
+.. . Sections ()
+
+.. :ide: OCCUR-OUTLINE:  `|||: sec :|||' + ^.. + command comments
+.. . (x-symbol-tag-occur-outline "sec" '("|:" ":|") (cons (cons "^" ".. ") (cons nil nil)) "\\(_`[^`\n]+`\\|\\[[^]\n]+\\]\\|[|][^|\n]+[|]\\|[^:\n]+::\\)")
+
+.. :ide: MENU-OUTLINE:  `|||: sec :|||' + ^.. + command comments
+.. . (x-eIDE-menu-outline "sec" '("|:" ":|") (cons (cons "^" ".. ") (cons nil nil)) "\\(_`[^`\n]+`\\|\\[[^]\n]+\\]\\|[|][^|\n]+[|]\\|[^:\n]+::\\)")
+
+.. 
+.. Local Variables:
+.. mode: rst
+.. snip-mode: rst
+.. truncate-lines: t
+.. symbol-tag-symbol-regexp: "[-0-9A-Za-z_#]\\([-0-9A-Za-z_. ]*[-0-9A-Za-z_]\\|\\)"
+.. symbol-tag-auto-comment-mode: nil
+.. symbol-tag-srx-is-safe-with-nil-delimiters: nil
+.. End:
