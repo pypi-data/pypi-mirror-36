@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: unnamed7389
+Version: 1.0.3
+Summary: Abstract classes for representing storage-related objects
+Home-page: https://github.com/Infinidat/storage_interfaces
+Author: Infinidat Ltd.
+Author-email: info@infinidat.com
+License: BSD3
+Description-Content-Type: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
