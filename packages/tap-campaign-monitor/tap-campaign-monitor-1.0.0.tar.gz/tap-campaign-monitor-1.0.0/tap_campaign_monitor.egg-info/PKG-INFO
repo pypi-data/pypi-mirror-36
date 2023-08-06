@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: tap-campaign-monitor
+Version: 1.0.0
+Summary: Singer.io tap for extracting data from the Campaign Monitor API
+Home-page: https://www.stitchdata.com
+Author: Stitch Data, Fishtown Analytics
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3 :: Only
