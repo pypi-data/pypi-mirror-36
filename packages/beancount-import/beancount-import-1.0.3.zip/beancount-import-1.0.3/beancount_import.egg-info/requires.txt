@@ -1,0 +1,6 @@
+beancount>=2.1.2
+tornado
+numpy
+scipy
+scikit-learn
+nltk
