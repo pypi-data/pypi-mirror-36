@@ -1,0 +1,5 @@
+
+        [console_scripts]
+        oo=dyz:main
+        otm=dyz:main
+    
