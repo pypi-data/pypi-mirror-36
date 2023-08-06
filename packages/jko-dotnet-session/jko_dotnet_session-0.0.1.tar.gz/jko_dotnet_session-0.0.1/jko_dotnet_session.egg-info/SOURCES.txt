@@ -1,0 +1,9 @@
+README.md
+setup.py
+jko_dotnet_session/__init__.py
+jko_dotnet_session/parsers.py
+jko_dotnet_session/serializations.py
+jko_dotnet_session.egg-info/PKG-INFO
+jko_dotnet_session.egg-info/SOURCES.txt
+jko_dotnet_session.egg-info/dependency_links.txt
+jko_dotnet_session.egg-info/top_level.txt
