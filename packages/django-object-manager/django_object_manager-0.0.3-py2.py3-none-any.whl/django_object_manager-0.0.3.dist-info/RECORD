@@ -1,0 +1,13 @@
+django_object_manager/__init__.py,sha256=_P9P12I62IBk_fBJEl2So8rAthfrKjMJq5JCpioHdPU,126
+django_object_manager/object_manager.py,sha256=IAX4-3D6G2SM-OIjSvKSpfN4xttcTMi4K7JGmCb41-g,7816
+django_object_manager-0.0.3.dist-info/LICENSE.txt,sha256=iqoNi0zzDNfOK3F9LKLvma_JRgyf_bcrMGtgEJiOTGY,1512
+django_object_manager-0.0.3.dist-info/METADATA,sha256=myqZN2sqxPJOgej1BMU1gZZMcShojbaWYNmzQt9_uuI,2988
+django_object_manager-0.0.3.dist-info/RECORD,,
+django_object_manager-0.0.3.dist-info/WHEEL,sha256=J3CsTk7Mf2JNUyhImI-mjX-fmI4oDjyiXgWT4qgZiCE,110
+django_object_manager-0.0.3.dist-info/top_level.txt,sha256=i-KasyC2d8sRlC0CarX6lke8KdTclZh6UigXRu4NzCI,28
+tests/app/__init__.py,sha256=6SEElYuVDRvEqz9IuChyRWgc0NTtOF94lem6-1BCNIY,52
+tests/app/apps.py,sha256=0a847PEt5__KMY-qo3Z4QNBB9otUogTgP3-3wGNmXfM,152
+tests/app/models.py,sha256=e35A_5fM06NMIZGi5tHC_2RbDvWBEKY4TrjwcqPxjEM,1315
+tests/app/tests.py,sha256=cBjVzxe9dZrtt5hqypKMRQbKEe7ejD5Nbtue6eoPDLU,754
+tests/functional/__init__.py,sha256=07w3qxKTas4MPJERLkNJ4nd6pDz87sW5UphERZuOCYk,63
+tests/functional/test_object_manager.py,sha256=CIB1NtBeAT3N3PWpZNymyOAbsxge0SIb4SwhMxtmC7Q,4163
