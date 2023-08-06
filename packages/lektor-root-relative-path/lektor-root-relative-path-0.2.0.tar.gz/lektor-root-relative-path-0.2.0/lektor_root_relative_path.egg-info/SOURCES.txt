@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+lektor_root_relative_path/__init__.py
+lektor_root_relative_path.egg-info/PKG-INFO
+lektor_root_relative_path.egg-info/SOURCES.txt
+lektor_root_relative_path.egg-info/dependency_links.txt
+lektor_root_relative_path.egg-info/entry_points.txt
+lektor_root_relative_path.egg-info/requires.txt
+lektor_root_relative_path.egg-info/top_level.txt
