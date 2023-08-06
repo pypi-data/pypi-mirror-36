@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: ordered-set-stubs
+Version: 0.1.3
+Summary: Stubs with type annotations for ordered-set Python library
+Home-page: https://github.com/rominf/ordered-set-stubs
+Author: Roman Inflianskas
+Author-email: infroma@gmail.com
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: typing (>=3.6,<4.0); (python_version >= "2.7" and python_version < "2.8") or (python_version >= "3.3" and python_version < "3.5")
