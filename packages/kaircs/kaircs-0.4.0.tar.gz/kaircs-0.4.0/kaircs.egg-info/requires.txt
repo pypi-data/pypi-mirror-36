@@ -1,0 +1,10 @@
+six>=1.8.0
+basho_erlastic>=2.1.1
+flask>=0.12.2
+protobuf<2.7.0,>=2.4.1
+
+[:python_version < "3.6"]
+xoutil<2.0,>=1.9.3
+
+[:python_version >= "3.6"]
+xoutil>=1.9.3
