@@ -1,0 +1,12 @@
+doker/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+doker/fileutils.py,sha256=mNLFmOuGdE3aOT-PCS3C54sQHrNhd5k7guc7hkiVz50,1875
+doker/generate.py,sha256=qJQRt9_i_qha7rVVIsbvvyzGcysEXqsIMizhjp2-07c,5052
+doker/log.py,sha256=FwxWLppuUUh8hpg9hRWIMzD-zPlbcgL3JDIQJFXtRRE,524
+doker/main.py,sha256=nRkuImH15geInrh1zKDTrqpyhtOidzv4PB6cbSlBaSk,2538
+doker/preprocess.py,sha256=UJXAslwU-DIAY83F2BOyy25luASJ0L0LGLaVH0SZ02A,4455
+doker-0.0.6.dist-info/LICENSE,sha256=eQbK7xEJf8FNHgYVfySaPNc7VyTA2yMZZ1cYsej-3RU,1070
+doker-0.0.6.dist-info/METADATA,sha256=5DzhZnMC2D0l6SQf0sYhi8k-gEmcsUr0hMsPaNSHUYs,1220
+doker-0.0.6.dist-info/WHEEL,sha256=quTwCBwEhCqvWQayaLINV6u_GggLcWROgOHAbyu7a04,92
+doker-0.0.6.dist-info/entry_points.txt,sha256=FkRpI0MWArCKBeH7QIhyiDtVWgpFQGspczftsuQL670,43
+doker-0.0.6.dist-info/top_level.txt,sha256=OW0oNwLRJ7q5ng_LlJku9EAPdRFu1oJbs-IOOXOvg_g,6
+doker-0.0.6.dist-info/RECORD,,
