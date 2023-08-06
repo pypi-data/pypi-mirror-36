@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+pyelection/__init__.py
+pyelection.egg-info/PKG-INFO
+pyelection.egg-info/SOURCES.txt
+pyelection.egg-info/dependency_links.txt
+pyelection.egg-info/requires.txt
+pyelection.egg-info/top_level.txt
