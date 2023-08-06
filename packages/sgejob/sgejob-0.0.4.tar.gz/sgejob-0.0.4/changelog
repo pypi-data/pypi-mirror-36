@@ -1,0 +1,16 @@
+
+v0.0.4
+20181001
+
+1. put output files into one directory by default.
+
+v0.0.3
+20181001
+
+1. add 'JobDoesNotExist' exception
+
+
+v0.0.2
+20181001
+
+1. add '-running_only' option, to qstat the jobs which are running only.
