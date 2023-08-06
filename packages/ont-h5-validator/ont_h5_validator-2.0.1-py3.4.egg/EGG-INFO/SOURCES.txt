@@ -1,0 +1,14 @@
+README.rst
+setup.py
+h5_validator/__init__.py
+h5_validator/cli.py
+h5_validator/matcher.py
+h5_validator/schema.py
+h5_validator/validator.py
+ont_h5_validator.egg-info/PKG-INFO
+ont_h5_validator.egg-info/SOURCES.txt
+ont_h5_validator.egg-info/dependency_links.txt
+ont_h5_validator.egg-info/entry_points.txt
+ont_h5_validator.egg-info/requires.txt
+ont_h5_validator.egg-info/top_level.txt
+ont_h5_validator.egg-info/zip-safe

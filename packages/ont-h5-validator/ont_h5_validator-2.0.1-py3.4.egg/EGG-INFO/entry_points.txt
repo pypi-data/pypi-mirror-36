@@ -1,0 +1,3 @@
+[console_scripts]
+h5_validate = h5_validator.cli:main
+
