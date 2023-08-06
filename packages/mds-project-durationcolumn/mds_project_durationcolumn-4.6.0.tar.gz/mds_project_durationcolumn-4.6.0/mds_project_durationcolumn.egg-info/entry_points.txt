@@ -1,0 +1,4 @@
+ 
+    [trytond.modules]
+    project_durationcolumn = trytond.modules.project_durationcolumn
+    

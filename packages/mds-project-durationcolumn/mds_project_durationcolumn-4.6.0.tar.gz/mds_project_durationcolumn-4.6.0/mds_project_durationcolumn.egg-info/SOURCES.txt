@@ -1,0 +1,15 @@
+README.rst
+setup.py
+./README.rst
+./__init__.py
+./tryton.cfg
+./versiondep.txt
+./work.xml
+./view/work_tree.xml
+mds_project_durationcolumn.egg-info/PKG-INFO
+mds_project_durationcolumn.egg-info/SOURCES.txt
+mds_project_durationcolumn.egg-info/dependency_links.txt
+mds_project_durationcolumn.egg-info/entry_points.txt
+mds_project_durationcolumn.egg-info/not-zip-safe
+mds_project_durationcolumn.egg-info/requires.txt
+mds_project_durationcolumn.egg-info/top_level.txt
