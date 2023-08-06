@@ -1,0 +1,56 @@
+[all]
+ignore = **/venv/**,**/.env/**,**/.tox/**,**/.git/**,**/node_modules/**,**/godeps/**,**/vendor/**,**/site-packages/**,**/bin/**,**/spec/**,**/migrate/**
+
+[all.python]
+bears = BanditBear
+files = **.py
+
+[all.rst]
+bears = reSTLintBear
+files = **.rst
+
+[all.yml]
+bears = YAMLLintBear
+files = **.yml, **.yaml
+
+[all.bash]
+bears = ShellCheckBear, BashateBear
+files = **.sh
+shell = bash
+shellcheck_ignore = SC2046, SC2154, SC2155
+
+[all.jinja2]
+bears = Jinja2Bear
+files = **.jj2
+
+[all.csharp]
+bears = CSharpLintBear
+files = **.cs
+
+[all.xml]
+bears = XMLBear
+files = **.xml
+
+[all.html]
+bears = HTMLLintBear, BootLintBear, HTMLHintBear
+files = **.html
+
+[all.csv]
+bears = CSVLintBear
+files = **.csv
+
+[all.text]
+bears = InvalidLinkBear, WriteGoodLintBear, AlexBear, LanguageToolBear, DocumentationStyleBear, DocGrammarBear, TextLintBear, HTTPSBear
+files = **.txt, **.md, **.rst, **.text
+
+[all.sql]
+bears = SQLintBear
+files = **.sql
+
+[all.java]
+bears = InferBear, CheckstyleBear, JavaPMDBear
+files = **.java
+
+[all.css]
+bears = CSSLintBear
+files = **.css
