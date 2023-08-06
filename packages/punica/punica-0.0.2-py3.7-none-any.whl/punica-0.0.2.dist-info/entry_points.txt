@@ -1,0 +1,3 @@
+[console_scripts]
+punica-python=punica.cli:main
+

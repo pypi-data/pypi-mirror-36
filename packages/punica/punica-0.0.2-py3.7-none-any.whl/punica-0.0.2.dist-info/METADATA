@@ -1,0 +1,141 @@
+Metadata-Version: 2.1
+Name: punica
+Version: 0.0.2
+Summary: Ontology DApp Development Framework
+Home-page: https://github.com/ontio-community/punica-python
+Author: NashMiao
+Author-email: wdx7266@outlook.com
+Maintainer: NashMiao
+Maintainer-email: wdx7266@outlook.com
+License: GNU Lesser General Public License v3 (LGPLv3)
+Platform: all
+Classifier: Development Status :: 1 - Planning
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.7, <4
+Description-Content-Type: text/markdown
+Requires-Dist: ontology-python-sdkgitpythonclick
+
+# punica-python
+
+<!-- TOC -->
+
+- [1. Overview](#1-overview)
+- [2. Setting up the development environment](#2-setting-up-the-development-environment)
+- [3. Install](#3-install)
+- [4. Quickstart](#4-quickstart)
+    - [4.1. Creating a Box Project](#41-creating-a-box-project)
+    - [4.2. Initializing a New Project](#42-initializing-a-new-project)
+    - [4.3. Compiling](#43-compiling)
+    - [4.4. Deployment](#44-deployment)
+
+<!-- /TOC -->
+
+## 1. Overview
+
+Welcome to Punica! Punica has (almost) everything you need for Ontology DApp development.
+
+## 2. Setting up the development environment
+
+There are a few technical requirements before we start. Please install the following:
+
+- [Python 3.7](https://www.python.org/downloads/release/python-370/)
+- [Git](https://git-scm.com/)
+
+## 3. Install
+
+```shell
+pip install punica
+```
+
+## 4. Quickstart
+
+To use most Punica commands, you need to run them against an existing Punica project. So the first step is to create a Punica project.
+
+### 4.1. Creating a Box Project
+
+You can create a bare project template, but for those just getting started, you can use Punica Boxes, which are example applications and project templates.
+
+We'll use the [ontology-tutorialtoken box](https://github.com/wdx7266/ontology-tutorialtoken), which creates a OEP4 token that can be transferred between accounts:
+
+- Create a new directory for your Punica project:
+
+```shell
+mkdir tutorialtoken
+cd tutorialtoken
+```
+
+- Download ("unbox") the MetaCoin box:
+
+```shell
+punica unbox ontology-tutorialtoken
+```
+
+**Note**:
+
+- You can use the `punica unbox <box-name>` command to download any of the other Punica Boxes.
+- If you not run punica cli in you project root directory, you need to use `-p` or `--project` option to specify your DApp project's path.
+
+### 4.2. Initializing a New Project
+
+You can create a bare Punica project with no smart contracts included, use `punica init` command.
+
+Once this operation is completed, you'll now have a project structure with the following items:
+
+- `contracts/`: Directory for Ontology smart contracts.
+- `src/`: Directory for DApp source file.
+- `test/`: Directory for test files for testing your application and contracts.
+- `wallet/`: Directory for save Ontology wallet file.
+
+**Note**: If you not run punica cli in you project root directory, you need to use `-p` or `--project` option to specify your DApp project's path.
+
+### 4.3. Compiling
+
+You can use the following command to compile your Ontology smart contracts:
+
+```shell
+punica compile
+```
+
+If everything goes smoothly, you can find the `avm` and `abi` file in `build` folder.
+
+```shell
+├─build
+│      contract.avm
+│      contract_abi.json
+```
+
+**Note**: If you not run punica cli in you project root directory, you need to use `-p` or `--project` option to specify your DApp project's path.
+
+### 4.4. Deployment
+
+To deploy your contract, run the following:
+
+```shell
+punica deploy
+```
+
+This will deploy your smart contract in `bin` directory.
+
+A simple deployment process looks like this:
+
+```shell
+Using network 'test'.
+
+Running deployment: oep4.avm
+	Deploying...
+	... 0x0131c56b6a00527ac46a51527ac46a00c3044e616d659c6409006593096c7566
+	Deploy to: 0xf9f47e6a80482eb1c8831789f46dbc5a4f606222
+Deploy successful to network...
+	... 0xc08a440a7f93cc7229fee15b55455fac51ec15153753303bd252c710547ecb62
+Enjoy your contract:)
+```
+
+**Note**:
+
+- If you not run punica cli in you project root directory, you need to use `-p` or `--project` option to specify your DApp project's path.
+- If multi `avm` file exist in your `bin` directory, you need to use `--avm` option to specify which contract you want to deploy.
+- If multi wallet file exist in your `wallet` directory, you may need to use `--wallet` option to specify which wallet you want to use. otherwise, a random wallet file in `wallet` directory will be used.
+
