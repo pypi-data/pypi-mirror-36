@@ -1,0 +1,90 @@
+# RDS
+
+rds_instance:
+  client: rds
+  list:
+    method: describe_db_instances
+    property: DBInstances
+
+# Cloudwatch
+
+cloudwatch_metric_alarm:
+  client: cloudwatch
+  list:
+    method: describe_alarms
+    property: MetricAlarms
+    key: AlarmName
+    pagination_field: NextToken
+    pagination_method_parameter: NextToken
+  resource:
+    method: Alarm
+  delete:
+    method: delete
+
+cloudwatch_alarms_history:
+  client: cloudwatch
+  list:
+    method: describe_alarm_history
+    parameters:
+      - AlarmName
+      - HistoryItemType
+      - StartDate
+      - EndDate
+    pagination_method_parameter: NextToken
+    pagination_field: NextToken
+    property: AlarmHistoryItems
+
+# Cloudwatch Logs
+
+cloudwatch_log_groups:
+  client: logs
+  list:
+    method: describe_log_groups
+    property: logGroups
+    pagination_field: nextToken
+    pagination_method_parameter: nextToken
+    parameters:
+      - logGroupNamePrefix
+
+cloudwatch_log_streams:
+  client: logs
+  list:
+    method: describe_log_streams
+    parameters:
+      - logGroupName
+      - logStreamNamePrefix
+      - orderBy
+      - descending
+    pagination_method_parameter: nextToken
+    pagination_field: nextToken
+    property: logStreams
+
+cloudwatch_log_events:
+  client: logs
+  list:
+    method: get_log_events
+    parameters:
+      - logGroupName
+      - logStreamName
+      - startTime
+      - endTime
+      - startFromHead
+    pagination_method_parameter: nextToken
+    pagination_field: nextForwardToken
+    property: events
+
+# Route 53
+
+route53_record:
+  client: route53
+  list:
+    method: list_resource_record_sets
+    property: ResourceRecordSets
+    parameters:
+      - HostedZoneId
+      - StartRecordName
+      - StartRecordType
+      - StartRecordIdentifier
+      - MaxItems
+    pagination_field: NextRecordName
+    pagination_method_parameter: StartRecordName
