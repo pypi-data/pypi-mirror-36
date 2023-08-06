@@ -1,0 +1,14 @@
+h5_validator/__init__.py,sha256=FBkmD6bKXuf3hekxX7snXk0QN5breemCyJqE487lWhA,186
+h5_validator/cli.py,sha256=1ybCZDe7_uvIJlpgcGCnfpD3sGUBnUnF5eOLwIOkdxM,2059
+h5_validator/matcher.py,sha256=44VndlStOHzkV8anGkOH6r-8M2hfU-PpuN-Hulo3MQg,9451
+h5_validator/schema.py,sha256=dd9mqZv3ybdoYoByQDgZJwHb56ebaI0DfFIq7Z4pzo8,1056
+h5_validator/validator.py,sha256=o0JuXkHdcghOjRKGiYb2JjqFNEdiPt5JjwpZ8FPxSgc,9405
+h5_validator/schemas/bulk_read_fast5.yaml,sha256=0niQ476mGgkki1UOXvkw1TzArepZ0-kY1xP5b5AJTtw,12134
+h5_validator/schemas/multi_read_fast5.yaml,sha256=bkF4bEkObDZczgZ0v4MiZUEg-w-lBAttPdiboDQnjIA,5737
+h5_validator/schemas/single_read_fast5.yaml,sha256=NlMW_jNfOQFXGOs1CpmzljMD1yykQQe5LyuzkvzJW9k,6836
+ont_h5_validator-2.0.1.dist-info/METADATA,sha256=0eQbyvWXubLrQn6k9yL1-PHFBGBs1yyzXLx-MMsURck,2799
+ont_h5_validator-2.0.1.dist-info/RECORD,,
+ont_h5_validator-2.0.1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+ont_h5_validator-2.0.1.dist-info/entry_points.txt,sha256=oQHPorqaT4rjhzg0gKa0k0sA6OzTjHA-EPstOwVgIp8,55
+ont_h5_validator-2.0.1.dist-info/top_level.txt,sha256=MVEzAFFlW2PiBLTGTDYtV5H8M0ZvhD_-uabZr8nT3gM,13
+ont_h5_validator-2.0.1.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
