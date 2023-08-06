@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: parameterized_model
+Version: 0.1.1
+Summary: UNKNOWN
+Home-page: https://github.com/young-geng/parameterized_model
+Author: Young
+Author-email: young.gengxy@gmail.com
+License: Apache License Version 2.0
+Description: Parameterized any given model weights with a single vector.
+Platform: UNKNOWN
