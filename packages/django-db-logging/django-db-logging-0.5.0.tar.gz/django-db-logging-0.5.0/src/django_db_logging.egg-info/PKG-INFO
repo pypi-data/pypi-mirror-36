@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: django-db-logging
+Version: 0.5.0
+Summary: Database logging handler with Django integration
+Home-page: https://github.com/saxix/django-db-logging
+Author: Stefano Apostolico
+Author-email: s.apostolico@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: linux
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Intended Audience :: Developers
+Provides-Extra: test
