@@ -1,0 +1,21 @@
+Metadata-Version: 1.0
+Name: h5cat
+Version: 0.1
+Summary: Quick preview of hdf5 files
+Home-page: https://github.com/jni/h5cat
+Author: Juan Nunez-Iglesias
+Author-email: juan.nunez-iglesias@monash.edu
+License: BSD 3-clause
+Description-Content-Type: UNKNOWN
+Description: h5cat: Quick preview of hdf5 files
+        
+        Quickly check the contents of multiple hdf5 files. Usage:
+        
+        `h5cat -h`
+        
+        `h5cat path/to/hdffiles/*.h5`
+        
+        Note: h5cat is no longer maintained. For similar functionality, see
+        h5glance at https://pypi.org/project/h5glance/#description
+        
+Platform: UNKNOWN

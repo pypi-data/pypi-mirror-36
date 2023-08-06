@@ -1,0 +1,3 @@
+[console_scripts]
+h5cat = h5cat:main
+
