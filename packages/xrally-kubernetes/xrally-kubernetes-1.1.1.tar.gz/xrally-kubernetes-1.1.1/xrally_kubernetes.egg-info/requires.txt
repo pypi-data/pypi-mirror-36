@@ -1,0 +1,4 @@
+kubernetes>=5.0.0
+rally>=1.2.0
+requests
+setuptools-scm
