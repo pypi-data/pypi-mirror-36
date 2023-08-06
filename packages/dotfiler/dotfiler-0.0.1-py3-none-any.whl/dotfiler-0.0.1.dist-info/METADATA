@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: dotfiler
+Version: 0.0.1
+Summary: Simple dotfiles manager.
+Home-page: https://github.com/KeltonKarboviak/dotfiler
+Author: Kelton Karboviak
+Author-email: kelton.karboviak@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Requires-Dist: pyyaml
+Provides-Extra: test
+Requires-Dist: pytest; extra == 'test'
+Requires-Dist: pytest-mock; extra == 'test'
+Requires-Dist: pytest-xdist; extra == 'test'
+
+
+# Dotfiler
+
+
+
