@@ -1,0 +1,5 @@
+tornado>=4.5
+pyserial>=3.4
+requests>=2.18
+beautifulsoup4>=4.6
+RPi.GPIO>=0.6
