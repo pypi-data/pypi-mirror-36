@@ -1,0 +1,14 @@
+AUTHORS.txt
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.py
+jupyterbgnotify/__init__.py
+jupyterbgnotify/jupyterbgnotify.py
+jupyterbgnotify.egg-info/PKG-INFO
+jupyterbgnotify.egg-info/SOURCES.txt
+jupyterbgnotify.egg-info/dependency_links.txt
+jupyterbgnotify.egg-info/requires.txt
+jupyterbgnotify.egg-info/top_level.txt
+jupyterbgnotify/js/init.js
+jupyterbgnotify/js/notify.js
