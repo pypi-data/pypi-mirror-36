@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: entropytriangle
+Version: 1.0.2
+Summary: Calculation of the entropy triangles
+Home-page: https://github.com/Jaimedlrm/entropytriangle
+Author: Jaime de los Rios Mouvet
+Author-email: jaime.delosriosmouvet@gmail.com
+License: MIT
+Download-URL: https://github.com/Jaimedlrm/entropytriangle.git
+Keywords: Entropy Triangle Information Theory
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3
+Requires-Dist: numpy (>=1.14.3)
+Requires-Dist: pandas (>=0.23.0)
+Requires-Dist: scikit-learn (>=0.19.1)
+Requires-Dist: scipy (>=1.1.0)
+Requires-Dist: matplotlib (>=1.4)
+
+This package implements the functionality of a set of tools for the evaluation of several Machine Learning methods in a way called Entropy Triangle
+
+
