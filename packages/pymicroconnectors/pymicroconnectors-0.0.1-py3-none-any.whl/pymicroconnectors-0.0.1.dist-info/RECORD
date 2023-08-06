@@ -1,0 +1,11 @@
+pymicroconnectors/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pymicroconnectors/config.py,sha256=sx12JSV5y8n0ORHOjJGP9IJ6P3no_jyMuf5vbc5dMJM,1121
+pymicroconnectors/handlebars.py,sha256=CAnaZy4u6Kg0mzo-8Hf7YbpvPzEwI_UnpWsk-Nd2VY4,516
+pymicroconnectors/helpers.py,sha256=hmZ2ZCtRiD0MlweoNGoXwRrX2Cp6g2tzs6ecruIXJFI,133
+pymicroconnectors/logger.py,sha256=2hS-s3-GI5SwIpLpdehEtuLfCSc-sGx325U8XWapbJA,2116
+pymicroconnectors/prestashop.py,sha256=pnM8WRQzxtheT6tAFTjmLO3MSFjg-ePJb2COtFhSFDs,7547
+pymicroconnectors/spreedsheet.py,sha256=K7Km7VTyI4v016NF9xj8dFnbtED0yEKZ_aBJ2RT57Zs,1325
+pymicroconnectors-0.0.1.dist-info/METADATA,sha256=DzWMxN4qBcYk9scUk_SB7mdAPAbRshkEGkry1NjBhHw,789
+pymicroconnectors-0.0.1.dist-info/RECORD,,
+pymicroconnectors-0.0.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+pymicroconnectors-0.0.1.dist-info/top_level.txt,sha256=gsdzunbwk9KiT1H0rs_2Osj0x_oLjJe929eBFIAyJ5E,18
