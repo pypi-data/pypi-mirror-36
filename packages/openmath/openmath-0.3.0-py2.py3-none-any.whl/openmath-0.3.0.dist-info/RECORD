@@ -1,0 +1,17 @@
+openmath/__init__.py,sha256=lg4K9erthyufmNlzFvvxk5-n8u7NGfN4r55723yCoqs,63
+openmath/convert.py,sha256=lJyH2b4u6hoFjoD1n6qHr16BcKu9gAgE39ZjqAhmbcg,12915
+openmath/convert_pickle.py,sha256=h-o6swsHMKkYWZ17mpebPiC1BDKGWCMAqoIcqKiVxNM,17823
+openmath/decoder.py,sha256=gTCBDzKOuvtjaiMmbAvimfT5_u57Ynh55se9KjDU-BU,4218
+openmath/encoder.py,sha256=o6O281wAFeS1EK2R0bX_2mU4TFABC7kuA6RG9fUwxDE,3640
+openmath/openmath.py,sha256=vqmIlaZKlfgPbbF_V3qtcYOGLMkO934rhFlBbogt3RY,10427
+openmath/xml.py,sha256=tTcvBM50h-ArgfEtxI_nmX60oV0FbcO4dd-uvZthYX4,935
+openmath-0.3.0.dist-info/METADATA,sha256=dONAH5kEm5M8OjHHh7KTQKp_BXwz2nJjaLQyqFh3lTQ,511
+openmath-0.3.0.dist-info/RECORD,,
+openmath-0.3.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+openmath-0.3.0.dist-info/top_level.txt,sha256=Ol7E8q4KITv-V49C_nF2E3KcrQO9Fq7RuJW1sGLcXLY,15
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_convert.py,sha256=7WY7YRtrBgt7q5wibrL0iZ8riOH3_MswhV7rZJYJ5Wg,2898
+tests/test_decoder.py,sha256=GwzAbD-NPn1xTSkeM-S-1x_Nmx35lrAfCMwxXeafQvo,935
+tests/test_encoder.py,sha256=kwMfYcat9n72wzyyAWbRAipBVDuigYNlqwSAQr3BmlA,670
+tests/test_openmath.py,sha256=_t8ln0aK6yRjNwGzQtqjrZoE5sEeXXBGpSvG3-6SJrk,853
+tests/utils.py,sha256=qXMtMHC2fejkY4atvU0upe8M9sOpt2yHrccBdFoLSdM,5349
