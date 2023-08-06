@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: harder
+Version: 0.0.6
+Summary: Reinforcement Learning Utils
+Home-page: https://github.com/jknthn/harder
+Author: Jeremi Kaczmarczyk
+Author-email: jeremi.kaczmarczyk@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: gym
+Requires-Dist: numpy
+Requires-Dist: scipy
+
+UNKNOWN
+
+
