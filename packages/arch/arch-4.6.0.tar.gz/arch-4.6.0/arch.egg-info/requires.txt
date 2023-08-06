@@ -1,0 +1,5 @@
+statsmodels>=0.8
+cached_property>=1.5.1
+numpy>=1.12
+pandas>=0.20
+scipy>=0.19
