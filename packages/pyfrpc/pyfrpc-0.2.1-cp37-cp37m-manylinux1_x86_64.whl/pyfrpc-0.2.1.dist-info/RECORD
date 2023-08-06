@@ -1,0 +1,14 @@
+pyfrpc-0.2.1.dist-info/top_level.txt,sha256=du34kmuDuP2SHvg2z_JeictD9y-QtJjtCH9pv4SaVWY,7
+pyfrpc-0.2.1.dist-info/entry_points.txt,sha256=YMWJMCwiTYk1FL11K2HG7Ql2GmV5ayWjM34yZ_w2nDk,47
+pyfrpc-0.2.1.dist-info/RECORD,,
+pyfrpc-0.2.1.dist-info/WHEEL,sha256=AhV6RMqZ2IDfreRJKo44QWYxYeP-0Jr0bezzBLQ1eog,109
+pyfrpc-0.2.1.dist-info/METADATA,sha256=JqlYcFVFN0kr07tb58k9GZu5vHjsQq678mqVG-GoRTQ,3115
+pyfrpc/_coding_base_c.cpython-37m-x86_64-linux-gnu.so,sha256=llqm0rWNVkQOskWy3LzEUH_of0ay5bb9QAhhOkpe-1I,626094
+pyfrpc/__init__.py,sha256=QOlEk-BoS8n-ta9EdekyDp4eHusbbmw2cU24w_1t8UE,205
+pyfrpc/netcat.py,sha256=bkQQwUoyL8yAMrZEGNENbI-QROQJZLIt0HnApn2yzLI,820
+pyfrpc/compat.py,sha256=6nAn3JhRis-6i_SCSczEWM3yOqa5Jv5hOVAkdmv5uig,802
+pyfrpc/models.py,sha256=N6LfDY-cgO_KyynXcG8kGgsvPxhggEqQVa1ToMOwudo,757
+pyfrpc/_coding_base_c.pyx,sha256=ZOxxgmc4dof4Vbs_UXiM-tv0XJMOGCTRXUDX9gYAZ2A,16459
+pyfrpc/client.py,sha256=erHLOULEd5Q80ROTtKQ63Nx-gRrpISjZffJSa4Uyniw,3743
+pyfrpc/coding.py,sha256=Gz5qXW-kX2uPdD45Qv-kcCLEevy7VErB5gI6mEUEWZM,3317
+pyfrpc/_coding_base_py.py,sha256=5n_xrjOIBWMLXhUe4-zBH48iG8jYtxJzIld9dLQIFXY,10284
