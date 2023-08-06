@@ -1,0 +1,11 @@
+doker/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+doker/fileutils.py,sha256=MeFA8qpopot-d_W1wYUnCcCszEerSF5Wwv4vpbAW5_c,2772
+doker/generate.py,sha256=CZ2wfV0Y7l0hMOc-0gVaewJ__w_q7KdoM6vuhcWjkSo,5621
+doker/log.py,sha256=LVVQTEZSDuFwi9j0tHWWvGjq0M1OE3IdYCV2OPD-akE,632
+doker/main.py,sha256=OErfgXKxLu5HgymRqbiUhXgAFinST5_WDvNiz3v5DjY,2585
+doker/preprocess.py,sha256=Cl5dVjg9RGYFuyi4irNNd-6FqXlLkzq_hw5dY1Hr28g,5083
+doker-0.0.8.dist-info/METADATA,sha256=vk6Jjiqu-09JpqCtQmhSHtoWrqNG2YiezBtWAIEZ6qo,1220
+doker-0.0.8.dist-info/RECORD,,
+doker-0.0.8.dist-info/WHEEL,sha256=_V8uWu5F_h-lvAz5Mbq4oZqV_uCfL4cHgm4IIlDevzU,92
+doker-0.0.8.dist-info/entry_points.txt,sha256=FkRpI0MWArCKBeH7QIhyiDtVWgpFQGspczftsuQL670,43
+doker-0.0.8.dist-info/top_level.txt,sha256=OW0oNwLRJ7q5ng_LlJku9EAPdRFu1oJbs-IOOXOvg_g,6
