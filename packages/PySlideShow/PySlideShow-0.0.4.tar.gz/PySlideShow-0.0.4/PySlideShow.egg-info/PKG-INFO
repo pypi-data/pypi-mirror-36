@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: PySlideShow
+Version: 0.0.4
+Summary: Configurable image slideshows.
+Home-page: https://gitlab.com/PySlideShow/pyslideshow
+Author: Thomas Ruland
+Author-email: PySlideShow@gmail.com
+License: UNKNOWN
+Description: Configurable image slideshows.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
