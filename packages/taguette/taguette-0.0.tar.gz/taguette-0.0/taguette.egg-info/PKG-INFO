@@ -1,0 +1,33 @@
+Metadata-Version: 1.2
+Name: taguette
+Version: 0.0
+Summary: Document tagger
+Home-page: https://gitlab.com/remram44/taguette
+Author: Remi Rampin
+Author-email: remirampin@gmail.com
+Maintainer: Remi Rampin
+Maintainer-email: remirampin@gmail.com
+License: BSD-3-Clause
+Project-URL: Source, https://gitlab.com/remram44/taguette
+Project-URL: Tracker, https://gitlab.com/remram44/taguette/issues
+Project-URL: Homepage, https://taguette.fr/
+Project-URL: Say Thanks, https://saythanks.io/to/remram44
+Description: Document tagger
+        ===============
+        
+        This project aims at creating an open-source document tagger, for use in qualitative data analysis.
+        
+Keywords: qualitative,qual,document,text,tagging,tags,highlight,highlights,notes
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: JavaScript
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Text Processing
