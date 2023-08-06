@@ -1,0 +1,16 @@
+tests/test_str_utils.py,sha256=RbOcft7CPecOd1szj3_3JMfa3tLZQKblRwFB4M3mEWc,1906
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/app_handlers.py,sha256=5q84vxYXiYI7QgeFBkCP6unu076ojv2WU05y47BP_Oo,267
+tests/test_handler.py,sha256=H1llCbpuVysVDADX4ebxMbvm8UFSDbEYfXe2N-Gqoq4,925
+torskel/torskel_app.py,sha256=yvff9WzqfAty9K-Eytrof5JXaUyzMsZYKcGPV8FFlLY,14001
+torskel/str_utils.py,sha256=ndA2YuytRGy9YngME9i9bkgEJSsNSRFRXCj7i8vCQIs,2607
+torskel/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+torskel/torskel_handler.py,sha256=BB4UYvSf3vDuBdkLIrZornEy-CQS2bjMC9s7z5s9zzM,5316
+torskel/torskel_mixins/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+torskel/torskel_mixins/log_mix.py,sha256=lXWRsAKZ5Jpo6fchKBHG4mC4NuluTSDbwdVrDJLNU70,2178
+torskel-0.1.77.dist-info/WHEEL,sha256=-aSo8rHuuPDEFzkcqqQ55pDyCjy25bYMLxSiHWKAOTc,92
+torskel-0.1.77.dist-info/METADATA,sha256=VgM4UNpm4uTAqY9ucsI2pfm2iBF2UXcAJXY_MJeL0mk,563
+torskel-0.1.77.dist-info/RECORD,,
+torskel-0.1.77.dist-info/DESCRIPTION.rst,sha256=r_78_bv5YNeXwkM21XdcAVRloJdTwzs6dQDQD7wV_aU,126
+torskel-0.1.77.dist-info/metadata.json,sha256=stMPMuJU8KwYd3kN9bWS_XqcQkLrirdytNHjqDC0w2s,633
+torskel-0.1.77.dist-info/top_level.txt,sha256=ZQnnE3tJmJJ4ahaAU40_Ksq8mrW1rfiA2SW8kjqrIhE,14
