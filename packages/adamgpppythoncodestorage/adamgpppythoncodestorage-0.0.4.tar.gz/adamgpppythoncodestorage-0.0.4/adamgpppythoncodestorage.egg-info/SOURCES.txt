@@ -1,0 +1,9 @@
+README.md
+setup.py
+adamgpppythoncodestorage.egg-info/PKG-INFO
+adamgpppythoncodestorage.egg-info/SOURCES.txt
+adamgpppythoncodestorage.egg-info/dependency_links.txt
+adamgpppythoncodestorage.egg-info/top_level.txt
+storage/__init__.py
+storage/modules/__init__.py
+storage/modules/files.py
