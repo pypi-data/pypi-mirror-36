@@ -1,0 +1,27 @@
+{% if not snippet %}
+    {% extends "template.html" %}
+    {% block title %}Time{% endblock %}
+
+    {% block head %}
+        {{ super() }}
+        <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+        <script src="{{ url_for('static', filename='js/time.js') }}"></script>
+    {% endblock %}
+    
+    {% block bodyOnLoad %}
+        doDate();
+    {% endblock %}
+{% endif %}
+
+{% block content %}
+    <b style="font-family:'Sofia';font-size: 16px;">
+        <span id="day"></span>,
+        <span id="date"></span>
+        <span id="month"></span>
+        <span id="year"></span>
+        <!-- <span id="todaysDate"></span> -->
+        <br>
+        <span id="hr"></span>:<span id="min"></span>
+        <span id="ampm"></span>
+    </b>
+{% endblock %}
