@@ -1,0 +1,10 @@
+pyclash/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pyclash/clash.py,sha256=5RonPhezrerIEvCAEEhsWkQGOmwZjQRzoHu0_ocYfg8,12026
+pyclash/templates/clash_runner.sh.j2,sha256=xLmAEh_09nxKJiYhZNkx9E57qVL_c_3hWL3TX8laALQ,722
+pyclash/templates/cloud-init.yaml.j2,sha256=m4m_iApqvBBju3R3y4VU75x9JJYS0SqWpkTOqCkZwao,1121
+pyclash/templates/machine_config.json.j2,sha256=Q__m0uXSacpDdaFq-HJ7wBCR5-7CHJhDhUOWmpip5ho,1059
+pyclash-0.0.3.post5.dist-info/METADATA,sha256=f-XNzTw9LSh-e1Tu7mhyUnupMouyUEkLo332aYyfYnI,500
+pyclash-0.0.3.post5.dist-info/RECORD,,
+pyclash-0.0.3.post5.dist-info/WHEEL,sha256=_V8uWu5F_h-lvAz5Mbq4oZqV_uCfL4cHgm4IIlDevzU,92
+pyclash-0.0.3.post5.dist-info/entry_points.txt,sha256=OPzemyIdfdOFkF2_lSffb7TqgepfXYPKhLM9gjU37Mg,45
+pyclash-0.0.3.post5.dist-info/top_level.txt,sha256=GlNZ6hMDk4qtkQgOho_RqF3Emwynle-clichmMbdPC8,8
