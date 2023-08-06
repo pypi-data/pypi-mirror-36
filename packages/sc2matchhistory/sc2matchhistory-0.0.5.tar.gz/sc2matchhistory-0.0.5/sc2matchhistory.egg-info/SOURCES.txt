@@ -1,0 +1,9 @@
+README.md
+setup.py
+sc2matchhistory/__init__.py
+sc2matchhistory/__version__.py
+sc2matchhistory.egg-info/PKG-INFO
+sc2matchhistory.egg-info/SOURCES.txt
+sc2matchhistory.egg-info/dependency_links.txt
+sc2matchhistory.egg-info/entry_points.txt
+sc2matchhistory.egg-info/top_level.txt
