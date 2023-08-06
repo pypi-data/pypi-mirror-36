@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: emencia-jinja-secretkey
+Version: 0.1.0
+Summary: Simple secret key generator usable as a Jinja extension
+Home-page: https://github.com/emencia/emencia-jinja-secretkey
+Author: David Thenon
+Author-email: support@emencia.com
+License: MIT
+Description: emencia-jinja-secretkey
+        =======================
+        
+        A very simple application to package a Jinja extension able to generate secret key.
+        
+        Install
+        *******
+        
+            pip install emencia-jinja-secretkey
+        
+        Then you can use this extension from its path ``jinja_secretkey.secret_key.SecretExtension``.
+        
+Keywords: Jinja
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Text Editors :: Text Processing
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/x-rst
