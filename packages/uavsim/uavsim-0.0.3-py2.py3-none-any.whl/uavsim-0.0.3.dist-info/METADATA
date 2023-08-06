@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: uavsim
+Version: 0.0.3
+Summary: UAV Simulator
+Home-page: https://github.com/kamikaze/uavsim
+Author: Oleg Korsak
+Author-email: kamikaze.is.waiting.you@gmail.com
+License: UNKNOWN
+Keywords: uav simulator
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires: python (>= 3.6)
+Requires-Dist: pyserial
+Requires-Dist: autobahn
+Requires-Dist: crossbar
+Requires-Dist: PyQt5
+Requires-Dist: idna (<2.6)
+Requires-Dist: numpy
+Requires-Dist: h5py
+Requires-Dist: pyqtgraph
+
+UNKNOWN
+
+
