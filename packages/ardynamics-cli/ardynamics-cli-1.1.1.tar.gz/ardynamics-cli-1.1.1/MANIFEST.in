@@ -1,0 +1,19 @@
+# MANIFEST.in
+exclude .gitignore
+exclude cloudformation
+exclude files
+exclude backup.cfg
+exclude s3_upload.py
+exclude requirements.txt
+exclude publish.sh
+exclude .coverage
+exclude .travis.yml
+exclude bitbucket-pipelines.yml
+include README.md
+include setup.cfg
+prune .cache
+prune .git
+prune build
+prune dist
+recursive-exclude *.egg-info *
+recursive-include tests *
