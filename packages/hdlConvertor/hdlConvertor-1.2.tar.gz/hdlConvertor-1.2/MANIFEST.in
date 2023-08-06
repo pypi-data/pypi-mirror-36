@@ -1,0 +1,7 @@
+include *.txt
+include MANIFEST.in
+include README.md
+include setup.py
+include setup.cfg
+
+recursive-include src *.c *.cpp *.h
