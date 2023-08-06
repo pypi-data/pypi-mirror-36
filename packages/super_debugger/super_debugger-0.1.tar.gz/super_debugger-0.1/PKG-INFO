@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: super_debugger
+Version: 0.1
+Summary: Separated thread of debugger on emergency cases.
+Home-page: https://github.com/Surrerstry/super_debugger
+Author: Damian Medrala
+Author-email: surrerstry@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/Surrerstry/super_debugger/archive/master.zip
+Description: More informations: https://surrerstry.pl/super_debugger
+Keywords: debugger,pdb,threads
+Platform: UNKNOWN
