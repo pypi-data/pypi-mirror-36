@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: chd
+Version: 0.0.2
+Summary: CHD - a CLI tool for downloading courses from coursehunters.net.
+Home-page: https://github.com/mikhailsidorov/chd
+Author: Mikhail Sidorov
+Author-email: mikhail.a.sidorov@yandex.com
+License: MIT
+Download-URL: https://github.com/mikhailsidorov/chd
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Education
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Terminals
+Classifier: Topic :: Utilities

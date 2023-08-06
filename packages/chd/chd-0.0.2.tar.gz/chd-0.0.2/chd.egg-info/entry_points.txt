@@ -1,0 +1,3 @@
+[console_scripts]
+chd = chd.__main__:main
+
