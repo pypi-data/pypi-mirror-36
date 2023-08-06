@@ -1,0 +1,149 @@
+Metadata-Version: 2.1
+Name: trimarlib-newland
+Version: 0.1.0rc1
+Summary: Newland scanners library
+Home-page: https://dsl2.trimar.org/pythons-ll/newlandlib
+Author: TRIMAR Developer
+Author-email: developer@trimar.com.pl
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Embedded Systems
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: pyserial
+
+##  trimarlib-newland
+
+Python library for interfacing Newland scanners.
+
+
+###  Getting started
+
+These instructions will get you a copy of the project on your local machine for development and testing purposes. 
+See [Deployment](#deployment) for notes on how to deploy the project on a live system.
+
+
+####  Prerequisites
+
+The build process requires some basic development tools:
+
+* `make` - GNU Make program, either for *nix or Windows system, used to execute build and test targets
+* `git` - used not only to clone the repository, but also in auto-versioning (see [Versioning](#versioning))
+* `python3`
+
+Two standard Python packages are used for build and installation steps:
+
+* `setuptools`
+* `wheel`
+
+The library depends on `pyserial` package as well - it is used as a transport layer with the devices. 
+This dependecy is defined in `setup.py` and is satisfied automatically at installation time.
+
+
+####  Building and releasing
+
+Invoking `make all` (default target) prepares archives for distribution. It is done in two steps:
+
+1. query Git repository for tags (`git describe` command) to determine current version and generate 
+`version.py` file,
+2. invoke Python interpreter passing `setup.py` script to prepare source and wheel distributions.
+
+The Python interpreter invoked by the `Makefile` defaults to `python` - it is possible to override it 
+passing a `PYTHON` variable to the command, e.g. `make all PYTHON=python3`.
+
+The release process is automated and based on GitLab CI/CD environment - each commit triggers a build job
+which attempts to make and install built packages (no testing implemented yet, requires an available hardware
+platform). If the commit is tagged the built wheel distribution is passed to the deployment stage and
+the runner attempts to upload the package to the repository specified in project settings.
+
+> **Note:**
+> Currently the package is uploaded to https://test.pypi.org, migration to https://pypi.org or private
+> repository is planned.  
+
+
+####  Testing
+
+Test source files are located in `newlandlib/tests` directory, they are named after the device and
+functionality being tested. Testing is based on `unittest` Python built-in package.  
+The `Makefile` defines three test targets: `unit-tests`, `integration-tests` and `tests` (invokes both
+unit and integration tests).
+
+
+#####  Unit tests
+
+ `unit-tests` are fairly fast and do not require any device to be attached to the machine, they test
+ utility methods. They may be invoked manually one-by-one (e.g. `python -m newlandlib.tests.test_fm100_utils`)
+ or by the `Makefile` (i.e. `make unit-tests`).
+
+
+#####  Integration tests 
+
+`integration-tests` are **very** slow due to number of tests involved (full testing of FM100 device
+takes ca. 3 hours) and they require the device to be attached to the machine running the code. They may be 
+invoked one-by-one (similarly to unit tests, e.g. `python -m newlandlib.tests.test_fm100_commands`) or
+in batch by the `Makefile` (i.e. `make integration-tests`).  
+
+
+###  Deployment
+
+The library is not intended to be used in a standalone configuration - the primary purpose is to be used
+by higher-level applications, which should define it as a dependency. However it is perfectly correct
+to install it manually using `pip` (override of the source repository may be required).
+
+
+###  Versioning
+
+The project is versioned using a simple pattern based on repository tagging feature. See [Makefile](Makefile)
+for implementation details, for versions available see 
+[tags on this repository](https://dsl2.trimar.org/pythons-ll/newlandlib/tags).
+
+
+###  Usage
+
+See docstrings for API documentation.
+
+Example of device initialization using auto-discovery feature:
+
+```python
+from newlandlib import FM100
+
+
+ports = FM100.discover()
+dev = FM100(ports[0])
+dev.configure()
+
+
+def callback(sender, *, data, codeid=None, aimid=None):
+    print('sender={}, data={}, codeid={}, aimid={}'.format(sender, data, codeid, aimid))
+
+
+dev.callback = callback
+dev.start()
+```
+
+The `callback` method will be invoked with each scanned barcode. 
+
+
+###  License
+
+This software is licensed under the MIT License - see [LICENSE](LICENSE).
+
+--------
+
+
+###  Related documents
+
+This software is based upon the following documents from Newland:
+
+* _FM100 Integration Guide_ (v1.2.1, 22/02/2017)
+* _FM420 Integration Guide_ (v1.1.4, 07/08/2014)
+* _FM430 User Guide_ (v1.2.1, 19/07/2018)
+* _Programming Guide Based on Newland Unified Commands Set_ (v1.0.0, 12/02/2018)
+* _Serial Programming Command Manual_ (v1.3.0, 15/11/2016)
+
+
