@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "femtow"
+version = "0.0.1"
+description = ""
+authors = ["Bruk Habtu <bruk.habtu@gmail.com>"]
+
+repository = "https://gitlab.com/brukhabtu/femtow"
+homepage = "https://gitlab.com/brukhabtu/femtow"
+
+keywords = ['web', 'framework']
+
+[tool.poetry.dependencies]
+python = "3.7"
+webob = "^1.8"
+venusian = "^1.1"
+Routes = "^2.4"
+backlash = "^0.1.4"
+mako = "^1.0"
+gunicorn = "^19.9"
