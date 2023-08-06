@@ -1,0 +1,14 @@
+config = {
+    'NAME': 'eingang',
+    'SQLITE_FILE': 'eingang.db',
+    'MAIL_USERNAME': 'eingang@example.com',
+    'MAIL_PASSWORD': 'strongpassword',
+    'DEBUG': True,
+    'SECURITY_PASSWORD_SALT': @SECURITY_PASSWORD_SALT@,
+    'SECRET_KEY': @SECRET_KEY@,
+}
+
+if __name__ == '__main__':
+    import sys
+    key = sys.argv[1]
+    print(config[key])
