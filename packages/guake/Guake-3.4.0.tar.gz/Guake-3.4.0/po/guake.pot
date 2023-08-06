@@ -1,0 +1,959 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-02 14:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: guake/menus.py:20
+msgid "New Tab"
+msgstr ""
+
+#: guake/menus.py:23
+msgid "Rename"
+msgstr ""
+
+#: guake/menus.py:26
+msgid "Close"
+msgstr ""
+
+#: guake/menus.py:44
+msgid "Copy"
+msgstr ""
+
+#: guake/menus.py:48
+msgid "Copy Url"
+msgstr ""
+
+#: guake/menus.py:51
+msgid "Paste"
+msgstr ""
+
+#: guake/menus.py:58 guake/prefs.py:102
+msgid "Toggle Fullscreen"
+msgstr ""
+
+#: guake/menus.py:62
+msgid "Split ―"
+msgstr ""
+
+#: guake/menus.py:65
+msgid "Split ｜"
+msgstr ""
+
+#: guake/menus.py:68 guake/prefs.py:150
+msgid "Close terminal"
+msgstr ""
+
+#: guake/menus.py:72
+msgid "Save content..."
+msgstr ""
+
+#: guake/menus.py:75 guake/prefs.py:114
+msgid "Reset terminal"
+msgstr ""
+
+#: guake/menus.py:79
+msgid "Find..."
+msgstr ""
+
+#: guake/menus.py:83
+msgid "Open link..."
+msgstr ""
+
+#: guake/menus.py:91
+msgid "Open Link: {!s}..."
+msgstr ""
+
+#: guake/menus.py:93
+msgid "Open Link: {!s}"
+msgstr ""
+
+#: guake/menus.py:98
+msgid "Search on Web"
+msgstr ""
+
+#: guake/menus.py:105
+#, python-format
+msgid "Search on Web: '%s'"
+msgstr ""
+
+#: guake/menus.py:110
+msgid "Quick Open..."
+msgstr ""
+
+#: guake/menus.py:118
+msgid "Quick Open: {!s}..."
+msgstr ""
+
+#: guake/menus.py:121
+msgid "Quick Open: {!s}"
+msgstr ""
+
+#: guake/menus.py:133
+msgid "Custom Commands"
+msgstr ""
+
+#: guake/menus.py:146 guake/prefs.py:110
+msgid "Quit"
+msgstr ""
+
+#: guake/prefs.py:78
+msgid "<user shell>"
+msgstr ""
+
+#: guake/prefs.py:89
+msgid "General"
+msgstr ""
+
+#: guake/prefs.py:94
+msgid "Toggle Guake visibility"
+msgstr ""
+
+#: guake/prefs.py:98
+msgid "Show and focus Guake window"
+msgstr ""
+
+#: guake/prefs.py:106
+msgid "Toggle Hide on Lose Focus"
+msgstr ""
+
+#: guake/prefs.py:119
+msgid "Tab management"
+msgstr ""
+
+#: guake/prefs.py:124
+msgid "New tab"
+msgstr ""
+
+#: guake/prefs.py:128
+msgid "Close tab"
+msgstr ""
+
+#: guake/prefs.py:132
+msgid "Rename current tab"
+msgstr ""
+
+#: guake/prefs.py:137
+msgid "Split management"
+msgstr ""
+
+#: guake/prefs.py:142
+msgid "Split tab vertical"
+msgstr ""
+
+#: guake/prefs.py:146
+msgid "Split tab horizontal"
+msgstr ""
+
+#: guake/prefs.py:154
+msgid "Focus terminal above"
+msgstr ""
+
+#: guake/prefs.py:158
+msgid "Focus terminal below"
+msgstr ""
+
+#: guake/prefs.py:162
+msgid "Focus terminal on the left"
+msgstr ""
+
+#: guake/prefs.py:166
+msgid "Focus terminal on the right"
+msgstr ""
+
+#: guake/prefs.py:170
+msgid "Move the terminal split handle up"
+msgstr ""
+
+#: guake/prefs.py:174
+msgid "Move the terminal split handle down"
+msgstr ""
+
+#: guake/prefs.py:178
+msgid "Move the terminal split handle right"
+msgstr ""
+
+#: guake/prefs.py:182
+msgid "Move the terminal split handle left"
+msgstr ""
+
+#: guake/prefs.py:187
+msgid "Navigation"
+msgstr ""
+
+#: guake/prefs.py:192
+msgid "Go to previous tab"
+msgstr ""
+
+#: guake/prefs.py:196
+msgid "Go to next tab"
+msgstr ""
+
+#: guake/prefs.py:200
+msgid "Move current tab left"
+msgstr ""
+
+#: guake/prefs.py:204
+msgid "Move current tab right"
+msgstr ""
+
+#: guake/prefs.py:208
+msgid "Go to first tab"
+msgstr ""
+
+#: guake/prefs.py:212
+msgid "Go to second tab"
+msgstr ""
+
+#: guake/prefs.py:216
+msgid "Go to third tab"
+msgstr ""
+
+#: guake/prefs.py:220
+msgid "Go to fourth tab"
+msgstr ""
+
+#: guake/prefs.py:224
+msgid "Go to fifth tab"
+msgstr ""
+
+#: guake/prefs.py:228
+msgid "Go to sixth tab"
+msgstr ""
+
+#: guake/prefs.py:232
+msgid "Go to seventh tab"
+msgstr ""
+
+#: guake/prefs.py:236
+msgid "Go to eighth tab"
+msgstr ""
+
+#: guake/prefs.py:240
+msgid "Go to ninth tab"
+msgstr ""
+
+#: guake/prefs.py:244
+msgid "Go to tenth tab"
+msgstr ""
+
+#: guake/prefs.py:248
+msgid "Go to last tab"
+msgstr ""
+
+#: guake/prefs.py:253
+msgid "Appearance"
+msgstr ""
+
+#: guake/prefs.py:257
+msgid "Zoom out"
+msgstr ""
+
+#: guake/prefs.py:260
+msgid "Zoom in"
+msgstr ""
+
+#: guake/prefs.py:263
+msgid "Zoom in (alternative)"
+msgstr ""
+
+#: guake/prefs.py:266
+msgid "Increase height"
+msgstr ""
+
+#: guake/prefs.py:269
+msgid "Decrease height"
+msgstr ""
+
+#: guake/prefs.py:272
+msgid "Increase transparency"
+msgstr ""
+
+#: guake/prefs.py:275
+msgid "Decrease transparency"
+msgstr ""
+
+#: guake/prefs.py:278
+msgid "Toggle transparency"
+msgstr ""
+
+#: guake/prefs.py:282
+msgid "Clipboard"
+msgstr ""
+
+#: guake/prefs.py:287
+msgid "Copy text to clipboard"
+msgstr ""
+
+#: guake/prefs.py:291
+msgid "Paste text from clipboard"
+msgstr ""
+
+#: guake/prefs.py:296
+msgid "Extra features"
+msgstr ""
+
+#: guake/prefs.py:300
+msgid "Search select text on web"
+msgstr ""
+
+#: guake/prefs.py:737
+msgid "Action"
+msgstr ""
+
+#: guake/prefs.py:745
+msgid "Shortcut"
+msgstr ""
+
+#: guake/prefs.py:906 guake/prefs.py:960
+msgid "Custom"
+msgstr ""
+
+#: guake/prefs.py:1250
+msgid "JSON files"
+msgstr ""
+
+#: guake/prefs.py:1254 guake/dialogs.py:106
+msgid "All files"
+msgstr ""
+
+#: guake/prefs.py:1349
+#, python-format
+msgid "The shortcut \"%s\" is already in use."
+msgstr ""
+
+#: guake/prefs.py:1350
+msgid "Error setting keybinding."
+msgstr ""
+
+#: guake/prefs.py:1366
+#, python-format
+msgid ""
+"The shortcut \"%s\" cannot be used because it will become impossible to type "
+"using this key.\n"
+"\n"
+"Please try with a key such as Control, Alt or Shift at the same time.\n"
+msgstr ""
+
+#: guake/main.py:70
+msgid "Show Guake version number and exit"
+msgstr ""
+
+#: guake/main.py:79
+msgid "Enable verbose logging"
+msgstr ""
+
+#: guake/main.py:88
+msgid "Put Guake in fullscreen mode"
+msgstr ""
+
+#: guake/main.py:97
+msgid "Toggles the visibility of the terminal window"
+msgstr ""
+
+#: guake/main.py:105
+msgid "Shows Guake main window"
+msgstr ""
+
+#: guake/main.py:113
+msgid "Hides Guake main window"
+msgstr ""
+
+#: guake/main.py:122
+msgid "Shows Guake preference window"
+msgstr ""
+
+#: guake/main.py:131
+msgid "Shows Guake's about info"
+msgstr ""
+
+#: guake/main.py:140
+msgid "Add a new tab (with current directory set to NEW_TAB)"
+msgstr ""
+
+#: guake/main.py:149
+msgid "Select a tab (SELECT_TAB is the index of the tab)"
+msgstr ""
+
+#: guake/main.py:158
+msgid "Return the selected tab index."
+msgstr ""
+
+#: guake/main.py:167
+msgid "Return the selected tab label."
+msgstr ""
+
+#: guake/main.py:176
+msgid "Execute an arbitrary command in the selected tab."
+msgstr ""
+
+#: guake/main.py:185
+msgid ""
+"Specify the tab to rename. Default is 0. Can be used to select tab by UUID."
+msgstr ""
+
+#: guake/main.py:193
+msgid "Set the hexadecimal (#rrggbb) background color of the selected tab."
+msgstr ""
+
+#: guake/main.py:202
+msgid "Set the hexadecimal (#rrggbb) foreground color of the selected tab."
+msgstr ""
+
+#: guake/main.py:213
+msgid ""
+"Rename the specified tab by --tab-index. Reset to default if TITLE is a "
+"single dash \"-\"."
+msgstr ""
+
+#: guake/main.py:225
+msgid ""
+"Rename the current tab. Reset to default if TITLE is a single dash \"-\"."
+msgstr ""
+
+#: guake/main.py:235
+msgid "Says to Guake go away =("
+msgstr ""
+
+#: guake/main.py:244
+msgid "Do not execute the start up script"
+msgstr ""
+
+#: guake/guake_app.py:154 guake/guake_app.py:273 guake/keybindings.py:92
+#: guake/about.py:54
+msgid "Guake Terminal"
+msgstr ""
+
+#: guake/guake_app.py:160
+msgid "guake-indicator"
+msgstr ""
+
+#: guake/guake_app.py:160
+msgid "guake-tray"
+msgstr ""
+
+#: guake/guake_app.py:165
+msgid "Show"
+msgstr ""
+
+#: guake/guake_app.py:274
+msgid ""
+"Guake is now running,\n"
+"press <b>{!s}</b> to use it."
+msgstr ""
+
+#: guake/guake_app.py:892 guake/notebook.py:206
+msgid "Terminal"
+msgstr ""
+
+#: guake/guake_app.py:973
+msgid "Find"
+msgstr ""
+
+#: guake/guake_app.py:975
+msgid "Forward"
+msgstr ""
+
+#: guake/guake_app.py:975
+msgid "Backward"
+msgstr ""
+
+#: guake/keybindings.py:94
+#, python-format
+msgid ""
+"A problem happened when binding <b>%s</b> key.\n"
+"Please use Guake Preferences dialog to choose another key"
+msgstr ""
+
+#: guake/dialogs.py:11
+msgid "Rename tab"
+msgstr ""
+
+#: guake/dialogs.py:46
+msgid "Do you want to close the tab?"
+msgstr ""
+
+#: guake/dialogs.py:49
+msgid "Do you really want to quit Guake?"
+msgstr ""
+
+#: guake/dialogs.py:51
+msgid " and one tab open"
+msgstr ""
+
+#: guake/dialogs.py:53
+#, python-brace-format
+msgid " and {0} tabs open"
+msgstr ""
+
+#: guake/dialogs.py:56
+msgid "There are no processes running"
+msgstr ""
+
+#: guake/dialogs.py:58
+msgid "There is a process still running"
+msgstr ""
+
+#: guake/dialogs.py:60
+#, python-brace-format
+msgid "There are {0} processes still running"
+msgstr ""
+
+#: guake/dialogs.py:89
+msgid "Save to..."
+msgstr ""
+
+#: guake/dialogs.py:111
+msgid "Text and Logs"
+msgstr ""
+
+#: data/about.glade:14
+msgid ""
+"Guake is an easy to access\n"
+"terminal based on FPS games terminal"
+msgstr ""
+
+#: data/guake.glade:47
+msgid "Guake!"
+msgstr ""
+
+#: data/prefs.glade:43
+msgid "Guake Preferences"
+msgstr ""
+
+#: data/prefs.glade:96
+msgid "<span size=\"18000\"><b>Guake properties</b></span>"
+msgstr ""
+
+#: data/prefs.glade:110
+msgid "Customize behavior and appearance of Guake!"
+msgstr ""
+
+#: data/prefs.glade:193
+msgid "Enable popup notifications on startup"
+msgstr ""
+
+#: data/prefs.glade:210
+msgid "_Play system alert sound on bell"
+msgstr ""
+
+#: data/prefs.glade:226
+msgid "Start Guake at login"
+msgstr ""
+
+#: data/prefs.glade:249
+msgid "Prompt on close tab:"
+msgstr ""
+
+#: data/prefs.glade:263
+msgid "Never"
+msgstr ""
+
+#: data/prefs.glade:264
+msgid "With process running"
+msgstr ""
+
+#: data/prefs.glade:265
+msgid "Always"
+msgstr ""
+
+#: data/prefs.glade:284
+msgid "Always prompt on quit"
+msgstr ""
+
+#: data/prefs.glade:300
+msgid "Show tray icon"
+msgstr ""
+
+#: data/prefs.glade:316
+msgid "_Flash terminal on bell"
+msgstr ""
+
+#: data/prefs.glade:340 data/prefs.glade:1656
+msgid "<b>General</b>"
+msgstr ""
+
+#: data/prefs.glade:366
+msgid "Gtk Theme:"
+msgstr ""
+
+#: data/prefs.glade:390
+msgid "Prefer dark theme"
+msgstr ""
+
+#: data/prefs.glade:419
+msgid "Custom command file path:"
+msgstr ""
+
+#: data/prefs.glade:431
+msgid "Please select a json file"
+msgstr ""
+
+#: data/prefs.glade:519
+msgid "Refocus if open"
+msgstr ""
+
+#: data/prefs.glade:536
+msgid "Hide on lose focus"
+msgstr ""
+
+#: data/prefs.glade:553
+msgid "Start fullscreen"
+msgstr ""
+
+#: data/prefs.glade:569
+msgid "Stay on top"
+msgstr ""
+
+#: data/prefs.glade:587
+msgid "Show tab bar"
+msgstr ""
+
+#: data/prefs.glade:603
+msgid "Use VTE titles for tab names"
+msgstr ""
+
+#: data/prefs.glade:621
+msgid "Abbreviate directories in tab names"
+msgstr ""
+
+#: data/prefs.glade:646
+msgid "Max tab name length:"
+msgstr ""
+
+#: data/prefs.glade:661
+msgid "0"
+msgstr ""
+
+#: data/prefs.glade:683
+msgid "Set window title to current tab name"
+msgstr ""
+
+#: data/prefs.glade:705
+msgid "<b>Main Window Options</b>"
+msgstr ""
+
+#: data/prefs.glade:736
+msgid "Bottom align window instead of top align"
+msgstr ""
+
+#: data/prefs.glade:752
+msgid "Appear on mouse display"
+msgstr ""
+
+#: data/prefs.glade:777
+msgid "Appear on display:"
+msgstr ""
+
+#: data/prefs.glade:807
+msgid "Place tabs on top"
+msgstr ""
+
+#: data/prefs.glade:829
+msgid "<b>Placement</b>"
+msgstr ""
+
+#: data/prefs.glade:865
+msgid "Horizontal Alignment:"
+msgstr ""
+
+#: data/prefs.glade:881
+msgid "Left"
+msgstr ""
+
+#: data/prefs.glade:901
+msgid "Center"
+msgstr ""
+
+#: data/prefs.glade:921
+msgid "Right"
+msgstr ""
+
+#: data/prefs.glade:950
+msgid "Height:"
+msgstr ""
+
+#: data/prefs.glade:963
+msgid "Width:"
+msgstr ""
+
+#: data/prefs.glade:1017
+msgid "Displacement in pixels"
+msgstr ""
+
+#: data/prefs.glade:1045
+msgid "<b>Geometry</b>"
+msgstr ""
+
+#: data/prefs.glade:1076
+msgid "Main Window"
+msgstr ""
+
+#: data/prefs.glade:1121
+msgid "Default interpreter:"
+msgstr ""
+
+#: data/prefs.glade:1161
+msgid "_Run command as a login shell"
+msgstr ""
+
+#: data/prefs.glade:1182
+msgid ""
+"This might not work on all shells, make sure that your shell supports the --"
+"login option"
+msgstr ""
+
+#: data/prefs.glade:1197
+msgid "_Open new tab in current directory"
+msgstr ""
+
+#: data/prefs.glade:1241
+msgid "Shell"
+msgstr ""
+
+#: data/prefs.glade:1287
+msgid "Show scrollbar"
+msgstr ""
+
+#: data/prefs.glade:1311
+msgid "Scrollback lines:"
+msgstr ""
+
+#: data/prefs.glade:1347
+msgid "Infinite scrolling"
+msgstr ""
+
+#: data/prefs.glade:1369
+msgid "<b>Scrollbar</b>"
+msgstr ""
+
+#: data/prefs.glade:1414
+msgid "On output"
+msgstr ""
+
+#: data/prefs.glade:1431
+msgid "On key stroke"
+msgstr ""
+
+#: data/prefs.glade:1454
+msgid "<b>Scroll to Bottom</b>"
+msgstr ""
+
+#: data/prefs.glade:1478
+msgid "Scrolling"
+msgstr ""
+
+#: data/prefs.glade:1513
+msgid "Use the system fixed width font"
+msgstr ""
+
+#: data/prefs.glade:1541
+msgid "Font:"
+msgstr ""
+
+#: data/prefs.glade:1556
+msgid "Choose some font"
+msgstr ""
+
+#: data/prefs.glade:1570
+msgid "Cursor shape:"
+msgstr ""
+
+#: data/prefs.glade:1585
+msgid "Block"
+msgstr ""
+
+#: data/prefs.glade:1586
+msgid "I-Beam"
+msgstr ""
+
+#: data/prefs.glade:1587
+msgid "Underline"
+msgstr ""
+
+#: data/prefs.glade:1601
+msgid "Cursor blink mode:"
+msgstr ""
+
+#: data/prefs.glade:1615
+msgid "Follow GTK+ setting"
+msgstr ""
+
+#: data/prefs.glade:1616
+msgid "Blink on"
+msgstr ""
+
+#: data/prefs.glade:1617
+msgid "Blink off"
+msgstr ""
+
+#: data/prefs.glade:1634
+msgid "Allow bold font"
+msgstr ""
+
+#: data/prefs.glade:1691
+msgid "Built-in schemes:"
+msgstr ""
+
+#: data/prefs.glade:1717
+msgid "Color palette:"
+msgstr ""
+
+#: data/prefs.glade:1732
+msgid "Demo:"
+msgstr ""
+
+#: data/prefs.glade:2035
+msgid "<b>Palette</b>"
+msgstr ""
+
+#: data/prefs.glade:2057
+msgid "<b>Effects</b>"
+msgstr ""
+
+#: data/prefs.glade:2082
+msgid "Transparency:"
+msgstr ""
+
+#: data/prefs.glade:2166
+msgid ""
+"To change a shortcut simply click on its name.\n"
+"To disable a shortcut, press the \"Backspace\" key."
+msgstr ""
+
+#: data/prefs.glade:2216
+msgid "Keyboard shortcuts"
+msgstr ""
+
+#: data/prefs.glade:2268
+msgid ""
+"Quick open is a feature allowing you to open a file directly into your "
+"favorite text editor by clicking on its filename when it appears in your "
+"terminal. See the list of currently supported text patterns used to extract "
+"filename below."
+msgstr ""
+
+#: data/prefs.glade:2306
+msgid "Enable Quick Open when Ctrl+clicking on a filename in the terminal"
+msgstr ""
+
+#: data/prefs.glade:2331
+msgid "Editor command line:"
+msgstr ""
+
+#: data/prefs.glade:2377
+msgid ""
+"<small><i>Use the following elements in the open editor command line:\n"
+"- <b>%(file_path)s</b>: path to the file that has been clicked\n"
+"- <b>%(line_number)s</b>: if your editor supports it, you can directly open "
+"the file to a given line number when found on the screen.\n"
+"\n"
+"For example, for sublime, use <b>subl %(file_path)s:%(line_number)s</b>\n"
+"</i></small>"
+msgstr ""
+
+#: data/prefs.glade:2432
+msgid "Quick open in current terminal"
+msgstr ""
+
+#: data/prefs.glade:2476
+msgid "Quick Open"
+msgstr ""
+
+#: data/prefs.glade:2526
+msgid ""
+"<small>In this dialog you can attach your own command or script to various "
+"guake events</small>"
+msgstr ""
+
+#: data/prefs.glade:2548
+msgid "On show:"
+msgstr ""
+
+#: data/prefs.glade:2560
+msgid "On start:"
+msgstr ""
+
+#: data/prefs.glade:2626
+msgid "Hooks"
+msgstr ""
+
+#: data/prefs.glade:2655
+msgid ""
+"<small><i><b>Note:</b> These options may cause some applications to behave "
+"incorrectly.  They are only here to allow you to work around certain "
+"applications and operating systems that expect different terminal behavior.</"
+"i></small>"
+msgstr ""
+
+#: data/prefs.glade:2675
+msgid "_Backspace key generates:"
+msgstr ""
+
+#: data/prefs.glade:2688
+msgid "_Delete key generates:"
+msgstr ""
+
+#: data/prefs.glade:2703 data/prefs.glade:2720
+msgid "ASCII DEL"
+msgstr ""
+
+#: data/prefs.glade:2704 data/prefs.glade:2721
+msgid "Escape sequence"
+msgstr ""
+
+#: data/prefs.glade:2705 data/prefs.glade:2722
+msgid "Control-H"
+msgstr ""
+
+#: data/prefs.glade:2747
+msgid "_Reset Compatibility Options to Defaults"
+msgstr ""
+
+#: data/prefs.glade:2778
+msgid "Compatibility"
+msgstr ""
+
+#: data/search.glade:138
+msgid "Search forward"
+msgstr ""
+
+#: data/search.glade:153
+msgid "Match case"
+msgstr ""
+
+#: data/search.glade:186
+msgid "Current search direction: Backward"
+msgstr ""
+
+#: data/guake.template.desktop:4 data/autostart-guake.desktop:31
+#: data/guake.desktop:36
+msgid "Use the command line in a Quake-like terminal"
+msgstr ""
+
+#: data/guake.template.desktop:7 data/autostart-guake.desktop:34
+#: data/guake-prefs.template.desktop:7 data/guake-prefs.desktop:47
+#: data/guake.desktop:46
+msgid "guake"
+msgstr ""
+
+#: data/guake-prefs.template.desktop:4 data/guake-prefs.desktop:37
+msgid "Configure your Guake sessions"
+msgstr ""
+
+#: data/guake-prefs.template.desktop:13 data/guake-prefs.desktop:62
+msgid "Terminal;Utility;"
+msgstr ""
