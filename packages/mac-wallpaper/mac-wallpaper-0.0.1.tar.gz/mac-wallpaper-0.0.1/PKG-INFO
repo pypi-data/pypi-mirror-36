@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: mac-wallpaper
+Version: 0.0.1
+Summary: get/set macOS wallpaper
+Home-page: https://github.com/looking-for-a-job/mac-wallpaper.py
+License: UNKNOWN
+Description: [![](https://img.shields.io/badge/OS-MacOS-blue.svg?longCache=True)]()
+        [![](https://img.shields.io/pypi/pyversions/mac-wallpaper.svg?longCache=True)](https://pypi.org/pypi/mac-wallpaper/)
+        
+        ### Install
+        ```bash
+        $ [sudo] pip install mac-wallpaper
+        ```
+        
+        ### Examples
+        ```python
+        >>> import mac_wallpaper
+        >>> mac_wallpaper.set('path/to/wallpaper.jpg')
+        >>> mac_wallpaper.get()
+        'path/to/wallpaper.jpg'
+        ```
+        
+        find in `/Library/Desktop Pictures`
+        ```python
+        >>> mac_wallpaper.find("Solid Gray Dark.png")
+        ['/Library/Desktop Pictures/Solid Colors/Solid Gray Dark.png']
+        ```
+Keywords: wallpaper
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: MacOS X
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development
+Description-Content-Type: text/markdown
