@@ -1,0 +1,10 @@
+MANIFEST.in
+README.md
+setup.py
+moby_dict/__init__.py
+moby_dict.egg-info/PKG-INFO
+moby_dict.egg-info/SOURCES.txt
+moby_dict.egg-info/dependency_links.txt
+moby_dict.egg-info/not-zip-safe
+moby_dict.egg-info/requires.txt
+moby_dict.egg-info/top_level.txt
