@@ -1,0 +1,14 @@
+django_rest_framework_redocs-0.0.5.dist-info/METADATA,sha256=56SaOy7B427OQq37JD5dS_OonlWjjA6wMTLPKzmDUco,2733
+django_rest_framework_redocs-0.0.5.dist-info/RECORD,,
+django_rest_framework_redocs-0.0.5.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+django_rest_framework_redocs-0.0.5.dist-info/top_level.txt,sha256=xqmqon6O0NcJ0RbhxviKMnw1F6lf8UQX8FLOV7NQAcA,7
+redocs/__init__.py,sha256=eB5tEg_BNHHsJgQexgmpZJr4c2VbfooQZMXAWuDHoIg,22
+redocs/admin.py,sha256=suMo4x8I3JBxAFBVIdE-5qnqZ6JAZV0FESABHOSc-vg,63
+redocs/api_endpoint.py,sha256=BjzKHc78fcMqVxXv0YQCgjaFs-IrmvijOGkweYzuPNQ,5482
+redocs/api_parser.py,sha256=8EMHjNWa357wbWLQfecI_ceF_zGUJsNFQBrx_79L7RU,2506
+redocs/apps.py,sha256=_RnhNLPTH1AyH6TX8f8RiDgdUO9PrKVraljE4vlCfOg,87
+redocs/models.py,sha256=Vjc0p2XbAPgE6HyTF6vll98A4eDhA5AvaQqsc4kQ9AQ,57
+redocs/tests.py,sha256=mrbGGRNg5jwbTJtWWa7zSKdDyeB4vmgZCRc2nk6VY-g,60
+redocs/urls.py,sha256=SIHQHP1Ndb8g7DHq15frFnjLRxQWsXg5w7A4BwZn89s,110
+redocs/views.py,sha256=cyTjDn-eDhwVM4qf6E-mMEC5jaWxrKVKzO9qztkHANU,840
+redocs/templates/redocs/index.html,sha256=T2w1y8nF4OizqCZ3XMkSvqUHT_GKRP5EaYTjv4GdhU4,27425
