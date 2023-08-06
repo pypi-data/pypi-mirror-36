@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+versioneer.py
+tootlogger/__init__.py
+tootlogger/_version.py
+tootlogger/cli.py
+tootlogger.egg-info/PKG-INFO
+tootlogger.egg-info/SOURCES.txt
+tootlogger.egg-info/dependency_links.txt
+tootlogger.egg-info/entry_points.txt
+tootlogger.egg-info/not-zip-safe
+tootlogger.egg-info/requires.txt
+tootlogger.egg-info/top_level.txt
+tootlogger/templates/template.jinja2
