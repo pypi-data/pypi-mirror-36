@@ -1,0 +1,30 @@
+Metadata-Version: 1.1
+Name: DtCrawlEngine
+Version: 1.2.6
+Summary: 一个使用http api提供爬虫脚本服务的引擎
+Home-page: http://git.dtstack.cn/dtstack/DtCrawlEngine.git
+Author: Scrapy developers
+Author-email: run.cao.xu@gmail.com
+License: BSD
+Description: =======
+        DtCrawlEngine
+        =======
+        
+        
+        DtCrawlEngine 是对scrapy爬虫脚本的运行服务.
+        
+        允许通过http json api的方式对于爬虫脚本的远程控制
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Environment :: No Input/Output (Daemon)
+Classifier: Topic :: Internet :: WWW/HTTP
