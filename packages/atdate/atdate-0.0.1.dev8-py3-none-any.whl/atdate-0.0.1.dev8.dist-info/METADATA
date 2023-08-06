@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: atdate
+Version: 0.0.1.dev8
+Summary: Simple linux at command string parser
+Home-page: https://github.com/destag/at-date
+Author: Przemysław Pietras
+Author-email: przemyslawp94@gmail.com
+License: UNKNOWN
+Keywords: at date datetime parse
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: lark-parser (>=0.6.3)
+Requires-Dist: python-dateutil (>=2.7.3)
+
+at-date
+
+
