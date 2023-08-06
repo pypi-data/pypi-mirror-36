@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: tornadoapi
+Version: 1.0.0
+Summary: Tornado REST framework
+Home-page: https://github.com/007gzs/tornado-rest-framework
+Author: 007gzs
+Author-email: 007gzs@gmail.com
+License: LGPL v3
+Description-Content-Type: UNKNOWN
+Description: ######################
+        Tornado REST framework
+        ######################
+        .. image:: https://travis-ci.org/007gzs/tornado-rest-framework.svg?branch=master
+               :target: https://travis-ci.org/007gzs/tornado-rest-framework
+        .. image:: https://img.shields.io/pypi/v/tornadoapi.svg
+               :target: https://pypi.org/project/tornadoapi
+        
+        
+Keywords: tornado rest framework api view
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
