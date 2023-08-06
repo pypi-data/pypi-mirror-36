@@ -1,0 +1,11 @@
+hurry.filesize
+inflect
+nltk
+pandas
+ruamel.yaml
+timeout-decorator
+vecto
+wiktionaryparser
+
+[testing]
+pytest
