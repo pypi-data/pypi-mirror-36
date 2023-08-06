@@ -1,0 +1,8 @@
+include *.rst
+include *.txt
+include .coveragerc
+
+recursive-include src *
+
+global-exclude *.pyc
+global-exclude *.pyo
