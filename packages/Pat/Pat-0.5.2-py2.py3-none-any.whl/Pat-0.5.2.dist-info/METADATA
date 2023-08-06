@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: Pat
+Version: 0.5.2
+Summary: Customizable Lazy Exploit Pattern Utility
+Home-page: https://github.com/NoviceLive/pat
+Author: Gu Zhengxiong
+Author-email: rectigu@gmail.com
+License: GPL-3
+Keywords: Exploit Pattern,Cartesian Product
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: click
+Requires-Dist: colorama
+Requires-Dist: flufl.i18n (==1.1.3)
+Requires-Dist: fn
+Requires-Dist: pyperclip
+
+UNKNOWN
+
+
