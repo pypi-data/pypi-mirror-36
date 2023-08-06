@@ -1,0 +1,55 @@
+[atmosphere.cli]
+allocation_source_list = atmosphere.allocation_source:AllocationSourceList
+allocation_source_show = atmosphere.allocation_source:AllocationSourceShow
+group_list = atmosphere.group:GroupList
+group_show = atmosphere.group:GroupShow
+identity_list = atmosphere.identity:IdentityList
+identity_show = atmosphere.identity:IdentityShow
+image_list = atmosphere.image:ImageList
+image_search = atmosphere.image:ImageSearch
+image_show = atmosphere.image:ImageShow
+image_version_list = atmosphere.image:ImageVersionList
+image_version_show = atmosphere.image:ImageVersionShow
+instance_actions = atmosphere.instance:InstanceActions
+instance_attach = atmosphere.instance:InstanceAttach
+instance_create = atmosphere.instance:InstanceCreate
+instance_delete = atmosphere.instance:InstanceDelete
+instance_detach = atmosphere.instance:InstanceDetach
+instance_history = atmosphere.instance:InstanceHistory
+instance_list = atmosphere.instance:InstanceList
+instance_reboot = atmosphere.instance:InstanceReboot
+instance_redeploy = atmosphere.instance:InstanceRedeploy
+instance_resume = atmosphere.instance:InstanceResume
+instance_shelve = atmosphere.instance:InstanceShelve
+instance_show = atmosphere.instance:InstanceShow
+instance_start = atmosphere.instance:InstanceStart
+instance_stop = atmosphere.instance:InstanceStop
+instance_suspend = atmosphere.instance:InstanceSuspend
+instance_unshelve = atmosphere.instance:InstanceUnshelve
+maintenance_record_list = atmosphere.maintenance_record:MaintenanceRecordList
+maintenance_record_show = atmosphere.maintenance_record:MaintenanceRecordShow
+project_create = atmosphere.project:ProjectCreate
+project_list = atmosphere.project:ProjectList
+project_show = atmosphere.project:ProjectShow
+provider_list = atmosphere.provider:ProviderList
+provider_show = atmosphere.provider:ProviderShow
+size_list = atmosphere.size:SizeList
+size_show = atmosphere.size:SizeShow
+version = atmosphere.version:Version
+volume_create = atmosphere.volume:VolumeCreate
+volume_delete = atmosphere.volume:VolumeDelete
+volume_list = atmosphere.volume:VolumeList
+volume_show = atmosphere.volume:VolumeShow
+
+[atmosphere.cli.instance_delete]
+delete_hook = atmosphere.hooks.delete_hook:DeleteHook
+
+[atmosphere.cli.volume_delete]
+delete_hook = atmosphere.hooks.delete_hook:DeleteHook
+
+[console_scripts]
+atmo = atmosphere.main:main
+
+[distutils.commands]
+behave_test = setuptools_behave:behave_test
+

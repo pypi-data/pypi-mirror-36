@@ -1,0 +1,73 @@
+{
+    "id": 1403,
+    "uuid": "32e3354c-03cc-40e1-8c33-02bc7f6be299",
+    "url": "https://use.jetstream-cloud.org/api/v2/identities/32e3354c-03cc-40e1-8c33-02bc7f6be299",
+    "key": "Username: eriksf, Project:eriksf",
+    "quota": {
+        "id": 10,
+        "uuid": "608e27b5-2560-438d-a581-4e97dcf75c7f",
+        "url": "https://use.jetstream-cloud.org/api/v2/quotas/608e27b5-2560-438d-a581-4e97dcf75c7f",
+        "cpu": 132,
+        "memory": 360,
+        "storage": 100,
+        "instance_count": 25,
+        "snapshot_count": 10,
+        "storage_count": 10,
+        "floating_ip_count": 25,
+        "port_count": 25
+    },
+    "credentials": [
+        {
+            "id": 7177,
+            "key": "key",
+            "clean_value": "eriksf"
+        },
+        {
+            "id": 7178,
+            "key": "secret",
+            "clean_value": "********"
+        },
+        {
+            "id": 7179,
+            "key": "router_name",
+            "clean_value": "atmoadmin-router"
+        },
+        {
+            "id": 7180,
+            "key": "ex_project_name",
+            "clean_value": "eriksf"
+        },
+        {
+            "id": 7181,
+            "key": "ex_tenant_name",
+            "clean_value": "eriksf"
+        }
+    ],
+    "usage": -1,
+    "is_leader": true,
+    "provider": {
+        "id": 5,
+        "uuid": "3ff65aa8-505b-48c3-aef1-aa0ada14c756",
+        "url": "https://use.jetstream-cloud.org/api/v2/providers/3ff65aa8-505b-48c3-aef1-aa0ada14c756",
+        "name": "Jetstream - TACC",
+        "description": "",
+        "public": true,
+        "active": true,
+        "start_date": "2016-02-16T21:40:22.483700Z",
+        "end_date": null
+    },
+    "members": [
+        {
+            "id": 718,
+            "uuid": "7dccc792-5490-466a-8704-0b7edd54c8f2",
+            "url": "https://use.jetstream-cloud.org/api/v2/groups/7dccc792-5490-466a-8704-0b7edd54c8f2",
+            "name": "eriksf"
+        }
+    ],
+    "user": {
+        "id": 1010,
+        "uuid": "0ea75b5f-40a0-441e-a08c-486a89e2a9d7",
+        "url": "https://use.jetstream-cloud.org/api/v2/users/0ea75b5f-40a0-441e-a08c-486a89e2a9d7",
+        "username": "eriksf"
+    }
+}
