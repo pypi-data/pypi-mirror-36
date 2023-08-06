@@ -1,0 +1,10 @@
+README.md
+setup.cfg
+setup.py
+extractor/__init__.py
+extractor/phrases_extractor.py
+phraseextractor.egg-info/PKG-INFO
+phraseextractor.egg-info/SOURCES.txt
+phraseextractor.egg-info/dependency_links.txt
+phraseextractor.egg-info/requires.txt
+phraseextractor.egg-info/top_level.txt
