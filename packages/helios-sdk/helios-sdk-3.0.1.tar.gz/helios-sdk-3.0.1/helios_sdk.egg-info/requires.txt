@@ -1,0 +1,7 @@
+requests>=2.0.0
+numpy>=1.13.0
+Pillow>=5.0.0
+python-dateutil>=2.7.0
+
+[tests]
+pytest>=3.5.0
