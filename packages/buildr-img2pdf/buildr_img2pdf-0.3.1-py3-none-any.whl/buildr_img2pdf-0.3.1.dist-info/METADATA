@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: buildr-img2pdf
+Version: 0.3.1
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: 
+Author-email: 
+License: UNKNOWN
+Platform: UNKNOWN
+Provides-Extra: test
+Requires-Dist: Pillow
+Provides-Extra: test
+Requires-Dist: pdfrw; extra == 'test'
+
+UNKNOWN
+
+
