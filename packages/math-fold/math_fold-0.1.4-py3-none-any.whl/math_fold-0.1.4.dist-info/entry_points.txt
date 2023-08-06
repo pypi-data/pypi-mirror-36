@@ -1,0 +1,3 @@
+[console_scripts]
+calculate = fold.__main__:main
+

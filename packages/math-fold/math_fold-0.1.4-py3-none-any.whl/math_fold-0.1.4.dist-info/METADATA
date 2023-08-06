@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: math-fold
+Version: 0.1.4
+Summary: back math notaion in CLI
+Home-page: https://github.com/weaming/math-fold
+Author: weaming
+Author-email: garden.yuen@gmail.com
+License: UNKNOWN
+Project-URL: Source, https://github.com/weaming/math-fold
+Project-URL: Bug Reports, https://github.com/weaming/math-fold
+Keywords: math
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# Math Fold
+
+Bring **fold** in functional programming to CLI.
+
+`pip3 install math-fold`
+
+## Usage Example
+
+```
+$ cat r.txt | calculate 'lambda a, b: a+b+3'
+82
+$ cat r.txt | calculate 'min'
+1
+$ cat r.txt | calculate 'max'
+10
+$ cat r.txt | calculate 'mean'
+9.001953125
+```
+
+
