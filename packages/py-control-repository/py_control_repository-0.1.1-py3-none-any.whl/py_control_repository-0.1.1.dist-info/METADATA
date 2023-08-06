@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: py-control-repository
+Version: 0.1.1
+Summary: Molule to manage Puppet control repository hosted on Github
+Home-page: UNKNOWN
+Author: Florian Chardin
+Author-email: othalla.lf@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development
+Requires-Dist: PyGithub (>=1.43)
+
+================================================================
+Py Control Repository - Python SDK for Puppet Control Repository
+================================================================
+
+.. image:: https://travis-ci.org/othalla/py-control-repository.svg?branch=master
+    :target: https://travis-ci.org/othalla/py-control-repository
+
+Py Control Repository is SDK for Pyththon which allows developpers
+to manage a Puppet Control Repository based on GitHub.
+
+
+Install
+-------
+
+.. code-block:: sh
+
+    $ pip install py-control-repository
+
+Usage
+-----
+
+Add a forge module
+~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+   control_repository = ControlRepository('myorga', 'my_control_repository', 'token')
+
+   puppet_environment = control_repository.get_environent('production')
+
+   puppetfile = puppet_environment.get_puppetfile()
+
+   puppetfile.add_forge_module('puppetlabs/apache', version='0.10.1')
+
+
