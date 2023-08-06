@@ -1,0 +1,12 @@
+README.md
+setup.py
+pyclick/__init__.py
+pyclick/_beziercurve.py
+pyclick/_utils.py
+pyclick/humanclicker.py
+pyclick/humancurve.py
+pyclick.egg-info/PKG-INFO
+pyclick.egg-info/SOURCES.txt
+pyclick.egg-info/dependency_links.txt
+pyclick.egg-info/requires.txt
+pyclick.egg-info/top_level.txt
