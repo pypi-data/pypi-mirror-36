@@ -1,0 +1,22 @@
+CHANGES
+=======
+
+0.2.0
+-----
+
+* Add dev python env
+* Change import API to support module names not matching nixpkgsattribute names
+* Use pythonix for nix evaluation
+
+0.1.1
+-----
+
+* Autodetect python version, support 3.5+
+* fix typos in README
+* add a way to try it
+
+0.1.0
+-----
+
+* initial revision
+* Initial commit
