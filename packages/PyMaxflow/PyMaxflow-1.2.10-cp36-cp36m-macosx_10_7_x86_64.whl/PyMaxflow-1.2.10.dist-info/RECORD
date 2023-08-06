@@ -1,0 +1,10 @@
+PyMaxflow-1.2.10.dist-info/DESCRIPTION.rst,sha256=xzm_SUUWr73D4akUELE196KUEFE-BMDtGv7w2hUJ4XE,592
+PyMaxflow-1.2.10.dist-info/METADATA,sha256=yZBsl46ed-lSbvec2UI6lT7Xhp_bCPq2mIOIYlnMEww,1517
+PyMaxflow-1.2.10.dist-info/RECORD,,
+PyMaxflow-1.2.10.dist-info/WHEEL,sha256=74RyQNQ88rBYFsd2n9fSga6HOET28X3dMSV592JcRcw,110
+PyMaxflow-1.2.10.dist-info/metadata.json,sha256=Rq6CHz8JnEU1AGS6gM6Gbg22NhZpKUVI_nCaDvbxM6A,1017
+PyMaxflow-1.2.10.dist-info/top_level.txt,sha256=gHkR9ckK3594F_F8Ee6sxRRSOGOo3efERzgU4DMoLE8,8
+maxflow/__init__.py,sha256=tk3UBhyKDv9IoQGJOAO7Ep5zkW6vDfKxXVmEJ4E3E40,1259
+maxflow/_maxflow.cpython-36m-darwin.so,sha256=HJSXqMreILXG_ToZfr_G2YXn52A0GZUEaYzI91j_ax4,400676
+maxflow/fastmin.py,sha256=Z9Re6EpFlPZqVvY3BXEgtJnAwrjbS6_n3N-yXI5xs4A,6282
+maxflow/version.py,sha256=Lq2qAOBXzVMx2K4stG8lJ-MkHHZjFJxq9zY2soXZrnc,126
