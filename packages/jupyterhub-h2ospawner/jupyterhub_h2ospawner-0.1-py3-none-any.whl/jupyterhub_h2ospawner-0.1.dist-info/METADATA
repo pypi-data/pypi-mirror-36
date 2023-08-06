@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: jupyterhub-h2ospawner
+Version: 0.1
+Summary: JupyterHub Spawner using H2O based on systemdspawner
+Home-page: https://github.com/ycysuk/h2ospawner
+Author: Chengyi Yang
+Author-email: ycysuk@gmail.com
+License: 3 Clause BSD
+Platform: UNKNOWN
+Requires-Dist: jupyterhub (>=0.9)
+Requires-Dist: jupyterhub-systemdspawner (>=0.11)
+
+See https://github.com/ycysuk/h2ospawner for more info
+
+
