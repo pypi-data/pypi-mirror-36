@@ -1,0 +1,16 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "callpass"
+author = "Kyle Jones"
+author-email = "kyle@kf5jwc.us"
+requires-python = ">=3.6"
+requires = [
+	"requests",
+	"cachecontrol",
+]
+
+[tool.flit.scripts]
+callpass = "callpass.__main__:main"
