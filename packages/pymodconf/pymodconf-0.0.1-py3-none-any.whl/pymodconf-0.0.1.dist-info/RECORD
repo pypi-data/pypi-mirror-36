@@ -1,0 +1,17 @@
+modconf/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+modconf/io.py,sha256=_A69YfM2UwL3zJdLtlm-P0ppBtG-lZ2524m3fDy400E,1971
+modconf/parser.py,sha256=7czb637ENDah0T-NktNo2-tuRRVEqu9bCuJDYvG1_q8,4886
+modconf/tag.py,sha256=Q79Sn1l_HDvdm7UXZeHTM8LdTtrwNzLy783Js2a_9wQ,2382
+pymodconf/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pymodconf/io.py,sha256=_A69YfM2UwL3zJdLtlm-P0ppBtG-lZ2524m3fDy400E,1971
+pymodconf/parser.py,sha256=oHcFPMdFD0i09Wb4El85ccO8zqOwMJs9VebVHhNESeg,4890
+pymodconf/tag.py,sha256=Q79Sn1l_HDvdm7UXZeHTM8LdTtrwNzLy783Js2a_9wQ,2382
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_io.py,sha256=mIlbueRa5TvIkhwW6o1Wlxq2S_dIMOiwzgc_fhzyNLY,2943
+tests/test_parser.py,sha256=gTFndLNUofBVEklbyUtydQEgeJRVuFMQBG3LTQ8KqrQ,3266
+tests/test_tag.py,sha256=1u3ibYwbjc3Hn6AcR8rumM4Ly5lWlFSp5W1pyNuC1Ik,2357
+pymodconf-0.0.1.dist-info/LICENSE,sha256=o4x6WNmg-nMmh5Plc2eEogonhRfvC_MLRKS-ONvTirk,35054
+pymodconf-0.0.1.dist-info/METADATA,sha256=FG0gPmtBydPlrvYBBYMjG8uZL1-fxJAWuI8cZmKV_oo,4221
+pymodconf-0.0.1.dist-info/WHEEL,sha256=YO0P_oFqt6DWX0LhbH7jsyzb3BUtoq2kERtqGsXDJHs,92
+pymodconf-0.0.1.dist-info/top_level.txt,sha256=hOJ0CTiNXxaz-lZg0K_nVAq26s_V4BDllfnvp4dsywA,16
+pymodconf-0.0.1.dist-info/RECORD,,
