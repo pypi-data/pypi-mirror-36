@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: balebot
+Version: 1.2.7
+Summary: python framework for Bale messenger Bot API
+Home-page: https://github.com/balemessenger/bale-bot-python
+Author: bale
+Author-email: balebot@elenoon.ir
+License: GNU
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp (==2.3.7)
+Requires-Dist: asyncio (==3.4.3)
+Requires-Dist: graypy (==0.2.14)
+Requires-Dist: backoff (==1.6.0)
+
+# Changelog
+[![Build Status](https://avatars1.githubusercontent.com/u/35299314?s=200&v=4)](https://github.com/balemessenger)
+
+
+## [1.2.6] - 2018-09-30
+### Added
+- Send photo message easier than the past.
+- Send Document message easier than the past.
+
+
+###fixed
+- network connection
+
+
+
+
