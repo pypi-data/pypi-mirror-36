@@ -1,0 +1,16 @@
+trained-model.bin,sha256=WYaoBcLJXLnZPSwyHCPqoWO64p6pspSUuTiFoQKCw1k,2529
+autosubsync/__init__.py,sha256=zbsFELHUObTy0dENjZKl-KU9zBHy3_YBSRChNy3AD5Q,150
+autosubsync/features.py,sha256=MC9e5cwEaFgzLYurkKdYutPaM6x2_Etung4A_F7_fMc,5917
+autosubsync/find_transform.py,sha256=iLKIdMTnmn5ODMGnc1xupUChGzurydm90PNSYLqfB_M,3685
+autosubsync/main.py,sha256=3CmjRvmHeKOavefx6wk3pTteikPCn2xAIUgV3FZgSTg,3755
+autosubsync/model.py,sha256=dUJ4RkzueurRok3cOGO3GRamNJ_XpFBRm9Qy53V9FJE,3110
+autosubsync/predict.py,sha256=a8d9LwQ8hdVkrO3dhyF48YPcqjQMWNNpV6n2ZbhtkBU,932
+autosubsync/preprocessing.py,sha256=cc-Y-3WoufYTprv6ZL85-8gJKBVNBwIqsJt5lqmkaug,2905
+autosubsync/quality_of_fit.py,sha256=in_Wrx9vwBNCpVrHSLgY2uTFqXfV3C9oXivbeQ8zS3E,2503
+autosubsync/srt_io.py,sha256=3VexQZz33DsV2ZTUYvx80VhDpzxu7PaDhn0Q6R8ng2U,4258
+autosubsync/trained_logistic_regression.py,sha256=j7pOANtxjteoTCej5yWU_K3qwvv8XeNLIKP4aQ_3HdY,2315
+autosubsync-0.1.1.dist-info/METADATA,sha256=HN9lPjQM4TLPAdII8nz-5Os1is4T51FXX9D66V1_5XA,1117
+autosubsync-0.1.1.dist-info/RECORD,,
+autosubsync-0.1.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+autosubsync-0.1.1.dist-info/entry_points.txt,sha256=wcHRYgF-uNMufAoC3wgGIdt-Ild2YXs-1nCLNuPdEtY,63
+autosubsync-0.1.1.dist-info/top_level.txt,sha256=DaKBwrGt_AWGLJsWzbP67BHFJ9IwRO9jLhRJtpELpJU,12
