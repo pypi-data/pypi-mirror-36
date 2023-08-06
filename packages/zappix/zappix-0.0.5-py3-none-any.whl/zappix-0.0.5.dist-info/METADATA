@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: zappix
+Version: 0.0.5
+Summary: A Python replacement for Zabbix sender and get.
+Home-page: https://gitlab.com/szuro/zappix
+Author: Robert Szulist
+Author-email: r.szulist@gmail.com
+License: UNKNOWN
+
+# zappix - a package for Zabbix sender and get.
+
+
