@@ -1,0 +1,12 @@
+README.md
+setup.py
+mammon/__init__.py
+mammon/exceptions.py
+mammon/host.py
+mammon/policy.py
+mammon/result.py
+mammon/script.py
+mammon.egg-info/PKG-INFO
+mammon.egg-info/SOURCES.txt
+mammon.egg-info/dependency_links.txt
+mammon.egg-info/top_level.txt
