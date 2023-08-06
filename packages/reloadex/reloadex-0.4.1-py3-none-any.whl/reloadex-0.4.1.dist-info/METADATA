@@ -1,0 +1,88 @@
+Metadata-Version: 2.1
+Name: reloadex
+Version: 0.4.1
+Summary: Restart WSGI server on code changes
+Home-page: https://github.com/iljau/reloadex
+Author: Ilja Umov
+Author-email: 
+License: MIT
+Keywords: reload wsgi
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Description-Content-Type: text/markdown
+Requires-Dist: pathspec (>=0.5.9)
+Requires-Dist: pywin32; platform_system == "Windows"
+
+reloadex
+-----------------------------
+
+Restart wsgi server on Python code changes.
+
+---
+
+### Installation and usage
+
+Install:
+```bash
+pip install reloadex
+```
+
+Install from git:
+```bash
+pip install https://github.com/iljau/reloadex/archive/master.zip#egg=reloadex
+```
+
+Given example [Flask](https://github.com/pallets/flask) application.
+
+```python
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+def main():
+    app.run()
+
+if __name__ == "__main__":
+    main()
+```
+
+To run this app with reloader specify module name or filename, with main function:
+
+```bash
+reloadex my_app:main
+reloadex my_app.py:main
+```
+
+By default `main` function is invoked, so above simplifies to:
+```bash
+reloadex my_app
+reloadex my_app.py
+```
+
+Using python module invocation also works:
+```bash
+python -m reloadex my_app:main
+```
+
+Reloader uses current working directory as root: there it looks for `.reloadignore` and recursively watches all subdirectories.
+
+---
+
+### Getting source for local development
+```bash
+git clone git@github.com:iljau/reloadex.git
+cd reloadex
+pip install -e .
+```
+
