@@ -1,0 +1,8 @@
+- job:
+    name: networking-spp-tempest-test
+    parent: base
+
+- project:
+    networking-spp-integration-ci:
+      jobs:
+        - networking-spp-tempest-test
