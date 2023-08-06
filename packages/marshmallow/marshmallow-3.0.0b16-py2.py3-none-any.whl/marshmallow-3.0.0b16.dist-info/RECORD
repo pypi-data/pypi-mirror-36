@@ -1,0 +1,16 @@
+marshmallow/__init__.py,sha256=b7pBGXIdOOIZFQifEzwUcnC41x7uYcyYHxIeUYW0ezg,688
+marshmallow/base.py,sha256=CpMU9yBAVktRCp5oILsQ_5zIJUiQUng7gXm5a3_N56A,1025
+marshmallow/class_registry.py,sha256=odl2e7McaGO4mc-lOVyOBZUDWp38WORKNo-QGQkjPos,2401
+marshmallow/compat.py,sha256=A6lwDhVkPCE-Rf75PsPi9LN-eqobhM-GWBboaaUobDk,1266
+marshmallow/decorators.py,sha256=sIseTZcmA0qOOT7GS2Sr1GBSSHWJZqQTxfdfVsPfCm4,6138
+marshmallow/exceptions.py,sha256=DFH274tTXLh6nzjRm_FBOP9RQK4fB-RTsiNuiU6ICW4,2142
+marshmallow/fields.py,sha256=PxKtzvk8tvghe8R1Fpm-TXoek87nxmzC9Oay4b3Wi6s,52821
+marshmallow/marshalling.py,sha256=Xw1Rnnhl7ByAmS6yb8L7Mi51a8KQLIG73T-fENo7idQ,11265
+marshmallow/orderedset.py,sha256=YC6JERONi6KNRP2qjbhPw9qllLPKnp75zdrgC0YhJu4,2971
+marshmallow/schema.py,sha256=RVbMnOxU7nUp86iqY3nAH6paAoMcE1pe0tVRQZou_oo,40841
+marshmallow/utils.py,sha256=HgNViVhWTqYbUFH7eLkI9SFHlKfLlo86uUMB0aFhAr4,12891
+marshmallow/validate.py,sha256=w3-rc5a0QhRmqR3xaU1c92sTpBEV15y73jUuBHIbRBc,17002
+marshmallow-3.0.0b16.dist-info/METADATA,sha256=soGHyzSkHkOZEVsRFGs2GwwfeD_gNJUDX4kEXiZVKOw,6474
+marshmallow-3.0.0b16.dist-info/RECORD,,
+marshmallow-3.0.0b16.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+marshmallow-3.0.0b16.dist-info/top_level.txt,sha256=B_yjxTA7Lx7T1LxnaUpTTd8CXt4shc4blEcScke_vVc,12
