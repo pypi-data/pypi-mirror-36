@@ -1,0 +1,6 @@
+
+TRANS next(COUNT_process_task) = (
+    step_3 & next(step_0)
+    ? COUNT_process_task + 1
+    : COUNT_process_task
+);

@@ -1,0 +1,10 @@
+
+{
+    "step_0": false,
+    "step_1": false,
+    "step_2": true,
+    "step_3": false,
+    "fault_occurred_in_step_1": false,
+    "_absolute_time": 5,
+    "time": 0
+}

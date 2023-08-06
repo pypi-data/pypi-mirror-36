@@ -1,0 +1,190 @@
+// Copyright (c) 2017-2018, Blake C. Rawlings.
+//
+// This file is part of `st2smv`.
+
+?start : statements
+       | function_block
+
+////////////////
+// Statements //
+////////////////
+
+statements : statement* -> _passthrough
+?statement : assignment
+           | if_statement
+           | instruction
+           | ESCAPED_STRING -> junk // junk lines, ignore
+           | _SEMICOLON -> junk
+
+// Assignments.
+assignment : identifier _COLEQ expression _SEMICOLON
+
+// IF...ELSIF...ELSE.
+if_statement : if elsif* else? _END_IF _SEMICOLON
+if : _IF expression _THEN statements
+elsif : _ELSIF expression _THEN statements
+else : _ELSE statements
+_IF : "IF"i
+_THEN : "THEN"i
+_ELSIF : "ELSIF"i
+_ELSE : "ELSE"i
+_END_IF : "END_IF"i
+
+// Instructions.
+instruction : (funcall | fbcall) _SEMICOLON
+
+// Function blocks.
+function_block : _FUNCTION_BLOCK identifier declaration_blocks _BEGIN statements _END_FUNCTION_BLOCK
+_FUNCTION_BLOCK : "FUNCTION_BLOCK"i
+_BEGIN : "BEGIN"i
+_END_FUNCTION_BLOCK : "END_FUNCTION_BLOCK"i
+//
+declaration_blocks : declaration_block* -> _passthrough
+?declaration_block : const_block
+                   | var_block
+                   | var_input_block
+                   | var_output_block
+                   | var_in_out_block
+                   | var_temp_block
+const_block : _CONST const_declaration* _END_CONST -> _passthrough
+var_block : _VAR var_declaration* _END_VAR -> _passthrough
+var_input_block : _VAR_INPUT var_input_declaration* _END_VAR -> _passthrough
+var_output_block : _VAR_OUTPUT var_output_declaration* _END_VAR -> _passthrough
+var_in_out_block : _VAR_IN_OUT var_in_out_declaration* _END_VAR -> _passthrough
+var_temp_block : _VAR_TEMP var_temp_declaration* _END_VAR -> _passthrough
+const_declaration : identifier type_annotation? _COLEQ literal _SEMICOLON
+var_declaration : identifier type_annotation (_COLEQ expression)? _SEMICOLON
+var_input_declaration : identifier type_annotation _SEMICOLON
+var_output_declaration : identifier type_annotation _SEMICOLON
+var_in_out_declaration : identifier type_annotation _SEMICOLON
+var_temp_declaration : identifier type_annotation _SEMICOLON
+?type_annotation : _COLON identifier
+_CONST : "CONST"i
+_END_CONST : "END_CONST"i
+_VAR : "VAR"i
+_END_VAR : "END_VAR"i
+_VAR_INPUT : "VAR_INPUT"i
+_VAR_OUTPUT : "VAR_OUTPUT"i
+_VAR_IN_OUT : "VAR_IN_OUT"i
+_VAR_TEMP : "VAR_TEMP"i
+_COLON : ":"
+
+/////////////////
+// Expressions //
+/////////////////
+
+?expression : precedence1
+
+// Operator precedence.
+?precedence1 : precedence2
+             | precedence1 (_OR precedence2) -> or_
+?precedence2 : precedence3
+             | precedence2 (_XOR precedence3) -> xor
+?precedence3 : precedence4
+             | precedence3 (_AND precedence4) -> and_
+?precedence4 : precedence5
+             | precedence4 _EQ precedence5 -> eq
+             | precedence4 _NEQ precedence5 -> neq
+?precedence5 : precedence6
+             | precedence5 _LEQ precedence6 -> leq
+             | precedence5 _LT precedence6 -> lt
+             | precedence5 _GEQ precedence6 -> geq
+             | precedence5 _GT precedence6 -> gt
+?precedence6 : precedence7
+             | precedence6 (_ADD precedence7) -> add
+             | precedence6 (_SUB_NEG precedence7) -> sub
+?precedence7 : precedence8
+             | precedence7 (_MLT precedence8) -> mlt
+             | precedence7 (_DIV precedence8) -> div
+             | precedence7 (_MOD precedence8) -> mod
+?precedence8 : precedence9
+             | _SUB_NEG precedence9 -> neg
+             | _NOT precedence9 -> not_
+?precedence9 : precedence10
+             | precedence9 (_EXP precedence10) -> exp // left associative?
+?precedence10 : grouping | funcall | fbcall | value
+
+// Grouping.
+?grouping : _LPAR expression _RPAR
+
+// Function calls.
+funcall : identifier _LPAR (expression (_COMMA expression)*)? _RPAR
+        | _AND _LPAR (expression (_COMMA expression)*)? _RPAR -> and_
+        | _XOR _LPAR (expression (_COMMA expression)*)? _RPAR -> xor
+        | _OR _LPAR (expression (_COMMA expression)*)? _RPAR -> or_
+
+// Function block calls.
+fbcall_arg : identifier _COLEQ value -> fbcall_arg_in
+           | identifier _FATARROW value -> fbcall_arg_out
+_fbcall_arglist : ((fbcall_arg | expression) _COMMA)* fbcall_arg (_COMMA (fbcall_arg | expression))*
+fbcall : identifier _LPAR _fbcall_arglist _RPAR
+
+////////////
+// Values //
+////////////
+
+?value : literal | identifier
+
+// Literals.
+?literal : (TRUE | FALSE) -> boolean
+         | SIGNED_NUMBER -> number // TODO: check this
+
+// Identifiers.
+identifier : CNAME // TODO: they can start with digits
+
+//////////////////////////
+// Symbols and Keywords //
+//////////////////////////
+
+// Assignment operators.
+_COLEQ : ":=" // used in assignments and function block calls
+_FATARROW : "=>" // used in function block calls
+
+// Comparison operators.
+_NEQ : "<>"
+_LEQ : "<="
+_LT : "<"
+_GEQ : ">="
+_GT : ">"
+_EQ : "="
+
+// Boolean operators.
+_AND : "AND"i
+_OR : "OR"i
+_XOR : "XOR"i
+_NOT : "NOT"i
+
+// Arithmetic operators.
+_ADD : "+"
+_SUB_NEG : "-"
+_MLT : "*"
+_DIV : "/"
+_EXP : "**"
+_MOD : "MOD"i
+
+// Other syntax.
+_SEMICOLON : ";"
+_COMMA : ","
+_LPAR : "("
+_RPAR : ")"
+TRUE : "TRUE"i
+FALSE : "FALSE"i
+
+//////////////
+// Comments //
+//////////////
+
+COMMENT : COMMENT_LINE | COMMENT_BLOCK
+COMMENT_LINE : "//" /[^\n]*/
+COMMENT_BLOCK : "(*" (/./ | "\n")*? "*)"
+
+//////////
+// Lark //
+//////////
+
+%import common.SIGNED_NUMBER
+%import common.CNAME
+%import common.ESCAPED_STRING
+%import common.WS
+%ignore COMMENT
+%ignore WS
