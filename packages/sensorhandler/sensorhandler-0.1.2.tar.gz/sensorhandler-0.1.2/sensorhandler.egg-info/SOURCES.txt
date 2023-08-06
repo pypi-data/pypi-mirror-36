@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+sensorhandler/__init__.py
+sensorhandler/__main__.py
+sensorhandler.egg-info/PKG-INFO
+sensorhandler.egg-info/SOURCES.txt
+sensorhandler.egg-info/dependency_links.txt
+sensorhandler.egg-info/top_level.txt
