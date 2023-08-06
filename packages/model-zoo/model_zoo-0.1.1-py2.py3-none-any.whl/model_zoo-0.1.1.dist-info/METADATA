@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: model-zoo
+Version: 0.1.1
+Summary: A framework to help you build model much more easily.
+Home-page: https://github.com/ModelZoo/ModelZoo
+Author: Germey
+Author-email: cqc@cuiqingcai.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.4.0
+Description-Content-Type: text/markdown
+Requires-Dist: absl-py (==0.5.0)
+Requires-Dist: astor (==0.7.1)
+Requires-Dist: cycler (==0.10.0)
+Requires-Dist: gast (==0.2.0)
+Requires-Dist: grpcio (==1.15.0)
+Requires-Dist: h5py (==2.8.0)
+Requires-Dist: Keras-Applications (==1.0.6)
+Requires-Dist: Keras-Preprocessing (==1.0.5)
+Requires-Dist: kiwisolver (==1.0.1)
+Requires-Dist: Markdown (==3.0.1)
+Requires-Dist: matplotlib (==3.0.0)
+Requires-Dist: numpy (>=1.15.2)
+Requires-Dist: pandas
+Requires-Dist: protobuf (==3.6.1)
+Requires-Dist: pyparsing (==2.2.2)
+Requires-Dist: python-dateutil (==2.7.3)
+Requires-Dist: scikit-learn (==0.20.0)
+Requires-Dist: scipy (>=1.1.0)
+Requires-Dist: six (==1.11.0)
+Requires-Dist: sklearn
+Requires-Dist: tensorboard (>=1.11.0)
+Requires-Dist: tensorflow (>=1.11.0)
+Requires-Dist: termcolor (==1.1.0)
+Requires-Dist: Werkzeug (==0.14.1)
+
+
+# ModelZoo
+
+A framework to help you build model much more easily.
+
+## Usage
+
+todo...
+
