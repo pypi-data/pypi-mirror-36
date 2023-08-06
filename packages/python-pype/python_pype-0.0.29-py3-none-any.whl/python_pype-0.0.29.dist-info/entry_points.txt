@@ -1,0 +1,3 @@
+[console_scripts]
+pype=pype:pype.app.cli
+
