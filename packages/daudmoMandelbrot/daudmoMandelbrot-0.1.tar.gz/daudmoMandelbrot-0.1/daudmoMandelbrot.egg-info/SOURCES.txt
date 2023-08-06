@@ -1,0 +1,8 @@
+MANIFEST.in
+setup.py
+daudmoMandelbrot.egg-info/PKG-INFO
+daudmoMandelbrot.egg-info/SOURCES.txt
+daudmoMandelbrot.egg-info/dependency_links.txt
+daudmoMandelbrot.egg-info/not-zip-safe
+daudmoMandelbrot.egg-info/top_level.txt
+test/test.py
