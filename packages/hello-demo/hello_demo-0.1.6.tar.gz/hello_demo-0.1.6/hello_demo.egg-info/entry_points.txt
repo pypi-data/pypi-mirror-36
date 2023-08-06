@@ -1,0 +1,3 @@
+[console_scripts]
+hello_demo = hello_demo.cli:hello
+
