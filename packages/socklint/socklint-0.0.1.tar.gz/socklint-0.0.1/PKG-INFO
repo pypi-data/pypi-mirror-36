@@ -1,0 +1,46 @@
+Metadata-Version: 1.1
+Name: socklint
+Version: 0.0.1
+Summary: API objects used by Sock Puppet
+Home-page: https://github.com/JesseTG/socklint
+Author: Jesse Talavera-Greenberg
+Author-email: jessetalavera@aol.com
+License: BSD
+Download-URL: https://github.com/JesseTG/socklint/tarball/0.0.1
+Description: Sock Lint
+        ===============================
+        
+        version number: 0.0.1
+        author: Jesse Talavera-Greenberg
+        
+        Overview
+        --------
+        
+        API objects used by Sock Puppet
+        
+        Installation / Usage
+        --------------------
+        
+        To install use pip:
+        
+            $ pip install socklint
+        
+        
+        Or clone the repo:
+        
+            $ git clone https://github.com/JesseTG/socklint.git
+            $ python setup.py install
+            
+        Contributing
+        ------------
+        
+        TBD
+        
+        Example
+        -------
+        
+        TBD
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3

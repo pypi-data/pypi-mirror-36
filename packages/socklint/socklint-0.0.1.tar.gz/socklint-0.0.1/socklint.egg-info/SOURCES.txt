@@ -1,0 +1,10 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+socklint/__init__.py
+socklint.egg-info/PKG-INFO
+socklint.egg-info/SOURCES.txt
+socklint.egg-info/dependency_links.txt
+socklint.egg-info/top_level.txt
