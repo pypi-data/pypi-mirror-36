@@ -1,0 +1,11 @@
+pybpod_gui_plugin_timeline-1.0.1.dist-info/METADATA,sha256=vsOggEiYzmBBQwVaLdwTRZu9HpmuoOhtpOwUOUM0Amo,380
+pybpod_gui_plugin_timeline-1.0.1.dist-info/RECORD,,
+pybpod_gui_plugin_timeline-1.0.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+pybpod_gui_plugin_timeline-1.0.1.dist-info/top_level.txt,sha256=_42sjYG_3XhqF4KXZwx1tHEWxkHFtH9HiNhXRyIdMuA,26
+pybpodgui_plugin_timeline/__init__.py,sha256=gmaYMaKw_uidAmyq1lcKsF8RaimOxqeEuHTkjy637t8,913
+pybpodgui_plugin_timeline/settings.py,sha256=29NZeSXFiewmZGvTBpJHo3Xk5vHdf9d9CzeRq6-A9VA,249
+pybpodgui_plugin_timeline/trials_plot_window.py,sha256=DfDIOHfk675-Q7s4ilsIef_0iLnWdkQApT48-02gzng,7629
+pybpodgui_plugin_timeline/models/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pybpodgui_plugin_timeline/models/session/__init__.py,sha256=3bOXPJnArnpJatUc1RpNfG5DZM3c-j0qBruuAfHfvUE,96
+pybpodgui_plugin_timeline/models/session/session_treenode.py,sha256=pmqLJJPYIumyPfjvG1gQqxyqerWouVohR3vtNpdgT5g,1633
+pybpodgui_plugin_timeline/resources/graph.png,sha256=H-ebwZqPQQ7hO4xMmCmh0ebujBLGFaG2BMrVT5AcHAk,481
