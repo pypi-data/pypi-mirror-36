@@ -1,0 +1,193 @@
+<div id="id_{{ hash }}">
+    {{ placeholder|safe }}
+</div>
+
+<script>
+    (
+        function() {
+            $(document).ready(
+                function() {
+                    var container = $('#id_{{ hash }}');
+                    var loadJS = function(url, success) {
+                        $.ajax(
+                            {
+                                url: url,
+                                dataType: 'text',
+                                context: container,
+                                success: success,
+                                error: function() {
+                                    $(this).html('{{ error|safe|escapejs }}');
+                                }
+                            }
+                        );
+                    };
+
+                    var loadHTML = function(url, success, method, data) {
+                        $.ajax(
+                            {
+                                url: url,
+                                type: method || 'get',
+                                data: data,
+                                success: success,
+                                error: function() {
+                                    container.html('{{ error|safe|escapejs }}');
+                                }
+                            }
+                        );
+                    };
+
+                    container.on('tl.beforeclick', 'a',
+                        function(e, m) {
+                            var self = $(this);
+                            var url = self.attr('href');
+                            var target = self.attr('target');
+                            var parentHTML = '{{ html|escapejs }}';
+                            var parentJS = '{{ js|escapejs }}';
+                            var htmlURL = '';
+                            var jsURL = '';
+
+                            if(target) {
+                                return;
+                            }
+
+                            if(self.attr('data-asyncview-bypass')) {
+                                return;
+                            }
+
+                            m.cancel();
+                            container.addClass('async-loading');
+
+                            if(parentHTML.indexOf('?') > -1) {
+                                if(url.substr(0, 1) == '?') {
+                                    htmlURL = parentHTML + '&' + url.substr(1);
+                                }
+                            } else {
+                                htmlURL = parentHTML + '?' + url;
+                            }
+
+                            if(parentJS.indexOf('?') > -1) {
+                                if(url.substr(0, 1) == '?') {
+                                    jsURL = parentJS + '&' + url.substr(1);
+                                }
+                            } else {
+                                jsURL = parentJS + '?' + url;
+                            }
+
+                            loadJS(jsURL,
+                                function(response) {
+                                    var view = eval(response);
+
+                                    loadHTML(
+                                        htmlURL,
+                                        function(html) {
+                                            container.removeClass('async-loading');
+                                            container.html(html);
+                                            view[0](container, view[1]);
+                                        }
+                                    );
+                                }
+                            );
+                        }
+                    );
+
+                    container.on('tl.beforesubmit', 'form',
+                        function(e, m) {
+                            var self = $(this);
+                            var url = self.attr('action') || '';
+                            var params = self.serialize();
+                            var method = self.attr('method') || 'get';
+                            var target = self.attr('target');
+                            var parentHTML = '{{ html|escapejs }}';
+                            var parentJS = '{{ js|escapejs }}';
+                            var htmlURL = '';
+                            var jsURL = '';
+
+                            if(target) {
+                                return;
+                            }
+
+                            m.cancel();
+                            container.addClass('async-loading');
+
+                            if(!method) {
+                                method = 'get';
+                            } else {
+                                method = method.toLowerCase();
+                            }
+
+                            if(method != 'post') {
+                                if(url.indexOf('?') > -1) {
+                                    url += '&' + params;
+                                } else {
+                                    url += '?' + params;
+                                }
+                            }
+
+                            if(parentHTML.indexOf('?') > -1) {
+                                if(url.substr(0, 1) == '?' || url.substr(0, 1) == '&') {
+                                    htmlURL = parentHTML + '&' + url.substr(1);
+                                } else {
+                                    htmlURL = parentHTML + '&' + url;
+                                }
+                            } else {
+                                htmlURL = parentHTML + '?' + url;
+                            }
+
+                            if(parentJS.indexOf('?') > -1) {
+                                if(url.substr(0, 1) == '?' || url.substr(0, 1) == '&') {
+                                    jsURL = parentJS + '&' + url.substr(1);
+                                } else {
+                                    jsURL = parentJS + '&' + url;
+                                }
+                            } else {
+                                jsURL = parentJS + '?' + url;
+                            }
+
+                            if(method != 'post') {
+                                loadJS(jsURL,
+                                    function(response) {
+                                        var view = eval(response);
+                                        loadHTML(
+                                            htmlURL,
+                                            function(html) {
+                                                container.removeClass('async-loading');
+                                                container.html(html);
+                                                view[0](container, view[1]);
+                                            }
+                                        );
+                                    }
+                                );
+                            } else {
+                                loadHTML(
+                                    htmlURL,
+                                    function(html) {
+                                        container.removeClass('async-loading');
+                                        container.html(html);
+                                        view[0](container, view[1]);
+                                    },
+                                    'post',
+                                    params
+                                );
+                            }
+                        }
+                    );
+
+                    loadJS(
+                        '{{ js|escapejs }}',
+                        function(response) {
+                            var view = eval(response);
+
+                            loadHTML(
+                                '{{ html|escapejs }}',
+                                function(html) {
+                                    container.html(html);
+                                    view[0](container, view[1]);
+                                }
+                            );
+                        }
+                    );
+                }
+            );
+        }
+    )();
+</script>
