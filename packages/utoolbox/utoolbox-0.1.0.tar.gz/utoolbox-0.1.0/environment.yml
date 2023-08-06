@@ -1,0 +1,15 @@
+name: utoolbox-dev
+
+channels:
+    - defaults
+    - conda-forge
+
+dependencies:
+    # build tools
+    - conda-build
+    - bumpversion
+
+    # core
+    - python=3.6
+
+    # native libraries
