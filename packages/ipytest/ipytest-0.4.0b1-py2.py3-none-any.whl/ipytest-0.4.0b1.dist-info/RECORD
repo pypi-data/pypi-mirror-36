@@ -1,0 +1,11 @@
+ipytest/__init__.py,sha256=49jYa065XKZjgnFuNvZgS8JjcQf7zmmhQBSbtNMLJ0A,733
+ipytest/__main__.py,sha256=vSoW8Wx9BGRydsjgCrzRYYRgS0qmor47rrPbyXzlsc0,808
+ipytest/_config.py,sha256=5rwsyf7LFYM-cuCMhGp_3776q95jFvNhyFUGoNY4n_8,942
+ipytest/_pytest_support.py,sha256=faMkZu1MFrkPwd5atJ_lUM_eSFA8xYSrMVmD2wXJ_jg,3095
+ipytest/_unittest_support.py,sha256=yA2W7ICN77LM8vKifLKxSjEHpLN1GZHS48WjfbQ37Dw,4858
+ipytest/_util.py,sha256=0Z88QRqRBVEFKJoZ1rKgws7AS2KSxcYYmlf6bO9jKgk,2107
+ipytest/magics.py,sha256=RkXTVqnqL_K4qReyw7bhn5t6lIvu_KiTgxGj7tdqSrs,1785
+ipytest-0.4.0b1.dist-info/METADATA,sha256=K_JJ7J8F8aeXXdk5_t5N8wipcwf0s4Aj7JGzgefbpP8,7316
+ipytest-0.4.0b1.dist-info/RECORD,,
+ipytest-0.4.0b1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+ipytest-0.4.0b1.dist-info/top_level.txt,sha256=dq2IoHtFCHx6TyaeV1rPR4bkKAEkjaoRungFL6Nsk1Y,8
