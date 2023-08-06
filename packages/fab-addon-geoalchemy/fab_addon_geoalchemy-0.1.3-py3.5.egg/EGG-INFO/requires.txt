@@ -1,0 +1,4 @@
+Flask-AppBuilder>=1.5.0
+shapely
+sqlalchemy
+GeoAlchemy2
