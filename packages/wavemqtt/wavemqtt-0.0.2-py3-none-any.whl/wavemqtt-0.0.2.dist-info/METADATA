@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: wavemqtt
+Version: 0.0.2
+Summary: A client for wave-mqtt integration
+Home-page: https://github.com/conix-center/smart-cities-demo/tree/master/wave/mqtt-client/python/wavemqtt
+Author: Gabe Fierro
+Author-email: gtfierro@cs.berkeley.edu
+License: UNKNOWN
+Keywords: wave mqtt access control entity
+Platform: UNKNOWN
+Requires-Dist: grpcio
+Requires-Dist: paho-mqtt
+
+UNKNOWN
+
+
