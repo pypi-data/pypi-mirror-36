@@ -1,0 +1,9 @@
+setup.py
+interscity_client/__init__.py
+interscity_client/exceptions.py
+interscity_client/platform.py
+interscity_client.egg-info/PKG-INFO
+interscity_client.egg-info/SOURCES.txt
+interscity_client.egg-info/dependency_links.txt
+interscity_client.egg-info/not-zip-safe
+interscity_client.egg-info/top_level.txt
