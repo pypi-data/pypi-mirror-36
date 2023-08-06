@@ -1,0 +1,13 @@
+
+[mysql]
+mysqlclient<1.4
+
+[server]
+cherrypy<9
+clor<0.3
+yoyo-migrations<6
+schedule<0.6
+pytz
+
+[ui]
+chronologerui<0.3
