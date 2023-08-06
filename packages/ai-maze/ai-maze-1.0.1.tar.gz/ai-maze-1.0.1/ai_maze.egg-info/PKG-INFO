@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: ai-maze
+Version: 1.0.1
+Summary: Simple Maze Traversal Project
+Home-page: https://github.com/pypa/sampleproject
+Author: The Python Packaging Authority
+Author-email: pypa-dev@googlegroups.com
+License: UNKNOWN
+Project-URL: Source, https://github.com/jody-bailey/AI-Maze
+Description: # AI-Maze
+        
+        This program is for a school project in AI. The purpose is to have the agent traverse the left side of the maze until it finds the entrance. Once found, it will make a node and start its path inside the maze until it finds the exit. Once the exit is found, the path traveled is printed.
+        
+        - Code written by Jody Bailey
+        
+Keywords: ai maze project
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
