@@ -1,0 +1,6 @@
+requests
+
+[dev]
+pylint
+autopep8
+pep8
