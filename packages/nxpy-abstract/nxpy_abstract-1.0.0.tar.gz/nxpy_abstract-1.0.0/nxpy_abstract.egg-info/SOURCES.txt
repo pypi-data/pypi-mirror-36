@@ -1,0 +1,14 @@
+CHANGES.txt
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+nxpy/core/abstract/__init__.py
+nxpy/core/abstract/abstract.py
+nxpy_abstract.egg-info/PKG-INFO
+nxpy_abstract.egg-info/SOURCES.txt
+nxpy_abstract.egg-info/dependency_links.txt
+nxpy_abstract.egg-info/namespace_packages.txt
+nxpy_abstract.egg-info/requires.txt
+nxpy_abstract.egg-info/top_level.txt
