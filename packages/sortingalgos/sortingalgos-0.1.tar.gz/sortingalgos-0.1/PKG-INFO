@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: sortingalgos
+Version: 0.1
+Summary: sorting algorithms
+Home-page: http://github.com/storborg/funniest
+Author: Faysal Zoubi
+Author-email: faysal@example.com
+License: MIT
+Description: Really, sorting stuff
+Keywords: funniest joke comedy flying circus
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Text Processing :: Linguistic

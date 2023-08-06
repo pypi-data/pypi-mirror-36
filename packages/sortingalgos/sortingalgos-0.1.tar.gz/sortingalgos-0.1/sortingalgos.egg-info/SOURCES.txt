@@ -1,0 +1,13 @@
+setup.py
+sortingalgos/Bubble_sort.py
+sortingalgos/Insertion_sort.py
+sortingalgos/Quick_sort.py
+sortingalgos/Selection_sort.py
+sortingalgos/__init__.py
+sortingalgos/print.py
+sortingalgos.egg-info/PKG-INFO
+sortingalgos.egg-info/SOURCES.txt
+sortingalgos.egg-info/dependency_links.txt
+sortingalgos.egg-info/not-zip-safe
+sortingalgos.egg-info/requires.txt
+sortingalgos.egg-info/top_level.txt
