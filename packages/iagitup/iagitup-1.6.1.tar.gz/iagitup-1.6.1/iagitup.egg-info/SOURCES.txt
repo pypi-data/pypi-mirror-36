@@ -1,0 +1,13 @@
+README.md
+setup.cfg
+setup.py
+iagitup/__init__.py
+iagitup/__main__.py
+iagitup/iagitup.py
+iagitup.egg-info/PKG-INFO
+iagitup.egg-info/SOURCES.txt
+iagitup.egg-info/dependency_links.txt
+iagitup.egg-info/entry_points.txt
+iagitup.egg-info/not-zip-safe
+iagitup.egg-info/requires.txt
+iagitup.egg-info/top_level.txt

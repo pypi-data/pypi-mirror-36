@@ -1,0 +1,3 @@
+[console_scripts]
+iagitup = iagitup.__main__:main
+
