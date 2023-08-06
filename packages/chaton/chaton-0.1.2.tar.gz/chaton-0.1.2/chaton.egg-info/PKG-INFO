@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: chaton
+Version: 0.1.2
+Summary: A small chatbot for social robots
+Home-page: https://gitlab.com/etri_hmi/chaton
+Author: Minsu Jang
+Author-email: minsu@etri.re.kr
+License: GPL 3.0
+Description: UNKNOWN
+Keywords: chatbot robot
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
