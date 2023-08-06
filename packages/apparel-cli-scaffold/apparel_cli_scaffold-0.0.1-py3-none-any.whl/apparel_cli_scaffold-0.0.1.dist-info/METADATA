@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: apparel-cli-scaffold
+Version: 0.0.1
+Summary: Apparel CLI entry point
+Home-page: https://github.com/apparel-cli-scaffold
+Author: Bill de hÓra
+Author-email: bill@dehora.net
+License: MIT License
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: ~=3.3
+Description-Content-Type: text/markdown
+Requires-Dist: requests (>=2.18.0)
+Requires-Dist: click (>=6.7)
+Requires-Dist: clickclick (>=1.2.2)
+Requires-Dist: click-plugins (>=1.0.3)
+Requires-Dist: stups-zign (==1.1.31)
+
+# apparel-cli-scaffold
+
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [About](#about)
+- [Installation Quickstart](#installation-quickstart)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## About
+
+`apparel-cli-scaffold` is a command line entry point for Apparel's machine learning services. 
+It provides a way to plugin command line tools for Apparel services.
+
+## Installation Quickstart
+
+You can install from pip
+
+```bash
+pip install apparel-cli-scaffold
+```
+
+After that the `mli` command will be available:
+
+```bash
+mli --help
+
+Usage: mli [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --help  Show this message and exit.
+```
+
+The package doesn't provide any commands itself. They are added as plugins.
+
+

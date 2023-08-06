@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        mli = apparel_cli.main:mli
+        
