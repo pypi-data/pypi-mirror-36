@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: horasCLI
+Version: 1.0.0
+Summary: Simple CLI program to create a project hour schedule in markdown.
+Home-page: https://github.com/djdany01/horasCLI
+Author: Daniel J. Pérez Nieto
+Author-email: djdany.djesus@gmail.com
+License: MIT
+Platform: UNKNOWN
+
+Simple CLI program to create a project hour schedule in markdown.
+
+
