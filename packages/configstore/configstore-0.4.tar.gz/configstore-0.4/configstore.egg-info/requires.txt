@@ -1,0 +1,6 @@
+
+[awsssm]
+boto3
+
+[dotenv]
+django-dotenv
