@@ -1,0 +1,50 @@
+version: 0.1.{build}
+pull_requests:
+  do_not_increment_build_number: true
+
+environment:
+  MYSQL_HOST: localhost
+  MYSQL_USER: root
+  MYSQL_PASSWORD: Password12!
+  MYSQL_PATH: C:\Program Files\MySQL\MySQL Server 5.7
+  MYSQL_ENV_MYSQL_USER: root
+  MYSQL_ENV_MYSQL_PASSWORD: Password12!
+  BROKER_URL: redis://127.0.0.1:6379/0
+  BACKEND_URL: redis://127.0.0.1:6379/0
+  matrix:
+    - PYTHON: C:\Python27-x64
+    - PYTHON: C:\Python36-x64
+
+install:
+  - ps: >
+      & "$env:PYTHON\python.exe" -m virtualenv C:\pacifica;
+      C:\pacifica\Scripts\activate.ps1;
+      python -m pip install --upgrade pip setuptools wheel;
+      nuget install redis-64 -excludeversion;
+      redis-64\tools\redis-server.exe --service-install;
+      redis-64\tools\redis-server.exe --service-start;
+      python -m pip install redis eventlet;
+      python -m pip install -r requirements-dev.txt;
+
+build: off
+
+services:
+  - mysql
+
+test_script:
+  - ps: >
+      mkdir C:\tmp; C:\pacifica\Scripts\activate.ps1;
+      pre-commit run -a;
+      & "${env:MYSQL_PATH}\bin\mysqladmin.exe" --host=$env:MYSQL_HOST --user=$env:MYSQL_USER --password=$env:MYSQL_PASSWORD create pacifica_cart;
+      $ai_proc = Start-Process C:\pacifica\Scripts\python.exe -ArgumentList "C:\pacifica\Scripts\ArchiveInterfaceServer.py --config config.cfg" -WorkingDirectory 'travis\archive' -PassThru -RedirectStandardError archive-error.log -RedirectStandardOutput archive-output.log;
+      $env:ARCHIVEI_PORT_8080_TCP_ADDR = '127.0.0.1';
+      $back_proc = Start-Process C:\pacifica\Scripts\celery.exe -ArgumentList "-A cart worker -l info -P eventlet" -WorkingDirectory 'travis\cartd' -PassThru -RedirectStandardError celery-error.log -RedirectStandardOutput celery-output.log;
+      $front_proc = Start-Process C:\pacifica\Scripts\CartServer.exe -WorkingDirectory 'travis\cartd' -PassThru -RedirectStandardError server-error.log -RedirectStandardOutput server-output.log;
+      sleep 4;
+      python test_files\archiveinterfacepreload.py;
+      coverage run --include='pacifica/*' -m pytest -v;
+      celery -A cart control shutdown;
+      $back_proc | Stop-Process;
+      $front_proc | Stop-Process;
+      $ai_proc | Stop-Process;
+      coverage report -m --fail-under=100;
