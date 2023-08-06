@@ -1,0 +1,47 @@
+/neuroml/nml/regenit.sh
+/neuroml/nml/generatedsuper.py2
+/test3.sh
+/test2.sh
+/neuroml/nml/nml.py.bak
+/neuroml/test/tmpfile
+# All the python compiled
+*.pyc
+*.py~
+*.*~
+*.*#
+*~
+*.csv
+
+.project
+.pydevproject
+.idea
+*.egg-info
+MANIFEST
+dist/*
+build
+
+#Sphinx built website.
+doc/_build
+
+#Padraig ignores..
+ideas/padraig/generatedFromV2Schema/build
+ideas/padraig/generatedFromV2Schema/*.xml
+ideas/padraig/hdf5tests/*.hdf
+
+#hhExample ignores
+hhExample/*.xml
+hhExample/*.dat
+
+neuroml/examples/*.xml
+neuroml/examples/tmp/*.xml
+neuroml/examples/tmp/*.nml
+
+neuroml/test/*.h5
+*tmp*
+*#*
+/neuroml/nml/generateds_config2.py
+/release
+/private/cache
+/nb-configuration.xml
+/neuroml/examples/report.txt
+/neuroml/examples/test_files/report.txt
