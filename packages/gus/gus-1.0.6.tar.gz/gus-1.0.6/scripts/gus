@@ -1,0 +1,2 @@
+#!/bin/sh
+python -m gutils $1
