@@ -1,0 +1,16 @@
+README.rst
+setup.cfg
+setup.py
+nysa_aws/__init__.py
+nysa_aws/deploy.py
+nysa_aws/ecr.py
+nysa_aws/ecs.py
+nysa_aws/service_discovery.py
+nysa_aws/stack_definition.py
+nysa_aws/utils.py
+nysa_aws.egg-info/PKG-INFO
+nysa_aws.egg-info/SOURCES.txt
+nysa_aws.egg-info/dependency_links.txt
+nysa_aws.egg-info/not-zip-safe
+nysa_aws.egg-info/requires.txt
+nysa_aws.egg-info/top_level.txt

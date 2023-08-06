@@ -1,0 +1,36 @@
+Metadata-Version: 1.1
+Name: nysa-aws
+Version: 0.0.3
+Summary: Ready to use library for interacting with AWS ECS
+Home-page: https://github.com/fernandosure/nysa-aws
+Author: Fernando Sure
+Author-email: fernandosure@gmail.com
+License: MIT
+Download-URL: https://github.com/fernandosure/nysa-aws/archive/0.0.3.tar.gz
+Description: Nysa AWS
+        ----------
+        
+        ready to go library for interacting with AWS Elastic Container Service
+        
+        Key Features
+        ------------
+        - easy to read / maintain deployment scripts
+        - deploy multiple services with a single command
+        - creates services with private (service-discovery) and internet-facing Application Load Balancers
+        - route53 integration when combining an ALB
+        - cluster specific or service customizable environment variables
+        
+        
+Keywords: ECS,AWS
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
