@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: beryllium
+Version: 0.0.2
+Summary: A framework for spider over selenium
+Home-page: https://github.com/mannuan/beryllium
+Author: mannuan
+Author-email: 1271990125@qq.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# Beryllium Package
+
+This is beryllium package. You can use
+[beryllium](https://guides.github.com/mannuan/beryllium/)
+to write your lean.
+
+
