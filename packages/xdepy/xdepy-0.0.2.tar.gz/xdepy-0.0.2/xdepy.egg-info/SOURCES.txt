@@ -1,0 +1,17 @@
+setup.py
+xdepy/__init__.py
+xdepy.egg-info/PKG-INFO
+xdepy.egg-info/SOURCES.txt
+xdepy.egg-info/dependency_links.txt
+xdepy.egg-info/not-zip-safe
+xdepy.egg-info/top_level.txt
+xdepy/DBXde/XdeMysql.py
+xdepy/DBXde/XdeRedis.py
+xdepy/DBXde/__init__.py
+xdepy/DataXde/XdeTestData.py
+xdepy/DataXde/__init__.py
+xdepy/MLXde/XdeTestML.py
+xdepy/MLXde/__init__.py
+xdepy/UtilsXde/XdeCurl.py
+xdepy/UtilsXde/XdeLogger.py
+xdepy/UtilsXde/__init__.py
