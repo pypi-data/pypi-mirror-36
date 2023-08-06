@@ -1,0 +1,13 @@
+setup.py
+sortit/__init__.py
+sortit/bubble_sort.py
+sortit/insertion_sort.py
+sortit/quick_sort.py
+sortit/selection_sort.py
+sortit/sort_tests.py
+sortit/sorters_test.py
+sortit.egg-info/PKG-INFO
+sortit.egg-info/SOURCES.txt
+sortit.egg-info/dependency_links.txt
+sortit.egg-info/not-zip-safe
+sortit.egg-info/top_level.txt
