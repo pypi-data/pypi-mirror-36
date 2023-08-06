@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.py
+pymicroconnectors/__init__.py
+pymicroconnectors/config.py
+pymicroconnectors/handlebars.py
+pymicroconnectors/helpers.py
+pymicroconnectors/logger.py
+pymicroconnectors/prestashop.py
+pymicroconnectors/spreedsheet.py
+pymicroconnectors.egg-info/PKG-INFO
+pymicroconnectors.egg-info/SOURCES.txt
+pymicroconnectors.egg-info/dependency_links.txt
+pymicroconnectors.egg-info/requires.txt
+pymicroconnectors.egg-info/top_level.txt
