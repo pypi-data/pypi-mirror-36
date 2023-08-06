@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: smla_info
+Version: 0.1.2
+Summary: Infomation about Smart Lands.
+Home-page: https://github.com/smart-lands-com/smla-info
+Author: smartlands
+Author-email: info@smart-lands.com
+License: UNKNOWN
+Description: Infomation about Smart Lands.
+Keywords: Smart Lands,HuMan
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: License :: OSI Approved :: MIT License
