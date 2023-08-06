@@ -1,0 +1,6 @@
+markdown
+pyaml
+numpy
+pymongo
+asyncio
+tornado>=5.1
