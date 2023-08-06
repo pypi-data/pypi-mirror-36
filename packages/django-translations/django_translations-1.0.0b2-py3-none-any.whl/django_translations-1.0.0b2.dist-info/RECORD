@@ -1,0 +1,15 @@
+django_translations-1.0.0b2.dist-info/LICENSE.txt,sha256=0-vL7U2_ykiAHTu7bo8YCmAJG15J9y-h-BVdOF9cPgs,1561
+django_translations-1.0.0b2.dist-info/METADATA,sha256=W6B9xCQHqTK1HfxcJy7D5wKKscVupuglsOPM1vlH_Q4,3929
+django_translations-1.0.0b2.dist-info/RECORD,,
+django_translations-1.0.0b2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+django_translations-1.0.0b2.dist-info/top_level.txt,sha256=RQRusylTen6qL5vfWiE9l1IZhepfXSFmEh5Nogg-jxM,13
+translations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+translations/admin.py,sha256=pJH9_ura53qF_gLJcOYyumS3PVvZ43npsNktEd_bWB8,3677
+translations/apps.py,sha256=i6G-wlXIzsoRTN6LzVcywIUlZKlGhGMr86cWgCSlOls,192
+translations/forms.py,sha256=rtLcUlETwTcnSQjwuyquZnHnDyJLkdeYNKghkEVYMm8,1390
+translations/models.py,sha256=NFt7csADN7u43KzBmN4cyfmhb04vnnPO7MX6yrbFfjE,21571
+translations/querysets.py,sha256=HDmZaALK0ssKI2_zXRnRBsYdl4YoXzSmIorJ_6kLMwI,12998
+translations/utils.py,sha256=t9TV2c7IO9tltKLUajcBT8jB6UoR4oVrXhrDelUmALY,43059
+translations/migrations/0001_initial.py,sha256=1NavDFKoZ0AWumXghIl8zO2FwFhnzrCrvJ0qUI9MECw,3464
+translations/migrations/0002_auto_20180920_1245.py,sha256=pkVv35T1seMzIoLe4FULeXM0nRANJjSVuRM4xOU17iE,561
+translations/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
