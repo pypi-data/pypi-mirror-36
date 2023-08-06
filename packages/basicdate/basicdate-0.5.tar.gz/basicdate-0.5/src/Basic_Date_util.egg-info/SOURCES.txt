@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+Pipfile
+Pipfile.lock
+README.md
+pytest.ini
+requirements.txt
+setup.cfg
+setup.py
+src/basicdate.py
+src/Basic_Date_util.egg-info/PKG-INFO
+src/Basic_Date_util.egg-info/SOURCES.txt
+src/Basic_Date_util.egg-info/dependency_links.txt
+src/Basic_Date_util.egg-info/not-zip-safe
+src/Basic_Date_util.egg-info/requires.txt
+src/Basic_Date_util.egg-info/top_level.txt
