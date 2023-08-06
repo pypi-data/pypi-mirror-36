@@ -1,0 +1,8 @@
+certifi
+requests
+robobrowser
+websockets
+
+[dev]
+yaml
+zdesk
