@@ -1,0 +1,11 @@
+pge_plugin_terminal/__init__.py,sha256=7GNolfI2sGwjCSD-l_YMi04sQAmPK4NfdDsU-_c-YCw,129
+pge_plugin_terminal/settings.py,sha256=CtbstRfUfjco73OaKhJa09ARASGpvCp89gYqwCDJFWQ,188
+pge_plugin_terminal/terminal_window.py,sha256=aKruuODmEdyHAgTn-Mjo7dk0UCO7yf9TPaJDKnQs0gk,2719
+pge_plugin_terminal/models/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pge_plugin_terminal/models/projects/__init__.py,sha256=iNH6BgdmBiNE3cveS-3HjTzNOykGwM7GGjdzDmcTIRc,94
+pge_plugin_terminal/models/projects/projects_terminal.py,sha256=t5Eh4ewZoI6ItC5gbYZ_vleJDpeDH_GwcQ3RClsYu1U,877
+pge_plugin_terminal/resources/terminal.png,sha256=peh2Byf08G0IMMUgnbrmwehHp4WSI1D9qHA0zVNRl_k,520
+pge_plugin_terminal-0.1.dist-info/METADATA,sha256=K9czOtrlwKN0cp7IUXohiftOzn2NlQ4NwjUIT6ShswA,364
+pge_plugin_terminal-0.1.dist-info/RECORD,,
+pge_plugin_terminal-0.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+pge_plugin_terminal-0.1.dist-info/top_level.txt,sha256=lLgE_ANcX3sveVVOsytrVEIwdyJVhsmZtURKJhgg-Rg,20
