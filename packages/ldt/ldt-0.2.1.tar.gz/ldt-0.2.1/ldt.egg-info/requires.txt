@@ -1,0 +1,12 @@
+hurry.filesize
+inflect
+nltk
+pandas
+pyenchant
+ruamel.yaml
+timeout-decorator
+vecto
+wiktionaryparser==0.0.7
+
+[testing]
+pytest
