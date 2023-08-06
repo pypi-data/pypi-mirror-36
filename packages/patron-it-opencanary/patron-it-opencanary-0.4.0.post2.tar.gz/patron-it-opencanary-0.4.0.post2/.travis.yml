@@ -1,0 +1,27 @@
+conditions: v1
+
+dist: trusty
+sudo: false
+language: python
+
+python:
+- 3.6
+
+stage: &stage_deploy_name upload new version of python package to PYPI (only for tagged commits)
+if: tag IS present
+install: skip
+script: skip
+deploy:
+  provider: pypi
+  on:
+    all_branches: true
+    tags: true
+  user: patron-it-opencanary-bot
+  password:
+    secure: "O01ODnqJpTXcGnsGu4iKh+9ytwVuvHVjOcbFwaV3srfnnqx3ssXMVxo6K+nndqjvpDOfRpmrdS2w1S92x+Hx+1tyv41oXTh/kyUlQ7YeJuvZIuRn6gpFIrPoVQw/uAU6uukjvR2dQ/Yi88zmMxllk5dNfvtSaXhsetgKgwcerV0DYuV/UcTMZ1ac+IiR9JLctXyiuaJGig9wxCvVIW5C5bAvIJieYDfd2TvkDlWQATe9RsGQL4hCHs3ShAuXx/HeRqmJfhHlWPtb5BkRSnXMY8hE9rpshdAKKjrpSLooVWSTQ/zwPdWSLmCXJmQ0qfLfN5NZR0e+g6TLMEOgGTVwmW5dVVOFpiNZBtj1tmS2SmeEW1MR2BZjsmUYsiJ5PG8MmOEPTor5Xh1QyTCq2er6NPPpsrZiew63sybW2dGVyPmmnz4Pgjh0z8pZYovkpnWseZ2G8RGyKATtjPcZZZPzt4L0eNmVtBVxjNvZkuFv0GzuZ682aFv+N+XI9/z858Qk69w+H2P/24Bjz1RkExMXM1R9NMU1EQtzaC0eomkIkb+TyYbyMlkyi7lo/RUSW0K98Uioq4YDblZGtqDQehDA9s/CcItaomj1UykSJ3FjV8bwIJ9dyelJOVKQAMimUGZcR1CMgnMcp687AAsA8rWhBITDnseOatMFWf2i/C/fmVA="
+  distributions: clean --all sdist bdist_wheel
+  skip_cleanup: true
+  skip_upload_docs: true
+
+cache:
+  pip: true
