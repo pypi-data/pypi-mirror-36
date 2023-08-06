@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: etrm
+Version: 0.0.1
+Summary: Model evapotranspiraton using soil, remote sensing, and meteorology inputs
+Home-page: https://github.com/nmthydro/Recharge/tree/dgk
+Author: David Ketchum
+Author-email: dgketchum@gmail.com
+License: Apache
+Download-URL: https://github.com/nmthydro/recharge/archive/dgk.zip
+Description: UNKNOWN
+Keywords: landsat gridded meteorology hydrology remote sensing soil water balance
+Platform: Posix; MacOS X; Windows
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: GIS
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
