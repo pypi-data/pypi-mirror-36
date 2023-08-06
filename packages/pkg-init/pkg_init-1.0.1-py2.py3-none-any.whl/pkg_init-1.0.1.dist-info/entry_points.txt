@@ -1,0 +1,3 @@
+[console_scripts]
+package-init = pkg_init.core:main
+
