@@ -1,0 +1,9 @@
+click
+numpy>=1.9.2
+future>=0.16.0
+scipy>=0.13.0
+pandas>=0.20.0
+six>=1.10.0
+
+[hdf5]
+h5py>=2.2.0
