@@ -1,0 +1,16 @@
+admincommand/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+admincommand/admin.py,sha256=aHU8ztE9NtAMIkm3g48ol2Ob6r5EeY0oghXcU0dJrwM,4025
+admincommand/core.py,sha256=64UGRES5Ddykv5uF50sVOx0Q1Y7TlRlnWlDk55tg5PQ,3483
+admincommand/forms.py,sha256=WRaqY8IGXcKgmxmCcpb6X35Agb7qlz17_buyNeH48_s,1744
+admincommand/management.py,sha256=OAea6hyu6fmBW5Db58ggyRJ2Tkklc-UGMYzfw1qo188,1314
+admincommand/models.py,sha256=AXaV6Y56-3USbDyL3RyWsCtJGDrPCWDLcapj1-7b7q0,2130
+admincommand/query.py,sha256=4TSn5vtqzIZ9nfbivuA2WDL9J8VrZd9RrdOqPqs0gL4,941
+admincommand/utils.py,sha256=bVVYj3s0qmx0K1YLQCVqZIqwrHTpRxtPiMmMBHQjPmY,403
+admincommand/migrations/0001_initial.py,sha256=hHODWE18UbIUsXREH6lJ7OztiS0dtNCdnT688QZVenE,432
+admincommand/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+admincommand/templates/admincommand/output.html,sha256=tsz7kyBIe8s5W5nfqnQ64312eUKwV4gjG6xKvJs98-Y,353
+admincommand/templates/admincommand/run.html,sha256=pjdSyMBRt2g84lUaIbwE0r_XYhXcBCtn_Y167cjmttw,925
+django_admincommand-0.1.6.dist-info/METADATA,sha256=SsneLg0OD3sZsfSSC6E0DDyqo-3jCJYejnqmkMmmvFU,4259
+django_admincommand-0.1.6.dist-info/RECORD,,
+django_admincommand-0.1.6.dist-info/WHEEL,sha256=_V8uWu5F_h-lvAz5Mbq4oZqV_uCfL4cHgm4IIlDevzU,92
+django_admincommand-0.1.6.dist-info/top_level.txt,sha256=QJAIJARvZSlo0WDEz2Ot42BeXBf1pMt7t2_4fS_Hyn4,13
