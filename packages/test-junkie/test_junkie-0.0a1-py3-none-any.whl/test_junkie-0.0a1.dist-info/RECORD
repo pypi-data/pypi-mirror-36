@@ -1,0 +1,12 @@
+test_junkie/__init__.py,sha256=lExREDB6cxihAHHUlL2Kh_s6hoj4ILZoTxhvGd0h0Kk,22
+test_junkie/debugjunkie.py,sha256=EFmVAwY7oR3JX2S1_nDnqgJcxpxWIIm5L7brn7frKNw,1670
+test_junkie/decorators.py,sha256=OfsHIMFaNt1uf9lGgiiGUe1x1f-ANGz3yMQB4cN5Z2E,3214
+test_junkie/statsjunkie.py,sha256=dmQ1gOxmWLgGjdvpj-ZcZ2QBLg3jKmAAhJJuOLXMHRw,7170
+test_junkie/suitebuilder.py,sha256=vxbIEJyAkLQkNLkZ3I4g332wQqTzXeFtw-yDKpERNSg,4126
+test_junkie/suiterunner.py,sha256=82Ci75IcfwZNObDFwYTQ8P7j8dbJ4TXg7uR1UPEkD6k,22585
+test_junkie/testlistener.py,sha256=8mgMAxsSNG8SChp2jwMX5AaZ6H7AULFJTGFXFvmWwhc,2833
+test_junkie-0.0a1.dist-info/LICENCE,sha256=sCFkits0b8rLtT-E-C520yXM0TuTDeLAxDkP2yifNl4,1088
+test_junkie-0.0a1.dist-info/METADATA,sha256=A_ocuPHrZPfjFPs-DrzRnK-QwoeM5D1yKnyai1pOS0Q,19640
+test_junkie-0.0a1.dist-info/WHEEL,sha256=ekss6qCJcIZ1jvsOZb3ewnzAyJD9JSfQQg87sLq_G8M,97
+test_junkie-0.0a1.dist-info/top_level.txt,sha256=baVbK5N8A_pMgfigQZ52awefx4JHW9wMh7bBR4r8eIQ,12
+test_junkie-0.0a1.dist-info/RECORD,,
