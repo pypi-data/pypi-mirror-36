@@ -1,0 +1,8 @@
+include eingang/config.py.in
+include eingang/Makefile
+include eingang/package.json
+include eingang/static/*
+include eingang/templates/eingang/*
+include eingang/templates/security/*
+include eingang/tests/*
+include eingang/tests/templates/*

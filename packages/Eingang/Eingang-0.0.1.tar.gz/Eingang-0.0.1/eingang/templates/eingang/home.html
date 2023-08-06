@@ -1,0 +1,12 @@
+<html>
+  {% include "security/_messages.html" %}
+  <head>
+    {% include 'eingang/head.html' %}
+    <title>Home</title>
+  </head>
+  <body>
+    {% include 'eingang/navbar.html' %}
+    {% include 'home.html' ignore missing %}
+    {% include 'eingang/tail.html' %}
+  </body>
+</html>

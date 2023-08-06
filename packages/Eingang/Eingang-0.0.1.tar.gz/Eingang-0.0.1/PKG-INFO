@@ -1,0 +1,40 @@
+Metadata-Version: 1.1
+Name: Eingang
+Version: 0.0.1
+Summary: Eingang.
+Home-page: http://github.com/vmlaker/eingang
+Author: Velimir Mlaker
+Author-email: vel.i.mir.mlaker@gmail.com
+License: MIT
+Description: =======
+        Eingang
+        =======
+        
+        Eingang is `Flask Security <http://pythonhosted.org/Flask-Security>`_
+        with `Bootstrap <http://getbootstrap.com>`_.
+        
+        Create a starter Eingang website:
+        ::
+        
+           virtualenv -p python3 venv
+           venv/bin/pip install eingang
+           venv/bin/eingang_create.sh
+           make project
+           venv/bin/python app.py
+        
+Platform: any
+Classifier: Framework :: Flask
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
