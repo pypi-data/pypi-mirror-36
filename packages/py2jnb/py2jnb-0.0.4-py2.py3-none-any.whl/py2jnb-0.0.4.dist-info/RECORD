@@ -1,0 +1,12 @@
+py2jnb/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+py2jnb/__main__.py,sha256=ChAv9e5E4diRIEo_XyYLYjtRSYUs_-UwKs19Jqqc-xw,518
+py2jnb/converter.py,sha256=pw5fW0n1wRgNtsXjCm-1V9x4zxkE53fO-t07zaYilIc,481
+py2jnb/reader.py,sha256=OdAHf_L-MpLT3COJMaUIfwfVu4UYrfpiEaUJXF954j4,4304
+py2jnb/tools.py,sha256=TjAKVY8Day5LUBVOtBeoZU_RxIzE9WF9mDQX8uvqc3E,329
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_conversion.py,sha256=aW1anqhqPAwaRN_RauAWSipTXUdNPWyOenYtVGM-lYY,1228
+py2jnb-0.0.4.dist-info/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+py2jnb-0.0.4.dist-info/METADATA,sha256=s45Mb9SRl-lqllzI1S7Is1d4Z0T4GdmyYCV2dw51M-c,2246
+py2jnb-0.0.4.dist-info/WHEEL,sha256=CrDFromy0BmNYzyZFyVIlKdTa5Zg2RBBtjMkE7goq78,110
+py2jnb-0.0.4.dist-info/top_level.txt,sha256=rZzXmD3NwwWoonvt8jHMBS4m-wBQxDsTwKeUxMYMB-4,13
+py2jnb-0.0.4.dist-info/RECORD,,
