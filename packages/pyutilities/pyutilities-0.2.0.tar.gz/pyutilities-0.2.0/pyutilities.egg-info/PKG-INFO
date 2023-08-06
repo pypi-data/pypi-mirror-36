@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: pyutilities
+Version: 0.2.0
+Summary: Useful python 2.x utilities library.
+Home-page: https://pypi.org/project/pyutilities
+Author: Dmitrii Gusev
+Author-email: dmitry.ed.gusev@gmail.com
+License: MIT
+Description: # [pyutilities] package
+        
+        Useful Python 2.7 utilities. Use
+        [Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+        to write new content.
+        
+        **Versions history**  
+        0.1.0 - Initial version.  
+        0.2.0 - Added tests and some new methods.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
