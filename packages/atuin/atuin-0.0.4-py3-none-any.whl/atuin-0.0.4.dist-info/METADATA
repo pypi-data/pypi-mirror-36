@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: atuin
+Version: 0.0.4
+Summary: A tool for challenge creation and management
+                    for CSTEM/Roboplay Competition
+Home-page: UNKNOWN
+Author: Steven Herman
+Author-email: stejher@gmail.com
+License: GPL3
+Platform: UNKNOWN
+Requires-Dist: colorama
+Requires-Dist: mistletoe
+Requires-Dist: pdfkit
+
+UNKNOWN
+
+
