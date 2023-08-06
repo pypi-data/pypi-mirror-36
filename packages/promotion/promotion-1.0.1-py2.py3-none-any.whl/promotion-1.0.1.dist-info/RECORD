@@ -1,0 +1,16 @@
+promotion/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+promotion/__version__.py,sha256=s3HsDiyDvsIC8ofFlKz1kMStzidxIOWtQZZ5fQvkZBo,62
+promotion/camouflage.py,sha256=tduGpq6_66I1PC8tj2wnxNAmpYgLnI5J_YW-5p9Y98c,4901
+promotion/extractor.py,sha256=DTBA7LdzuTyZ8CycjFqNfdS-hnEUXLAu5mc4W6TcxPk,1516
+promotion/guise.py,sha256=NP5B54NCm-qClc-s7nDkJ92-zo7CjbUxnfQ-7gZhUqQ,4903
+promotion/search_engin.py,sha256=riLEB60yOyqTgeMOxOeoT5xcIN1c1kTgXlkBUxf6QOc,1845
+promotion/test.py,sha256=DOiDzEBvB7nOgctp-dF4vtJHA_QdpHBOnri8EKKT-d4,367
+promotion/test_translate.py,sha256=VsnCSa-r1frw7CQVrULYjHWkaxfS5v2lONLiFeWF-VU,11643
+promotion/translate.py,sha256=E095SqVljb5NtTcmI_lHnSU6v5IR3JSE8Ary_nBZSgM,6893
+promotion/translate3.py,sha256=A-CH-PEFFhSn7nnHT-vfBuArNNR_TBcMRnwos8RiqzU,2997
+promotion/translator.py,sha256=yAao_YXyw9ELPlqk6_FQuAYXR2BmvYwO_54DgHq9XKM,6937
+promotion/wordpress_release.py,sha256=Zg930aHspeeTze--SIwHR33VGOHfwdLv2pm_j_LBcJk,2097
+promotion-1.0.1.dist-info/METADATA,sha256=e1L47iacZlKh8-LRG5dNYkp3jHYOOPfqoDh6bP6W0e8,3320
+promotion-1.0.1.dist-info/RECORD,,
+promotion-1.0.1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+promotion-1.0.1.dist-info/top_level.txt,sha256=pgY-yoBHfY0f0kKyly1NS2QJzK_CIGnjXQ1vuEdslvY,10
