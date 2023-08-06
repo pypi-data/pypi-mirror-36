@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: fuzzycallgraph
+Version: 0.0.1
+Summary: Fuzzy call graphs
+Home-page: https://github.com/d-babiak/fuzzy-call-graph
+Author: dmb
+Author-email: d.babiak@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.0
+
+
+Fuzzy call graphs
+
+`f` (maybe) calls `g` if `g.name` is in `f.body`
+
+This gives false positives
+
+```
+python call_graph.py      \
+  "${ABS_PATH_OF_MODULE}" \
+  > module_callgraph.gv   \
+&& dot \
+  -Tpdf module_callgraph.gv \
+  -o module_callgraph.pdf   \
+&& open module_callgraph.pdf
+```
+
+(Where `dot` is from https://www.graphviz.org/documentation/)
+
+(Standard python setup distribution boilerplate is a shame - why does it have to be at top leve of project?)
+
+
