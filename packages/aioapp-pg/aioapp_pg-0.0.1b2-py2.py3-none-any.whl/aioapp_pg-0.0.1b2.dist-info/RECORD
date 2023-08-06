@@ -1,0 +1,9 @@
+aioapp_pg/__init__.py,sha256=WenopZqR6JlnudcUQypEvNHm1HSE37bYjlCKv5x_VJg,21625
+aioapp_pg-0.0.1b2.dist-info/METADATA,sha256=SRDoAH3Yf9PQ6enqdjAL3JqxPBix4Q9ShWifIg6eFb8,1340
+aioapp_pg-0.0.1b2.dist-info/RECORD,,
+aioapp_pg-0.0.1b2.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+aioapp_pg-0.0.1b2.dist-info/top_level.txt,sha256=AJSJtWGmqKosfTet4m2jX2X_Ybfd51dCvaqfhQfX6xw,16
+tests/__init__.py,sha256=tl2hK64aWuMnprPko4Zhuk8zy5JXI-dbeGA9z6CN6C8,61
+tests/conftest.py,sha256=-IdIdkjLGIxKUqOCFt9QK9triBvGLCXIhC8y9W_WZNw,4329
+tests/docker-compose.yml,sha256=mLFHeTob_1xYCFMwvxUa7PHBwJ0PrMRIIcAwinxOvbY,96
+tests/test_db.py,sha256=pmoN80ovQL-3rRbfhAQIF6dYwb9QVIVXRmSHIz3CkCk,4866
