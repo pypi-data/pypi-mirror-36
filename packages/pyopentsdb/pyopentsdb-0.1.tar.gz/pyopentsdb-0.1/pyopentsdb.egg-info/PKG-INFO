@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: pyopentsdb
+Version: 0.1
+Summary: Python wrapper over OpenTSDB HTTP API
+Home-page: https://github.com/s-t-e-a-l-t-h/pyopentsdb
+Author: s-t-e-a-l-t-h
+Author-email: 
+License: UNKNOWN
+Description: Pyopentsdb
+        ==========
+        
+        Python adapter for OpenTSDB HTTP APIs
+        
+        Usage:
+        ------
+        **Python code**::
+        
+             >> from pyopentsdb import tsdb
+             >> host = "localhost"
+             >> port = 4242
+             >> protocol = "http"
+             >> timeout = 100
+             >> params = dict(type="metrics", q="sys.host.cpu", max=10000)
+             >> tsdb_connection = tsdb.tsdb_connection(host, port, protocol=protocol, timeout=timeout)
+             >> tsdb_connection.suggest(**params)
+        
+Keywords: data opentsdb tsdb
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: OpenTSDB
+Classifier: Programming Language :: Python :: 3.6
+Provides-Extra: dev
