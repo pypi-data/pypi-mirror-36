@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: pypokedex
+Version: 1.0.0
+Summary: A minimal pokedex library
+Home-page: https://github.com/arnavb/pypokedex
+Author: Arnav Borborah
+Author-email: arnavborborah11@gmail.com
+License: MIT
+Description: <p align='center'>
+            <img src='https://raw.githubusercontent.com/arnavb/pypokedex/master/assets/logo.png'/>
+        </p>
+        
+        [![Build Status](https://travis-ci.org/arnavb/pypokedex.svg?branch=master)](https://travis-ci.org/arnavb/pypokedex)
+        [![Codecov](https://img.shields.io/codecov/c/github/arnavb/pypokedex.svg)](https://codecov.io/gh/arnavb/pypokedex)
+        
+        PyPokedex is a minimal pokedex library for Python. A simple example of usage:
+        
+        <p align='center'>
+            <img src='https://raw.githubusercontent.com/arnavb/pypokedex/master/assets/example-usage.png'/>
+        </p>
+        
+        ## Requirements
+        
+        - Python 3.6+
+        
+        ## Installing
+        
+        Use:
+        
+        ```bash
+        $ pip install pypokedex
+        ```
+        
+        and you should be ready to go!
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Games/Entertainment
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
