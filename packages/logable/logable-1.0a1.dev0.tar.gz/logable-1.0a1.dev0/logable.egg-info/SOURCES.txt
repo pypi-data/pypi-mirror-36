@@ -1,0 +1,8 @@
+setup.cfg
+setup.py
+logable/Logable.py
+logable/__init__.py
+logable.egg-info/PKG-INFO
+logable.egg-info/SOURCES.txt
+logable.egg-info/dependency_links.txt
+logable.egg-info/top_level.txt
