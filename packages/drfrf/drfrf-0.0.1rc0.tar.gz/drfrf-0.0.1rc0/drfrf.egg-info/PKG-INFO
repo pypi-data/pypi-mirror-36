@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: drfrf
+Version: 0.0.1rc0
+Summary: Django REST framework - redux-form connector
+Home-page: https://github.com/Theodo-UK/drfrf
+Author: Theodo
+Author-email: contact@theodo.co.uk
+License: MIT
+Description: UNKNOWN
+Keywords: django rest framework django-rest-framework redux form redux-form form validation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
