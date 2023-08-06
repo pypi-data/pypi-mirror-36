@@ -1,0 +1,14 @@
+README.rst
+setup.cfg
+setup.py
+simpl_client/__init__.py
+simpl_client/games_client.py
+simpl_client.egg-info/PKG-INFO
+simpl_client.egg-info/SOURCES.txt
+simpl_client.egg-info/dependency_links.txt
+simpl_client.egg-info/not-zip-safe
+simpl_client.egg-info/requires.txt
+simpl_client.egg-info/top_level.txt
+tests/__init__.py
+tests/conftest.py
+tests/test_games_client.py
