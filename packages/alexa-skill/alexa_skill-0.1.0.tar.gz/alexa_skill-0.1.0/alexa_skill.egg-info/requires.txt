@@ -1,0 +1,13 @@
+python-dateutil==2.7.3
+
+[dev]
+pytest
+coverage
+tox
+sphinx
+sphinx-rtd-theme
+
+[docs]
+sphinx
+sphinx-autobuild
+sphinx-rtd-theme
