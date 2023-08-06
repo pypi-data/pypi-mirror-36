@@ -1,0 +1,12 @@
+pybpod_gui_plugin_trial_timeline-1.0.0.dist-info/METADATA,sha256=4WCG6lee0loIC3xivSzqQAVUqYhXCJe3veU0_U2Ba7w,383
+pybpod_gui_plugin_trial_timeline-1.0.0.dist-info/RECORD,,
+pybpod_gui_plugin_trial_timeline-1.0.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+pybpod_gui_plugin_trial_timeline-1.0.0.dist-info/top_level.txt,sha256=Zo6CBtFC-kGINsT4e5yVzhfp2xGqVDiIkkpew_Bv5e8,32
+pybpodgui_plugin_trial_timeline/__init__.py,sha256=2VpnUZx8hk_mISztv-PYLcnbwpV2Cz65I-sIByHy1_U,770
+pybpodgui_plugin_trial_timeline/settings.py,sha256=9F8DZEvmMUx4fyy6j9bYHEnSwXnjJIlFT-FHgWlIvi8,170
+pybpodgui_plugin_trial_timeline/trial_timeline.py,sha256=gODnPtOeVVQ24b7WY6VkFjQx_tH1X5mD5Au0-qOay_E,8639
+pybpodgui_plugin_trial_timeline/models/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pybpodgui_plugin_trial_timeline/models/session/__init__.py,sha256=8tGFEZz4EFZGIutVs7ckuMhF5qcnxNLuF73A-UMzBK0,102
+pybpodgui_plugin_trial_timeline/models/session/session_treenode.py,sha256=iqILiDIpxaqUbo5BuWLYKuvgQChA5tsp7mJ1fNGbh9g,2121
+pybpodgui_plugin_trial_timeline/models/subject/__init__.py,sha256=CB-rvoDcm71O9rOu2avnX0nF_RvRexKoONHef0bkcWE,102
+pybpodgui_plugin_trial_timeline/models/subject/subject_treenode.py,sha256=-t_gM_ys_l6pRXkWIQB2ulx5aMKaoWe-b7ZaQdRhN64,873
