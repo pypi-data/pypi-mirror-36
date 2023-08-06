@@ -1,0 +1,4 @@
+requests<3.0,>=2.9.1
+termcolor<2.0,>=1.1.0
+tqdm<5.0,>=4.26.0
+xmltodict<1.0,>=0.11.0

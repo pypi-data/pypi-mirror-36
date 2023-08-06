@@ -1,0 +1,12 @@
+Metadata-Version: 1.2
+Name: survivorlib
+Version: 0.2.0
+Summary: Download all pdf files from www.survivorlibrary.com
+Home-page: https://github.com/nul-one/survivorlib
+Author: Predrag Mandic
+Author-email: info@nul.one
+License: BSD
+Download-URL: https://github.com/nul-one/survivorlib/archive/0.2.0.tar.gz
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.4.6
