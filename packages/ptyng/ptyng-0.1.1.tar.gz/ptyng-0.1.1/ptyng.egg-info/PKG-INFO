@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: ptyng
+Version: 0.1.1
+Summary: Pseudo-terminal utilities.
+Home-page: https://github.com/JarryShaw/ptyng
+Author: Jarry Shaw
+Author-email: jarryshaw@icloud.com
+License: MIT License
+Description: PTYng -- Pseudo-terminal utilities
+        ========
+        
+        Fork of ``pty`` aiming to enhance performance of the full ``stdlib`` Python API.
+        
+        Download
+        --------
+        
+        Standalone releases are available on PyPI:
+        http://pypi.python.org/pypi/ptyng/
+        
+        Development
+        -----------
+        
+        The main development takes place in the Python standard library: see
+        the `Python developer's guide <http://docs.python.org/devguide/>`_.
+        In particular, new features should be submitted to the
+        `Python bug tracker <http://bugs.python.org/>`_.
+        
+        Documentation
+        -------------
+        
+        Refer to the
+        `standard pty <http://docs.python.org/dev/library/pty.html>`_
+        documentation.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Terminals
+Requires-Python: >=3.3
+Description-Content-Type: text/markdown
