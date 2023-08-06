@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: configcorr
+Version: 0.0.1
+Summary: Python code for configuration model for correlation/covariance matrices
+Home-page: https://github.com/naokimas/config_corr
+Author: Naoki Masuda
+Author-email: naoki.masuda@bristol.ac.uk
+License: MIT
+Keywords: correlation matrix configuration model network
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: numpy
+Requires-Dist: cvxpy
+
+Python code for configuration model for correlation/covariance matrices
+
+
