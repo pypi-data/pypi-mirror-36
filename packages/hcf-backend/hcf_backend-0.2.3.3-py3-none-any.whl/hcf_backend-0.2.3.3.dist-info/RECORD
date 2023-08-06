@@ -1,0 +1,13 @@
+hcf_backend/__init__.py,sha256=4N5Bc7W71KujY62trgLArkSYYnthoQgsq_XqTc6iXyo,47
+hcf_backend/backend.py,sha256=Qc-OP_jcrFj87m31OwduRpSgmri7I5-xDWnxH1iVNd0,13647
+hcf_backend/manager.py,sha256=PL6UU_Hyf3SSoAAy2B0yC2lsDurU68LR9--K59INLxQ,3919
+hcf_backend/utils/__init__.py,sha256=1ZiCuwVOh7S9OZSt7WUM1VBtxsr4CBfbojZPvOg_az8,1154
+hcf_backend/utils/hcfmanager.py,sha256=w7lOlHO9K-eb_QwUU8yWci0tnc82WHpt_Txjh_UIPLw,3543
+hcf_backend/utils/hcfpal.py,sha256=Qw48xOq76HupW7JjLjTmZcFOFiOyMzR-nvuvC9e30Nk,2388
+hcf_backend-0.2.3.3.data/scripts/hcfmanager.py,sha256=boaKBph0hZa6XvSCy8Wj7xTC5b3SNMAG2HlTEucBf-Y,138
+hcf_backend-0.2.3.3.data/scripts/hcfpal.py,sha256=EmPwmYD-DWQXqYma4UxDTijl3SAeTphDE2hJTRycQsY,10646
+hcf_backend-0.2.3.3.dist-info/LICENSE,sha256=C0mo1T2-5y1JsaO-CtC0j3cQaAYNA7YH1yS76COGqq0,1478
+hcf_backend-0.2.3.3.dist-info/METADATA,sha256=RaYTKaGrIKULc4vyWS5cghR6kcYbkwMJLF1XAgFzUwg,1651
+hcf_backend-0.2.3.3.dist-info/WHEEL,sha256=YO0P_oFqt6DWX0LhbH7jsyzb3BUtoq2kERtqGsXDJHs,92
+hcf_backend-0.2.3.3.dist-info/top_level.txt,sha256=INM-hj5d8zuh-ExpsbBdmdg1vz8xZkXC1OC8hrroK1Q,12
+hcf_backend-0.2.3.3.dist-info/RECORD,,
