@@ -1,0 +1,12 @@
+README.md
+setup.py
+src/mlops/__init__.py
+src/mlops.egg-info/PKG-INFO
+src/mlops.egg-info/SOURCES.txt
+src/mlops.egg-info/dependency_links.txt
+src/mlops.egg-info/requires.txt
+src/mlops.egg-info/top_level.txt
+src/mlops/tensorflow/__init__.py
+src/mlops/tensorflow/estimator.py
+src/mlops/tensorflow/tools.py
+tools/tf-mlops
