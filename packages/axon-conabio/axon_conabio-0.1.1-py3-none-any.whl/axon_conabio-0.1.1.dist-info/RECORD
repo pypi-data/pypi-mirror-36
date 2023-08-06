@@ -1,0 +1,9 @@
+axon_conabio/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+axon_conabio/version.py,sha256=ls1camlIoMxEZz9gSkZ1OJo-MXqHWwKPtdPbZJmwp7E,22
+axon_conabio/models/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+axon_conabio/models/basemodel.py,sha256=y4L_CBIfZutIBvor2wHiXEox5g_Pa_S6sVocSeihml0,273
+axon_conabio/models/tf_model.py,sha256=StbY-XK5R0wVd4ZnZVj1o4cpHqFoQN-x3OKN8FvJU8w,2728
+axon_conabio-0.1.1.dist-info/METADATA,sha256=vZIyoz6XSLBTnkMKZcRjLvND-_JPCFDoX7nIELlhf7o,628
+axon_conabio-0.1.1.dist-info/RECORD,,
+axon_conabio-0.1.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+axon_conabio-0.1.1.dist-info/top_level.txt,sha256=JQC7jKBCWFaK0e0pbht2K35k7YhUtJ82rFUlIBeFpao,13
