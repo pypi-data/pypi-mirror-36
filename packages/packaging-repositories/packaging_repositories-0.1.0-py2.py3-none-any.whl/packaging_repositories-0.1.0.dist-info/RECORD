@@ -1,0 +1,10 @@
+packaging_repositories/__init__.py,sha256=dwF4RMCIUAOgzcyxqmMXe9wORiqNjBXN5SmHgpG1j9s,274
+packaging_repositories/entries.py,sha256=t1VyhNDdqoLMPh7m7eejHIENDIpj0C6K5mP5_VUG31o,4658
+packaging_repositories/fetchers.py,sha256=Xx3X21uOZWq4M4NNqpVfJUolnu8o-De3vOFP54bpRmE,1551
+packaging_repositories/repositories.py,sha256=01o90NFw5FPnggrKA5OioCbr5Z6q7hCYtEwmTL-VRiE,2708
+packaging_repositories/utils.py,sha256=owfD_JvxEOND0eDbUHTHgCk5gSw_EuW1PVxlhLvmd7E,1943
+packaging_repositories-0.1.0.dist-info/METADATA,sha256=zpREczRHAXP1XPNjYE_MZFid_TlBmcxamWJSkMpK684,1196
+packaging_repositories-0.1.0.dist-info/RECORD,,
+packaging_repositories-0.1.0.dist-info/WHEEL,sha256=CG516Me1TEyQqkQMqQpnDadrWi7ujPk88poSAu3OliQ,116
+packaging_repositories-0.1.0.dist-info/top_level.txt,sha256=A_3k2_UCG4vv7AySV4JqsX6C49zF8Stt1mXms0x7Xsk,23
+packaging_repositories-0.1.0.dist-info/zip-safe,sha256=frcCV1k9oG9oKj3dpUqdJg1PxRT2RSN_XKdLCPjaYaY,2
