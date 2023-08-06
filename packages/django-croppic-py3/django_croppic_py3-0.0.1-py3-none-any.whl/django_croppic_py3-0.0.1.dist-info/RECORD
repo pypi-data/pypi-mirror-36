@@ -1,0 +1,15 @@
+django-croppic-py3/__init__.py,sha256=iRLqHZ8ZqstbkRvhhUusz6bhcbTI_34ofAw9D4V6S7I,29
+django-croppic-py3/admin.py,sha256=p6xop1PuuDG2Uwv3G_aRfldxOfBzTRfMaoZmORVkqyU,66
+django-croppic-py3/conf.py,sha256=MGIM1cDSRC_qhbA_ULU5MZwj3flamcx0Ldtmnd0Bj9o,502
+django-croppic-py3/forms.py,sha256=caTEsi0Gv5NXW_L9i6JsaYUaeRMcz_PYaav010QrFgk,1119
+django-croppic-py3/models.py,sha256=LTlPzDhVPyKUj6OfLw4ozIuYWU47aXtlV8XuED_dzhk,1067
+django-croppic-py3/tests.py,sha256=2uDafv3Ns6f7Vy1ekUtgYxCZEi1KRyesZDTAFhYcX-E,63
+django-croppic-py3/urls.py,sha256=RlEGxpSqcHy0OcNfn4a7n6lDpZ8J2bEiMyRK6FqFl3o,212
+django-croppic-py3/utils.py,sha256=z1gwcQuxAlK2qhiVEuqciKvJWMKSgnMtI9PGDbrO6lc,822
+django-croppic-py3/views.py,sha256=0HiB9Uhbc1ac840EN0IiGvbc945lKpXPVQ9VbEbHlfo,5495
+django-croppic-py3/migrations/0001_initial.py,sha256=FgJBPuI4RH_QM8UADsTsojbsP5mJpbey0l6eMlh5lD8,957
+django-croppic-py3/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_croppic_py3-0.0.1.dist-info/METADATA,sha256=IHoksrCTHD1bHXRgXMLOFUNekPLe_M5XWjJ5qtG57T4,668
+django_croppic_py3-0.0.1.dist-info/RECORD,,
+django_croppic_py3-0.0.1.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+django_croppic_py3-0.0.1.dist-info/top_level.txt,sha256=_rRJux9rIflJi-QIK17mT_VMiVuGGLIv1iM7A3X2sAY,19
