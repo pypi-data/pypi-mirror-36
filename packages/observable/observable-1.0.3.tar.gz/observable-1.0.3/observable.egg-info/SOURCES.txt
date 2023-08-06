@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+observable/__init__.py
+observable/__version__.py
+observable/core.py
+observable.egg-info/PKG-INFO
+observable.egg-info/SOURCES.txt
+observable.egg-info/dependency_links.txt
+observable.egg-info/top_level.txt
+tests/__init__.py
+tests/test_core.py
