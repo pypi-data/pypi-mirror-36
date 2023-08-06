@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <link href="{{ css | default('https://cdn.jsdelivr.net/npm/handsontable-pro@5.0.0/dist/handsontable.full.min.css') }}" rel="stylesheet" media="screen">
+    <style>
+#hotArea {
+  {% if width is defined %}
+    width: {{ width }}px;
+  {% endif %}
+
+  {% if height is defined %}
+    height: {{ height }}px;
+  {% endif %}
+
+  {% if width is defined or height is defined %}
+  overflow: hidden;
+  {% endif %}
+}
+    </style>
+
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    <div id="hotArea"></div>
+
+    <script src="{{ js | default('https://cdn.jsdelivr.net/npm/handsontable-pro@5.0.0/dist/handsontable.full.min.js') }}"></script>
+
+    <script>var data = {{ data|tojson }};</script>
+    <script>var config = {{ config|default({})|tojson }};</script>
+    <script>var maxColWidth = {{ maxColWidth|default('200') }};</script>
+    <script>var columns = {{ columns|tojson }};</script>
+    <script>
+      var stringConstructor = "test".constructor;
+      var arrayConstructor = [].constructor;
+      var objectConstructor = {}.constructor;
+
+      function whatIsIt(object) {
+          if (object === null) {
+              return "null";
+          }
+          else if (object === undefined) {
+              return "undefined";
+          }
+          else if (object.constructor === stringConstructor) {
+              return "String";
+          }
+          else if (object.constructor === arrayConstructor) {
+              return "Array";
+          }
+          else if (object.constructor === objectConstructor) {
+              return "Object";
+          }
+          else {
+              return "don't know";
+          }
+      }
+      
+      (function(Handsontable){
+        function customRenderer(hotInstance, td, row, column, prop, value, cellProperties) {
+          let text;
+          switch(whatIsIt(value)){
+            case "Object":
+              text = '<pre>' + JSON.stringify(value, null, 2) + '</pre>';
+              break;
+            case "Array":
+              text = '<pre>' + JSON.stringify(value) + '</pre>';
+              break;
+            default:
+              text = Handsontable.helper.stringify(value);
+          }
+
+          td.innerHTML = text;
+
+          return td;
+        }
+
+        // Register an alias
+        Handsontable.renderers.registerRenderer('jsonRenderer', customRenderer);
+
+      })(Handsontable);
+    </script>
+    <script>
+      var container = document.getElementById('hotArea');
+      var actualConfig = {
+        data: data,
+        rowHeaders: true,
+        colHeaders: true,
+        columns: columns,
+        manualColumnResize: true,
+        manualRowResize: true,
+        modifyColWidth: function(width, col){
+          if(width > maxColWidth) return maxColWidth;
+        }
+      }
+      config = Object.assign(actualConfig, config);
+    </script>
+
+    <script id="generateHandsontable">
+      var hot = new Handsontable(container, config);
+      let colWidths = [];
+      [...Array(hot.countCols()).keys()].map(i => {
+          colWidths.push(hot.getColWidth(i));
+      });
+
+      hot.updateSettings({
+          colWidths: colWidths
+      });
+
+      hot.updateSettings({
+          modifyColWidth: ()=>{}
+      });
+    </script>
+  </body>
+</html>
