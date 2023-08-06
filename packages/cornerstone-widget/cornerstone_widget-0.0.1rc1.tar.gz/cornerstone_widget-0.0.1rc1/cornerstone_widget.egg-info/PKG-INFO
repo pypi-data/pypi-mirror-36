@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: cornerstone-widget
+Version: 0.0.1rc1
+Summary: A Jupyter Widget for the Cornerstone Medical Image Viewing Library
+Home-page: https://github.com/chestrays/cornerstone_widget
+Author: Kevin Mader
+Author-email: kevinmader@gmail.com
+License: UNKNOWN
+Description: A Jupyter Widget for the Cornerstone Image Viewing Library
+Keywords: ipython,jupyter,widgets
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: IPython
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
