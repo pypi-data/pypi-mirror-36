@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: ivqr-gmm
+Version: 0.1
+Summary: Using GMM method to calculate the instrument variable quantile regression model proposed by Chen and Lee (2018).
+Home-page: https://github.com/jordanxzz/IVQR-GMM-Python-codes
+Author: Zizhe Xia
+Author-email: xiazizhejordan@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: ==3.6.*
+
+UNKNOWN
+
+
