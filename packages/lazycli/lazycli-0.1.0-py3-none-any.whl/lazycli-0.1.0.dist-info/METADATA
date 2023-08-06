@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: lazycli
+Version: 0.1.0
+Summary: generate command-line interfaces from function signatures
+Home-page: https://github.com/ninjaaron/lazycli
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.5
+Description-Content-Type: text/x-rst
+
+library for generating CLI interfaces from function signatures.
+
+
