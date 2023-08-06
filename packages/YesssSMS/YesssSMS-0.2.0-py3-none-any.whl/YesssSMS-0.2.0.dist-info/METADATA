@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: YesssSMS
+Version: 0.2.0
+Summary: YesssSMS let's you send SMS via yesss.at's website
+Home-page: https://github.com/flowolf/yessssms
+Author: Florian Klien
+Author-email: flowolf@klienux.org
+License: MIT
+Keywords: SMS,Yesss,messaging
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Topic :: Communications :: Telephony
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.3
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+# YesssSMS
+
+YesssSMS let's you send SMS via yesss.at's website. Regular rates apply and a
+contract or prepaid plan is needed.
+
+Use your website login and password.
+
+This module is not suitable for batch SMS sending.
+Each send() call logs in and out of yesss.at's website.
+
+
+### Install
+```bash
+> pip3 install YesssSMS
+```
+### Usage
+```python
+>>> from YesssSMS import YesssSMS
+>>> sms = YesssSMS(YOUR_LOGIN, YOUR_PASSWORD)
+>>> sms.send(TO_NUMBER, "Message")
+```
+
+
