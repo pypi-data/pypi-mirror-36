@@ -1,0 +1,3 @@
+[console_scripts]
+passvault = start_script.main:main
+
