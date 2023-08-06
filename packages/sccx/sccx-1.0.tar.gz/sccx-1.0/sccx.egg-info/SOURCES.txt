@@ -1,0 +1,7 @@
+setup.py
+sccx/__init__.py
+sccx/scc.py
+sccx.egg-info/PKG-INFO
+sccx.egg-info/SOURCES.txt
+sccx.egg-info/dependency_links.txt
+sccx.egg-info/top_level.txt
