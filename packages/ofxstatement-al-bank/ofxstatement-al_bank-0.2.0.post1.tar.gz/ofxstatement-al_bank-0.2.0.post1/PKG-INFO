@@ -1,0 +1,41 @@
+Metadata-Version: 1.1
+Name: ofxstatement-al_bank
+Version: 0.2.0.post1
+Summary: Arbejdernes Landsbank plugin for ofxstatement
+Home-page: https://github.com/lbschenkel/ofxstatement-al_bank
+Author: Leonardo Brondani Schenkel
+Author-email: leonardo@schenkel.net
+License: GPLv3
+Description: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Arbejdernes Landsbank plugin for ofxstatement
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        This is a plug-in for `ofxstatement`_. It converts a bank statement downloaded
+        from `Arbejdernes Landsbank`_ in CSV format to an OFX file suitable for
+        importing into GnuCash.
+        
+        .. _ofxstatement: https://github.com/kedder/ofxstatement
+        .. _arbejdernes landsbank: https://www.al-bank.dk
+        
+        Note that when generating the CSV file you **must** select the option to
+        include the column names. The columns can be in any order and any unsupported
+        or unknown columns are ignored.
+        
+        The decimal separator can be either dot or comma; both are supported by this
+        plug-in.
+        
+        Usage::
+        
+            ofxstatement convert -t al_bank filename.csv filename.ofx
+        
+        
+Keywords: ofx,banking,statement
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: Natural Language :: English
+Classifier: Topic :: Office/Business :: Financial :: Accounting
+Classifier: Topic :: Utilities
+Classifier: Environment :: Console
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)

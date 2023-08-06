@@ -1,0 +1,3 @@
+[ofxstatement]
+al_bank = ofxstatement.plugins.al_bank:ALBankPlugin
+
