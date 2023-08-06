@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: mac-display
+Version: 0.0.1
+Summary: sleep/wake display
+Home-page: https://github.com/looking-for-a-job/mac-display.py
+License: UNKNOWN
+Keywords: display
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: MacOS X
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development
+Description-Content-Type: text/markdown
+Requires-Dist: public
+Requires-Dist: runcmd
+Requires-Dist: setuptools
+
+[![](https://img.shields.io/badge/OS-MacOS-blue.svg?longCache=True)]()
+[![](https://img.shields.io/pypi/pyversions/mac-display.svg?longCache=True)](https://pypi.org/pypi/mac-display/)
+
+### Install
+```bash
+$ [sudo] pip install mac-display
+```
+
+### Examples
+```python
+>>> import mac_display
+>>> mac_display.sleep()
+>>> mac_display.sleeping()
+True
+>>> mac_display.wake()
+>>> mac_display.sleeping()
+False
+```
+
