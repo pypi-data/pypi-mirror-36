@@ -1,0 +1,9 @@
+setup.py
+src/tvdb_api_client/__init__.py
+src/tvdb_api_client/_secrets.py
+src/tvdb_api_client/client.py
+src/tvdb_api_client.egg-info/PKG-INFO
+src/tvdb_api_client.egg-info/SOURCES.txt
+src/tvdb_api_client.egg-info/dependency_links.txt
+src/tvdb_api_client.egg-info/requires.txt
+src/tvdb_api_client.egg-info/top_level.txt
