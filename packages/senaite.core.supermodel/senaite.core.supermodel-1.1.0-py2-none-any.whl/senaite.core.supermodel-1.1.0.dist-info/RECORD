@@ -1,0 +1,16 @@
+senaite.core.supermodel-1.1.0-py2.7-nspkg.pth,sha256=-IPVE-FjkaC9GStkoCOBJP2Ri8XrwUxMF8ms1tdoxHc,1708
+senaite/core/supermodel/__init__.py,sha256=njqVpkjIefiSF5A4NMlKZ7GgTp2RHC8LkmlnK_bJztY,640
+senaite/core/supermodel/configure.zcml,sha256=qa-YoKzz9t3iC7t1ouGphUgQs-VI1pSGYSa5HRh3J_s,226
+senaite/core/supermodel/decorators.py,sha256=9fUKmDj7dChApeq5GS9VFnKSRrviO3UyqWOVn54tJ30,1278
+senaite/core/supermodel/interfaces.py,sha256=4b-gw5zTXFPC2sNvs3sPxjwIV5TBl7nwq3QEgY2DaHo,214
+senaite/core/supermodel/model.py,sha256=1FGnohdA2zgzAP-seAcStRTVQhPXeLDNDWSd_nMAcbs,11290
+senaite/core/supermodel/tests/__init__.py,sha256=c3KFiePh4wb_m-9nTLo3Ix4moNXrG3wJ9c5rlleAr_M,109
+senaite/core/supermodel/tests/base.py,sha256=9ZA8XgfpJu2oHI6o6PRahKjBuv0-zJOb0K82IXhSHLo,2260
+senaite/core/supermodel/tests/test_doctests.py,sha256=RTaz0u82Pe2lMzKTvFop26WasQr5mSMOjiAzaaCziJQ,519
+senaite/core/supermodel/tests/test_setup.py,sha256=eV_YYvObJBjDMmE4Mbh7lXT7pELykjsCy7ztOp3xgaM,352
+senaite.core.supermodel-1.1.0.dist-info/METADATA,sha256=1-NwWN636dD3XloYt2gYUnKgIWP9iJ06u9p4cgPsyXE,3467
+senaite.core.supermodel-1.1.0.dist-info/RECORD,,
+senaite.core.supermodel-1.1.0.dist-info/WHEEL,sha256=_V8uWu5F_h-lvAz5Mbq4oZqV_uCfL4cHgm4IIlDevzU,92
+senaite.core.supermodel-1.1.0.dist-info/entry_points.txt,sha256=DXkF0Ka1F_JiYOe7hJpBL1Mm7BKauaEA17zPU2mxh4w,89
+senaite.core.supermodel-1.1.0.dist-info/namespace_packages.txt,sha256=AA3GBq1Ch0eNW5vDJ7OMnjuoDYBk8vnWwbN-WhphwKQ,21
+senaite.core.supermodel-1.1.0.dist-info/top_level.txt,sha256=fXnnnKsoKIY8D8yo7klVAQtPHm6NU_Lg3NUzCMr_VqU,8
