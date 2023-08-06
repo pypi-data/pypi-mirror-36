@@ -1,0 +1,13 @@
+quaternion/__init__.py,sha256=WuiIURYegGnf-8dmh_f6RjU-41CVlFGn-ZpYlTQiElA,30582
+quaternion/_version.py,sha256=Hymz6IP_cwAiHP1K7jblph32fIm6avQwf4KNgTNi6rQ,34
+quaternion/calculus.py,sha256=dwuRjIqUdxrCYMZR1Kvd6bmxRd6U1j10X8JShpMbgK8,11419
+quaternion/means.py,sha256=NJzoIYM_dLErXabApIFClJ0AeIvGqwRq8wBVNzFe_NY,1637
+quaternion/numba_wrapper.py,sha256=QcG6ikpfig6DGkL2OumYQUfuWw2n5mNKvxzWi5z9NpE,1197
+quaternion/numpy_quaternion.cpython-35m-darwin.so,sha256=AiPmNJw3zKmkVq0Osun4N93q0xIADhtyVw4RLgMqlOA,104416
+quaternion/quaternion_time_series.py,sha256=svkg8w9dsP_wKQXir2fBilKC7LjUJbpqbEQfIjoqlgQ,14300
+quaternion/setup.py,sha256=U3i7u8CX3teO_jzwdUSLNZhdmi4YFOBwfpYj54hk_Xc,3827
+numpy_quaternion-2018.10.1.16.30.46.dist-info/LICENSE,sha256=eklTfe1gCKuQr0Gv01F-NNorAghjjf6vL08iLd9OjbA,1080
+numpy_quaternion-2018.10.1.16.30.46.dist-info/METADATA,sha256=J3KWLF5vwJjPITdJPBgnaaQ301RdLzPqusfxkP2Zk4E,823
+numpy_quaternion-2018.10.1.16.30.46.dist-info/WHEEL,sha256=5g2y2lKhJYtc3SySa269qXGCxUVTKp9qjjy7Bv46RC4,110
+numpy_quaternion-2018.10.1.16.30.46.dist-info/top_level.txt,sha256=-VPE4C7lD-3Zy7uJ-pH5WOpkxrI2YcUFGkicVYtVY08,11
+numpy_quaternion-2018.10.1.16.30.46.dist-info/RECORD,,
