@@ -1,0 +1,3 @@
+[console_scripts]
+scrmbl=scrmbl.cli:cli
+
