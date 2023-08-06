@@ -1,0 +1,9 @@
+README.md
+setup.py
+xwpandas/__init__.py
+xwpandas/core.py
+xwpandas/utils.py
+xwpandas.egg-info/PKG-INFO
+xwpandas.egg-info/SOURCES.txt
+xwpandas.egg-info/dependency_links.txt
+xwpandas.egg-info/top_level.txt
