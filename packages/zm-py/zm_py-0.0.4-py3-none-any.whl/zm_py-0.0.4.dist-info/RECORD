@@ -1,0 +1,9 @@
+tests/__init__.py,sha256=-AZKV7yHQ1qvOHvVKgc_ePHKkt9PF96iNfKaLCXNQkM,39
+tests/test_zm.py,sha256=on1Q2p4RjaPNZqaQ5iUfti4z4L5rUEn7T8pz3SGB3z8,1710
+zm_py-0.0.4.dist-info/METADATA,sha256=Xm07gGoE46nZrppi6CeTZ7WSnjqOx63pej1JUGuhTOg,1561
+zm_py-0.0.4.dist-info/RECORD,,
+zm_py-0.0.4.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+zm_py-0.0.4.dist-info/top_level.txt,sha256=IOaFGWYygqYY34vJZq6fG1Yk9v3fdFODHtSo8_a80YQ,17
+zoneminder/__init__.py,sha256=HGqgTxLkeq6jj_77KooLaAmYXFskUVTayXJ4KOdyMkQ,33
+zoneminder/monitor.py,sha256=gT_GcnAR-ckezL-X2Mc4ugSt2okFVEtVOVvHvsMV698,5612
+zoneminder/zm.py,sha256=MWPu6KH6sDOJixwJ266WMnDb_Sk37jQXh-Ov0mcUmI8,4811
