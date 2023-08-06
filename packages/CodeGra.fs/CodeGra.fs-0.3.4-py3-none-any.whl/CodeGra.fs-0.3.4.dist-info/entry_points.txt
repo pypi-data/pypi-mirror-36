@@ -1,0 +1,4 @@
+[console_scripts]
+cgapi-consumer = codegra_fs.api_consumer:main
+cgfs = codegra_fs.cgfs:main
+
