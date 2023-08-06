@@ -1,0 +1,13 @@
+README.md
+setup.cfg
+setup.py
+midpoint_cli/__init__.py
+midpoint_cli/midpoint-cli
+midpoint_cli/mpclient.py
+midpoint_cli/prompt.py
+midpoint_cli.egg-info/PKG-INFO
+midpoint_cli.egg-info/SOURCES.txt
+midpoint_cli.egg-info/dependency_links.txt
+midpoint_cli.egg-info/requires.txt
+midpoint_cli.egg-info/top_level.txt
+test/test_cli.py

@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import sys
+from argparse import ArgumentParser
+
+from midpoint_cli import __version__
+from midpoint_cli.mpclient import MidpointClient
+from midpoint_cli.prompt import MidpointClientPrompt
+
+parser = ArgumentParser(description='An interactive Midpoint command line client.',
+                        epilog='Midpoint-cli version ' + __version__ + ', created and maintained by Yannick Kirschhoffer')
+parser.add_argument('-v', '--version', help='Set the username to authenticate this session.', action='store_true')
+parser.add_argument('-u', '--username', help='Set the username to authenticate this session.', default='administrator')
+parser.add_argument('-p', '--password', help='Set the password to authenticate this session.', default='5ecr3t')
+parser.add_argument('url', help='Midpoint base URL', default='http://localhost/', nargs='?')
+
+namespace = parser.parse_args(sys.argv[1:])
+
+if namespace.version:
+    print('Midpoint CLI Version ' + __version__)
+    sys.exit(0)
+
+client = MidpointClient(namespace)
+MidpointClientPrompt(client).cmdloop()
