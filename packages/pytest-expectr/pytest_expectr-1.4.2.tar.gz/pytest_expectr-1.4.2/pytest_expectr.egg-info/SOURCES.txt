@@ -1,0 +1,14 @@
+.gitignore
+LICENSE
+README.md
+setup.cfg
+setup.py
+pytest_expectr/__init__.py
+pytest_expectr/plugin.py
+pytest_expectr.egg-info/PKG-INFO
+pytest_expectr.egg-info/SOURCES.txt
+pytest_expectr.egg-info/dependency_links.txt
+pytest_expectr.egg-info/entry_points.txt
+pytest_expectr.egg-info/requires.txt
+pytest_expectr.egg-info/top_level.txt
+tests/test_hello.py
