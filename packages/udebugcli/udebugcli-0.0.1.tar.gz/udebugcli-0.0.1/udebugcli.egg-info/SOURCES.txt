@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+udebugcli/__init__.py
+udebugcli/__main__.py
+udebugcli/lib.py
+udebugcli/udebugcli.py
+udebugcli.egg-info/PKG-INFO
+udebugcli.egg-info/SOURCES.txt
+udebugcli.egg-info/dependency_links.txt
+udebugcli.egg-info/entry_points.txt
+udebugcli.egg-info/requires.txt
+udebugcli.egg-info/top_level.txt

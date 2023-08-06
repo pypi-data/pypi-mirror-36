@@ -1,0 +1,12 @@
+Metadata-Version: 1.0
+Name: udebugcli
+Version: 0.0.1
+Summary: Utility CLI for automatically testing solutions of competitive programming online judges.
+Home-page: https://github.com/rafael-telles/udebugcli
+Author: Rafael Telles
+Author-email: rafael@telles.pw
+License: UNKNOWN
+Description: # udebugcli
+        Utility CLI for automatically testing solutions of competitive programming online judges.
+        
+Platform: UNKNOWN
