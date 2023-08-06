@@ -1,0 +1,11 @@
+---
+- name: Update docker-run.sh
+  tags: update, docker-run
+  template:
+    src: docker-run.sh
+    dest: '{{ project_home }}/docker-run.sh'
+    mode: 0744
+
+- name: Execute docker-run.sh
+  tags: update, docker-run
+  shell: bash -eux {{ project_home }}/docker-run.sh
