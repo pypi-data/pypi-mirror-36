@@ -1,0 +1,36 @@
+{% load staticfiles humanize markdown_deux_tags %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,800" rel="stylesheet" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+
+    <body style="background: #eaeaea;">
+        <table width="550" align="center" cellspacing="15" cellpadding="0" style="background: #fff;">
+            <tr>
+                <td style="font-family: Open Sans, sans-serif; font-size: 14px; line-height: 18px; font-weight: 300; color: #333;">
+                    <p>Hey {{ user.first_name|default:user.username }}, Loda here with a notification from Podiant:</p>
+
+                    {% for notification in messages %}
+                        <table width="100%" align="center" cellspacing="15" cellpadding="0" style="border: 1px solid #dadada; border-radius: 5px;">
+                            <tr>
+                                <td style="font-family: Open Sans, sans-serif; font-size: 14px; line-height: 18px; font-weight: 300; color: #333;">
+                                    {{ notification.text|safe }}{% if notification.actions.exists %}{% for action in notification.actions.all %}
+                                        [<a href="{{ action.url }}">{{ action.text }}</a>]{% if not forloop.last %},{% endif %}
+                                    {% endfor %}{% endif %}
+                                </td>
+                            </tr>
+                        </table>
+
+                        {% if not forloop.last %}<hr />{% endif %}
+                    {% endfor %}
+
+                    <p>
+                        Thanks,<br>
+                        Loda from <a href="https://{{ SITE_DOMAIN }}/">Podiant</a>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
