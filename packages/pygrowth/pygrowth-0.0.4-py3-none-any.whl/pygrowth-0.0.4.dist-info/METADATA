@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: pygrowth
+Version: 0.0.4
+Summary: Python package for public data analyses from the GROWTH collaboratoin.
+Home-page: https://github.com/growth-team/pygrowth
+Author: GROWTH-team
+Author-email: teruaki.enoto@gmail.com
+Maintainer: Teru Enoto
+Maintainer-email: teruaki.enoto@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: numpy
+
+# pygrowth
+This python package provides analyses tools for public data from the GROWTH (Gamma-Ray Observation of Winter THundercloud) project. 
+
+## Reference for PyPI package
+https://packaging.python.org/tutorials/packaging-projects/#create-an-account
+
+<!--
+-->
+
+
