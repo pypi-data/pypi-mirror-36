@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: spinlog
+Version: 0.1.0
+Summary: Spinner Logger for Python
+Home-page: http://github.com/AdrieanKhisbe/spinlog.py
+Author: AdrieanKhisbe
+Author-email: adriean.khisbe@live.fr
+License: UNKNOWN
+Description: # spinglog.py
+        Spinner Logger for Python
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: System :: Logging
