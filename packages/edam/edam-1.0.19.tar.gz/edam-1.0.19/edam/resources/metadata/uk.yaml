@@ -1,0 +1,36 @@
+Station:
+    license: Attribution
+    region: United Kingdom
+    url: http://www.metoffice.gov.uk/
+    tags:
+        key1:value1
+        key2:value2
+Observables:
+    -   observable_id: tmin
+        name: Temperature minimum
+        ontology: http://edam.gr#Temperature
+        qualifiers: http://edam.gr#min
+    -   observable_id: tmax
+        name: Temperature Max
+        ontology: http://edam.gr#Temperature
+        qualifiers: http://edam.gr#max
+    -   observable_id: rain
+        name: Rain
+        ontology: http://edam.gr#Rain
+    -   observable_id: af
+        name: Days of air frost
+        ontology: http://edam.gr#AirFrostDays
+    -   observable_id: sun
+        name: Sunshine duration
+        ontology: http://edam.gr#SunShineDuration
+Units of Measurement:
+    -   name: Days
+        symbol: D
+        relevant_observables: af, sun
+    -   name: Celcius
+        symbol: degC
+        relevant_observables: tmin, tmax
+    -   name: Millimeters
+        symbol: mm
+        relevant_observables: rain
+Sensors:
