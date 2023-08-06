@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: django-ltree
+Version: 0.1a0
+Summary: A django that implements in a model the ltree postgres extension
+Home-page: https://github.com/mariocesar/django-ltree
+Author: Mario César Señoranis Ayala
+License: MIT
+Project-URL: Source, https://github.com/mariocesar/django_ltree
+Project-URL: Tracker, https://github.com/mariocesar/django_ltree/issues
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.6
+
+UNKNOWN
+
+
