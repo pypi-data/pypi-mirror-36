@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EDAM">
+    <meta name="keywords" content="EDAM,SOS,OGC">
+    <meta name="author" content="Ioannis Athanasiadis">
+    <meta name="author" content="Argyrios Samourkasidis">
+    {% block head %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet" media="screen">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}"/>
+
+    <script type="text/javascript"
+            href="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+</head>
+
+<body>
+{#<a href="https://github.com/ecologismico" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;"#}
+{#                                                               src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67"#}
+{#                                                               alt="Fork me on GitHub"#}
+{#                                                               data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>#}
+ {% set navigation_bar = [
+        ('/maps/', 'maps', 'Maps'),
+        ('/about/', 'about', 'API'),
+        ('/SensorObservationService/', 'sos', 'OGC SOS'),
+        ('/home/', 'home', 'Home')] -%}
+        {% set active_page = active_page|default('maps') %}
+
+<div class="navbar navbar-static-top">
+  <div class="navbar-inner">
+      <div class="container">
+          <h1 class="text-white brand navbar-header navbar-brand"><a href={{ url_for('mapview') }}> EDAM </a></h1>
+    <ul class="nav nav-pills inline-navbar">
+        {% for href, id, caption in navigation_bar %}
+                    <li{% if id == active_page %} class="active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}</a>
+                    </li>
+        {% endfor %}
+    </ul>
+          </div>
+  </div>
+</div>
+
+<div class="container">
+            {% block body %}{% endblock %}
+</div>
+
+</body>
+</html>
