@@ -1,0 +1,11 @@
+runHiC/__init__.py,sha256=yTiEu0LPVk0G3lwS4775CAIHTXMfeQbT_s1_C-Nbac8,122
+runHiC/binning.py,sha256=K8HjQ4Ed-ebE5AUVAhR832RYdzwR3EIhaM0sXBnV0k4,1069
+runHiC/filtering.py,sha256=HsIRMOLV-LN2XTir1SeGT_6IduKoCBLCK_BsD5z5S7c,7962
+runHiC/mapping.py,sha256=z9HyLkYKAv9arpmkbMzOic8Jij-OChpqbaE5WRtT4hw,8825
+runHiC/quality.py,sha256=0_Gez8L6YqDBN3zc7QGaK2uH_n92nGoCQYC9PWJ8sB0,7748
+runHiC/utilities.py,sha256=ij_B50Vjs63rWsszlRkb1fu-ZZWO5H8PJ3qUkIqvHN8,1846
+runHiC-0.8.0.post2.data/scripts/runHiC,sha256=b3tJOxPcKG1kRSTHbNZJXfrbJ4u_mesnHqFA7ypyM4E,39114
+runHiC-0.8.0.post2.dist-info/METADATA,sha256=slhokxwUBGn2bBcbXtJWsmcLhu_cYXc8jzowjTNAezE,3447
+runHiC-0.8.0.post2.dist-info/RECORD,,
+runHiC-0.8.0.post2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+runHiC-0.8.0.post2.dist-info/top_level.txt,sha256=-lKktCgDOpP--HIHuChK2WoAPrz7g8P0p5GQqv91zpo,7
