@@ -1,0 +1,13 @@
+django_riotjs_helper-0.1.1.dist-info/METADATA,sha256=Gx3JJdcB4hUqW6WXW5fpDkkuzUdco18lSOd6oCmAHpM,3192
+django_riotjs_helper-0.1.1.dist-info/RECORD,,
+django_riotjs_helper-0.1.1.dist-info/WHEEL,sha256=CG516Me1TEyQqkQMqQpnDadrWi7ujPk88poSAu3OliQ,116
+django_riotjs_helper-0.1.1.dist-info/top_level.txt,sha256=I5pNomqhYcWITbX0MHZkjsF_Q9kKOtZ_8dKmGvXhQN0,14
+riotjs_helper/__init__.py,sha256=aOHawL1zuHMfBWKXqwUkXcW96oXLNCY-CXdHDqkz4g4,18
+riotjs_helper/apps.py,sha256=c6WRrspBLyU9M_3s2rSfmbaDE6yQs08JuWql_tB5WTw,105
+riotjs_helper/tests.py,sha256=2uDafv3Ns6f7Vy1ekUtgYxCZEi1KRyesZDTAFhYcX-E,63
+riotjs_helper/management/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+riotjs_helper/management/commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+riotjs_helper/management/commands/riot_tag.py,sha256=b7Dm2tQNUrpTIFrx0CjbewOzAcd2yk3IdaXl_MRoAmI,5223
+riotjs_helper/templates/riotjs_helper/riotjs_core.html,sha256=Vcw8rCg0K0d70ZPywohhO8AOQN6sihPqpUlRIRvJGXc,199
+riotjs_helper/templates/riotjs_helper/riotjs_mount.html,sha256=lLGFzF6WkUlpHlhuGC9XyN0h81xBLvt9_NLVIPuOI9g,203
+riotjs_helper/templates/riotjs_helper/riotjs_setup.html,sha256=_DKlFXfVxyncXdYmK5TQIEWXHyYpFwT8cw_8v_E5wiI,798
