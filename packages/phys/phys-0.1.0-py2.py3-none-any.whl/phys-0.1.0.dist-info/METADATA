@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: phys
+Version: 0.1.0
+Summary: Minimal content for phys module
+Home-page: https://github.com/javierggt/phys
+Author: Javier G. Gonzalez
+Author-email: javierggt@yahoo.com
+License: UNKNOWN
+Keywords: physics units
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.7
+
+Phys - A top-level python package for Physics
+---------------------------------------------
+
+This package provides minimal content for the phys package. The phys
+module is a namespace to collect a variety of physics-related code
+(contributions accepted). This particular package provides very
+generic code intended to be used by all subpackages (units,
+mathematical constants).
+
+

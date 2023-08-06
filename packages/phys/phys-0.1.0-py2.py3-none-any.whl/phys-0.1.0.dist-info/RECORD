@@ -1,0 +1,9 @@
+phys/__init__.py,sha256=jv2YF__bseklT3OWEzlqJ5qE24c4aWd5F4r0TTjOrWQ,65
+phys/constants.py,sha256=6dOMVfDY1aYVDaZ0082FHn4fNcDiA8ZahbXDRSqVwHc,1965
+phys/elements.py,sha256=lDPP6qiXfEdGRJ9wUZD0BStl717AtRa-gIKsXYkhirQ,515
+phys/pdg_2017_elements.dat,sha256=6nVVFW408V9Ehj162Y1yE5agdkNIko_7VWvDgJO4Tyw,11751
+phys/units.py,sha256=vke1JVv0Z5nn-QsxQHl7BKkK_Ot_DdRpilW-_nouuoM,6422
+phys-0.1.0.dist-info/METADATA,sha256=rsaMaw4LaP2GqrgaXbWF-VyhK5kE-d7nOFCKbjy2QCQ,1026
+phys-0.1.0.dist-info/RECORD,,
+phys-0.1.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+phys-0.1.0.dist-info/top_level.txt,sha256=Z0JwsQY1W3w1SIGV3Vac1wnq_6-yThEapnhlrlueISM,5
