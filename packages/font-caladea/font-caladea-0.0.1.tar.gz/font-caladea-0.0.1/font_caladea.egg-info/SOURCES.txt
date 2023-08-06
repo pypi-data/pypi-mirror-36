@@ -1,0 +1,16 @@
+CHANGELOG.txt
+MANIFEST.in
+README.rst
+setup.py
+font_caladea/__init__.py
+font_caladea.egg-info/PKG-INFO
+font_caladea.egg-info/SOURCES.txt
+font_caladea.egg-info/dependency_links.txt
+font_caladea.egg-info/entry_points.txt
+font_caladea.egg-info/not-zip-safe
+font_caladea.egg-info/top_level.txt
+font_caladea/files/APACHE-2.0.txt
+font_caladea/files/Caladea-Bold.ttf
+font_caladea/files/Caladea-BoldItalic.ttf
+font_caladea/files/Caladea-Italic.ttf
+font_caladea/files/Caladea-Regular.ttf
