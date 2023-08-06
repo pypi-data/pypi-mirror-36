@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: rhvoice-wrapper
+Version: 0.0.1
+Summary: High-level interface for RHVoice library
+Home-page: https://github.com/Aculeasis/rhvoice-proxy
+Author: Aculeasis
+Author-email: amilpalimov2@ya.ru
+License: GPLv3+
+Description: ### Loading RHVoice library and use in python code.
+        
+        Generate speech stream from text without re-initializing engine.
+        This very fast and more convenient than call RHVoice-test. Off the shelf supports wav, mp3 and opus.
+        
+        Tested on python 3.6 in Linux and Windows 10.
+        
+        Example usage https://github.com/Aculeasis/rhvoice-rest/blob/master/app.py
+        
+        ### Example
+        [TODO]
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Multimedia :: Sound/Audio :: Speech
+Classifier: Topic :: Software Development :: Libraries
+Description-Content-Type: text/markdown
