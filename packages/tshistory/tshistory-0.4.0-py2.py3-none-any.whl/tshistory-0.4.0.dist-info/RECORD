@@ -1,0 +1,15 @@
+tshistory/__init__.py,sha256=I4Hj22hFjMhPEJMW-Ak8wzz_Z0FAQcE9DaSAjJwgzYM,2478
+tshistory/command.py,sha256=7aTALgTaPrPK3FYINgtvvu0CTG2nVPit-XBfN3A4qtA,9429
+tshistory/helper.py,sha256=J7uf_rU5Hfnte2wVRkeRzeS_sj3Rp3wibZow2Lft-v0,292
+tshistory/migration.py,sha256=-Qj6OtCmTiSRymnp8hJwkn0vPn1n9DYDf2VB4K0s8RI,7639
+tshistory/repair.py,sha256=yxGxmvHP7ltu2YRAw1cLKJmfgYnGNvmbAFzOvuEEoGE,245
+tshistory/schema.py,sha256=koxH8GbvI_XN2AlR_tWvlhMoK_Xlz9L8PaIDuYApVcU,4380
+tshistory/snapshot.py,sha256=alKgwA2vxg1TNvqxR295C0i7aTSx-NArWFMt228ZAl8,10862
+tshistory/testutil.py,sha256=aTOmd1LKnR4Ttl9ioKFxPTwDv0pWkQ-KPSrCBpKF58k,2569
+tshistory/tsio.py,sha256=qpVN37cOq8We2eNFaR5wpcJUtywz9rLWgFyM7UGoh3o,23456
+tshistory/util.py,sha256=9OXQ5GtRkIm4txAzXKQe-wZ3SFyG_E_HQDUfreUelHA,5950
+tshistory-0.4.0.dist-info/METADATA,sha256=jydp2L4kiKUFjNtyCb4KeT1A3zRAuydWvC9sE2-3QK8,896
+tshistory-0.4.0.dist-info/RECORD,,
+tshistory-0.4.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+tshistory-0.4.0.dist-info/entry_points.txt,sha256=OosG3OHpsaCioA-LgAzhAwW4khqjIZ9XO44R8lIRt6c,47
+tshistory-0.4.0.dist-info/top_level.txt,sha256=78uFEgOfEcXPqJO7Qz9U_7IfPU-_B8_DGoFQ_p7rvTU,10
