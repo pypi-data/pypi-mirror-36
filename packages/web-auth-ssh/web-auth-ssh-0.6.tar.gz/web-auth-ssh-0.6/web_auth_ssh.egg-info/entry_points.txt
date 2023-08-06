@@ -1,0 +1,7 @@
+[console_scripts]
+wa-keyserver = wa_ssh.keyserver:main
+wa-privkey = wa_ssh.cli:wa_privkey
+wa-pubkeys = wa_ssh.cli:wa_pubkeys
+wa-ssh = wa_ssh.cli:wa_ssh
+wa-user-host = wa_ssh.cli:wa_user_host
+
