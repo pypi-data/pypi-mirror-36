@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.py
+subpaths/__init__.py
+subpaths/subpaths.py
+subpaths.egg-info/PKG-INFO
+subpaths.egg-info/SOURCES.txt
+subpaths.egg-info/dependency_links.txt
+subpaths.egg-info/top_level.txt
+subpaths/tests/__init__.py
+subpaths/tests/test_subpaths.py
