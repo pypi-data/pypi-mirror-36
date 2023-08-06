@@ -1,0 +1,10 @@
+README.md
+setup.cfg
+setup.py
+actigraph/__init__.py
+actigraph.egg-info/PKG-INFO
+actigraph.egg-info/SOURCES.txt
+actigraph.egg-info/dependency_links.txt
+actigraph.egg-info/not-zip-safe
+actigraph.egg-info/requires.txt
+actigraph.egg-info/top_level.txt

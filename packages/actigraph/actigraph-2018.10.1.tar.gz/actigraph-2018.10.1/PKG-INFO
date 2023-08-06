@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: actigraph
+Version: 2018.10.1
+Summary: A library to convert raw accelerometer data to ActiGraph-like "counts".
+Home-page: https://bitbucket.org/atpage/actigraph
+Author: Alex Page
+Author-email: alex.page@rochester.edu
+License: MIT
+Description: UNKNOWN
+Keywords: ActiGraph accelerometer count
+Platform: UNKNOWN
