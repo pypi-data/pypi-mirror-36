@@ -1,0 +1,15 @@
+sphinxjp.themes.gopher-0.2.0-py3.7-nspkg.pth,sha256=encq67D3PXi44n3MKVEtN5W9Bd_NZ9JmF2BV3XL-jOQ,1736
+sphinxjp/themes/gopher/__init__.py,sha256=WyUtcf-TUAIDT6LDYz5YjSkAVTC8cUM4S3un5g9kAlw,503
+sphinxjp/themes/gopher/templates/gopher/layout.html,sha256=qtYKe_Uo6hcP0LuWLxdqDtUNZlkEqd-uyoi3lHJxEj4,3422
+sphinxjp/themes/gopher/templates/gopher/theme.conf,sha256=mp0x-GuFsTolsfOXhNEGEV-nIlUYd2DQdOJSLAVSGZo,245
+sphinxjp/themes/gopher/templates/gopher/static/css/notes.css,sha256=R7W1A8o5h2SKgENawTP2Ky1Pcmad77tQucPZUcVcDNY,603
+sphinxjp/themes/gopher/templates/gopher/static/css/styles.css,sha256=2j-6XiPZKD1JaMMTqnb70lxPRbE7-2UDU01g4kPs168,14709
+sphinxjp/themes/gopher/templates/gopher/static/js/init.js,sha256=HP9LROkl9LxXv72R014hi5s7i4vmXzwDfbNuljvOY0g,1478
+sphinxjp/themes/gopher/templates/gopher/static/js/notes.js,sha256=7OsIJ2SflnnctqhOUo6wT80oOMo3DD3Ohave3s66nO4,4629
+sphinxjp/themes/gopher/templates/gopher/static/js/slides.js,sha256=TxrhDSCZzzJ14asshSSCyj52Jg31OvA-DWhmsJ7VQV8,15249
+sphinxjp.themes.gopher-0.2.0.dist-info/METADATA,sha256=QHb-3LrVnwGaO7luT75NpVTmD2cr0kvvApzxUiD6OZ4,6093
+sphinxjp.themes.gopher-0.2.0.dist-info/RECORD,,
+sphinxjp.themes.gopher-0.2.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+sphinxjp.themes.gopher-0.2.0.dist-info/entry_points.txt,sha256=tocIhjf52kTZAams4u9XA7U4SY2IJxoOcWX4otsKGL0,150
+sphinxjp.themes.gopher-0.2.0.dist-info/namespace_packages.txt,sha256=zpfVq3l4uAxx-ytwKYfAobJVGJOVFiCDuMeajSmV2A8,25
+sphinxjp.themes.gopher-0.2.0.dist-info/top_level.txt,sha256=H2M6ybMOTZVVvdYMGV4BGBdkyyrSr8iIMCXyMEYAkxQ,9
