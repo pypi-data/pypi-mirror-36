@@ -1,0 +1,15 @@
+ncephes/_testit.py,sha256=iaqZQzDuPIqVMF1ORTGhU-5esQJDf3OL0jPC5g_BTkk,474
+ncephes/__init__.py,sha256=rR-iLuKB6mTYiUyz3XZynys8dHQS8Ly8WPFkVpECa5g,7331
+ncephes/_ffi.so,sha256=NNdoH1a6DEPkvLAp_ixz4ZqRLbfa1cJ4fFwXnV2yxiU,284536
+ncephes/interface.h,sha256=b8E_9S5x4FkzA2aKnrTBeoRDHBYDsxbERONPVZ5u3xc,5347
+ncephes/.libs/libhcephes-4b6a1436.so.0.3.3,sha256=iUspWTrNimoRVxWy6b7huV4kkO3MFwxBWrjv0lRM2iI,138672
+ncephes/test/test_ellf.py,sha256=bAkupfFvRXx6uEe5T9H3hpYKWgPUCvSrfx57IuBsW-o,445
+ncephes/test/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ncephes/test/test_numba.py,sha256=yLht9G6zh-sT5vqcm0kZEDKqvZ74BqZBfFpaTlRTpiA,498
+ncephes/test/test_cprob.py,sha256=jVrkKe_cb6vG2Mx2LikoTWAtX5jJF2uazr2EaU1DsgY,3026
+ncephes/test/test_misc.py,sha256=Lx1tymkCiRlpin4YILLhGN0xEgPBgZf0l8yLAR7BXNc,193
+ncephes/test/test_bessel.py,sha256=BlePxhQcbZeVr-IPFwkGl8BpZJoI25TT7tkxFAgPcHc,631
+ncephes-1.1.0.dist-info/WHEEL,sha256=CKrsQRZNKddeqWkqlP4DoIBo-Lb-ExiV2oTN8bWPh84,109
+ncephes-1.1.0.dist-info/top_level.txt,sha256=wp5cCvbJhYmni3BZV_5PRVDZaDkLeF8aP4HbUV1CvR4,8
+ncephes-1.1.0.dist-info/METADATA,sha256=xx8AEBsbA9A_PqFG8jwdMnnHzsML7wwnCfweE1FAq3Y,2726
+ncephes-1.1.0.dist-info/RECORD,,
