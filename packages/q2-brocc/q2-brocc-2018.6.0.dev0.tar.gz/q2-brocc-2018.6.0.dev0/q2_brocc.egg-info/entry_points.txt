@@ -1,0 +1,3 @@
+[qiime2.plugins]
+q2-brocc = q2_brocc.plugin_setup:plugin
+
