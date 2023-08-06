@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: package-updater
+Version: 0.0.1
+Summary: Update a package
+Home-page: https://github.com/superlevure/package_updater
+Author: Laurent Riviere
+Author-email: superlevure.dev@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: tqdm
+Requires-Dist: requests
+
+UNKNOWN
+
+
