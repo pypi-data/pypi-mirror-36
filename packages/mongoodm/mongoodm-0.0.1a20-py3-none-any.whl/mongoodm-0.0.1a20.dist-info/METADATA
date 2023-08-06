@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: mongoodm
+Version: 0.0.1a20
+Summary: UNKNOWN
+Home-page: https://gitlab.com/opentrustee/mongoodm.git
+Author: Daniel Holmes
+Author-email: dan@centricwebestate.com
+License: Commercial
+Keywords: object document mapper mongodb mongo
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: pymongo
+Provides-Extra: dev
+Provides-Extra: flaskapp
+Requires-Dist: Flask; extra == 'flaskapp'
+Provides-Extra: test
+Requires-Dist: mongomock; extra == 'test'
+Requires-Dist: simplejson; extra == 'test'
+
+UNKNOWN
+
+
