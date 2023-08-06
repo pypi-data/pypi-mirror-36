@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[[source]]
+url = "https://test.pypi.org/simple"
+verify_ssl = false
+name = "test"
+
+
+[packages]
+keyring = "*"
+jira = "*"
+django = "==1.4.2"
+macvpnhelper = {path = ".", editable = true}
+
+[dev-packages]
+pytest = "*"
+
+[requires]
+python_version = "3"

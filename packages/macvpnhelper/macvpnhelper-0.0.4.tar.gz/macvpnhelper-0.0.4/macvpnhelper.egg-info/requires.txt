@@ -1,0 +1,8 @@
+keyring
+argparse
+getpass
+sys
+subprocess
+time
+datetime
+httplib
