@@ -1,0 +1,5 @@
+boto3
+colorlog
+cement==2.10.12
+plotly
+PrettyTable

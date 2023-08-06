@@ -1,0 +1,3 @@
+[console_scripts]
+cloud-insight = cloud_insight.cli:main
+

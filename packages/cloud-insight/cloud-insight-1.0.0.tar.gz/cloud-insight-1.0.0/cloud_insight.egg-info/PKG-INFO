@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: cloud-insight
+Version: 1.0.0
+Summary: Simplifies the tracking of docker container versions, health and other important information across various platforms.
+Home-page: https://github.com/noahjohnhay/cloud-insight
+Author: Noah Hay
+Author-email: noahjohnhay@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
