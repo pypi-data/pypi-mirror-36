@@ -1,0 +1,9 @@
+TestApp_Chanpreet-0.0.1.dist-info/METADATA,sha256=5YhXUBtFFMmqWghBcwD3ix8bDIkGT3bxQDsDO3McY4k,289
+TestApp_Chanpreet-0.0.1.dist-info/RECORD,,
+TestApp_Chanpreet-0.0.1.dist-info/WHEEL,sha256=_V8uWu5F_h-lvAz5Mbq4oZqV_uCfL4cHgm4IIlDevzU,92
+TestApp_Chanpreet-0.0.1.dist-info/top_level.txt,sha256=io9g7LCbfmTG1SFKgEOGXmCFB9uMP2H5lerm0HiHWQE,4
+app/__init__.py,sha256=LzOagZCAZGHDWapUef6FyjQBYIU32gN91BpVBTCm13I,183
+app/module_one/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+app/module_one/controllers.py,sha256=XuFJg0EwMM0wHu90x326tgOZiR2b3UHbSrjB9FlVVN4,209
+app/module_one/models.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+app/templates/module_one/hello.html,sha256=QaXlycju6b_VaPwewUgLWwuamdg2xCWHg8zgfewVHdc,316
