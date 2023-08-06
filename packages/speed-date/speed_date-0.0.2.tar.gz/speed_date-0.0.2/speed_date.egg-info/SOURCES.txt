@@ -1,0 +1,12 @@
+README.md
+setup.py
+speed_date/__init__.py
+speed_date.egg-info/PKG-INFO
+speed_date.egg-info/SOURCES.txt
+speed_date.egg-info/dependency_links.txt
+speed_date.egg-info/requires.txt
+speed_date.egg-info/top_level.txt
+speed_date/src/__init__.py
+speed_date/src/to_datetime.py
+speed_date/tests/__init__.py
+speed_date/tests/test_to_datetime.py

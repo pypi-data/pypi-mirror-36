@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: speed_date
+Version: 0.0.2
+Summary: A simple wrapper for Pandas to_datetime method that speeds up datetime conversions.
+Home-page: https://github.com/brettvanderwerff/speed_date
+Author: Brett Vanderwerff
+Author-email: brett.vanderwerff@gmail.com
+License: UNKNOWN
+Description: # speed_date
+        A simple wrapper for Pandas to_datetime method that speeds up datetime conversions.
+        
+        ### Installation
+        
+        ```
+        $pip install speed_date
+        ```
+        
+        ### Usage
+        
+        ```python
+        import pandas as pd
+        import speed_date as sd
+        
+        df = pd.read_csv("file.csv")
+        
+        df['date'] = sd.to_datetime(df['date'])
+        
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 3 - Alpha
+Description-Content-Type: text/markdown
