@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: deezload
+Version: 0.2.6
+Summary: Song downloading from deezer.
+Home-page: https://github.com/vanyakosmos/deezload
+Author: Bachynin Ivan
+Author-email: bachynin.i@gmail.com
+License: MIT
+Keywords: ffmpeg,deezer,downloader
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Natural Language :: English
+Classifier: Topic :: Multimedia :: Sound/Audio
+Provides-Extra: pyinstaller
+Requires-Dist: mutagen
+Requires-Dist: youtube-dl
+Requires-Dist: requests
+Requires-Dist: sanic
+Provides-Extra: pyinstaller
+Requires-Dist: pyinstaller; extra == 'pyinstaller'
+
+UNKNOWN
+
+
