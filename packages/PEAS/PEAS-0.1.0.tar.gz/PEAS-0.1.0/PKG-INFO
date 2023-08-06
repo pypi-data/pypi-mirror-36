@@ -1,0 +1,28 @@
+Metadata-Version: 1.1
+Name: PEAS
+Version: 0.1.0
+Summary:  Proximal Enrichment By Approximated Sampling  
+Home-page: https://github.com/phageghost/PEAS
+Author: Dylan Skola
+Author-email: peas@phageghost.net
+License: MIT
+Description: # PEAP
+        Proximal Enrichment by Approximated Permutation
+        
+        ## Architecture:
+        1. 1D
+            * Can compute 
+                * mean
+                * sum
+                * product 
+                    * (do we need since we would implement simply by logging the input?)
+                
+        2. 2D
+            *         
+                
+                
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
