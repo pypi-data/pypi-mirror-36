@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+india/__init__.py
+india/cities.py
+india/states.py
+india/utils.py
+india/data/states.csv
+india/data/ut.csv
+pyindia.egg-info/PKG-INFO
+pyindia.egg-info/SOURCES.txt
+pyindia.egg-info/dependency_links.txt
+pyindia.egg-info/not-zip-safe
+pyindia.egg-info/top_level.txt
