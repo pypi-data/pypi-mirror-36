@@ -1,0 +1,51 @@
+Metadata-Version: 2.0
+Name: dloud-ads
+Version: 0.0.2
+Summary: Abstract Data Structures commonly used in CS scenarios. Implemented by Data Loud Labs!
+Home-page: https://github.com/dataloudlabs/dloud-ads
+Author: Pedro Sousa
+Author-email: pjgs.sousa@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+
+dloud_ads
+=========
+
+.. image:: https://img.shields.io/pypi/v/dloud_ads.svg
+    :target: https://pypi.python.org/pypi/dloud_ads
+    :alt: Latest PyPI version
+
+.. image:: https://travis-ci.org/dataloudlabs/dloud-ads.png
+   :target: https://travis-ci.org/dataloudlabs/dloud-ads
+   :alt: Latest Travis CI build status
+
+Abstract Data Structures commonly used in CS scenarios. Implemented by Data Loud Labs!
+
+Usage
+-----
+
+Installation
+------------
+
+Requirements
+^^^^^^^^^^^^
+
+Compatibility
+-------------
+
+Licence
+-------
+
+Authors
+-------
+
+`dloud_ads` was written by `Pedro Sousa <pjgs.sousa@gmail.com>`_.
+
+
