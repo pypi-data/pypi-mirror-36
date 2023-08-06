@@ -1,0 +1,9 @@
+setup.py
+src/pickle_secure/__init__.py
+src/pickle_secure/_utils.py
+src/pickle_secure/pickle_secure.py
+src/pickle_secure.egg-info/PKG-INFO
+src/pickle_secure.egg-info/SOURCES.txt
+src/pickle_secure.egg-info/dependency_links.txt
+src/pickle_secure.egg-info/requires.txt
+src/pickle_secure.egg-info/top_level.txt
