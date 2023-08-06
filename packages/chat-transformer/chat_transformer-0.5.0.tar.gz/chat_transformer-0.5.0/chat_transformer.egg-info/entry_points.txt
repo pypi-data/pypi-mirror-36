@@ -1,0 +1,3 @@
+[console_scripts]
+chat-transformer = chat_transformer.cli:CLI.entrypoint
+
