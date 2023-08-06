@@ -1,0 +1,44 @@
+{
+    "type": "object",
+    "properties": {
+        "ec2mc_template_info": {
+            "type": "object",
+            "properties": {
+                "instance_type": {"type": "string"},
+                "volume_size": {"type": "integer"},
+                "security_groups": {
+                    "type" : "array",
+                    "items": {"type": "string"},
+                    "minItems": 1,
+                    "uniqueItems": true
+                },
+                "ip_handler": {"type": ["string", "null"]},
+                "write_directories": {
+                    "type" : "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "local_dir": {"type": "string"},
+                            "instance_dir": {"type": "string"},
+                            "owner": {"type": "string"},
+                            "chmod": {
+                                "type": "string",
+                                "pattern": "^[0-7]{4}$"
+                            }
+                        },
+                        "required": ["local_dir", "instance_dir"]
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                }
+            },
+            "required": [
+                "instance_type",
+                "volume_size",
+                "security_groups",
+                "ip_handler"
+            ]
+        }
+    },
+    "required": ["ec2mc_template_info"]
+}

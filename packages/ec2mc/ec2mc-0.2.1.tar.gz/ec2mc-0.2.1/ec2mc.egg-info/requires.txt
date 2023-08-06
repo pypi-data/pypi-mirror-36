@@ -1,0 +1,6 @@
+boto3~=1.9
+nbtlib~=1.2
+deepdiff~=3.3
+cryptography~=2.3
+ruamel.yaml~=0.15.0
+jsonschema~=2.6

@@ -1,0 +1,29 @@
+{
+    "type": "object",
+    "properties": {
+        "access_key": {
+            "type": "object",
+            "patternProperties": {
+                "^[a-zA-Z0-9]+$": {"type": "string"}
+            },
+            "minProperties": 1,
+            "maxProperties": 1,
+            "additionalProperties": false
+        },
+        "backup_keys": {
+            "type": "object",
+            "patternProperties": {
+                "^[a-zA-Z0-9]+$": {"type": "string"}
+            },
+            "minProperties": 1,
+            "additionalProperties": false
+        },
+        "use_handler": {"type": "boolean"},
+        "region_whitelist": {
+            "type" : "array",
+            "items": {"type": "string"},
+            "minItems": 1,
+            "uniqueItems": true
+        }
+    }
+}
