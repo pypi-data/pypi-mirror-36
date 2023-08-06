@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+characterentities/__init__.py
+characterentities.egg-info/PKG-INFO
+characterentities.egg-info/SOURCES.txt
+characterentities.egg-info/dependency_links.txt
+characterentities.egg-info/requires.txt
+characterentities.egg-info/top_level.txt
+tests/__init__.py
+tests/test_htmlentities.py
+tests/utils.py

@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: characterentities
+Version: 0.1.2
+Summary: HTML Entities for Python
+Home-page: https://github.com/romain-dartigues/python-characterentities
+Author: Romain Dartigues
+Author-email: romain.dartigues@gmail.com
+License: BSD 3-Clause License
+Description: ######
+        README
+        ######
+        
+        HTML Entities for Python
+        
+        About
+        #####
+        
+        Licence
+        =======
+        
+        This project is licensed under the terms of the BSD 3-clause "New" or "Revised" license.
+        
+        Motivations
+        ===========
+        
+        Drop-in replace for `python-htmlentities`_ adding: licence, Python 3 support, unit tests… and more.
+        
+        .. _python-htmlentities: https://pypi.org/project/htmlentities/
+        
+Keywords: SGML,HTML,charater-entity,entities,encode,decode,escape,unescape
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.5
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Markup :: HTML
+Classifier: Topic :: Text Processing :: Markup :: SGML
+Classifier: Topic :: Text Processing :: Markup :: XML
+Provides-Extra: dev
