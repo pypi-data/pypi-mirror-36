@@ -1,0 +1,13 @@
+CHANGES.rst
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+kwsgi/__init__.py
+kwsgi/cli.py
+kwsgi/server.py
+kwsgi.egg-info/PKG-INFO
+kwsgi.egg-info/SOURCES.txt
+kwsgi.egg-info/dependency_links.txt
+kwsgi.egg-info/entry_points.txt
+kwsgi.egg-info/top_level.txt
