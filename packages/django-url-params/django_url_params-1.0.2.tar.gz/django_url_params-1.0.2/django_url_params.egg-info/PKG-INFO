@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: django-url-params
+Version: 1.0.2
+Summary: Keep URL parameters in Django redirect.
+Home-page: https://github.com/gkrsman/django-url-params
+Author: Goran Krsman
+Author-email: goran@klikoglasi.com
+License: MIT
+Description: Django URL params
+        
+        This library contains code to keep parameters in django URL 
+        during Django redirections.
+        
+Keywords: django,url,redirect,django-url-params
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
