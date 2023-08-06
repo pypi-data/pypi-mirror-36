@@ -1,0 +1,64 @@
+# pyatn-client
+
+Python ATN client
+
+
+## Usage
+
+The python ATN client can be used as a standalone library, to call api easily through payment channel.
+
+An example use of the library would import the Client class:
+
+```python
+from pyatn-client import Client
+# If the password file not provided, it’ll be prompted interactively.
+client = Client(pk_file='<path to keystore file>', pw_file='<path to password file>')
+```
+
+
+An example lifecycle of a Client object could look like this:
+
+
+```python
+from microraiden import Client
+
+DBOT_ADDRESS = '<address of DBot>'
+PK_FILE = '<path to keystore file>'
+PW_FILE = '<path to password file>'
+
+# 'with' statement to cleanly release the client's file lock in the end.
+with Client(PK_FILE, PW_FILE) as client:
+
+    channel = client.get_suitable_channel(DBOT_ADDRESS, 10)
+    channel
+    channel.create_transfer(3)
+    channel.create_transfer(4)
+
+    print(
+        'Current balance proof:\n'
+        'From: {}\n'
+        'To: {}\n'
+        'Channel opened at block: #{}\n'  # used to uniquely identify this channel
+        'Balance: {}\n'                   # total: 7
+        'Signature: {}\n'                 # valid signature for a balance of 7 on this channel
+        .format(
+            channel.sender, channel.receiver, channel.block, channel.balance, channel.balance_sig
+        )
+    )
+
+    channel.topup(5)                      # total deposit: 15
+
+    channel.create_transfer(5)            # total balance: 12
+
+    channel.close()
+
+    # Wait for settlement period to end.
+
+    channel.settle()
+
+    # Instead of requesting a close and waiting for the settlement period to end, you can also perform
+    # a cooperative close, provided that you have a receiver-signed balance proof that matches your
+    # current channel balance.
+
+    channel.close_cooperatively(closing_sig)
+```
