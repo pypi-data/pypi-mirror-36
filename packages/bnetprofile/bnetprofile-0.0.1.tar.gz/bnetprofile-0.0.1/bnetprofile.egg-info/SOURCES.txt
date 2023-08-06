@@ -1,0 +1,8 @@
+setup.py
+bnetprofile/__init__.py
+bnetprofile/app.py
+bnetprofile.egg-info/PKG-INFO
+bnetprofile.egg-info/SOURCES.txt
+bnetprofile.egg-info/dependency_links.txt
+bnetprofile.egg-info/requires.txt
+bnetprofile.egg-info/top_level.txt
