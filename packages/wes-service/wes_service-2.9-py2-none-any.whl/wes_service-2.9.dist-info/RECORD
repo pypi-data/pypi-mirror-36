@@ -1,0 +1,17 @@
+wes_client/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+wes_client/util.py,sha256=uU28gmD5yUf9q_4kDKavDZ4XTcRE3iNRypxPLVtQpC0,11104
+wes_client/wes_client_main.py,sha256=DOTpkuUeqfv6mhro_ATu-ENVfYZgWnUkEFUWmrvJKRo,5243
+wes_service/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+wes_service/arvados_wes.py,sha256=zX3YcqLEa3Ri03-dNENkMyj3lLGm7jzvPQIPKrwVJlc,13960
+wes_service/cwl_runner.py,sha256=cgjou7KvJOBEzM9hxbXnPJsZxPSfp1oe28M9wdmg4zo,6999
+wes_service/toil_wes.py,sha256=nBzf87vOP5P_dUaOWJURjM9Sttl3usaDB53zNMs2hOU,12483
+wes_service/tool_reg.py,sha256=NWuph1GnuTJz2xX7VdTENnora0mLqIPBgVN1BoKIQAY,546
+wes_service/util.py,sha256=u5Vig5o2VKdAavKHXUbYbfr09AvuE4V8U-V75VgOBDo,2677
+wes_service/wes_service_main.py,sha256=UA75DH-Ca_jGNOKgdYyoOoi2KugX1TD3c_zDAMftOfs,2108
+wes_service/openapi/workflow_execution_service.swagger.yaml,sha256=ABTyS0lWm52ncddLF2-fP8D03vQ5bFMeAkQiTeelilQ,20713
+wes_service/swagger/proto/workflow_execution.swagger.json,sha256=qgis02r7-wvo7mA4jhBFwPW0QQVyhkyiAjW0hWpZH10,16825
+wes_service-2.9.dist-info/METADATA,sha256=b5bNJqwSqKclvZK2j1UZH9DS4gB8lxYdOwgbGmpYpqM,2523
+wes_service-2.9.dist-info/RECORD,,
+wes_service-2.9.dist-info/WHEEL,sha256=9xUnOISuCvrSyfu9GlFZT4i2TZ_2OLkwLNqcDvIo3zM,92
+wes_service-2.9.dist-info/entry_points.txt,sha256=G0_HPLVARkYOhNqqALQtOFTci5vP6ZtIoctdjhNSoeI,111
+wes_service-2.9.dist-info/top_level.txt,sha256=uVUSyQYbvq3aiG4iPCiFR2qK6xlff3dEMtwM97WyW6g,23
