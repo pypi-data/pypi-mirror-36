@@ -1,0 +1,11 @@
+README.md
+setup.py
+pyutilities/__init__.py
+pyutilities/config.py
+pyutilities/fedit.py
+pyutilities/utils.py
+pyutilities.egg-info/PKG-INFO
+pyutilities.egg-info/SOURCES.txt
+pyutilities.egg-info/dependency_links.txt
+pyutilities.egg-info/not-zip-safe
+pyutilities.egg-info/top_level.txt
