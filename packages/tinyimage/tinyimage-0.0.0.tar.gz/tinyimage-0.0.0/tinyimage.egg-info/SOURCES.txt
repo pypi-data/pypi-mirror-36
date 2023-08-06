@@ -1,0 +1,11 @@
+MANIFEST.in
+setup.py
+deepimage/__init__.py
+deepimage/img_obj.py
+deepimage/tests.py
+deepimage/tools.py
+tinyimage.egg-info/PKG-INFO
+tinyimage.egg-info/SOURCES.txt
+tinyimage.egg-info/dependency_links.txt
+tinyimage.egg-info/not-zip-safe
+tinyimage.egg-info/top_level.txt
