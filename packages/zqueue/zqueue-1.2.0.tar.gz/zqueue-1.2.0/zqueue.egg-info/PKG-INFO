@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: zqueue
+Version: 1.2.0
+Summary: 本地队列模块
+相对别的队列模块提高了执行速度并且减少了资源开销
+Home-page: https://pypi.org/
+Author: zlyuan
+Author-email: 1277260932@qq.com
+License: GNU GENERAL PUBLIC LICENSE
+Description: 本地队列模块
+        
+        为什么要做这个:
+            1.目前的队列模块在进行数据put时会将对象进行序列化为bytes数据, 然后通过socket发送给调用get
+                的进程, 然后再将bytes数据转化为原始对象, 中间会产生大量机器资源消耗, 并且费时间
+            2.别的队列模块在使用的时候, 如果put的对象被装饰器装饰过, 调用get的进程在对bytes数据转化的
+                时候会报错
+        本地队列作用:
+            1.使用方法类似于multiprocessing.Queue模块, 但是数据不会进行转换而是直接保存到一个列表中, 减少
+                了资源消耗, 并且提高执行速度
+            2.允许传入被装饰器装饰过的对象
+        缺点:
+            此队列的数据交换仅用于单个进程, 也就是说无法将数据共享到多进程或远程机器, 但是可以用于多线程
+        
+Platform: all
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
