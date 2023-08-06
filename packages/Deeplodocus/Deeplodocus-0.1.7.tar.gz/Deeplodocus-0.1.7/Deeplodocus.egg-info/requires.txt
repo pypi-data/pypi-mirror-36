@@ -1,0 +1,9 @@
+torch>=0.4.1
+numpy>=1.15.1
+pyyaml>=3.13
+pandas>=0.23.1
+matplotlib>=2.2.2
+aiohttp>=3.4.0
+
+[cv2]
+opencv-python>=3.4.1
