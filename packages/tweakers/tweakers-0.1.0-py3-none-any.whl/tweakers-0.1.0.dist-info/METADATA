@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: tweakers
+Version: 0.1.0
+Summary: # Tweakers API
+Requires-Dist: dateparser
+Requires-Dist: requests-html
+
+A small Python wrapper for [tweakers.net](https://tweakers.net/).
+
+## Usage
+```
+import tweakers
+```
+
+Print a list of active topics:
+```
+for topic in tweakers.gathering.active_topics():
+    print(topic.title)
+```
+
+Search for topics:
+```
+for topic in tweakers.gathering.search('tweakers.net'):
+    print(topic.title)
+```
+
+Home-page: https://github.com/timotk/tweakers
+License: UNKNOWN
+Description: # Tweakers API
+        A small Python wrapper for [tweakers.net](https://tweakers.net/).
+        
+        ## Usage
+        ```
+        import tweakers
+        ```
+        
+        Print a list of active topics:
+        ```
+        for topic in tweakers.gathering.active_topics():
+            print(topic.title)
+        ```
+        
+        Search for topics:
+        ```
+        for topic in tweakers.gathering.search('tweakers.net'):
+            print(topic.title)
+        ```
+        
+Keywords: tweakers,api,scraper
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: "3.6"
