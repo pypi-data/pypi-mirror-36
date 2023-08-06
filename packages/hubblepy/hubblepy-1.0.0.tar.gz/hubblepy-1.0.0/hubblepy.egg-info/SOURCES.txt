@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+hubblepy/__init__.py
+hubblepy/api.py
+hubblepy.egg-info/PKG-INFO
+hubblepy.egg-info/SOURCES.txt
+hubblepy.egg-info/dependency_links.txt
+hubblepy.egg-info/requires.txt
+hubblepy.egg-info/top_level.txt
