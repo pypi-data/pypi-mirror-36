@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: hsc
+Version: 1.0.0
+Summary: Hackerrank Solution Crawler
+Home-page: https://github.com/Nullifiers/Hackerrank-Solution-Crawler
+Author: Nullifiers
+Author-email: nullifiersorg@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/Nullifiers/Hackerrank-Solution-Crawler/releases
+Description: # Hackerrank-Solution-Crawler
+        Crawls solutions of hackerrank and stores as local files.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
