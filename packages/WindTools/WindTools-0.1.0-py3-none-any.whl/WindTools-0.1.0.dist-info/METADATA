@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: WindTools
+Version: 0.1.0
+Summary: Wind turbine power comparison and wake visualization tools
+Home-page: https://github.com/TEMP/windtools
+Author: NREL National Wind Technology Center
+Author-email: rafael.mudafort@nrel.gov
+License: Apache-2.0
+Keywords: wind turbine energy wake visualization floris sowfa nrel nwtc
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: ~=3.3
+Requires-Dist: matplotlib (>=2.1.0)
+Requires-Dist: numpy (>=1.12.1)
+
+
+Wind Tools - Power comparison and wake visualization
+----------------------------------------------------
+
+This repository is under construction. Please come back soon for a released version!
+
+Thanks,
+`Rafael Mudafort <mailto:rafael.mudafort@nrel.gov>`_
+
+
