@@ -1,0 +1,70 @@
+Metadata-Version: 1.1
+Name: spider-task-monitor
+Version: 0.0.5
+Summary: 对于爬虫任务调度的监控
+Home-page: https://github.com/IceFruit0777/py_package/tree/master/spider_task_monitor
+Author: IceFruit
+Author-email: huangchi@zhiyitech.cn
+License: UNKNOWN
+Description: 爬虫任务的监控
+        
+        - 针对爬虫调度任务的监控，为每个任务的不同批次设置唯一的标识，作为redis的key，并记录相应信息（队列长度）
+        - 当每个种子爬取完毕时，需向监控系统发送此次爬取的状态（成功/失败/重试，及爬取时间），监控系统会作记录
+        - 在次日的早晨，报表调度器会将前一天的监控信息汇总入库，并给相关人员发送监控报表
+        
+        代码结构：
+        <pre>
+            spider_task_monitor
+            |--- common         通用库
+            ||---- config.py        一些配置信息
+            ||---- constants.py     一些常量
+            ||---- util.py          一些通用函数
+            |--- core           核心库
+            ||---- dao.py            持久层的操作
+            ||---- mail.py           邮件系统
+            ||---- task_dao.py       任务监控的持久层细节
+            |--- monitor        监控库
+            ||---- monitor.py       监控类
+            ||---- report.py        报表类
+        </pre>
+        
+        具体使用：
+        - 由于这里使用redis临时存储监控信息，所以需配置好 `redis_config`
+        <pre>
+            redis_config = {
+                'host': host,
+                'port': port,
+                'password': pwd,
+                'db': db (可不设置，监控会强制设置为db14)
+            }
+            
+            mail_config = {
+                'host': host,
+                'port': port,
+                'user': user,
+                'password': pwd
+            }
+        </pre>
+        - 当启动一个批次的任务时，创建监控队列
+        <pre>
+            from spider_task_monitor.monitor import monitor 
+            m = monitor.Monitor(bis_name, task_name, redis_config, mail_config) 
+            # 初始化当前任务的配置信息，如失败率上限，种子的平均爬取时长上限，报警邮件的收件人 
+            m.init_config(failure_rate_up=.05, avg_time_up=5.0, warn_addresses=['example@domain.com']) 
+            # 版本号遵循一个默认规则，`%Y/%m/%d %H:%M`，即 `年/月/日 时:分` 
+            version = m.cons_version() 
+            # 创建监控队列 
+            m.create(version, queue_length) # 版本号，队列长度
+        </pre>
+        - 一个种子爬取完成时，发送当前种子的完成状态
+        <pre>
+            # 版本号，爬取结果（成功/失败/重试），爬取时长
+            m.send(version, crawl_time=1.68) # 默认成功
+            m.send(version, data_result=monitor.DataResult.FAILED, crawl_time=1.5)
+            m.send(version, data_result=monitor.DataResult.RETRY, crawl_time=2.3)
+        </pre>
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
