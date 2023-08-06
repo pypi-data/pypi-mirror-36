@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: masonite-digitalocean-driver
+Version: 0.0.1
+Summary: DigitalOcean upload driver for the Masonite framework
+Home-page: https://github.com/bjorntheart/masonite-digitalocean-driver
+Author: Bjorn Theart
+Author-email: bjorntheart@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: python web framework,python3,masonite,digitalocean
+Platform: UNKNOWN
