@@ -1,0 +1,51 @@
+Metadata-Version: 1.1
+Name: pysimpliroute
+Version: 0.1.0
+Summary: Wrapper for the SimpliRoute service API
+Home-page: https://gitlab.com/dansanti/pysimpliroute
+Author: Daniel Santibáñez Polanco
+Author-email: dansanti@gmail.com
+License: GPLV3+
+Description: PySimpliRoute
+        =======
+        
+        Wrapper for the SimpliRoute service API
+        
+        Installation
+        ------------
+        
+        ::
+        
+            pip3 install pysimpliroute
+        
+        Usage
+        -----
+        
+        ::
+        
+            from pysimpliroute import simpliroute as sr
+            client = sr.Client(token='token_from_perfil')
+            params = {
+                    "order": 1,
+                    "title": "Dansanti Test1",
+                    "address": "Parcela 19, culiprán, Melipilla, Chile",
+                    "latitude": "-33.774290",
+                    "longitude": "-71.250123",
+                    "contact_name": "Daniel",
+                    "contact_phone": "+123413123212",
+                    "contact_email": "apu@example.com",
+                    "reference": "invoice_id",
+                    "notes": "Leave at front door",
+                    "planned_date": "2018-08-19",
+                    "window_start": "19:00",
+                  }
+            client.send_visit(params)
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Environment :: Console

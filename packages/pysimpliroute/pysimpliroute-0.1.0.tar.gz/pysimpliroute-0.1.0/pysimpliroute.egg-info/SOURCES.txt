@@ -1,0 +1,11 @@
+MANIFEST.in
+README.rst
+setup.py
+pysimpliroute/__init__.py
+pysimpliroute/simpliroute.py
+pysimpliroute.egg-info/PKG-INFO
+pysimpliroute.egg-info/SOURCES.txt
+pysimpliroute.egg-info/dependency_links.txt
+pysimpliroute.egg-info/not-zip-safe
+pysimpliroute.egg-info/requires.txt
+pysimpliroute.egg-info/top_level.txt
