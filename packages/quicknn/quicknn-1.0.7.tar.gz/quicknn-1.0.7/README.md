@@ -1,0 +1,44 @@
+
+# QuickNN
+
+An implementation of Feedforward Neural Networks for quick applications.
+
+* The training phase can be stopped, some parameters on fit method can be changed and then the training can be resumed
+with the same weights of the last interruption.
+* If feed with pandas objects it can handle categorical variables with one-hot-encoding(OHE) method batch-wise as well
+as continuous variables.
+* Easy visualization in tensorboard of the metrics provided.
+* Inner management of the validation set in the training phase.
+
+## Example
+
+```python
+from quicknn import QuickNN
+from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+
+X, y = load_boston(return_X_y=True)
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.25)
+
+qdnn = QuickNN(list_neurons=[100, 200, 1])
+qnn.fit(X_train, y_train, n_epochs=10) ## If you run this in an IPython session you can stop-change-resume the training
+y_pred = qnn.predict(X_val)
+
+score = mean_squared_error(y_val, y_pred)
+
+```
+
+## Installing
+The dependencies are showed in [requirements.txt](requirements.txt), which can be installed with the command:
+```bash
+pip install -r requirements.txt
+```
+Then the library can easily downloaded through pip:
+```bash
+$ pip install quicknn
+```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](License.md) file for details.
