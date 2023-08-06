@@ -1,0 +1,3 @@
+include version.cache
+include copter/codon_usages/*.json
+include copter/optimizers/*.pyx
