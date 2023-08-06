@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: punica
+Version: 0.0.3
+Summary: Ontology DApp Development Framework
+Home-page: https://github.com/ontio-community/punica-python
+Author: NashMiao
+Author-email: wdx7266@outlook.com
+Maintainer: NashMiao
+Maintainer-email: wdx7266@outlook.com
+License: MIT
+Requires-Dist: Click
+Requires-Dist: GitPython
+Requires-Dist: punica-neo-boa
+Requires-Dist: ontology-python-sdk
+
+# punica-python
+
+
