@@ -1,0 +1,9 @@
+setuptools
+zope.interface
+zope.component
+pyaml
+jinja2
+
+[testing]
+zope.testrunner
+sparc.testing[zcml]
