@@ -1,0 +1,9 @@
+README.md
+setup.py
+friendsep/__init__.py
+friendsep/friendsep.py
+friendsep.egg-info/PKG-INFO
+friendsep.egg-info/SOURCES.txt
+friendsep.egg-info/dependency_links.txt
+friendsep.egg-info/entry_points.txt
+friendsep.egg-info/top_level.txt
