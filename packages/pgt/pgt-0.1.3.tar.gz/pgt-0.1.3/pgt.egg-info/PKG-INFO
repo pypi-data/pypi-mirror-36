@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: pgt
+Version: 0.1.3
+Summary: A pages generate tool.
+Home-page: https://github.com/Maintainer1/pgt
+Author: Maintainer1
+Author-email: ltaoist@163.com
+License: PEP License
+Description: UNKNOWN
+Platform: all
+Classifier: Development Status :: 1 - Planning
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
