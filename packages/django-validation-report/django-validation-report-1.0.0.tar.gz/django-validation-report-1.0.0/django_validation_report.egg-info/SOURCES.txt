@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+django_validation_report.egg-info/PKG-INFO
+django_validation_report.egg-info/SOURCES.txt
+django_validation_report.egg-info/dependency_links.txt
+django_validation_report.egg-info/top_level.txt
+validation_report/__init__.py
+validation_report/apps.py
+validation_report/sendmail.py
+validation_report/urls.py
+validation_report/utils.py
+validation_report/validation_report.py
+validation_report/views.py
