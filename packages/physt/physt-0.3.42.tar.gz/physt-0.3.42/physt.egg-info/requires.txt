@@ -1,0 +1,17 @@
+numpy
+
+[all]
+dask
+matplotlib
+folium
+vega3
+xarray
+protobuf
+
+[full]
+folium
+matplotlib
+protobuf
+xarray
+vega3
+dask
