@@ -1,0 +1,17 @@
+README.md
+setup.py
+bin/sospex
+sospex/__init__.py
+sospex/apertures.py
+sospex/cloud.py
+sospex/graphics.py
+sospex/interactors.py
+sospex/lines.py
+sospex/mainwindow.py
+sospex/moments.py
+sospex/specobj.py
+sospex/start.py
+sospex.egg-info/PKG-INFO
+sospex.egg-info/SOURCES.txt
+sospex.egg-info/dependency_links.txt
+sospex.egg-info/top_level.txt

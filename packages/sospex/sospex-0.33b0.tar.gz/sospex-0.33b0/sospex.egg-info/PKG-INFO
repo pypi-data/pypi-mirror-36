@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: sospex
+Version: 0.33b0
+Summary: SOFIA SPectral EXplorer
+Home-page: https://github.com/darioflute/sospex.git
+Author: Dario Fadda
+Author-email: darioflute@gmail.com
+License: GPLv3+
+Download-URL: https://github.com/darioflute/sospex
+Description: The package displays FIFI-LS and GREAT cubes
+Platform: UNKNOWN
