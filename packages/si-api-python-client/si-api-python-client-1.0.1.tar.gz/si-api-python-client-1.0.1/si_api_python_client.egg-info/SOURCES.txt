@@ -1,0 +1,15 @@
+README.md
+setup.cfg
+setup.py
+si/__init__.py
+si/client.py
+si/errors.py
+si/service.py
+si/trademark.py
+si_api_python_client.egg-info/PKG-INFO
+si_api_python_client.egg-info/SOURCES.txt
+si_api_python_client.egg-info/dependency_links.txt
+si_api_python_client.egg-info/requires.txt
+si_api_python_client.egg-info/top_level.txt
+test/__init__.py
+test/test_basic.py

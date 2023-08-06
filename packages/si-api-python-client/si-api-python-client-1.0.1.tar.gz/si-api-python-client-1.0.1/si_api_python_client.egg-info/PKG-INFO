@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: si-api-python-client
+Version: 1.0.1
+Summary: Simple Intelligence python api client
+Home-page: https://bitbucket.com/simpleintelligence/si-api-python-client
+Author: Simple Intelligence Inc.
+Author-email: dev@simpleintelligence.com
+License: MIT
+Description: Simple Intelligence python api client
+Platform: UNKNOWN
+Requires-Python: >= 3
