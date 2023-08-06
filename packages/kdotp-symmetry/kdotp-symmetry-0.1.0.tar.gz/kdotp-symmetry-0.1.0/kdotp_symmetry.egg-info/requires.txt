@@ -1,0 +1,11 @@
+sympy
+numpy
+scipy
+fsc.export
+symmetry-representation>=0.1
+
+[dev]
+pytest
+yapf
+pre-commit
+prospector
