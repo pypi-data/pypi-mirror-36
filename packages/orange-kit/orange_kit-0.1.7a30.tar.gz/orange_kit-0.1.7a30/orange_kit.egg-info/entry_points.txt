@@ -1,0 +1,16 @@
+[console_scripts]
+canshu = orange.tools.ggcs:canshu
+conv = orange.utils.path:convert
+fkgfw = orange.tools.fkgfw:main
+gclone = orange.tools.gclone:proc
+mongodeploy = orange.mongodb:main
+pkg = orange.tools.pypkgs:main
+plist = orange.tools.plist:main
+pyinit = orange.tools.init:main
+pysdist = orange.pykit.pysetup:pysdist
+pyupgrade = orange.tools.pyupgrade:PythonUpgrade.main
+pyupload = orange.pykit.pysetup:pyupload
+pyver = orange.pyver:VersionMgr.main
+sxtm = orange.tools.math:main
+sysinit = orange.tools.sysinit:main
+
