@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: resin-release-tool
+Version: 0.1.0
+Summary: Release tool to have canary in resin.io
+Home-page: https://github.com/mobilityhouse/resin-release-tool
+Author: roger
+Author-email: roger.duran@mobilityhouse.com
+Keywords: resin,deploy
+Requires-Python: >=3.5,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: click (>=6.7,<7.0)
+Requires-Dist: resin-sdk (>=5.0,<6.0)
