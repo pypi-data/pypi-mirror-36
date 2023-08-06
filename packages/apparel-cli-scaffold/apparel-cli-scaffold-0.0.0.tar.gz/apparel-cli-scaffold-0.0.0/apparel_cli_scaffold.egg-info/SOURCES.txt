@@ -1,0 +1,11 @@
+setup.py
+apparel_cli/__init__.py
+apparel_cli/auth.py
+apparel_cli/main.py
+apparel_cli/problem.py
+apparel_cli_scaffold.egg-info/PKG-INFO
+apparel_cli_scaffold.egg-info/SOURCES.txt
+apparel_cli_scaffold.egg-info/dependency_links.txt
+apparel_cli_scaffold.egg-info/entry_points.txt
+apparel_cli_scaffold.egg-info/requires.txt
+apparel_cli_scaffold.egg-info/top_level.txt
