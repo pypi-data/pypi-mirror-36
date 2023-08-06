@@ -1,0 +1,10 @@
+README.rst
+setup.py
+gdockutils/__init__.py
+gdockutils/ask.py
+gdockutils/gprun.py
+gdockutils.egg-info/PKG-INFO
+gdockutils.egg-info/SOURCES.txt
+gdockutils.egg-info/dependency_links.txt
+gdockutils.egg-info/entry_points.txt
+gdockutils.egg-info/top_level.txt
