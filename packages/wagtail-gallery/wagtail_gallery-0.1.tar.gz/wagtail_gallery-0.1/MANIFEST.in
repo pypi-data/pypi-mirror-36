@@ -1,0 +1,6 @@
+include LICENSE
+include README.rst
+recursive-include wagtail_gallery *
+recursive-include wagatil_gallery/templates *
+recursive-include wagtail_gallery/docs *
+recursive-exclude wagtail_gallery/docs/build *
