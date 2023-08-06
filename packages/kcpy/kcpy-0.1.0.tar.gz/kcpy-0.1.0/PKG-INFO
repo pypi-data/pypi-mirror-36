@@ -1,0 +1,12 @@
+Metadata-Version: 1.2
+Name: kcpy
+Version: 0.1.0
+Summary: A kinesis consumer is purely written in python.
+Home-page: UNKNOWN
+Author: Hengfeng Li
+Author-email: hengf.li@gmail.com
+License: MIT License
+Description: UNKNOWN
+Keywords: kinesis,consumer,stream,processing,queue
+Platform: UNKNOWN
+Requires-Python: >=3.5.0
