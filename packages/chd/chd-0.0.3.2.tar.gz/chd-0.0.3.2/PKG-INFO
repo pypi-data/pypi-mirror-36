@@ -1,0 +1,59 @@
+Metadata-Version: 1.1
+Name: chd
+Version: 0.0.3.2
+Summary: CHD - a CLI tool for downloading courses from coursehunters.net.
+Home-page: https://github.com/mikhailsidorov/chd
+Author: Mikhail Sidorov
+Author-email: mikhail.a.sidorov@yandex.com
+License: MIT
+Download-URL: https://github.com/mikhailsidorov/chd
+Description: ##############################################
+        CHD - Courses downloader for coursehunters.net
+        ##############################################
+        
+        Requirements
+        ============
+        
+        * `Python 3.6 <https://www.python.org/downloads/release/python-366/>`_ or higher. 
+        
+        
+        Installation
+        ============
+        
+        
+        .. code-block:: bash
+        
+            pip install chd
+        
+        Usage
+        -----
+        
+        .. code-block:: bash
+        
+            chd url [-p path] [-s start_lesson] [-e end_lesson]
+        
+        .. code-block:: bash
+        
+            positional arguments:
+            url                       course url
+        
+            optional arguments:
+            -h, --help                show this help message and exit
+            -p PATH, --path PATH      download path, default is ~/downloads/course-name
+            -s START, --start START   the lesson number from which to start the download
+                                    
+            -e END, --end END         the lesson number at which the download will be
+                                      completed
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Education
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Terminals
+Classifier: Topic :: Utilities
