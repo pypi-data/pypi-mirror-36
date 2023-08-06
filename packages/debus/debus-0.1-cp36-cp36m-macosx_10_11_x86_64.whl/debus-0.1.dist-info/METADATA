@@ -1,0 +1,15 @@
+Metadata-Version: 2.0
+Name: debus
+Version: 0.1
+Summary: DBus wire protocol implementation
+Home-page: https://github.com/Equidamoid/debus
+Author: Vladimir Shapranov
+Author-email: equidamoid@gmail.com
+License: UNKNOWN
+Description-Content-Type: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: lxml
+
+UNKNOWN
+
+
