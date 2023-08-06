@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: svtools
+Version: 0.4.0
+Summary: Tools for processing and analyzing structural variants
+Home-page: https://github.com/hall-lab/svtools
+Author: Ira Hall lab
+Author-email: dlarson@genome.wustl.edu
+License: MIT
+Keywords: genomics structural variants sv bioinformatics
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: svtyper (==0.7.0)
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: statsmodels
+Requires-Dist: pandas
+Requires-Dist: setuptools
+
+UNKNOWN
+
+
