@@ -1,0 +1,3 @@
+include config.py
+include README.md
+include LICENSE
