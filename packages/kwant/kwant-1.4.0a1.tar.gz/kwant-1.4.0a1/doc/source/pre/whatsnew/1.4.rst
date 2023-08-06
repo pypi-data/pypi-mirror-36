@@ -1,0 +1,111 @@
+What's new in Kwant 1.4
+=======================
+
+This article explains the user-visible changes in Kwant 1.4.0.
+See also the `full list of changes up to the most recent bugfix
+release of the 1.4 series
+<https://gitlab.kwant-project.org/kwant/kwant/compare/v1.4.0...latest-1.4>`_.
+
+Value functions may no longer have default values for parameters
+----------------------------------------------------------------
+Using value functions with default values for parameters can be
+problematic, especially when re-using value functions between simulations.
+When parameters have default values it is easy to forget that such a
+parameter exists at all, because it is not necessary to provide them explicitly
+to functions that use the Kwant system. This means that other value functions
+might be introduced that also depend on the same parameter,
+but in an inconsistent way (e.g. a parameter 'phi' that is a superconducting
+phase in one value function, but a peierls phase in another). This leads
+to bugs that are confusing and hard to track down.
+
+Concretely, the above means that the following no longer works::
+
+  syst = kwant.Builder()
+
+  # Parameter 't' has a default value of 1
+  def onsite(site, V, t=1):
+    return V = 2 * t
+
+  def hopping(site_a, site_b, t=1):
+    return -t
+
+  syst[...] = onsite
+  syst[...] = hopping
+
+  # Raises ValueError
+  syst = syst.finalized()
+
+As a solution, simply remove the default values and always provide ``t``.
+To deal with many parameters, the following idiom may be useful::
+
+  defaults = dict(a=0, b=1, c=2, d=3)
+  ...
+  smatrix = kwant.smatrix(syst, E, params=dict(defaults, d=4, e=5))
+
+Note that it allows to override defaults as well as to add additional
+parameters.
+
+System parameter substitution
+-----------------------------
+After the introduction of ``Builder.fill`` it has become possible to construct
+Kwant systems by first creating a "model" system with high symmetry and then
+filling a lower symmetry system with this model. Often, however, one wants
+to use different parameter values in different parts of a system. In
+previous versions of Kwant this was difficult to achieve.
+
+Builders now have a method ``substitute`` that makes it easy to substitute
+different names for parameters. For example if a builder ``model``
+has a parameter ``V``, and one wishes to have different values for ``V`` in
+the scattering region and leads, one could do the following::
+
+   syst = kwant.Builder()
+   syst.fill(model.substitute(V='V_dot', ...))
+
+   lead = kwant.Builder()
+   lead.fill(model.substitute(V='V_lead'), ...)
+
+   syst.attach_lead(lead)
+   fsyst = syst.finalized()
+
+   kwant.smatrix(syst, params=dict(V_dot=0, V_lead=1))
+
+Interpolated density plots
+--------------------------
+A new function `~kwant.plotter.density` has been added that can be used to
+visualize a density defined over the sites of a Kwant system. This convolves
+the "discrete" density (defined over the system sites) with a "bump" function
+in realspace. The output of `~kwant.plotter.density` can be more informative
+that `~kwant.plotter.map` when plotting systems with many sites, where it is
+not important to see the individual contribution from each site.
+
+Configurable maximum velocity in stream plots
+---------------------------------------------
+The function `~kwant.plotter.streamplot` has got a new option ``vmax``.  Note
+that this option is not available in `~kwant.plotter.current`.  In order to use
+it, one has to call ``streamplot`` directly as shown in the docstring of
+``current``.
+
+kwant.continuum.discretize can be used with rectangular lattices
+----------------------------------------------------------------
+Previously the discretizer could only be used with lattices with the same
+lattice constant in all directions. Now it is possible to pass rectangular
+lattices to the discretizer::
+
+  kwant.continuum.discretize(
+    'k_x**2 + k_y**2',
+    grid=kwant.lattice.general([(1, 0), (0, 2]),
+  )
+
+This is useful when you need a finer discretization step in some spatial
+directions, and a coarser one in others.
+
+Improved heuristic for colorscale limits in `kwant.plotter.map`
+---------------------------------------------------------------
+Previously `~kwant.plotter.map` would set the limits for the color scale
+to the extrema of the data being plotted when ``vmin`` and ``vmax`` were
+not provided. This is the behaviour of ``matplotlib.imshow``. When the data
+to be plotted has very sharp and high peaks this would mean that most of the
+data would appear near the bottom of the color scale, and all of the features
+would be washed out by the presence of the peak. Now `~kwant.plotter.map`
+employs a heuristic for setting the colorscale when there are outliers,
+and will emit a warning when this is detected.
