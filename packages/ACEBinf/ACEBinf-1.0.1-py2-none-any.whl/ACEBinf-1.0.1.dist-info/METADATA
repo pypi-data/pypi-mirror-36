@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: ACEBinf
+Version: 1.0.1
+Summary: UNKNOWN
+Home-page: https://github.com/ACEnglish/acebinf
+Author: ACEnglish
+Author-email: acenglish@gmail.com
+License: Unlicense
+Platform: UNKNOWN
+Requires-Dist: pyvcf (>=0.6.8)
+
+Collection of simple utilities used when building bioinformatics tools
+
+* cmd_exe - simple wrapper around subprocess.
+* math_utils - math and statistics utils
+* multiprocess_utils - tools for making Consumer/Producer multithreading Pools
+* pedigree - handles pedigree files in a friendly datastructure
+* setup_logging - standardized setup of python logging
+* vcf_utils - little methods for editing vcf format/info
+
+Install
+------
+
+pip install ACEBinf
+
+
