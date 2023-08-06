@@ -1,0 +1,46 @@
+Metadata-Version: 1.2
+Name: django-naguine
+Version: 1.0.0
+Summary: Django Web Framework's sidekick, Sophie "Naguine" Ziegler.
+Home-page: https://github.com/colexyz/django-naguine
+Author: Cole Carter
+Author-email: coleccarter@gmail.com
+License: BSD
+Description-Content-Type: text/markdown
+Description: Naguine
+        =======
+        [![Build Status](https://travis-ci.org/colexyz/django-naguine.svg?branch=master)](https://travis-ci.org/colexyz/django-naguine)
+        [![codecov](https://codecov.io/gh/colexyz/django-naguine/branch/master/graph/badge.svg)](https://codecov.io/gh/colexyz/django-naguine)
+        
+        Django Web Framework's sidekick, Sophie "Naguine" Ziegler.
+        
+        
+        Requirements
+        ============
+        - Python: 3.6
+        - Django: 2.0, 2.1
+        
+        
+        Install
+        =======
+        `pip install django-naguine`
+        
+        and add `naguine` to your project's `INSTALLED_APPS`:
+        ```
+        INSTALLED_APPS = [
+            ...
+            'naguine',
+        ]
+        ```
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3.6

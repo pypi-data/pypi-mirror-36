@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+django_naguine.egg-info/PKG-INFO
+django_naguine.egg-info/SOURCES.txt
+django_naguine.egg-info/dependency_links.txt
+django_naguine.egg-info/requires.txt
+django_naguine.egg-info/top_level.txt
+naguine/__init__.py
+naguine/apps/__init__.py
+naguine/apps/models.py
+naguine/conf/__init__.py
+naguine/core/__init__.py
+naguine/core/composedfunction.py
+naguine/core/fork.py
