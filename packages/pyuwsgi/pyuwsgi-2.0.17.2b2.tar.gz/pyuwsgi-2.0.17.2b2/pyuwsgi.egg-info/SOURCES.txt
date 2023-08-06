@@ -1,0 +1,9 @@
+MANIFEST.in
+README
+setup.py
+uwsgidecorators.py
+pyuwsgi.egg-info/PKG-INFO
+pyuwsgi.egg-info/SOURCES.txt
+pyuwsgi.egg-info/dependency_links.txt
+pyuwsgi.egg-info/entry_points.txt
+pyuwsgi.egg-info/top_level.txt
