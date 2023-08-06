@@ -1,0 +1,15 @@
+rendascii/__init__.py,sha256=PoJE3lxX_VoDMAD8bQ6c63rEeisQpQUymwBWWpNtUj4,288
+rendascii/interface.py,sha256=kLPcZuZfgpzU3DKfQ5eWweOdI619tQngmYXjrzVkv3o,11255
+rendascii/resource.py,sha256=QScbSeuq5UHm5YS1_UgaDp7tD-237vHEUvFzmlGcnlg,3770
+rendascii/utility.py,sha256=YcnspTJxGN4jzLuhVqVq-8FlekAdGj9J1QHBjI5IGvM,3649
+rendascii/geometry/__init__.py,sha256=Hg89V1oa2GI1glJgC1JqM_D9Xs0DjaKo5w4EZ79URWw,283
+rendascii/geometry/matrix.py,sha256=z87iTm7tR4glE7RIyuVHqEmbF8jv7M3ieuQRdaF4IuU,2091
+rendascii/geometry/polygon.py,sha256=odqIFhXxQUdZi6DDvFaqTpSX2NhvzrcvjcOAlf-wU4o,4143
+rendascii/geometry/vector.py,sha256=cCjZFcXxu_MByk4yE9BUVGsjLfkLq0IQk35lnBWTh_c,2265
+rendascii/pipeline/__init__.py,sha256=1MhGWCkFADJjICN6hwI_KkWQCw1M85CSWZbA_YozR9M,115
+rendascii/pipeline/shader.py,sha256=L96uf_T-J_XQ0ZHWq4R4HRLY4Md-TrEF2WqyH1DgxlU,6151
+rendascii/pipeline/stage.py,sha256=84GZe25C9mVKoEwfR5KwRwtivWXGXR_AecOdw1Rj-C4,4556
+rendascii-1.0.0a2.post2.dist-info/METADATA,sha256=berwMRHYhwGTmBifVDH8GCrRx1u5Y2tsbmg2-XqU0zI,2610
+rendascii-1.0.0a2.post2.dist-info/RECORD,,
+rendascii-1.0.0a2.post2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+rendascii-1.0.0a2.post2.dist-info/top_level.txt,sha256=SEVdVRKmKyjjr5jX6sHar2IW-GhcS9HsGMFCS4knY_I,10
