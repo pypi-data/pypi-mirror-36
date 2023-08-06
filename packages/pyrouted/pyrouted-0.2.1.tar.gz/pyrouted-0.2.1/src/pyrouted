@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+
+import socket
+import bottle
+from pyrouted.config import Config
+from pyrouted.http import Server
+from pyrouted.api import APIv1
+from pyrouted.util import make_spec
+from pyroute2 import NDB
+from pyroute2 import IPRoute
+
+
+config = Config().load()
+sources = {'localhost': {'class': IPRoute}}
+for node in config['sources']:
+    node, spec = make_spec(node, config)
+    sources[node] = spec
+
+ndb = NDB(sources=sources,
+          db_provider=config['database']['provider'],
+          db_spec=config['database']['spec'])
+
+app = APIv1(ndb, config)
+for kw in dir(app):
+    method = getattr(app, kw)
+    if hasattr(method, 'http_route'):
+        path = '%s%s' % (app.prefix, method.http_route)
+        bottle.route(path, method.http_method, method)
+
+try:
+    listen = config.get('listen', '/var/run/pyrouted/api')
+    if listen.find('/') > -1:
+        spec = {'family': socket.AF_UNIX,
+                'host': listen,
+                'port': 0}
+    else:
+        host, port = listen.split(':')
+        spec = {'family': socket.AF_INET,
+                'host': host,
+                'port': int(port)}
+    bottle.run(server=Server(**spec))
+finally:
+    ndb.close()
