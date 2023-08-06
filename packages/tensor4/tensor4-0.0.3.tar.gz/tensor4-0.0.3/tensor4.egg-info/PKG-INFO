@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: tensor4
+Version: 0.0.3
+Summary: tensor4 - pytorch to C++ convertor using lightweight templated tensor library
+Home-page: https://github.com/podgorskiy/tensor4
+Author: Stanislav Pidhorskyi
+Author-email: stanislav@podgorskiy.com
+License: UNKNOWN
+Description: tensor4 - pytorch to C++ convertor using lightweight templated tensor library
+        ================================
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Programming Language :: C++
+Description-Content-Type: text/markdown
