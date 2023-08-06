@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: athenacli
+Version: 0.1.0
+Summary: CLI for Athena Database. With auto-completion and syntax highlighting.
+Home-page: https://github.com/dbcli/athenacli
+Author: athenacli Core Team
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: SQL
+Classifier: Topic :: Database
+Classifier: Topic :: Database :: Front-Ends
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: click (>=4.1)
+Requires-Dist: Pygments (>=1.6)
+Requires-Dist: prompt-toolkit (<1.1.0,>=1.0.10)
+Requires-Dist: sqlparse (<0.3.0,>=0.2.2)
+Requires-Dist: configobj (>=5.0.5)
+Requires-Dist: cli-helpers[styles] (>=1.0.1)
+Requires-Dist: PyAthena (==1.2.2)
+
+[![Build Status](https://travis-ci.org/dbcli/athenacli.svg?branch=master)](https://travis-ci.org/dbcli/athenacli)
+[![PyPI](https://img.shields.io/pypi/v/athenacli.svg?style=plastic)](https://pypi.python.org/pypi/athenacli)
+[![Join the chat at https://gitter.im/dbcli/athenacli](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dbcli/athenacli?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+# Introduction
+
+AthenaCLI is a command line client for [Athena](https://aws.amazon.com/athena/) service that can do auto-completion and syntax highlighting, and is a proud member of the dbcli community.
+
+![](./docs/_static/gif/athenacli.gif)
+
+# Quick Start
+
+Please refer to the [Quick Start](https://athenacli.readthedocs.io/en/latest/index.html#quick-start) in the online documentation on how to get started using it quickly.
+
+# Features
+
+Please review the [Features](https://athenacli.readthedocs.io/en/latest/features.html) for information on what does AthenaCLI provide.
+
+# Usages
+
+Please go to the [Usages](https://athenacli.readthedocs.io/en/latest/usage.html) for detailed information on how to use AthenaCLI.
+
+# FAQs
+
+Please refer to the [FAQs](https://athenacli.readthedocs.io/en/latest/faq.html) for other information, e.g. "How can I get support for athenacli?".
+
+# Credits
+
+A special thanks to [Amjith Ramanujam](https://github.com/amjith) for creating pgcli and mycli, which inspired me to create this AthenaCLI, and AthenaCLI is created based on a clone of mycli.
+
+Thanks to [Jonathan Slenders](https://github.com/jonathanslenders) for creating Python Prompt Toolkit, which leads me to pgcli and mycli. It's a lot of fun playing with this library.
+
+Thanks to [PyAthena](https://github.com/laughingman7743/PyAthena) for a pure python adapter to Athena database.
+
+Last but not least, thanks my team and manager encourage me to work on this hobby project.
+
