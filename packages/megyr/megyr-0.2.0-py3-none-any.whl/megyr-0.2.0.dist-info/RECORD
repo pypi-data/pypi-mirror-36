@@ -1,0 +1,12 @@
+megyr/__init__.py,sha256=E4cgi611CDocHDDMd2oiepZbnmVJOGHdtLPRb-toQzA,3525
+megyr/config_validation.py,sha256=J-sxc1Xa1rqCK624g1Q2rdR3RWsrYAOIze7aV-VfxC0,3517
+megyr/gyre.py,sha256=vfrBUsGmQwOzNTac3JGF9XJBtRbmZLw2fqb7C9lN6dw,2712
+megyr/mesa.py,sha256=wYu1EkSabjfS61P4ySXFX3dX2JigFskkgThsXPkb5hQ,2587
+megyr/oscillations_summary.py,sha256=haWlDeVjSKNyGk4maEX6Sa4nc8kEz-bgbBRzDcDs1GA,1353
+megyr/parameters.py,sha256=nPoMPt-iYhZlXOFFYJv04G5UtPxezvnpRXlWrN6y_aw,2354
+megyr/profile.py,sha256=5oLUDHFTec-sm_12eU57kLAqTgJVlclpGBW56Wpjm8g,1563
+megyr/util.py,sha256=JROK7nOjL5J_vnbJc6jLpe0hmilORUiJil4vbL4bNLc,1898
+megyr-0.2.0.dist-info/METADATA,sha256=5Thpm9w3x33-kFBGGzMcsrRlIRr2Rp3Ugr8z6osdcj8,1622
+megyr-0.2.0.dist-info/RECORD,,
+megyr-0.2.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+megyr-0.2.0.dist-info/top_level.txt,sha256=7FfvUAy4WLRmNnOHReThwcQko2Wd9qNjvx1PyOEgMMY,6
