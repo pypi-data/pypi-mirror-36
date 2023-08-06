@@ -1,0 +1,14 @@
+kgx/__init__.py,sha256=d0Q6Fn44e7wFfLabDOBxpcJ1DPKWlFunGYDUBmO-4hA,22
+kgx/client.py,sha256=joLDTcoairMHQ3vl5O1ZaX5ubwUxDWx9NVJw1NSXpSo,3701
+kgx/common.py,sha256=Dk-pu1Namur3j6r0wWza_afeC-iNqF-GQG94tHk0y4c,764
+kgx/exceptions.py,sha256=E__fQe0owXPDawhmpy8K-h6FGoAk5Ck6PkmFydan0uA,1850
+kgx/requests.py,sha256=VbWBwIzM46v4aDhdwwnLkGpuehHklXb42x6KGPXIHag,3048
+kgx/responses.py,sha256=noPO7w4KISD0vsK85dwi94PpfDRF5N8gdyu9Kgv8aUQ,5480
+kgx/ecommerce/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+kgx/ecommerce/oscar/__init__.py,sha256=GiV7cMz0uxUcN0vhcLzJPIxYhPNQJhKA43MNATdRqtA,280
+kgx/ecommerce/oscar/methods.py,sha256=HogdLkB8bm_V3GSILD2D7deKA3c-gZLhoyEU2FjFhIE,1731
+kgx/ecommerce/oscar/repository.py,sha256=cVTtcqjmfA3kR9ujJMnE66uqg5lcd_FHA21WlfJI5kQ,834
+kgx_client-0.1.0.dist-info/METADATA,sha256=UJHrLSE7orURA4LV1zqtTI_PmF4hb2IZeqTHGHF2kHI,747
+kgx_client-0.1.0.dist-info/WHEEL,sha256=YO0P_oFqt6DWX0LhbH7jsyzb3BUtoq2kERtqGsXDJHs,92
+kgx_client-0.1.0.dist-info/top_level.txt,sha256=bf2_VTJ6c2yANWgR6bxK84TRTOq-TQzoevqiEgg8_p8,4
+kgx_client-0.1.0.dist-info/RECORD,,

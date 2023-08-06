@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: kgx-client
+Version: 0.1.0
+Summary: KG Express API Client
+Home-page: https://github.com/gramedia-digital-nusantara/kgx-client
+Author: Gramedia Digital Nusantara Team
+Author-email: engineering@gramedia.digital
+License: GPLv3+
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: requests (>=2.19.1)
+
+UNKNOWN
+
+
