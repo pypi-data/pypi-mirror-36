@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: scibot
+Version: 0.0.1
+Summary: curation workflow automation and coordination
+Home-page: https://github.com/SciCrunch/scibot
+Author: Tom Gillespie
+Author-email: tgbugs@gmail.com
+License: Apache 2.0
+Description:  
+Keywords: rrid curation biocuration hypothesis hypothes.is web annotation
+Platform: UNKNOWN
