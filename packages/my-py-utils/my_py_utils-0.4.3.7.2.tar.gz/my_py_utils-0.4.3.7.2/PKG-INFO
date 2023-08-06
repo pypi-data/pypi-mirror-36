@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: my_py_utils
+Version: 0.4.3.7.2
+Summary: Package containig my essential definitions
+Home-page: https://github.com/amdshameer/my_py_utils
+Author: Mohammed Shameer
+Author-email: reachme@shameer.de
+License: UNKNOWN
+Download-URL: https://github.com/amdshameer/my_py_utils/archive/0.4.3.7.2.tar.gz
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux

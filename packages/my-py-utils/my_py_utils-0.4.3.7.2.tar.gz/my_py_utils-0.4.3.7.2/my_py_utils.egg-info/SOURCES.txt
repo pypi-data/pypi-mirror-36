@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+my_py_utils/__init__.py
+my_py_utils/my_py_utils.py
+my_py_utils.egg-info/PKG-INFO
+my_py_utils.egg-info/SOURCES.txt
+my_py_utils.egg-info/dependency_links.txt
+my_py_utils.egg-info/top_level.txt
