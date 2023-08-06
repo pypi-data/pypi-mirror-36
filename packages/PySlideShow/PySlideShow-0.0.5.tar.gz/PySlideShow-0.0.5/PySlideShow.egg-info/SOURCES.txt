@@ -1,0 +1,11 @@
+README.md
+setup.py
+PySlideShow/Configuration.py
+PySlideShow/Rendering.py
+PySlideShow/Slide.py
+PySlideShow/SlideSequencer.py
+PySlideShow/__init__.py
+PySlideShow.egg-info/PKG-INFO
+PySlideShow.egg-info/SOURCES.txt
+PySlideShow.egg-info/dependency_links.txt
+PySlideShow.egg-info/top_level.txt
