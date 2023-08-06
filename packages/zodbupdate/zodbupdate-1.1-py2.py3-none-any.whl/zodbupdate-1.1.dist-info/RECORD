@@ -1,0 +1,14 @@
+zodbupdate/__init__.py,sha256=dbDpQyAWfsWp69W6rY7GD9JfC9wgNMf8eZMbUk46p8s,29
+zodbupdate/convert.py,sha256=9bV4UqvpmzlzGsEQsP9s8zleEnnzlY8af_YN-uUFhR4,3326
+zodbupdate/main.py,sha256=b69EqdGb_u-DPj8j99PzVFeD7YSxstCulEdrdDWRJzA,6364
+zodbupdate/serialize.py,sha256=e9rgxc_tb_ktvrLlgXWCI0ev6CNQtT0MnU5qe2VftyU,12114
+zodbupdate/tests.py,sha256=edEIyNIvWyp2zDKVfwS-NIdZfiALa2pW_UUTuEoSNoE,34258
+zodbupdate/update.py,sha256=VEbuiMGxLkAEhySSKdwIRUAMMsihxn5mKaRHSSrKg2Q,5491
+zodbupdate/utils.py,sha256=6exjJeCAfvf5T0NPgqkNVzDufPDCUttCB7T_NBUdAlI,2444
+zodbupdate-1.1.dist-info/DESCRIPTION.rst,sha256=s1uJRdE2UFzKhDl_Zfh-bLddliwc2lXRpGS6xJ42RO8,8442
+zodbupdate-1.1.dist-info/METADATA,sha256=7lT4vfyrlw6RSSSf2Aak56Okuk4NwpbEcvJgPi48esU,9670
+zodbupdate-1.1.dist-info/RECORD,,
+zodbupdate-1.1.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+zodbupdate-1.1.dist-info/entry_points.txt,sha256=Wlgt3KGRwt2YuFTs7VIJlrNVzjQcJx5mWvk2r0dlTec,53
+zodbupdate-1.1.dist-info/metadata.json,sha256=7iF5LOSn3LG2U39mN6teLaU66utkb3cdS5ZGPMLTY_s,1379
+zodbupdate-1.1.dist-info/top_level.txt,sha256=Guxf_aEfusg81MxQNJl1oDXAwIneVtYVO-AfUNoa0Jc,11
