@@ -1,0 +1,11 @@
+avocado_framework_plugin_result_html-65.0.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+avocado_framework_plugin_result_html-65.0.dist-info/METADATA,sha256=J9Ilv71tR4zmnAlxJV2zG9T3LxMjMF4H4aPjlHLikbA,333
+avocado_framework_plugin_result_html-65.0.dist-info/RECORD,,
+avocado_framework_plugin_result_html-65.0.dist-info/WHEEL,sha256=u6Fy2U76CDFJ6q2P27rqtBo3AN6qpylFiMaYzNr2lJg,95
+avocado_framework_plugin_result_html-65.0.dist-info/entry_points.txt,sha256=P3Uzys2H8vpGZaUIZPKYrkW6vRnOP_LTVLiOJB71nnY,119
+avocado_framework_plugin_result_html-65.0.dist-info/metadata.json,sha256=6dhJ9QqDSt4lmavYbY0XXu_H_fESZO4wQp_KwC0rbLs,665
+avocado_framework_plugin_result_html-65.0.dist-info/top_level.txt,sha256=c3FB7iraI7u7sU_q_gYjJyxCuBGsFLV3BsVnCh0YRYI,26
+avocado_result_html/__init__.py,sha256=DPhDVqeqFEALh68HZYuCpQQU0lc1thCOqej4bIjSTv0,12290
+avocado_result_html/resources/templates/report.mustache,sha256=LjV-TqguxYyPzUzDYIuLOwkM3YQtXVLhQNS3wya2XGU,276305
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_html_result.py,sha256=mJi5rqrDqJjI1ZLVyaFHQizn_nTtbJkVrj58fpVeVeE,3457
