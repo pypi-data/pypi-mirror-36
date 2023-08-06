@@ -1,0 +1,12 @@
+nlx_middleware/__init__.py,sha256=dxMT9X-PdZ8Wm-HaBuri6_Wgm5djtpjmsW-GlLJupPA,79
+nlx_middleware/apps.py,sha256=DoCvtUPnZfhxRsc3KwwMIPwCtXjmqVKqT8oJmhMIwhA,102
+nlx_middleware/middleware.py,sha256=doNz7dZzPFqTtZXp7f0BelJnjg86yfq9WqTtFiv46nI,7902
+nlx_middleware-0.1.dist-info/METADATA,sha256=clfCaxaU1L-RY9JWXqj0yQYEvRBQ7o5V26mn8ylyu9Q,4714
+nlx_middleware-0.1.dist-info/RECORD,,
+nlx_middleware-0.1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+nlx_middleware-0.1.dist-info/top_level.txt,sha256=tjcfxuimNTtu1Z2xTcWVNhBNFiDQ4Nu3tOMeECjsC64,29
+testapp/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+testapp/settings.py,sha256=dNwfVOAtT-aSahJueZwr6yW8CGJuC_n_6oPJGCh8p5U,1391
+testapp/urls.py,sha256=tUjJEcvR7G5dbZeR3ruh46K7Qs_64C40WKf5Ypi9Kqs,118
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/conftest.py,sha256=s8f-7xBxBGsL5OVZO3ix9YjtdKdYnjZpzGZVwJoCKA8,84
