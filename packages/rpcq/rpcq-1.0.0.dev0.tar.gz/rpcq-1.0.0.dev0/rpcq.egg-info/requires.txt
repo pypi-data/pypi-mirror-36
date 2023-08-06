@@ -1,0 +1,13 @@
+dataclasses
+future
+msgpack>=0.5.2
+numpy
+python-rapidjson
+pyzmq>=17
+ruamel.yaml
+scipy
+typing
+cobertura-clover-transform
+pytest
+pytest-asyncio
+pytest-cov
