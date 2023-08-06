@@ -1,0 +1,3 @@
+[console_scripts]
+release_name_generator = release_name_generator.main:program.run
+
