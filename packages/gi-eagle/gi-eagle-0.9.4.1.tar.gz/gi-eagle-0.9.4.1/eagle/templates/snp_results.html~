@@ -1,0 +1,289 @@
+{% extends "layout.html" %}
+{% from "macros.html" import list_out, list_out_bytes, igv_link, igv_open_file, ucsc_link, genemania_single_link, ensemble_link, all_link %}
+{% block caption %}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block body %}
+<div class="row left">
+    <ul class="tabs" data-tab role="tablist">
+        {% if query %}<li class="tab-title" role="presentation"><a href="#parameters" role="tab" tabindex="0">Parameters</a></li>{% endif %}
+        <li class="tab-title active" role="presentation"><a href="#result-table" role="tab" tabindex="0">Results</a></li>
+        {% if homhetdata and caseslist %}<li class="tab-title" role="presentation"><a href="#result-homhettable" role="tab" tabindex="0">Table</a></li> {% endif %}
+        <li class="tab-title" role="presentation"><a href="#result-barchart" role="tab" tabindex="0">Barchart</a></li>
+        <button class="right exportbutton" onclick="$(table2excel).toCSV('snp.csv')">.csv</button>
+        <button class="right" id="exportbutton" onclick="tableToExcel('table2excel', 'snp.xls')">.xls</button>
+        {%  if vcf %}<a href="data:text/plain;base64,{{ vcf|safe }}" download="snp.vcf" class="button right" >.vcf</a> {% endif %}
+    </ul>
+    <div class="tabs-content">
+        {% if query %}
+        <section role="tabpanel" class="content" id="parameters">
+            <table>
+                <thead>
+                <tr><th>Name</th><th>Value</th></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Case</td>
+                    <td>
+                        {% for sample in query.case %}
+                        {{ sample }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Case Groups</td>
+                    <td>
+                        {% for group in query.case_groups %}
+                        {{ group }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Control</td>
+                    <td>
+                        {% for sample in query.control %}
+                        {{ sample }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Control Groups</td>
+                    <td>
+                        {% for group in query.control_groups %}
+                        {{ group }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Reference Genome</td>
+                    <td>{%- if query.usehg19 -%}hg19{% else %}hg38{% endif %}</td>
+                </tr>
+                <tr>
+                    <td>min Qual</td>
+                    <td>{{ query.min_qual }}</td>
+                </tr>
+                <tr>
+                    <td>min Samples per Gene</td>
+                    <td>{{ query.min_samples_per_gene }}</td>
+                </tr>
+                <tr>
+                    <td>min Samples per Variant</td>
+                    <td>{{ query.min_samples_per_variant }}</td>
+                </tr>
+                <tr>
+                    <td>min Variants per Gene</td>
+                    <td>{{ query.min_variants_per_gene }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    {% endif %}
+        <section role="tabpanel" class="content active" id="result-table">
+            <table class="datatable" id="table2excel" style="margin-top: 20px;">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>#</th>
+                    <th>RSID</th>
+                    <th>Symbol</th>
+                    <th>C</th>
+                    <th>Samples</th>
+                    <th>Effect</th>
+                    <th>Het</th>
+                    <th>Alt</th>
+                    <th>Qual</th>
+                    <th>AF</th>
+                    <th>Location</th>
+                    <th>Impact</th>
+                    <th>IGV</th>
+                    <th>UCSC</th>
+                    <th>1000G (HG19)</th>
+                    <th>OMIM</th>
+                    <th>ExAC (HG19)</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for r in results %}
+                <tr>
+                    <td><a href="{{ url_for('variant_detail', chrom=r.chrom, position=r.position, typ=r.typ, sample=r.samples | single_element) }}">+</a></td>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ r.rsid | rsid }}</td>
+                    <td>
+                        {% for symbol in r.symbols %}
+                        {% set s = symbol.decode() %}
+                        {{ ensemble_link(s) }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ r.common | length }}</td>
+                    <td>
+                        {% for s in r.samples %}
+                        <span title = "Heterozygosity: {{ "het" if r.heterozygot[s] else "hom" }}, Quality: {{ r.qual[s] }}">
+                        {{ igv_open_file('bam' + "/" + s + '.bam', s) }}
+                        </span>
+                        {% if not loop.last %}, {% endif %}
+                        {% endfor %}{{ list_out() }}
+                    </td>
+                    <td>{{ r.effect|effects }}</td>
+                    <td>{{ r.rowheterozygot|heterozygosity}}</td>
+                    {% if r.typ < 4 %}
+                    <td>{{ r.ref }}>{{ "ACGT"[r.typ] }}</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    <td>{{ r.maxqual }}</td>
+                    <td>{{ (r.minaf) | round(2) }} - {{ (r.maxaf) | round(2) }}</td>
+                    <td>{{ r.chrom }}:{{ r.position }}</td>
+                    <td>{{ ["MODIFIER", "LOW", "MODERATE", "HIGH"][r.maximpact] }}</td>
+                    {% if query %}
+                    {{ all_link(r.chrom, r.position, r.ref, "ACGT"[r.typ], None, r.symbols, query.usehg19) }}
+                    {% else %}
+                    {{ all_link(r.chrom, r.position, r.ref, "ACGT"[r.typ], None, r.symbols, True) }}
+                    {% endif %}
+                </tr>
+                {% endfor%}
+                </tbody>
+            </table>
+        </section>
+        {% if homhetdata and caseslist %}
+        <section role="tabpanel" class="content" id="result-homhettable">
+            <div class="row">
+                <b>Legend:</b>
+                <table class="legend">
+                    <tr>
+                        <td class="het">het</td>
+                        <td class="hom">hom</td>
+                        <td class="both">both</td>
+                    </tr>
+                    <tr>
+                        <td>Heterozygot</td>
+                        <td>Homozygot</td>
+                        <td>Both</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th class="rotate"><div><span>Count</span></div></th>
+                        {% for sample in caseslist %}
+                        <th class="rotate"><div><span>{{ sample }}</span></div></th>
+                        {% endfor %}
+                    </tr>
+                    {%- for gene in homhetdata -%}
+                    <tr>
+                        <td>
+                            {{ gene }}
+                        </td>
+                        <td class="text-right">
+                            <b>{{ homhetdata[gene]|length }}</b>
+                        </td>
+                        {%- for sample in caseslist -%}
+                        <td class="{{ homhetdata[gene][sample] }}">{{ homhetdata[gene][sample] }}</td>
+                        {% endfor %}
+                    </tr>
+
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+        {% endif %}
+        {% if barchart %}
+        <section role="tabpanel" class="content" id="result-barchart">
+            <div class="row">
+                <div class="columns small-12 small-centered">
+                    <img src="data:image/png;base64,{{ barchart|safe }}" />
+                </div>
+            </div>
+        </section>
+        {% else %}
+            <section role="tabpanel" class="content" id="result-barchart">
+                <div class="row">
+                    <div class="small-12">
+                        <p>
+                            You need to have matplotlib installed to use this feature.
+                        </p>
+                        <p>
+                            We recommend installing matplotlib-minimal from our anaconda channel. It contains
+                            only the features needed for eagle. If you need matplotlib for other applications,
+                            please install the full matplotlib and seaborn packages.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+	</div>
+<<<<<<< HEAD
+</div>
+=======
+    <button class="columns right small-12 medium-1 large-1 exportbutton" onclick="$(table2excel).toCSV('recessive.csv')">.csv</button>
+	<button class="columns right small-12 medium-1 large-1" id="exportbutton" onclick="tableToExcel('table2excel', 'snp.xls')">.xls</button>
+    <a href="data:text/plain;base64,{{ vcf|safe }}" download="snp.vcf" class="button columns right small-12 medium-1 large-1" >.vcf</a>
+    </div>
+
+    <div class="row left">
+    <table class="datatable" id="table2excel" style="margin-top: 20px;">
+    <thead>
+        <tr>
+            <th></th>
+            <th>#</th>
+            <th>RSID</th>
+            <th>Symbol</th>
+            <th>C</th>
+            <th>Samples</th>
+            <th>Effect</th>
+            <th>Het</th>
+            <th>Alt</th>
+            <th>Qual</th>
+            <th>AF</th>
+            <th>Location</th>
+            <th>Impact</th>
+            <th>IGV</th>
+            <th>UCSC</th>
+            <th>1000G (HG19)</th>
+            <th>OMIM</th>
+            <th>ExAC (HG19)</th>
+            <th>gnomAD (HG19)</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for r in results %}
+        <tr>
+            <td><a href="{{ url_for('variant_detail', chrom=r.chrom, position=r.position, typ=r.typ, sample=r.samples | single_element) }}">+</a></td>
+            <td>{{ loop.index }}</td>
+            <td>{{ r.rsid | rsid }}</td>
+            <td>
+            {% for symbol in r.symbols %}
+                {% set s = symbol.decode() %}
+                {{ ensemble_link(s) }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+            </td>
+            <td>{{ r.common | length }}</td>
+            <td>
+            {% for s in r.samples %}
+                <span title = "Heterozygosity: {{ "het" if r.heterozygot[s] else "hom" }}, Quality: {{ r.qual[s] }}">
+                {{ igv_open_file('bam' + "/" + s + '.bam', s) }}
+                </span>
+                {% if not loop.last %}, {% endif %}
+            {% endfor %}{{ list_out() }}
+            </td>
+            <td>{{ r.effect|effects }}</td>
+            <td>{{ r.rowheterozygot|heterozygosity}}</td>
+            {% if r.typ < 4 %}
+                <td>{{ r.ref }}>{{ "ACGT"[r.typ] }}</td>
+            {% else %}
+                <td></td>
+            {% endif %}
+            <td>{{ r.maxqual }}</td>
+            <td>{{ (r.minaf) | round(2) }} - {{ (r.maxaf) | round(2) }}</td>
+            <td>{{ r.chrom }}:{{ r.position }}</td>
+            <td>{{ ["MODIFIER", "LOW", "MODERATE", "HIGH"][r.maximpact] }}</td>
+            {{ all_link(r.chrom, r.position, r.ref, "ACGT"[r.typ], None, r.symbols, query.usehg19) }}
+        </tr>
+    {% endfor%}
+    </tbody>
+    </table>
+    </div>
+>>>>>>> master
+{% endblock %}

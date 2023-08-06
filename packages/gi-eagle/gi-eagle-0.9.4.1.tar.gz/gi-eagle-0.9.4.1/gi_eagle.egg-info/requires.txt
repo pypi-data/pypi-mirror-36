@@ -1,0 +1,11 @@
+Flask
+numpy
+scipy
+h5py
+pyliftover
+pyvcf
+pysam
+pybedtools
+
+[plot]
+matplotlib
