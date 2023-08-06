@@ -1,0 +1,13 @@
+agefromname/__init__.py,sha256=qTDAROcpSE6r5zrk1F0VjHq4G21nlwDeiVugmwhjG00,174
+agefromname/age_from_name.py,sha256=4I63NRxPWBJbctH0hhz_qVCj4USQ3tpzyy53MJAhr6w,12391
+agefromname/generation_from_name.py,sha256=QUUI16v5r5_667Ud4JhhJvqUZ8Ftf8itUMnEsCTln_8,5411
+agefromname/regenerate_data.py,sha256=fPpzP5ajjWVNLWzci0ymUcCkC6SNGmpYIuEXdo0iZQw,3466
+agefromname/data/mortality_table.csv.gz,sha256=l3lYpSGu73_IP1RHRI7kfFiJ_z-GbjqG1d-rMUnDcwY,30686
+agefromname/data/year_of_birth_counts.csv.gz,sha256=2mNab7MqQEjObmO1R-8kdWWZFxwhUaUevrL0Lj3Wo2M,7964502
+agefromname/test/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+agefromname/test/test_ageFromName.py,sha256=0vkU7zwLeJ20zfEQxLstqDQcRKvDiMWl4fK3bMgMFbQ,6976
+agefromname/test/test_generationFromName.py,sha256=nUj-qZB3HOYlNsbQWuv6eyixtMna461qZpInhoyeXmI,4570
+agefromname-0.0.8.dist-info/METADATA,sha256=IGNruG2JYxnU4duiSHPBsSG-eWiyhJngkj-VfVBDYgo,500
+agefromname-0.0.8.dist-info/RECORD,,
+agefromname-0.0.8.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+agefromname-0.0.8.dist-info/top_level.txt,sha256=4m3rGgkbJvjtLicZ7vu9hv-L4zathbibdorN9lG_7q8,12
