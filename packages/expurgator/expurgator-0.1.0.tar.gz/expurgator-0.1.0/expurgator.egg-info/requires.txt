@@ -1,0 +1,8 @@
+six
+
+[dev]
+pytest>=3
+coverage
+coveralls
+setuptools<38.6,>=27.3
+wheel==0.30
