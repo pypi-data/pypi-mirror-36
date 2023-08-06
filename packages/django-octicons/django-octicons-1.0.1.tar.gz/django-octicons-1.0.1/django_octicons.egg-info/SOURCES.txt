@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+django_octicons.egg-info/PKG-INFO
+django_octicons.egg-info/SOURCES.txt
+django_octicons.egg-info/dependency_links.txt
+django_octicons.egg-info/requires.txt
+django_octicons.egg-info/top_level.txt
+octicons/__init__.py
+octicons/__version__.py
+octicons/apps.py
+octicons/data.json
+octicons/templatetags/__init__.py
+octicons/templatetags/octicons.py
