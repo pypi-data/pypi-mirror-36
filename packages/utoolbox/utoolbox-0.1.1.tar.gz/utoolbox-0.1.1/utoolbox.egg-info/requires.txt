@@ -1,0 +1,14 @@
+cython
+ipykernel
+numpy
+scipy
+imageio
+tifffile
+pyqt5
+dask
+mako
+click
+coloredlogs
+
+[gpu]
+pycuda

@@ -1,0 +1,3 @@
+[console_scripts]
+zpatch = utoolbox.cli.zpatch:main
+
