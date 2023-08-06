@@ -1,0 +1,15 @@
+oracle_json_field/__init__.py,sha256=7sNbee72r3qCAVloFm2RRWCTa9gVjMS7nCJcJ-URzl4,21
+oracle_json_field/admin.py,sha256=suMo4x8I3JBxAFBVIdE-5qnqZ6JAZV0FESABHOSc-vg,63
+oracle_json_field/apps.py,sha256=hIx8CpKejgwys37_o6lP3KIomdc2yxhaiX52NeJnzZ8,107
+oracle_json_field/constants.py,sha256=6iVNhvhtXF2oLayTgpIt6KQSRvhlQ5AYy0f-rpQDv1U,35
+oracle_json_field/encoders.py,sha256=pzdPqjgG9rbKl_jJCfjr3H-cZJCvFX8ZSI73xsfZ4oI,2198
+oracle_json_field/fields.py,sha256=9ZI9j6n1VlL_Q7PcsgGwlxR9nQVMUAqTZzACUzoH0hE,7507
+oracle_json_field/managers.py,sha256=q5CQCHCfuKAbuTPXJqiu9_boy7YcP6P_EGmgohISd2g,1363
+oracle_json_field/models.py,sha256=Vjc0p2XbAPgE6HyTF6vll98A4eDhA5AvaQqsc4kQ9AQ,57
+oracle_json_field/tests.py,sha256=MBEBmfTlFHL2h4Rhpae_23B4uLKB4msfxu4KiNkwCbI,10008
+oracle_json_field/views.py,sha256=xc1IQHrsij7j33TUbo-_oewy3vs03pw_etpBWaMYJl0,63
+oracle_json_field-0.0.7.dist-info/LICENSE,sha256=iE37VEW9oB7jIpcYyBpAcZGNvrr0ZciI1hyz5cHOa9Q,1067
+oracle_json_field-0.0.7.dist-info/METADATA,sha256=L10DUR0FIJr_lUHA4v6kc465Q7u__hUx_7qrHEx7IHs,3120
+oracle_json_field-0.0.7.dist-info/WHEEL,sha256=YO0P_oFqt6DWX0LhbH7jsyzb3BUtoq2kERtqGsXDJHs,92
+oracle_json_field-0.0.7.dist-info/top_level.txt,sha256=BQlcc1hh4neVh07cUinC7ZfjdJ1CIvrmqp_FJda8XM4,18
+oracle_json_field-0.0.7.dist-info/RECORD,,
