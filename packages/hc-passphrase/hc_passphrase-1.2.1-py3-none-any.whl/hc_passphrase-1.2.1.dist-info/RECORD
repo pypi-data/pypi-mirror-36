@@ -1,0 +1,14 @@
+hc_passphrase-1.2.1.dist-info/METADATA,sha256=xdIJ4LdHfkO_PBjbIQ6ohkrAAizQiA0oT-TZQYHcG5Y,17957
+hc_passphrase-1.2.1.dist-info/RECORD,,
+hc_passphrase-1.2.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+hc_passphrase-1.2.1.dist-info/entry_points.txt,sha256=x2dc33nkv_0SPJSzppSakzM9ncW0Dik1R2EulmH6yKM,64
+hc_passphrase-1.2.1.dist-info/top_level.txt,sha256=desjIuL1N3tCSihlO9KcnHAr3br1MUPqZWBuzrzNvDw,11
+passphrase/__init__.py,sha256=KTOgeoG7YmmolCoUbo2n8aQcO_i7_juwCLHm-fktLGk,381
+passphrase/__main__.py,sha256=jNUS0jBjojp0iN7sUE9UO4I01P9RrTyIwOu_Z7IhPb0,17434
+passphrase/aux.py,sha256=KMl9Ad-grKa_tYVi_flgh_AuM4ckTGauP7S9mxnPM9I,7137
+passphrase/calc.py,sha256=w3FJWfTf0KAZABTUkePwL5qkSHk_FLEBO0PgbE7IK7A,6562
+passphrase/passphrase.py,sha256=XHcFwM0rR0Xd_XWdmrUjbMsMlAV7xdebPuoTlAxJVYY,18181
+passphrase/random.py,sha256=ptVnl8qVl5A8fd0ynIILXoAk9WJ4LBwq2OcD3Ud7jcs,2399
+passphrase/secrets.py,sha256=VKslLgX8_5IEhz4LHD4W2SaJzTKd11dMri3J1bw8NbA,4025
+passphrase/settings.py,sha256=7cgklk2t-AMFByFY-z7BI6L-lsRMt0pdPxCyOVw2yIw,579
+passphrase/wordlist.py,sha256=JipIg3znxqbmlu__JU7rlcFLtwNJc2RfI80WL50U5ww,116783
