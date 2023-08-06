@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: txxonion
+Version: 0.1
+Summary: A Twisted server string endpoint description parser for Onion services.
+Home-page: https://leastauthority.com/
+Author: txxonion Developers
+Author-email: UNKNOWN
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: zope.interface
+Requires-Dist: twisted
+Requires-Dist: txtorcon
+
+UNKNOWN
+
+
