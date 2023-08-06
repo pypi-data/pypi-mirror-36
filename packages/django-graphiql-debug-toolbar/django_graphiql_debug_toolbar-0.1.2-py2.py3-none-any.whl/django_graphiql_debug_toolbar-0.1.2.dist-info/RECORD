@@ -1,0 +1,11 @@
+django_graphiql_debug_toolbar-0.1.2.dist-info/DESCRIPTION.rst,sha256=31q8Y0SwInPqlnpt6dcRfYRNv29kS6iidESQUe5MsZw,2750
+django_graphiql_debug_toolbar-0.1.2.dist-info/METADATA,sha256=ffomFb1acc48we7o-HspQJ1RntSxTBoNxl5_pIw2a1g,3810
+django_graphiql_debug_toolbar-0.1.2.dist-info/RECORD,,
+django_graphiql_debug_toolbar-0.1.2.dist-info/WHEEL,sha256=kdsN-5OJAZIiHN-iO4Rhl82KyS0bDWf4uBwMbkNafr8,110
+django_graphiql_debug_toolbar-0.1.2.dist-info/metadata.json,sha256=w9w7lX7ylv16eknE9ulvOryBK1HrRwbsQLapwsiHLs4,1255
+django_graphiql_debug_toolbar-0.1.2.dist-info/top_level.txt,sha256=K9eWHYIHKyO_ICykTfVWG1Ijy5i-Tbsk_ZLxc3UvoXw,23
+graphiql_debug_toolbar/__init__.py,sha256=mdp2CftfqYbdKtP-eWv1z7rAUycYv6X1ntXSMUf8Kss,22
+graphiql_debug_toolbar/middleware.py,sha256=0D4KOMJ8JskEqprMZXZfLi0Dsp47APAt1jeJLTkkSI0,2710
+graphiql_debug_toolbar/serializers.py,sha256=iRyORZUK2pPDVzZEsnvOgSfRagOfZ49lHcoRb-QQxVw,223
+graphiql_debug_toolbar/static/graphiql_debug_toolbar/js/parse.js,sha256=0HNcbd4ZqNhrzsw4VLpamEdocaEm4qtmeXGyptIsKfI,2019
+graphiql_debug_toolbar/templates/graphiql_debug_toolbar/base.html,sha256=3CTStstChEid0sn6YuStKw3q_ZE_vLesodujG_MZvJ4,252
