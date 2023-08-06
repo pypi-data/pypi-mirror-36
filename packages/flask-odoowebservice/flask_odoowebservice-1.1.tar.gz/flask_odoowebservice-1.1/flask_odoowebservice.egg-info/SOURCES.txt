@@ -1,0 +1,11 @@
+setup.py
+flask_odoowebservice/__init__.py
+flask_odoowebservice/database.py
+flask_odoowebservice/odooResources.py
+flask_odoowebservice/webService.py
+flask_odoowebservice.egg-info/PKG-INFO
+flask_odoowebservice.egg-info/SOURCES.txt
+flask_odoowebservice.egg-info/dependency_links.txt
+flask_odoowebservice.egg-info/not-zip-safe
+flask_odoowebservice.egg-info/requires.txt
+flask_odoowebservice.egg-info/top_level.txt
