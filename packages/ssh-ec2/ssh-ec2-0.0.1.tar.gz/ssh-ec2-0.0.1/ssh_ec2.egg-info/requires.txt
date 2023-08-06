@@ -1,0 +1,9 @@
+awscli
+boto3
+click
+click-completion
+
+[dev]
+pytest
+pytest-cov
+coveralls
