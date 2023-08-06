@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+setup.py
+nimblecrm_python.egg-info/PKG-INFO
+nimblecrm_python.egg-info/SOURCES.txt
+nimblecrm_python.egg-info/dependency_links.txt
+nimblecrm_python.egg-info/not-zip-safe
+nimblecrm_python.egg-info/requires.txt
+nimblecrm_python.egg-info/top_level.txt
+nimblercrm/__init__.py
+nimblercrm/client.py
+nimblercrm/enumerator.py
+nimblercrm/exceptions.py

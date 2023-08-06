@@ -1,0 +1,20 @@
+Metadata-Version: 1.0
+Name: nimblecrm-python
+Version: 0.1.0
+Summary: API wrapper for NimblerCRM written in Python
+Home-page: https://github.com/GearPlug/nimblecrm-python
+Author: Nerio Rincon
+Author-email: nrincon.mr@gmail.com
+License: GPL
+Description: # NimbleCRM-python
+        NimbleCRM API wrapper written in python.
+        
+        ## Installing
+        ```
+        pip install nimblecrm-python
+        ```
+        
+        ## Requirements
+        - requests
+        
+Platform: UNKNOWN
