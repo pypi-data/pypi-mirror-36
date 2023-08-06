@@ -1,0 +1,10 @@
+six
+kombu
+redis
+psycopg2
+elasticsearch
+celery
+pyopenssl==17.5.0
+
+[dev]
+flake8
