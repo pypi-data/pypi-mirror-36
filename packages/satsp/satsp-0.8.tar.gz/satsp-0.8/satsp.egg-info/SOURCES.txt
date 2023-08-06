@@ -1,0 +1,10 @@
+README.md
+setup.py
+satsp/SAclass.py
+satsp/__init__.py
+satsp/solver.py
+satsp/utilities.py
+satsp.egg-info/PKG-INFO
+satsp.egg-info/SOURCES.txt
+satsp.egg-info/dependency_links.txt
+satsp.egg-info/top_level.txt
