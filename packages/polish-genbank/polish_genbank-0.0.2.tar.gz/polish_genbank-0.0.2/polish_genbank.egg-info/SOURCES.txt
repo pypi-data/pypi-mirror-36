@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+polish_genbank/__init__.py
+polish_genbank/polish_genbank.py
+polish_genbank.egg-info/PKG-INFO
+polish_genbank.egg-info/SOURCES.txt
+polish_genbank.egg-info/dependency_links.txt
+polish_genbank.egg-info/entry_points.txt
+polish_genbank.egg-info/requires.txt
+polish_genbank.egg-info/top_level.txt

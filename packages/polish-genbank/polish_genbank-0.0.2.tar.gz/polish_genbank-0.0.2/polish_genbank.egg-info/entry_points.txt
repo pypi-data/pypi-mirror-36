@@ -1,0 +1,3 @@
+[console_scripts]
+polish_genbank = polish_genbank.polish_genbank:main
+
