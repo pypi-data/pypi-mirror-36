@@ -1,0 +1,19 @@
+aws_instance:
+-
+  title: tag_checker
+  desc: nested value checker
+  mode: nested
+  key: tags
+  nest:
+    -
+      title: name_checker
+      desc: nested value checker
+      mode: existance
+      key: Name
+    -
+      title: env_checker
+      desc: nested value checker
+      mode: value
+      warn: True
+      key: Env
+      value: (dev|stg|prd)

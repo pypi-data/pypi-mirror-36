@@ -1,0 +1,15 @@
+aws_iam_policy:
+-
+  title: desc_checker
+  desc: simple existance checker
+  mode: existance
+  warn: True
+  key: description
+
+aws_iam_role:
+-
+  title: desc_checker
+  desc: simple existance checker
+  mode: existance
+  warn: True
+  key: description
