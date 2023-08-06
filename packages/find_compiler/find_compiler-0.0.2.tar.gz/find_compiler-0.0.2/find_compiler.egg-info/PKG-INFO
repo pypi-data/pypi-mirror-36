@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: find-compiler
+Version: 0.0.2
+Summary: Finds suitable C/C++ compiler for current platform
+Home-page: https://github.com/unjello/findc
+Author: Andrzej Lichnerowicz
+Author-email: andrzej@lichnerowicz.pl
+License: UNKNOWN
+Project-URL: Source, https://github.com/unjello/findc/
+Project-URL: Bug Reports, https://github.com/unjello/findc/issues
+Description: # findc
+        
+        Finds suitable C/C++ compiler for current platform 
+        
+        ## License
+        
+        - CC0 (~Public Domain)
+Keywords: C/C++,tool,c,c++,cpp,build,developer
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Provides-Extra: dev
