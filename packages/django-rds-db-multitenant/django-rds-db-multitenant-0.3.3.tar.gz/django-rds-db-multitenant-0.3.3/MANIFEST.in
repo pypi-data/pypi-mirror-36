@@ -1,0 +1,2 @@
+include AUTHORS LICENSE *.rst
+recursive-include rds_db_multitenant *.py
