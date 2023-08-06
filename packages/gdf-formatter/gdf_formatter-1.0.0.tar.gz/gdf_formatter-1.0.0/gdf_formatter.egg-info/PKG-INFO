@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: gdf-formatter
+Version: 1.0.0
+Summary: GDF formatter for networks representation
+Home-page: https://github.com/GabrielTrettel/GDF_Formatter
+Author: Gabriel Martins Trettel
+Author-email: gabrielmtrettel@gmail.com
+License: UNKNOWN
+Description: This is a simple and flexible Python library to create and format your graphs in GDF.
+        
+        For simple usage tutorial, follow https://github.com/GabrielTrettel/GDF_Formatter
+        
+        Creators:
+        
+        Gabriel M. Trettel, https://github.com/GabrielTrettel
+        
+        GrayJack, https://github.com/GrayJack
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: English
