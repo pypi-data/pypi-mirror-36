@@ -1,0 +1,62 @@
+#! /usr/bin/python3
+import sys
+from getopt import gnu_getopt, GetoptError
+from xml.etree import cElementTree as etree
+from dcache_nagios_plugins.utils import show_size
+from dcache_nagios_plugins.urlopen import urlopen
+
+
+def check_linkgroup(info_url, linkgroup, certkey = None, cert = None):
+    url = info_url + '/linkgroups/%d/space/available' % linkgroup
+    fh = urlopen(url, certkey = certkey, cert = cert)
+    doc = etree.parse(fh)
+    fh.close()
+    metric = doc.find('.//{http://www.dcache.org/2008/01/Info}metric')
+    if metric is None:
+        sys.stdout.write('Cannot find metric.\n')
+        sys.exit(3)
+    av = int(metric.text)
+    sys.stdout.write('%s available\n' % show_size(av))
+    if av < 0: sys.exit(2)
+    sys.exit(0)
+
+def main():
+    info_host = None
+    info_port = 2288
+    info_url = None
+    certkey = None
+    cert = None
+    linkgroup = None
+    try:
+        opts, args = gnu_getopt(sys.argv[1:], 'H:p:U:l:',
+                                ['linkgroup=', 'certkey=', 'cert='])
+        for opt, arg in opts:
+            if opt == '-H':
+                info_host = arg
+            elif opt == '-p':
+                info_port = arg
+            elif opt == '-U':
+                info_url = arg
+            elif opt in ['-l', '--linkgroup']:
+                linkgroup = int(arg)
+            elif opt == '--certkey':
+                certkey = arg
+            elif opt == '--cert':
+                cert = arg
+            else:
+                assert False
+        if info_url is None:
+            if info_host is None:
+                raise GetoptError('Either -H or -U must be specified.')
+            info_url = 'http://%s:%d/info' % (info_host, info_port)
+        if linkgroup is None:
+            raise GetoptError('The linkgroup must be specified.')
+        if args != []:
+            raise GetoptError('No positional arguments expected.')
+    except GetoptError as err:
+        sys.stderr.write('%s\n'%err)
+        sys.exit(3)
+
+    check_linkgroup(info_url, linkgroup, certkey = certkey, cert = cert)
+
+main()

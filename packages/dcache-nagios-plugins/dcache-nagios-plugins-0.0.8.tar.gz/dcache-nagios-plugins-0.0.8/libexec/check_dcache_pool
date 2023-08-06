@@ -1,0 +1,171 @@
+#! /usr/bin/python3
+import sys
+from getopt import gnu_getopt, GetoptError
+from dcache_nagios_plugins.dcacheinfo import load_pool
+from dcache_nagios_plugins.utils import \
+    int_of_sizestr, float_of_timestr, float_of_ratiostr, \
+    show_size, show_time, show_percent
+
+report_code = 0
+report_msgs = []
+
+def report(code, msg):
+    global report_code
+    report_code = max(code, report_code)
+    if not msg in report_msgs:
+        report_msgs.append(msg)
+
+le = lambda x, y: x <= y
+ge = lambda x, y: x >= y
+
+def check_limit(what, x, op, threshold, show = show_size):
+    xW, xC = threshold
+    if not op(x, xC):
+        report(2, '%s = %s (critical)' % (what, show(x)))
+    elif not op(x, xW):
+        report(1, '%s = %s (warning)' % (what, show(x)))
+    else:
+        report(0, '%s = %s' % (what, show(x)))
+
+def missing_metric(what):
+    report(2, 'Missing metric %s.' % what)
+
+def check_heartbeat(pool, threshold):
+    check_limit('heartbeat', pool.last_heartbeat, le, threshold, show = show_time)
+
+def check_precious(pool, threshold):
+    if pool.space_precious is None:
+        missing_metric('precious')
+    else:
+        precious = pool.space_precious
+        check_limit('precious', precious, le, threshold)
+
+def check_nonprecious(pool, threshold):
+    if pool.space_total is None:
+        missing_metric('total')
+    elif pool.space_precious is None:
+        missing_metric('precious')
+    else:
+        nonprecious = pool.space_total - pool.space_precious
+        check_limit('nonprecious', nonprecious, ge, threshold)
+
+def check_precious_over_total(pool, threshold):
+    if pool.space_precious is None:
+        missing_metric('precious')
+    elif pool.space_total is None:
+        missing_metric('total')
+    else:
+        precious = float(pool.space_precious) / pool.space_total
+        check_limit('precious/total', precious, le, threshold, show = show_percent)
+
+def check_nonprecious_over_total(pool, threshold):
+    if pool.space_total is None:
+        missing_metric('total')
+    elif pool.space_precious is None:
+        missing_metric('precious')
+    else:
+        nonprecious = float(pool.space_total - pool.space_precious)/pool.space_total
+        check_limit('nonprecious/total', nonprecious, ge, threshold, show = show_percent)
+
+def threshold_arg(conv, arg):
+    try:
+        threshold = list(map(conv, arg.split(',')))
+    except Exception as err:
+        raise GetoptError('Invalid argument: %s' % err)
+    if len(threshold) == 1:
+        return threshold + threshold
+    elif len(threshold) == 2:
+        return threshold
+    else:
+        raise GetoptError('Thresholds options accepts pairs of one or two values.')
+
+def print_time(hdr, amount):
+    sys.stdout.write('%s: %s\n' % (hdr, show_time(amount)))
+
+def print_space(hdr, amount):
+    if amount is None:
+        sys.stdout.write('%s: unknown\n' % hdr)
+    else:
+        sys.stdout.write('%s: %s\n' % (hdr, show_size(amount)))
+
+def main():
+    info_url = None
+    certkey = None
+    cert = None
+    pool_name = None
+    heartbeat_threshold = None
+    precious_threshold = None
+    nonprecious_threshold = None
+    precious_over_total_threshold = None
+    nonprecious_over_total_threshold = None
+    try:
+        opts, args = gnu_getopt(sys.argv[1:], 'P:U:',
+            ['heartbeat=',
+             'precious=', 'precious-over-total=',
+             'nonprecious=', 'nonprecious-over-total=',
+             'certkey=', 'cert='])
+        for opt, arg in opts:
+            if opt == '-P':
+                pool_name = arg
+            elif opt == '-U':
+                info_url = arg
+            elif opt == '--certkey':
+                certkey = arg
+            elif opt == '--cert':
+                cert = arg
+            elif opt == '--heartbeat':
+                heartbeat_threshold = threshold_arg(float_of_timestr, arg)
+            elif opt == '--precious':
+                precious_threshold = threshold_arg(int_of_sizestr, arg)
+            elif opt == '--nonprecious':
+                nonprecious_threshold = threshold_arg(int_of_sizestr, arg)
+            elif opt == '--precious-over-total':
+                precious_over_total_threshold = \
+                    threshold_arg(float_of_ratiostr, arg)
+            elif opt == '--nonprecious-over-total':
+                nonprecious_over_total_threshold = \
+                    threshold_arg(float_of_ratiostr, arg)
+            else:
+                assert False
+        if info_url is None:
+            raise GetoptError('The -U option is required.')
+        if pool_name is None:
+            raise GetoptError('The -P option is required.')
+        if args != []:
+            raise GetoptError('No positional arguments expected.')
+    except GetoptError as err:
+        sys.stderr.write('%s\n' % err)
+        sys.exit(64)
+
+    try:
+        pool = load_pool(info_url + '/pools/' + pool_name,
+                         certkey = certkey, cert = cert)
+    except IOError as exn:
+        sys.stderr.write('Failed to fetch pool info: %s' % exn)
+        sys.exit(3)
+
+    if pool is None:
+        sys.stdout.write('Pool not found.')
+        sys.exit(2)
+    else:
+        if pool.space_total:
+            report_msgs.append('total = %s' % show_size(pool.space_total))
+        if heartbeat_threshold:
+            check_heartbeat(pool, heartbeat_threshold)
+        if precious_threshold:
+            check_precious(pool, precious_threshold)
+        if nonprecious_threshold:
+            check_nonprecious(pool, nonprecious_threshold)
+        if precious_over_total_threshold:
+            check_precious_over_total(pool, precious_over_total_threshold)
+        if nonprecious_over_total_threshold:
+            check_nonprecious_over_total(pool, nonprecious_over_total_threshold)
+        sys.stdout.write(', '.join(report_msgs) + '\n')
+        print_time('Heartbeat', pool.last_heartbeat)
+        print_space('Total space', pool.space_total)
+        print_space('Precious space', pool.space_precious)
+        print_space('Used space', pool.space_used)
+        print_space('Free space', pool.space_free)
+        sys.exit(report_code)
+
+main()
