@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: dopesorting
+Version: 0.1
+Summary: Four dope dopesorting methods
+Home-page: http://github.com/storborg/funniest
+Author: Flying Circus
+Author-email: flyingcircus@example.com
+License: MIT
+Keywords: dopesorting sort dope quick bubble
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Text Processing :: Linguistic
+Requires-Dist: markdown
+
+sorting
+--------
+
+This package contains three different sorting functions that can be called like this:
+
+ - bubble_sort(list) 
+ - selection_sort(list)
+ - insertion_sort(list)
+ - quick_sort(list)
+
+The three functions modify the original list and return neither a new list nor the original list. 
+
+They all accept lists with floats, integers and string values. 
+
