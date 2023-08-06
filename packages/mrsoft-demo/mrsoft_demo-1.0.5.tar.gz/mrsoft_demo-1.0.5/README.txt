@@ -1,0 +1,1 @@
+This is a small tool that can calculate the BMI value.
