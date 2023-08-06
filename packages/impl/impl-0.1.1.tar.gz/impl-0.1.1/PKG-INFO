@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: impl
+Version: 0.1.1
+Summary: LIME-based library for interpretation of local models
+Home-page: https://github.com/viniaraujoo/IPML
+Author: Vinicius Araujo
+Author-email: vinicius.brandao.araujo@ccc.ufcg.edu.br
+License: BSD
+Description: UNKNOWN
+Keywords: interpretable,model,lime
+Platform: UNKNOWN
