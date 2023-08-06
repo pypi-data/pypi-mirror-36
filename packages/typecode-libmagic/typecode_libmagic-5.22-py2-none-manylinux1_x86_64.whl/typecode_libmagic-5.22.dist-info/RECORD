@@ -1,0 +1,12 @@
+typecode_libmagic/__init__.py,sha256=HvADlwiPajKTb-pRjQkQ7ux1CYw4xiTHJd_kdWHLuEo,2090
+typecode_libmagic/data/magic.mgc,sha256=tVT5kPgIpxam75AR1x89-I84C91SRqF5ndRq8HMzBiE,3042216
+typecode_libmagic/data/magic.mgc.ABOUT,sha256=8pU2c2d7DwzvEC5fi1EtbuJ3KduK8WdlQEP2osJZJS4,77
+typecode_libmagic/lib/libmagic-5.22.ABOUT,sha256=pOj4Qjc1HPy6CawD5PkfXYq1xY7W6wsKl032hsKZkAQ,1315
+typecode_libmagic/lib/libmagic.COPYING,sha256=PArRPDb4kam0-VHlnrL8EIBlpG-ElpfMb9PNtBzCOj0,1650
+typecode_libmagic/lib/libmagic.so,sha256=iBZip4DdU-T6072dkCd9W4Rses_6FYOwRCWor0y4uo8,456242
+typecode_libmagic-5.22.dist-info/LICENSE.txt,sha256=wSjScVqFCc5flJI9VN6pD2zwi-0kF_3pQ5YN2kMlmKA,1812
+typecode_libmagic-5.22.dist-info/METADATA,sha256=SO4ylkhORBWQELS1YMgEafS4PfmGymsnpNJOk4ZTq2k,753
+typecode_libmagic-5.22.dist-info/RECORD,,
+typecode_libmagic-5.22.dist-info/WHEEL,sha256=iJe96DT23Pn3NPKOhzBl004XfttkPJp8F88DdkjinNo,106
+typecode_libmagic-5.22.dist-info/entry_points.txt,sha256=EGmiOGwf7kkO5dNbnhac8HGTX6ajj0LJR7QFHFdgFSQ,82
+typecode_libmagic-5.22.dist-info/top_level.txt,sha256=28TEQTnHtC_4AxW8xht0j_NlMSuYVvnhbiA-6RY46wc,18
