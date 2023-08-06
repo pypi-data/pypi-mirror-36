@@ -1,0 +1,9 @@
+setup.py
+treelogger/__init__.py
+treelogger/treelogger.py
+treelogger/treeviewer.py
+treelogger.egg-info/PKG-INFO
+treelogger.egg-info/SOURCES.txt
+treelogger.egg-info/dependency_links.txt
+treelogger.egg-info/not-zip-safe
+treelogger.egg-info/top_level.txt
