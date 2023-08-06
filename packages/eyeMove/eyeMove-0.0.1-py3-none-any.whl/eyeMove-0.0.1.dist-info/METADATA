@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: eyeMove
+Version: 0.0.1
+Summary: A package for analyzing eye movements.
+Home-page: https://github.com/beccarobins/eyeMove
+Author: Becca Robins
+Author-email: becca.k.robins@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Development Status :: 1 - Planning
+Description-Content-Type: text/markdown
+
+# eyeMove
+
+
