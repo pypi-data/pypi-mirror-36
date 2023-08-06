@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: SQLAlchemy Unchained
+Version: 0.1.0
+Summary: Improved declarative SQLAlchemy models
+Home-page: https://github.com/briancappello/sqlalchemy-unchained
+Author: Brian Cappello
+License: MIT
+Description: # SQLAlchemy Unchained
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3.6
+Provides-Extra: docs
+Provides-Extra: dev

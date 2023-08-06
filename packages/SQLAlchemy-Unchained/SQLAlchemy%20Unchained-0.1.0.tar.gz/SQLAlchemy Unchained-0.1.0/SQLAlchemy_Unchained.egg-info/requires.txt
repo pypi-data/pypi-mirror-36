@@ -1,0 +1,12 @@
+sqlalchemy>=1.2.11
+
+[dev]
+coverage
+factory_boy
+pytest
+tox
+
+[docs]
+sphinx
+sphinx-autobuild
+sphinx-rtd-theme
