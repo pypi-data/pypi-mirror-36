@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: deep-filter
+Version: 1.0.0
+Summary: Removes values from nested dicts and lists
+Home-page: https://github.com/spectralkh/deep-filter
+Author: KH
+Author-email: kasperkh.kh@gmail.com
+Keywords: filter,remove,nested,recursively,delete,dicts,lists
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
