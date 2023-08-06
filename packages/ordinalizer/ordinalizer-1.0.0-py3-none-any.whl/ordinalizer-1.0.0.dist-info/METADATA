@@ -1,0 +1,34 @@
+Metadata-Version: 2.0
+Name: ordinalizer
+Version: 1.0.0
+Summary: A package helping to get numbers as ordinals
+Home-page: https://github.com/sandordargo/ordinalizer
+Author: Sandor DARGO
+Author-email: sandor.dargo@gmail.com
+License: UNKNOWN
+Description-Content-Type: text/markdown
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+
+# Ordinalizer
+
+## About
+
+This package is there to help you ordinalizing your cardinal numbers. I.e. to turn `42` into `42nd`.
+
+For more examples, please refer to the unit tests.
+
+## Contributing
+
+If you'd like to contribute, feel free, you keep in mind these two points:
+
+- keep the interface simple and understandable
+- follow Python best practices
+
+If you feel that the code doesn't follow these principles either open a PR or an issue.
+
+Thank you.
+
+
