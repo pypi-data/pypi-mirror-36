@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        complement=genomics_demo.scripts:get_reverse_complement
+    
