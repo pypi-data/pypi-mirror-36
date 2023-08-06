@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: pymatex
+Version: 0.0.3
+Summary: Python parser for latex mathematical expression
+Home-page: https://github.com/Gawaboumga/PyMatex
+Author: Gawaboumga
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: antlr4-python3-runtime
+
+UNKNOWN
+
+
