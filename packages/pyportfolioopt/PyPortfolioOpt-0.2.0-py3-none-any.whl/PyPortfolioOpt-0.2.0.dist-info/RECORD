@@ -1,0 +1,14 @@
+PyPortfolioOpt-0.2.0.dist-info/LICENSE.txt,sha256=DkAdY6ezG942PKV3olN68cNF_Mv1Mu3FXLWJ9WiyqIM,1077
+PyPortfolioOpt-0.2.0.dist-info/METADATA,sha256=b5XTgBH205jHUjBiS8zRKpL6De86LpIybNAKVdqYzbU,14882
+PyPortfolioOpt-0.2.0.dist-info/RECORD,,
+PyPortfolioOpt-0.2.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+PyPortfolioOpt-0.2.0.dist-info/top_level.txt,sha256=QSbyD_Dyl5jVNF6tUqzFXcnxnWMGjjUOYR3KMmRbARM,8
+pypfopt/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pypfopt/base_optimizer.py,sha256=rxzkwLenFnIsoicMPbKMrtSCvXVBSm-BcStob3WSH5k,2571
+pypfopt/discrete_allocation.py,sha256=-xySER-0nUz2zC7ZN5rUxO8phlkxcKnyga7U-LqqHLI,5028
+pypfopt/efficient_frontier.py,sha256=kFxVdQ-ecu2kkiZDNGdq_S3rBihkmrMl3koBn2CjtJs,11718
+pypfopt/expected_returns.py,sha256=8lAMnHm2q5nSoWLizKSMjO6fvp7PtRkGFKmJtHtzv0U,2541
+pypfopt/hierarchical_risk_parity.py,sha256=l28MGtC6b4IS8n2uTwZw2bjQdFrZeozFMLEizZXdwgc,3424
+pypfopt/objective_functions.py,sha256=o1_joTOBpwKqXZRSwCwJHpq62d9lYj9oWBzzT5B1Ddc,4245
+pypfopt/risk_models.py,sha256=O4B_CXcOxL-B3DVGWbTkP6kFQUZyyVdn3-cGRvxBBjg,8958
+pypfopt/value_at_risk.py,sha256=UFXymlO6YtMIh03JBjumUPU-6i-wAShbYeXnbIdR8z0,2921
