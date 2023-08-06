@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: ReEncrypt
+Version: 1.1.0
+Summary: A Encryption Method
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/dathidewolf/ReEncryption/issues
+Project-URL: Source, https://github.com/dathidewolf/ReEncryption
+Description: UNKNOWN
+Keywords: Encryption
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Other Audience
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
