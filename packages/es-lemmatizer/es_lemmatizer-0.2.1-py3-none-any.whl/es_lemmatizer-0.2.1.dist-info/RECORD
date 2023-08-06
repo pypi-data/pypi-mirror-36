@@ -1,0 +1,14 @@
+es_lemmatizer/__init__.py,sha256=HsA-sTU0pE9Q74--dR-xfiHahUXm3cezPjl9iTnZdYI,470
+es_lemmatizer/data_loader.py,sha256=ssF_T6U-Aoj_NYcpWpV0LOkctLsrmFT_ZGruCxkGNvg,2472
+es_lemmatizer/data/LICENSE,sha256=_WyxkgEc9SumQGgbl2m5NzXtDgw_kJWMEW8J_FiSOWI,14824
+es_lemmatizer/data/MM.adj,sha256=C_3OHslfOlEo6WGwGBGNocXzSzo6i1YQZCAg5SbI9hY,1908746
+es_lemmatizer/data/MM.adv,sha256=OKzOUF_ljyowWX2LlJu1dgb76T2ZUalyJ4QYi2upmzY,3601
+es_lemmatizer/data/MM.int,sha256=vdbNM83ljrDKTSMlFet-EDo-cCgSXuuPonTfk3A-peM,2920
+es_lemmatizer/data/MM.nom,sha256=-BFb9Jk7JvIjaSSbA57e_6YGVqC2Xsnp2NROEpBOeOw,3151363
+es_lemmatizer/data/MM.tanc,sha256=16vVTqPY9M2vqt_8u1oeY7lKKxKx8ttSXui2OloZUss,7725
+es_lemmatizer/data/MM.vaux,sha256=cGelR02ULqOuMhcdCkg7fLL-St2LopjrIrIwxceXsTM,5132
+es_lemmatizer/data/MM.verb,sha256=cqDa_j3yDi0jpvW4IyQKrrAfRxW5zzc5cJkdoIbhgDM,14406354
+es_lemmatizer-0.2.1.dist-info/METADATA,sha256=hFOf41_LYuKCsS4tPc0aD0JIu9k8xehlAxd0tS10Cp4,691
+es_lemmatizer-0.2.1.dist-info/RECORD,,
+es_lemmatizer-0.2.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+es_lemmatizer-0.2.1.dist-info/top_level.txt,sha256=yzVY6Qi7rP1Zdt5WicocNTzdMZr-a-uoF9RX1dCFL-k,14
