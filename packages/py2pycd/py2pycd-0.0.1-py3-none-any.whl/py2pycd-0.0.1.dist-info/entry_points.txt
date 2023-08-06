@@ -1,0 +1,3 @@
+[console_scripts]
+py2pycd = py2pycd.__init__:main
+
