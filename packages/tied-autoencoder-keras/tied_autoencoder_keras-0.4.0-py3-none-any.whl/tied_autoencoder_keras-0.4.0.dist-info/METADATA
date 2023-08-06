@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: tied-autoencoder-keras
+Version: 0.4.0
+Summary: Autoencoder layers (with tied encode and decode weights) for Keras
+Home-page: https://github.com/AmirAlavi/tied-autoencoder-keras
+Author: Amir Alavi
+License: GPLv3
+Platform: UNKNOWN
+Requires-Python: >=3
+Requires-Dist: keras (>=2)
+Requires-Dist: sparsely-connected-keras
+
+UNKNOWN
+
+
