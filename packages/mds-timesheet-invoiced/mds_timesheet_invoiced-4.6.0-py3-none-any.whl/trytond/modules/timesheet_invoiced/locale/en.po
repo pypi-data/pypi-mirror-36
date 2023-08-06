@@ -1,0 +1,19 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:timesheet.line,has_invoice:"
+msgid "Invoiced"
+msgstr "Invoiced"
+
+msgctxt "model:ir.action.act_window.domain,name:act_line_domain_notinvoiced"
+msgid "To Invoice"
+msgstr "To Invoice"
+
+msgctxt "model:ir.action.act_window.domain,name:act_line_domain_invoiced"
+msgid "Invoiced"
+msgstr "Invoiced"
+
+msgctxt "model:ir.action.act_window.domain,name:act_line_domain_all"
+msgid "All"
+msgstr "All"

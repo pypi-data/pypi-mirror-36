@@ -1,0 +1,16 @@
+mds_timesheet_invoiced-4.6.0.dist-info/DESCRIPTION.rst,sha256=6KmRvskG_82iZ-z_sJJ-5V3DWS3sFzBCooOlMcYR6R8,237
+mds_timesheet_invoiced-4.6.0.dist-info/METADATA,sha256=X_FLXCGx9ri9plJWhvMRf9D6DAXcR4zPkK004sEm_tI,1408
+mds_timesheet_invoiced-4.6.0.dist-info/RECORD,,
+mds_timesheet_invoiced-4.6.0.dist-info/WHEEL,sha256=8Lm45v9gcYRm70DrgFGVe4WsUtUMi1_0Tso1hqPGMjA,92
+mds_timesheet_invoiced-4.6.0.dist-info/entry_points.txt,sha256=AqWMSJZ4qCWOKNY7gLR5Xf5xeK2quuGHxbKn2Akb5aQ,88
+mds_timesheet_invoiced-4.6.0.dist-info/metadata.json,sha256=cZYq5R1YpamsVVM9E7w4dUsw4vjAeIm7SMgpdWR0iyo,1373
+mds_timesheet_invoiced-4.6.0.dist-info/top_level.txt,sha256=1UNriCfRfjRjutJbJ_B8i13huVUoV_Otp9RlW3mCfw4,8
+trytond/modules/timesheet_invoiced/README.rst,sha256=wLIknpTI7eE5a-sBRnAqnpO6xHAkBabv1tvMxw75P-g,235
+trytond/modules/timesheet_invoiced/__init__.py,sha256=KRzxLHjXL-HrNn4udAJbvaqsn-83HrjSYCz1lF_k_lM,323
+trytond/modules/timesheet_invoiced/timesheet.py,sha256=IdunLH1gSrWQkD0e6pfEMFOkkvwLl-HayODCb6TOZFs,2299
+trytond/modules/timesheet_invoiced/timesheet.xml,sha256=0csZpyrlSxH0fbkpCRA5sFFztm4vdHuOsSBJBg9PJVU,1391
+trytond/modules/timesheet_invoiced/tryton.cfg,sha256=L9dqijl2TO4yRqKL4ltv6LcF8E-ahcq0UvPamNV9jj8,89
+trytond/modules/timesheet_invoiced/versiondep.txt,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+trytond/modules/timesheet_invoiced/locale/de.po,sha256=bkHMPx3PMfsXntXs5LUXGDdaAzBuN6mwzJpy9UzoQvY,469
+trytond/modules/timesheet_invoiced/locale/en.po,sha256=um4xeWZ0V79sVXsYHpsVtN-JqmszPKNK1fJk4TUSlD8,464
+trytond/modules/timesheet_invoiced/view/line_tree.xml,sha256=x4RKx7pQLJ2oT584LuDHwb562G-WZl-rX-qrFxr66Cg,301
