@@ -1,0 +1,3 @@
+[console_scripts]
+hell123 = hell123.main:main
+
