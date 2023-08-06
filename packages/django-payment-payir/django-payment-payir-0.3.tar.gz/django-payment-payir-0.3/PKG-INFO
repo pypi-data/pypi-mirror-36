@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: django-payment-payir
+Version: 0.3
+Summary: A simple Django app for easy payment via pay.ir .
+Home-page: https://github.com/rasooll/django-pay-ir
+Author: Rasooll
+Author-email: safari@rasooll.com
+License: MIT License
+Description: # Django payment module for Pay.ir
+        
+        [![Travis-CI](https://travis-ci.org/rasooll/django-pay-ir.svg?branch=master)](https://travis-ci.org/rasooll/django-pay-ir)
+        [![Coverage Status](https://coveralls.io/repos/github/rasooll/django-pay-ir/badge.svg?branch=master)](https://coveralls.io/github/rasooll/django-pay-ir?branch=master)
+        ![PyPI](https://img.shields.io/pypi/v/django-payment-payir.svg)
+        ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/django-payment-payir.svg)
+        ![PyPI - Django Version](https://img.shields.io/pypi/djversions/django-payment-payir.svg)
+        ![PyPI - Wheel](https://img.shields.io/pypi/wheel/django-payment-payir.svg)
+        
+        ## Installation
+        
+        First install package.
+        
+        ```bash
+        pip install django-payment-payir
+        ```
+        
+        Add 'pay_ir' to your INSTALLED_APPS setting.
+        
+        ```python
+        INSTALLED_APPS = (
+            ...
+            'pay_ir',
+        )
+        ```
+        
+        And add `PAY_IR_CONFIG` in to setting file.
+        
+        ```python
+        PAY_IR_CONFIG = {
+            "api_key": "YOUR_API_KEY"
+        }
+        ```
+        
+        For test without api key enter a `test` as api key.
+        
+        Add the following to your root `urls.py` file.
+        
+        ```python
+        urlpatterns = [
+            ...
+            url(r'^payment/', include('pay_ir.urls'))
+        ]
+        ```
+        
+        Note that the URL path can be whatever you want.
+        
+        Run `python manage.py migrate` to create the payments models.
+        
+        ### Tested on
+        
+        - Python (3.6.6)
+        - Django (2.1)
+        - requests (2.19.1)
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Description-Content-Type: text/markdown
