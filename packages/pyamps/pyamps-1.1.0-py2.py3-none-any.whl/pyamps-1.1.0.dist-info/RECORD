@@ -1,0 +1,13 @@
+pyamps/__init__.py,sha256=Q0qbHcfRsTA-zmZ93EorGxY0JtCSYcc-2nIhRYuctUg,284
+pyamps/amps.py,sha256=O5vlbo2Tl5UY5g0kUSbqfkhlrdkeJdmSu3gp_piiuf4,62962
+pyamps/mlt_utils.py,sha256=pbUP475MJ30aiFfvr2Yz5leZpR5R6apFKxDiOXeyCyI,11721
+pyamps/model_utils.py,sha256=I1cBrYXEyg4JXipXq7j8YfoNPHSfxYCmyKrLpXR1gKw,4626
+pyamps/model_vector_to_txt.py,sha256=BYaqss1nQaWF7JM4xLmWZuTPTBBF4sdJsf9E0k-NYJY,5270
+pyamps/plot_utils.py,sha256=xCpqo6PSHB2K0u2pGuhN-CzGcz1Mre50GDE8nOtQDlo,15028
+pyamps/sh_utils.py,sha256=ooMIsZl-BFhbMRK93Ni3TkxAcAeOU6XM5S3CxAhiQ0g,18312
+pyamps/coefficients/model_coefficients.txt,sha256=hRPFKKDjBE1jmteilkgnJEQu-CWJKW2MbMee2bqw-Ko,217988
+pyamps/coefficients/model_vector_NT_MT_NV_MV_65_3_45_3.npy,sha256=DyTXlxbY2hZ7dH4N4HQrFgzKZClT-W5W3B8WGqeIklc,115296
+pyamps-1.1.0.dist-info/METADATA,sha256=sCXLknI3x5xkyC8HL1u4RgobNXKCQhhWO7K5qtCCo7g,6468
+pyamps-1.1.0.dist-info/RECORD,,
+pyamps-1.1.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+pyamps-1.1.0.dist-info/top_level.txt,sha256=JLKZPHhWj1QtFqx8nGOR36PFGaVzW5qt_Su2PR6iYJU,7
