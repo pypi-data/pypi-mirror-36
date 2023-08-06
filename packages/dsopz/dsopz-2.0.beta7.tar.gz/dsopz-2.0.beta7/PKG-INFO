@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: dsopz
+Version: 2.0.beta7
+Summary: Google Datastore Operations
+Home-page: https://github.com/murer/dsopz
+Author: Paulo Henrique Murer
+Author-email: paulo.murer@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/murer/dsopz/tarball/dsopz-2.0.beta7
+Description: UNKNOWN
+Keywords: gae,datastore,appengine
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
