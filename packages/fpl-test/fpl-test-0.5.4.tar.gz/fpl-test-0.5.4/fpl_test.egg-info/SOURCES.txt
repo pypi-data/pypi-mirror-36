@@ -1,0 +1,14 @@
+README.md
+setup.cfg
+setup.py
+fpl/__init__.py
+fpl/cli.py
+fpl/constants.py
+fpl/core.py
+fpl/utils.py
+fpl_test.egg-info/PKG-INFO
+fpl_test.egg-info/SOURCES.txt
+fpl_test.egg-info/dependency_links.txt
+fpl_test.egg-info/entry_points.txt
+fpl_test.egg-info/requires.txt
+fpl_test.egg-info/top_level.txt
