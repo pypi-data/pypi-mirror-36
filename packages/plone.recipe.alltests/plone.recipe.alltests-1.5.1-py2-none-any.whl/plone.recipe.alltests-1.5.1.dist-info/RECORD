@@ -1,0 +1,9 @@
+plone.recipe.alltests-1.5.1-py2.7-nspkg.pth,sha256=SL2XGz1wpwn_wEek10Z7PmMUVigUC2P4OmpKTWzBARc,1688
+plone/recipe/alltests/__init__.py,sha256=NU-aEHMBoUxPMICq8HHUZWZPeJ5jrh4vW8SOi2DrQ48,4054
+plone/recipe/alltests/runner.py,sha256=PRywRVwPlfa3tOuBh4NskRyaKq859uDMkgQwnIhvY5A,2340
+plone.recipe.alltests-1.5.1.dist-info/METADATA,sha256=zvr68GKf1XxqN6K32jxgbupl2z-yEvZisQZZQpDAS94,5228
+plone.recipe.alltests-1.5.1.dist-info/RECORD,,
+plone.recipe.alltests-1.5.1.dist-info/WHEEL,sha256=_V8uWu5F_h-lvAz5Mbq4oZqV_uCfL4cHgm4IIlDevzU,92
+plone.recipe.alltests-1.5.1.dist-info/entry_points.txt,sha256=H1-IaHIlFizMf4DS84-WC3wCMPb4MAPBzEI95RLGdm0,54
+plone.recipe.alltests-1.5.1.dist-info/namespace_packages.txt,sha256=w-3LjpJyWhLxhR-yr2J1wNc0yz3eqI-H0E4erv1QOdY,19
+plone.recipe.alltests-1.5.1.dist-info/top_level.txt,sha256=56bqrkG-vurYD0l15D71FPiDL7L3QqkfRWkYkdyS7WM,6
