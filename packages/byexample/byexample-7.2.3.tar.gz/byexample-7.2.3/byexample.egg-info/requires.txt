@@ -1,0 +1,3 @@
+pexpect>=4,<5
+tqdm>=4,<5
+pygments>=2,<3
