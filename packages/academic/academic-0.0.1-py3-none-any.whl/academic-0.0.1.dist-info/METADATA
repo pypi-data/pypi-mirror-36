@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: academic
+Version: 0.0.1
+Summary: The website designer for Hugo
+Home-page: https://sourcethemes.com/academic/
+Author: George Cushen
+Author-email: hugo-discuss@googlegroups.com
+License: MIT
+Keywords: cli academic hugo theme static-site-generator cms blog-engine github-pages netlify hugo-theme documentation-generator
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Site Management
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+
+UNKNOWN
+
+
