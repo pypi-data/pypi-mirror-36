@@ -1,0 +1,16 @@
+contuino/__init__.py,sha256=diBcHfL_MPj1Hy2vIybqNUBMmKFgq8XV524ik130KHM,162
+contuino/client_core.py,sha256=Mf_wluF9OjnuWUmx3HcAyohJaDAu0rq8m6DB7p6Ik1Q,1711
+contuino/contuino_micropython/__init__.py,sha256=bliQ7IwZsBEqLfSFi1d6Rk48XPbvDVP90E3iydPHp8c,48
+contuino/contuino_micropython/esp8266-20180511-v1.9.4.bin,sha256=TcExemWz2bWoVv_yuopG2XTTCISC5GdHcACfBPP6BSE,604872
+contuino/contuino_micropython/mp_helpers.py,sha256=MCxIqqixLckV-ZvSsYhX5KWtJxLggxN6QIZvz4VkLSc,1593
+contuino/contuino_micropython/generated/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+contuino/contuino_micropython/generated/main.py,sha256=NYSnh-oYh8n4sBUoOcBRwpXLGXbhCmSHKjLxnddeBEs,2845
+contuino/contuino_micropython/templates/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+contuino/contuino_micropython/templates/main_template.py,sha256=R8xmqLjVY5-bQvF4gqCouiqw9gk1W3I6J-Y1z41fF5A,2393
+contuino-0.0.5.dev0.data/data/micropython_bin/esp8266-20180511-v1.9.4.bin,sha256=TcExemWz2bWoVv_yuopG2XTTCISC5GdHcACfBPP6BSE,604872
+contuino-0.0.5.dev0.data/data/micropython_main_template/main_template.py,sha256=R8xmqLjVY5-bQvF4gqCouiqw9gk1W3I6J-Y1z41fF5A,2393
+contuino-0.0.5.dev0.dist-info/LICENSE,sha256=3v7_Rz4k_Jfu-uOYJjltHhFFQbK1kfHT7lIQxAQ03Fo,1090
+contuino-0.0.5.dev0.dist-info/METADATA,sha256=EfWKLjtydDhpx_m9KDafSCEaqI0m5_EOW05JRqv3Vps,1974
+contuino-0.0.5.dev0.dist-info/WHEEL,sha256=1Cc6AMC7xwtmRYeNiHurrGRLJoEuor81IEEqyHblQuw,116
+contuino-0.0.5.dev0.dist-info/top_level.txt,sha256=xFLaXd_wsY9k-zhKxjk1SBP0sBuWZwQ_CUdvr53ww8k,9
+contuino-0.0.5.dev0.dist-info/RECORD,,
