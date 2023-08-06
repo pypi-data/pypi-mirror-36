@@ -1,0 +1,63 @@
+Metadata-Version: 1.1
+Name: IP-Link
+Version: 0.2
+Summary: UNKNOWN
+Home-page: https://gitlab.com/cedric/ip-link
+Author: Cédric Bonhomme
+Author-email: cedric@cedricbonhomme.org
+License: Python
+Description: IP-Link
+        =======
+        
+        # Presentation
+        
+        The goal of [IP-Link](https://gitlab.com/cedric/ip-link)
+        is to see the relationships between different IP from network traffic capture,
+        thus quickly for a given address with the IP that communicates the most.  
+        IP-Link offers severall visualization methods.
+        
+        
+        # Installation
+        
+        ```bash
+        $ sudo apt install libpcap0.8
+        $ pipenv install
+        $ pipenv shell
+        ```
+        
+        Python >= 3.6.
+        
+        
+        Turorial and examples
+        ---------------------
+        
+        The site of IP-Link provides a complete [tutorial](https://ip-link.readthedocs.io/en/latest/tutorial.html).
+        
+        
+        Contact
+        -------
+        
+        [Cédric Bonhomme](https://www.cedricbonhomme.org)
+        
+        |
+        
+                    IP-Link project news
+        
+        0.2: 2012-02-05
+            This version introduces the generation of Bézier curves.
+            It is now possible to see the relations between IP and ports.
+            The tutorial has been updated.
+        
+        0.1: 2010-03-18
+            First official release of IP-Link.
+           
+        
+Platform: Linux
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Security
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
