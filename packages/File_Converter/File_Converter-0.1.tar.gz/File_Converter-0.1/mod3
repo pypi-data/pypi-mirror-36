@@ -1,0 +1,33 @@
+#!/usr/bin/python
+'''This codeis the main class takingin modules 1 and 2 to output the uppercase file
+'''
+
+__author__ = "Mitchelll Sheep"
+__version__ = "0.1"
+
+import os
+import fnmatch
+import myPackage.mod1
+import myPackage.mod2
+
+def main():
+    '''Convert all characters in a file to upper case and save it for every
+       .txt file in the current directory.
+    Raises:
+        IOError: input file cannot be openned, or output file cannot be created.
+    '''
+    for root, dirnames, filenames in os.walk('.'):
+        use = dirnames
+        for filename in fnmatch.filter(filenames, '*.txt'):
+            try:
+                info = myPackage.mod1.inputs(filename, root)
+                one = myPackage.mod2.upper(info)
+                two = myPackage.mod2.lower(info)
+                name = os.path.splitext(os.path.basename(filename))[0]  + "_backup.txt"
+                myPackage.mod1.output(one, two, root, name)
+            except IOError, err:
+                print err
+                print "failed to call mod1 or mod2 methods."
+
+if __name__ == '__main__':
+    main()
