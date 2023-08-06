@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: Grank
+Version: 0.0.1
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: Click
+Requires-Dist: Pandas
+Requires-Dist: Numpy
+Requires-Dist: Matplotlib
+Requires-Dist: Requests
+
+UNKNOWN
+
+
