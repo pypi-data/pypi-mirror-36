@@ -1,0 +1,13 @@
+include *.in
+include *.md
+include AUTHORS
+include COPYRIGHT
+include LICENSE
+recursive-include data *.mzML
+recursive-include docs *.pdf
+recursive-include glyxtoolms *.gif
+recursive-include glyxtoolms *.pickle
+recursive-include glyxtoolms *.ttd
+prune glyxtoolms/TOPP/EXTERNAL
+prune glyxtoolms/TOPP/EXTERNAL
+prune NOTCOMMIT
