@@ -1,0 +1,15 @@
+README.md
+setup.py
+nems/__init__.py
+nems/metrics.py
+nems/models.py
+nems/nonlinearities.py
+nems/objectives.py
+nems/sfo_admm.py
+nems/tentbasis.py
+nems/utilities.py
+nems/visualization.py
+nems.egg-info/PKG-INFO
+nems.egg-info/SOURCES.txt
+nems.egg-info/dependency_links.txt
+nems.egg-info/top_level.txt
