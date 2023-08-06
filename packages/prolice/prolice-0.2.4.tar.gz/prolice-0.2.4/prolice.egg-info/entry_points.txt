@@ -1,0 +1,3 @@
+[console_scripts]
+prolice = prolice.prolice:main
+
