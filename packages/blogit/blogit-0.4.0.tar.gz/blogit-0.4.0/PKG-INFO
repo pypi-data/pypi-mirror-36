@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: blogit
+Version: 0.4.0
+Summary: A quick and simple static site generator based on markdown and jinja2
+Home-page: https://github.com/oz123/blogit
+Author: Oz N Tiram
+Author-email: nahumoz@gmail.com
+License: GPL-3.0-or-later
+Project-URL: Bug Tracker, https://github.com/oz123/blogit/issues
+Project-URL: Source Code, https://github.com/oz123/blogit
+Project-URL: Documentation, https://github.com/oz123/blogit/blob/dev/README.md
+Description: A quick and simple static site generator based on markdown and jinja2
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
