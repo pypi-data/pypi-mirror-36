@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: python-sdb
+Version: 0.1
+Summary: Pure Python parser for Application Compatibility Shim Databases (.sdb files)
+Home-page: https://github.com/williballenthin/python-sdb
+Author: Willi Ballenthin
+Author-email: willi.ballenthin@gmail.com
+License: Apache License 2.0
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 2.7
