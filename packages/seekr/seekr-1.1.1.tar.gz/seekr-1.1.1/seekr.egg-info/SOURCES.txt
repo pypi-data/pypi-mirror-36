@@ -1,0 +1,12 @@
+README.md
+setup.py
+seekr/__init__.py
+seekr/fasta_reader.py
+seekr/kmer_counts.py
+seekr/my_tqdm.py
+seekr/pearson.py
+seekr.egg-info/PKG-INFO
+seekr.egg-info/SOURCES.txt
+seekr.egg-info/dependency_links.txt
+seekr.egg-info/not-zip-safe
+seekr.egg-info/top_level.txt
