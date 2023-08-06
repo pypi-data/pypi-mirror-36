@@ -1,0 +1,16 @@
+django_user_messages-0.6.0.dist-info/DESCRIPTION.rst,sha256=m9xTVUP17u9NDAMSK8wUj0I87PRyVY4432_GQmiX7ic,3195
+django_user_messages-0.6.0.dist-info/METADATA,sha256=oiTN2cSgnt4Mt9jE0d-uF0KjrBCopmNtoFtazpwgg44,3739
+django_user_messages-0.6.0.dist-info/RECORD,,
+django_user_messages-0.6.0.dist-info/WHEEL,sha256=kdsN-5OJAZIiHN-iO4Rhl82KyS0bDWf4uBwMbkNafr8,110
+django_user_messages-0.6.0.dist-info/metadata.json,sha256=PVpiHVW8f_6_-cemJhaT6mwjZgCS5SuCettYhG4Bhbc,716
+django_user_messages-0.6.0.dist-info/top_level.txt,sha256=KPngrdqbJB_GfG-ANqXrJMaJCuFjx9fTJqQzM_539j0,14
+user_messages/__init__.py,sha256=Q3mpBRWKsorHqNQy18q7arEcwXXljYZfd0We5spCDAk,123
+user_messages/admin.py,sha256=9_zwXTsbV1gTFyV2uWN1Jdr9PLkIslvYgHDhwAlMaQI,349
+user_messages/api.py,sha256=kuPfMElRuwzdfAvbuK6im7ae2RFRLXX9MZ3vZ6swN0A,2675
+user_messages/apps.py,sha256=kcpoHJrX_mrVJuqyaNAtK-aJl2khXc8unCZIbjLr0rw,1488
+user_messages/context_processors.py,sha256=f7sZN5L17F0lbyOOf5RJ1KjSw9NnOlX4txGOz-lgozQ,353
+user_messages/models.py,sha256=7aDff8HihJXo-mmQ4NnH1WdtMdBaA0uj2u6wDI8Pm-4,1533
+user_messages/locale/de/LC_MESSAGES/django.mo,sha256=tkPPhoBUQsUkZ4-KWGkDcX8OmNE0vzLb_qiu1KQ9-l0,870
+user_messages/locale/de/LC_MESSAGES/django.po,sha256=70byJyV8Mp2-FWbYuHH4LQ0WA8bKm7II-0JreAexDdQ,1210
+user_messages/migrations/0001_initial.py,sha256=os-2itRbazRKGvF8Q_jU-oT8QfdgLlj2Tk5YlkyKbjU,2144
+user_messages/migrations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
