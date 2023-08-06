@@ -1,0 +1,11 @@
+vidl/__init__.py,sha256=KbEIwz3-nCCeW1w9k5z3ZEzGaBlTSwEDfiSuH3VgxKw,54
+vidl/__main__.py,sha256=WVzKiKpBKOVJLjXlValaHjikYSgCo5p8pKaJB5Qw_BI,66
+vidl/app.py,sha256=ZqV6BVWMFtZi5oC4ZxSjiAlmuwJEUFBthiNufvk1x-8,1627
+vidl/config.json,sha256=xHmaoF5YVBjoGBtJuJCgFNWbCVlkvc_fE9sJq-Q4gDg,119
+vidl/config.py,sha256=34KpnNo9lYAgR7l4gnqDhgOURFrAedoBbBstuDTYcAk,1302
+vidl/dl.py,sha256=pvnTM3to7cybtl0cYmZMaFlo4vEfQ-ol7N2GCRKP9Ks,6727
+vidl/md.py,sha256=mUR_CvFWYgoT6iFgyv8k14jJf0Z25rMa8BmEGcpEOtc,1126
+vidl-3.0.2.dist-info/entry_points.txt,sha256=vwtxMwzKrciiG7ecBZCU5cB4YAc62iPTIzCdjyZhc_4,38
+vidl-3.0.2.dist-info/WHEEL,sha256=kHdCpTJzhyw1N1frf4kV6yKKRXuffzPY8J9zMFxvyGg,84
+vidl-3.0.2.dist-info/METADATA,sha256=yPC_4kTPg9gzp2SBzT6ZpAwxaTzlSbtaBl6V7V_gfVE,5965
+vidl-3.0.2.dist-info/RECORD,,
