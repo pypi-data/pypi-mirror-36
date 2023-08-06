@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: kcpy
+Version: 0.1.1
+Summary: A kinesis consumer is purely written in python.
+Home-page: UNKNOWN
+Author: Hengfeng Li
+Author-email: hengf.li@gmail.com
+License: MIT License
+Keywords: kinesis,consumer,stream,processing,queue
+Platform: UNKNOWN
+Requires-Python: >=3.5.0
+Requires-Dist: boto3
+
+# Kinesis Consumer in Python
+
+A kinesis consumer is purely written in python. 
+
+## Features
+
+* Read records from a stream with multiple shards
+
+## Todo
+
+* Open a consumer when adding a new shard
+* Close a consumer when shutting down an existing shard
+* Save checkpoint for each shard
+* Allow kcpy to run on multiple machines
+
+## Changelog
+
+### 0.1.1
+
+* Add a long description.
+
+### 0.1.0
+
+* First version of kcpy.  
+
+
