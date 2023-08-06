@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: BlenderBatchExporter
+Version: 0.3
+Summary: Batch process blend files
+Home-page: https://github.com/Utsira/BlenderBatchExporter
+License: UNKNOWN
+Author: Oliver Dew
+Author-email: olidew@gmail.com
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+
+# Batch Blender export
+
+Exports a folder full of Blender files to OBJ format. Defaults: selected object only, triangulate faces, export normals and UVs, Y-Up
+
+### Usage 
+
+```
+batchExportObj.py [-h] --input INPUT --output OUTPUT
+                         [--blender BLENDER] [--scale SCALE]
+
+required arguments:
+  --input INPUT, -i INPUT
+                        path to a folder containing .blend files
+  --output OUTPUT, -o OUTPUT
+                        path to the folder to output converted files to.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --blender BLENDER, -b BLENDER
+                        path to the Blender command line tool. Defaults to /Ap
+                        plications/Blender/blender.app/Contents/MacOS/blender
+  --scale SCALE         amount to scale the geometry by
+```
+
+### Example
+
+`./batchExportObj.py --input ../Blender/lopoly --output ../ARModeller/LoPoly --scale 0.02`
+
