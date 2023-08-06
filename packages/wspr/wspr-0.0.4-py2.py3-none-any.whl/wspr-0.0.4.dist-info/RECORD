@@ -1,0 +1,13 @@
+wspr/__init__.py,sha256=FuZlc2Hs0izOm3RLBxsHcKqoOzRciBPxe8owv_9NLuU,167
+wspr/blob.py,sha256=zOvkk6bgL5-rTMRhJ8R7Zlsu0rLDK9Oe4vbs9kB4W9E,708
+wspr/channel.py,sha256=L38W35PUgxFKSrZVWUzAFVY5_iJIKoCOASgNCOCZpQ4,820
+wspr/client.py,sha256=I5Kb9-cP-qVJmdLOAcsU__1N3JyaVmuIKsHlJcKYwb4,4030
+wspr/log.py,sha256=ZXIDj-vTVzamD_tGzhP84fNeIvDu6BgfDooGsH5TY7M,1537
+wspr/user.py,sha256=h2bwcBRDABqVfnQHE09ZPeweeiQeC3zQuGOOKbjpdV0,988
+wspr/wspr.py,sha256=VYoI-gwqwBKPx84cA0KnYDRofrgIXs8xtASD2nu5fE0,44
+wspr-0.0.4.dist-info/AUTHORS.rst,sha256=wg5WoIZbqJV4uzTQwiBTFzlzi-mUvogY3IDOMXwWMSc,176
+wspr-0.0.4.dist-info/LICENSE,sha256=R4SEZTlwPjQE7h3Gh00RamRiCk4RStwGjtEvY52Nkt0,1079
+wspr-0.0.4.dist-info/METADATA,sha256=SUGoYM1jayY-O-Kbv3Sm7F6E37IAd6-OBg7ZHlXmKOE,2322
+wspr-0.0.4.dist-info/WHEEL,sha256=8T8fxefr_r-A79qbOJ9d_AaEgkpCGmEPHc-gpCq5BRg,110
+wspr-0.0.4.dist-info/top_level.txt,sha256=YZKgPKlHRhs4UGjzqBPeVx9NoOm2tEPNWHllVyWt5cE,5
+wspr-0.0.4.dist-info/RECORD,,
