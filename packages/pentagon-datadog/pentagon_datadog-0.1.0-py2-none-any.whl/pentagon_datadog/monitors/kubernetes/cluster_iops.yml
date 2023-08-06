@@ -1,0 +1,21 @@
+notify_audit: false
+locked: false
+name: '[${environment}] High number of total IOPS on host'
+tags: [hardware, '${environment}', reactiveops]
+include_tags: false
+no_data_timeframe: null
+silenced: {}
+new_host_delay: 300
+require_full_window: true
+notify_no_data: false
+renotify_interval: 0
+escalation_message: ''
+query: avg(last_1h):avg:aws.ebs.volume_read_ops{kubernetescluster:${cluster}} by {host} + avg:aws.ebs.volume_write_ops{kubernetescluster:${cluster}} by {host} > 900000
+message: |
+  {{#is_alert}}
+  {{host.name}} has as increasing number of disk operations
+  {{/is_alert}}
+  ${notifications}
+type: query alert
+thresholds: {critical: 900000, warning: 800000}
+timeout_h: 0

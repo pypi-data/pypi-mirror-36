@@ -1,0 +1,14 @@
+notify_audit: true
+locked: false
+name: '[${environment}] Datadog agent has not reported data for over 2 minutes'
+tags: ['${environment}', reactiveops]
+no_data_timeframe: 3
+silenced: {}
+new_host_delay: 300
+notify_no_data: true
+renotify_interval: 0
+query: '"datadog.agent.up".over("*").by("host").last(2).count_by_status()'
+message: ${notifications}
+type: service check
+thresholds: {warning: 1, ok: 1, critical: 1}
+timeout_h: 0
