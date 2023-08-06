@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: django-lti-provider-auth
+Version: 0.0.1
+Summary: This is a highly confirgurable LTI provider for django projects.
+Home-page: https://github.com/wachjose88/django-lti-provider-auth
+Author: Josef Wachtler
+Author-email: josef.wachtler@gmail.com
+License: UNKNOWN
+Description: # Django LTI Provider with Authentication
+        This is a highly confirgurable LTI provider. It is based on python3 and django 1.11.
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
