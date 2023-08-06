@@ -1,0 +1,9 @@
+graft compliance
+graft docs
+graft test
+graft wsproto
+prune docs/build
+prune compliance/autobahntestsuite-venv
+prune compliance/reports
+include README.rst LICENSE CHANGELOG.rst tox.ini
+recursive-exclude * *.pyc *.pyo *.swo *.swp *.map *.DS_Store 
