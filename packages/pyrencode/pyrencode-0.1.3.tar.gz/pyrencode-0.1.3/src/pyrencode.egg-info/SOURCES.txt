@@ -1,0 +1,11 @@
+setup.py
+src/pyrencode/__init__.py
+src/pyrencode/decode.py
+src/pyrencode/encode.py
+src/pyrencode.egg-info/PKG-INFO
+src/pyrencode.egg-info/SOURCES.txt
+src/pyrencode.egg-info/dependency_links.txt
+src/pyrencode.egg-info/top_level.txt
+src/pyrencode/settings/__init__.py
+src/pyrencode/settings/constants.py
+src/pyrencode/settings/utils.py
