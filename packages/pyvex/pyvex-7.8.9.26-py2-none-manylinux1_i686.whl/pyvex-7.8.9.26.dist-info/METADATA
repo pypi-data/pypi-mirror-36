@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: pyvex
+Version: 7.8.9.26
+Summary: A Python interface to libVEX and VEX IR
+Home-page: https://github.com/angr/pyvex
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: <3.0
+Requires-Dist: pycparser (==2.18)
+Requires-Dist: cffi (==1.7.0)
+Requires-Dist: archinfo (==7.8.9.26)
+Requires-Dist: bitstring (==3.1.5)
+Requires-Dist: future (==0.16.0)
+
+UNKNOWN
+
+
