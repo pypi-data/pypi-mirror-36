@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: newgroundsdl
+Version: 0.2.1
+Summary: A simple package to download songs from Newgrounds
+Home-page: https://gitlab.com/nonnymoose/newgroundsdl
+Author: Nonny Moose
+Author-email: moosenonny10@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Multimedia :: Sound/Audio
+Classifier: Development Status :: 5 - Production/Stable
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Requires-Dist: beautifulsoup4
+
+# newgroundsdl
+Downloads all of the songs on a Newgrounds audio page.
+
+Usage: newgroundsdl **AUDIO_PAGE_URL**
+
+This is a python package. You can install it with pip:
+
+```
+pip3 install newgroundsdl
+```
+
+You can also use it as a library:
+
+```
+import newgroundsdl
+newgroundsdl...
+```
+
+The source is fairly self-explanatory, so at this time I will not be writing documentation for the library
+
+
