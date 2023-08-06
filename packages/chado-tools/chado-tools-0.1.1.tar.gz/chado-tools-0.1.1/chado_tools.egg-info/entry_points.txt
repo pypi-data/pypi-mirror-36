@@ -1,0 +1,3 @@
+[console_scripts]
+chado = terminal.chado_tools:main
+
