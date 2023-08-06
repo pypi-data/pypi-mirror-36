@@ -1,0 +1,12 @@
+README.md
+setup.py
+CuraPackageDeployer/ApiAuthenticator.py
+CuraPackageDeployer/Config.py
+CuraPackageDeployer/CuraPackageDeployer.py
+CuraPackageDeployer/PackagesApiClient.py
+CuraPackageDeployer/__init__.py
+CuraPackageDeployer.egg-info/PKG-INFO
+CuraPackageDeployer.egg-info/SOURCES.txt
+CuraPackageDeployer.egg-info/dependency_links.txt
+CuraPackageDeployer.egg-info/requires.txt
+CuraPackageDeployer.egg-info/top_level.txt
