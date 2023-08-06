@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: cryptocompy3
+Version: 0.1.2
+Summary: Simple wrapper for the public Cryptocompare API (maintenance fork of cryptocompy).
+Home-page: https://github.com/sebastianhaberey/cryptocompy
+Author: Sebastian Haberey
+Author-email: sebastian@haberey.com
+License: MIT
+Download-URL: https://github.com/sebastianhaberey/cryptocompy/archive/0.1.2.tar.gz
+Platform: UNKNOWN
+Requires-Python: >=3
+Requires-Dist: requests
+
+This is a maintenance fork of Titian Steiger's project.
+
+
