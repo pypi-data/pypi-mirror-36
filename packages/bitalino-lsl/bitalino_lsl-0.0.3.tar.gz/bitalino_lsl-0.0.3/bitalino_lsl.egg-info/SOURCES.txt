@@ -1,0 +1,12 @@
+README.md
+setup.py
+bitalino_lsl/__init__.py
+bitalino_lsl/bitaReader.py
+bitalino_lsl/bitalinoLSL.py
+bitalino_lsl/lslStreamer.py
+bitalino_lsl/sharedResources.py
+bitalino_lsl.egg-info/PKG-INFO
+bitalino_lsl.egg-info/SOURCES.txt
+bitalino_lsl.egg-info/dependency_links.txt
+bitalino_lsl.egg-info/requires.txt
+bitalino_lsl.egg-info/top_level.txt
