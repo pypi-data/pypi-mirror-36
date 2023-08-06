@@ -1,0 +1,5 @@
+[console_scripts]
+imgstore-save = imgstore.util:main_saver
+imgstore-test = imgstore.util:main_test
+imgstore-view = imgstore.util:main_viewer
+
