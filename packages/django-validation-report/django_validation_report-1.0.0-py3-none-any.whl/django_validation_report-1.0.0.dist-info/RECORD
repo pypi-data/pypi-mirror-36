@@ -1,0 +1,12 @@
+validation_report/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+validation_report/apps.py,sha256=BQ1kNqoemPefxr7IJGkrZYI0d2uIid7ECciCQVBpvEo,113
+validation_report/sendmail.py,sha256=PhwwpSPKzsyPpBHuqrDOWzqjmlC8gE61MCqTxdQ656Y,1617
+validation_report/urls.py,sha256=thrdeKc5lKiSzTAE_2IHc86KC88B0VbYat9eslxSIPs,137
+validation_report/utils.py,sha256=cTETvoFbS6JYcoWjwIQNhA6tXRraH3eOFQV597nA4ds,539
+validation_report/validation_report.py,sha256=oHtm-Xj75DTX_XxKAScitiQPbVKvZbdXpIqZdJ9sfiM,997
+validation_report/views.py,sha256=D2AmxToai4jZ8HVASkqO9-vQZLpGmYAj-UfTrItFEjE,1974
+django_validation_report-1.0.0.dist-info/LICENSE,sha256=FsjcRnkQzyXa8-AzycVJowGxS1FMNH8mRbT_8-D6ByA,1096
+django_validation_report-1.0.0.dist-info/METADATA,sha256=zQpIUBNx6ajjUybdZ7nn1bqkEjJHQoX8CZrA3HPjy0w,4990
+django_validation_report-1.0.0.dist-info/WHEEL,sha256=P3qJ5yBP-M5n4VbrgU3eTDIHvegviaBxiqCi1ejHWOs,97
+django_validation_report-1.0.0.dist-info/top_level.txt,sha256=apAjpTBO-urnz3lGBvcwFJhW6LPdSPMNZNYS8i0SMDA,18
+django_validation_report-1.0.0.dist-info/RECORD,,
