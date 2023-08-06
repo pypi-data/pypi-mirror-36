@@ -1,0 +1,11 @@
+[weather.met.weather]
+
+Latitude   =   {{station.latitude}}
+longitude   =   {{station.longitude}}
+tav   =   {{station.tags.tav}}
+amp   =   {{station.tags.amp}}
+!!!!   1/01/1961   to   31/12/2005
+day   year   radn   maxt   mint   rain   wind   RH
+{%for timestamp, radn,maxt,mint,rain,wind,RH in chunk%}
+{{timestamp.dayofyear}}  {{timestamp.year}}  {{radn.value}}  {{maxt.value}}  {{mint.value}}  {{rain.value}}  {{wind.value}}  {{RH.value}}
+{%endfor%}

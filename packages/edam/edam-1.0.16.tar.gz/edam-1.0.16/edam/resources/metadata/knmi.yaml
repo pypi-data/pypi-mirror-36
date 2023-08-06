@@ -1,0 +1,57 @@
+Station:
+    name: SCHIPHOL
+    latitude: 52.318
+    longitude: 4.790
+    license: Attribution
+    url: http://knmi.nl/kennis-en-datacentrum/achtergrond/data-ophalen-vanuit-een-script
+    tags:
+        altitude: -3.30
+
+Observables:
+        - observable_id: FG
+          name:  Daily mean windspeed
+          ontology: http://edam.gr#WindSpeed
+          qualifiers: http://edam.gr#daily,http://edam.gr#mean
+        - observable_id: TG
+          name:  Daily mean temperature
+          ontology: http://edam.gr#Temperature
+          qualifiers: http://edam.gr#daily,http://edam.gr#mean
+        - observable_id: TN
+          name:  Minimum temperature
+          ontology: http://edam.gr#Temperature
+          qualifiers: http://edam.gr#min
+        - observable_id: Q
+          name:  Solar radiation
+          ontology: http://edam.gr#SolarRadiation
+        - observable_id: RH
+          name:  Daily precipitation amount
+          ontology: http://edam.gr#Rain
+          qualifiers: http://edam.gr#daily
+        - observable_id: PG
+          name:  Daily mean sea level pressure
+          ontology: http://edam.gr#VaporPressure
+          qualifiers: http://edam.gr#daily,http://edam.gr#mean
+        - observable_id: UG
+          name:  Daily mean relative atmospheric humidity
+          ontology: http://edam.gr#RelativeHumidity
+          qualifiers: http://edam.gr#daily,http://edam.gr#mean
+Units of Measurement:
+        - name: Joule per square centimeters
+          symbol: J/cm^2
+          relevant_observables: Q
+        - name: Decimillimeters
+          symbol: dmm
+          relevant_observables: RH
+        - name: Deci meter per second
+          symbol: dm/s
+          relevant_observables: FG
+        - name: Percent
+          symbol: /%
+          relevant_observables: UG
+        - name: Celcius
+          symbol: degC
+          relevant_observables: TG, TX, TN
+        - name: decapascal
+          symbol: daPa
+          relevant_observables: PG
+Sensors:
