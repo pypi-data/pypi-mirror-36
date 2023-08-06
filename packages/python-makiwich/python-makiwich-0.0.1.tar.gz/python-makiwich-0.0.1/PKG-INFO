@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: python-makiwich
+Version: 0.0.1
+Summary: Create 
+Home-page: https://github.com/zostera/python-makiwich
+Author: Jan Pieter Waagmeester
+Author-email: jieter@zostera.nl
+License: ISC
+Description: UNKNOWN
+Keywords: Maki icon markers
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
