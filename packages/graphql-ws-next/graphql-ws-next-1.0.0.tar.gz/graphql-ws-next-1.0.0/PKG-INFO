@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: graphql-ws-next
+Version: 1.0.0
+Summary: Websocket server for GraphQL subscriptions
+Home-page: https://github.com/dfee/graphql-ws-next
+Author: Devin Fee
+Author-email: devin@devinfee.com
+Keywords: graphql,subscriptions,graphene,websockets
+Requires-Python: >=3.6,<4.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Provides-Extra: dev
+Requires-Dist: aiohttp (>=3.4,<4.0)
+Requires-Dist: graphql-core-next (>=1.0,<2.0)
