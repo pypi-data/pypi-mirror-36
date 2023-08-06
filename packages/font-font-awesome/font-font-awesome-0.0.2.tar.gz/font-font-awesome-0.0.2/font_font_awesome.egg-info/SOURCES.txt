@@ -1,0 +1,15 @@
+CHANGELOG.txt
+MANIFEST.in
+README.rst
+setup.py
+font_font_awesome/__init__.py
+font_font_awesome.egg-info/PKG-INFO
+font_font_awesome.egg-info/SOURCES.txt
+font_font_awesome.egg-info/dependency_links.txt
+font_font_awesome.egg-info/entry_points.txt
+font_font_awesome.egg-info/not-zip-safe
+font_font_awesome.egg-info/top_level.txt
+font_font_awesome/files/FontAwesome5-Brands.otf
+font_font_awesome/files/FontAwesome5-Free-Solid.otf
+font_font_awesome/files/FontAwesome5-Free.otf
+font_font_awesome/files/OFL.txt
