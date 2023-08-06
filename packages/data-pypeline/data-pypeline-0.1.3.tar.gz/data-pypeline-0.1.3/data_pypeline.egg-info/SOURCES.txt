@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+data_pypeline.egg-info/PKG-INFO
+data_pypeline.egg-info/SOURCES.txt
+data_pypeline.egg-info/dependency_links.txt
+data_pypeline.egg-info/requires.txt
+data_pypeline.egg-info/top_level.txt
+pypeline/__init__.py
+pypeline/_db.py
+pypeline/off_heap.py
+pypeline/pypeline.py

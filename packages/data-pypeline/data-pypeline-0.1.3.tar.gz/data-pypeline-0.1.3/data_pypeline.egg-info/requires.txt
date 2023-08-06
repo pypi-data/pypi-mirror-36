@@ -1,0 +1,9 @@
+xxhash
+multiprocess
+dill
+filelock
+
+[:sys_platform != "win32"]
+Plyvel
+ujson
+uvloop
