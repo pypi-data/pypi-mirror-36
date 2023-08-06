@@ -1,0 +1,37 @@
+Metadata-Version: 1.1
+Name: zmsgcentre
+Version: 1.0.3
+Summary: 消息中心, 避免代码的强耦合性
+Home-page: https://pypi.org/
+Author: zlyuan
+Author-email: 1277260932@qq.com
+License: GNU GENERAL PUBLIC LICENSE
+Description: 消息中心, 避免代码的强耦合性
+        
+        测试代码:
+        if __name__ == '__main__':
+            @trigger('test')
+            def fun_send(a, b, c):
+                pass
+        
+        
+            @receiver('test')
+            def fun_callback_1(a, b, c):
+                print('fun_1', a, b, c)
+        
+        
+            @receiver('test')
+            def fun_callback_2(a, b, c):
+                print('fun_2', a, b, c)
+        
+        
+            fun_send(1, 2, 3)
+        
+Platform: all
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
