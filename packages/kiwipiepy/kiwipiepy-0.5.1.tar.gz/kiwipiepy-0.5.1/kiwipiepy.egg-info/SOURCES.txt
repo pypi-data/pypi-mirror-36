@@ -1,0 +1,15 @@
+LICENSE.txt
+MANIFEST.in
+README
+setup.py
+kiwipiepy/__init__.py
+kiwipiepy/coreLinux64.so
+kiwipiepy/coreWinx64.pyd
+kiwipiepy/coreWinx86.pyd
+kiwipiepy/extract.mdl
+kiwipiepy/sj.lang
+kiwipiepy/sj.morph
+kiwipiepy.egg-info/PKG-INFO
+kiwipiepy.egg-info/SOURCES.txt
+kiwipiepy.egg-info/dependency_links.txt
+kiwipiepy.egg-info/top_level.txt
