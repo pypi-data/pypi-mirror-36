@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: complexnet
+Version: 0.1.2
+Summary: complex keras layers
+Home-page: https://github.com/WheelerEarnest/Complexnet
+Author: Wheeler Earnest
+Author-email: jwheelerearnest@gmail.com
+License: UNKNOWN
+Description: # Complexnet: complex Keras layers
+        
+        Literally just Keras layers that use complex numbers instead of real ones.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
