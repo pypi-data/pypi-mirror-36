@@ -1,0 +1,8 @@
+setup.py
+persistent_doc/__init__.py
+persistent_doc/document.py
+persistent_doc/transform.py
+persistent_doc.egg-info/PKG-INFO
+persistent_doc.egg-info/SOURCES.txt
+persistent_doc.egg-info/dependency_links.txt
+persistent_doc.egg-info/top_level.txt
