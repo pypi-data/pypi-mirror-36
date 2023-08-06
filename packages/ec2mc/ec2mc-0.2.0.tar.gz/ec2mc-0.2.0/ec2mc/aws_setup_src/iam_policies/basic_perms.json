@@ -1,0 +1,25 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "BasicPermissions",
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetUser",
+                "iam:GetAccessKeyLastUsed",
+                "iam:SimulatePrincipalPolicy",
+                "ec2:DescribeRegions"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "InstancePermissions",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeInstances",
+                "ec2:StartInstances"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
