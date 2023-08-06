@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: allinusersettings
+Version: 0.0.2
+Summary: User Settings app for All Inspiration Apps
+Home-page: https://github.com/frugs/allin-usersettings
+Author: Hugo Wainwright
+Author-email: wainwrighthugo@gmail.com
+License: UNKNOWN
+Keywords: sc2,all-inspiration
+Platform: UNKNOWN
+Requires-Dist: requests (>=2.19.1)
+Requires-Dist: requests-toolbelt (>=0.8.0)
+Requires-Dist: Flask-OAuthlib
+Requires-Dist: flask
+Requires-Dist: pyrebase
+Requires-Dist: google-cloud-datastore
+Requires-Dist: allinsso
+
+UNKNOWN
+
+
