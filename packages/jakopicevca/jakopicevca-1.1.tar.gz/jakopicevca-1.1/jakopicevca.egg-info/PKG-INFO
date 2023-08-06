@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: jakopicevca
+Version: 1.1
+Summary: Programs for Astro Pi - Mission Space Lab - Team Jakopičevca
+Home-page: https://github.com/filips123/jakopicevca/
+Author: Team Jakopičevca
+Author-email: filip.stamcar@hotmail.com
+License: GPLv3+
+Description: Astro Pi - Team Jakopičevca
+        ===========================
+        
+        Programs for Astro Pi - Mission Space Lab - Team Jakopičevca
+        
+        All programs
+        ------------
+        
+        All Astro Pi programs are available on
+        `GitHub <https://github.com/filips123/jakopicevca/>`__ and
+        `PyPI <https://pypi.org/project/jakopicevca/>`__. You can access them
+        with ``jakopicevcaYEAR`` (for example ``jakopicevca2017``).
+        
+        Astro Pi 2017/18
+        ----------------
+        
+        Program for Astro Pi 2017/18 is available on
+        `GitHub <https://github.com/filips123/jakopicevca/tree/2017/>`__ and
+        `PyPI <https://pypi.org/project/jakopicevca2017/>`__.
+        
+        License
+        -------
+        
+        This project is licensed under the GNU GPL License. See the LICENSE file
+        for more details.
+        
+Keywords: RaspberryPi AstroPi MissionSpaceLab OŠRJ ESA
+Platform: Linux
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Provides-Extra: pandoc
