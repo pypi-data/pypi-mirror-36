@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: bluepandas
+Version: 0.1
+Summary: Module to access azure blob CSV files with Pandas
+Home-page: https://github.com/nihil0/bluepandas
+Author: Neelabh Kashyap
+Author-email: neelabh.kashyap@cgi.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
