@@ -1,0 +1,15 @@
+necbaas/__init__.py,sha256=nZxRAkiOahM74rH2_Rd9Q3hrNkq-gR0JZT9Y8Q6QIDU,267
+necbaas/__version__.py,sha256=aog9QZ2AOwTJ6rDcM0dkqCh0vhQWRRKXvdtCt1SrIWQ,25
+necbaas/apigw.py,sha256=PtKZLjBPML1OOzKtO5kU5OkmmoeMUu82bSKe9PocKtc,2043
+necbaas/buckets.py,sha256=6ukaFiLy3Gflj2BcQAqqD8pYdzTTc4YRvwcBhhRBPqA,2357
+necbaas/file_bucket.py,sha256=-LFnan5lqO6237dMPP8oxmwRnAlolf4mcDhPuQfkT4s,5350
+necbaas/group.py,sha256=NXVbjSBRGejV7eHTDrrldAOYIW0CJGRTxSF4cZcME2E,3348
+necbaas/object_bucket.py,sha256=4BOWQQ6XPz22yVO8ij6LwkPz8yLDemTOFyf4AsX3Rwg,8638
+necbaas/push_sender.py,sha256=n1IIYBhQigUbjL3q6bkzFfH6Li4Wo3SFV0PKFBUkfMQ,584
+necbaas/service.py,sha256=t7oc3i9oTL8L13TceIKa9v14gGqIVF0PFfZhUDMrCD8,8905
+necbaas/user.py,sha256=KK1t7wD7-ibHZNPxAuXuHKu7VXs9erYuUaAnwaFMt9o,6558
+necbaas-7.5.0rc1.dist-info/LICENSE,sha256=Qg6bVNWv5zWoPimH4Hbm2zOoiVFnd7Jg29VoZvyy8ic,1106
+necbaas-7.5.0rc1.dist-info/METADATA,sha256=op34XVf_WCkIyvNAI67FAj51PBx7krPkcoDh50xP4Ys,1267
+necbaas-7.5.0rc1.dist-info/WHEEL,sha256=YO0P_oFqt6DWX0LhbH7jsyzb3BUtoq2kERtqGsXDJHs,92
+necbaas-7.5.0rc1.dist-info/top_level.txt,sha256=aPGx9NqTAoc4yIRmx84agt_o22YtEckvGNRXTTByUGQ,8
+necbaas-7.5.0rc1.dist-info/RECORD,,
