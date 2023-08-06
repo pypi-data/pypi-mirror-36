@@ -1,0 +1,11 @@
+sqlitefts/__init__.py,sha256=SroZtCIGW6bYZf3czuxWL2bNAfhyBMV_RBM5WC0iCI8,245
+sqlitefts/error.py,sha256=WdXRVdAQwdOq00hsHGTqoPo3YxqwfP8xU4OjRN6cwB4,91
+sqlitefts/fts3.py,sha256=sR9xSf6UQy9X3IgaD2vDOSY5gpDDnuDFRETFZwzHfJ4,5203
+sqlitefts/fts5.py,sha256=x7C4LwUHfeO-6n-hR1VfnY3dYqIq0AfCQ2_PzQLaT-8,8119
+sqlitefts/fts5_aux.py,sha256=tLwsPbm2A_genQ3q7ysv2Ori5gLYCZMuZslTAsRCVhw,2123
+sqlitefts/ranking.py,sha256=3tMS6X3tZD5AW3IHZTfauWCnOXKqzLfdx33SGfhb48s,2959
+sqlitefts/tokenizer.py,sha256=7GHgvoShxBOzb2EPY5YE0nnthGJoIN24_8KHXQ6SK6c,1090
+sqlitefts-0.5.1.dist-info/METADATA,sha256=eMJPt602CXUFWv0J7Tp2mkS-G8qGz1McJixGkmWTOdg,5359
+sqlitefts-0.5.1.dist-info/RECORD,,
+sqlitefts-0.5.1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+sqlitefts-0.5.1.dist-info/top_level.txt,sha256=0fqlrZ5uS1JAiJ2PyLGYuDigdGAHpw55BBQlkvzZGEY,10
