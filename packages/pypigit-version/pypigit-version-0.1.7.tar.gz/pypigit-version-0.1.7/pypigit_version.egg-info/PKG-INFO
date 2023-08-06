@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: pypigit-version
+Version: 0.1.7
+Summary: Automatically set package version from Git.
+Home-page: https://github.com/anthill-utils/pypigit-version
+Author: desertkun
+Author-email: desertkun@gmail.com
+License: http://opensource.org/licenses/MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Framework :: Setuptools Plugin
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
