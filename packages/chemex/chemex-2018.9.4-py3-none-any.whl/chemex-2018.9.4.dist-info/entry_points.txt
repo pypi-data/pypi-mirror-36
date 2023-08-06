@@ -1,0 +1,5 @@
+[console_scripts]
+cest_pick = chemex.tools:cest_pick
+chemex = chemex.chemex:main
+chemex_plot_param = chemex.tools:plot_param
+
