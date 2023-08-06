@@ -1,0 +1,11 @@
+setup.py
+Swarm/__init__.py
+Swarm/bots.py
+Swarm/game.py
+Swarm/main.py
+Swarm/sim.py
+Swarm.egg-info/PKG-INFO
+Swarm.egg-info/SOURCES.txt
+Swarm.egg-info/dependency_links.txt
+Swarm.egg-info/requires.txt
+Swarm.egg-info/top_level.txt
