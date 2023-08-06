@@ -1,0 +1,19 @@
+[console_scripts]
+wlint = wlint.driver:main
+
+[wlint.drivers]
+count-words = wlint.count_words:_COUNT_WORDS_COMMAND
+list-filter = wlint.list_filter:_LIST_FILTER_COMMAND
+punctuation-style = wlint.punctuation_style:_PUNCTUATION_STYLE_COMMAND
+
+[wlint.punctuation_rules]
+colon = wlint.punctuation.colon:_COLON_RULES
+dash = wlint.punctuation.dash:_DASH_RULES
+quote = wlint.punctuation.quote:_QUOTE_RULES
+range = wlint.punctuation.range:_RANGE_RULES
+time = wlint.punctuation.time:_TIME_RULES
+
+[wlint.puririfiers]
+tex = wlint.purify:_TEX_PURIFIER
+text = wlint.purify:_TEXT_PURIFIER
+
