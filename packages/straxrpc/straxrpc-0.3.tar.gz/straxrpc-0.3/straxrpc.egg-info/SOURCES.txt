@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.py
+straxrpc/__init__.py
+straxrpc/client.py
+straxrpc/data_types.py
+straxrpc/server.py
+straxrpc/straxrpc_pb2.py
+straxrpc/straxrpc_pb2_grpc.py
+straxrpc.egg-info/PKG-INFO
+straxrpc.egg-info/SOURCES.txt
+straxrpc.egg-info/dependency_links.txt
+straxrpc.egg-info/not-zip-safe
+straxrpc.egg-info/requires.txt
+straxrpc.egg-info/top_level.txt
