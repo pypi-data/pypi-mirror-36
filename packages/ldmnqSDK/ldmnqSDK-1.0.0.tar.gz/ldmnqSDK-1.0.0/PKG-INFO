@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: ldmnqSDK
+Version: 1.0.0
+Summary: SDK to opreate 雷电模拟器
+Home-page: https://coding.net/u/hhhhhg/p/ldmnqSDK/git
+Author: purecucumber
+Author-email: 2894700792@qq.com
+License: MIT
+Description-Content-Type: UNKNOWN
+Description: #ldmnqSDK
+        
+Platform: UNKNOWN
+Classifier: Natural Language :: Chinese (Simplified)
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Games/Entertainment
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
