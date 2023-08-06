@@ -1,0 +1,13 @@
+battleofai/__init__.py,sha256=VYqHV80DDFwWgfFEIaRnt7COsEV9eiLOTLIi0TkItiA,290
+battleofai/abc.py,sha256=WvPNkEhZaiI8ique_MpzQbyOgWWwZq10TTqFkQFX3TY,2978
+battleofai/ais.py,sha256=NlWQEHWf8mLpGAzxJmfJGt6DWyCh6oqFQTbR2Lcynpg,802
+battleofai/client.py,sha256=9ysnWjHSHq80MJoEZnvuId9QzNX1ztcSN5ZvOiOGkKM,3566
+battleofai/config.py,sha256=fvanJEWICkWxDWk_5gHuNMV-eRa51oszmr7KzUa2XCw,700
+battleofai/enums.py,sha256=5LHSJuDUdSbPF9O4dxIGSbVnKuoWJ7t3HRpa7t9GwkA,170
+battleofai/game.py,sha256=YT7caLoEtkfgtdT0s4Ij1roZnOYEqEy7uyE5h2nGrVo,2635
+battleofai/game_types.py,sha256=Czk8qakJroeN0zqmnVxbTSGmfdJoi7ijOrjSnsUrJ38,2378
+battleofai/utils.py,sha256=5T7Cvh_VCf5q2Q3C01zLuQaWwPUbulyYcK4xo7m4jW0,161
+battleofai-0.1.1.dist-info/METADATA,sha256=hcOCs_6zBDurYKKgUokh4xC6kyFLzpDvARE1kjiU6Ho,2478
+battleofai-0.1.1.dist-info/RECORD,,
+battleofai-0.1.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+battleofai-0.1.1.dist-info/top_level.txt,sha256=RqskqH2y2IC_yw0wXeWOTw1zOt447ExM-c2Bjxkyn90,11
