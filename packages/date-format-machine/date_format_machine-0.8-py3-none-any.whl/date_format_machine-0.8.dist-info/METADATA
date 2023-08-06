@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: date-format-machine
+Version: 0.8
+Summary: Tool for manipulating date strings
+Home-page: https://github.com/ryantownshend/date_format_machine
+Author: Ryan Townshend
+Author-email: citizen.townshend@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: click (>=7.0)
+Requires-Dist: click-log (>=0.3.2)
+Requires-Dist: pendulum (>=2.0.3)
+Requires-Dist: tabulate (>=0.8.2)
+Requires-Dist: PyYAML (>=3.13)
+
+tool for converting a collection of known
+timestamps and date formats
+
