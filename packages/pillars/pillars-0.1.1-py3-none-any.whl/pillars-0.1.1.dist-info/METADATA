@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: pillars
+Version: 0.1.1
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Allocloud
+Author-email: allocloud@ovv.wtf
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: cython (<0.29.0,>=0.28.5)
+Requires-Dist: uvloop (<0.12.0,>=0.11.2)
+Requires-Dist: cchardet (<3.0,>=2.1)
+Requires-Dist: aiohttp (<4.0,>=3.3)
+Requires-Dist: asyncpg (<0.18.0,>=0.17.0)
+Requires-Dist: attrs (<19.0,>=18.1)
+Requires-Dist: ujson (<2.0,>=1.35)
+Requires-Dist: async-timeout (<4.0,>=3.0)
+Requires-Dist: setproctitle (<2.0,>=1.1)
+Requires-Dist: aiodns (<2.0,>=1.1)
+Requires-Dist: pyyaml (<4.0,>=3.13)
+Requires-Dist: aioredis (<2.0,>=1.1)
+Requires-Dist: cerberus (<2.0,>=1.2)
+
+# Pillars
+
+
