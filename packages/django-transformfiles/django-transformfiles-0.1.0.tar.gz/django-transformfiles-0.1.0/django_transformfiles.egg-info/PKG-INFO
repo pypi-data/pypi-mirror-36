@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: django-transformfiles
+Version: 0.1.0
+Summary: Simple and unrestrictive staticfile preprocessor for Django.
+Home-page: https://github.com/jswinarton/django-transformfiles
+Author: Jeremy Swinarton
+Author-email: jeremy@swinarton.com
+License: Public Domain
+Description: Simple and unrestrictive staticfile preprocessor for Django.
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: Public Domain
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP
