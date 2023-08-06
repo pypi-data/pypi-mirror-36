@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: OSDetect
+Version: 1.2
+Summary: A simple helper module to get details on the current operating system platorm.
+Home-page: https://malte70.github.io/OSDetect/
+Author: Malte Bublitz
+Author-email: malte70@tuta.io
+License: License :: OSI Approved :: BSD License
+Download-URL: https://github.com/malte70/OSDetect
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Plugins
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: Microsoft :: Windows :: Windows 7
+Classifier: Operating System :: Microsoft :: Windows :: Windows Server 2003
+Classifier: Operating System :: Microsoft :: Windows :: Windows Server 2008
+Classifier: Operating System :: Microsoft :: Windows :: Windows Vista
+Classifier: Operating System :: Microsoft :: Windows :: Windows XP
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
