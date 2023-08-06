@@ -1,0 +1,24 @@
+<flux>
+  <!--
+      ARGO-YBJ plus a Cerenkov telescope.
+      - In this case there might be some difference on the energy scale, since it's starting from a different detector.
+      - the systematic uncertainties are preliminary (they might be too conservative)
+      - the uncertanty on the energy scale is around 9-10%, and it is not included in the systematic uncertainty given.
+  -->
+  <name>ARGO-YBJ hybrid p+He ICRC 2015</name>
+  <reference> ARGO ICRC 2015 </reference>
+  <energy_systematic> 0.21 </energy_systematic>
+  <energy_unit> TeV </energy_unit>
+  <value_unit> 1./(m2*s*sr*GeV) </value_unit>
+  <energy_conversion> 10 ** x </energy_conversion>
+  <columns> x value error_minus error_plus sys_error_minus sys_error_plus </columns>
+  <table>
+    2.2              212.1e-12      6.6e-12            6.6e-12       19.2e-12          19.1e-12
+    2.4              63.1e-12       2.5e-12            2.5e-12       7.0e-12           5.7e-12
+    2.6              20.9e-12       1.1e-12            1.1e-12       2.6e-12           1.9e-12
+    2.8              6.01e-12       0.48e-12           0.48e-12      0.77e-12          0.54e-12
+    3.0              1.51e-12       0.19e-12           0.19e-12      0.29e-12          0.14e-12
+    3.2              0.315e-12      0.069e-12          0.069e-12     0.104e-12         0.028e-12
+    3.4              0.083e-12      0.028e-12          0.028e-12     0.043e-12         0.007e-12
+  </table>
+</flux>

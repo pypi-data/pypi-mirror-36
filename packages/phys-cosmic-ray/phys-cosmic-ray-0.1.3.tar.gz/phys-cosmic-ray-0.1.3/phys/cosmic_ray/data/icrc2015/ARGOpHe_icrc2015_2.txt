@@ -1,0 +1,21 @@
+#
+# The third p+He analysis is a hybrid one (i.e. ARGO-YBJ plus a Cerenkov telescope, see Cao's talk at icrc2015).
+# In this case there might be some difference on the energy scale, since it's starting from a different detector.
+# Here are the fluxes (note the different units):
+#
+# log10(E/1TeV)  Flux         stat._err._down    stat._err._up   sys._err._down   sys._err._up
+#             1/(GeV m2 s sr )
+#
+2.2              212.1e-12      6.6e-12            6.6e-12       19.2e-12          19.1e-12
+2.4              63.1e-12       2.5e-12            2.5e-12       7.0e-12           5.7e-12
+2.6              20.9e-12       1.1e-12            1.1e-12       2.6e-12           1.9e-12
+2.8              6.01e-12       0.48e-12           0.48e-12      0.77e-12          0.54e-12
+3.0              1.51e-12       0.19e-12           0.19e-12      0.29e-12          0.14e-12
+3.2              0.315e-12      0.069e-12          0.069e-12     0.104e-12         0.028e-12
+3.4              0.083e-12      0.028e-12          0.028e-12     0.043e-12         0.007e-12
+#
+#
+# Finally, let me remind you that:
+# - the systematic uncertainties are preliminary for the first two fluxes (they might be too conservative)
+# - the uncertanty on the energy scale is around 9-10% for all the three above fluxes, and it is not included
+# in the systematic uncertainty given above.

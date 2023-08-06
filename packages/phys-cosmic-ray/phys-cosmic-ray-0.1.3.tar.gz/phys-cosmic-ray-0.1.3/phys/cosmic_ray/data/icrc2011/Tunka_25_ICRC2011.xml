@@ -1,0 +1,21 @@
+<flux>
+  <name> Tunka-25 ICR2011 </name>
+  <reference> V. Prosin et al [Tunka Coll.], Proc. 32nd ICRC, 2011, #184, Vol. 1, p. 197. </reference>
+  <energy_conversion> 10**x </energy_conversion>
+  <energy_unit> eV </energy_unit>
+  <energy_systematic> 0.1 </energy_systematic>
+  <value_unit> 1./(m2*s*sr*eV) </value_unit>
+  <columns> x value error n </columns>
+  <table>
+    15.05    2.3796E-21    1.3203E-23      32482.
+    15.15    1.2546E-21    8.5401E-24      21581.
+    15.25    6.7686E-22    5.5926E-24      14648.
+    15.35    3.5359E-22    3.6017E-24       9638.
+    15.45    1.9121E-22    2.3625E-24       6550.
+    15.55    9.5170E-23    1.4849E-24       4108.
+    15.65    4.8809E-23    9.4815E-25       2650.
+    15.75    2.5556E-23    6.1144E-25       1747.
+    15.85    1.2009E-23    3.7345E-25       1034.
+    15.95    5.7082E-24    2.2943E-25        619.
+  </table>
+</flux>

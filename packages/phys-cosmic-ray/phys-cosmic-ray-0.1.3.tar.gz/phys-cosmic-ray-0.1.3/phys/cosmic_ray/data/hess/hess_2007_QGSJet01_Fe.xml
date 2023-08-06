@@ -1,0 +1,23 @@
+<flux>
+    <name> HESS 2007 Iron QGSJet01 </name>
+    <reference>
+        F. Aharonian et al. (H.E.S.S. collaboration),
+        Phys.Rev. D75 (2007) 042004 [astro-ph/0701766]
+    </reference>
+    <interaction_model> QGSJet01 </interaction_model>
+    <energy_unit> TeV </energy_unit>
+    <value_unit> 1.0/(m2 * sr * s * TeV) </value_unit>
+    <energy_conversion> 10 ** x </energy_conversion>
+    <scale> 10 ** (-2.5 * (table[0] + table[1]) / 2.0) </scale>
+    <!-- <energy_systematic> 0.15 </energy_systematic> -->
+    <value_systematic> 0.2 * value </value_systematic>
+    <columns> x_min x_max value error_min error_max </columns>
+    <table>
+        1.1 1.3 1.5343e-2 1.3550e-2 1.7154e-2
+        1.3 1.5 1.4864e-2 1.2967e-2 1.6675e-2
+        1.5 1.7 1.7978e-2 1.5957e-2 2.0011e-2
+        1.7 1.9 9.8894e-3 7.2934e-3 1.2565e-2
+        1.9 2.3 1.2290e-2 8.9473e-3 1.5708e-2
+    </table>
+    <verified> yes </verified>
+</flux>

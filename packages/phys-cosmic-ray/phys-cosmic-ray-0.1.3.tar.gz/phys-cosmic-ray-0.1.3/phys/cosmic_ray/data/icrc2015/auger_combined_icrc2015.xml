@@ -1,0 +1,43 @@
+<flux>
+    <name> Auger-Combined ICRC 2015 </name>
+    <reference> Ines Valino for the Pierre Auger collaboration, in proceedings of ICRC 2015, The Hague, Netherlands, PoS (ICRC 2015) 271 (2016) </reference>
+    <energy_conversion> 10 ** x </energy_conversion>
+    <scale> 10 ** -table[0] </scale>
+    <energy_unit> eV </energy_unit>
+    <value_unit> 1.0/(m2 * s * sr * eV) </value_unit>
+    <energy_systematic> 0.14 </energy_systematic>
+    <value_systematic> 0.07 * value </value_systematic>
+    <columns> x value error_plus error_minus nevents </columns>
+    <table>
+        17.55 1.96e-11 1.25e-13 1.25e-13 22217
+        17.65 1.17e-11 9.71e-14 9.71e-14 13210
+        17.75 6.94e-12 7.51e-14 7.51e-14 7774
+        17.85 4.13e-12 5.82e-14 5.82e-14 4611
+        17.95 2.37e-12 4.43e-14 4.43e-14 2639
+        18.05 1.32e-12 2.89e-14 2.89e-14 3450
+        18.15 8.24e-13 1.98e-14 1.98e-14 2629
+        18.25 5.04e-13 1.36e-14 1.36e-14 2006
+        18.35 2.73e-13 8.43e-15 8.43e-15 1344
+        18.45 1.70e-13 6.95e-16 6.95e-16 60423
+        18.55 1.01e-13 5.41e-16 5.41e-16 34861
+        18.65 6.13e-14 3.79e-16 3.79e-16 26325
+        18.75 3.89e-14 3.05e-16 3.05e-16 16317
+        18.85 2.73e-14 2.60e-16 2.60e-16 10991
+        18.95 1.89e-14 2.18e-16 2.18e-16 7585
+        19.05 1.31e-14 1.82e-16 1.82e-16 5221
+        19.15 8.82e-15 1.49e-16 1.49e-16 3491
+        19.25 5.67e-15 1.20e-16 1.20e-16 2238
+        19.35 3.56e-15 9.51e-17 9.51e-17 1405
+        19.45 2.25e-15 7.55e-17 7.55e-17 888
+        19.55 1.44e-15 6.06e-17 6.06e-17 569
+        19.65 6.63e-16 4.12e-17 4.12e-17 267
+        19.75 3.12e-16 2.72e-17 2.72e-17 130
+        19.85 1.26e-16 1.93e-17 1.93e-17 54
+        19.95 2.30e-17 7.26e-18 7.26e-18 10
+        20.05 1.28e-17 8.39e-18 5.01e-18 4
+        20.15 3.17e-18 5.27e-18 1.89e-18 1
+        20.25 0.00e+00 3.84e-18 0.00e+00 0
+        20.35 0.00e+00 3.84e-18 0.00e+00 0
+    </table>
+    <verified> yes </verified>
+</flux>

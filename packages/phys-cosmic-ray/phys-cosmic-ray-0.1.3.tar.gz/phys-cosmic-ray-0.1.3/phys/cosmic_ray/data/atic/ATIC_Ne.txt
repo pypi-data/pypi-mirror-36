@@ -1,0 +1,11 @@
+# Panov et al., Bull. Russian Acad. Sci. 73, 564 (2009)
+# Total energy
+# Energy in GeV, flux in (GeV m2 s sr)-1
+# Name  E       flux            stat_err
+Ne	252	1.360000e-4	0.000005
+Ne	468	3.240000e-5	0.0000013
+Ne	882	6.460000e-6	0.00000039
+Ne	1720	1.130000e-6	0.00000012
+Ne	3460	2.370000e-7	0.000000036
+Ne	7100	1.580000e-8	0.0000000075
+Ne	14700	3.880000e-9	0.00000000251

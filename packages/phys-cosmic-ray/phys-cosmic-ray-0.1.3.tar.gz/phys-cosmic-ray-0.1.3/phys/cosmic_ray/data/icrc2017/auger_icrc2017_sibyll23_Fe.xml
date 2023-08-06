@@ -1,0 +1,33 @@
+<fraction>
+    <name> Auger ICRC 2017 </name>
+    <reference> M. Unger highlight talk </reference>
+    <interaction_model> SIBYLL-2.3 </interaction_model>
+    <energy_unit> eV </energy_unit>
+    <energy_conversion> 10 ** x </energy_conversion>
+    <columns> x value </columns>
+    <table>17.2500 0.2598
+17.3500 0.0849
+17.4500 0.0718
+17.5500 0.0911
+17.6500 0.1298
+17.7500 0.0649
+17.8500 0.0000
+17.9500 0.0128
+18.0500 0.0062
+18.1500 0.0060
+18.2500 0.0188
+18.3500 0.0057
+18.4500 0.0120
+18.5500 0.0118
+18.6500 0.0052
+18.7500 0.0115
+18.8500 0.0113
+18.9500 0.0176
+19.0500 0.0110
+19.1500 0.0173
+19.2500 0.0236
+19.3500 0.0105
+19.4500 0.1204
+19.6500 0.1071
+</table>
+</fraction>

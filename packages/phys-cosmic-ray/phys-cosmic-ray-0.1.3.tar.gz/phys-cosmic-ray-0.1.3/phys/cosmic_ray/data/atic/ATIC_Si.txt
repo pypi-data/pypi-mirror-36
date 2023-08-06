@@ -1,0 +1,14 @@
+# Panov et al., Bull. Russian Acad. Sci. 73, 564 (2009)
+# Total energy
+# Energy in GeV, flux in (GeV m2 s sr)-1
+# Name  E       flux            stat_err
+Flux	<E>
+[GeV]	Bin range	Value
+[# (GeV m2 s sr)-1]	Stat Err	Syst Err
+Si	264	-	2.240000e-4	±0.000005	-
+Si	485	-	5.710000e-5	±0.0000017	-
+Si	913	-	1.160000e-5	±0.0000006	-
+Si	1770	-	2.080000e-6	±0.00000016	-
+Si	3510	-	3.050000e-7	±0.000000042	-
+Si	7170	-	5.200000e-8	±0.0000000124	-
+Si	14800	-	8.880000e-9	±0.0000000035	-

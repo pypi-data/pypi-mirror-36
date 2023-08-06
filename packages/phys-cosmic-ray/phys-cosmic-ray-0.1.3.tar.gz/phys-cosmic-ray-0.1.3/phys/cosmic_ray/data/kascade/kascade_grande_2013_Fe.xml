@@ -1,0 +1,19 @@
+<flux>
+  <name> KasCade-GRANDE 2013 Fe </name>
+  <energy_unit> GeV </energy_unit>
+  <value_unit> 1./(m2*s*sr*GeV) </value_unit>
+  <reference> W.D. Apel et al., Astroparticle Physics 47 (2013) 56-66 </reference>
+  <columns> x value error sys_error </columns>
+  <table>
+    1.12e7  -         -         -
+    1.55e7  2.43e-16  0.35e-16  1.33e-16
+    2.14e7  1.34e-16  0.11e-16  0.80e-16
+    2.95e7  5.09e-17  0.42e-17  2.58e-17
+    4.07e7  2.56e-17  0.21e-17  1.03e-17
+    5.62e7  8.58e-18  1.00e-18  3.07e-18
+    7.76e7  4.05e-18  0.46e-18  1.08e-18
+    1.07e8  1.33e-18  0.21e-18  0.41e-18
+    1.48e8  4.01e-19  0.77e-19  0.99e-19
+    2.04e8  1.35e-19  0.50e-19  0.28e-19
+  </table>
+</flux>

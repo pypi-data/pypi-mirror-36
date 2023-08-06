@@ -1,0 +1,33 @@
+<fraction>
+    <name> Auger ICRC 2017 </name>
+    <reference> M. Unger highlight talk </reference>
+    <interaction_model> QGSJet-II.04 </interaction_model>
+    <energy_unit> eV </energy_unit>
+    <energy_conversion> 10 ** x </energy_conversion>
+    <columns> x value </columns>
+    <table>17.2500 0.0750
+17.3500 0.0101
+17.4500 0.0229
+17.5500 0.0163
+17.6500 0.0291
+17.7500 0.0030
+17.8500 0.0029
+17.9500 0.0092
+18.0500 0.0090
+18.1500 0.0089
+18.2500 0.0152
+18.3500 0.0085
+18.4500 0.0084
+18.5500 0.0017
+18.6500 0.0080
+18.7500 0.0144
+18.8500 0.0142
+18.9500 0.0140
+19.0500 0.0139
+19.1500 0.0137
+19.2500 0.0071
+19.3500 0.0069
+19.4500 0.0003
+19.6500 0.0000
+</table>
+</fraction>

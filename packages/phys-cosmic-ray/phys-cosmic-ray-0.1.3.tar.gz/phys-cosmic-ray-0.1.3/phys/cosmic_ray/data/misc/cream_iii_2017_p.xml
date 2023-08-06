@@ -1,0 +1,26 @@
+<flux>
+    <name> CREAM-III 2017 proton </name>
+    <reference> Yoon et al., ApJ 839 (2017) 5 </reference>
+    <energy_unit> GeV </energy_unit>
+    <value_unit> 1.0/(m2 * s * sr * GeV) </value_unit>
+    <energy_systematic> 0.1 </energy_systematic>
+    <value_systematic>
+        l2norm(0.019, 0.018, 0.01, 0.02) * value
+    </value_systematic>
+    <columns> x_min x_max value error_plus error_minus scale </columns>
+    <table>
+        1.00e3 1.58e3 4.07 0.05 0.05 1e-5
+        1.58e3 2.51e3 1.21 0.02 0.02 1e-5
+        2.51e3 3.98e3 3.72 0.10 0.10 1e-6
+        3.98e3 6.31e3 1.16 0.05 0.05 1e-6
+        6.31e3 1.00e4 3.63 0.02 0.02 1e-7
+        1.00e4 1.58e4 1.10 0.09 0.09 1e-7
+        1.58e4 2.51e4 3.14 0.38 0.38 1e-8
+        2.51e4 3.98e4 8.21 1.50 1.50 1e-9
+        3.98e4 6.31e4 1.99 0.60 0.60 1e-9
+        6.31e4 1.00e5 5.90 3.20 1.70 1e-10
+        1.00e5 1.58e5 1.60 1.60 1.00 1e-10
+        1.58e5 2.51e5 4.50 2.80 1.30 1e-11
+    </table>
+    <verified> yes </verified>
+</flux>

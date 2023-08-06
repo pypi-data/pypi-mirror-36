@@ -1,0 +1,33 @@
+<fraction>
+    <name> Auger ICRC 2017 </name>
+    <reference> M. Unger highlight talk </reference>
+    <interaction_model> EPOS-LHC </interaction_model>
+    <energy_unit> eV </energy_unit>
+    <energy_conversion> 10 ** x </energy_conversion>
+    <columns> x value </columns>
+    <table>17.2500 0.2752
+17.3500 0.4239
+17.4500 0.4044
+17.5500 0.4172
+17.6500 0.2617
+17.7500 0.4880
+17.8500 0.5655
+17.9500 0.6042
+18.0500 0.6299
+18.1500 0.6945
+18.2500 0.6555
+18.3500 0.6553
+18.4500 0.5710
+18.5500 0.4285
+18.6500 0.3830
+18.7500 0.1628
+18.8500 0.0526
+18.9500 0.0913
+19.0500 0.1170
+19.1500 0.0068
+19.2500 0.1490
+19.3500 0.0000
+19.4500 0.0969
+19.6500 0.0060
+</table>
+</fraction>

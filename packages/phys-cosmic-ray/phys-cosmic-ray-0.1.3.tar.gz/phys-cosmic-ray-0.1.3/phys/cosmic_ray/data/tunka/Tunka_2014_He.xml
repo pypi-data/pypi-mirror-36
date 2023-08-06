@@ -1,0 +1,27 @@
+<fraction>
+  <name> TUNKA 2014 helium </name>
+  <reference>
+    Prosin et al., Nuclear Instruments and Methods A 756 (2014) 94-101
+  </reference>
+  <interaction_model> QGSJet01 </interaction_model>
+  <energy_unit> eV </energy_unit>
+  <energy_systematic> 0.1 </energy_systematic>
+  <value_systematic> 0.1 </value_systematic>
+  <columns> x value error_minus error_plus </columns>
+  <table>
+  8.9125e+15   2.9656e-01   6.3059e-02   6.8402e-02
+  1.1220e+16   2.8804e-01   5.3368e-02   5.9979e-02
+  1.4125e+16   2.5999e-01   5.9539e-02   6.5902e-02
+  1.7783e+16   2.5492e-01   5.4204e-02   6.1278e-02
+  2.2387e+16   2.0240e-01   4.3037e-02   5.0640e-02
+  2.8184e+16   2.1024e-01   5.8051e-02   6.3166e-02
+  3.5481e+16   8.8846e-02   4.6603e-02   7.6745e-02
+  4.4668e+16   9.9865e-02   5.7898e-02   7.0359e-02
+  5.6234e+16   2.0551e-01   1.0225e-01   9.6866e-02
+  7.0795e+16   8.2196e-02   4.3011e-02   8.0542e-02
+  8.9125e+16   2.6247e-01   1.2348e-01   1.1271e-01
+  1.4125e+17   1.7599e-01   1.1510e-01   1.2242e-01
+  2.8184e+17   3.2437e-01   1.5305e-01   1.6047e-01
+  5.6234e+17   1.3072e-01   3.8549e-02   1.9455e-01
+  </table>
+</fraction>

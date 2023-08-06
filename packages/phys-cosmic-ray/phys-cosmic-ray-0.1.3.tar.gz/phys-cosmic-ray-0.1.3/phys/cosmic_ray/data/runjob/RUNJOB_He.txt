@@ -1,0 +1,8 @@
+# RUNJOB
+# Apanasenko et al., Astropart Phys. 16(2001)13
+# energy in GeV, fluxes in 1./(m^2 s sr GeV)
+2.5e3   6.25e3  1.13e-7   0.29e-7   0.29e-7
+6.25e3  9.50e3  1.98e-8   0.62e-8   0.83e-8
+9.50e3  1.70e4  4.04e-9   1.25e-9   1.70e-9
+1.70e4  2.50e4  1.06e-9   0.50e-9   0.85e-9
+2.50e4  7.50e4  1.45e-10  0.69e-10  1.16e-10

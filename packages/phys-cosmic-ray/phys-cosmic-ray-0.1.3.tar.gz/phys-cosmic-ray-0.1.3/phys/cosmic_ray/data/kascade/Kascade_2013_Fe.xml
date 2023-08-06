@@ -1,0 +1,35 @@
+<flux>
+  <name> KASCADE 2013 Fe </name>
+  <reference>
+    W.D. Apel et al., Astroparticle Physics 47 (2013) 56-66
+    and M. Finger, Reconstruction of energy spectra for different mass groups of high energy
+    cosmic rays, Ph.D. thesis, Karlsruher Institut für Technologie, Germany,
+    2011. (http://d-nb.info/1014279917/34).
+  </reference>
+  <energy_unit> GeV </energy_unit>
+  <value_unit> 1./(m2*s*sr*GeV) </value_unit>
+  <scale> table[0]**-2.5 </scale>
+  <columns> energy value error_minus error_plus sys_error_minus sys_error_plus </columns>
+  <table>
+1.11e+06            nan         nan         nan         nan         nan
+1.41e+06         153.67       17.77       15.93       90.04      219.08
+1.77e+06         112.27       12.98       11.64       65.74      157.77
+2.23e+06         100.70       13.19       10.44       68.49      133.88
+2.81e+06         138.02       15.96       14.31       79.61      196.37
+3.54e+06         138.12       18.09       12.61       95.11      185.91
+4.45e+06         169.69       17.05       17.59      104.67      225.15
+5.62e+06         229.43       30.06       23.77      159.94      304.21
+7.06e+06         232.74       30.49       21.25      157.77      312.64
+8.91e+06         263.42       30.46       27.31      180.90      344.06
+1.12e+07         298.13       34.49       30.90      201.81      394.49
+1.41e+07         328.31       37.96       34.04      225.15      422.42
+1.78e+07         462.49       53.49       47.94      316.95      594.64
+2.24e+07         409.20       53.62       57.15      280.24      533.01
+2.82e+07         456.83       66.98       63.81      308.40      586.57
+3.55e+07         329.21       64.07       45.99      225.15      434.13
+4.47e+07         388.21       81.93       63.24      265.31      511.58
+5.64e+07         234.19       73.68       78.82      159.94      312.64
+7.10e+07         185.72       68.67       69.08      130.27      247.78
+8.97e+07         321.21       95.34       83.47      216.10      411.02
+  </table>
+</flux>

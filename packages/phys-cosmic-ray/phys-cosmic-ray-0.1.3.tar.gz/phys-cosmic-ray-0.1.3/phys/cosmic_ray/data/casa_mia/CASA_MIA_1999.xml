@@ -1,0 +1,31 @@
+<flux>
+	<name> CASA-MIA </name>
+    <reference> ??? Erlykin, A. D. and Wolfendale, A. W., Astropart. Phys. 9 (1998) 349-362 ??? </reference>
+	<energy_unit> TeV </energy_unit>
+	<value_unit> 1/(m2*s*sr*TeV) </value_unit>
+	<energy_systematic> 0.2 </energy_systematic>
+	<energy_conversion> 10 ** x </energy_conversion>
+  	<scale> 10 ** -table[0] </scale>
+    <columns> x value error scale </columns>
+	<table>
+        2.2	4.94 0.02 1e-5
+        2.3 3.32 0.02 1e-5
+        2.4 2.29 0.01 1e-5
+        2.5 1.56 0.01 1e-5
+        2.6 1.08 0.01 1e-5
+        2.7 7.13 0.07 1e-6
+        2.8 4.89 0.06 1e-6
+        2.9 3.43 0.05 1e-6
+        3.0 2.27 0.04 1e-6
+        3.1 1.41 0.03 1e-6
+        3.2 9.8  0.3  1e-7
+        3.3 6.1  0.2  1e-7
+        3.4 4.0  0.2  1e-7
+        3.5 2.5  0.1  1e-7
+        3.6 1.5  0.1  1e-7
+        3.7 9.6  0.8  1e-8
+        3.8 6.3  0.7  1e-8
+        3.9 4.8  0.6  1e-8
+        4.0 2.9  0.4  1e-8
+	</table>
+</flux>

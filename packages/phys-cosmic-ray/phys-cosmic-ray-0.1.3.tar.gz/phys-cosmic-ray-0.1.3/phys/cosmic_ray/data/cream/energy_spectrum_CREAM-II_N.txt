@@ -1,0 +1,6 @@
+#N, Z=7
+# energies in GeV/nucleon, fluxes in  (m2 sr s GeV/n)−1
+#Emin Emax  Ekin   N    Flux   +err   -err
+56    175   95.7   86   7.28e6 0.79e6 0.79e6
+175   529   295.3  63   5.39e7 0.68e7 0.68e7
+529   -     826.3  19   3.80e8 1.10e8 0.90e8

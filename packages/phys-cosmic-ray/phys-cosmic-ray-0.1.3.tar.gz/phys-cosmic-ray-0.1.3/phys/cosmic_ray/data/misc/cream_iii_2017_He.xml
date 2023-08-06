@@ -1,0 +1,28 @@
+<flux>
+    <name> CREAM-III 2017 helium </name>
+    <reference> Yoon et al., ApJ 839 (2017) 5 </reference>
+    <energy_unit> GeV </energy_unit>
+    <value_unit> 1.0/(m2 * s * sr * GeV) </value_unit>
+    <energy_conversion> 4 * x </energy_conversion>
+    <scale> 1.0 / 4.0 </scale>
+    <energy_systematic> 0.1 </energy_systematic>
+    <value_systematic>
+        l2norm(0.024, 0.026, 0.01, 0.03) * value
+    </value_systematic>
+    <columns> x_min x_max value error_plus error_minus scale </columns>
+    <table>
+        2.51e2 3.98e2 1.38 0.02 0.02 1e-4
+        3.98e2 6.31e2 4.35 0.08 0.08 1e-5
+        6.31e2 1.00e3 1.35 0.03 0.03 1e-5
+        1.00e3 1.58e3 4.26 0.15 0.15 1e-6
+        1.58e3 2.51e3 1.30 0.07 0.07 1e-6
+        2.51e3 3.98e3 3.83 0.29 0.29 1e-7
+        3.98e3 6.31e3 1.16 0.13 0.13 1e-7
+        6.31e3 1.00e4 3.25 0.54 0.54 1e-8
+        1.00e4 1.58e4 7.95 2.10 2.10 1e-9
+        1.58e4 2.51e4 2.40 0.90 0.80 1e-9
+        2.51e4 3.98e4 8.10 2.90 2.10 1e-10
+        3.98e4 6.31e4 1.70 2.40 1.00 1e-10
+    </table>
+    <verified> yes </verified>
+</flux>
