@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: microday
+Version: 1.0.0
+Summary: Meticulously plan your day minute-by-minute
+Home-page: https://github.com/ciex/microday
+Author: Vincent Ahrend
+Author-email: mail@vincentahrend.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: termcolor
+
+
+# Microday
+
+Meticulously plan your day minute-by-minute
+
+## Setup
+
+    $ pip install microday
+
+## Usage
+
+    usage: microday.py [-h] [filename]
+
+    Meticulously plan your day minute-by-minute
+
+    positional arguments:
+    filename    Filename of your todo doc, default is 'todo_<y-m-d>.md'>
+
+    optional arguments:
+    -h, --help  show this help message and exit
+
