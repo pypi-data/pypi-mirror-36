@@ -1,0 +1,8 @@
+numpy
+pandas
+stldecompose
+statsmodels
+requests
+matplotlib
+pytest
+pytest-cov
