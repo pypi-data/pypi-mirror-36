@@ -1,0 +1,267 @@
+file:
+    groups:
+        Device:
+            datasets:
+                AsicCommands:
+                    datatype:
+                        frame_number: u8
+                        command: V512 # 512 byte command object - typed as in the minion spec.
+                        channel_input_reason: V512 # 512 byte object - types currently undefined.
+                MetaData:
+                    datatype:
+                        asic_temperature: f4
+                        heatsink_temperature: f4
+                        bias_voltage: i2
+        Meta:
+            attributes:
+                duration_samples: u8
+                sample_rate: u4
+            groups:
+                User:
+                    extra_members: ignore
+                    datasets:
+                        analysis_conf:
+                            datatype: S
+                            size: [ 1 ]
+                        calibration:
+                            datatype: S
+                            size: [ 1 ]
+                            count:
+                                minimum_count: 0
+                                maximum_count: 1
+        Raw:
+            groups:
+                'Channel_[0-9]+':
+                    name_type: regex
+                    count:
+                        minimum_count: 1
+                    groups:
+                        Meta:
+                            attributes:
+                                description: S
+                                digitisation: f8
+                                offset: f8
+                                range: f8
+                                sample_rate: f8
+                    datasets:
+                        Signal:
+                            datatype: i2
+                            count:
+                                minimum_count: 0
+                                maximum_count: 1
+        IntermediateData:
+            groups:
+                'Channel_[0-9]+':
+                    name_type: regex
+                    count:
+                        minimum_count: 1
+                    groups:
+                        Meta:
+                            attributes:
+                                description: S
+                                digitisation: f8
+                                elimit: f8
+                                offset: f8
+                                range: f8
+                                sample_rate: f8
+                                scaling_used: i8
+                                smallest_event: f8
+                                threshold: f8
+                                window: i8
+                    datasets:
+                        Events:
+                            dimensions: 1
+                            datatype:
+                                start: u8
+                                length: u4
+                                mean: f4
+                                variance: f4
+                                flags: u2
+                                channel_config: u1
+                                distrust_channel_config: u1
+                        Reads:
+                            dimensions: 1
+                            datatype:
+                                read_id: S37
+                                read_start: u8
+                                read_length: u4
+                                read_number: u4
+                                event_index_start: u8
+                                event_index_end: u8
+                                flags: u1
+                                read_mean_max: f4
+                                read_mean_min: f4
+                                drift: f8
+                                range: f8
+                                median_dwell: f8
+                                median_sd: f8
+                                median_before: f8
+                                median: f8
+                                local_range: f8
+                                local_median: f8
+                                local_median_sd: f8
+                                local_median_dwell: f8
+                                local_median_before: f8
+                                current_well_id: u4
+                                channel_config: u1
+                                modal_classification: i1
+                                pen_classification: i1
+                                classification: i1
+                        BasecallSummary:
+                            dimensions: 1
+                            datatype:
+                                # See https://wiki.oxfordnanolabs.local/display/OFAN/MK+Albacore+bulk+file+summary
+                                # General fields taken from the read group
+                                read_id: S37
+                                read_number: u4
+                                start_time: u8
+                                duration: u8
+                                # Segmentation fields provided by albacore
+                                basecall_start_index_template: u8
+                                basecall_end_index_template: u8
+                                basecall_start_index_complement: u8
+                                basecall_end_index_complement: u8
+                                has_template: u1
+                                has_complement: u1
+                                first_sample_template: u8
+                                duration_template: u8
+                                first_sample_complement: u8
+                                duration_complement: u8
+                                result_segmentation: i1
+                                # Template 1d basecalling fields provided by albacore
+                                basecall_event_start_index_template: u8
+                                basecall_event_end_index_template: u8
+                                sequence_length_template: u8
+                                num_events_template: u8
+                                called_events_template: u8
+                                mean_qscore_template: f4
+                                strand_score_template: f4
+                                stay_prob_template: f4
+                                step_prob_template: f4
+                                skip_prob_template: f4
+                                median_current_template: f4
+                                median_sd_template: f4
+                                range_template: f4
+                                # Complement 1d basecalling fields provided by albacore
+                                basecall_event_start_index_complement: u8
+                                basecall_event_end_index_complement: u8
+                                sequence_length_complement: u8
+                                num_events_complement: u8
+                                called_events_complement: u8
+                                mean_qscore_complement: f4
+                                strand_score_complement: f4
+                                stay_prob_complement: f4
+                                step_prob_complement: f4
+                                skip_prob_complement: f4
+                                median_current_complement: f4
+                                median_sd_complement: f4
+                                range_complement: f4
+                                # Basecall 1d result covering both template and complement
+                                result_basecall_1d: i1
+                            count:
+                                minimum_count: 0
+                                maximum_count: 1
+                        BasecallSequence:
+                            dimensions: 1
+                            datatype:
+                                base: i1
+                                qscore: i1
+                            count:
+                                minimum_count: 0
+                                maximum_count: 1
+                        BasecallEvents:
+                            dimensions: 1
+                            datatype:
+                                mean: f4
+                                stdv: f4
+                                start: u8
+                                length: u8
+                                model_state: S
+                                move: i1
+                                weights: f4
+                                p_model_state: f4
+                                mp_state: S
+                                p_mp_state: f4
+                                p_A: f4
+                                p_C: f4
+                                p_G: f4
+                                p_T: f4
+                            count:
+                                minimum_count: 0
+                                maximum_count: 1
+
+        MultiplexData:
+            groups:
+                'Channel_[0-9]+':
+                    name_type: regex
+                    count:
+                        minimum_count: 1
+                    groups:
+                        Meta: {}
+                    datasets:
+                        Multiplex:
+                            datatype:
+                                approx_raw_index: u8
+                                native_device_id: u4
+                                test_current: u1
+                                regeneration: u1
+                                reverse_bias: u1
+                                well: 
+                                    datatype: u1 #Enum
+                                    members:
+                                        none: 0
+                                        well_1: 1
+                                        well_2: 2
+                                        well_3: 3
+                                        well_4: 4
+                                        unknown: 5
+                                well_id:
+                                    datatype: i4 # Enum
+                                    members:
+                                        open_pore: 0
+                                        common_voltage_1: 1
+                                        common_voltage_2: 2
+                                        common_voltage_3: 3
+                                        common_voltage_4: 4
+                                        test_current_open_pore: 5
+                                        unblock_voltage_1: 6
+                                        unblock_voltage_2: 7
+                                        unblock_voltage_3: 8
+                                        unblock_voltage_4: 9
+                                        test_current_1: 10
+                                        test_current_2: 11
+                                        test_current_3: 12
+                                        test_current_4: 13
+                                        gnd_through_resistor: 14
+                                        gnd: 15
+        StateData:
+            groups:
+                'Channel_[0-9]+':
+                    name_type: regex
+                    count:
+                        minimum_count: 1
+                    groups:
+                        Meta: {}
+                    datasets:
+                        States:
+                            datatype:
+                                acquisition_raw_index: u8
+                                analysis_raw_index: u8
+                                summary_state: i4
+                                    # members are defined by pore model.
+        UniqueGlobalKey:
+            groups:
+                context_tags:
+                    attributes:
+                        '[a-zA-Z0-9 ]+':
+                            name_type: regex
+                            count:
+                                minimum_count: 0
+                            datatype: S
+                tracking_id:
+                    attributes:
+                        '[a-zA-Z0-9 ]+':
+                            name_type: regex
+                            count:
+                                minimum_count: 1
+                            datatype: S
