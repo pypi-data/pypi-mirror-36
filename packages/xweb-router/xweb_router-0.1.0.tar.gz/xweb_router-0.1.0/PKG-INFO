@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: xweb_router
+Version: 0.1.0
+Summary: Router middleware for xweb.
+Home-page: https://github.com/gaojiuli/xweb_router
+Author: Jiuli Gao
+Author-email: gaojiuli@gmail.com
+License: MIT
+Description: # xweb-router
+        
+        > Router middleware for [xweb](https://github.com/gaojiuli/xweb)
+        
+        ```python
+        from xweb import App
+        
+        from xweb_router import Router
+        
+        app = App()
+        router = Router()
+        
+        app.use(router)
+        
+        
+        @router.use('/')
+        async def xxx(ctx, fn):
+            print('middleware')
+            await fn()
+        
+        
+        @router.get('/')
+        async def hello(ctx):
+            ctx.body = "Hello World!"
+        
+        
+        @router.post('/home')
+        async def home(ctx):
+            ctx.body = "Home"
+        
+        
+        @router.patch('/index')
+        async def index(ctx):
+            ctx.body = "Index"
+        
+        
+        if __name__ == '__main__':
+            app.listen(8000)
+        ```
+Platform: any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content :: CGI Tools/Libraries
+Classifier: Topic :: Internet :: WWW/HTTP :: HTTP Servers
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
