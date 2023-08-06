@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: trend
+Version: 0.1
+Summary: Algorithms for detecting trends in time-series data.
+Home-page: https://github.com/USGS-python/trend
+Author: Timothy Hodson
+Author-email: thodson@usgs.gov
+License: MIT
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+trend: algorithms for detecting trends in time-series data
+==========================================================
+
+What is trend?
+---------------
+trend is a python package for detecting trends in time-series data.
+It's design and documention borrow heavily from the R package known as
+**trend** developed by Thorsten Pohlert.
+
+
+More documentation is forthcoming, but for now, refer to the source.
+
+
