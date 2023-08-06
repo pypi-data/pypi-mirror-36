@@ -1,0 +1,47 @@
+Metadata-Version: 1.1
+Name: testing.kafka
+Version: 0.0.1
+Summary: automatically setups a kafka instance for testing
+Home-page: https://github.com/tristan/testing.kafka
+Author: Tristan King
+Author-email: mail@tristan.sh
+License: Apache License 2.0
+Description: 
+        Install
+        =======
+        Use pip::
+        
+           $ pip install testing.kafka
+        
+        ``testing.kafka`` requires ``zookeeper``, ``kafka`` and ``java`` to be installed.
+        
+        
+        Usage
+        =====
+        Create Kafka and Zookeeper instances::
+        
+          @pytest.fixture
+          def kafka():
+        
+              zookeeper = testing.zookeeper.ZookeeperServer()
+              kafka = testing.kafka.KafkaServer(zookeeper_url=zookeeper.url())
+        
+              yield kafka
+        
+              kafka.stop(_signal=signal.SIGKILL)
+              zookeeper.stop(_signal=signal.SIGKILL)
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Database
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Testing

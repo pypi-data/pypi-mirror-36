@@ -1,0 +1,12 @@
+README.rst
+setup.cfg
+setup.py
+testing/__init__.py
+testing/kafka.py
+testing/zookeeper.py
+testing.kafka.egg-info/PKG-INFO
+testing.kafka.egg-info/SOURCES.txt
+testing.kafka.egg-info/dependency_links.txt
+testing.kafka.egg-info/namespace_packages.txt
+testing.kafka.egg-info/requires.txt
+testing.kafka.egg-info/top_level.txt
