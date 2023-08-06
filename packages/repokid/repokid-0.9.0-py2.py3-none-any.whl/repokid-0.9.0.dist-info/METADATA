@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: repokid
+Version: 0.9.0
+Summary: AWS Least Privilege for Distributed, High-Velocity Deployment
+Home-page: https://github.com/Netflix/repokid
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Keywords: aws,iam,access_advisor
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Security
+Classifier: Topic :: System
+Classifier: Topic :: System :: Systems Administration
+Requires-Dist: bleach (==2.1.4)
+Requires-Dist: boto3 (==1.9.13)
+Requires-Dist: boto (==2.49.0)
+Requires-Dist: botocore (==1.12.13)
+Requires-Dist: certifi (==2018.8.24)
+Requires-Dist: cffi (==1.11.5)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: click (==7.0)
+Requires-Dist: cloudaux (==1.5.4)
+Requires-Dist: cmarkgfm (==0.4.2)
+Requires-Dist: defusedxml (==0.5.0)
+Requires-Dist: docopt (==0.6.2)
+Requires-Dist: docutils (==0.14)
+Requires-Dist: flagpole (==1.0.1)
+Requires-Dist: future (==0.16.0)
+Requires-Dist: futures (==3.2.0)
+Requires-Dist: html5lib (==1.0.1)
+Requires-Dist: idna (==2.7)
+Requires-Dist: import-string (==0.1.0)
+Requires-Dist: inflection (==0.3.1)
+Requires-Dist: jmespath (==0.9.3)
+Requires-Dist: joblib (==0.12.5)
+Requires-Dist: marshmallow (==2.15.6)
+Requires-Dist: pip-tools (==3.0.0)
+Requires-Dist: pkginfo (==1.4.2)
+Requires-Dist: policyuniverse (==1.1.0.1)
+Requires-Dist: pycparser (==2.19)
+Requires-Dist: pygments (==2.2.0)
+Requires-Dist: python-dateutil (==2.7.3)
+Requires-Dist: readme-renderer (==22.0)
+Requires-Dist: requests-toolbelt (==0.8.0)
+Requires-Dist: requests (==2.19.1)
+Requires-Dist: s3transfer (==0.1.13)
+Requires-Dist: six (==1.11.0)
+Requires-Dist: tabulate (==0.8.2)
+Requires-Dist: tabview (==1.4.3)
+Requires-Dist: tqdm (==4.26.0)
+Requires-Dist: twine (==1.12.1)
+Requires-Dist: urllib3 (==1.23)
+Requires-Dist: webencodings (==0.5.1)
+
+UNKNOWN
+
+
