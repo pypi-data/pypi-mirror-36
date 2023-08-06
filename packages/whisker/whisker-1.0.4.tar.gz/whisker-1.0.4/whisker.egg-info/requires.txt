@@ -1,0 +1,11 @@
+arrow
+attrdict
+cardinal_pythonlib>=1.0.1
+colorama
+colorlog
+dataset
+PyQt5
+Twisted
+typing==3.5.2.2
+pyyaml
+sqlalchemy
