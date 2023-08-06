@@ -1,0 +1,14 @@
+pyerepfit/__init__.py,sha256=3RbkbMUZ0TwILP256yYiG2OHs8hlueAZQfMUkDaAWz8,164
+pyerepfit/erepfit.py,sha256=xaSoeH6jnruNhRk3K6ITazLkJ_jU9tc68Nf5O5m31M0,5011
+pyerepfit/erepfit_input_schema.json,sha256=wWGwqg0SGcV1mDSgWPzwGgOdHSTyX07UCNFJoFja_TM,22814
+pyerepfit/evaluator.py,sha256=qYN_2_y3b4ZtWMK0NYaiqppLA7QTMnKMxmP398nkQsY,5346
+pyerepfit/inputdata.py,sha256=AwT4-s9C9Y56YY_sAt_C_JE7SW-gwj327m82yLku0SE,9236
+pyerepfit/rep_basis.py,sha256=eOq7ulZUixaUhcrEwyLtLwS07BQI_jkcCdndEYIcZ_I,2998
+pyerepfit/rep_model.py,sha256=Zvdkd7_OZeFnr9QaVV6HM0FE7m4DimTBGO5bKiakmb8,24545
+pyerepfit/rep_spline.py,sha256=EOzKlwV4lFDbbHFTPilVPYSu86d9-vViDICQAUMiixo,10994
+pyerepfit/utils.py,sha256=Um7AeP-DC7AEfu6yy5WrQCPL8X9XaJs7lpFS0MRhK2I,1207
+pyerepfit-0.1.data/scripts/erepfit,sha256=s110ThrdNcTq1aSCRn_QJ_cRWh9nWvXzsyi338ieWq4,91
+pyerepfit-0.1.dist-info/METADATA,sha256=XiXUfMGts4vQbNJ4vzt0thk72aZP8hunnZmUITl3Ck8,596
+pyerepfit-0.1.dist-info/RECORD,,
+pyerepfit-0.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+pyerepfit-0.1.dist-info/top_level.txt,sha256=U9tQFwIXyoNLN5DjG-3uYTsIrg3Xb1uysmjQ_VtI_gY,10

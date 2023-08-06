@@ -1,0 +1,6 @@
+#!python
+
+import pyerepfit.erepfit
+import sys
+
+pyerepfit.erepfit.run_erepfit(sys.argv[1:])
