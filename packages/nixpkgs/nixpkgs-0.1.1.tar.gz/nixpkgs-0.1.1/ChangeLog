@@ -1,0 +1,15 @@
+CHANGES
+=======
+
+0.1.1
+-----
+
+* Autodetect python version, support 3.5+
+* fix typos in README
+* add a way to try it
+
+0.1.0
+-----
+
+* initial revision
+* Initial commit
