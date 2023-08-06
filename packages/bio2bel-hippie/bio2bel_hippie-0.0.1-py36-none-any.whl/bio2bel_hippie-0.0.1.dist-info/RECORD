@@ -1,0 +1,13 @@
+bio2bel_hippie/__init__.py,sha256=qhXce4eSGl_O6AFs8mKv8YcgTP9guPf3rBxRQte2Xyk,182
+bio2bel_hippie/__main__.py,sha256=BQg8u4HWoqp-QxHInzalmKsikW0Dod7u023J4FZE6f0,136
+bio2bel_hippie/cli.py,sha256=m_xWcodFOCOXjrY4e99oAxazoUBHoXUh2Ox21GW7_GY,169
+bio2bel_hippie/constants.py,sha256=vOBQi4sTfane3MPc1TJ3T5IpNclBz-D1X5undHx9tdM,432
+bio2bel_hippie/manager.py,sha256=v5243lkyI9MXfrlc9RUq61RlO4wcbD_iWEbeiegTShg,4150
+bio2bel_hippie/models.py,sha256=9hC4ay8eWAVCE-__O8dcymaWABeUu7gTMae4s_75Qlg,2498
+bio2bel_hippie/parser.py,sha256=DTLfoBXCTnd4XpBqiutdTIzxPmHTNbbAfLuPzWgNXTQ,319
+bio2bel_hippie-0.0.1.dist-info/LICENSE.txt,sha256=ZjjV7RgDeR38_xOzFJ1omuVCWghbhh5psU4XchqaadA,1064
+bio2bel_hippie-0.0.1.dist-info/METADATA,sha256=l0zknYoX5JFt_TqV1E1OtgMhurhutCAegqYfeA-BJdg,2400
+bio2bel_hippie-0.0.1.dist-info/RECORD,,
+bio2bel_hippie-0.0.1.dist-info/WHEEL,sha256=HFxn6CRybAnvxw97CfWMjKc4LDsDdXXn2o08ktxbRQY,93
+bio2bel_hippie-0.0.1.dist-info/entry_points.txt,sha256=Y8EN0JN1sXI2zUC1_JZr85b8uP3x6WDPaLS0-uAt9e8,56
+bio2bel_hippie-0.0.1.dist-info/top_level.txt,sha256=_K_xnRlr5c1Xampr3bvu5fBorUZi_TY-uu8ixRN9Rq0,15
