@@ -1,0 +1,7 @@
+ruamel.yaml
+typing>=3.6
+
+[dev]
+mypy
+yapf
+isort
