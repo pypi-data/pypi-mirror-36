@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+njnuko/__init__.py
+njnuko/setup.py
+njnuko.egg-info/PKG-INFO
+njnuko.egg-info/SOURCES.txt
+njnuko.egg-info/dependency_links.txt
+njnuko.egg-info/entry_points.txt
+njnuko.egg-info/not-zip-safe
+njnuko.egg-info/top_level.txt
+njnuko/njnuko/__init__.py
