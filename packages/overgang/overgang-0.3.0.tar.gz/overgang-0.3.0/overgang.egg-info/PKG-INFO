@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: overgang
+Version: 0.3.0
+Summary: (deprecated package) Markov Modeling
+Home-page: http://github.com/kmedian/overgang
+Author: Ulf Hamster
+Author-email: 554c46@gmail.com
+License: MIT
+Description: # deprecated package
+        The package `overgang` has been deprecated.
+        
+        * The last working version is `pip install overgang==0.2.1`
+        * The old source code is archived at [github](https://github.com/kmedian/overgang)
+        
+        The package has been refactored as `ctmc`
+        
+        ```
+        pip install ctmc
+        ```
+Platform: UNKNOWN
+Requires-Python: >=3
+Description-Content-Type: text/markdown
