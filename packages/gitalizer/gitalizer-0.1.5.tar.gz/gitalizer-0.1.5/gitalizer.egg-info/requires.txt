@@ -1,0 +1,12 @@
+alembic~=1.0
+SQLAlchemy~=1.2
+sqlalchemy-utils~=0.33
+psycopg2-binary
+pygithub~=1.43
+pygit2~=0.27
+pytz~=2018.5
+raven
+pendulum~=1.5
+pytzdata~=2018.5
+geopy
+click
