@@ -1,0 +1,15 @@
+django_dynamic_fixtures-0.2.1.dist-info/DESCRIPTION.rst,sha256=wOaiM6BMykiREk1QCO_StJus_ZBdl6l7skWvpH4DV0A,676
+django_dynamic_fixtures-0.2.1.dist-info/METADATA,sha256=ukDEgrucZs7o6I1jRIrpLwS2UsjESFVdBauvku2O-s8,1877
+django_dynamic_fixtures-0.2.1.dist-info/RECORD,,
+django_dynamic_fixtures-0.2.1.dist-info/WHEEL,sha256=u6Fy2U76CDFJ6q2P27rqtBo3AN6qpylFiMaYzNr2lJg,95
+django_dynamic_fixtures-0.2.1.dist-info/metadata.json,sha256=zOSnJn9vQmeoh5X88kwtWwMOtMrU9J8SrFDYDEall10,1328
+django_dynamic_fixtures-0.2.1.dist-info/top_level.txt,sha256=wO2yqWtKo5JZVcP-kaUmLKdvQeI8MEx-auYe_bAYMCU,17
+dynamic_fixtures/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dynamic_fixtures/fixtures/__init__.py,sha256=UMYIttQ4_OFYQWQOUD5bOYqTLqBOv2oRTvOCXaxiCb8,51
+dynamic_fixtures/fixtures/basefixture.py,sha256=VCIFenNQhD-kTQycBm97bFnhRV0UZsSTtEfMTpkcFYY,500
+dynamic_fixtures/fixtures/exceptions.py,sha256=nE9nne3Dw7u35Nb_F5ZizN7pdTgX92Um4oxb5G4ixnM,175
+dynamic_fixtures/fixtures/loader.py,sha256=L6cImjkI_cw8D2V3vvkXGi-f4PgJ0tPx0hGMfoR-ETY,4754
+dynamic_fixtures/fixtures/runner.py,sha256=h9Uabxe39TQaNj9xgmBrSQ3gliNfb3SyNzGwPk9SfoU,3983
+dynamic_fixtures/management/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dynamic_fixtures/management/commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dynamic_fixtures/management/commands/load_dynamic_fixtures.py,sha256=LZOKud7fIEH5yhDeeYxG4GPpC_N2qZLlc2vyN6EF9Uw,2733
