@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: good-talks
+Version: 0.0.1
+Summary: A small example package for a packaging talk
+Home-page: https://github.com/kognate/presentations/2018/packaging_talk
+Author: Joshua B. Smith
+Author-email: kognate@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

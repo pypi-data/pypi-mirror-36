@@ -1,0 +1,10 @@
+README.md
+setup.py
+good_talks.egg-info/PKG-INFO
+good_talks.egg-info/SOURCES.txt
+good_talks.egg-info/dependency_links.txt
+good_talks.egg-info/top_level.txt
+talks/__init__.py
+talks/good.py
+talks/tests/__init__.py
+talks/tests/test_talks.py
