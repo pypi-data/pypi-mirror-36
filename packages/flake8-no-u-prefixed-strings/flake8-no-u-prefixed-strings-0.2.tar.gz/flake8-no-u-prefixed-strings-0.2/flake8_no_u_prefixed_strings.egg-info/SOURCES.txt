@@ -1,0 +1,9 @@
+README.rst
+setup.py
+flake8_no_u_prefixed_strings/__init__.py
+flake8_no_u_prefixed_strings.egg-info/PKG-INFO
+flake8_no_u_prefixed_strings.egg-info/SOURCES.txt
+flake8_no_u_prefixed_strings.egg-info/dependency_links.txt
+flake8_no_u_prefixed_strings.egg-info/entry_points.txt
+flake8_no_u_prefixed_strings.egg-info/requires.txt
+flake8_no_u_prefixed_strings.egg-info/top_level.txt

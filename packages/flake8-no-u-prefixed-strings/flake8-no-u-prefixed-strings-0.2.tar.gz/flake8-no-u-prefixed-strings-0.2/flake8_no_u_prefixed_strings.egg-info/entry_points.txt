@@ -1,0 +1,3 @@
+[flake8.extension]
+UPS = flake8_no_u_prefixed_strings:plugin
+
