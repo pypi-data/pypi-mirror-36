@@ -1,0 +1,17 @@
+DirectoryCleaner-0.3.data/data/LICENSE.txt,sha256=mXuEuao2WZEHn3V7FU6JEEUfmMS-geNcYWGUfS3AxpI,1063
+DirectoryCleaner-0.3.data/data/README.md,sha256=sJ0yfvAl5Pkwbi8Y9TUe10gTbJxk7jLKz4MHvRACjZc,4492
+DirectoryCleaner-0.3.dist-info/METADATA,sha256=1Qa0xTbTMqhx6UYFPYeNtGeO9RxflOBvC3BalLI-Vz4,5110
+DirectoryCleaner-0.3.dist-info/RECORD,,
+DirectoryCleaner-0.3.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+DirectoryCleaner-0.3.dist-info/entry_points.txt,sha256=sDp6Qnd_EoIer7fdyOe2F3nWak8cl0OdC5tDBr9CIjg,65
+DirectoryCleaner-0.3.dist-info/top_level.txt,sha256=2DOxV-mHlODvYiif6L7W9tXs1pHnEjnc-oS7b07PveQ,17
+directorycleaner/__init__.py,sha256=KXyI9wtjwUkAb2jbILSXE77zqHxkPYoPxKCouEMphU0,49
+directorycleaner/color_print.py,sha256=tbfdEK94c9LwtZoDXjHMgtN6rvRCRPp4rMO2t9P6n6I,445
+directorycleaner/directory_cleaner.py,sha256=QjOORlD2iPTIa6jSkQ13fKIn0Nppug1EkSH_TdVugKE,14081
+directorycleaner/main.py,sha256=Aarkl5SkOv0syVACuwj0uBq9058mP7qNBZvWZrgvdf0,1050
+directorycleaner/regex.py,sha256=97SRBmJL3e3nTlpddFTq2RQWrdoYgwxCsHYSwG8MOK0,1068
+directorycleaner/settings.py,sha256=zSMrDdoG_dDf6MWZG7K4q5knTLe-czvGdMOzKEoGLlM,26499
+directorycleaner/data/extensions.json,sha256=YQe6OUFwN5xKKQkmMMe_TaADuALizOnkHJNz-dmXRuc,18801
+directorycleaner/scripts/populate.py,sha256=eo9dKZDZVhP_UN1kCjyubIgqOWTbIO0Fh7VQmbS1bzA,753
+directorycleaner/scripts/scraper.py,sha256=isxz2HWTtORZFQFkCnvOehKXyqnYaHXqVqV41D6SH34,1298
+directorycleaner/tests/test_general.py,sha256=YqCMUitQ_aBA-jKTovLivFwjFUGqgdeYug7vCZaohK0,54

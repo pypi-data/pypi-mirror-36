@@ -1,0 +1,3 @@
+[console_scripts]
+DirectoryCleaner = directorycleaner.main:main
+
