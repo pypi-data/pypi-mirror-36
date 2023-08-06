@@ -1,0 +1,6 @@
+PyYAML
+ruamel.ordereddict
+ruamel.yaml
+docker
+psutil
+boto3==1.9.14
