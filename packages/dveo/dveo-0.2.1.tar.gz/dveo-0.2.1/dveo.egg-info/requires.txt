@@ -1,0 +1,9 @@
+requests
+xmltodict
+
+[dev]
+black
+flake8
+rope
+pydocstyle
+sphinx
