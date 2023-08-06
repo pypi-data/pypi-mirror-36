@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: dbot-manager
+Version: 0.0.4
+Summary: Develop tools for ATN DBot
+Home-page: https://github.com/ATNIO/dbot-manager
+Author: ovsoil
+Author-email: huaxin.yu@atmatrix.org
+License: UNKNOWN
+Description: # dbot-manager
+        Develop tools for DBot server
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
