@@ -1,0 +1,6 @@
+# Include the license file
+include LICENSE.txt
+
+# Include the data files
+recursive-include physics/cosmic_ray/data *.xml *.txt *.dat *.csv flux_0207.dat.AGASA2
+#include physics/cosmic_ray/data/solar_and_cr_abundances.txt

@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: phys-cosmic-ray
+Version: 0.1.2
+Summary: Some code related to cosmic ray physics.
+Home-page: https://github.com/javierggt/phys-cosmic-ray
+Author: Javier G. Gonzalez
+Author-email: javierggt@yahoo.com
+License: UNKNOWN
+Description: Phys - Cosmic Ray
+        =================
+        
+        This subpackage of phys includes some tools commonly used in cosmic ray physics.
+        It includes standard parametrizations of the cosmic ray fluxes,
+        some data from various experiments, and some typical functions used
+        in the analysis of cosmic rays.
+        
+Keywords: physics cosmic rays
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.7
