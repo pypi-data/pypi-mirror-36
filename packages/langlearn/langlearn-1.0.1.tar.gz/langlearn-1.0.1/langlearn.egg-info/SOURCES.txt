@@ -1,0 +1,14 @@
+README.md
+setup.py
+bin/langlearn
+bin/langlearn.bat
+langlearn/__init__.py
+langlearn/langlearn.py
+langlearn.egg-info/PKG-INFO
+langlearn.egg-info/SOURCES.txt
+langlearn.egg-info/dependency_links.txt
+langlearn.egg-info/not-zip-safe
+langlearn.egg-info/requires.txt
+langlearn.egg-info/top_level.txt
+langlearn/vocabulary/Russian Vocab from Rosetta Stone.txt
+langlearn/vocabulary/RussianTop100.txt
