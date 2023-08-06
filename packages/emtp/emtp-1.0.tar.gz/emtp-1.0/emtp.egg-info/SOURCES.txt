@@ -1,0 +1,9 @@
+setup.py
+emtp/__init__.py
+emtp/constants.py
+emtp/core.py
+emtp.egg-info/PKG-INFO
+emtp.egg-info/SOURCES.txt
+emtp.egg-info/dependency_links.txt
+emtp.egg-info/requires.txt
+emtp.egg-info/top_level.txt
