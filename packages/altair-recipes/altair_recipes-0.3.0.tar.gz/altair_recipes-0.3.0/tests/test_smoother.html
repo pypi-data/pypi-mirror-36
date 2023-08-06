@@ -1,0 +1,1468 @@
+
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/LaTeX", "output/HTML-CSS"],
+    "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+</script>
+
+<script type="text/javascript"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<style>
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Raleway Light'), local('Raleway-Light'), url(http://fonts.gstatic.com/s/raleway/v9/-_Ctzj9b56b8RgXW8FArifk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), url(http://fonts.gstatic.com/s/raleway/v9/0dTEPzkLWceF7z0koJaX1A.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Raleway SemiBold'), local('Raleway-SemiBold'), url(http://fonts.gstatic.com/s/raleway/v9/xkvoNo9fC8O2RDydKj12b_k_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+}
+html {
+  font-family: sans-serif; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+body {
+  margin: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+audio,
+canvas,
+progress,
+video {
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden],
+template {
+  display: none;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+b,
+strong {
+  font-weight: bold;
+}
+dfn {
+  font-style: italic;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+figure {
+  margin: 1em 40px;
+}
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+pre {
+  overflow: auto;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit; /* 1 */
+  font: inherit; /* 2 */
+  margin: 0; /* 3 */
+}
+button {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button; /* 2 */
+  cursor: pointer; /* 3 */
+}
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+input {
+  line-height: normal;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+input[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box; /* 2 */
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+legend {
+  border: 0; /* 1 */
+  padding: 0; /* 2 */
+}
+textarea {
+  overflow: auto;
+}
+optgroup {
+  font-weight: bold;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+
+
+/*
+* Skeleton V2.0.4
+* Copyright 2014, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 12/29/2014
+*/
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box; }
+.column,
+.columns {
+  width: 100%;
+  float: left;
+  box-sizing: border-box; }
+@media (min-width: 400px) {
+  .container {
+    width: 85%;
+    padding: 0; }
+}
+@media (min-width: 550px) {
+  .container {
+    width: 80%; }
+  .column,
+  .columns {
+    margin-left: 4%; }
+  .column:first-child,
+  .columns:first-child {
+    margin-left: 0; }
+
+  .one.column,
+  .one.columns                    { width: 4.66666666667%; }
+  .two.columns                    { width: 13.3333333333%; }
+  .three.columns                  { width: 22%;            }
+  .four.columns                   { width: 30.6666666667%; }
+  .five.columns                   { width: 39.3333333333%; }
+  .six.columns                    { width: 48%;            }
+  .seven.columns                  { width: 56.6666666667%; }
+  .eight.columns                  { width: 65.3333333333%; }
+  .nine.columns                   { width: 74.0%;          }
+  .ten.columns                    { width: 82.6666666667%; }
+  .eleven.columns                 { width: 91.3333333333%; }
+  .twelve.columns                 { width: 100%; margin-left: 0; }
+
+  .one-third.column               { width: 30.6666666667%; }
+  .two-thirds.column              { width: 65.3333333333%; }
+
+  .one-half.column                { width: 48%; }
+
+  /* Offsets */
+  .offset-by-one.column,
+  .offset-by-one.columns          { margin-left: 8.66666666667%; }
+  .offset-by-two.column,
+  .offset-by-two.columns          { margin-left: 17.3333333333%; }
+  .offset-by-three.column,
+  .offset-by-three.columns        { margin-left: 26%;            }
+  .offset-by-four.column,
+  .offset-by-four.columns         { margin-left: 34.6666666667%; }
+  .offset-by-five.column,
+  .offset-by-five.columns         { margin-left: 43.3333333333%; }
+  .offset-by-six.column,
+  .offset-by-six.columns          { margin-left: 52%;            }
+  .offset-by-seven.column,
+  .offset-by-seven.columns        { margin-left: 60.6666666667%; }
+  .offset-by-eight.column,
+  .offset-by-eight.columns        { margin-left: 69.3333333333%; }
+  .offset-by-nine.column,
+  .offset-by-nine.columns         { margin-left: 78.0%;          }
+  .offset-by-ten.column,
+  .offset-by-ten.columns          { margin-left: 86.6666666667%; }
+  .offset-by-eleven.column,
+  .offset-by-eleven.columns       { margin-left: 95.3333333333%; }
+
+  .offset-by-one-third.column,
+  .offset-by-one-third.columns    { margin-left: 34.6666666667%; }
+  .offset-by-two-thirds.column,
+  .offset-by-two-thirds.columns   { margin-left: 69.3333333333%; }
+
+  .offset-by-one-half.column,
+  .offset-by-one-half.columns     { margin-left: 52%; }
+
+}
+html {
+  font-size: 62.5%; }
+body {
+  font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #222; }
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-weight: 300; }
+h1 { font-size: 3.6rem; line-height: 1.2;  letter-spacing: -.1rem;}
+h2 { font-size: 3.4rem; line-height: 1.25; letter-spacing: -.1rem; }
+h3 { font-size: 3.2rem; line-height: 1.3;  letter-spacing: -.1rem; }
+h4 { font-size: 2.8rem; line-height: 1.35; letter-spacing: -.08rem; }
+h5 { font-size: 2.4rem; line-height: 1.5;  letter-spacing: -.05rem; }
+h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
+
+p {
+  margin-top: 0; }
+a {
+  color: #1EAEDB; }
+a:hover {
+  color: #0FA0CE; }
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  color: #555;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box; }
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  color: #333;
+  border-color: #888;
+  outline: 0; }
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+  color: #FFF;
+  background-color: #33C3F0;
+  border-color: #33C3F0; }
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
+  color: #FFF;
+  background-color: #1EAEDB;
+  border-color: #1EAEDB; }
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box; }
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+textarea {
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #33C3F0;
+  outline: 0; }
+label,
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600; }
+fieldset {
+  padding: 0;
+  border-width: 0; }
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline; }
+label > .label-body {
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal; }
+ul {
+  list-style: circle inside; }
+ol {
+  list-style: decimal inside; }
+ol, ul {
+  padding-left: 0;
+  margin-top: 0; }
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 90%; }
+li {
+  margin-bottom: 1rem; }
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #E1E1E1; }
+th:first-child,
+td:first-child {
+  padding-left: 0; }
+th:last-child,
+td:last-child {
+  padding-right: 0; }
+button,
+.button {
+  margin-bottom: 1rem; }
+input,
+textarea,
+select,
+fieldset {
+  margin-bottom: 1.5rem; }
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+  margin-bottom: 2.5rem; }
+.u-full-width {
+  width: 100%;
+  box-sizing: border-box; }
+.u-max-full-width {
+  max-width: 100%;
+  box-sizing: border-box; }
+.u-pull-right {
+  float: right; }
+.u-pull-left {
+  float: left; }
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+  border-top: 1px solid #E1E1E1; }
+.container:after,
+.row:after,
+.u-cf {
+  content: "";
+  display: table;
+  clear: both; }
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+
+@media (min-width: 400px) {}
+@media (min-width: 550px) {}
+@media (min-width: 750px) {}
+@media (min-width: 1000px) {}
+@media (min-width: 1200px) {}
+
+</style>
+
+<style>
+.hll { background-color: #ffffcc }
+.c { color: #408080; font-style: italic } /* Comment */
+.err { border: 1px solid #FF0000 } /* Error */
+.k { color: #008000; font-weight: bold } /* Keyword */
+.o { color: #666666 } /* Operator */
+.ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.cp { color: #BC7A00 } /* Comment.Preproc */
+.cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.c1 { color: #408080; font-style: italic } /* Comment.Single */
+.cs { color: #408080; font-style: italic } /* Comment.Special */
+.gd { color: #A00000 } /* Generic.Deleted */
+.ge { font-style: italic } /* Generic.Emph */
+.gr { color: #FF0000 } /* Generic.Error */
+.gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.gi { color: #00A000 } /* Generic.Inserted */
+.go { color: #888888 } /* Generic.Output */
+.gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.gt { color: #0044DD } /* Generic.Traceback */
+.kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.kp { color: #008000 } /* Keyword.Pseudo */
+.kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.kt { color: #B00040 } /* Keyword.Type */
+.m { color: #666666 } /* Literal.Number */
+.s { color: #BA2121 } /* Literal.String */
+.na { color: #7D9029 } /* Name.Attribute */
+.nb { color: #008000 } /* Name.Builtin */
+.nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.no { color: #880000 } /* Name.Constant */
+.nd { color: #AA22FF } /* Name.Decorator */
+.ni { color: #999999; font-weight: bold } /* Name.Entity */
+.ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.nf { color: #0000FF } /* Name.Function */
+.nl { color: #A0A000 } /* Name.Label */
+.nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.nt { color: #008000; font-weight: bold } /* Name.Tag */
+.nv { color: #19177C } /* Name.Variable */
+.ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.w { color: #bbbbbb } /* Text.Whitespace */
+.mb { color: #666666 } /* Literal.Number.Bin */
+.mf { color: #666666 } /* Literal.Number.Float */
+.mh { color: #666666 } /* Literal.Number.Hex */
+.mi { color: #666666 } /* Literal.Number.Integer */
+.mo { color: #666666 } /* Literal.Number.Oct */
+.sa { color: #BA2121 } /* Literal.String.Affix */
+.sb { color: #BA2121 } /* Literal.String.Backtick */
+.sc { color: #BA2121 } /* Literal.String.Char */
+.dl { color: #BA2121 } /* Literal.String.Delimiter */
+.sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.s2 { color: #BA2121 } /* Literal.String.Double */
+.se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.sh { color: #BA2121 } /* Literal.String.Heredoc */
+.si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.sx { color: #008000 } /* Literal.String.Other */
+.sr { color: #BB6688 } /* Literal.String.Regex */
+.s1 { color: #BA2121 } /* Literal.String.Single */
+.ss { color: #19177C } /* Literal.String.Symbol */
+.bp { color: #008000 } /* Name.Builtin.Pseudo */
+.fm { color: #0000FF } /* Name.Function.Magic */
+.vc { color: #19177C } /* Name.Variable.Class */
+.vg { color: #19177C } /* Name.Variable.Global */
+.vi { color: #19177C } /* Name.Variable.Instance */
+.vm { color: #19177C } /* Name.Variable.Magic */
+.il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
+
+
+
+
+
+<style>
+h1.title {margin-top : 20px}
+img {max-width : 100%}
+
+#From nbconvert
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+
+</HEAD>
+<BODY>
+    <div class ="container">
+        <div class = "row">
+            <div class = "col-md-12 twelve columns">
+
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test smoother.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">altair_recipes</span> <span class="kn">as</span> <span class="nn">ar</span>
+<span class="kn">from</span> <span class="nn">altair_recipes.common</span> <span class="kn">import</span> <span class="n">viz_reg_test</span>
+<span class="kn">from</span> <span class="nn">altair_recipes.display_altair</span> <span class="kn">import</span> <span class="n">show_test</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+</pre></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vega@3"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+
+<h2>Smoother</h2>
+
+<div class="highlight"><pre><span></span><span class="nd">@viz_reg_test</span>
+<span class="k">def</span> <span class="nf">test_smoother</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Test smoother.&quot;&quot;&quot;</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">ar</span><span class="o">.</span><span class="n">smoother</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+
+
+<span class="n">show_test</span><span class="p">(</span><span class="n">test_smoother</span><span class="p">)</span>
+</pre></div>
+
+
+
+ <div id="A675ba243ba97bbbb887f96f1bec317919a534296712e6eaac0c3fdb97618f45b"></div>
+  <script type="text/javascript">
+    var spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.6.0.json",
+  "config": {
+    "view": {
+      "height": 300,
+      "width": 400
+    }
+  },
+  "datasets": {
+    "data-23786d09348bf1b8e690bc291077eedd": [
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 0.48137138748359143
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 0.7578629150648163
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 0.45543194364532846
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.0832871715144188
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 0.6158026106035869
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.4941780713083705
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.2187035520920113
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.5241584016813468
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.2677987378623916
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.5293150839389877
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.1326137562010712
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.3309908224089766
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.636007671764125
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.5572940943211202
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.606599307247512
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.2191161190737483
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 2.13004690559728
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 2.2087455902932067
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.504171629924258
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 2.2482118394147674
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 1.4527260723997975
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 2.287124609599761
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 2.461103408172197
+      },
+      {
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "x": null,
+        "y": 2.3223724286887353
+      },
+      {
+        "median": 1.504171629924258,
+        "q1": 1.2187035520920113,
+        "q3": 2.13004690559728,
+        "x": 0.10204481074802807,
+        "y": 2.941345121803421
+      },
+      {
+        "median": 1.5241584016813468,
+        "q1": 1.2191161190737483,
+        "q3": 2.2087455902932067,
+        "x": 0.11037514116430513,
+        "y": 2.2125875437977887
+      },
+      {
+        "median": 1.5293150839389877,
+        "q1": 1.2677987378623916,
+        "q3": 2.2087455902932067,
+        "x": 0.11827442586893322,
+        "y": 2.20405249805071
+      },
+      {
+        "median": 1.5572940943211202,
+        "q1": 1.3309908224089766,
+        "q3": 2.2125875437977887,
+        "x": 0.11872771895424405,
+        "y": 2.5134229154711654
+      },
+      {
+        "median": 1.606599307247512,
+        "q1": 1.4527260723997975,
+        "q3": 2.2482118394147674,
+        "x": 0.1201965612131689,
+        "y": 3.102016764012414
+      },
+      {
+        "median": 1.636007671764125,
+        "q1": 1.4941780713083705,
+        "q3": 2.287124609599761,
+        "x": 0.1289262976548533,
+        "y": 3.2635715500451115
+      },
+      {
+        "median": 2.13004690559728,
+        "q1": 1.504171629924258,
+        "q3": 2.3223724286887353,
+        "x": 0.13179786240439217,
+        "y": 3.2678608653603503
+      },
+      {
+        "median": 2.20405249805071,
+        "q1": 1.5241584016813468,
+        "q3": 2.461103408172197,
+        "x": 0.1381829513486138,
+        "y": 3.1734213064609986
+      },
+      {
+        "median": 2.2087455902932067,
+        "q1": 1.5293150839389877,
+        "q3": 2.5134229154711654,
+        "x": 0.1433532874090464,
+        "y": 3.6336117245212987
+      },
+      {
+        "median": 2.2125875437977887,
+        "q1": 1.5572940943211202,
+        "q3": 2.941345121803421,
+        "x": 0.15896958364551972,
+        "y": 3.6658163771449823
+      },
+      {
+        "median": 2.2482118394147674,
+        "q1": 1.606599307247512,
+        "q3": 3.102016764012414,
+        "x": 0.16130951788499626,
+        "y": 3.8685248087909496
+      },
+      {
+        "median": 2.287124609599761,
+        "q1": 1.636007671764125,
+        "q3": 3.1734213064609986,
+        "x": 0.18319136200711683,
+        "y": 3.344525950437673
+      },
+      {
+        "median": 2.3223724286887353,
+        "q1": 2.13004690559728,
+        "q3": 3.2635715500451115,
+        "x": 0.1965823616800535,
+        "y": 3.583910586729328
+      },
+      {
+        "median": 2.461103408172197,
+        "q1": 2.20405249805071,
+        "q3": 3.2678608653603503,
+        "x": 0.2088767560948347,
+        "y": 4.4916256015889235
+      },
+      {
+        "median": 2.5134229154711654,
+        "q1": 2.2087455902932067,
+        "q3": 3.344525950437673,
+        "x": 0.2103825610738409,
+        "y": 4.635954715994092
+      },
+      {
+        "median": 2.941345121803421,
+        "q1": 2.2125875437977887,
+        "q3": 3.583910586729328,
+        "x": 0.24442559200160274,
+        "y": 4.543055049002252
+      },
+      {
+        "median": 3.102016764012414,
+        "q1": 2.2482118394147674,
+        "q3": 3.6336117245212987,
+        "x": 0.2532916025397821,
+        "y": 4.787164199774763
+      },
+      {
+        "median": 3.1734213064609986,
+        "q1": 2.287124609599761,
+        "q3": 3.6658163771449823,
+        "x": 0.26455561210462697,
+        "y": 4.764108346646464
+      },
+      {
+        "median": 3.2635715500451115,
+        "q1": 2.3223724286887353,
+        "q3": 3.8685248087909496,
+        "x": 0.2653894909394454,
+        "y": 4.436697007115679
+      },
+      {
+        "median": 3.2678608653603503,
+        "q1": 2.461103408172197,
+        "q3": 4.436697007115679,
+        "x": 0.2828069625764096,
+        "y": 4.485301136909006
+      },
+      {
+        "median": 3.344525950437673,
+        "q1": 2.5134229154711654,
+        "q3": 4.485301136909006,
+        "x": 0.2894060929472011,
+        "y": 4.737881408041311
+      },
+      {
+        "median": 3.583910586729328,
+        "q1": 2.941345121803421,
+        "q3": 4.4916256015889235,
+        "x": 0.29614019752214493,
+        "y": 4.967914043898764
+      },
+      {
+        "median": 3.6336117245212987,
+        "q1": 3.102016764012414,
+        "q3": 4.543055049002252,
+        "x": 0.31542835092418386,
+        "y": 5.254141191991418
+      },
+      {
+        "median": 3.6658163771449823,
+        "q1": 3.1734213064609986,
+        "q3": 4.635954715994092,
+        "x": 0.317983179393976,
+        "y": 4.696977386387935
+      },
+      {
+        "median": 3.8685248087909496,
+        "q1": 3.2635715500451115,
+        "q3": 4.696977386387935,
+        "x": 0.31856895245132366,
+        "y": 5.570877257252542
+      },
+      {
+        "median": 4.436697007115679,
+        "q1": 3.2678608653603503,
+        "q3": 4.737881408041311,
+        "x": 0.359507900573786,
+        "y": 5.0702910257890625
+      },
+      {
+        "median": 4.485301136909006,
+        "q1": 3.344525950437673,
+        "q3": 4.740850004816269,
+        "x": 0.3637107709426226,
+        "y": 4.740850004816269
+      },
+      {
+        "median": 4.4916256015889235,
+        "q1": 3.583910586729328,
+        "q3": 4.764108346646464,
+        "x": 0.3687251706609641,
+        "y": 5.878656754993402
+      },
+      {
+        "median": 4.543055049002252,
+        "q1": 3.6336117245212987,
+        "q3": 4.787164199774763,
+        "x": 0.3834415188257777,
+        "y": 5.768113337691955
+      },
+      {
+        "median": 4.635954715994092,
+        "q1": 3.6658163771449823,
+        "q3": 4.967914043898764,
+        "x": 0.41426299451466997,
+        "y": 6.135357870000172
+      },
+      {
+        "median": 4.696977386387935,
+        "q1": 3.8685248087909496,
+        "q3": 5.0702910257890625,
+        "x": 0.4146619399905236,
+        "y": 6.411020375086407
+      },
+      {
+        "median": 4.737881408041311,
+        "q1": 4.436697007115679,
+        "q3": 5.254141191991418,
+        "x": 0.4236547993389047,
+        "y": 6.165951576069478
+      },
+      {
+        "median": 4.740850004816269,
+        "q1": 4.485301136909006,
+        "q3": 5.570877257252542,
+        "x": 0.43703195379934145,
+        "y": 6.600228539990545
+      },
+      {
+        "median": 4.764108346646464,
+        "q1": 4.4916256015889235,
+        "q3": 5.768113337691955,
+        "x": 0.4375872112626925,
+        "y": 6.379924886256827
+      },
+      {
+        "median": 4.787164199774763,
+        "q1": 4.543055049002252,
+        "q3": 5.878656754993402,
+        "x": 0.43860151346232035,
+        "y": 5.982621814642515
+      },
+      {
+        "median": 4.967914043898764,
+        "q1": 4.635954715994092,
+        "q3": 5.878656754993402,
+        "x": 0.45615033221654855,
+        "y": 5.85141600883679
+      },
+      {
+        "median": 5.0702910257890625,
+        "q1": 4.696977386387935,
+        "q3": 5.982621814642515,
+        "x": 0.46147936225293185,
+        "y": 6.489586985078562
+      },
+      {
+        "median": 5.254141191991418,
+        "q1": 4.737881408041311,
+        "q3": 6.092543976074155,
+        "x": 0.4663107728563063,
+        "y": 6.092543976074155
+      },
+      {
+        "median": 5.570877257252542,
+        "q1": 4.740850004816269,
+        "q3": 6.135357870000172,
+        "x": 0.4686512016477016,
+        "y": 6.762827782839034
+      },
+      {
+        "median": 5.768113337691955,
+        "q1": 4.764108346646464,
+        "q3": 6.135357870000172,
+        "x": 0.5218483217500717,
+        "y": 6.0669769919110745
+      },
+      {
+        "median": 5.85141600883679,
+        "q1": 4.787164199774763,
+        "q3": 6.165951576069478,
+        "x": 0.5232480534666997,
+        "y": 6.6952824760737935
+      },
+      {
+        "median": 5.878656754993402,
+        "q1": 4.967914043898764,
+        "q3": 6.379924886256827,
+        "x": 0.5288949197529045,
+        "y": 6.8225407886047025
+      },
+      {
+        "median": 5.982621814642515,
+        "q1": 5.0702910257890625,
+        "q3": 6.411020375086407,
+        "x": 0.5448831829968969,
+        "y": 6.767227732006944
+      },
+      {
+        "median": 6.0669769919110745,
+        "q1": 5.254141191991418,
+        "q3": 6.489586985078562,
+        "x": 0.5488135039273248,
+        "y": 7.005603427403162
+      },
+      {
+        "median": 6.092543976074155,
+        "q1": 5.570877257252542,
+        "q3": 6.600228539990545,
+        "x": 0.5666014542065752,
+        "y": 7.035098465084398
+      },
+      {
+        "median": 6.135357870000172,
+        "q1": 5.768113337691955,
+        "q3": 6.6952824760737935,
+        "x": 0.5680445610939323,
+        "y": 7.338402213378995
+      },
+      {
+        "median": 6.165951576069478,
+        "q1": 5.85141600883679,
+        "q3": 6.762827782839034,
+        "x": 0.5684339488686485,
+        "y": 7.285351494123082
+      },
+      {
+        "median": 6.379924886256827,
+        "q1": 5.878656754993402,
+        "q3": 6.767227732006944,
+        "x": 0.5701967704178796,
+        "y": 7.473861143502762
+      },
+      {
+        "median": 6.411020375086407,
+        "q1": 5.982621814642515,
+        "q3": 6.8225407886047025,
+        "x": 0.5759464955561793,
+        "y": 6.883947548611939
+      },
+      {
+        "median": 6.489586985078562,
+        "q1": 6.0669769919110745,
+        "q3": 6.883947548611939,
+        "x": 0.5865129348100832,
+        "y": 7.41026727972196
+      },
+      {
+        "median": 6.600228539990545,
+        "q1": 6.092543976074155,
+        "q3": 7.005603427403162,
+        "x": 0.6027633760716439,
+        "y": 7.249621426468808
+      },
+      {
+        "median": 6.6952824760737935,
+        "q1": 6.135357870000172,
+        "q3": 7.035098465084398,
+        "x": 0.604845519745046,
+        "y": 7.162614015074707
+      },
+      {
+        "median": 6.762827782839034,
+        "q1": 6.165951576069478,
+        "q3": 7.162614015074707,
+        "x": 0.6120957227224214,
+        "y": 7.412176884538276
+      },
+      {
+        "median": 6.767227732006944,
+        "q1": 6.379924886256827,
+        "q3": 7.249621426468808,
+        "x": 0.6169339968747569,
+        "y": 7.42190163691636
+      },
+      {
+        "median": 6.8225407886047025,
+        "q1": 6.411020375086407,
+        "q3": 7.285351494123082,
+        "x": 0.6176354970758771,
+        "y": 8.10764443116959
+      },
+      {
+        "median": 6.883947548611939,
+        "q1": 6.489586985078562,
+        "q3": 7.338402213378995,
+        "x": 0.6399210213275238,
+        "y": 8.186333497340437
+      },
+      {
+        "median": 7.005603427403162,
+        "q1": 6.600228539990545,
+        "q3": 7.41026727972196,
+        "x": 0.6458941130666561,
+        "y": 8.171105595287933
+      },
+      {
+        "median": 7.035098465084398,
+        "q1": 6.6952824760737935,
+        "q3": 7.412176884538276,
+        "x": 0.6531083254653984,
+        "y": 8.663302871353357
+      },
+      {
+        "median": 7.162614015074707,
+        "q1": 6.762827782839034,
+        "q3": 7.42190163691636,
+        "x": 0.6563295894652734,
+        "y": 8.449281962094192
+      },
+      {
+        "median": 7.249621426468808,
+        "q1": 6.767227732006944,
+        "q3": 7.473861143502762,
+        "x": 0.6667667154456677,
+        "y": 8.364375759444274
+      },
+      {
+        "median": 7.285351494123082,
+        "q1": 6.8225407886047025,
+        "q3": 8.10764443116959,
+        "x": 0.6674103799636817,
+        "y": 8.492910024093938
+      },
+      {
+        "median": 7.338402213378995,
+        "q1": 6.883947548611939,
+        "q3": 8.171105595287933,
+        "x": 0.6706378696181594,
+        "y": 8.221646382664353
+      },
+      {
+        "median": 7.41026727972196,
+        "q1": 7.005603427403162,
+        "q3": 8.186333497340437,
+        "x": 0.6818202991034834,
+        "y": 8.347429452497508
+      },
+      {
+        "median": 7.412176884538276,
+        "q1": 7.035098465084398,
+        "q3": 8.221646382664353,
+        "x": 0.6924721193700198,
+        "y": 8.90747132811524
+      },
+      {
+        "median": 7.42190163691636,
+        "q1": 7.162614015074707,
+        "q3": 8.347429452497508,
+        "x": 0.6976311959272649,
+        "y": 9.109439637412097
+      },
+      {
+        "median": 7.473861143502762,
+        "q1": 7.249621426468808,
+        "q3": 8.364375759444274,
+        "x": 0.7151893663724195,
+        "y": 9.392653072545956
+      },
+      {
+        "median": 8.10764443116959,
+        "q1": 7.285351494123082,
+        "q3": 8.449281962094192,
+        "x": 0.7163272041185655,
+        "y": 9.48998191361167
+      },
+      {
+        "median": 8.171105595287933,
+        "q1": 7.338402213378995,
+        "q3": 8.492910024093938,
+        "x": 0.7392635793983017,
+        "y": 9.553403333781745
+      },
+      {
+        "median": 8.186333497340437,
+        "q1": 7.41026727972196,
+        "q3": 8.663302871353357,
+        "x": 0.7742336894342167,
+        "y": 9.604906971241743
+      },
+      {
+        "median": 8.221646382664353,
+        "q1": 7.412176884538276,
+        "q3": 8.90747132811524,
+        "x": 0.7781567509498505,
+        "y": 10.089584055147931
+      },
+      {
+        "median": 8.347429452497508,
+        "q1": 7.42190163691636,
+        "q3": 9.109439637412097,
+        "x": 0.7805291762864555,
+        "y": 9.748263987170388
+      },
+      {
+        "median": 8.364375759444274,
+        "q1": 7.473861143502762,
+        "q3": 9.392653072545956,
+        "x": 0.7917250380826646,
+        "y": 9.859709237650911
+      },
+      {
+        "median": 8.449281962094192,
+        "q1": 8.10764443116959,
+        "q3": 9.48998191361167,
+        "x": 0.7991585642167236,
+        "y": 10.285631256338087
+      },
+      {
+        "median": 8.492910024093938,
+        "q1": 8.171105595287933,
+        "q3": 9.553403333781745,
+        "x": 0.8209932298479351,
+        "y": 9.967607406799772
+      },
+      {
+        "median": 8.663302871353357,
+        "q1": 8.186333497340437,
+        "q3": 9.604906971241743,
+        "x": 0.8289400292173631,
+        "y": 10.511437702147282
+      },
+      {
+        "median": 8.90747132811524,
+        "q1": 8.221646382664353,
+        "q3": 9.748263987170388,
+        "x": 0.832619845547938,
+        "y": 10.046231315268638
+      }
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "name": "data-23786d09348bf1b8e690bc291077eedd"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "median",
+          "type": "quantitative"
+        }
+      },
+      "mark": "line"
+    },
+    {
+      "data": {
+        "name": "data-23786d09348bf1b8e690bc291077eedd"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "q1",
+          "type": "quantitative"
+        },
+        "y2": {
+          "field": "q3",
+          "type": "quantitative"
+        }
+      },
+      "mark": {
+        "opacity": 0.2,
+        "type": "area"
+      }
+    }
+  ]
+};
+    var opt = {"renderer": "canvas", "actions": false};
+    vegaEmbed("#A675ba243ba97bbbb887f96f1bec317919a534296712e6eaac0c3fdb97618f45b", spec, opt);
+  </script>
+  
+    <HR/>
+    <div class="footer">
+      <p>Published from <a href="test_smoother.py">test_smoother.py</a>
+    using <a href="http://mpastell.com/pweave">Pweave</a> 0.30.3
+    on 18-09-2018.<p></div>
+
+            </div>
+        </div>
+    </div>
+  </BODY>
+</HTML>

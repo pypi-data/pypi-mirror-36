@@ -1,0 +1,1240 @@
+
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/LaTeX", "output/HTML-CSS"],
+    "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+</script>
+
+<script type="text/javascript"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<style>
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Raleway Light'), local('Raleway-Light'), url(http://fonts.gstatic.com/s/raleway/v9/-_Ctzj9b56b8RgXW8FArifk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), url(http://fonts.gstatic.com/s/raleway/v9/0dTEPzkLWceF7z0koJaX1A.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Raleway SemiBold'), local('Raleway-SemiBold'), url(http://fonts.gstatic.com/s/raleway/v9/xkvoNo9fC8O2RDydKj12b_k_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+}
+html {
+  font-family: sans-serif; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+body {
+  margin: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+audio,
+canvas,
+progress,
+video {
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden],
+template {
+  display: none;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+b,
+strong {
+  font-weight: bold;
+}
+dfn {
+  font-style: italic;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+figure {
+  margin: 1em 40px;
+}
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+pre {
+  overflow: auto;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit; /* 1 */
+  font: inherit; /* 2 */
+  margin: 0; /* 3 */
+}
+button {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button; /* 2 */
+  cursor: pointer; /* 3 */
+}
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+input {
+  line-height: normal;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+input[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box; /* 2 */
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+legend {
+  border: 0; /* 1 */
+  padding: 0; /* 2 */
+}
+textarea {
+  overflow: auto;
+}
+optgroup {
+  font-weight: bold;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+
+
+/*
+* Skeleton V2.0.4
+* Copyright 2014, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 12/29/2014
+*/
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box; }
+.column,
+.columns {
+  width: 100%;
+  float: left;
+  box-sizing: border-box; }
+@media (min-width: 400px) {
+  .container {
+    width: 85%;
+    padding: 0; }
+}
+@media (min-width: 550px) {
+  .container {
+    width: 80%; }
+  .column,
+  .columns {
+    margin-left: 4%; }
+  .column:first-child,
+  .columns:first-child {
+    margin-left: 0; }
+
+  .one.column,
+  .one.columns                    { width: 4.66666666667%; }
+  .two.columns                    { width: 13.3333333333%; }
+  .three.columns                  { width: 22%;            }
+  .four.columns                   { width: 30.6666666667%; }
+  .five.columns                   { width: 39.3333333333%; }
+  .six.columns                    { width: 48%;            }
+  .seven.columns                  { width: 56.6666666667%; }
+  .eight.columns                  { width: 65.3333333333%; }
+  .nine.columns                   { width: 74.0%;          }
+  .ten.columns                    { width: 82.6666666667%; }
+  .eleven.columns                 { width: 91.3333333333%; }
+  .twelve.columns                 { width: 100%; margin-left: 0; }
+
+  .one-third.column               { width: 30.6666666667%; }
+  .two-thirds.column              { width: 65.3333333333%; }
+
+  .one-half.column                { width: 48%; }
+
+  /* Offsets */
+  .offset-by-one.column,
+  .offset-by-one.columns          { margin-left: 8.66666666667%; }
+  .offset-by-two.column,
+  .offset-by-two.columns          { margin-left: 17.3333333333%; }
+  .offset-by-three.column,
+  .offset-by-three.columns        { margin-left: 26%;            }
+  .offset-by-four.column,
+  .offset-by-four.columns         { margin-left: 34.6666666667%; }
+  .offset-by-five.column,
+  .offset-by-five.columns         { margin-left: 43.3333333333%; }
+  .offset-by-six.column,
+  .offset-by-six.columns          { margin-left: 52%;            }
+  .offset-by-seven.column,
+  .offset-by-seven.columns        { margin-left: 60.6666666667%; }
+  .offset-by-eight.column,
+  .offset-by-eight.columns        { margin-left: 69.3333333333%; }
+  .offset-by-nine.column,
+  .offset-by-nine.columns         { margin-left: 78.0%;          }
+  .offset-by-ten.column,
+  .offset-by-ten.columns          { margin-left: 86.6666666667%; }
+  .offset-by-eleven.column,
+  .offset-by-eleven.columns       { margin-left: 95.3333333333%; }
+
+  .offset-by-one-third.column,
+  .offset-by-one-third.columns    { margin-left: 34.6666666667%; }
+  .offset-by-two-thirds.column,
+  .offset-by-two-thirds.columns   { margin-left: 69.3333333333%; }
+
+  .offset-by-one-half.column,
+  .offset-by-one-half.columns     { margin-left: 52%; }
+
+}
+html {
+  font-size: 62.5%; }
+body {
+  font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #222; }
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-weight: 300; }
+h1 { font-size: 3.6rem; line-height: 1.2;  letter-spacing: -.1rem;}
+h2 { font-size: 3.4rem; line-height: 1.25; letter-spacing: -.1rem; }
+h3 { font-size: 3.2rem; line-height: 1.3;  letter-spacing: -.1rem; }
+h4 { font-size: 2.8rem; line-height: 1.35; letter-spacing: -.08rem; }
+h5 { font-size: 2.4rem; line-height: 1.5;  letter-spacing: -.05rem; }
+h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
+
+p {
+  margin-top: 0; }
+a {
+  color: #1EAEDB; }
+a:hover {
+  color: #0FA0CE; }
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  color: #555;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box; }
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  color: #333;
+  border-color: #888;
+  outline: 0; }
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+  color: #FFF;
+  background-color: #33C3F0;
+  border-color: #33C3F0; }
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
+  color: #FFF;
+  background-color: #1EAEDB;
+  border-color: #1EAEDB; }
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box; }
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+textarea {
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #33C3F0;
+  outline: 0; }
+label,
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600; }
+fieldset {
+  padding: 0;
+  border-width: 0; }
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline; }
+label > .label-body {
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal; }
+ul {
+  list-style: circle inside; }
+ol {
+  list-style: decimal inside; }
+ol, ul {
+  padding-left: 0;
+  margin-top: 0; }
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 90%; }
+li {
+  margin-bottom: 1rem; }
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #E1E1E1; }
+th:first-child,
+td:first-child {
+  padding-left: 0; }
+th:last-child,
+td:last-child {
+  padding-right: 0; }
+button,
+.button {
+  margin-bottom: 1rem; }
+input,
+textarea,
+select,
+fieldset {
+  margin-bottom: 1.5rem; }
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+  margin-bottom: 2.5rem; }
+.u-full-width {
+  width: 100%;
+  box-sizing: border-box; }
+.u-max-full-width {
+  max-width: 100%;
+  box-sizing: border-box; }
+.u-pull-right {
+  float: right; }
+.u-pull-left {
+  float: left; }
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+  border-top: 1px solid #E1E1E1; }
+.container:after,
+.row:after,
+.u-cf {
+  content: "";
+  display: table;
+  clear: both; }
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+
+@media (min-width: 400px) {}
+@media (min-width: 550px) {}
+@media (min-width: 750px) {}
+@media (min-width: 1000px) {}
+@media (min-width: 1200px) {}
+
+</style>
+
+<style>
+.hll { background-color: #ffffcc }
+.c { color: #408080; font-style: italic } /* Comment */
+.err { border: 1px solid #FF0000 } /* Error */
+.k { color: #008000; font-weight: bold } /* Keyword */
+.o { color: #666666 } /* Operator */
+.ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.cp { color: #BC7A00 } /* Comment.Preproc */
+.cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.c1 { color: #408080; font-style: italic } /* Comment.Single */
+.cs { color: #408080; font-style: italic } /* Comment.Special */
+.gd { color: #A00000 } /* Generic.Deleted */
+.ge { font-style: italic } /* Generic.Emph */
+.gr { color: #FF0000 } /* Generic.Error */
+.gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.gi { color: #00A000 } /* Generic.Inserted */
+.go { color: #888888 } /* Generic.Output */
+.gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.gt { color: #0044DD } /* Generic.Traceback */
+.kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.kp { color: #008000 } /* Keyword.Pseudo */
+.kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.kt { color: #B00040 } /* Keyword.Type */
+.m { color: #666666 } /* Literal.Number */
+.s { color: #BA2121 } /* Literal.String */
+.na { color: #7D9029 } /* Name.Attribute */
+.nb { color: #008000 } /* Name.Builtin */
+.nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.no { color: #880000 } /* Name.Constant */
+.nd { color: #AA22FF } /* Name.Decorator */
+.ni { color: #999999; font-weight: bold } /* Name.Entity */
+.ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.nf { color: #0000FF } /* Name.Function */
+.nl { color: #A0A000 } /* Name.Label */
+.nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.nt { color: #008000; font-weight: bold } /* Name.Tag */
+.nv { color: #19177C } /* Name.Variable */
+.ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.w { color: #bbbbbb } /* Text.Whitespace */
+.mb { color: #666666 } /* Literal.Number.Bin */
+.mf { color: #666666 } /* Literal.Number.Float */
+.mh { color: #666666 } /* Literal.Number.Hex */
+.mi { color: #666666 } /* Literal.Number.Integer */
+.mo { color: #666666 } /* Literal.Number.Oct */
+.sa { color: #BA2121 } /* Literal.String.Affix */
+.sb { color: #BA2121 } /* Literal.String.Backtick */
+.sc { color: #BA2121 } /* Literal.String.Char */
+.dl { color: #BA2121 } /* Literal.String.Delimiter */
+.sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.s2 { color: #BA2121 } /* Literal.String.Double */
+.se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.sh { color: #BA2121 } /* Literal.String.Heredoc */
+.si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.sx { color: #008000 } /* Literal.String.Other */
+.sr { color: #BB6688 } /* Literal.String.Regex */
+.s1 { color: #BA2121 } /* Literal.String.Single */
+.ss { color: #19177C } /* Literal.String.Symbol */
+.bp { color: #008000 } /* Name.Builtin.Pseudo */
+.fm { color: #0000FF } /* Name.Function.Magic */
+.vc { color: #19177C } /* Name.Variable.Class */
+.vg { color: #19177C } /* Name.Variable.Global */
+.vi { color: #19177C } /* Name.Variable.Instance */
+.vm { color: #19177C } /* Name.Variable.Magic */
+.il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
+
+
+
+
+
+<style>
+h1.title {margin-top : 20px}
+img {max-width : 100%}
+
+#From nbconvert
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+
+</HEAD>
+<BODY>
+    <div class ="container">
+        <div class = "row">
+            <div class = "col-md-12 twelve columns">
+
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair_recipes</span> <span class="kn">as</span> <span class="nn">ar</span>
+<span class="kn">from</span> <span class="nn">altair_recipes.common</span> <span class="kn">import</span> <span class="n">viz_reg_test</span>
+<span class="kn">from</span> <span class="nn">altair_recipes.display_altair</span> <span class="kn">import</span> <span class="n">show_test</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+</pre></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vega@3"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+
+<h2>Qqplot</h2>
+
+<div class="highlight"><pre><span></span><span class="nd">@viz_reg_test</span>
+<span class="k">def</span> <span class="nf">test_qqplot</span><span class="p">():</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;Trial A&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
+        <span class="s1">&#39;Trial B&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
+        <span class="s1">&#39;Trial C&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="p">})</span>
+    <span class="k">return</span> <span class="n">ar</span><span class="o">.</span><span class="n">qqplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Trial A&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Trial C&#39;</span><span class="p">)</span>
+
+<span class="n">show_test</span><span class="p">(</span><span class="n">test_qqplot</span><span class="p">)</span>
+</pre></div>
+
+
+
+ <div id="A8f43a10ecc81483c143f289897bc2a6515ff5860d21bf87423c270280125a7fc"></div>
+  <script type="text/javascript">
+    var spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.6.0.json",
+  "config": {
+    "view": {
+      "height": 300,
+      "width": 400
+    }
+  },
+  "data": {
+    "name": "data-4b31e525e95c21b8f0317702b3317f1d"
+  },
+  "datasets": {
+    "data-4b31e525e95c21b8f0317702b3317f1d": [
+      {
+        "Trial A": -2.547755758837977,
+        "Trial B": -5.84185329200759,
+        "Trial C": 2.0000381201454354
+      },
+      {
+        "Trial A": -1.8029377241242217,
+        "Trial B": -4.426672030737785,
+        "Trial C": 2.0145000020706214
+      },
+      {
+        "Trial A": -1.6309059558438739,
+        "Trial B": -4.051626349575104,
+        "Trial C": 2.026579632079808
+      },
+      {
+        "Trial A": -1.4230421222534377,
+        "Trial B": -3.9363777765419807,
+        "Trial C": 2.0357427239861954
+      },
+      {
+        "Trial A": -1.304945451005652,
+        "Trial B": -3.8251381699827127,
+        "Trial C": 2.043502718911569
+      },
+      {
+        "Trial A": -1.2036471398365918,
+        "Trial B": -3.7080984610439014,
+        "Trial C": 2.0597817366659696
+      },
+      {
+        "Trial A": -1.1623250530249847,
+        "Trial B": -3.5932450030956984,
+        "Trial C": 2.066105628201374
+      },
+      {
+        "Trial A": -1.0883353680475658,
+        "Trial B": -3.5140734601423826,
+        "Trial C": 2.0732805134497405
+      },
+      {
+        "Trial A": -1.0249392952173713,
+        "Trial B": -3.4509087765070707,
+        "Trial C": 2.0791969766637823
+      },
+      {
+        "Trial A": -0.9934028398167041,
+        "Trial B": -3.336850879855894,
+        "Trial C": 2.088072306018966
+      },
+      {
+        "Trial A": -0.9513156517974172,
+        "Trial B": -3.2991025007234063,
+        "Trial C": 2.0976357023502037
+      },
+      {
+        "Trial A": -0.8950060981839236,
+        "Trial B": -3.223164265266522,
+        "Trial C": 2.1106536504651534
+      },
+      {
+        "Trial A": -0.8739748122380614,
+        "Trial B": -3.1687429383726715,
+        "Trial C": 2.123986819776976
+      },
+      {
+        "Trial A": -0.8228732059036477,
+        "Trial B": -3.0908237412544457,
+        "Trial C": 2.1363224908404783
+      },
+      {
+        "Trial A": -0.7672360067032525,
+        "Trial B": -3.056288352959782,
+        "Trial C": 2.1460020100799557
+      },
+      {
+        "Trial A": -0.7485256556325576,
+        "Trial B": -3.023225042240807,
+        "Trial C": 2.1584025234031605
+      },
+      {
+        "Trial A": -0.7190014092017554,
+        "Trial B": -2.988399705797842,
+        "Trial C": 2.1700851130183625
+      },
+      {
+        "Trial A": -0.6968388929384399,
+        "Trial B": -2.951608151251588,
+        "Trial C": 2.1839366902947406
+      },
+      {
+        "Trial A": -0.6688018039312079,
+        "Trial B": -2.8923042991419723,
+        "Trial C": 2.1939926129041334
+      },
+      {
+        "Trial A": -0.6513820969762671,
+        "Trial B": -2.86321683519558,
+        "Trial C": 2.200179842148104
+      },
+      {
+        "Trial A": -0.617930655167311,
+        "Trial B": -2.8303707671707405,
+        "Trial C": 2.2123449826793706
+      },
+      {
+        "Trial A": -0.5792555184848504,
+        "Trial B": -2.7789337220644734,
+        "Trial C": 2.220975885359109
+      },
+      {
+        "Trial A": -0.5513686612314603,
+        "Trial B": -2.747757870969728,
+        "Trial C": 2.2333997522240296
+      },
+      {
+        "Trial A": -0.532500855965336,
+        "Trial B": -2.7187511904547046,
+        "Trial C": 2.2450740877532764
+      },
+      {
+        "Trial A": -0.5002773507289893,
+        "Trial B": -2.684657618804599,
+        "Trial C": 2.259665111056437
+      },
+      {
+        "Trial A": -0.47761150890468806,
+        "Trial B": -2.658435028760768,
+        "Trial C": 2.2678826087991713
+      },
+      {
+        "Trial A": -0.4527658456180512,
+        "Trial B": -2.6287196085937543,
+        "Trial C": 2.2803161631740454
+      },
+      {
+        "Trial A": -0.4294157662127275,
+        "Trial B": -2.6047194272158456,
+        "Trial C": 2.2888856681160883
+      },
+      {
+        "Trial A": -0.4070817745144231,
+        "Trial B": -2.580819866252616,
+        "Trial C": 2.298638283915589
+      },
+      {
+        "Trial A": -0.38112253791872863,
+        "Trial B": -2.532980260793118,
+        "Trial C": 2.30683867247629
+      },
+      {
+        "Trial A": -0.3610660149323546,
+        "Trial B": -2.517356322542283,
+        "Trial C": 2.3166197498411556
+      },
+      {
+        "Trial A": -0.3397184286908243,
+        "Trial B": -2.4883315531869146,
+        "Trial C": 2.3258340497157195
+      },
+      {
+        "Trial A": -0.3230067828817335,
+        "Trial B": -2.4438294738847075,
+        "Trial C": 2.3360220932686317
+      },
+      {
+        "Trial A": -0.3070684563092825,
+        "Trial B": -2.417075306975793,
+        "Trial C": 2.3481604696735947
+      },
+      {
+        "Trial A": -0.2834171916878436,
+        "Trial B": -2.3907126124707947,
+        "Trial C": 2.358611981010149
+      },
+      {
+        "Trial A": -0.2688049007083023,
+        "Trial B": -2.366661541064706,
+        "Trial C": 2.3685536599461785
+      },
+      {
+        "Trial A": -0.2420348382361408,
+        "Trial B": -2.346368237018436,
+        "Trial C": 2.3757861748764766
+      },
+      {
+        "Trial A": -0.21099393450512605,
+        "Trial B": -2.316953792027725,
+        "Trial C": 2.3849585462764784
+      },
+      {
+        "Trial A": -0.18107687226120522,
+        "Trial B": -2.29058394202105,
+        "Trial C": 2.3948157372496652
+      },
+      {
+        "Trial A": -0.16705396092123562,
+        "Trial B": -2.254789417873617,
+        "Trial C": 2.4026601147143882
+      },
+      {
+        "Trial A": -0.15167516795793715,
+        "Trial B": -2.2373486227121933,
+        "Trial C": 2.416119794431035
+      },
+      {
+        "Trial A": -0.12814000792527414,
+        "Trial B": -2.204898914720954,
+        "Trial C": 2.4273563236332194
+      },
+      {
+        "Trial A": -0.11759891356652902,
+        "Trial B": -2.1691403382429315,
+        "Trial C": 2.4317931881597095
+      },
+      {
+        "Trial A": -0.10372573251510137,
+        "Trial B": -2.148780706457623,
+        "Trial C": 2.439297026784203
+      },
+      {
+        "Trial A": -0.08576805018687814,
+        "Trial B": -2.1334871731540286,
+        "Trial C": 2.449678917381277
+      },
+      {
+        "Trial A": -0.06861915357836232,
+        "Trial B": -2.103532077090499,
+        "Trial C": 2.4556960139778754
+      },
+      {
+        "Trial A": -0.05035402451179112,
+        "Trial B": -2.088229504905046,
+        "Trial C": 2.46994428035231
+      },
+      {
+        "Trial A": -0.034204367794284596,
+        "Trial B": -2.074120959383457,
+        "Trial C": 2.479204501461197
+      },
+      {
+        "Trial A": -0.01435900568504729,
+        "Trial B": -2.0522225790887783,
+        "Trial C": 2.49315606285844
+      },
+      {
+        "Trial A": 0.009179611832568737,
+        "Trial B": -2.030371493191296,
+        "Trial C": 2.50218713616521
+      },
+      {
+        "Trial A": 0.030744970915558306,
+        "Trial B": -2.003844971130831,
+        "Trial C": 2.5100293862355105
+      },
+      {
+        "Trial A": 0.061668858429238936,
+        "Trial B": -1.9762600099671155,
+        "Trial C": 2.5237670909980676
+      },
+      {
+        "Trial A": 0.07468115413017581,
+        "Trial B": -1.9586432886202094,
+        "Trial C": 2.5371433089594526
+      },
+      {
+        "Trial A": 0.09128735768519226,
+        "Trial B": -1.9380690055843455,
+        "Trial C": 2.543328499631688
+      },
+      {
+        "Trial A": 0.10490281061080894,
+        "Trial B": -1.8956269536565775,
+        "Trial C": 2.548881878056648
+      },
+      {
+        "Trial A": 0.12535924241829455,
+        "Trial B": -1.8693603135605308,
+        "Trial C": 2.5639265659130723
+      },
+      {
+        "Trial A": 0.1489652223803883,
+        "Trial B": -1.834354295775177,
+        "Trial C": 2.5755971780166114
+      },
+      {
+        "Trial A": 0.17479949298634928,
+        "Trial B": -1.8144408193729493,
+        "Trial C": 2.5877032206399337
+      },
+      {
+        "Trial A": 0.18873889154555215,
+        "Trial B": -1.7962638544428806,
+        "Trial C": 2.5948312552933546
+      },
+      {
+        "Trial A": 0.20288336425223114,
+        "Trial B": -1.7679354792159343,
+        "Trial C": 2.6047233919610395
+      },
+      {
+        "Trial A": 0.21376348939541162,
+        "Trial B": -1.7530840304292548,
+        "Trial C": 2.618153449021086
+      },
+      {
+        "Trial A": 0.23846867063895966,
+        "Trial B": -1.711099305376866,
+        "Trial C": 2.629050760841095
+      },
+      {
+        "Trial A": 0.2598542533907096,
+        "Trial B": -1.6726555029364643,
+        "Trial C": 2.6395603850587013
+      },
+      {
+        "Trial A": 0.28677397822332307,
+        "Trial B": -1.6400789435075804,
+        "Trial C": 2.6525241437292415
+      },
+      {
+        "Trial A": 0.30906122929854374,
+        "Trial B": -1.600905157781076,
+        "Trial C": 2.658777549348893
+      },
+      {
+        "Trial A": 0.3441152691704369,
+        "Trial B": -1.550130799771027,
+        "Trial C": 2.6760370571051304
+      },
+      {
+        "Trial A": 0.3585683480493411,
+        "Trial B": -1.5197506684448747,
+        "Trial C": 2.6871332725874293
+      },
+      {
+        "Trial A": 0.3861049376232261,
+        "Trial B": -1.4921353894847154,
+        "Trial C": 2.697078346957295
+      },
+      {
+        "Trial A": 0.4140944262331997,
+        "Trial B": -1.4527855740326845,
+        "Trial C": 2.7048462506303483
+      },
+      {
+        "Trial A": 0.43959709527041735,
+        "Trial B": -1.4219812403957437,
+        "Trial C": 2.7170428077901887
+      },
+      {
+        "Trial A": 0.45028012255933036,
+        "Trial B": -1.396518842846971,
+        "Trial C": 2.7329594210136423
+      },
+      {
+        "Trial A": 0.47974802595374333,
+        "Trial B": -1.3641858308739307,
+        "Trial C": 2.74162937383544
+      },
+      {
+        "Trial A": 0.5052032957384358,
+        "Trial B": -1.3411881548283284,
+        "Trial C": 2.7479844776775417
+      },
+      {
+        "Trial A": 0.5282676334346684,
+        "Trial B": -1.2918802089129613,
+        "Trial C": 2.760623308797886
+      },
+      {
+        "Trial A": 0.5454764985370268,
+        "Trial B": -1.253183881371039,
+        "Trial C": 2.76953451499309
+      },
+      {
+        "Trial A": 0.5708032149977667,
+        "Trial B": -1.2317048836475917,
+        "Trial C": 2.7788884736866315
+      },
+      {
+        "Trial A": 0.5870589783057018,
+        "Trial B": -1.199509483117823,
+        "Trial C": 2.788576684534431
+      },
+      {
+        "Trial A": 0.6062966373710271,
+        "Trial B": -1.174972438127423,
+        "Trial C": 2.7952862116750694
+      },
+      {
+        "Trial A": 0.6412111898045938,
+        "Trial B": -1.1208902940059258,
+        "Trial C": 2.8087581395121135
+      },
+      {
+        "Trial A": 0.6612181091517897,
+        "Trial B": -1.0948685798216091,
+        "Trial C": 2.81394200761626
+      },
+      {
+        "Trial A": 0.68610295663381,
+        "Trial B": -1.073959487524289,
+        "Trial C": 2.82070400072669
+      },
+      {
+        "Trial A": 0.7075539382677875,
+        "Trial B": -1.0439171712623359,
+        "Trial C": 2.831632891327873
+      },
+      {
+        "Trial A": 0.747271829234323,
+        "Trial B": -1.002872212043223,
+        "Trial C": 2.843836444108994
+      },
+      {
+        "Trial A": 0.7856038212917354,
+        "Trial B": -0.9660456991710658,
+        "Trial C": 2.854917941715783
+      },
+      {
+        "Trial A": 0.8178164845142913,
+        "Trial B": -0.928266019324792,
+        "Trial C": 2.8611185242866335
+      },
+      {
+        "Trial A": 0.8524345392452873,
+        "Trial B": -0.8923683241154822,
+        "Trial C": 2.869153735025322
+      },
+      {
+        "Trial A": 0.8899910020596684,
+        "Trial B": -0.8617681856223032,
+        "Trial C": 2.876870609084609
+      },
+      {
+        "Trial A": 0.9427414917884381,
+        "Trial B": -0.8050183840987867,
+        "Trial C": 2.883824611331717
+      },
+      {
+        "Trial A": 0.9697530255107889,
+        "Trial B": -0.7673533487796007,
+        "Trial C": 2.892474750604652
+      },
+      {
+        "Trial A": 1.0091246481694593,
+        "Trial B": -0.7328412112381377,
+        "Trial C": 2.899289804442646
+      },
+      {
+        "Trial A": 1.0300560732572142,
+        "Trial B": -0.6340784253471176,
+        "Trial C": 2.9124152809007215
+      },
+      {
+        "Trial A": 1.0688107056778173,
+        "Trial B": -0.5860815865675372,
+        "Trial C": 2.929458393828685
+      },
+      {
+        "Trial A": 1.1361340799772983,
+        "Trial B": -0.5285651311998026,
+        "Trial C": 2.9336365193942906
+      },
+      {
+        "Trial A": 1.2059644440807624,
+        "Trial B": -0.48440617346280296,
+        "Trial C": 2.9433291152035834
+      },
+      {
+        "Trial A": 1.2699996821648085,
+        "Trial B": -0.42760995113380706,
+        "Trial C": 2.95422532987289
+      },
+      {
+        "Trial A": 1.3306294254849962,
+        "Trial B": -0.29392836483656903,
+        "Trial C": 2.960974579181974
+      },
+      {
+        "Trial A": 1.3826155913338254,
+        "Trial B": -0.1801758596501244,
+        "Trial C": 2.9724297605719348
+      },
+      {
+        "Trial A": 1.4561369435555536,
+        "Trial B": -0.09269704385849387,
+        "Trial C": 2.9769066288221313
+      },
+      {
+        "Trial A": 1.5454017058906677,
+        "Trial B": 0.07985200886462035,
+        "Trial C": 2.9856801433566384
+      },
+      {
+        "Trial A": 1.7468290782557783,
+        "Trial B": 0.5661692353949406,
+        "Trial C": 2.9941164475573334
+      }
+    ]
+  },
+  "encoding": {
+    "x": {
+      "field": "Trial A",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "Trial C",
+      "type": "quantitative"
+    }
+  },
+  "mark": "point"
+};
+    var opt = {"renderer": "canvas", "actions": false};
+    vegaEmbed("#A8f43a10ecc81483c143f289897bc2a6515ff5860d21bf87423c270280125a7fc", spec, opt);
+  </script>
+  
+    <HR/>
+    <div class="footer">
+      <p>Published from <a href="test_qqplot.py">test_qqplot.py</a>
+    using <a href="http://mpastell.com/pweave">Pweave</a> 0.30.3
+    on 18-09-2018.<p></div>
+
+            </div>
+        </div>
+    </div>
+  </BODY>
+</HTML>
