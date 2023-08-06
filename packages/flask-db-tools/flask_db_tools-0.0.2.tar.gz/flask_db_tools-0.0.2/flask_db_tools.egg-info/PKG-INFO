@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: flask-db-tools
+Version: 0.0.2
+Summary: Flask databases tools
+Home-page: UNKNOWN
+Author: Boris M
+Author-email: bb@bb.com
+License: BSD License
+Description: Flask databases tools
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
