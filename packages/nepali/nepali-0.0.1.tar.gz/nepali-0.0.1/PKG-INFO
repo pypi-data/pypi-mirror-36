@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: nepali
+Version: 0.0.1
+Summary: Nepali date converting and displaying.
+Home-page: https://github.com/aj3sh/nepali
+Author: Ajesh Sen Thapa
+Author-email: aj3sshh@gmail.com
+License: UNKNOWN
+Description: # Nepali
+        
+        Python package for processing every nepali stuff
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
