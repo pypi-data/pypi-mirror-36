@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: rautils
+Version: 1.0.7
+Summary: Python utility for file manipulation
+Home-page: https://github.com/parthspatel/rautils
+Author: Parth S. Patel
+Author-email: parthspatel.nj@gmail.com
+License: UNKNOWN
+Description: # My Modules
+        
+        Python utility for file manipulation
+        
+        # Table of Contents
+        1. [rautils](#rautils)
+        
+        ## rautils
+        Utilites for file manipulation
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
