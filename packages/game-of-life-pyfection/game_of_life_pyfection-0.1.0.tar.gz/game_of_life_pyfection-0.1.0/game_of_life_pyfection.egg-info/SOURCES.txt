@@ -1,0 +1,13 @@
+README.rst
+setup.py
+game_of_life_pyfection/board.py
+game_of_life_pyfection/cell.py
+game_of_life_pyfection/cli.py
+game_of_life_pyfection/constants.py
+game_of_life_pyfection/game.py
+game_of_life_pyfection/settings.py
+game_of_life_pyfection.egg-info/PKG-INFO
+game_of_life_pyfection.egg-info/SOURCES.txt
+game_of_life_pyfection.egg-info/dependency_links.txt
+game_of_life_pyfection.egg-info/not-zip-safe
+game_of_life_pyfection.egg-info/top_level.txt
