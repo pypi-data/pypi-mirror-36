@@ -1,0 +1,9 @@
+[console_scripts]
+np-api-server = kaze.bin.api_server:main
+np-bootstrap = kaze.bin.bootstrap:main
+np-export = kaze.bin.export_blocks:main
+np-import = kaze.bin.import_blocks:main
+np-prompt = kaze.bin.prompt:main
+np-reencrypt-wallet = kaze.bin.reencrypt_wallet:main
+np-sign = kaze.bin.sign_message:main
+
