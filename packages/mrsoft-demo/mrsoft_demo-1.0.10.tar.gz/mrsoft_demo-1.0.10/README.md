@@ -1,0 +1,1 @@
+This is a small program that can calculate the BMI index based on height and weight.
