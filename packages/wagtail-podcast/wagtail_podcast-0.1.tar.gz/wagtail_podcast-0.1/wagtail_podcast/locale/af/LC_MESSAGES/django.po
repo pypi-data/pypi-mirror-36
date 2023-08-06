@@ -1,0 +1,198 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-24 15:57+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models.py:26
+msgid "Language of podcast"
+msgstr "Taal van die podcast"
+
+#: models.py:27
+msgid "Language"
+msgstr "Taal"
+
+#: models.py:29
+msgid "Copyright holder of podcast"
+msgstr "Kopiereg houer van die podcast"
+
+#: models.py:30
+msgid "Copyright"
+msgstr "Kopiereg"
+
+#: models.py:32
+msgid "Subtitle of podacst"
+msgstr "Byskrif van die podcast"
+
+#: models.py:32 models.py:175
+msgid "Subtitle"
+msgstr "Byskrif"
+
+#: models.py:34
+msgid "Author of podcast"
+msgstr "Skrywer/Aanbieder van die podcast"
+
+#: models.py:34 models.py:173
+msgid "Author"
+msgstr "Skrywer/Aanbieder"
+
+#: models.py:36
+msgid "Description of nature of podcast"
+msgstr "Beskrywing van die podcast"
+
+#: models.py:36 models.py:176
+#, fuzzy
+#| msgid "Description of podcast"
+msgid "Description"
+msgstr "Beskrywing"
+
+#: models.py:38
+msgid "Owner of the podcast channel"
+msgstr "Eienaar van die podcast kanaal"
+
+#: models.py:39
+msgid "Owner name"
+msgstr "Eienaar se naam"
+
+#: models.py:41
+msgid "Email address of the podcast owner"
+msgstr "Epos adres van podcast eienaar"
+
+#: models.py:41
+msgid "Owner email"
+msgstr "Eienaar se epos"
+
+#: models.py:49 models.py:205
+msgid "Image"
+msgstr "Foto"
+
+#: models.py:50
+#| msgid "Copyright holder of podcast"
+msgid "Cover image for podcast"
+msgstr "Kopireg houer van die podcast"
+
+#: models.py:53
+msgid "Category of the podcast address"
+msgstr "Kategorie vir die podcast"
+
+#: models.py:54
+msgid "Category"
+msgstr "Kategorie"
+
+#: models.py:56
+msgid "Main text page that appears on the root page"
+msgstr "Teks wat op die indeks bladsy verskuin"
+
+#: models.py:57 models.py:197
+msgid "Page Text"
+msgstr "Bladsy Teks"
+
+#: models.py:59
+msgid "Itunes Podcast Url"
+msgstr "Itunes Podcast Url"
+
+#: models.py:60
+msgid "Google Play Podcast Url"
+msgstr "Google Play Podcast Url"
+
+#: models.py:61
+msgid "Blubrry Podcast Url"
+msgstr "Blubrry Podcast Url"
+
+#: models.py:63
+msgid "Whether the podcast channel contains explicit content"
+msgstr "Of daar eksplisiete inhoud op die kanaal voorkom"
+
+#: models.py:64 models.py:188
+msgid "Explicit"
+msgstr "Eksplisiete Status"
+
+#: models.py:80
+msgid "Podcast Directory URLs"
+msgstr "Podcast Directory URLs"
+
+#: models.py:93
+msgid "Podcast Root Page"
+msgstr "Podcast Vader Bladsy"
+
+#: models.py:166
+msgid "Full"
+msgstr "Vol"
+
+#: models.py:167
+msgid "Trailer"
+msgstr "Voorskou"
+
+#: models.py:168
+msgid "Bonus"
+msgstr "Bonus"
+
+#: models.py:171
+msgid "Type of episode"
+msgstr "Tiepe episode"
+
+#: models.py:172
+msgid "Episode Type"
+msgstr "Episode Tiepe"
+
+#: models.py:173
+msgid "Author of particular podcast"
+msgstr "Skywer/Aanbieder van hierdie podcast"
+
+#: models.py:174
+msgid "Subtitle of particular podcast"
+msgstr "Byskrif vir hierdie podcast"
+
+#: models.py:176
+msgid "Description of podcast"
+msgstr "Beskrywing van die podcast"
+
+#: models.py:184
+msgid "Recording"
+msgstr "Opname"
+
+#: models.py:187
+msgid "Whether the podcast contains explicit content"
+msgstr "Of hierdie podcast eksplisiete inhoud bevat"
+
+#: models.py:196
+msgid "Content that accompanies the podcast"
+msgstr "Teks inhoud wat met die podcast gaan"
+
+#: models.py:230
+msgid "Podcast"
+msgstr "Podcast"
+
+#: templates/podcast/podcast_base.html:13
+msgid "Subscribe"
+msgstr "Subscribe"
+
+#: templates/podcast/podcast_base.html:31
+msgid "Direct"
+msgstr "Direk"
+
+#: templates/podcast/podcast_base.html:46
+msgid "Archive"
+msgstr "Argief"
+
+#: templates/podcast/podcast_page.html:49
+msgid "No text available"
+msgstr "Geen teks beskikbaar nie"
+
+#: templates/podcast/podcast_parent_page.html:35
+msgid "No description available"
+msgstr "Geen beskywing beskikbaar nie"

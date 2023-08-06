@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static i18n %}
+<head>
+    <link rel="stylesheet" href="{% static 'wagtail_podcast/css/bootstrap.min.css' %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'wagtail_podcast/css/all.css' %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'wagtail_podcast/css/custom.css' %}" type="text/css"/>
+    <script src="{% static 'wagtail_podcast/js/jquery.min.js' %}"></script>
+</head>
+<body>
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8 col-md-9">
+            {% block main %}
+            {% endblock %}
+        </div>
+
+        <div class="col-sm-4 col-md-3">
+
+            <h3>{% trans "Subscribe" %}</h3>
+            <hr>
+            <ul class="list-unstyled" style="font-size: large;">
+                {% if page.itunes_url %}
+                    <li style="margin-bottom: 0.25em;">
+
+                        <a href="{{ page.itunes_url }}">Itunes <i class="fab fa-itunes"></i></a>
+                    </li>
+                {% endif %}
+                {% if page.google_url %}
+                    <li style="margin-bottom: 0.25em;">
+
+                        <a href="{{ page.google_url }}">Google Play <i class="fab fa-google-play"></i></a>
+                    </li>
+                {% endif %}
+
+                <li style="margin-bottom: 0.25em;">
+                    <a href="{{ page.get_feed_url }}">
+                        {% trans "Direct" %}<i class="fas fa-podcast"></i>
+                    </a>
+                </li>
+
+                {% if page.blubrry_url %}
+                    <li style="margin-bottom: 0.25em;">
+                        <a href="{{ page.blubrry_url }}">
+                            Blubbry
+                        </a>
+                    </li>
+                {% endif %}
+
+            </ul>
+
+            <h3>
+                {% trans "Archive" %}
+            </h3>
+            <hr>
+            <ul class="list-unstyled">
+                {% regroup archives by date|date:"Y" as year_list %}
+                {% for year in year_list %}
+                    <li class="list-item dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            {{ year.grouper }}
+                        </a>
+                        <div class="dropdown-menu">
+                            {% regroup year.list by date|date:"M" as month_list %}
+                            {% for month in month_list reversed %}
+                                <a class="dropdown-item"
+                                   href="{{ page.get_podcast_url }}{{ month.list.0.date|date:"Y/m" }}">
+                                    {{ month.grouper }}
+
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}
+<script src="{% static 'wagtail_podcast/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

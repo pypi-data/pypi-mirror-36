@@ -1,0 +1,71 @@
+{% extends 'wagtail_podcast/podcast_base.html' %}
+{% load static wagtailimages_tags wagtailcore_tags social_share i18n %}
+{% block main %}
+
+
+    <link rel="stylesheet" href="{% static 'wagtail_podcast/css/mediaelementplayer.css' %}" type="text/css"/>
+
+    <div class="card">
+        {% image page.image fill-1000x667-c100 as header_image %}
+        <img class="card-img-top img-fluid" alt="{{ page.image.title }}" src="{{ header_image.url }}">
+        <div class="card-body">
+            <h1 class="card-title">{{ page.title }}</h1>
+
+            <div class="card-subtitle">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <i class="fas fa-user"></i>
+                        {{ page.author }}
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="fas fa-calendar"></i>
+                        {{ page.first_published_at|date:"DATE_FORMAT" }}
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-sm btn-primary btn-round" href="{{ page.recording.file.url }}" download><i
+                                class="fas fa-download"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card-text">
+                <audio class="mejs__player" style="width:100%;height:100%;">
+                    <source src="{{ page.recording.file.url }}" type="audio/mpeg">
+                    Jou browser kan nie MP3 speel nie
+                </audio>
+            </div>
+            <br>
+
+            <!--This includes the excerpt in the card-->
+            <div class="card-text">
+                {% if page.page_text %}
+                    {{ page.page_text|richtext }}
+                {% else %}
+                    <p>{% trans "No text available" %}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <a href="{{ page.get_parent.url }}" style="font-size: large">
+                <i class="fas fa-angle-double-left"></i></a>
+
+            <li class="list-inline-item ml-auto">
+                {% post_to_facebook page.url '<span><div class="circle-badge"><i class="fab fa-facebook-f"></i>   </div></span>' %}
+
+            </li>
+            <li class="list-inline-item">
+                {% post_to_twitter page.title page.url '<span><div class="circle-badge"><i class="fab fa-twitter"></i></div></span>' %}
+            </li>
+
+            <li class="list-inline-item">
+                {% post_to_gplus page.url '<span><div class="circle-badge"><i class="fab fa-google-plus-g"></i></div></span>' %}
+            </li>
+
+        </div>
+    </div>
+    <br>
+    {% block extra_js %}
+        <script src="{% static 'wagtail_podcast/js/mediaelement-and-player.min.js' %}"></script>
+    {% endblock %}
+{% endblock %}

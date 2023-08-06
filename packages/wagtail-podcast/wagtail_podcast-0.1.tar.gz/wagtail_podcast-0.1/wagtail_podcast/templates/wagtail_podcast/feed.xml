@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% load static wagtailcore_tags wagtailimages_tags %}
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+>
+    <channel>
+        <title>{{ page.title }}</title>
+        <link>{{ self.get_site.root_url }}{{ page.url }}</link>
+        <language>{{ page.language }}</language>
+        <copyright>{{ page.copyright }}</copyright>
+        <itunes:subtitle>{{ page.subtitle }}</itunes:subtitle>
+        <itunes:author>{{ page.author }}</itunes:author>
+        <itunes:summary>{{ page.description }}</itunes:summary>
+        <description>{{ page.description }}</description>
+        <itunes:type>serial</itunes:type>
+        <itunes:owner>
+            <itunes:name>{{ page.owner_name }}</itunes:name>
+            <itunes:email>{{ page.owner_email }}</itunes:email>
+        </itunes:owner>
+        {% image page.image fill-1400x1400 as header_image %}
+        <itunes:image href="{{ self.get_site.root_url }}{{ header_image.url }}"/>
+        {#        TODO Figure out a better way of dealing with categories #}
+        <itunes:category text="{{ page.category }}">
+            <itunes:category text="Christianity"/>
+        </itunes:category>
+        <itunes:explicit>{{ page.explicit }}</itunes:explicit>
+        {% for podcast in podcasts %}
+            <item>
+                <link>{{ self.get_site.root_url }}{{ podcast.url }}</link>
+                <itunes:episodeType>{{ podcast.episodeType }}</itunes:episodeType>
+                <itunes:title>{{ podcast.title }}</itunes:title>
+                <title>{{ podcast.title }}</title>
+                <itunes:author>{{ podcast.author }}</itunes:author>
+                <itunes:subtitle>{{ podcast.subtitle }}</itunes:subtitle>
+                <itunes:summary>{{ podcast.description }}</itunes:summary>
+                <description>{{ podcast.description }}</description>
+                <enclosure length="{{ podcast.length }}" type="audio/mpeg"
+                           url="{{ self.get_site.root_url }}{{ podcast.recording.file.url }}"/>
+                <guid>{{ podcast.guid }}</guid>
+                <pubDate>{{ podcast.last_published_at }}</pubDate>
+                <itunes:duration>{{ podcast.duration }}</itunes:duration>
+                <itunes:explicit>{{ podcast.explicit }}</itunes:explicit>
+            </item>
+        {% endfor %}
+    </channel>
+</rss>

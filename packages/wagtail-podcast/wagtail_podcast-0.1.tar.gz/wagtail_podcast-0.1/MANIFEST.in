@@ -1,0 +1,6 @@
+include LICENSE
+include README.rst
+recursive-include wagtail_podcast *
+recursive-include wagatil_podcast/templates *
+recursive-include wagtail_podcast/docs *
+recursive-exclude wagtail_podcast/docs/build *

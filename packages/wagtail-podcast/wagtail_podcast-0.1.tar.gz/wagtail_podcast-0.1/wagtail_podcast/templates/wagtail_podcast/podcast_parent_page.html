@@ -1,0 +1,92 @@
+{% extends 'wagtail_podcast/podcast_base.html' %}
+{% load wagtailimages_tags wagtailcore_tags social_share i18n %}
+
+{% block main %}
+    {% load i18n %}
+
+
+    {% for podcast in podcasts %}
+        <div class="card">
+            {% image podcast.specific.image fill-600x400-c100 as header_image %}
+            <img class="card-img-top img-fluid" alt="{{ podcast.image.title }}" src="{{ header_image.url }}">
+            <div class="card-body">
+                <h1 class="card-title">{{ podcast.title }}</h1>
+                <div class="card-subtitle">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <i class="fas fa-user"></i>
+                            {{ podcast.specific.author }}
+                        </li>
+                        <li class="list-inline-item">
+                            <i class="fas fa-calendar"></i>
+                            {{ podcast.first_published_at|date:"DATE_FORMAT" }}
+                        </li>
+                    </ul>
+                </div>
+                <!--This includes the excerpt in the card-->
+                <div class="card-text">
+                    {% if podcast.description %}
+                        {{ podcast.description }}
+                    {% else %}
+                        <p>{% trans "No description available" %}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card-footer">
+
+                <li class="list-inline-item">
+                    {% post_to_facebook podcast.url '<span><div class="circle-badge"><i class="fab fa-facebook-f"></i>   </div></span>' %}
+
+                </li>
+                <li class="list-inline-item">
+                    {% post_to_twitter podcast.title podcast.url '<span><div class="circle-badge"><i class="fab fa-twitter"></i></div></span>' %}
+                </li>
+                <li class="list-inline-item">
+                    {% post_to_gplus podcast.url '<span><div class="circle-badge"><i class="fab fa-google-plus-g"></i></div></span>' %}
+                </li>
+                <a class='ml-auto' style="font-size: large"
+                   href="{{ podcast.url }}"><i class="fas fa-angle-double-right"></i></a>
+            </div>
+        </div>
+
+
+        <br>
+    {% endfor %}
+
+    <nav aria-label="...">
+        <ul class="pagination justify-content-center">
+            {% if podcasts.has_previous %}
+                <li>
+                    <a class="page-link" href="?page={{ podcasts.previous_page_number }}"><i
+                            class="fa fa-angle-left"></i></a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#"><i class="fa fa-angle-left"></i></a>
+                </li>
+            {% endif %}
+
+            {% for page_num in podcasts.paginator.page_range %}
+                <li {% if page_num == podcasts.number %} class="page-item active"{% endif %} class="page-item">
+                    <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                </li>
+            {% endfor %}
+
+            {% if podcasts.has_next %}
+                <li>
+                    <a class="page-link" href="?page={{ podcasts.next_page_number }}"><i
+                            class="fa fa-angle-right"></i></a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+
+
+
+{% endblock %}
