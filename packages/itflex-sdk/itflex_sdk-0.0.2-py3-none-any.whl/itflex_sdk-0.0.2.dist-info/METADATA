@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: itflex-sdk
+Version: 0.0.2
+Summary: Python SDK - iTFLEX products
+Home-page: UNKNOWN
+Author: iTFLEX Tecnologia
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: dataclasses (<2,>=0.6)
+Requires-Dist: requests (>=2.19)
+Requires-Dist: pendulum (>=2.0)
+
+# SDK Python
+
+
