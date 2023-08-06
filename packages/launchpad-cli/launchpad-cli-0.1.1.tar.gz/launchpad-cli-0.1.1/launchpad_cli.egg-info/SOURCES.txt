@@ -1,0 +1,12 @@
+README.rst
+setup.cfg
+setup.py
+launchpad_cli.egg-info/PKG-INFO
+launchpad_cli.egg-info/SOURCES.txt
+launchpad_cli.egg-info/dependency_links.txt
+launchpad_cli.egg-info/entry_points.txt
+launchpad_cli.egg-info/not-zip-safe
+launchpad_cli.egg-info/requires.txt
+launchpad_cli.egg-info/top_level.txt
+launchpadcli/__init__.py
+launchpadcli/cli.py
