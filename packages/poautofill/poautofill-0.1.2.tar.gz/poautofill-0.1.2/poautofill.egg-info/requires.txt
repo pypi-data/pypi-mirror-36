@@ -1,0 +1,7 @@
+click
+polib
+requests
+
+[dev]
+black
+detox
