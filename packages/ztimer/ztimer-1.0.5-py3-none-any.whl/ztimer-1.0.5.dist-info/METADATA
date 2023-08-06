@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: ztimer
+Version: 1.0.5
+Summary: 计时器池管理器, 将多个计时器挂在到计时器管理器中, 用一个线程来统一管理, 减少资源消耗
+Home-page: https://pypi.org/
+Author: zlyuan
+Author-email: 1277260932@qq.com
+License: GNU GENERAL PUBLIC LICENSE
+Platform: all
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: zsingleton
+Requires-Dist: zblocker (>=1.0.2)
+
+
+计时器池管理器
+作用:
+    将多个计时器挂在到计时器管理器中, 用一个线程来统一管理, 减少资源消耗
+    别的多线程计时器在线程切换时会造成额外资源消耗
+    管理线程会根据在创建第一个计时器时自动启动, 关闭最后一个计时器后自动关闭
+注意:
+    尽量不要调用Timer_Manager()中的close(), add_timer(), remove_timer()函数, 除非你真的完全了解这个模块
+    在计时器回调函数中调用close(), add_timer(), remove_timer()函数会造成死锁
+
+测试代码:
+if __name__ == '__main__':
+    def fun1(t: Timer):
+        print('回调', t.meta, t.callback_count, time.strftime('  %H:%M:%S', time.localtime()))
+
+
+    def fun_de(t: Timer):
+        print(t.meta, '关闭')
+
+
+    import time
+
+    t1 = Timer(fun1, 1, 5, close_callback=fun_de, meta='计时器1   ')
+    t1.start()
+
+    time.sleep(0.5)
+    t2 = Timer(fun1, 1, 2, meta='  计时器2 ')
+    t2.start()
+
+    print('等待计时器1结束')
+    t1.join()
+    print('结束')
+
+
