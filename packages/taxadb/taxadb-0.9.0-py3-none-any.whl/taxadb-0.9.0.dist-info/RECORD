@@ -1,0 +1,17 @@
+taxadb/__init__.py,sha256=VpaWiPz_RJ9CWQ58XCjsfEeygIAFRoIshdvz92kqEDQ,68
+taxadb/__main__.py,sha256=WmgW1TBfc09GtKO1xH6bJaFbQX4zXTgZXLYokn-QUcg,82
+taxadb/accessionid.py,sha256=m9axMpXM84PxBEEv9PQJ42tx93CVgmAjADK8k3I0x-Q,4601
+taxadb/app.py,sha256=-vX5deigVH91pKde1gV41mwmO8agJ7SRGg8CiVwLT9Q,11584
+taxadb/download.py,sha256=kc4MhkdifRhVVqtKf7ktXJyV1oIR_dduzHcLgdY0Q1w,1233
+taxadb/names.py,sha256=Hfi994dwXz7HVoJQ_BjeFRHgPzvM6hx80qfI6FLSlCM,1031
+taxadb/parser.py,sha256=vFdZKx3ZHOUx6XS7D8-GJ5JK_a7yloN9p7Q8lhsJxSo,9248
+taxadb/schema.py,sha256=2o5vc9WUhOgz1QkWuySsLXyCVFLqCasypnuzuiRtqhY,9142
+taxadb/taxadb.py,sha256=PV91O3YgoVIH9r3xLmccDKbB5lhX_V1OGCRWd4qLWaQ,3988
+taxadb/taxid.py,sha256=Z9Pp9mhJJ27fg5LKlt9XljyLcAOPK-yad1PI2lZG43I,4929
+taxadb/util.py,sha256=gA99XyBwlfGalMHnsUBxAgCPZ--sgsKqNXhEG-7lqFg,890
+taxadb/version.py,sha256=_DlwPNmTZTKflLiAF8YIqSr2ao66CTjj4bQtA6hz0jM,22
+taxadb-0.9.0.dist-info/METADATA,sha256=ElYsvXroT3RDxXVrY0BB1FglCngmStyUteSclw67zV4,8075
+taxadb-0.9.0.dist-info/RECORD,,
+taxadb-0.9.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+taxadb-0.9.0.dist-info/entry_points.txt,sha256=NAoHb23WYPJYzqvv0_AHm0dIZwM6H8NyiVnfbcyBAL8,44
+taxadb-0.9.0.dist-info/top_level.txt,sha256=V8ss4qeHOY-_jk0Pw97kYs70BiOxFzR-R40SxjGvveI,7
