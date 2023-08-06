@@ -1,0 +1,86 @@
+Metadata-Version: 2.1
+Name: entente
+Version: 0.1.0
+Summary: Library for working with polygonal meshes which have vertex-wise correspondence
+Home-page: https://github.com/metabolize/entente
+Author: Metabolize
+Author-email: github@paulmelnikow.com
+License: UNKNOWN
+Description: entente
+        =======
+        
+        [![version](https://img.shields.io/pypi/v/entente.svg?style=flat-square)][pypi]
+        [![license](https://img.shields.io/pypi/l/entente.svg?style=flat-square)][pypi]
+        [![code style](https://img.shields.io/badge/code%20style-black-black.svg?style=flat-square)][black]
+        
+        Library for working with [lace][]-style polygonal meshes which have vertex-wise
+        correspondence.
+        
+        [pypi]: https://pypi.org/project/entente/
+        [black]: https://black.readthedocs.io/en/stable/
+        [lace]: https://github.com/metabolize/lace
+        
+        
+        Features
+        --------
+        
+        - Transfer landmarks from the surface of one mesh to the surface of another.
+        
+        
+        Installation
+        ------------
+        
+        Requires Python 2.7.
+        
+        ```sh
+        pip install entente
+        ```
+        
+        CGAL and cgal-bindings are required for landmark transfer and AABB tree. They
+        are optional because cgal-bindings takes a long time to build.
+        
+        ```sh
+        brew install cgal swig
+        pip install cgal-bindings
+        ```
+        
+        
+        Usage
+        -----
+        
+        ```sh
+        python -m entente.cli source.obj source.pp target1.obj target2.obj ...
+        ```
+        
+        
+        Contribute
+        ----------
+        
+        - Issue Tracker: https://github.com/metabolize/entente/issues
+        - Source Code: https://github.com/metabolize/entente
+        
+        Pull requests welcome!
+        
+        
+        Support
+        -------
+        
+        If you are having issues, please let me know.
+        
+        
+        License
+        -------
+        
+        The project is licensed under the MIT license.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Other Audience
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Artistic Software
+Classifier: Topic :: Multimedia :: Graphics :: 3D Modeling
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Description-Content-Type: text/markdown
