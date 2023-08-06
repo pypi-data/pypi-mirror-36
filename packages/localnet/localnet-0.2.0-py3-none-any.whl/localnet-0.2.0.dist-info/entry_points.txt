@@ -1,0 +1,3 @@
+[console_scripts]
+local_net = localnet:_main
+
