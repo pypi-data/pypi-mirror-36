@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+versioneer.py
+MDAnalysisData/__init__.py
+MDAnalysisData/_version.py
+MDAnalysisData/adk_equilibrium.py
+MDAnalysisData/base.py
+MDAnalysisData/datasets.py
+MDAnalysisData.egg-info/PKG-INFO
+MDAnalysisData.egg-info/SOURCES.txt
+MDAnalysisData.egg-info/dependency_links.txt
+MDAnalysisData.egg-info/top_level.txt
+MDAnalysisData.egg-info/zip-safe
+MDAnalysisData/descr/adk_equilibrium.rst
