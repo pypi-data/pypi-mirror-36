@@ -1,0 +1,11 @@
+README.md
+setup.py
+aws_target_discovery/__init__.py
+aws_target_discovery/main.py
+aws_target_discovery.egg-info/PKG-INFO
+aws_target_discovery.egg-info/SOURCES.txt
+aws_target_discovery.egg-info/dependency_links.txt
+aws_target_discovery.egg-info/entry_points.txt
+aws_target_discovery.egg-info/not-zip-safe
+aws_target_discovery.egg-info/requires.txt
+aws_target_discovery.egg-info/top_level.txt
