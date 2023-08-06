@@ -1,0 +1,9 @@
+parsedmarc/__init__.py,sha256=8wzuwKXhD7IOkgQtzom-U4KsPk1PkyJmp2R1LuGZNZk,64478
+parsedmarc/cli.py,sha256=f0GaCXHFof1ZKB3qks9czPw6FhgkVnv69RuoeTvp4v8,12696
+parsedmarc/elastic.py,sha256=okZM_B6vL5aQcHNNWyZV1kQBRQP63vp9JUhE_3jRKBk,13653
+parsedmarc/splunk.py,sha256=LXsJPctXTQMCSQTIyFUjJlxnyWxVpuHCkI3ZexcMi64,5000
+parsedmarc-4.0.0.dist-info/METADATA,sha256=gR_It8u3JLk2SR7OxxPj5BDl3zLwWX_pqCW1nb-pKGc,15804
+parsedmarc-4.0.0.dist-info/RECORD,,
+parsedmarc-4.0.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+parsedmarc-4.0.0.dist-info/entry_points.txt,sha256=7mqxI1UcNoZNqekarw-oL0cuFCCSmiyfWE2b_Pm-l_8,53
+parsedmarc-4.0.0.dist-info/top_level.txt,sha256=HCKKKBRUZGFOA4OyeDclPpTRQ3GvKt2fg4BWExevCiM,11
