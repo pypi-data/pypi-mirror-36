@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: fitgrid
+Version: 0.1.1
+Summary: Mass multiple regression manager
+Home-page: UNKNOWN
+Author: Thomas P. Urbach, Andrey Portnoy
+Author-email: turbach@ucsd.edu, aportnoy@ucsd.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: patsy
+Requires-Dist: statsmodels
+Requires-Dist: tqdm
+Requires-Dist: tables
+
+UNKNOWN
+
+
