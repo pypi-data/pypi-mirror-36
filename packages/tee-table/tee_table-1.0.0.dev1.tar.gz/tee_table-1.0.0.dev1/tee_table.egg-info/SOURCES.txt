@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+tee_table/__init__.py
+tee_table/tee_table.py
+tee_table.egg-info/PKG-INFO
+tee_table.egg-info/SOURCES.txt
+tee_table.egg-info/dependency_links.txt
+tee_table.egg-info/requires.txt
+tee_table.egg-info/top_level.txt
