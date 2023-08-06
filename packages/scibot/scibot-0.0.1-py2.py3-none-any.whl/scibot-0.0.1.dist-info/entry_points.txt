@@ -1,0 +1,3 @@
+[console_scripts]
+scibot-sync = scibot.sync:main
+
