@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: pokeapi-ditto
+Version: 0.6.0
+Summary: Ditto is a server that serves a static copy of PokeAPI's data.
+Home-page: https://github.com/PokeAPI/ditto
+Author: Sargun Vohra
+Author-email: sargun.vohra@gmail.com
+Keywords: pokeapi,ditto,pokemon
+Requires-Python: >=3.6,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: License :: OSI Approved :: Apple Public Source License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: genson (>=1.0,<2.0)
+Requires-Dist: odictliteral (>=1.0,<2.0)
+Requires-Dist: requests (>=2.19,<3.0)
+Requires-Dist: tqdm (>=4.26,<5.0)
+Requires-Dist: yarl (>=1.2,<2.0)
