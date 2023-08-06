@@ -1,0 +1,16 @@
+pyerepfit/__init__.py,sha256=lAtQEHnraMlQmECQIa-nR1MikkDlFT9dknN9e_6V_ko,170
+pyerepfit/equation_solver.py,sha256=WUDHfKmFMQFnruPG14XdxHgJsFN0kTKqdezp5FyN7Dk,9352
+pyerepfit/erepfit.py,sha256=xfVBcD1A0AO4LQx8fg5oGxfrvigastjIJz-aIZaYS1Q,7133
+pyerepfit/erepfit_input_schema.json,sha256=wWGwqg0SGcV1mDSgWPzwGgOdHSTyX07UCNFJoFja_TM,22814
+pyerepfit/evaluator.py,sha256=qYN_2_y3b4ZtWMK0NYaiqppLA7QTMnKMxmP398nkQsY,5346
+pyerepfit/inputdata.py,sha256=AwT4-s9C9Y56YY_sAt_C_JE7SW-gwj327m82yLku0SE,9236
+pyerepfit/rep_basis.py,sha256=ae8B_9Gq1x9KRP_qb7NxltgV43VWB-4OD7rzUFJoulY,2840
+pyerepfit/rep_model.py,sha256=HJkOVjzmpc-wTvRb6NWTwHIDai4qE6g6BMJUlO4X8nM,18842
+pyerepfit/rep_spline.py,sha256=EOzKlwV4lFDbbHFTPilVPYSu86d9-vViDICQAUMiixo,10994
+pyerepfit/utils.py,sha256=Um7AeP-DC7AEfu6yy5WrQCPL8X9XaJs7lpFS0MRhK2I,1207
+pyerepfit-0.2.dev2.data/scripts/erepfit,sha256=s110ThrdNcTq1aSCRn_QJ_cRWh9nWvXzsyi338ieWq4,91
+pyerepfit-0.2.dev2.dist-info/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+pyerepfit-0.2.dev2.dist-info/METADATA,sha256=MYmHmxsOK6oUEktkDA0bhLuBJfEoKt91yfG1bXINN64,601
+pyerepfit-0.2.dev2.dist-info/WHEEL,sha256=YO0P_oFqt6DWX0LhbH7jsyzb3BUtoq2kERtqGsXDJHs,92
+pyerepfit-0.2.dev2.dist-info/top_level.txt,sha256=U9tQFwIXyoNLN5DjG-3uYTsIrg3Xb1uysmjQ_VtI_gY,10
+pyerepfit-0.2.dev2.dist-info/RECORD,,
