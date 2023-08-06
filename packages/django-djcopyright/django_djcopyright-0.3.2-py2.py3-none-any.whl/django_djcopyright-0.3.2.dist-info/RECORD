@@ -1,0 +1,14 @@
+django_djcopyright-0.3.2.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+django_djcopyright-0.3.2.dist-info/METADATA,sha256=cLHuuFxr4fmHdA6Iobf4RfKm4kXsM1qaKHKQydzZQ8o,1102
+django_djcopyright-0.3.2.dist-info/RECORD,,
+django_djcopyright-0.3.2.dist-info/WHEEL,sha256=5wvfB7GvgZAbKBSE9uX9Zbi6LCL-_KgezgHblXhCRnM,113
+django_djcopyright-0.3.2.dist-info/metadata.json,sha256=BnaNaB1qJRHK80r0s2Hc0_CesAqeW-g56GhutZFh83A,1195
+django_djcopyright-0.3.2.dist-info/top_level.txt,sha256=JbHnQkURbLAmnn7ZJ2Kh13MvcNMFYqgr6i1rbK13uSc,12
+djcopyright/__init__.py,sha256=NTT9hYmhf2MVkJi2o7RuQmS6iIBXCqRYxVtcQPzCQck,205
+djcopyright/apps.py,sha256=uONhnMIpZOv5s7EhXosyKa6jhqPgdx1CAVs1cSAwQs0,266
+djcopyright/context_processors.py,sha256=PC3dA039XmWeDvedulT-DSu9w_E0AljxcU2sdD4FjYA,577
+djcopyright/models.py,sha256=hbhkyKx9lYN7QNILrZMI13EJRfWg0A7gz9RtdrfncOc,127
+djcopyright/settings.py,sha256=RKIzbH0E_BLbl-IH_XitUFKP4GVCJa4hJ50u-nqdk08,562
+djcopyright/utils.py,sha256=aK-PgDa2-eAQeTVfXMxqKAt6EnMZdP5IAFkOJdwE6is,909
+djcopyright/templatetags/__init__.py,sha256=UEnSskahSoizfJlBwmZ_yCOvJZuctoip1gPzCKW68ng,142
+djcopyright/templatetags/djcopyright_tags.py,sha256=gPV_mbHg5-h3vKxMfzgN7q84SsK5NO_RQ_c5p7yY4hM,487
