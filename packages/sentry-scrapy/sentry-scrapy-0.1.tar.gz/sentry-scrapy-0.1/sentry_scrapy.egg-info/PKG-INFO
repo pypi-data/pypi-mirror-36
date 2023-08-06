@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: sentry-scrapy
+Version: 0.1
+Summary: Scrapy integration with Sentry SDK (unofficial)
+Home-page: https://github.com/m-vdb/sentry-scrapy
+Author: Maxime Vdb
+Author-email: me@maxvdb.com
+License: MIT
+Download-URL: https://github.com/m-vdb/sentry-scrapy/archive/v0.1.tar.gz
+Project-URL: Source Code, https://github.com/m-vdb/sentry-scrapy
+Description: UNKNOWN
+Keywords: sentry scrapy sdk integration
+Platform: UNKNOWN

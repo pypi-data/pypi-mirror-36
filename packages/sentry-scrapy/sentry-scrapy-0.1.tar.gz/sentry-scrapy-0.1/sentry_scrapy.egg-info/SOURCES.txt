@@ -1,0 +1,14 @@
+README.md
+setup.cfg
+setup.py
+sentry_scrapy/__init__.py
+sentry_scrapy/extension.py
+sentry_scrapy/utils.py
+sentry_scrapy.egg-info/PKG-INFO
+sentry_scrapy.egg-info/SOURCES.txt
+sentry_scrapy.egg-info/dependency_links.txt
+sentry_scrapy.egg-info/requires.txt
+sentry_scrapy.egg-info/top_level.txt
+tests/__init__.py
+tests/test_extension.py
+tests/test_utils.py
