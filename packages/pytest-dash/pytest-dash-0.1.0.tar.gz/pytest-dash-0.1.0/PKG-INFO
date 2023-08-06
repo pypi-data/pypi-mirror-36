@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: pytest-dash
+Version: 0.1.0
+Summary: pytest fixtures to run dash app.
+Home-page: UNKNOWN
+Author: Philippe Duval
+Author-email: philippe@plot.ly
+License: MIT
+Description: # pytest-dash
+        pytest fixture for dash
+        
+Keywords: dash,plotly,pytest
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Framework :: Pytest
