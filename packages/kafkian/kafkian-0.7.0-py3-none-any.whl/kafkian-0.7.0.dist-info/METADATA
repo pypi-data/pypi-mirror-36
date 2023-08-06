@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: kafkian
+Version: 0.7.0
+Summary: Opinionated Kafka Python client on top of Confluent python library
+Home-page: https://github.com/saabeilin/kafkian
+Author: Sergei Beilin
+Author-email: saabeilin@gmail.com
+License: Apache 2.0
+Platform: UNKNOWN
+Requires-Dist: structlog (>=17.2.0)
+Requires-Dist: confluent-kafka (>=0.11.5)
+Requires-Dist: fastavro (>=0.18.0)
+Requires-Dist: avro-python3 (>=1.8.2)
+
+UNKNOWN
+
+
