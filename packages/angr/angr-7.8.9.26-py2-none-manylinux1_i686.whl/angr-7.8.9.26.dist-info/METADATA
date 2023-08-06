@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: angr
+Version: 7.8.9.26
+Summary: A multi-architecture binary analysis toolkit, with the ability to perform dynamic symbolic execution and various static analyses on binaries
+Home-page: https://github.com/angr/angr
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: <3.0
+Requires-Dist: ana (==0.05)
+Requires-Dist: sortedcontainers (==2.0.5)
+Requires-Dist: cachetools (==2.1.0)
+Requires-Dist: capstone (==3.0.5)
+Requires-Dist: cooldict (==1.03)
+Requires-Dist: dpkt-fix (==1.7)
+Requires-Dist: mulpyplexer (==0.08)
+Requires-Dist: networkx (==2.1)
+Requires-Dist: progressbar (==2.3)
+Requires-Dist: rpyc (==3.3.0)
+Requires-Dist: cffi (==1.7.0)
+Requires-Dist: unicorn (==1.0.1)
+Requires-Dist: archinfo (==7.8.9.26)
+Requires-Dist: claripy (==7.8.9.26)
+Requires-Dist: cle (==7.8.9.26)
+Requires-Dist: pyvex (==7.8.9.26)
+Requires-Dist: ailment (==7.8.9.26)
+Requires-Dist: GitPython (==2.1.9)
+Requires-Dist: pycparser (==2.18)
+Requires-Dist: futures (==3.2.0); python_version == "2.7"
+
+UNKNOWN
+
+
