@@ -1,0 +1,4 @@
+[console_scripts]
+ardynamics-cli = cli.cli:main
+cli = cli.cli:main
+
