@@ -1,0 +1,12 @@
+MANIFEST.in
+setup.py
+masonite/contrib/sparkpost/__init__.py
+masonite/contrib/sparkpost/drivers/MailSparkpostDriver.py
+masonite/contrib/sparkpost/drivers/__init__.py
+masonite/contrib/sparkpost/providers/SparkpostProvider.py
+masonite/contrib/sparkpost/providers/__init__.py
+masonite_sparkpost_driver.egg-info/PKG-INFO
+masonite_sparkpost_driver.egg-info/SOURCES.txt
+masonite_sparkpost_driver.egg-info/dependency_links.txt
+masonite_sparkpost_driver.egg-info/requires.txt
+masonite_sparkpost_driver.egg-info/top_level.txt
