@@ -1,0 +1,4 @@
+include LICENSE
+include deepwave/scalar/*.cpp
+include deepwave/scalar/*.h
+exclude test/*
