@@ -1,0 +1,3 @@
+[console_scripts]
+diplomacy_strategist = diplomacy_strategist.cli:main
+
