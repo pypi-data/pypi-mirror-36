@@ -1,0 +1,10 @@
+README.md
+setup.py
+ordinalizer/__init__.py
+ordinalizer/ordinalizer.py
+ordinalizer.egg-info/PKG-INFO
+ordinalizer.egg-info/SOURCES.txt
+ordinalizer.egg-info/dependency_links.txt
+ordinalizer.egg-info/top_level.txt
+ordinalizer/tests/__init__.py
+ordinalizer/tests/test_ordinalizer.py
