@@ -1,0 +1,17 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.py
+freshservice/__init__.py
+freshservice/api.py
+freshservice/errors.py
+freshservice/models.py
+freshservice_wrapper.egg-info/PKG-INFO
+freshservice_wrapper.egg-info/SOURCES.txt
+freshservice_wrapper.egg-info/dependency_links.txt
+freshservice_wrapper.egg-info/requires.txt
+freshservice_wrapper.egg-info/top_level.txt
+test/test_asset.py
+test/test_task.py
+test/test_ticket.py
+test/test_user_and_agent.py
