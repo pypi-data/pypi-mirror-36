@@ -1,0 +1,3 @@
+[console_scripts]
+chelodina = chelodina.__main__:main
+

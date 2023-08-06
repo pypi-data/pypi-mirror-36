@@ -1,0 +1,15 @@
+README.md
+setup.py
+chelodina/__init__.py
+chelodina/__main__.py
+chelodina/ast_builder.py
+chelodina/compiler.py
+chelodina/lexer.py
+chelodina/parser.py
+chelodina.egg-info/PKG-INFO
+chelodina.egg-info/SOURCES.txt
+chelodina.egg-info/dependency_links.txt
+chelodina.egg-info/entry_points.txt
+chelodina.egg-info/not-zip-safe
+chelodina.egg-info/requires.txt
+chelodina.egg-info/top_level.txt
