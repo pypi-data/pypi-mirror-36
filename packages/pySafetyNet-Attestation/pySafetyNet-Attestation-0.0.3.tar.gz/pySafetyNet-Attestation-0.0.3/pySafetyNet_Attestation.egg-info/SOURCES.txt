@@ -1,0 +1,9 @@
+README.md
+setup.py
+pySafetyNet_Attestation.egg-info/PKG-INFO
+pySafetyNet_Attestation.egg-info/SOURCES.txt
+pySafetyNet_Attestation.egg-info/dependency_links.txt
+pySafetyNet_Attestation.egg-info/requires.txt
+pySafetyNet_Attestation.egg-info/top_level.txt
+safetynet_attestation/Attestation.py
+safetynet_attestation/__init__.py
