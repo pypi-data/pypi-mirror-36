@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: scaling
+Version: 0.2.1
+Summary: convert units using Froude and Reynolds similitude
+Home-page: https://github.com/onewhaleid/scaling
+Author: Dan Howe
+Author-email: d.howe@wrl.unsw.edu.au
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: pint
+
+UNKNOWN
+
+
