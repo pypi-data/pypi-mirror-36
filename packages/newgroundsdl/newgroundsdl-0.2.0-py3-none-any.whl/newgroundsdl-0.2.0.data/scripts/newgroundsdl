@@ -1,0 +1,25 @@
+#!python
+
+# command-line wrapper script for newgroundsdl
+
+import newgroundsdl
+import sys
+import re
+import shutil
+import urllib.request
+
+if len(sys.argv) != 2:
+    print("Usage: newgroundsdl <AUDIO_PAGE_URL>")
+    sys.exit(1)
+
+print("[newgroundsdl] Downloading list page...")
+songpages = newgroundsdl.getSongPages(sys.argv[1])
+
+for s in songpages:
+    print("[newgroundsdl] Downloading song page " + s + "...")
+    fileuri = newgroundsdl.getSongFileURI(s)
+    dlfilename = re.sub(r'.*/', '', fileuri)
+    print("[newgroundsdl] Downloading " + dlfilename + "...")
+    dlreq = urllib.request.Request(fileuri, data=None, headers=newgroundsdl.headers)
+    with urllib.request.urlopen(dlreq) as dlfile, open(dlfilename, 'wb') as dlout:
+        shutil.copyfileobj(dlfile, dlout, length=1024*1024) # block size 1M (the default, 16K, is freakin' slow)
