@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+sqlalchemy_mongobi/__init__.py
+sqlalchemy_mongobi/dialect.py
+sqlalchemy_mongobi.egg-info/PKG-INFO
+sqlalchemy_mongobi.egg-info/SOURCES.txt
+sqlalchemy_mongobi.egg-info/dependency_links.txt
+sqlalchemy_mongobi.egg-info/entry_points.txt
+sqlalchemy_mongobi.egg-info/not-zip-safe
+sqlalchemy_mongobi.egg-info/requires.txt
+sqlalchemy_mongobi.egg-info/top_level.txt
+tests/__init__.py
+tests/test_sqlalchemy_mongobi.py
