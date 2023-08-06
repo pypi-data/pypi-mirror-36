@@ -1,0 +1,11 @@
+# Include the license file
+include LICENSE.txt
+include uwgeodynamicsrc.template  
+recursive-include utils *.sh
+
+prune docs
+prune manual
+prune examples
+prune tutorials
+prune docker
+prune docker-dev
