@@ -1,0 +1,12 @@
+azure/cli/command_modules/role/__init__.py,sha256=J3jfsp2BPpIzns7dO4mA-Vj8iLGwjR5yCRtheOA086c,1474
+azure/cli/command_modules/role/_client_factory.py,sha256=AuL1y1ANLB2Vr9-9xrC6kZWvBbCmLtAC08wL_3KKqks,1485
+azure/cli/command_modules/role/_completers.py,sha256=gmsL7ktctxIjcLrWKhYaLXsBoxri0llI5jK7hGqiiSQ,703
+azure/cli/command_modules/role/_help.py,sha256=naIts0J-OnH9PMof90RySauQnEW4l2K5Xrb0b4oNUG0,12134
+azure/cli/command_modules/role/_params.py,sha256=ENRM95P8ua_wuael2OqKndRZNcnUNJjf-yf_LW-MsOo,10219
+azure/cli/command_modules/role/_validators.py,sha256=o7pZQN732aR_3KOGyZpGt-VsW1KiAAlFHKw5jOo5X2E,3461
+azure/cli/command_modules/role/commands.py,sha256=9HtBLa6RRHoZVfGu3QZRxB_2kP7zCrER8qJBKoEP3nk,5749
+azure/cli/command_modules/role/custom.py,sha256=A6DKsL0VbFwKw84DTilLXZZ5lbFwAdT6sTVo9EP0res,60866
+azure_cli_role-2.1.5.dist-info/METADATA,sha256=hl67t4zoV9t6OLfol_rlXj6GlxX-OFn-Putjzt4zqHQ,5284
+azure_cli_role-2.1.5.dist-info/RECORD,,
+azure_cli_role-2.1.5.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+azure_cli_role-2.1.5.dist-info/top_level.txt,sha256=S7DhWV9m80TBzAhOFjxDUiNbKszzoThbnrSz5MpbHSQ,6
