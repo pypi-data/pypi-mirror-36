@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: py-mp
+Version: 1.1.1
+Summary: A simple command-line music player
+Home-page: http://github.com/ewyuan/py-mp
+Author: EddyMaric, ewyuan
+Author-email: eddy.maric98@gmail.com, eric.yuan@mail.utoronto.ca
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: python-vlc
+Requires-Dist: requests
+Requires-Dist: beautifulsoup4
+Requires-Dist: pafy
+Requires-Dist: youtube-dl
+
+py-mp, short for python music player, uses command-line to take in inputs from the user and makes a search query on Youtube. py-mp will pull the most relevant video and will stream the audio to the computer.
+
+
