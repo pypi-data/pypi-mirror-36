@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: tvdb-api-client
+Version: 0.1.2
+Summary: A python client for TVDB rest API
+Home-page: https://github.com/spapanik/tvdb_api_client
+Author: Stephanos Papanikolopoulos
+Author-email: spapanik21@gmail.com
+License: license
+Download-URL: https://github.com/{__author__}/{PKG_NAME}/tarball/{__version__}
+Keywords: tvdb,imdb,tv series
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.6
+Requires-Dist: requests (<2.19.0,>=2.0.0)
+
+This project is a python client for the TVDB API.
+
+
