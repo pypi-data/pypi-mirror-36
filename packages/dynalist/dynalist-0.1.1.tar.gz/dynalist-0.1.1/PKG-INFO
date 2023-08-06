@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: dynalist
+Version: 0.1.1
+Summary: Unofficial Dynalist API Written in Python
+Home-page: https://github.com/georgefeng/dynalist
+Author: feng
+Author-email: edu_feng@163.com
+Maintainer: feng
+Maintainer-email: edu_feng@163.com
+License: MIT License
+Description: # Dynalist
+        
+        Unofficial Dynalist API Written in Python.
+        
+        ## Installing
+        
+        ```
+        pip install dynalist
+        ```
+        
+        ## Documentation
+        
+        ### Usage Example
+        
+        Below are some of the methods available in the wrapper.
+        
+        ```
+        dynalist = Dynalist('your_file_id')
+        
+        dynalist.file  # file info
+        
+        dynalist.doc  # document
+        
+        dynalist.get_node(node_id='root')
+        
+        dynalist.get_children(node_id='root')
+        
+        dynalist.to_json()
+        
+        ```
+        
+        ## License
+        [MIT](https://opensource.org/licenses/MIT)
+        
+        ## Requires
+        * requests
+        
+Platform: all
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
