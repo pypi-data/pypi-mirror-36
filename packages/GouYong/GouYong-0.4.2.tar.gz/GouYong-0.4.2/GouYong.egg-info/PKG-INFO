@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: GouYong
+Version: 0.4.2
+Summary: A translation software on  linux
+Home-page: https://github.com/zaixi/GouYong
+Author: Liyj
+Author-email: liyujiangwork@gmail.com
+License: GPL
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Natural Language :: Chinese (Simplified)
+Classifier: Environment :: X11 Applications :: GTK
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
