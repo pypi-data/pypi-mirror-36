@@ -1,0 +1,13 @@
+README.md
+setup.py
+horriblesubs_downloader/__init__.py
+horriblesubs_downloader/__main__.py
+horriblesubs_downloader/downloader.py
+horriblesubs_downloader/error.py
+horriblesubs_downloader/scraper.py
+horriblesubs_downloader.egg-info/PKG-INFO
+horriblesubs_downloader.egg-info/SOURCES.txt
+horriblesubs_downloader.egg-info/dependency_links.txt
+horriblesubs_downloader.egg-info/entry_points.txt
+horriblesubs_downloader.egg-info/requires.txt
+horriblesubs_downloader.egg-info/top_level.txt
