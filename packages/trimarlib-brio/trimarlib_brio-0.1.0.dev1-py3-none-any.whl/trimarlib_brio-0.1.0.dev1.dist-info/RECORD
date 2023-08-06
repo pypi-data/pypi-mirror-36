@@ -1,0 +1,12 @@
+brio/__init__.py,sha256=kKGCzttgCNCJ-zbhL6NTw2LH-u3q0u68J_7LYBJY1T0,141
+brio/__main__.py,sha256=FHJuszuUKlb2a51Qbm5Cn5PyiVBuvNczRqsasXw2X-o,8232
+brio/application.py,sha256=mbRESUtjJxNN2emZQZlf1tR3N04vda0v-K5AXWHhD4E,2382
+brio/server.py,sha256=3LRKf7u9xZN_n9HUKU-RutgCzwj4YekuPRMrwn1TiBE,25163
+brio/version.py,sha256=gnK0jCZMjuh8qj43vSV8M6IOFwgfzZU65Nfcrg_zsq0,23
+brio/resources/brio.ini,sha256=CXxRlBbzs0KHgIl8MUFGITxVNkgZmjJIFI5wz1HMCYg,859
+brio/resources/brio.service,sha256=tgKYLvkeLHFgaunv43Oq8NCYYtnVRX4NJjBPzY7JDDs,168
+trimarlib_brio-0.1.0.dev1.dist-info/METADATA,sha256=_7_A1UdcwFEm6nWZIE-wo0TG9tNX4K9051fWy5rS_2I,4428
+trimarlib_brio-0.1.0.dev1.dist-info/RECORD,,
+trimarlib_brio-0.1.0.dev1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+trimarlib_brio-0.1.0.dev1.dist-info/entry_points.txt,sha256=lb1K34iCa-RMtHdYrd0CWmZ3247yWJ3jc8ElrYaa3_w,204
+trimarlib_brio-0.1.0.dev1.dist-info/top_level.txt,sha256=I15hDdl7dMbLE_8LTeWnJQ8kDYvcOjpYWWSJAJ4a_Is,5
