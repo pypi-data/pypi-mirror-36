@@ -1,0 +1,14 @@
+Metadata-Version: 2.0
+Name: mydummytestpackage2
+Version: 0.1
+Summary: my second pypi package
+Home-page: UNKNOWN
+Author: Roga&Kopyta Corp
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: mydummytestpackage (==0.4.1.*)
+
+long version of the description
+
+
