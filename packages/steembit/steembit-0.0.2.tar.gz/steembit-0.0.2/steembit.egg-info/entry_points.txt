@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        steembit=steembit.steembit:cli
+    

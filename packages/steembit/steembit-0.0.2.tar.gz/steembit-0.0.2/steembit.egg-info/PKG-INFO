@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: steembit
+Version: 0.0.2
+Summary: Simple CLI tool for Steem users
+Home-page: UNKNOWN
+Author: Martin Šmíd
+Author-email: martin.smid94@seznam.cz
+License: MIT
+Description: # Steembit
+        
+        [![The MIT License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+        
+        ## Requirements
+        
+        - Python 3.6
+        
+        ## Install
+        
+        ```bash
+        pip install -U steembit
+        ```
+Keywords: steem cli
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
