@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: straxrpc
+Version: 0.3
+Summary: An RPC service for strax
+Home-page: http://github.com/jmosbacher/straxrpc
+Author: Yossi Mosbacher
+Author-email: joe.mosbacher@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: grpcio
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: protobuf
+
+UNKNOWN
+
+
