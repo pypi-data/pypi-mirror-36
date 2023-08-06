@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: uavsim
+Version: 0.0.4
+Summary: UAV Simulator
+Home-page: https://github.com/kamikaze/uavsim
+Author: Oleg Korsak
+Author-email: kamikaze.is.waiting.you@gmail.com
+License: UNKNOWN
+Keywords: uav simulator
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires: python (>= 3.6)
+Requires-Dist: pyserial
+Requires-Dist: autobahn
+Requires-Dist: crossbar
+Requires-Dist: PyQt5
+Requires-Dist: idna (<2.6)
+Requires-Dist: numpy
+Requires-Dist: h5py
+Requires-Dist: pyqtgraph
+
+# UAVSim
+UAV simulator that sends NMEA sentences to external devices (i.e. real uav)
+It is written in [Python](https://www.python.org/) language and uses [Autobahn](https://autobahn.readthedocs.io/en/latest/) with [AsyncIO](https://docs.python.org/3/library/asyncio.html).
+GUI applications are using [PyQt5](https://www.riverbankcomputing.com/software/pyqt/intro) / [PySide2](http://wiki.qt.io/Qt_for_Python).
+Multiple components are being tied together with [CrossbarIO](https://crossbar.io/).
+
+## Setting up an environment ##
+`python3.7 -m venv ~/.venv37`
+
+`source ~/.venv37/bin/activate`
+
+## Installing dependencies ##
+`python3.7 -m pip install --upgrade -r requirements.txt --no-binary :all:`
+
+`python3.7 -m pip install --upgrade -r requirements_dev.txt --no-binary :all:`
+
+## Building ##
+`python3.7 setup.py build`
+
+## Installing ##
+`python3.7 -m pip install --upgrade dist/uavsim-*.whl --no-binary :all:`
+
+## Running ##
+`
+python3.7 -m uavsim
+`
+
+
