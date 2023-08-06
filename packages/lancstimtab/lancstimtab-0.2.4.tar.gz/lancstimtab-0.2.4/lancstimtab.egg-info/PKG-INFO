@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: lancstimtab
+Version: 0.2.4
+Summary: Lancaster University Timetable Dumper
+Home-page: https://github.com/nitros12/lancstimtab
+Author: Ben Simms
+Author-email: UNKNOWN
+License: GPLv3
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Utilities
