@@ -1,0 +1,14 @@
+brocc-1.4.0.data/scripts/brocc.py,sha256=U9hYpWdMsA6-kMCta0IvMTNOZXuCht-6CAbPdG8Ms80,82
+brocc-1.4.0.data/scripts/compare_brocc_assignments.py,sha256=hrPHTQ1HSWjD19J8Ygmi0i7I_FIt6-VWGKcCOY3WM-I,70
+brocc-1.4.0.data/scripts/create_local_taxonomy_db.py,sha256=ztvQPWca9NMxKlx62NSztr3lDgf6M3ALtGFKsKAghzg,97
+brocc-1.4.0.dist-info/METADATA,sha256=5PhO35gb-1TQxB-hQ90C5nQWbDDuhq7r2kTMrCotQLI,2824
+brocc-1.4.0.dist-info/RECORD,,
+brocc-1.4.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+brocc-1.4.0.dist-info/top_level.txt,sha256=r31sa-eQbOlKAe9DEzGFLMKm8sOeD8Aie3sUvvhb2NQ,9
+brocclib/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+brocclib/assign.py,sha256=njEOjziXy4a8OHMyUPt5gVggArG96x9iSk28TPjyvZM,9887
+brocclib/command.py,sha256=VjTnzKBz6a25jSZp4htaqWxLEp8TDRQIxrgjQJ7JGjE,6648
+brocclib/get_xml.py,sha256=QJf_b6nSbcnnXbGF6baqwEbQSt_5xIwnP_NFURKZ2yU,3936
+brocclib/parse.py,sha256=aQ_aEQtANcaJMNVWa5fuRsQeWK_p2FKig2mGTqxLsq4,1992
+brocclib/taxonomy.py,sha256=Lmg6afSbU8uz7zrEzZAMABPN5f_ywoAwUe5du1vGUBg,1782
+brocclib/taxonomy_db.py,sha256=IlZMqQDie7_kl6cyC0gkpy5K-h8clYU0DjjIqovBVaU,6503
