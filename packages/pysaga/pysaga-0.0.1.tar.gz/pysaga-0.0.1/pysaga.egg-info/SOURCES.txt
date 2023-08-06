@@ -1,0 +1,16 @@
+MANIFEST.in
+Makefile
+README.mkd
+setup.cfg
+setup.py
+pysaga/__init__.py
+pysaga/__main__.py
+pysaga/commons.py
+pysaga/parse_line.py
+pysaga/saga.py
+pysaga/utils.py
+pysaga.egg-info/PKG-INFO
+pysaga.egg-info/SOURCES.txt
+pysaga.egg-info/dependency_links.txt
+pysaga.egg-info/not-zip-safe
+pysaga.egg-info/top_level.txt
