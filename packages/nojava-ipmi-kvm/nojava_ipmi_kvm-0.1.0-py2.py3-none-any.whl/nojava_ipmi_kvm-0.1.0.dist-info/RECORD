@@ -1,0 +1,11 @@
+nojava_ipmi_kvm/__init__.py,sha256=uSj2KKDsrAt5Izebdkzxdry-wSO5gkmj0VPdTNC_ta0,449
+nojava_ipmi_kvm/_version.py,sha256=-8xkfBTHa5wOGu8LkCQQf3N0ENfNQ_HbdqjiMJlK5Jg,80
+nojava_ipmi_kvm/browser.py,sha256=HyYdKLdSgSlFDyjBBX9BcW4tzMuRbG8Bqg2RaFd6CL8,1585
+nojava_ipmi_kvm/cli.py,sha256=Fs535bKCZ1xIOgHDDp6RC20Y-cTVHzXjBIHToIxWNAw,4908
+nojava_ipmi_kvm/config.py,sha256=S5qjUXOAKFJKBz4lt9EbevCwSEMy90S8idWD8DRH0bE,5268
+nojava_ipmi_kvm/kvm.py,sha256=-uXylKokDS8b6LQ-Sof-sNh7aybUBkhr1FzDjiOhZpI,6359
+nojava_ipmi_kvm-0.1.0.dist-info/METADATA,sha256=wxgI_Q4sMpB472C8-6f1kiWh5L_VVuAcj-J0rvxu4uY,5460
+nojava_ipmi_kvm-0.1.0.dist-info/RECORD,,
+nojava_ipmi_kvm-0.1.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+nojava_ipmi_kvm-0.1.0.dist-info/entry_points.txt,sha256=eHc-NdjkAkIHkIwaSlDvLQk2K5amj-Wl6OscXhhsRa0,62
+nojava_ipmi_kvm-0.1.0.dist-info/top_level.txt,sha256=ZSng7i_tV-3HBpKvMetafhEd-QY2I6hP9c5SgGsCUrA,16
