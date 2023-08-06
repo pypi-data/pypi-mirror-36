@@ -1,0 +1,50 @@
+Metadata-Version: 1.1
+Name: mergepdf
+Version: 0.0.1
+Summary: `mergepdf` is a package for merge PDF files.
+Home-page: https://pypi.python.org/pypi/mergepdf
+Author: Saito Tsutomu
+Author-email: tsutomu.saito@beproud.jp
+License: PSFL
+Description: `mergepdf` is a package for merge PDF files.
+        ::
+        
+           $ mergepdf -h
+           usage: mergepdf [-h] [-i INPUT_DIR] [-o OUTPUT_FILE] [-k SORTED_KEY]
+           
+           Merge PDF files.
+           
+           optional arguments:
+             -h, --help            show this help message and exit
+             -i INPUT_DIR, --input-dir INPUT_DIR
+             -o OUTPUT_FILE, --output-file OUTPUT_FILE
+             -k SORTED_KEY, --sorted-key SORTED_KEY
+        
+        Requirements
+        ------------
+        * Python 3.6 later
+        
+        Features
+        --------
+        * nothing
+        
+        Setup
+        -----
+        ::
+        
+           $ pip install mergepdf
+        
+        History
+        -------
+        0.0.1 (2018-9-23)
+        ~~~~~~~~~~~~~~~~~~
+        * first release
+        
+        
+Keywords: mergepdf
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: Python Software Foundation License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+Classifier: Topic :: Scientific/Engineering
