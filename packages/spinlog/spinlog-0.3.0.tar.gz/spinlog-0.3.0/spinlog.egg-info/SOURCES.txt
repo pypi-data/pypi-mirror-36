@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+spinlog/.version
+spinlog/__init__.py
+spinlog/core.py
+spinlog.egg-info/PKG-INFO
+spinlog.egg-info/SOURCES.txt
+spinlog.egg-info/dependency_links.txt
+spinlog.egg-info/requires.txt
+spinlog.egg-info/top_level.txt
