@@ -1,0 +1,15 @@
+swine
+swine/component
+swine/component/physics
+swine/component/physics/collider
+swine/component/quicktime
+swine/graphics
+swine/gui
+swine/input
+swine/input/handler
+swine/object
+swine/terminal
+swine/terminal/commands
+swine/terminal/commands/standard
+swine/terminal/window
+swine/window
