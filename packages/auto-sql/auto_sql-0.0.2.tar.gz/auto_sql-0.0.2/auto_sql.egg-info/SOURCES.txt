@@ -1,0 +1,12 @@
+README.md
+setup.py
+auto_sql/__init__.py
+auto_sql.egg-info/PKG-INFO
+auto_sql.egg-info/SOURCES.txt
+auto_sql.egg-info/dependency_links.txt
+auto_sql.egg-info/requires.txt
+auto_sql.egg-info/top_level.txt
+auto_sql/src/__init__.py
+auto_sql/src/auto_sql.py
+auto_sql/test/__init__.py
+auto_sql/test/test_auto_sql.py
