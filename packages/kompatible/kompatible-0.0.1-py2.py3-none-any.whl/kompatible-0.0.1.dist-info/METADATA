@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: kompatible
+Version: 0.0.1
+Summary: Python wrapper for Kubernetes which matches the interface of Docker
+Home-page: https://github.com/refinery-platform/kompatible/
+Author: Chuck McCallum
+License: MIT License
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Description-Content-Type: text/markdown
+Requires-Dist: kubernetes
+
+# kompatible
+
+This package exposes a subset of the
+[Kubernetes Python Client](https://github.com/kubernetes-client/python/)
+with an interface which matches that of the
+[Docker SDK for Python](https://docker-py.readthedocs.io/en/stable/).
+
+## Examples
+
+First, checkout this project, and install dependencies:
+`pip install -r requirements-dev.txt`.
+Then, make sure you have installed and started
+[Docker](https://docs.docker.com/docker-for-mac/install/)
+and [Minikube](https://kubernetes.io/docs/tutorials/hello-minikube/#create-a-minikube-cluster)
+
+With those tools in place, the following lines will produce the same output,
+regardless of the underlying technology. Either `import docker as sdk`
+or `import kompatible as sdk` and then
+
+```
+>>> client = sdk.from_env()
+>>> client.containers.run("alpine", "echo hello world")
+b'hello world\n'
+
+```
+
