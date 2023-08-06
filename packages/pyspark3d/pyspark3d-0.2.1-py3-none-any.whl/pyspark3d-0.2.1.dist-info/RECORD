@@ -1,0 +1,15 @@
+pyspark3d/__init__.py,sha256=UmlPWMENI4u5USvKoIfDAgeUZPemRL7ObgA9k9M6HHo,8424
+pyspark3d/converters.py,sha256=cI-0U1nc5dPwrgIQCZG9DfyoHXbsgk1rEH-JgNcriJQ,8307
+pyspark3d/geometryObjects.py,sha256=eASZ1smbW1onk2O5nbEWh6L_a9hUMxQht9-SxMum2og,14684
+pyspark3d/pyspark3d_conf.py,sha256=ago8cOJsW8_J14P1CSaZAgt0up2jXbdtZoRwC2DlnUM,1433
+pyspark3d/spark3D-assembly-0.2.1.jar,sha256=ufZ6lD0x32ll8n5eNSrr8KyjQbefEGGpMdFwWvjf-30,440316
+pyspark3d/spatial3DRDD.py,sha256=1-A7-WSh7ibowMRHjxI-J-OW0JrFDDYLYONU8zWuutI,10551
+pyspark3d/spatialOperator.py,sha256=eC9_pNt1oCWkzaDbbpQuh22z6NsxF71pJkKwF7ia3C0,17099
+pyspark3d/version.py,sha256=oa_RCv0FfY0-ZZgpZwNv7W5UHo8JPZKOVAUF0aTtRQc,135
+pyspark3d/visualisation.py,sha256=MuTvylbyNont3ONeYx0IZlc4EovBSC96qU9cyqsDC88,8799
+pyspark3d-0.2.1.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+pyspark3d-0.2.1.dist-info/METADATA,sha256=mvEdK1N3HVRRkq_RZSh0QKMS1ueEDOmFZdtPBaD0FGE,606
+pyspark3d-0.2.1.dist-info/RECORD,,
+pyspark3d-0.2.1.dist-info/WHEEL,sha256=8Lm45v9gcYRm70DrgFGVe4WsUtUMi1_0Tso1hqPGMjA,92
+pyspark3d-0.2.1.dist-info/metadata.json,sha256=sYDfcCsxedTW1jJi2uYPB22Kk25VwHB8gP-xaQ7rE0M,862
+pyspark3d-0.2.1.dist-info/top_level.txt,sha256=avIt-V9EFtnVCuwRYk-SabWH68Pz-2NwUPPxQm6awNo,10

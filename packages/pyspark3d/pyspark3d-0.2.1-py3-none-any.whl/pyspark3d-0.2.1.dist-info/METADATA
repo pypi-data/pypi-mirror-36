@@ -1,0 +1,21 @@
+Metadata-Version: 2.0
+Name: pyspark3d
+Version: 0.2.1
+Summary: Spark extension for processing large-scale 3D data sets
+Home-page: https://github.com/astrolabsoftware/spark3d
+Author: AstroLab Software
+Author-email: peloton@lal.in2p3.fr
+License: Apache License, Version 2.0
+Keywords: spark,spark3d,scala,python,py4j
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: numpy (>=1.14)
+Requires-Dist: pyspark
+Requires-Dist: scipy
+
+UNKNOWN
+
+
