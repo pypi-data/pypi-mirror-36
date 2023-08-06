@@ -1,0 +1,15 @@
+dashmips/__init__.py,sha256=ukzbprBSPUD2cNOV0M9XmCJEjMJgHGi_iRwVkwTwXDs,598
+dashmips/__main__.py,sha256=nrfcFDXPeyJtzNdIXt0gkS2BKUERgjfyCylZ5tn5HFo,2097
+dashmips/debugger.py,sha256=kih4FsvJ-X7Ahjth4OaHKALdXDu4XonhM0vyzpKelc0,1450
+dashmips/debugserver.py,sha256=3rZEPM4fsDDeBCGxBMxidjPaaab4crILH_PDXJRSLuk,4839
+dashmips/directives.py,sha256=_Op7i7cuHQrRtb1hFTSRL48OPjoPHO01gDV6eKRcG8g,1875
+dashmips/hardware.py,sha256=ksXbYlnhKQO6GD1DohHWcT6WPkDEHmArbkE7IN9FjEs,3942
+dashmips/mips.py,sha256=P6pB0YyMF1ZfSu80QABcAc2DtWKCsaq15Q-8Np8QT6c,1387
+dashmips/preprocessor.py,sha256=BOu-_P915G0o1Sp2RPcKxRteJAKtyIkWlmP484Uu8zA,6249
+dashmips/run.py,sha256=82wQS2JWL3NbqNiHGpKY8lJlDoasZ3OU8Ykwau7xqs4,1096
+dashmips-0.0.1.dist-info/LICENSE,sha256=6Y_k3r9CQ_a180q0QA0OZfS9swco3d9IWeANY60bI1k,1068
+dashmips-0.0.1.dist-info/METADATA,sha256=BfefkzoYMVr2q82pYF9J92I7jQEWjfXwUFm6DDbSFDc,612
+dashmips-0.0.1.dist-info/WHEEL,sha256=P3qJ5yBP-M5n4VbrgU3eTDIHvegviaBxiqCi1ejHWOs,97
+dashmips-0.0.1.dist-info/entry_points.txt,sha256=Oke2xDZKBHt-uONo8MvZixLTlB4LLroT76__SEb7Jdg,53
+dashmips-0.0.1.dist-info/top_level.txt,sha256=PAnfXJx1VEkIwhtBbnY1N_OFUg1KZN-FW291GiinZB8,9
+dashmips-0.0.1.dist-info/RECORD,,
