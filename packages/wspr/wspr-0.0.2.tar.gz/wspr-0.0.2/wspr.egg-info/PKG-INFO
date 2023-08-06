@@ -1,0 +1,71 @@
+Metadata-Version: 1.1
+Name: wspr
+Version: 0.0.2
+Summary: Mumble client library.
+Home-page: https://github.com/ArkadiuszMichalRys/wspr
+Author: Arkadiusz Michal Rys
+Author-email: Arkadiusz.Michal.Rys@gmail.com
+License: MIT license
+Description: ====
+        wspr
+        ====
+        
+        
+        .. image:: https://img.shields.io/pypi/v/wspr.svg
+                :target: https://pypi.python.org/pypi/wspr
+        
+        .. image:: https://img.shields.io/travis/ArkadiuszMichalRys/wspr.svg
+                :target: https://travis-ci.org/ArkadiuszMichalRys/wspr
+        
+        .. image:: https://readthedocs.org/projects/wspr/badge/?version=latest
+                :target: https://wspr.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        
+        
+        
+        Mumble client library.
+        
+        
+        * Free software: MIT license
+        * Documentation: https://wspr.readthedocs.io.
+        
+        
+        Features
+        --------
+        
+        * TODO
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        =======
+        History
+        =======
+        
+        0.0.2 (2018-09-27)
+        ------------------
+        
+        * Update requirements.
+        * Ignore PyCharm.
+        * Change supported python versions to 3.6 only.
+        
+        0.0.1 (2018-09-27)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: wspr
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
