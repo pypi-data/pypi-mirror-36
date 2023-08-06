@@ -1,0 +1,10 @@
+ecal/__init__.py,sha256=ca51q9jB3i9P08A7I6VJ-hZZy8fpAu0hhN5bdE-iw2M,2969
+ecal/abstract_cache.py,sha256=le1vbaug_am2Rv30SdD5ChqEFY43jWLQSwJkF1_FJ-s,2127
+ecal/abstract_fetcher.py,sha256=MH0NgKb4Na3JM3X1BwIU8OMOeS3NLILzpt1sYENiPh0,989
+ecal/ecn_fetcher.py,sha256=fU9qcvEnBkB72ToIJIAQw3JsLOM1mDf_gkw2L0trL3w,4186
+ecal/http_fetcher.py,sha256=rFWzJpm8A9uEyntiCVEJh8bmeWUTEKg0JX-EnmL_W9o,4259
+ecal/runtime_cache.py,sha256=z8SsIjJrufVdnctIh-0gcSHcgbfN9Lf-Qg2uiJvttYw,3015
+ecal-0.0.4.dist-info/METADATA,sha256=j9H-e-w6CWKmIww-m6Sn2pmbGmZWekpQmoS8_cIGsTo,770
+ecal-0.0.4.dist-info/RECORD,,
+ecal-0.0.4.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+ecal-0.0.4.dist-info/top_level.txt,sha256=HL-CUN_QpDBiKyZsTzrT08l6oQOLp9QhoOyeu9GlONc,5
