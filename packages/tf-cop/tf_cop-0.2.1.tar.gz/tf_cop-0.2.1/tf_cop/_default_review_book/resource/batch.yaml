@@ -1,0 +1,28 @@
+aws_batch_compute_environment:
+-
+  title: compute_resources_checker
+  desc: nested value checker
+  mode: nested
+  type: alert
+  key: compute_resources
+  nest:
+    -
+      title: tag_checker
+      desc: nested value checker
+      mode: nested
+      type: alert
+      key: tags
+      nest:
+        -
+          title: name_checker
+          desc: nested value checker
+          mode: existance
+          type: alert
+          key: Name
+        -
+          title: env_checker
+          desc: nested value checker
+          mode: value
+          type: warn
+          key: Env
+          value: (dev|stg|prd)
