@@ -1,0 +1,15 @@
+pydygp/__init__.py,sha256=i-q3ixsOihjp4INGq3a-SoU2wVKAiywHOSDH7DizZ3w,130
+pydygp/gradientkernels/__init__.py,sha256=GF8yaVpSuUv1qR1Cj4YGSymC9VRycoct7srdop32kF8,49
+pydygp/gradientkernels/gradientkernels.py,sha256=5KIgmnzlkLN_KMAxrDlurx2eHmN3s8Cs4MHMLvNp9PY,9718
+pydygp/liealgebras/__init__.py,sha256=itV9U9YppohVeAg6IodeGCCPxa8N2EY2iYil9x8SRIs,28
+pydygp/liealgebras/liealgebras.py,sha256=4tdvhH-jrnUR-4cahETbA7D0YTqF-njSaWULwOjdlWM,2167
+pydygp/linlatentforcemodels/__init__.py,sha256=BndmUNVk6luNwcb_wpl4g124zX8gfpeNJ0bPlRVywMg,572
+pydygp/linlatentforcemodels/mlfm.py,sha256=q17JwMiqtfKwOoeakE5P0_d4oyYps0geO5tCBsLasbQ,5908
+pydygp/linlatentforcemodels/mlfmadapgrad.py,sha256=zW21qfLSjH1qtLieVQH4oqbcCrcMUeyxydvEyEv_gUc,45920
+pydygp/probabilitydistributions/__init__.py,sha256=L8ksPJaWQuRg1uHP9sTGTBKfm7RFdDMgFLXEdFh_6Ug,182
+pydygp/probabilitydistributions/foo.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pydygp/probabilitydistributions/probabilitydistributions.py,sha256=sM_21dEVMXoIOi_UI_EI3ynYQfZlNivNFKGvJKG_a4U,2269
+pydygp-0.2.1.dev1.dist-info/METADATA,sha256=WSU2H9fVvOaWQCJ-ynn-OjGnkNzVHHy8_dWvq5SNqzw,321
+pydygp-0.2.1.dev1.dist-info/WHEEL,sha256=-ZFxwj8mZJPIVcZGLrsQ8UGRcxVAOExzPLVBGR7u7bE,92
+pydygp-0.2.1.dev1.dist-info/top_level.txt,sha256=vN4DhSMG1V0aPiPvC6VAFe5HBvedOqJKa2mtkeE1KmM,7
+pydygp-0.2.1.dev1.dist-info/RECORD,,
