@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: conixposter
+Version: 0.0.2
+Summary: Interface to a conix administrative domain
+Home-page: https://github.com/conix-center/smart-cities-demo/tree/master/client-library/python/conixposter
+Author: Joshua Adkins
+Author-email: adkins@berkeley.edu
+License: UNKNOWN
+Keywords: sample setuptools development access control post sensor data
+Platform: UNKNOWN
+Requires-Dist: pint
+Requires-Dist: aenum
+Requires-Dist: wave3
+Requires-Dist: wavemqtt
+
+UNKNOWN
+
+
