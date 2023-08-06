@@ -1,0 +1,9 @@
+gitalizer~=0.1
+cython~=0.28
+cartopy~=0.16
+pycountry~=18.2
+geopy
+scikit-learn~=0.19
+numpy~=1.7
+pandas~=0.21
+seaborn~=0.8

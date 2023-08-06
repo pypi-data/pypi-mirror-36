@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: gitalysis
+Version: 0.1.1
+Summary: The data mining tool for data from Gitalizer. Used to analyse privacy implications of exposing Git metadata
+Home-page: http://github.com/nukesor/gitalizer
+Author: Arne Beer
+Author-email: privat@arne.beer
+License: MIT
+Description: UNKNOWN
+Keywords: git github metadata data-mining privacy
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Environment :: Console
