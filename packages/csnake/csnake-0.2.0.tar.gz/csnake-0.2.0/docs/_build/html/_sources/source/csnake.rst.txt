@@ -1,0 +1,53 @@
+API Documentation
+=================
+
+
+.. role:: ccode(code)
+    :language: c
+
+.. role:: pycode(code)
+    :language: python
+
+.. Submodules
+.. ----------
+
+.. csnake.cconstructs module
+.. -------------------------
+
+.. .. automodule:: csnake.cconstructs
+..     :members:
+..     :undoc-members:
+..     :show-inheritance:
+
+.. csnake.codewriter module
+.. ------------------------
+
+.. .. automodule:: csnake.codewriter
+..     :members:
+..     :undoc-members:
+..     :show-inheritance:
+
+.. csnake.codewriterlite module
+.. ----------------------------
+
+.. .. automodule:: csnake.codewriterlite
+..     :members:
+..     :undoc-members:
+..     :show-inheritance:
+
+.. csnake.utils module
+.. -------------------
+
+.. .. automodule:: csnake.utils
+..     :members:
+..     :undoc-members:
+..     :show-inheritance:
+
+
+.. Module contents
+.. ---------------
+
+.. automodule:: csnake
+    :members:
+    :inherited-members:
+    :show-inheritance:

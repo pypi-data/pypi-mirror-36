@@ -1,0 +1,74 @@
+Results of doctest builder run on 2018-10-08 12:35:17
+=====================================================
+
+Document: api
+-------------
+**********************************************************************
+File "../csnake/codewriter.py", line ?, in default
+Failed example:
+    print(cwr1)
+Expected:
+    /*
+    * This file was automatically generated using csnake v0.2.0.
+    *
+    * This file should not be edited directly, any changes will be
+    * overwritten next time the script is run.
+    *
+    * Source code for csnake is available at:
+    * https://gitlab.com/andrejr/csnake
+    */
+Got:
+    /*
+    * This file was automatically generated using csnake v0.2.0.
+    *
+    * This file should not be edited directly, any changes will be
+    * overwritten next time the script is run.
+    *
+    * Source code for csnake is available at:
+    * https://gitlab.com/andrejr/csnake
+    *
+    * csnake is also available on PyPI, at :
+    * https://pypi.org/project/csnake
+    */
+**********************************************************************
+File "../csnake/codewriter.py", line ?, in default
+Failed example:
+    print(cwr2)
+Expected:
+    /*
+    * This file was automatically generated using csnake v0.2.0.
+    *
+    * This file should not be edited directly, any changes will be
+    * overwritten next time the script is run.
+    * Make any changes to the file 'test.py', not this file.
+    *
+    * Source code for csnake is available at:
+    * https://gitlab.com/andrejr/csnake
+    */
+Got:
+    /*
+    * This file was automatically generated using csnake v0.2.0.
+    *
+    * This file should not be edited directly, any changes will be
+    * overwritten next time the script is run.
+    * Make any changes to the file 'test.py', not this file.
+    *
+    * Source code for csnake is available at:
+    * https://gitlab.com/andrejr/csnake
+    *
+    * csnake is also available on PyPI, at :
+    * https://pypi.org/project/csnake
+    */
+**********************************************************************
+1 items had failures:
+   2 of 284 in default
+284 tests in 1 items.
+282 passed and 2 failed.
+***Test Failed*** 2 failures.
+
+Doctest summary
+===============
+  284 tests
+    2 failures in tests
+    0 failures in setup code
+    0 failures in cleanup code
