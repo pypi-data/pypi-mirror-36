@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.py
+ipinfo.egg-info/PKG-INFO
+ipinfo.egg-info/SOURCES.txt
+ipinfo.egg-info/dependency_links.txt
+ipinfo.egg-info/not-zip-safe
+ipinfo.egg-info/requires.txt
+ipinfo.egg-info/top_level.txt
+ipinfo_wrapper/__init__.py
+ipinfo_wrapper/countries.json
+ipinfo_wrapper/details.py
+ipinfo_wrapper/exceptions.py
+ipinfo_wrapper/handler.py
+ipinfo_wrapper/cache/default.py
+ipinfo_wrapper/cache/interface.py
