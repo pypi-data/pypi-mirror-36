@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: dbeat
+Version: 1.0.3
+Summary: Database-backed Periodic Tasks.
+Home-page: https://github.com/aohan237/dbeat
+Author: aohan237
+Author-email: aohan237@gmail.com
+License: BSD
+Description: # Database-backed Periodic Tasks
+        
+        name|value
+        -|-
+        Version| 1.0.0
+        Download| http://pypi.python.org/pypi/dbeat
+        Source|http://github.com/aohan237/dbeat
+        Keywords|peewee, celery, beat, periodic task, cron, scheduling
+        
+        # Why this module
+        
+        maybe your proj admin based on django.(django-celery-beat is enough)
+        but if your apps or proj not based on django, then django orm is hard to use.
+        then this is the module's purpose
+        
+        # Using the Extension
+        
+        ## install the module
+            python setup.py install
+        
+        ## initial database in celery app
+            from peewee import SqliteDatabase
+            database = SqliteDatabase('app.db')
+            app.database = database
+        
+        ## start the beat
+        
+            celery -A proj beat -l info --scheduler dbeat.schedulers:DatabaseScheduler
+Keywords: peewee celery beat periodic task database
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Communications
+Classifier: Topic :: System :: Distributed Computing
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
