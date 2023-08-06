@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+setup.py
+microday/__init__.py
+microday/__main__.py
+microday/__version__.py
+microday.egg-info/PKG-INFO
+microday.egg-info/SOURCES.txt
+microday.egg-info/dependency_links.txt
+microday.egg-info/requires.txt
+microday.egg-info/top_level.txt
