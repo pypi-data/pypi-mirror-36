@@ -1,0 +1,7 @@
+click
+numpy
+pygrib==2.0.2
+pyproj
+scikit-image
+scipy
+shapely
