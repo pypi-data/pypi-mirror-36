@@ -1,0 +1,10 @@
+README.md
+setup.cfg
+setup.py
+id3tree/__init__.py
+id3tree/tree.py
+id3tree.egg-info/PKG-INFO
+id3tree.egg-info/SOURCES.txt
+id3tree.egg-info/dependency_links.txt
+id3tree.egg-info/requires.txt
+id3tree.egg-info/top_level.txt
