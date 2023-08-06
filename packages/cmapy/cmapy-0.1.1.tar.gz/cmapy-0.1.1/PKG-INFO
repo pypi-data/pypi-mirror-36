@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: cmapy
+Version: 0.1.1
+Summary: Export colormap data from Matplotlib.
+Home-page: UNKNOWN
+Author: Camilo Vejarano
+Author-email: UNKNOWN
+License: MIT
+Project-URL: Bug Reports, https://gitlab.com/cvejarano-oss/cmapy/issues/
+Project-URL: Source, https://gitlab.com/cvejarano-oss/cmapy/
+Description: # cmapy
+        
+        Use the Matplotlib colormaps with OpenCV in Python.
+        
+        ## Requirements
+        
+        ## How to use
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research 
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Visualization
