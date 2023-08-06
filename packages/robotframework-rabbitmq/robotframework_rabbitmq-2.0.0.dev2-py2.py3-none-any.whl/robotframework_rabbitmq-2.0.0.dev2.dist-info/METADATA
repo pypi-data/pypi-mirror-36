@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: robotframework-rabbitmq
+Version: 2.0.0.dev2
+Summary: A Robot Framework RabbitMq Library
+Home-page: https://github.com/peterservice-rnd/robotframework-rabbitmq
+Author: JSC PETER-SERVICE
+Author-email: drse_aist_all@billing.ru
+License: Apache License 2.0
+Requires-Dist: pika (==0.12.0)
+Requires-Dist: requests (==2.19.1)
+Requires-Dist: robotframework (==3.0.4)
+
+# RobotFramework RabbitMQ
+
+
