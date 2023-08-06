@@ -1,0 +1,21 @@
+Metadata-Version: 1.0
+Name: asvmq
+Version: 0.0.5
+Summary: ASV Messaging Queue API for message passing between processes.
+Home-page: https://github.com/akashp1997/asv_mq
+Author: Akash Purandare
+Author-email: akash.p1997@gmail.com
+License: BSD-3-Clause
+Description: # SRM Autonomous Surface Vehicle Messaging Queue API
+        ------
+        The team SRMASV uses this repository as an API to transfer data from one process or device to another process or device.
+        
+        We develop this API by using setuptools for easy installation of this Module within various different computers and developers.
+        ------
+        ### Installation
+        ------
+        To install just type in the following command:
+        `python setup.py install`
+        
+Keywords: asv_mq
+Platform: UNKNOWN
