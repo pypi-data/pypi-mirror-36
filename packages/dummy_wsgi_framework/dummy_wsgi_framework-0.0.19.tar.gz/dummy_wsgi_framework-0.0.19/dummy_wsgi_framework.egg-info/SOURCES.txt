@@ -1,0 +1,15 @@
+MANIFEST.in
+README.rst
+setup.py
+dummy_wsgi_framework/__init__.py
+dummy_wsgi_framework.egg-info/PKG-INFO
+dummy_wsgi_framework.egg-info/SOURCES.txt
+dummy_wsgi_framework.egg-info/dependency_links.txt
+dummy_wsgi_framework.egg-info/top_level.txt
+dummy_wsgi_framework/core/__init__.py
+dummy_wsgi_framework/core/dispatchers.py
+dummy_wsgi_framework/core/exceptions.py
+dummy_wsgi_framework/core/routes.py
+dummy_wsgi_framework/core/controllers/__init__.py
+dummy_wsgi_framework/core/controllers/error404.py
+dummy_wsgi_framework/core/controllers/redirect.py
