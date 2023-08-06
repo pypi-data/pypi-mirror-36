@@ -1,0 +1,5 @@
+include README.md
+include maki/img/marker-small.svg
+include maki/img/marker-large.svg
+include maki/img/icons/*.svg
+include maki/contrib/*
