@@ -1,0 +1,12 @@
+README.md
+setup.py
+jsonschemax/__init__.py
+jsonschemax/errors.py
+jsonschemax/keywords.py
+jsonschemax/types.py
+jsonschemax/utils.py
+jsonschemax/validation.py
+jsonschemax.egg-info/PKG-INFO
+jsonschemax.egg-info/SOURCES.txt
+jsonschemax.egg-info/dependency_links.txt
+jsonschemax.egg-info/top_level.txt
