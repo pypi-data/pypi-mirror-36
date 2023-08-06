@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+setup.py
+javcore/defdef.py
+javcore.egg-info/PKG-INFO
+javcore.egg-info/SOURCES.txt
+javcore.egg-info/dependency_links.txt
+javcore.egg-info/entry_points.txt
+javcore.egg-info/requires.txt
+javcore.egg-info/top_level.txt
+javcore/mysql_base/__init__.py
+javcore/mysql_base/jav_dao.py
+javcore/mysql_base/mysql_base2.py
+src/data/__init__.py
+src/db/__init__.py
+src/db/jav.py
+src/db/mysql_base.py
