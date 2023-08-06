@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: pypeflow
+Version: 0.0.1
+Summary: Data pipelines
+Home-page: https://github.com/Xinyi2016/pypeflow
+Author: Sara Z.
+Author-email: bitit1994@gmail.com
+License: UNKNOWN
+Description: # pypeflow
+        
+        data pipelines
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
