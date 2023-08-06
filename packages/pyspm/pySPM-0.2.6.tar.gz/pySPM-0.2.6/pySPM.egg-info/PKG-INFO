@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: pySPM
+Version: 0.2.6
+Summary: library to handle SPM and ToF-SIMS data
+Home-page: https://github.com/scholi/pySPM
+Author: Olivier Scholder
+Author-email: o.scholder@gmail.com
+License: Apache 2.0
+Description: library to handle SPM and ToF-SIMS data
+Keywords: tof sims iontof spm sfm sxm afm kpfm pca imaging ita itm bruker nanonis
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Scientific/Engineering
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
