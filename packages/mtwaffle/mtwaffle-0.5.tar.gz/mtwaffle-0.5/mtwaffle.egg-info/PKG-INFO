@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: mtwaffle
+Version: 0.5
+Summary: Magnetotelluric data analysis
+Home-page: https://github.com/kinverarity1/mtwaffle
+Author: Kent Inverarity
+Author-email: kinverarity@hotmail.com
+License: MIT
+Description: # mtwaffle
+        
+        ![](https://img.shields.io/badge/status-alpha-red.svg)
+        [![Version](http://img.shields.io/pypi/v/mtwaffle.svg)](https://pypi.python.org/pypi/mtwaffle/)
+        [![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/kinverarity1/mtwaffle/blob/master/LICENSE)
+        [![Python versions](https://img.shields.io/pypi/pyversions/mtwaffle.svg)](https://www.python.org/downloads/)
+        
+        Assorted functions for processing and interpreting magnetotelluric data.
+        
+        To install:
+        
+        ```bash
+        $ pip install mtwaffle
+        ```
+        
+        Requirements: numpy, scipy, matplotlib
+        
+        See the [quickstart tutorial](https://github.com/kinverarity1/mtwaffle/blob/master/notebooks/Quickstart%20tutorial.ipynb) Jupyter notebook to get started. There are other tutorials in the [notebooks folder](https://github.com/kinverarity1/mtwaffle/blob/master/notebooks).
+        
+        
+Keywords: science geophysics
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Customer Service
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Other Audience
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: System :: Filesystems
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Description-Content-Type: text/markdown
