@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: dsfinfo
+Version: 0.0.1
+Summary: Some Data Science Foundations links.
+Home-page: https://github.com/jknudstrup/dsf_info
+Author: Jim Knudstrup
+Author-email: jim.knudstrup@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+This is a simple module that prints some important links for the Data Science Foundations course at General Assembly.
+
+
