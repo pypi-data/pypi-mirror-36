@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: pycallnumber
+Version: 0.1.4
+Summary: A Python library for parsing call numbers.
+Home-page: https://github.com/unt-libraries/pycallnumber
+Author: Jason Thomale
+Author-email: jason.thomale@unt.edu
+Maintainer: University of North Texas Libraries
+License: BSD
+Keywords: python,callnumber,callnumbers,call number,call numbers
+Platform: UNKNOWN
+Classifier: Intended Audience :: Education
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: future; python_version == "2.7"
+
+Visit https://github.com/unt-libraries/pycallnumber for the latest documentation.
+
+
