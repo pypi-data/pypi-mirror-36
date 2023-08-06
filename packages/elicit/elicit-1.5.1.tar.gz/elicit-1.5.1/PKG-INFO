@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: elicit
+Version: 1.5.1
+Summary: Library for making simple command interfaces.
+Home-page: https://github.com/kdart/elicit
+Author: Keith Dart
+Author-email: keith@dartworks.biz
+License: Apache 2.0
+Description: Library for making simple command interfaces with minimal dependencies.
+            Includes an enhanced Python debugger.
+            
+Platform: UNKNOWN
+Classifier: Operating System :: POSIX
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Networking :: Monitoring
+Classifier: Intended Audience :: Developers
