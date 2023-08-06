@@ -1,0 +1,76 @@
+Metadata-Version: 2.1
+Name: SampleSa
+Version: 1.1.1
+Summary: Sentiment analysis using RNN
+Home-page: https://github.com/fordra/Sample
+Author: B.Bapusiri, Suresh Jagannathan, D.Venkata Vara Prasad
+Author-email: siribapu@gmail.com , drjs72@outlook.com, dvvprasad@ssn.edu.in
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/fordra/Sample/issues
+Project-URL: Funding, https://donate.pypi.org
+Project-URL: Say Thanks!, http://saythanks.io/to/example
+Project-URL: Source, https://github.com/fordra/Sample/
+Keywords: Sentiment Analysis,RNN,Glove,Word2Vec,Sarcasm
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+
+Sentiment Analysis(SA) is the use of natural language processing, statistics and text analysis to extract and identify the sentiment of text into positive, negative or neutral categories. The main objective is to construct a model to perform sentiment analysis for postive, negative and sarcastic sentences using RNN technique. The dataset is cleaned (removal of stop words and HTML tags). Word Vectors are generated for this using GloVe and Word2Vec. 
+
+SA using Recurrent Neural Network (RNN).
+======================================== 
+
+RNN is a class of artificial neural network where connections between units form a directed cycle. This allows it to exhibit dynamic temporal behavior. The hidden layer in RNN acts as storage for the network. The main difference between the normal neural network and RNN is global parameters(such as weights and bias) used, the network is temporal and dynamic since the network vary in size according to the size of the input and same task executed at each timestamp with different inputs. RNN works on temporal data, at each timestamp, a word is taken as  input and the next word will be the output to the network. The process will repeat until the end of sentence i.e, at first timestamp, the first word is given, it will give the second word as output. At second timestamp, second word is given as input, third word will get retrieved as output. This is how the network gets trained. If a sentence contains n words, it needs (n-1) timestamps. At last timestamp, the hidden layer values get stored further given to MLP for classification. The labelling has been done manually. 
+
+Usage:
+==========
+
+1) Generate GloVe and Word2vec vectors of your required dimensions(Eg: 100,200,300) or download pre-generated vectors of both.
+
+2) Change the parameter dimension according to the word vector dimensionality
+
+3) Give appropriate file paths.
+
+4) Run sa.py as shown below.
+
+	" python ./sa.py -word_embedding W2V/GloVe/Both 'File_path that contains train and test folders' "
+
+
+
+
+Code Details:
+==============
+sa.py:
+	Main program to run code.
+
+main.py : 
+	Loads GloVe for each sentence, calls RNN for a word in sentence and writes the S_t values to CSV File.
+
+demo.sh, eval and SRC:
+	The code to produce the GloVe vectors.
+
+Main_GloVe.py: 
+	Call GloVe code to generate the word vectors. GloVe is generated using the code from Github link "https://github.com/stanfordnlp/GloVe" . This Github code produces the word vector file.
+
+GloVe_Extraction.py :
+	This code will load all those vectors corresponding to the words in sentences.   By every time the function called, word vector for a sentence is returned.
+
+Main_W2V.py:
+	Generates the Word2Vec by the calling W2V code. And this task	 is done using NLTK tool. 
+
+W2VGenerate.py:
+	Produce word vectors.
+
+RNN.py : 
+	This code will take one word at each timestamp in sequence outputs immediate word. The parameters U, V, W, b1, b2 are parameters that are shared through out the network. It returns hidden layer values (S_t).
+
+MLP.py:
+	This is mainly used to classified the sentiment of the text. The Features extracted from the RNN is given as a input to this Multi-layer Perceptron.
+
+
