@@ -1,0 +1,3 @@
+[console_scripts]
+kwsgi = kwsgi:cli
+

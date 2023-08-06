@@ -1,0 +1,10 @@
+kwsgi/__init__.py,sha256=I03PW0NT8_4xwvNN4P8w5r9u7oYTR7VZtrO0IVKtgqw,52
+kwsgi/cli.py,sha256=M-4qLiaG31-gaMHjettdI81E9ScEb7ulRoBVc6GxGgo,3185
+kwsgi/daemonize.py,sha256=W2uoXcqhn_DnSPSXNo9bhKNhaT4aox068O0lPRiJ5F0,950
+kwsgi/reloader.py,sha256=I0it6G0SBRxU1w7I10s0FOvIPHkjx5y7ELeJxHvDxyE,3826
+kwsgi/server.py,sha256=fIcplCfdW6KFf357Shb6teVG8X601xYla_cmu_-xhDg,4032
+kwsgi-0.0.2.dist-info/METADATA,sha256=Z8Gpa-DmyDHvrgwAKb9QGsZaKIuYVXHbU3jUaxIBuls,2543
+kwsgi-0.0.2.dist-info/RECORD,,
+kwsgi-0.0.2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+kwsgi-0.0.2.dist-info/entry_points.txt,sha256=QUEtUs_O_prJz7CstNVFty9M18zk23ytWfMQgpfnFMY,37
+kwsgi-0.0.2.dist-info/top_level.txt,sha256=FrN05u1Dv51nP1shxmNFV8sqvL4WDq4KL4R4_K7XwNY,6
