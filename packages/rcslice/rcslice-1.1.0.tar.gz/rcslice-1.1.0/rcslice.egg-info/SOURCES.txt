@@ -1,0 +1,9 @@
+README.md
+setup.py
+rcslice/__init__.py
+rcslice/rcslice.py
+rcslice/version.py
+rcslice.egg-info/PKG-INFO
+rcslice.egg-info/SOURCES.txt
+rcslice.egg-info/dependency_links.txt
+rcslice.egg-info/top_level.txt
