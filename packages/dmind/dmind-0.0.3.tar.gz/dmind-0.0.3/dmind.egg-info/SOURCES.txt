@@ -1,0 +1,9 @@
+MANIFEST.in
+README.md
+setup.py
+dmind/__init__.py
+dmind/mind.py
+dmind.egg-info/PKG-INFO
+dmind.egg-info/SOURCES.txt
+dmind.egg-info/dependency_links.txt
+dmind.egg-info/top_level.txt
