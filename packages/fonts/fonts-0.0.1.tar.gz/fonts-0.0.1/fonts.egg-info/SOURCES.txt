@@ -1,0 +1,10 @@
+CHANGELOG.txt
+MANIFEST.in
+README.rst
+setup.py
+fonts/__init__.py
+fonts.egg-info/PKG-INFO
+fonts.egg-info/SOURCES.txt
+fonts.egg-info/dependency_links.txt
+fonts.egg-info/not-zip-safe
+fonts.egg-info/top_level.txt
