@@ -1,0 +1,11 @@
+README.md
+setup.py
+brainnetworks/__init__.py
+brainnetworks/corenets.py
+brainnetworks/plotting.py
+brainnetworks/r2z.py
+brainnetworks/utils.py
+brainnetworks.egg-info/PKG-INFO
+brainnetworks.egg-info/SOURCES.txt
+brainnetworks.egg-info/dependency_links.txt
+brainnetworks.egg-info/top_level.txt
