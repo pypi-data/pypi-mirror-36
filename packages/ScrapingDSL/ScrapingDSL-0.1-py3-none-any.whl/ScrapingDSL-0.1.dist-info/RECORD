@@ -1,0 +1,10 @@
+ScrapingDSL-0.1.dist-info/METADATA,sha256=V2HjNWOLqBnJXpBLH6PmP9HXeK4nKetnw7K0QOpLyGg,933
+ScrapingDSL-0.1.dist-info/RECORD,,
+ScrapingDSL-0.1.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+ScrapingDSL-0.1.dist-info/top_level.txt,sha256=XcSMhJ7KExenDkb8xiebgLNBRMh1IKh2JQFnakQRTgI,13
+scraping_dsl/__init__.py,sha256=RRLRbY4dQX2GluBGOfZFxtpKO_54WXWnZB28ptEceWU,139
+scraping_dsl/base_generator.py,sha256=zuFJmTZ_NhH4SaP8Z_hIgTj9QP4cl_9xftfyOykQdwk,927
+scraping_dsl/execute.py,sha256=e2l7UaYhDpuiLoA8KFvl-21rhUrYPQa6TEL-d7joX0g,1320
+scraping_dsl/generate.py,sha256=kCkMosj48xFgRj164a6Njga66C89zD1YenJ6UuWHYL0,971
+scraping_dsl/generate_spider.py,sha256=_33YllAdG_WKC5JthmPwqySjC9GKAOWyloNffyB_fP0,3187
+scraping_dsl/root.py,sha256=HH-AXaD27sKwLhkyfFKr5eVny2mjvkWxHqFDiSDRoOo,267

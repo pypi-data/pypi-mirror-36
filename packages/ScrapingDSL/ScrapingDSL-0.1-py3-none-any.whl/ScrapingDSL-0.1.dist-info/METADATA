@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: ScrapingDSL
+Version: 0.1
+Summary: Generating Scrapy project using DSL
+Home-page: https://github.com/Pazzo92/scraping-dsl
+Author: Filip Frank
+Author-email: frank.filip@hotmail.com
+License: MIT
+Keywords: meta-language meta-model language DSL scraping Scrapy
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Compilers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Requires-Dist: textX (>=1.7.0)
+Requires-Dist: Scrapy (>=1.5.0)
+Requires-Dist: pymongo (>=3.7.1)
+Requires-Dist: Jinja2 (>=2.10)
+Requires-Dist: pydot (>=1.2.4)
+
+UNKNOWN
+
+
