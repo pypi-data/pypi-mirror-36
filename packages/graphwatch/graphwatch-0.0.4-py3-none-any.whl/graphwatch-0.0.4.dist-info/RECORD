@@ -1,0 +1,11 @@
+graphwatch/__init__.py,sha256=OmLmxwdDaUAL5Zr78co0P-ivSshOKqZRL6bSpoNM3mM,209
+graphwatch/__main__.py,sha256=d9vfDANuBYjGTOQAuTQ5Vwui3Q1RZVpKUVzo-pQJ4gA,155
+graphwatch/_version.py,sha256=lo3mSobe7IrpHa47PagtYJPaEK3tX_NdGVBS4lgyKAE,497
+graphwatch/graphwatch.py,sha256=fCeaC_qllgoKSGgdvwMaEEJdzsYNwXnwvSAo6U9jeAk,11827
+graphwatch/assets/vis.css,sha256=I1UoFd33KHIydu88R9owFaQWzwkiZV4hXXug5aYaM28,32390
+graphwatch/assets/vis.js,sha256=MIz-sRaifbbQsmFeGBw6VtnKJFRTqcyUJWofZNjgwEQ,1845909
+graphwatch-0.0.4.dist-info/METADATA,sha256=4TpVrjSCRH_dKjXvXeYVHSP7_xFV0gaZUHpYsn9W6HM,500
+graphwatch-0.0.4.dist-info/RECORD,,
+graphwatch-0.0.4.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+graphwatch-0.0.4.dist-info/top_level.txt,sha256=vLGO7cVGsPe4SkdMCjGKJ_jH-m71ym5cLAoVB5QKmIA,11
+graphwatch-0.0.4.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
