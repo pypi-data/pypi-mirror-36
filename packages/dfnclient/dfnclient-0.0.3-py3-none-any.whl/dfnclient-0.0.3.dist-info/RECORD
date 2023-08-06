@@ -1,0 +1,9 @@
+dfnclient-0.0.3.dist-info/METADATA,sha256=fFTz7ns3R9I7xx-VhJ4iPEBfO3dE5N8KHZT_Yqyu5Uo,675
+dfnclient-0.0.3.dist-info/RECORD,,
+dfnclient-0.0.3.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+dfnclient-0.0.3.dist-info/entry_points.txt,sha256=PRkhTzXY25QO2PeMqBRDUS4AfRqBTDardtvz5tvWPQo,52
+dfnclient-0.0.3.dist-info/top_level.txt,sha256=T9lDVSRVsjAEaDGGXBt7gsoujURUJfw1hLKpZM5AMzw,7
+dfngen/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dfngen/dfnclient.py,sha256=NTuiCm4U0oZnijV8SGxlr-v-hRzEoR-c3GPURC0ttbY,3878
+dfngen/openssl.py,sha256=6X3GQIK4ofHQaWPKpiyowOGj4PwSAwdMvdYmSzot1HY,1033
+dfngen/soap.py,sha256=J-C_dn-dyBNwupZjAzJ7Qy1uFFPiIMz3p8Z-Ytkd9VA,975
