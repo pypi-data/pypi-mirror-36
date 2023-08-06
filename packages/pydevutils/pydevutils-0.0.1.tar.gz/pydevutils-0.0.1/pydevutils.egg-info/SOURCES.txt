@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+pydevutils/__init__.py
+pydevutils/pydevutils.py
+pydevutils.egg-info/PKG-INFO
+pydevutils.egg-info/SOURCES.txt
+pydevutils.egg-info/dependency_links.txt
+pydevutils.egg-info/top_level.txt
