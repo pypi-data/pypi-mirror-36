@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: allinsso
+Version: 0.0.6
+Summary: Single Sign-on app for All Inspiration Apps
+Home-page: https://github.com/frugs/allin-sso
+Author: Hugo Wainwright
+Author-email: wainwrighthugo@gmail.com
+License: UNKNOWN
+Keywords: sc2,all-inspiration
+Platform: UNKNOWN
+Requires-Dist: Flask-OAuthlib
+Requires-Dist: flask
+Requires-Dist: google-cloud-datastore
+
+UNKNOWN
+
+

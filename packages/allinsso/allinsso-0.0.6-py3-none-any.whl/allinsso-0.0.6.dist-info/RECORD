@@ -1,0 +1,11 @@
+allinsso/__init__.py,sha256=VjgUyxH9Jx68cNqyOTk3YfaYVTPWttzanNIZKwtLKgA,95
+allinsso/app.py,sha256=Z-NUNUKWHQZJFsiyQUe9j68jjc-Jv5QVjvqVdzPs608,2114
+allinsso/discordoauth.py,sha256=XmGvZd18Ziq55-7h_NajYVIkhhOzMb04TRPMS5jjX8k,1544
+allinsso/static/images/allin_official.png,sha256=zwJuznyhCbfnRUuwUUGzYy_UF-OdJ74KhO3-Zs4oSAA,28106
+allinsso/static/images/discord-logo-white.svg,sha256=2wsUMOwBMqRfD67VsjEFVgtaJR0pP9Pmhn2oWgyfNDs,1106
+allinsso/static/styles/main.css,sha256=oWbw3Oo6C8l05o6cUhltv3_RnDpxgDej1rwWb0h76Tg,946
+allinsso/templates/index.html.j2,sha256=eGiBVtDhNt24sLF-vdwp62Jgc2cE-ZRAX8527mUvxGk,813
+allinsso-0.0.6.dist-info/METADATA,sha256=jDTdmmROk3XqdDxUjTa4PmGrDwNErun5jF_cTu4ldy0,379
+allinsso-0.0.6.dist-info/RECORD,,
+allinsso-0.0.6.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+allinsso-0.0.6.dist-info/top_level.txt,sha256=AxESwERNbQWs2202zmFQbndiE4VlA_2wiXJaaWnTGC8,9
