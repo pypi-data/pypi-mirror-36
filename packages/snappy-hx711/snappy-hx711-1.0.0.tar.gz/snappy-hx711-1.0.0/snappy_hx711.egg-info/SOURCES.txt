@@ -1,0 +1,9 @@
+README.rst
+setup.py
+snappy_hx711/__init__.py
+snappy_hx711/_version.py
+snappy_hx711/hx711.py
+snappy_hx711.egg-info/PKG-INFO
+snappy_hx711.egg-info/SOURCES.txt
+snappy_hx711.egg-info/dependency_links.txt
+snappy_hx711.egg-info/top_level.txt
