@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: STEVENSNEWPYTHONPACKAGE
+Version: 0.0.1
+Summary: A small extension with the alphabet
+Home-page: https://github.com/myclubisclub6/STEVENSNEWPYTHONPACKAGE
+Author: Steven Nguyen
+Author-email: myclubisclub6@gmail.com
+License: UNKNOWN
+Description: # STEVENSNEWPYTHONPACKAGE
+        
+        Welcome to my package, 
+        This package is so that developers don't have to keep writing the alphabet out
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
