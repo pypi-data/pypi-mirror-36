@@ -1,0 +1,142 @@
+Metadata-Version: 2.1
+Name: sqla-filters-yaml
+Version: 0.0.1
+Summary: YAML parser for sqla-filters.
+Home-page: https://github.com/MarcAureleCoste/sqla-filters-yaml
+Author: Marc-Aurele Coste
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Requires-Dist: sqla-filters (==0.0.2)
+Requires-Dist: PyYAML (==3.13)
+Provides-Extra: dev
+Requires-Dist: pylint; extra == 'dev'
+Requires-Dist: pep8; extra == 'dev'
+Requires-Dist: autopep8; extra == 'dev'
+Requires-Dist: ipython; extra == 'dev'
+Requires-Dist: mypy; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
+Requires-Dist: rope; extra == 'dev'
+Requires-Dist: sphinx; extra == 'dev'
+Requires-Dist: twine; extra == 'dev'
+
+# Sqla-filters-yaml
+
+Add yaml parser to the sqla-filters package.
+
+## Introduction 
+
+Add YAML support to sqla-filters.
+
+
+## Requirements
+
+This package use the python package `pyyaml`. To install pyyaml you need to have the **yaml.h** header file. If it's not
+present on your system you need to install the libyaml-dev package.
+
+- On Fedora
+```bash
+sudo dnf install libyaml-devel
+```
+
+- On Debian based distribution (Ubuntu, ...)
+```bash
+sudo apt install libyaml-dev
+```
+
+## Installation
+
+```bash
+pip install sqla-filter-yaml
+```
+
+## Getting Started
+
+### YAML format
+
+```yml
+---
+type: and
+data:
+- type: or
+  data:
+  - type: operator
+    data:
+      attribute: name
+      operator: eq
+      value: toto
+  - type: operator
+    data:
+      attribute: name
+      operator: eq
+      value: tata
+- type: operator
+  data:
+    attribute: age
+    operator: eq
+    value: 21
+```
+
+:warning: Yaml format can change in the futur. :warning:
+
+### Example code
+
+Create an instance of the YAMLilterParser from the yaml string / document.
+
+Example:
+```python
+# Sqlalchemy setup + model definition
+
+# Create a YAML parser instance
+parser = YAMLiltersParser(raw_json_string)
+
+# You can finaly filter your query
+query = session.query(Post)
+filtered_query = parser.tree.filter(query)
+
+# Get the results
+query.all()
+```
+
+### Result tree
+
+```
+                                      +----------------------+
+                                      |                      |
+                                      |          and         |
+                                      |                      |
+                                      -----------------------+
+                                                 ||
+                                                 ||
+                                                 ||
+                    +----------------------+     ||     +----------------------+
+                    |                      |     ||     |                      |
+                    |          or          <------------>      age == 21       |
+                    |                      |            |                      |
+                    +----------------------+            +----------------------+
+                               ||
+                               ||
+                               ||
++----------------------+       ||       +----------------------+
+|                      |       ||       |                      |
+|     name == toto     <---------------->     name == tata     |
+|                      |                |                      |
++----------------------+                +----------------------+
+```
+
+# Contribute
+
+Fork the repository and run the following command to install the dependencies and the dev dependencies.
+
+`pip install -e '.[dev]'`
+
+
