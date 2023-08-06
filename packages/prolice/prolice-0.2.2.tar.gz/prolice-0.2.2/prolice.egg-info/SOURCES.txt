@@ -1,0 +1,13 @@
+CHANGELOG.md
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+prolice/__init__.py
+prolice/prolice.py
+prolice.egg-info/PKG-INFO
+prolice.egg-info/SOURCES.txt
+prolice.egg-info/dependency_links.txt
+prolice.egg-info/entry_points.txt
+prolice.egg-info/requires.txt
+prolice.egg-info/top_level.txt
