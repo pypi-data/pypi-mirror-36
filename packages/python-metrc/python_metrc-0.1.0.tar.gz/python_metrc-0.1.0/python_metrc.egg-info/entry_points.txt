@@ -1,0 +1,3 @@
+[console_scripts]
+python_metrc = python_metrc.cli:main
+
