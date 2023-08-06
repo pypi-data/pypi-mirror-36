@@ -1,0 +1,13 @@
+appdirs
+distlib
+packaging
+setuptools
+six
+vistir[spinner]
+pip-shims
+
+[tests]
+pytest-xdist
+pytest-timeout
+pytest-cov
+pytest
