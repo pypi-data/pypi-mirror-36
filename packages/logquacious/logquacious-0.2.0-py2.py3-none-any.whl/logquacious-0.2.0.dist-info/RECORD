@@ -1,0 +1,14 @@
+logquacious/__init__.py,sha256=OflWcJnntVmSBx-Byt2IAMdiD5kARTU42wNQVk9fG2I,208
+logquacious/_compat.py,sha256=7CZWsD1tN6bpBNfq9xqZH0LSGqk298tzkf1AeFlrRAw,157
+logquacious/cascading_config.py,sha256=zn_nl3En_335dB7yQGm5xkK9XSUrPZY4DDhBQZSbtDg,4733
+logquacious/constants.py,sha256=qTBu_F5oGEMWNch8mJ4Wr3Z2PJkWmmBSgyo9IE8EfwI,176
+logquacious/context_templates.py,sha256=LxHJoAuzKrPT_xk2MDpN23UBhXjVio3J1826b10JvV4,2660
+logquacious/log_context.py,sha256=qsQmPuBE2lCwl4PQDtVgBPP7C7JNoqIiyoPE5nQgKcg,4414
+logquacious/log_manager.py,sha256=GXqCbPCitZzs50WJGaXeBEMNaI98hQoWYN6ulC3aDr4,3921
+logquacious/utils.py,sha256=oQQELVWALUExalSzKqXUENJFOEBZFNzO8aZrRDbcIDc,1038
+logquacious-0.2.0.dist-info/AUTHORS.rst,sha256=xz4ZDlPajRTp8rXHs-JGGFB5TgLY742okGiSaEA51eE,151
+logquacious-0.2.0.dist-info/LICENSE,sha256=b7eepb4k5tAMWICZKc4X869yV0taL46AawgUc7kD2Ys,1068
+logquacious-0.2.0.dist-info/METADATA,sha256=YjgKJll_hCYXJNFGrudyj77_KNSb0ZZX11lH37gfpC4,7125
+logquacious-0.2.0.dist-info/WHEEL,sha256=CrDFromy0BmNYzyZFyVIlKdTa5Zg2RBBtjMkE7goq78,110
+logquacious-0.2.0.dist-info/top_level.txt,sha256=0r87Fli9o00jBa8iFtdNNZgeR_CqJb5fN6G6mSMbeJA,12
+logquacious-0.2.0.dist-info/RECORD,,
