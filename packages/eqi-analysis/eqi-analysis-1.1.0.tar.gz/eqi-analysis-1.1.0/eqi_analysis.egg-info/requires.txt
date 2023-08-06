@@ -1,0 +1,7 @@
+eqi-utils>=1.0.3
+pandas>=0.23.3
+cx_Oracle>=6.0b2
+sqlalchemy>=1.2.8
+alphalens-eqi>=1.1.0
+matplotlib>=2.2.2
+numpy>=1.14.5
