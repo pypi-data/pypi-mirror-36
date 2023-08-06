@@ -1,0 +1,4 @@
+DELETE FROM
+    organism
+WHERE
+    :ORGANISM_CONDITION
