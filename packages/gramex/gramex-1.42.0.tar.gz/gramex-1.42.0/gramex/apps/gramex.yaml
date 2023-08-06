@@ -1,0 +1,16 @@
+app:
+    listen:
+        port: 9977
+    settings:
+        debug: false
+        autoreload: False
+        xsrf_cookies: True
+
+log:
+    root:
+        level: DEBUG
+
+import:
+  subdirs2:
+    path: '*/gramex.yaml'
+    namespace: [url, schedule, cache, import]
