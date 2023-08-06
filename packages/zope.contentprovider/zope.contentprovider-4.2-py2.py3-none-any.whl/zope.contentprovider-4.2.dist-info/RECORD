@@ -1,0 +1,14 @@
+zope.contentprovider-4.2-py2.7-nspkg.pth,sha256=SWEVH-jEWsKYrL0qoC6GBJaStx_iKxGoAY9PQycFVC4,529
+zope/contentprovider/__init__.py,sha256=g_MA1sNR2FWz6skGPaT9fb84WfolyAcu37WCyRNK2p4,636
+zope/contentprovider/configure.zcml,sha256=hf_8Uu45XxFy3BkNQ05EUyC7zAJg9iNVn8xb8AB2t_I,652
+zope/contentprovider/interfaces.py,sha256=Ynhotjg4GcsuO8yV2Rcd4voYHSohD51gYx_A7qRRnP0,5688
+zope/contentprovider/provider.py,sha256=He_pE7TemIBkSGHVNjbAfE7e7jfnR-D9oVU32ZBUS5U,1439
+zope/contentprovider/tales.py,sha256=ZW4aqC7ITfiACqxbLlKgVjaULowguH_lN0QvLLbDElk,3081
+zope/contentprovider/tests.py,sha256=9WaCsU_Mnxjf9Xy1agz8PyphlUs4n4zH5H60QIKFYZE,910
+zope.contentprovider-4.2.dist-info/DESCRIPTION.rst,sha256=27u8msxIDkyAAQuCDsoxXrbnUUMBeJPcMyRpMGjtKfo,3902
+zope.contentprovider-4.2.dist-info/METADATA,sha256=FbYUhsoO3--6VpzyDItl9DynWqGHEJ7lPsrqfdrEN3g,5677
+zope.contentprovider-4.2.dist-info/RECORD,,
+zope.contentprovider-4.2.dist-info/WHEEL,sha256=o2k-Qa-RMNIJmUdIc7KU6VWR_ErNRbWNlxDIpl7lm34,110
+zope.contentprovider-4.2.dist-info/metadata.json,sha256=OL9LpDFrF7O22bnUSjTrLvFtWfrUch69GWFGueskGeM,1731
+zope.contentprovider-4.2.dist-info/namespace_packages.txt,sha256=QpUHvpO4wIuZDeEgKY8qZCtD-tAukB0fn_f6utzlb98,5
+zope.contentprovider-4.2.dist-info/top_level.txt,sha256=QpUHvpO4wIuZDeEgKY8qZCtD-tAukB0fn_f6utzlb98,5
