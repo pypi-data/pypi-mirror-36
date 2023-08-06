@@ -1,0 +1,47 @@
+#!/usr/bin/python2.7
+"""Convert a file to a all upper case file.
+"""
+import sys
+import os
+from myFormat.sub_1.m1 import input_file, output_file
+from myFormat.sub_1.m2 import upper_case, to_string
+from myFormat.sub_1.m3 import save_backup
+from myFormat.sub_2.m4 import direct_search
+
+
+__author__ = "Disaiah Bennett"
+__version__ = "0.1"
+
+def main():
+    """Convert all characters in a file to upper case and save it.
+
+    Raises:
+        IOError: input file cannot be openned, or output file cannot be created.
+
+    """
+    if len(sys.argv) != 2:
+        print "Directory is missing to run this file -> python convert.py [name_of_directory]\n"
+        exit()
+
+    direct_search(sys.argv[1])
+    file_name = raw_input("\nEnter [.txt] file name to converted to uppercase: ")
+
+    try:
+        con_file = input_file(file_name)
+        if os.path.exists(sys.argv[1]):
+            print "[File ready to be converted]\n"
+        else: # else
+            sys.exit() # exit the program
+    except IOError:
+        print "Error occurred within the I/O"
+
+    try:
+        data = to_string(upper_case(output_file(con_file))) # convert strings to upper case
+    except TypeError:
+        print "File was not found"
+
+    new_file = file_name
+    save_backup(new_file, data, 1)
+
+if __name__ == '__main__':
+    main()
