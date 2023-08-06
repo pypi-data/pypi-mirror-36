@@ -1,0 +1,17 @@
+README.md
+setup.cfg
+setup.py
+TurkishStemmer/__init__.py
+TurkishStemmer.egg-info/PKG-INFO
+TurkishStemmer.egg-info/SOURCES.txt
+TurkishStemmer.egg-info/dependency_links.txt
+TurkishStemmer.egg-info/top_level.txt
+TurkishStemmer/states/DerivationalState.py
+TurkishStemmer/states/NominalVerbState.py
+TurkishStemmer/states/NounState.py
+TurkishStemmer/states/__init__.py
+TurkishStemmer/suffixes/DerivationalSuffix.py
+TurkishStemmer/suffixes/NominalVerbSuffix.py
+TurkishStemmer/suffixes/NounSuffix.py
+TurkishStemmer/suffixes/__init__.py
+TurkishStemmer/transitions/__init__.py
