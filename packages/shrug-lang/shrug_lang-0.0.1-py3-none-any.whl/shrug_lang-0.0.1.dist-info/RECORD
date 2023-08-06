@@ -1,0 +1,14 @@
+shrug_lang/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+shrug_lang/interpreter.py,sha256=nsiot4urCzcc5unPVn0Qi4ZrjU-PFLTQ02bYzEh37Zg,807
+shrug_lang/shrug_token.py,sha256=JV98R22PWILvevJ2T7tJJ7PwJOuVmuq0TqdTbB0BupM,774
+shrug_lang/token_parser.py,sha256=Up-iYqaczIbmFWbkJ8wuzMrZawsHp0Yunc39GW8wyfI,8665
+shrug_lang/tokenizer.py,sha256=Oi6wyqFfSyoHLAzknGcYo9adL6B0Lqbs2mAnqEDcX-w,2115
+shrug_lang-0.0.1.dist-info/METADATA,sha256=LlT1O7gPeX2Qtr6wh_8XJpDXuEXHcUSII14JrkauCJM,2824
+shrug_lang-0.0.1.dist-info/RECORD,,
+shrug_lang-0.0.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+shrug_lang-0.0.1.dist-info/entry_points.txt,sha256=0GrjBruaefY4mYT_dg3NxBpiNuhPWJDPl2MTZJZWbmc,90
+shrug_lang-0.0.1.dist-info/top_level.txt,sha256=Lab_bJ1irc0SGDzexulGaqy4jmPGeZdRWELre6eT7fU,17
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_token.py,sha256=zbhMxgoCi52oa69eUGbPSyZ1szDNOHGK89oFra6ixOU,850
+tests/test_token_parser.py,sha256=POq532TNeT64U0_dnywnFDLDABLGH3-6z57aCtEvU-g,1810
+tests/test_tokenizer.py,sha256=yoP5vyac6sO9tbzuFIU63YxDIA84lzruROn5VqxFKyU,4691
