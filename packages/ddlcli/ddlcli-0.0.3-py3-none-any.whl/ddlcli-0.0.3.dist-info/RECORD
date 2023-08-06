@@ -1,0 +1,10 @@
+ddlcli/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ddlcli/cli.py,sha256=hRB0GkCOmIGsDjuky9j7C6tbUcl5YRQYZP8SUCHVHKA,1066
+ddlcli/constants.py,sha256=QXVicqBWFGp8tUK8OO4LHSuZ0_MSljQrQr84_hADzJU,22
+ddlcli/job_util.py,sha256=V3gm2DOB7shSKzfdNTKbY_4EhaOw7RLJbx9l6cS_jso,5071
+ddlcli/s3_util.py,sha256=PI_b86wF-_uYXdJGv9VpZ2spdKrSTxhNtYSu2X-OaY0,1975
+ddlcli-0.0.3.dist-info/METADATA,sha256=cXT6IApaloiECMQ4JfrV69ZsC_IMn81NsNcXBUDZHHg,477
+ddlcli-0.0.3.dist-info/RECORD,,
+ddlcli-0.0.3.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+ddlcli-0.0.3.dist-info/entry_points.txt,sha256=x95tzsBr5ne8-DWp_q6_qN79sgnZvMD4mh38SBLZqmM,44
+ddlcli-0.0.3.dist-info/top_level.txt,sha256=zlEOV_NkEPEExC3JJmntx3IdLJxJSPersNMT_tyR-aM,7
