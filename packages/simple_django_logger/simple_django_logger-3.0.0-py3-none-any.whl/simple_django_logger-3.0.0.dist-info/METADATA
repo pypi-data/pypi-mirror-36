@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: simple-django-logger
+Version: 3.0.0
+Summary: A basic logger for Django
+Home-page: https://github.com/eshandas/simple_django_logger
+Author: Eshan Das
+Author-email: eshandasnit@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/eshandas/simple_django_logger/archive/3.0.0.tar.gz
+Keywords: django,logger
+Platform: UNKNOWN
+Requires-Dist: Django (>=2.0)
+Requires-Dist: requests (>=2.0)
+Requires-Dist: djangorestframework (>=3.8)
+Requires-Dist: user-agents (>=1.1.0)
+Requires-Dist: django-user-agents (>=0.3.2)
+
+UNKNOWN
+
+
