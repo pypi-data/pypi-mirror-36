@@ -1,0 +1,13 @@
+pyfakefs/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pyfakefs/fake_filesystem.py,sha256=jXNe4eWXaKVz5gy9fWGEY5JnJ9H7HpL_i5mkcQRd7sY,143954
+pyfakefs/fake_filesystem_glob.py,sha256=Ng3v9SNw4MNbx7lXRK5q_Fla3ONe573PcF7REARZWnM,10598
+pyfakefs/fake_filesystem_shutil.py,sha256=Q4etXc2dKCFQV8Zuit7t_14GuqA3hDBOYl7U8xGYoAM,13317
+pyfakefs/fake_filesystem_unittest.py,sha256=zcQoyAVBGmRJwUlB1L0QAVGwk-tueIX68Wjbh02-pEw,14090
+pyfakefs/fake_pathlib.py,sha256=KjtadnyIhJda4uDjpaaYMQiN0aSGM78GJVj6IbiBHao,24011
+pyfakefs/fake_tempfile.py,sha256=QFMt9lHpvpTfXrgvBueoZ5HoEbQgFuQBI7khhFFA3kc,14581
+pyfakefs/pytest_plugin.py,sha256=mgnZDqWf5PaUlgezWsilIAG6DTnAle3Bmm6fR7snhUo,598
+pyfakefs-3.1.dist-info/METADATA,sha256=ZJWNYfRvyZXUUWJpp5eXb1tVzPSjTsUsxJ4xroMkOLk,1547
+pyfakefs-3.1.dist-info/RECORD,,
+pyfakefs-3.1.dist-info/WHEEL,sha256=saUSQBLOUjf5ACZdNkhQ0lB6XrHU-l4vpzxq_W1n_AY,116
+pyfakefs-3.1.dist-info/entry_points.txt,sha256=XcNLTXRRguIDMMzFYNjV8F9N4vPyf8g_d6cjRl4_lJ8,51
+pyfakefs-3.1.dist-info/top_level.txt,sha256=RjJk0MUaoyY24IlA5aXRjEE1HcLScXXL17orRtU7E2o,9
