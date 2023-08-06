@@ -1,0 +1,9 @@
+README.md
+setup.py
+hellobomma.egg-info/PKG-INFO
+hellobomma.egg-info/SOURCES.txt
+hellobomma.egg-info/dependency_links.txt
+hellobomma.egg-info/requires.txt
+hellobomma.egg-info/top_level.txt
+sample/__.init__.py
+sample/hello.py
