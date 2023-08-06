@@ -1,0 +1,121 @@
+{
+  "src/components/Alert.js": {
+    "description": "",
+    "displayName": "Alert",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "color": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Alert color, options: primary, secondary, success, info, warning, danger,\nlink. Default is secondary"
+      },
+      "isOpen": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether alert is open, default: true"
+      },
+      "fade": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Fade on close."
+      }
+    }
+  },
+  "src/components/Badge.js": {
+    "description": "",
+    "displayName": "Badge",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "color": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Badge color, options: primary, secondary, success, info, warning, danger,\nlink. Default is secondary"
+      },
+      "pill": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Make badge \"pill\" shaped (rounded ends, like a pill), default: false"
+      },
+      "href": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Attach link to badge."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the Badge, default: span"
+      }
+    }
+  }
+}
