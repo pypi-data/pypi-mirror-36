@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: isjosh18
+Version: 0.5
+Summary: Determines if Josh is 18.
+Home-page: UNKNOWN
+Author: numirias
+Author-email: numirias@users.noreply.github.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=2.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+# Is Josh 18?
+
+A command-line interface to determine if Josh is 18.
+
+
+## Installation
+
+    $ pip install isjosh18 --upgrade
+
+
+## Usage
+
+    $ isjosh18 -h
+
+
+## Example
+
+    $ isjosh18
+    Josh is NOT 18.
+
+
