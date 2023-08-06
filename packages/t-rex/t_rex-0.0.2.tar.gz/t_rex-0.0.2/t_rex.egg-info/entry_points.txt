@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        t_rex=t_rex.main:application.run
+    
