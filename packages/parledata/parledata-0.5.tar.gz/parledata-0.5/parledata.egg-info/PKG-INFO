@@ -1,0 +1,51 @@
+Metadata-Version: 1.1
+Name: parledata
+Version: 0.5
+Summary: Parle Data - little gateway from hd to json
+Home-page: http://github.com/parleweb/parledata
+Author: Emmanuel Sandorfi
+Author-email: e.sandorfi@parleweb.com
+License: WTFPL
+Description: 
+        # Parledata V0.5
+        
+        Ã©crit par Emmanuel Sandorfi
+        parleweb.fr
+        parleweb@gmail.com
+        Avignon, France
+        
+        License : GNU GENERAL PUBLIC LICENSE
+        
+        
+        ## l'efficacitÃ© par le dÃ©veloppement
+        
+        MVC (concept) + Python (langage)
+        
+        ## la simplicitÃ© du contenu = le savoir faire de l'entreprise
+        
+        - arborescence
+        - classement
+        - fichiers bureautiques
+        - rÃ©pertoires disque local, partagÃ© ou cloud
+        
+        ## la maÃ®trise du site web = rÃ©duction des coÃ»ts
+        
+        - automatisation des tÃ¢ches
+        - singularitÃ© du contenu gÃ©nÃ©rÃ© par modÃ¨les
+        - indÃ©pendance des sites et pages gÃ©nÃ©rÃ©s
+        
+        ## l'accessibilitÃ© des rÃ©alisations web
+        
+        - rapiditÃ©
+        - rÃ©fÃ©rencement
+        - maquette ou production
+        - expÃ©rience utilisateur
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved
+Classifier: Natural Language :: French
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Communications
