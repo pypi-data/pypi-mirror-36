@@ -1,0 +1,16 @@
+tkmvc/__init__.py,sha256=_mdEWjWF_7nReI9P_CmxcHq1Qm27plcGGqCcIWSqFe4,304
+tkmvc/cli.py,sha256=VgCJZO6_Gyj6VEQQX1u7YH5BMMi1n1Msm0bsH3OoRfc,407
+tkmvc/tkmvc.py,sha256=CM8n2mBMP6ZpwGE1yyYiwvfpvld88eElRlcZWnlWtvg,850
+tkmvc/controllers/__init__.py,sha256=FRZm-Ku3IF16hCxwoJy2DUou7C-l4z6I0uoUQcKYR04,390
+tkmvc/controllers/controller.py,sha256=vpBzU1H6Cl8H__Su8H_YtCGwLpzSCMbKtSEqSs2Mtd4,545
+tkmvc/models/__init__.py,sha256=T4VpE_67CfpZ5fKVOO4W8ET0w3Gb2TUZWaHsGKCFHWE,375
+tkmvc/models/model.py,sha256=SkPqkCLNfAE8jVfnSXRGzo7OKlEvGWnxU8-gHvIHaQg,454
+tkmvc/views/__init__.py,sha256=bAVEcRGWzrAf-9d-suug6j03DQqBOyHmTAEwJV9bWtI,371
+tkmvc/views/view.py,sha256=AeSTlvmxYG7ZgpoTUB97IGTXa01N9RAUJ8Lhpg7Zmdw,691
+tkmvc-0.1.12.dist-info/AUTHORS.rst,sha256=TZ7AvE16xRWaYPGFmrWlcKv7hDsvEn_fIf45HdnDqAM,159
+tkmvc-0.1.12.dist-info/LICENSE,sha256=Nt7dKZ7jqZ6l6HCy7-oEaFhtWWb_BHf3Z7kcCjjvRZA,1070
+tkmvc-0.1.12.dist-info/METADATA,sha256=48MrBc74AQzV1ZtMF0LFEN0d11vRuqPpUJdGa-x7q54,1809
+tkmvc-0.1.12.dist-info/WHEEL,sha256=CrDFromy0BmNYzyZFyVIlKdTa5Zg2RBBtjMkE7goq78,110
+tkmvc-0.1.12.dist-info/entry_points.txt,sha256=yvnW8Q0o8OildmHwpz0QeOBOQsnRTxKibwBz9mZwyGM,42
+tkmvc-0.1.12.dist-info/top_level.txt,sha256=vdzxmzrkYCg7RiBIbbARAdkDydIpID-qUlWt25hp5vs,6
+tkmvc-0.1.12.dist-info/RECORD,,
