@@ -1,0 +1,17 @@
+Metadata-Version: 1.0
+Name: PyHal
+Version: 10.0.5
+Summary: A multipurpose library homemade from scratch to perform great stuff in a pythonic way 
+Home-page: https://github.com/sirfoga/pyhal
+Author: sirfoga
+Author-email: sirfoga@protonmail.com
+License: UNKNOWN
+Description: HAL
+        A multipurpose library homemade from scratch to perform great stuff in a pythonic way 
+            Install
+            - $ pip3 install . --upgrade --force-reinstall, from the source
+            - $ pip3 install PyHal, via pip
+            Questions and issues
+            The Github issue tracker is only for bug reports and feature requests.
+Keywords: library scratch awesome
+Platform: UNKNOWN
