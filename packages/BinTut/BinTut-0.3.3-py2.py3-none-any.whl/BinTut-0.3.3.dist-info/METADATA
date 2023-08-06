@@ -1,0 +1,23 @@
+Metadata-Version: 2.0
+Name: BinTut
+Version: 0.3.3
+Summary: Teach You A Binary Exploitation For Great Good.
+Home-page: https://github.com/NoviceLive/bintut
+Author: Gu Zhengxiong
+Author-email: rectigu@gmail.com
+License: GPL-3
+Keywords: Classical Binary Exploitation
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.2
+Requires-Dist: click
+Requires-Dist: colorama
+Requires-Dist: pat
+Requires-Dist: ropper
+Requires-Dist: pyelftools (==0.25)
+
+UNKNOWN
+
+
