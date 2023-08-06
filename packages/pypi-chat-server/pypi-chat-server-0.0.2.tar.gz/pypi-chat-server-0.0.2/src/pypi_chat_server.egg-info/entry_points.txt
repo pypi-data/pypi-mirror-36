@@ -1,0 +1,3 @@
+[console_scripts]
+pypi-chat-server = pypi_server.main:main
+

@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: pypi-chat-server
+Version: 0.0.2
+Summary: A alfa project of PyQT chat.
+Home-page: https://github.com/dankaliyev/pypi-chat-server
+Author: Daniyar Kaliyev
+Author-email: danikspirit@gmail.com
+License: MIT
+Description: A chat project on python 3 and PyQt5
+Keywords: PyQT5 chat server,chat PyQt 5,server jim chat
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Topic :: Communications :: Chat
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Provides-Extra: dev
+Provides-Extra: test

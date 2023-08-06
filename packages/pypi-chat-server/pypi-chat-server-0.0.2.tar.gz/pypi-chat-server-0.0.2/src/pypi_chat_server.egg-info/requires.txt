@@ -1,0 +1,10 @@
+SQLAlchemy==1.1.14
+
+[dev]
+flake8==3.4.1
+
+[test]
+pytest==3.2.2
+pytest-cov==2.5.1
+pytest-sugar==0.9.0
+PyYAML==3.12
