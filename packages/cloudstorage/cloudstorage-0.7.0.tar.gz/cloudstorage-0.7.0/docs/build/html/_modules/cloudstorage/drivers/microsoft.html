@@ -1,0 +1,766 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cloudstorage.drivers.microsoft &mdash; Cloud Storage 0.6 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cloud Storage
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#source-code">Source Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../supported.html">Supported Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#basic-terminology">Basic Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#connecting-to-storage">Connecting to Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#creating-a-container">Creating a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#accessing-a-container">Accessing a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#deleting-a-container">Deleting a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#uploading-a-blob">Uploading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#accessing-a-blob">Accessing a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#downloading-a-blob">Downloading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#deleting-a-blob">Deleting a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#iteration-of-containers-and-blobs">Iteration of Containers and Blobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#metadata-and-extra-arguments">Metadata and Extra Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/amazon.html">Amazon Simple Storage Service (S3)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/amazon.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/amazon.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/google.html">Google Cloud Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/microsoft.html">Microsoft Azure Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/microsoft.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/microsoft.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/rackspace.html">Rackspace Cloud Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/local.html">Local File System Driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#metadata">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#base">Base</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/blob.html">Blob</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/container.html">Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/driver.html">Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#drivers">Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/microsoft.html">AzureStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/rackspace.html">CloudFilesDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/google.html">GoogleStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/local.html">LocalDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/amazon.html">S3Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.helpers">Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.utils">Utility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.exceptions">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#logging">Logging</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#unreleased-2018-10-03">Unreleased (2018-10-03)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id4">0.6 (2018-07-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id5">0.5 (2018-02-26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id7">0.4 (2017-08-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id11">0.3 (2017-05-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id13">0.2 (2017-04-21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id14">0.1 (2017-04-20)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../authors.html#lead">Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cloud Storage</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>cloudstorage.drivers.microsoft</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for cloudstorage.drivers.microsoft</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Microsoft Azure Storage Driver.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">codecs</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">http</span> <span class="k">import</span> <span class="n">HTTPStatus</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c1"># noinspection PyUnresolvedReferences</span>
+    <span class="kn">from</span> <span class="nn">httpstatus</span> <span class="k">import</span> <span class="n">HTTPStatus</span>  <span class="c1"># noqa: F401</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">azure.common</span> <span class="k">import</span> <span class="n">AzureMissingResourceHttpError</span>
+<span class="kn">from</span> <span class="nn">azure.common</span> <span class="k">import</span> <span class="n">AzureHttpError</span>
+<span class="kn">from</span> <span class="nn">azure.common</span> <span class="k">import</span> <span class="n">AzureConflictHttpError</span>
+<span class="kn">from</span> <span class="nn">azure.storage.blob</span> <span class="k">import</span> <span class="n">PublicAccess</span>
+<span class="kn">from</span> <span class="nn">azure.storage.blob</span> <span class="k">import</span> <span class="n">BlockBlobService</span>
+<span class="kn">from</span> <span class="nn">azure.storage.blob.models</span> <span class="k">import</span> <span class="n">Blob</span> <span class="k">as</span> <span class="n">AzureBlob</span>
+<span class="kn">from</span> <span class="nn">azure.storage.blob.models</span> <span class="k">import</span> <span class="n">Container</span> <span class="k">as</span> <span class="n">AzureContainer</span>
+<span class="kn">from</span> <span class="nn">azure.storage.blob.models</span> <span class="k">import</span> <span class="n">Include</span>
+<span class="kn">from</span> <span class="nn">azure.storage.blob.models</span> <span class="k">import</span> <span class="n">ContentSettings</span>
+<span class="kn">from</span> <span class="nn">azure.storage.blob.models</span> <span class="k">import</span> <span class="n">BlobPermissions</span>
+<span class="kn">from</span> <span class="nn">inflection</span> <span class="k">import</span> <span class="n">underscore</span>
+
+<span class="kn">from</span> <span class="nn">cloudstorage</span> <span class="k">import</span> <span class="n">Blob</span><span class="p">,</span> <span class="n">Container</span><span class="p">,</span> <span class="n">Driver</span><span class="p">,</span> <span class="n">messages</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.exceptions</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">NotFoundError</span><span class="p">,</span>
+    <span class="n">CloudStorageError</span><span class="p">,</span>
+    <span class="n">IsNotEmptyError</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.helpers</span> <span class="k">import</span> <span class="n">file_checksum</span><span class="p">,</span> <span class="n">validate_file_or_path</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.typed</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">FileLike</span><span class="p">,</span>
+    <span class="n">MetaData</span><span class="p">,</span>
+    <span class="n">ContentLength</span><span class="p">,</span>
+    <span class="n">ExtraOptions</span><span class="p">,</span>
+    <span class="n">FormPost</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AzureStorageDriver&#39;</span><span class="p">]</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="AzureStorageDriver"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver">[docs]</a><span class="k">class</span> <span class="nc">AzureStorageDriver</span><span class="p">(</span><span class="n">Driver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Driver for interacting with Microsoft Azure Storage.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from cloudstorage.drivers.microsoft import AzureStorageDriver</span>
+
+<span class="sd">        storage = AzureStorageDriver(account_name=&#39;&lt;my-azure-account-name&gt;&#39;,</span>
+<span class="sd">                   key=&#39;&lt;my-azure-account-key&gt;&#39;)</span>
+<span class="sd">        # &lt;Driver: AZURE&gt;</span>
+
+<span class="sd">    .. todo: Support for container or blob encryption key.</span>
+
+<span class="sd">    References:</span>
+
+<span class="sd">    * `Blob Service REST API &lt;https://docs.microsoft.com/en-us/rest/api/</span>
+<span class="sd">      storageservices/blob-service-rest-api&gt;`_</span>
+<span class="sd">    * `Azure/azure-storage-python</span>
+<span class="sd">      &lt;https://github.com/Azure/azure-storage-python&gt;`_</span>
+<span class="sd">    * `Uploading files to Azure Storage using SAS</span>
+<span class="sd">      &lt;https://blogs.msdn.microsoft.com/azureossds/2015/03/30/</span>
+<span class="sd">      uploading-files-to-azure-storage-using-sasshared-access-signature/&gt;`_</span>
+
+<span class="sd">    :param account_name: Azure storage account name.</span>
+<span class="sd">    :type account_name: str</span>
+
+<span class="sd">    :param key: Azure storage account key.</span>
+<span class="sd">    :type key: str</span>
+
+<span class="sd">    :param kwargs: (optional) Extra driver options.</span>
+<span class="sd">    :type kwargs: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;AZURE&#39;</span>
+    <span class="n">hash_type</span> <span class="o">=</span> <span class="s1">&#39;md5&#39;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://azure.microsoft.com/en-us/services/storage/&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_service</span> <span class="o">=</span> <span class="n">BlockBlobService</span><span class="p">(</span><span class="n">account_name</span><span class="o">=</span><span class="n">account_name</span><span class="p">,</span>
+                                         <span class="n">account_key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="AzureStorageDriver.__iter__"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.__iter__">[docs]</a>    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Container</span><span class="p">]:</span>
+        <span class="n">azure_containers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">list_containers</span><span class="p">(</span><span class="n">include_metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">azure_container</span> <span class="ow">in</span> <span class="n">azure_containers</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_azure_container</span><span class="p">(</span><span class="n">azure_container</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.__len__"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.__len__">[docs]</a>    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">azure_containers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">list_containers</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">azure_containers</span><span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_normalize_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
+                              <span class="n">normalizers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+        <span class="n">normalized</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">normalized</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">key_inflected</span> <span class="o">=</span> <span class="n">underscore</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+            <span class="c1"># Only include parameters found in normalizers</span>
+            <span class="n">key_overrider</span> <span class="o">=</span> <span class="n">normalizers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key_inflected</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">key_overrider</span><span class="p">:</span>
+                <span class="n">normalized</span><span class="p">[</span><span class="n">key_overrider</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">return</span> <span class="n">normalized</span>
+
+    <span class="k">def</span> <span class="nf">_get_azure_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AzureBlob</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get Azure Storage blob by container and blob name.</span>
+
+<span class="sd">        :param container_name: The name of the container that containers the</span>
+<span class="sd">          blob.</span>
+<span class="sd">        :type container_name: str</span>
+
+<span class="sd">        :param blob_name: The name of the blob to get.</span>
+<span class="sd">        :type blob_name: str</span>
+
+<span class="sd">        :return: The blob object if it exists.</span>
+<span class="sd">        :rtype: :class:`azure.storage.blob.models.Blob`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">azure_blob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">get_blob_properties</span><span class="p">(</span><span class="n">container_name</span><span class="p">,</span>
+                                                          <span class="n">blob_name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">AzureMissingResourceHttpError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">BLOB_NOT_FOUND</span> <span class="o">%</span> <span class="p">(</span><span class="n">blob_name</span><span class="p">,</span>
+                                                           <span class="n">container_name</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">azure_blob</span>
+
+    <span class="k">def</span> <span class="nf">_convert_azure_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span>
+                            <span class="n">azure_blob</span><span class="p">:</span> <span class="n">AzureBlob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert Azure Storage Blob to a Cloud Storage Blob.</span>
+
+<span class="sd">        :param container: Container instance.</span>
+<span class="sd">        :type container: :class:`.Container`</span>
+
+<span class="sd">        :param azure_blob: Azure Storage blob.</span>
+<span class="sd">        :type azure_blob: :class:`azure.storage.blob.models.Blob`</span>
+
+<span class="sd">        :return: Blob instance.</span>
+<span class="sd">        :rtype: :class:`.Blob`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">content_settings</span> <span class="o">=</span> <span class="n">azure_blob</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">content_settings</span>
+
+        <span class="c1"># TODO: CODE: Move to helper since google uses it too.</span>
+        <span class="n">md5_bytes</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">content_settings</span><span class="o">.</span><span class="n">content_md5</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">checksum</span> <span class="o">=</span> <span class="n">md5_bytes</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="c1"># Python 3.4: &#39;bytes&#39; object has no attribute &#39;hex&#39;</span>
+            <span class="n">checksum</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">md5_bytes</span><span class="p">,</span> <span class="s1">&#39;hex_codec&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Blob</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">azure_blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">size</span><span class="o">=</span><span class="n">azure_blob</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">content_length</span><span class="p">,</span>
+                    <span class="n">checksum</span><span class="o">=</span><span class="n">checksum</span><span class="p">,</span>
+                    <span class="n">etag</span><span class="o">=</span><span class="n">azure_blob</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">etag</span><span class="p">,</span>
+                    <span class="n">container</span><span class="o">=</span><span class="n">container</span><span class="p">,</span>
+                    <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+                    <span class="n">acl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">meta_data</span><span class="o">=</span><span class="n">azure_blob</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+                    <span class="n">content_disposition</span><span class="o">=</span><span class="n">content_settings</span><span class="o">.</span><span class="n">content_disposition</span><span class="p">,</span>
+                    <span class="n">content_type</span><span class="o">=</span><span class="n">content_settings</span><span class="o">.</span><span class="n">content_type</span><span class="p">,</span>
+                    <span class="n">cache_control</span><span class="o">=</span><span class="n">content_settings</span><span class="o">.</span><span class="n">cache_control</span><span class="p">,</span>
+                    <span class="n">created_at</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">modified_at</span><span class="o">=</span><span class="n">azure_blob</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">last_modified</span><span class="p">,</span>
+                    <span class="n">expires_at</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_azure_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AzureContainer</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get Azure Storage container by name.</span>
+
+<span class="sd">        :param container_name: The name of the container to get.</span>
+<span class="sd">        :type container_name: str</span>
+
+<span class="sd">        :return: The container matching the name provided.</span>
+<span class="sd">        :rtype: :class:`azure.storage.blob.models.Container`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">azure_container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">get_container_properties</span><span class="p">(</span>
+                <span class="n">container_name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">AzureMissingResourceHttpError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NOT_FOUND</span> <span class="o">%</span> <span class="n">container_name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">azure_container</span>
+
+    <span class="k">def</span> <span class="nf">_convert_azure_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                 <span class="n">azure_container</span><span class="p">:</span> <span class="n">AzureContainer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert Azure Storage container to Cloud Storage Container.</span>
+
+<span class="sd">        :param azure_container: The container to convert.</span>
+<span class="sd">        :type azure_container: :class:`azure.storage.blob.models.Container`</span>
+
+<span class="sd">        :return: A container instance.</span>
+<span class="sd">        :rtype: :class:`.Container`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Container</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">azure_container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                         <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+                         <span class="n">acl</span><span class="o">=</span><span class="n">azure_container</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">public_access</span><span class="p">,</span>
+                         <span class="n">meta_data</span><span class="o">=</span><span class="n">azure_container</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+                         <span class="n">created_at</span><span class="o">=</span><span class="n">azure_container</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">last_modified</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">service</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BlockBlobService</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The block blob service bound to this driver.</span>
+
+<span class="sd">        :return: Service for interacting with the Microsoft Azure Storage API.</span>
+<span class="sd">        :rtype: :class:`azure.storage.blob.blockblobservice.BlockBlobService`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_service</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">regions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Regions not supported.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="AzureStorageDriver.create_container"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.create_container">[docs]</a>    <span class="k">def</span> <span class="nf">create_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                         <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="n">meta_data</span> <span class="k">if</span> <span class="n">meta_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+
+        <span class="c1"># Review options: Off, Blob, Container</span>
+        <span class="k">if</span> <span class="n">acl</span> <span class="o">==</span> <span class="s1">&#39;container-public-access&#39;</span><span class="p">:</span>
+            <span class="n">public_access</span> <span class="o">=</span> <span class="n">PublicAccess</span><span class="o">.</span><span class="n">Container</span>
+        <span class="k">elif</span> <span class="n">acl</span> <span class="o">==</span> <span class="s1">&#39;blob-public-access&#39;</span><span class="p">:</span>
+            <span class="n">public_access</span> <span class="o">=</span> <span class="n">PublicAccess</span><span class="o">.</span><span class="n">Blob</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">public_access</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">create_container</span><span class="p">(</span><span class="n">container_name</span><span class="p">,</span>
+                                          <span class="n">metadata</span><span class="o">=</span><span class="n">meta_data</span><span class="p">,</span>
+                                          <span class="n">public_access</span><span class="o">=</span><span class="n">public_access</span><span class="p">,</span>
+                                          <span class="n">fail_on_exist</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">AzureConflictHttpError</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_EXISTS</span><span class="p">,</span> <span class="n">container_name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">AzureHttpError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
+
+        <span class="n">azure_container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_container</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_azure_container</span><span class="p">(</span><span class="n">azure_container</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.get_container"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.get_container">[docs]</a>    <span class="k">def</span> <span class="nf">get_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="n">azure_container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_container</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_azure_container</span><span class="p">(</span><span class="n">azure_container</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.patch_container"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.patch_container">[docs]</a>    <span class="k">def</span> <span class="nf">patch_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.delete_container"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.delete_container">[docs]</a>    <span class="k">def</span> <span class="nf">delete_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">azure_container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_container</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">azure_blobs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">list_blobs</span><span class="p">(</span><span class="n">azure_container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                              <span class="n">num_results</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">azure_blobs</span><span class="o">.</span><span class="n">items</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">IsNotEmptyError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NOT_EMPTY</span> <span class="o">%</span>
+                                  <span class="n">azure_container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">delete_container</span><span class="p">(</span><span class="n">azure_container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                      <span class="n">fail_not_exist</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.container_cdn_url"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.container_cdn_url">[docs]</a>    <span class="k">def</span> <span class="nf">container_cdn_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">azure_container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_container</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">://</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">protocol</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">primary_endpoint</span><span class="p">,</span>
+            <span class="n">azure_container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">url</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.enable_container_cdn"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.enable_container_cdn">[docs]</a>    <span class="k">def</span> <span class="nf">enable_container_cdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">FEATURE_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;enable_container_cdn&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.disable_container_cdn"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.disable_container_cdn">[docs]</a>    <span class="k">def</span> <span class="nf">disable_container_cdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">FEATURE_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;disable_container_cdn&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.upload_blob"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.upload_blob">[docs]</a>    <span class="k">def</span> <span class="nf">upload_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="n">FileLike</span><span class="p">,</span>
+                    <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">cache_control</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">acl</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;acl&#39;</span><span class="p">)</span>
+
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">meta_data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">meta_data</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">extra</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+
+        <span class="n">extra_args</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_parameters</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_PUT_OBJECT_KEYS</span><span class="p">)</span>
+        <span class="n">extra_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;content_type&#39;</span><span class="p">,</span> <span class="n">content_type</span><span class="p">)</span>
+        <span class="n">extra_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;content_disposition&#39;</span><span class="p">,</span> <span class="n">content_disposition</span><span class="p">)</span>
+        <span class="n">extra_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;cache_control&#39;</span><span class="p">,</span> <span class="n">cache_control</span><span class="p">)</span>
+
+        <span class="n">azure_container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_container</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">blob_name</span> <span class="o">=</span> <span class="n">blob_name</span> <span class="ow">or</span> <span class="n">validate_file_or_path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="c1"># azure does not set content_md5 on backend</span>
+        <span class="n">file_hash</span> <span class="o">=</span> <span class="n">file_checksum</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">hash_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hash_type</span><span class="p">)</span>
+        <span class="n">file_digest</span> <span class="o">=</span> <span class="n">file_hash</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">file_digest</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">extra_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;content_md5&#39;</span><span class="p">,</span> <span class="n">checksum</span><span class="p">)</span>
+
+        <span class="n">content_settings</span> <span class="o">=</span> <span class="n">ContentSettings</span><span class="p">(</span><span class="o">**</span><span class="n">extra_args</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">create_blob_from_path</span><span class="p">(</span>
+                <span class="n">container_name</span><span class="o">=</span><span class="n">azure_container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">blob_name</span><span class="o">=</span><span class="n">blob_name</span><span class="p">,</span>
+                <span class="n">file_path</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+                <span class="n">content_settings</span><span class="o">=</span><span class="n">content_settings</span><span class="p">,</span>
+                <span class="n">metadata</span><span class="o">=</span><span class="n">meta_data</span><span class="p">,</span>
+                <span class="n">validate_content</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">create_blob_from_stream</span><span class="p">(</span>
+                <span class="n">container_name</span><span class="o">=</span><span class="n">azure_container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">blob_name</span><span class="o">=</span><span class="n">blob_name</span><span class="p">,</span>
+                <span class="n">stream</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+                <span class="n">content_settings</span><span class="o">=</span><span class="n">content_settings</span><span class="p">,</span>
+                <span class="n">metadata</span><span class="o">=</span><span class="n">meta_data</span><span class="p">,</span>
+                <span class="n">validate_content</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="n">azure_blob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_blob</span><span class="p">(</span><span class="n">azure_container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_azure_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">azure_blob</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.get_blob"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.get_blob">[docs]</a>    <span class="k">def</span> <span class="nf">get_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="n">azure_container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_container</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">azure_blob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_blob</span><span class="p">(</span><span class="n">azure_container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_azure_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">azure_blob</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.get_blobs"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.get_blobs">[docs]</a>    <span class="k">def</span> <span class="nf">get_blobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Blob</span><span class="p">]:</span>
+        <span class="n">azure_container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_container</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">azure_blobs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">list_blobs</span><span class="p">(</span><span class="n">azure_container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                              <span class="n">include</span><span class="o">=</span><span class="n">Include</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">azure_blob</span> <span class="ow">in</span> <span class="n">azure_blobs</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_azure_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">azure_blob</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.download_blob"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.download_blob">[docs]</a>    <span class="k">def</span> <span class="nf">download_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">,</span>
+                      <span class="n">destination</span><span class="p">:</span> <span class="n">FileLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">azure_blob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_blob</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">get_blob_to_path</span><span class="p">(</span>
+                <span class="n">container_name</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">blob_name</span><span class="o">=</span><span class="n">azure_blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">file_path</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">get_blob_to_stream</span><span class="p">(</span>
+                <span class="n">container_name</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">blob_name</span><span class="o">=</span><span class="n">azure_blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">stream</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
+            <span class="p">)</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.patch_blob"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.patch_blob">[docs]</a>    <span class="k">def</span> <span class="nf">patch_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.delete_blob"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.delete_blob">[docs]</a>    <span class="k">def</span> <span class="nf">delete_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">azure_blob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_blob</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">delete_blob</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">azure_blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.blob_cdn_url"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.blob_cdn_url">[docs]</a>    <span class="k">def</span> <span class="nf">blob_cdn_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">azure_blob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_blob</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">make_blob_url</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">azure_blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">url</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.generate_container_upload_url"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.generate_container_upload_url">[docs]</a>    <span class="k">def</span> <span class="nf">generate_container_upload_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span>
+                                      <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                                      <span class="n">expires</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3600</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_length</span><span class="p">:</span> <span class="n">ContentLength</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">cache_control</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FormPost</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">acl</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;acl&#39;</span><span class="p">)</span>
+
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="n">meta_data</span> <span class="k">if</span> <span class="n">meta_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">extra</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_parameters</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_POST_OBJECT_KEYS</span><span class="p">)</span>
+
+        <span class="n">azure_container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_container</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">expires_at</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">expires</span><span class="p">)</span>
+
+        <span class="n">sas_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">generate_container_shared_access_signature</span><span class="p">(</span>
+            <span class="n">container_name</span><span class="o">=</span><span class="n">azure_container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">permission</span><span class="o">=</span><span class="n">BlobPermissions</span><span class="o">.</span><span class="n">WRITE</span><span class="p">,</span>
+            <span class="n">expiry</span><span class="o">=</span><span class="n">expires_at</span><span class="p">,</span>
+            <span class="n">content_disposition</span><span class="o">=</span><span class="n">content_disposition</span><span class="p">,</span>
+            <span class="n">content_type</span><span class="o">=</span><span class="n">content_type</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">params</span>
+        <span class="p">)</span>
+
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;x-ms-blob-type&#39;</span><span class="p">:</span> <span class="s1">&#39;BlockBlob&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;x-ms-blob-content-type&#39;</span><span class="p">:</span> <span class="n">content_type</span><span class="p">,</span>
+            <span class="s1">&#39;x-ms-blob-content-disposition&#39;</span><span class="p">:</span> <span class="n">content_disposition</span><span class="p">,</span>
+            <span class="s1">&#39;x-ms-blob-cache-control&#39;</span><span class="p">:</span> <span class="n">cache_control</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">meta_key</span><span class="p">,</span> <span class="n">meta_value</span> <span class="ow">in</span> <span class="n">meta_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_OBJECT_META_PREFIX</span> <span class="o">+</span> <span class="n">meta_key</span>
+            <span class="n">headers</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta_value</span>
+
+        <span class="n">upload_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">make_blob_url</span><span class="p">(</span>
+            <span class="n">container_name</span><span class="o">=</span><span class="n">azure_container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">blob_name</span><span class="o">=</span><span class="n">blob_name</span><span class="p">,</span>
+            <span class="n">sas_token</span><span class="o">=</span><span class="n">sas_token</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">upload_url</span><span class="p">,</span> <span class="s1">&#39;fields&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;headers&#39;</span><span class="p">:</span> <span class="n">headers</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="AzureStorageDriver.generate_blob_download_url"><a class="viewcode-back" href="../../../api/microsoft.html#cloudstorage.drivers.microsoft.AzureStorageDriver.generate_blob_download_url">[docs]</a>    <span class="k">def</span> <span class="nf">generate_blob_download_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">,</span> <span class="n">expires</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3600</span><span class="p">,</span>
+                                   <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                                   <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                   <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">extra</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_parameters</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_GET_OBJECT_KEYS</span><span class="p">)</span>
+
+        <span class="n">azure_blob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_azure_blob</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">content_type</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;content_type&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">expires_at</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">expires</span><span class="p">)</span>
+
+        <span class="n">sas_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">generate_blob_shared_access_signature</span><span class="p">(</span>
+            <span class="n">container_name</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">blob_name</span><span class="o">=</span><span class="n">azure_blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">permission</span><span class="o">=</span><span class="n">BlobPermissions</span><span class="o">.</span><span class="n">READ</span><span class="p">,</span>
+            <span class="n">expiry</span><span class="o">=</span><span class="n">expires_at</span><span class="p">,</span>
+            <span class="n">content_disposition</span><span class="o">=</span><span class="n">content_disposition</span><span class="p">,</span>
+            <span class="n">content_type</span><span class="o">=</span><span class="n">content_type</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">params</span>
+        <span class="p">)</span>
+        <span class="n">download_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">make_blob_url</span><span class="p">(</span>
+            <span class="n">container_name</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">blob_name</span><span class="o">=</span><span class="n">azure_blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">sas_token</span><span class="o">=</span><span class="n">sas_token</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">download_url</span></div>
+
+    <span class="n">_OBJECT_META_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;x-ms-meta-&#39;</span>
+
+    <span class="c1">#: `insert-object</span>
+    <span class="c1">#: &lt;https://docs.microsoft.com/en-us/rest/api/storageservices/</span>
+    <span class="c1"># set-blob-properties&gt;`</span>
+    <span class="n">_PUT_OBJECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">}</span>  <span class="c1"># type: Dict</span>
+
+    <span class="c1">#: `post-object</span>
+    <span class="c1">#: &lt;https://docs.microsoft.com/en-us/rest/api/storageservices/put-blob&gt;`_</span>
+    <span class="n">_POST_OBJECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">}</span>  <span class="c1"># type: Dict</span>
+
+    <span class="c1">#: `get-object</span>
+    <span class="c1">#: &lt;https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob&gt;`_</span>
+    <span class="n">_GET_OBJECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">}</span>  <span class="c1"># type: Dict</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Copyright 2017-2018 Scott Werner.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.6',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

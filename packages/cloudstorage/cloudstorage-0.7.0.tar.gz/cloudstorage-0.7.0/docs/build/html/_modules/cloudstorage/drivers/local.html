@@ -1,0 +1,903 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cloudstorage.drivers.local &mdash; Cloud Storage 0.6 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cloud Storage
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#source-code">Source Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../supported.html">Supported Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#basic-terminology">Basic Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#connecting-to-storage">Connecting to Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#creating-a-container">Creating a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#accessing-a-container">Accessing a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#deleting-a-container">Deleting a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#uploading-a-blob">Uploading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#accessing-a-blob">Accessing a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#downloading-a-blob">Downloading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#deleting-a-blob">Deleting a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#iteration-of-containers-and-blobs">Iteration of Containers and Blobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#metadata-and-extra-arguments">Metadata and Extra Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/amazon.html">Amazon Simple Storage Service (S3)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/amazon.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/amazon.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/google.html">Google Cloud Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/microsoft.html">Microsoft Azure Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/microsoft.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/microsoft.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/rackspace.html">Rackspace Cloud Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/local.html">Local File System Driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#metadata">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#base">Base</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/blob.html">Blob</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/container.html">Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/driver.html">Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#drivers">Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/microsoft.html">AzureStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/rackspace.html">CloudFilesDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/google.html">GoogleStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/local.html">LocalDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/amazon.html">S3Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.helpers">Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.utils">Utility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.exceptions">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#logging">Logging</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#unreleased-2018-10-03">Unreleased (2018-10-03)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id4">0.6 (2018-07-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id5">0.5 (2018-02-26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id7">0.4 (2017-08-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id11">0.3 (2017-05-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id13">0.2 (2017-04-21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id14">0.1 (2017-04-20)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../authors.html#lead">Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cloud Storage</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>cloudstorage.drivers.local</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for cloudstorage.drivers.local</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Local File System Driver.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">errno</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="k">import</span> <span class="n">contextmanager</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span><span class="p">,</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">import</span> <span class="nn">filelock</span>
+<span class="kn">import</span> <span class="nn">itsdangerous</span>
+<span class="kn">import</span> <span class="nn">xattr</span>
+<span class="kn">from</span> <span class="nn">inflection</span> <span class="k">import</span> <span class="n">underscore</span>
+
+<span class="kn">from</span> <span class="nn">cloudstorage</span> <span class="k">import</span> <span class="n">Blob</span><span class="p">,</span> <span class="n">Container</span><span class="p">,</span> <span class="n">Driver</span><span class="p">,</span> <span class="n">messages</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.exceptions</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">CloudStorageError</span><span class="p">,</span>
+    <span class="n">IsNotEmptyError</span><span class="p">,</span>
+    <span class="n">NotFoundError</span><span class="p">,</span>
+    <span class="n">SignatureExpiredError</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.helpers</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">file_checksum</span><span class="p">,</span>
+    <span class="n">file_content_type</span><span class="p">,</span>
+    <span class="n">read_in_chunks</span><span class="p">,</span>
+    <span class="n">validate_file_or_path</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.typed</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">ContentLength</span><span class="p">,</span>
+    <span class="n">ExtraOptions</span><span class="p">,</span>
+    <span class="n">FileLike</span><span class="p">,</span>
+    <span class="n">FormPost</span><span class="p">,</span>
+    <span class="n">MetaData</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LocalDriver&#39;</span><span class="p">]</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">IGNORE_FOLDERS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.lock&#39;</span><span class="p">,</span> <span class="s1">&#39;.hash&#39;</span><span class="p">,</span> <span class="s1">&#39;.DS_STORE&#39;</span><span class="p">]</span>
+
+
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">lock_local_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">filelock</span><span class="o">.</span><span class="n">FileLock</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Platform dependent file lock.</span>
+
+<span class="sd">    :param path: File or directory path to lock.</span>
+<span class="sd">    :type path: str</span>
+
+<span class="sd">    :yield: File lock context manager.</span>
+<span class="sd">    :yield type: :class:`filelock.FileLock`</span>
+
+<span class="sd">    :raise CloudStorageError: If lock could not be acquired.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lock</span> <span class="o">=</span> <span class="n">filelock</span><span class="o">.</span><span class="n">FileLock</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;.lock&#39;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">filelock</span><span class="o">.</span><span class="n">Timeout</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="s1">&#39;Lock timeout&#39;</span><span class="p">)</span>
+
+    <span class="k">yield</span> <span class="n">lock</span>
+
+    <span class="k">if</span> <span class="n">lock</span><span class="o">.</span><span class="n">is_locked</span><span class="p">:</span>
+        <span class="n">lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">lock</span><span class="o">.</span><span class="n">lock_file</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="LocalDriver"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver">[docs]</a><span class="k">class</span> <span class="nc">LocalDriver</span><span class="p">(</span><span class="n">Driver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Driver for interacting with local file-system.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from cloudstorage.drivers.local import LocalDriver</span>
+
+<span class="sd">        path = &#39;/home/user/webapp/storage&#39;</span>
+<span class="sd">        storage = LocalDriver(key=path, secret=&#39;&lt;my-secret&gt;&#39;, salt=&#39;&lt;my-salt&gt;&#39;)</span>
+<span class="sd">        # &lt;Driver: LOCAL&gt;</span>
+
+<span class="sd">    Modified Source:</span>
+<span class="sd">    `libcloud.storage.drivers.local.LocalCloudDriver &lt;https://github.com/apache</span>
+<span class="sd">    /libcloud/blob/trunk/libcloud/storage/drivers/local.py&gt;`_</span>
+
+<span class="sd">    :param key: Storage path directory: `/home/user/webapp/storage`.</span>
+<span class="sd">    :type key: str</span>
+
+<span class="sd">    :param secret: (optional) Secret key for pre-signed download and upload</span>
+<span class="sd">      URLs.</span>
+<span class="sd">    :type secret: str or None</span>
+
+<span class="sd">    :param salt: (optional) Salt for namespacing download and upload</span>
+<span class="sd">      pre-signed URLs. For more information. see `itsdangerous</span>
+<span class="sd">      &lt;https://pythonhosted.org/itsdangerous/&gt;`_.</span>
+<span class="sd">    :type salt: str or None</span>
+
+<span class="sd">    :param kwargs: (optional) Extra driver options.</span>
+<span class="sd">    :type kwargs: dict</span>
+
+<span class="sd">    :raise NotADirectoryError: If the key storage path is invalid or does not</span>
+<span class="sd">      exist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;LOCAL&#39;</span>
+    <span class="n">hash_type</span> <span class="o">=</span> <span class="s1">&#39;md5&#39;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">salt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">secret</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_path</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">salt</span> <span class="o">=</span> <span class="n">salt</span>
+
+        <span class="c1"># Create base path</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+        <span class="c1"># Check if base path is a directory and not a file</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">NotADirectoryError</span><span class="p">(</span>
+                <span class="s2">&quot;The base path &#39;</span><span class="si">%s</span><span class="s2">&#39; is not a directory.&quot;</span> <span class="o">%</span> <span class="n">key</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LocalDriver.__iter__"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.__iter__">[docs]</a>    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Container</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">container_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_folders</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_container</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LocalDriver.__len__"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.__len__">[docs]</a>    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_folders</span><span class="p">()))</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_normalize_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
+                              <span class="n">normalizers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+        <span class="n">normalized</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">normalized</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">key_inflected</span> <span class="o">=</span> <span class="n">underscore</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+            <span class="c1"># Only include parameters found in normalizers</span>
+            <span class="n">key_overrider</span> <span class="o">=</span> <span class="n">normalizers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key_inflected</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">key_overrider</span><span class="p">:</span>
+                <span class="n">normalized</span><span class="p">[</span><span class="n">key_overrider</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">return</span> <span class="n">normalized</span>
+
+    <span class="k">def</span> <span class="nf">_make_serializer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">itsdangerous</span><span class="o">.</span><span class="n">URLSafeTimedSerializer</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns URL Safe Timed Serializer for signing payloads.</span>
+
+<span class="sd">        :return: Serializer for dumping and loading into a URL safe string.</span>
+<span class="sd">        :rtype: :class:`itsdangerous.URLSafeTimedSerializer`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: Throw exception if secret / salt not set.</span>
+        <span class="k">return</span> <span class="n">itsdangerous</span><span class="o">.</span><span class="n">URLSafeTimedSerializer</span><span class="p">(</span>
+            <span class="n">secret_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">secret</span><span class="p">,</span> <span class="n">salt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">salt</span><span class="p">,</span> <span class="n">signer_kwargs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;key_derivation&#39;</span><span class="p">:</span> <span class="s1">&#39;hmac&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;digest_method&#39;</span><span class="p">:</span> <span class="s1">&#39;SHA1&#39;</span>
+            <span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">_get_folders</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Iterate over first level folders found in base path.</span>
+
+<span class="sd">        :yield: Iterable[str]</span>
+<span class="sd">        :yield type: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">container_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="p">):</span>
+            <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="p">,</span> <span class="n">container_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">full_path</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="k">yield</span> <span class="n">container_name</span>
+
+    <span class="k">def</span> <span class="nf">_get_folder_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span>
+                         <span class="n">validate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get the container&#39;s full folder path.</span>
+
+<span class="sd">        :param container: A container instance.</span>
+<span class="sd">        :type container: :class:`.Container`</span>
+
+<span class="sd">        :param validate: If True, verify that folder exists.</span>
+<span class="sd">        :type validate: bool</span>
+
+<span class="sd">        :return: Full folder path to the container.</span>
+<span class="sd">        :rtype: str</span>
+
+<span class="sd">        :raises NotFoundError: If the container doesn&#39;t exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="p">,</span> <span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">validate</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">full_path</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NOT_FOUND</span> <span class="o">%</span> <span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">full_path</span>
+
+    <span class="k">def</span> <span class="nf">_set_file_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attributes</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set extended filesystem attributes to a file.</span>
+
+<span class="sd">        Metadata is set to `user.metadata.&lt;attr-name&gt;` and remaining attributes</span>
+<span class="sd">        are set to `user.&lt;attr-name&gt;`.</span>
+
+<span class="sd">        References:</span>
+
+<span class="sd">        * `xattr &lt;https://github.com/xattr/xattr&gt;`_</span>
+
+<span class="sd">        :param filename: Filename path.</span>
+<span class="sd">        :type filename: str</span>
+
+<span class="sd">        :param attributes: Dictionary of `meta_data`, `content_&lt;name&gt;`, etc.</span>
+<span class="sd">        :type attributes: dict</span>
+
+<span class="sd">        :return: NoneType</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        :raises CloudStorageError: If the local file system does not support</span>
+<span class="sd">          extended filesystem attributes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">xattrs</span> <span class="o">=</span> <span class="n">xattr</span><span class="o">.</span><span class="n">xattr</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attributes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;meta_data&#39;</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">meta_key</span><span class="p">,</span> <span class="n">meta_value</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                        <span class="c1"># user.metadata.name</span>
+                        <span class="n">attr_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_OBJECT_META_PREFIX</span> <span class="o">+</span> <span class="s1">&#39;metadata.&#39;</span> <span class="o">+</span> \
+                                    <span class="n">meta_key</span>  <span class="c1"># noqa: E126</span>
+                        <span class="n">xattrs</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta_value</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># user.name</span>
+                    <span class="n">attr_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_OBJECT_META_PREFIX</span> <span class="o">+</span> <span class="n">key</span>
+                    <span class="n">xattrs</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">LOCAL_NO_ATTRIBUTES</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_file_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get the blob&#39;s full folder path.</span>
+
+<span class="sd">        :param blob: A blob instance.</span>
+<span class="sd">        :type blob: :class:`.Blob`</span>
+
+<span class="sd">        :return: Full folder path to the blob.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_make_path</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ignore_existing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create a folder.</span>
+
+<span class="sd">        :param path: Folder path to create.</span>
+<span class="sd">        :type path: str</span>
+
+<span class="sd">        :param ignore_existing: If True, ignore existing folder.</span>
+<span class="sd">        :type ignore_existing: bool</span>
+
+<span class="sd">        :return: NoneType</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        :raises CloudStorageError: If folder exists and  `ignore_existing` is</span>
+<span class="sd">          False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_EXISTS</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+            <span class="n">exp</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">exp</span><span class="o">.</span><span class="n">errno</span> <span class="o">==</span> <span class="n">errno</span><span class="o">.</span><span class="n">EEXIST</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">ignore_existing</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="n">exp</span><span class="o">.</span><span class="n">strerror</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert a folder name to a Cloud Storage Container.</span>
+
+<span class="sd">        :param folder_name: The folder name to convert.</span>
+<span class="sd">        :type folder_name: str</span>
+
+<span class="sd">        :return: A container instance.</span>
+<span class="sd">        :rtype: :class:`.Container`</span>
+
+<span class="sd">        :raises FileNotFoundError: If container does not exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="p">,</span> <span class="n">folder_name</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">stat</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NOT_FOUND</span> <span class="o">%</span> <span class="n">folder_name</span><span class="p">)</span>
+
+        <span class="n">created_at</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">st_ctime</span><span class="p">,</span> <span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Container</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">folder_name</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">created_at</span><span class="o">=</span><span class="n">created_at</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span> <span class="n">object_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert local file name to a Cloud Storage Blob.</span>
+
+<span class="sd">        :param container: Container instance.</span>
+<span class="sd">        :type container: :class:`.Container`</span>
+
+<span class="sd">        :param object_name: Filename.</span>
+<span class="sd">        :type object_name: str</span>
+
+<span class="sd">        :return: Blob instance.</span>
+<span class="sd">        :rtype: :class:`.Blob`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="p">,</span> <span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">)</span>
+
+        <span class="n">object_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">stat</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">object_path</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">BLOB_NOT_FOUND</span> <span class="o">%</span> <span class="p">(</span><span class="n">object_name</span><span class="p">,</span>
+                                                           <span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">content_type</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">content_disposition</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">cache_control</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">attributes</span> <span class="o">=</span> <span class="n">xattr</span><span class="o">.</span><span class="n">xattr</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">attr_key</span><span class="p">,</span> <span class="n">attr_value</span> <span class="ow">in</span> <span class="n">attributes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">value_str</span> <span class="o">=</span> <span class="kc">None</span>
+
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">value_str</span> <span class="o">=</span> <span class="n">attr_value</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+                    <span class="k">pass</span>
+
+                <span class="k">if</span> <span class="n">attr_key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_OBJECT_META_PREFIX</span> <span class="o">+</span> <span class="s1">&#39;metadata&#39;</span><span class="p">):</span>
+                    <span class="n">meta_key</span> <span class="o">=</span> <span class="n">attr_key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">meta_data</span><span class="p">[</span><span class="n">meta_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value_str</span>
+                <span class="k">elif</span> <span class="n">attr_key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;content_type&#39;</span><span class="p">):</span>
+                    <span class="n">content_type</span> <span class="o">=</span> <span class="n">value_str</span>
+                <span class="k">elif</span> <span class="n">attr_key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;content_disposition&#39;</span><span class="p">):</span>
+                    <span class="n">content_disposition</span> <span class="o">=</span> <span class="n">value_str</span>
+                <span class="k">elif</span> <span class="n">attr_key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;cache_control&#39;</span><span class="p">):</span>
+                    <span class="n">cache_control</span> <span class="o">=</span> <span class="n">value_str</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Unknown file attribute &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">attr_key</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">LOCAL_NO_ATTRIBUTES</span><span class="p">)</span>
+
+        <span class="c1"># TODO: QUESTION: Option to disable checksum for large files?</span>
+        <span class="c1"># TODO: QUESTION: Save a .hash file for each file?</span>
+        <span class="n">file_hash</span> <span class="o">=</span> <span class="n">file_checksum</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="n">hash_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hash_type</span><span class="p">)</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="n">file_hash</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+        <span class="n">etag</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span><span class="n">full_path</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="n">created_at</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">st_ctime</span><span class="p">,</span> <span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
+        <span class="n">modified_at</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">st_mtime</span><span class="p">,</span> <span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Blob</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">object_path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">checksum</span><span class="p">,</span> <span class="n">etag</span><span class="o">=</span><span class="n">etag</span><span class="p">,</span>
+                    <span class="n">size</span><span class="o">=</span><span class="n">stat</span><span class="o">.</span><span class="n">st_size</span><span class="p">,</span> <span class="n">container</span><span class="o">=</span><span class="n">container</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+                    <span class="n">acl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">meta_data</span><span class="o">=</span><span class="n">meta_data</span><span class="p">,</span>
+                    <span class="n">content_disposition</span><span class="o">=</span><span class="n">content_disposition</span><span class="p">,</span>
+                    <span class="n">content_type</span><span class="o">=</span><span class="n">content_type</span><span class="p">,</span> <span class="n">cache_control</span><span class="o">=</span><span class="n">cache_control</span><span class="p">,</span>
+                    <span class="n">created_at</span><span class="o">=</span><span class="n">created_at</span><span class="p">,</span> <span class="n">modified_at</span><span class="o">=</span><span class="n">modified_at</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">regions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="LocalDriver.create_container"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.create_container">[docs]</a>    <span class="k">def</span> <span class="nf">create_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                         <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">acl</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;acl&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">meta_data</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;meta_data&#39;</span><span class="p">)</span>
+
+        <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="p">,</span> <span class="n">container_name</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_make_path</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="n">ignore_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">lock_local_file</span><span class="p">(</span><span class="n">full_path</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_make_path</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="n">ignore_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NAME_INVALID</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_container</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LocalDriver.get_container"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.get_container">[docs]</a>    <span class="k">def</span> <span class="nf">get_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_container</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LocalDriver.patch_container"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.patch_container">[docs]</a>    <span class="k">def</span> <span class="nf">patch_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="LocalDriver.delete_container"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.delete_container">[docs]</a>    <span class="k">def</span> <span class="nf">delete_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_blobs</span><span class="p">(</span><span class="n">container</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">IsNotEmptyError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NOT_EMPTY</span> <span class="o">%</span> <span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_folder_path</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">lock_local_file</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">shutil</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">strerror</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LocalDriver.container_cdn_url"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.container_cdn_url">[docs]</a>    <span class="k">def</span> <span class="nf">container_cdn_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_folder_path</span><span class="p">(</span><span class="n">container</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LocalDriver.enable_container_cdn"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.enable_container_cdn">[docs]</a>    <span class="k">def</span> <span class="nf">enable_container_cdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">FEATURE_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;enable_container_cdn&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="LocalDriver.disable_container_cdn"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.disable_container_cdn">[docs]</a>    <span class="k">def</span> <span class="nf">disable_container_cdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">FEATURE_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;disable_container_cdn&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="LocalDriver.upload_blob"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.upload_blob">[docs]</a>    <span class="k">def</span> <span class="nf">upload_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="n">FileLike</span><span class="p">,</span>
+                    <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">cache_control</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">acl</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;acl&#39;</span><span class="p">)</span>
+
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">meta_data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">meta_data</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">extra</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+
+        <span class="n">attributes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_parameters</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_PUT_OBJECT_KEYS</span><span class="p">)</span>
+        <span class="n">attributes</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;meta_data&#39;</span><span class="p">,</span> <span class="n">meta_data</span><span class="p">)</span>
+        <span class="n">attributes</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;content_disposition&#39;</span><span class="p">,</span> <span class="n">content_disposition</span><span class="p">)</span>
+        <span class="n">attributes</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;cache_control&#39;</span><span class="p">,</span> <span class="n">cache_control</span><span class="p">)</span>
+
+        <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_folder_path</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">blob_name</span> <span class="o">=</span> <span class="n">blob_name</span> <span class="ow">or</span> <span class="n">validate_file_or_path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">blob_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">)</span>
+
+        <span class="n">base_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">blob_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_make_path</span><span class="p">(</span><span class="n">base_path</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">lock_local_file</span><span class="p">(</span><span class="n">blob_path</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">blob_path</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">blob_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">blob_file</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">filename</span><span class="p">:</span>
+                        <span class="n">blob_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="c1"># Disable execute mode on file</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">blob_path</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="s1">&#39;664&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">content_type</span><span class="p">:</span>
+            <span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;content_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_content_type</span><span class="p">(</span><span class="n">blob_path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;content_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_type</span>
+
+        <span class="c1"># Set meta data and other attributes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_file_attributes</span><span class="p">(</span><span class="n">blob_path</span><span class="p">,</span> <span class="n">attributes</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LocalDriver.get_blob"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.get_blob">[docs]</a>    <span class="k">def</span> <span class="nf">get_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LocalDriver.get_blobs"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.get_blobs">[docs]</a>    <span class="k">def</span> <span class="nf">get_blobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Blob</span><span class="p">]:</span>
+        <span class="n">container_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_folder_path</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">folder</span><span class="p">,</span> <span class="n">sub_folders</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">container_path</span><span class="p">,</span> <span class="n">topdown</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="c1"># Remove unwanted sub-folders</span>
+            <span class="k">for</span> <span class="n">sub_folder</span> <span class="ow">in</span> <span class="n">IGNORE_FOLDERS</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">sub_folder</span> <span class="ow">in</span> <span class="n">sub_folders</span><span class="p">:</span>
+                    <span class="n">sub_folders</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">sub_folder</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+                <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+                <span class="n">object_name</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
+                <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">object_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LocalDriver.download_blob"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.download_blob">[docs]</a>    <span class="k">def</span> <span class="nf">download_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">,</span>
+                      <span class="n">destination</span><span class="p">:</span> <span class="n">FileLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">blob_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_file_path</span><span class="p">(</span><span class="n">blob</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">base_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">destination</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">base_name</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">destination</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="s1">&#39;Path </span><span class="si">%s</span><span class="s1"> does not exist.&#39;</span> <span class="o">%</span> <span class="n">destination</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">base_name</span><span class="p">:</span>
+                <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">file_path</span> <span class="o">=</span> <span class="n">destination</span>
+
+            <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">blob_path</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">blob_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">blob_file</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">read_in_chunks</span><span class="p">(</span><span class="n">blob_file</span><span class="p">):</span>
+                    <span class="n">destination</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LocalDriver.patch_blob"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.patch_blob">[docs]</a>    <span class="k">def</span> <span class="nf">patch_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="LocalDriver.delete_blob"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.delete_blob">[docs]</a>    <span class="k">def</span> <span class="nf">delete_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_file_path</span><span class="p">(</span><span class="n">blob</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">lock_local_file</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">err</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LocalDriver.blob_cdn_url"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.blob_cdn_url">[docs]</a>    <span class="k">def</span> <span class="nf">blob_cdn_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LocalDriver.generate_container_upload_url"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.generate_container_upload_url">[docs]</a>    <span class="k">def</span> <span class="nf">generate_container_upload_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span>
+                                      <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                                      <span class="n">expires</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3600</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_length</span><span class="p">:</span> <span class="n">ContentLength</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">cache_control</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FormPost</span><span class="p">:</span>
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="n">meta_data</span> <span class="k">if</span> <span class="n">meta_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">extra</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+
+        <span class="n">expiration</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">expires</span><span class="p">)</span>
+        <span class="n">expires_at</span> <span class="o">=</span> <span class="n">expiration</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;blob_name&#39;</span><span class="p">:</span> <span class="n">blob_name</span><span class="p">,</span>
+            <span class="s1">&#39;container&#39;</span><span class="p">:</span> <span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s1">&#39;expires&#39;</span><span class="p">:</span> <span class="n">expires_at</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;acl&#39;</span><span class="p">:</span> <span class="n">acl</span><span class="p">,</span>
+            <span class="s1">&#39;meta_data&#39;</span><span class="p">:</span> <span class="n">meta_data</span><span class="p">,</span>
+            <span class="s1">&#39;content_disposition&#39;</span><span class="p">:</span> <span class="n">content_disposition</span><span class="p">,</span>
+            <span class="s1">&#39;content_length&#39;</span><span class="p">:</span> <span class="n">content_length</span><span class="p">,</span>
+            <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="n">content_type</span><span class="p">,</span>
+            <span class="s1">&#39;cache_control&#39;</span><span class="p">:</span> <span class="n">cache_control</span><span class="p">,</span>
+            <span class="s1">&#39;max_age&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="n">payload</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">fields</span><span class="p">)</span>
+        <span class="n">payload</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">extra</span><span class="p">)</span>
+
+        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_serializer</span><span class="p">()</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+        <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;signature&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">token</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;fields&#39;</span><span class="p">:</span> <span class="n">fields</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="LocalDriver.generate_blob_download_url"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.generate_blob_download_url">[docs]</a>    <span class="k">def</span> <span class="nf">generate_blob_download_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">,</span> <span class="n">expires</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3600</span><span class="p">,</span>
+                                   <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                                   <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                   <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">extra</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_serializer</span><span class="p">()</span>
+
+        <span class="n">expiration</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">expires</span><span class="p">)</span>
+        <span class="n">expires_at</span> <span class="o">=</span> <span class="n">expiration</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;max_age&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span>
+            <span class="s1">&#39;expires&#39;</span><span class="p">:</span> <span class="n">expires_at</span><span class="p">,</span>
+            <span class="s1">&#39;blob_name&#39;</span><span class="p">:</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s1">&#39;container&#39;</span><span class="p">:</span> <span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="n">method</span><span class="p">,</span>
+            <span class="s1">&#39;content_disposition&#39;</span><span class="p">:</span> <span class="n">content_disposition</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">payload</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">extra</span><span class="p">)</span>
+
+        <span class="n">signature</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">signature</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LocalDriver.validate_signature"><a class="viewcode-back" href="../../../api/local.html#cloudstorage.drivers.local.LocalDriver.validate_signature">[docs]</a>    <span class="k">def</span> <span class="nf">validate_signature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signature</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Validate signed signature and return payload if valid.</span>
+
+<span class="sd">        :param signature: Signature.</span>
+<span class="sd">        :type signature: str</span>
+
+<span class="sd">        :return: Deserialized signature payload.</span>
+<span class="sd">        :rtype: dict</span>
+
+<span class="sd">        :raises SignatureExpiredError: If the signature has expired.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_serializer</span><span class="p">()</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">signature</span><span class="p">,</span> <span class="n">max_age</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">max_age</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max_age&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># https://github.com/pallets/itsdangerous/issues/43</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">serializer</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">signature</span><span class="p">,</span> <span class="n">max_age</span><span class="o">=</span><span class="n">max_age</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">itsdangerous</span><span class="o">.</span><span class="n">SignatureExpired</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SignatureExpiredError</span></div>
+
+    <span class="n">_OBJECT_META_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;user.&#39;</span>
+
+    <span class="n">_PUT_OBJECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="s1">&#39;meta_data&#39;</span><span class="p">,</span>
+    <span class="p">}</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Copyright 2017-2018 Scott Werner.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.6',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

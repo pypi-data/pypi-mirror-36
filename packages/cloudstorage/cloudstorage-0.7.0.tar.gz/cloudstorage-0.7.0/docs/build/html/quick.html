@@ -1,0 +1,572 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quick Start &mdash; Cloud Storage 0.6 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Advanced" href="advanced.html" />
+    <link rel="prev" title="Supported Services" href="supported.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cloud Storage
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#source-code">Source Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="supported.html">Supported Services</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-terminology">Basic Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-to-storage">Connecting to Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-container">Creating a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-a-container">Accessing a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deleting-a-container">Deleting a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uploading-a-blob">Uploading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-a-blob">Accessing a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-a-blob">Downloading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deleting-a-blob">Deleting a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#iteration-of-containers-and-blobs">Iteration of Containers and Blobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#metadata-and-extra-arguments">Metadata and Extra Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced/amazon.html">Amazon Simple Storage Service (S3)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced/amazon.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/amazon.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/google.html">Google Cloud Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced/google.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/google.html#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/google.html#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/microsoft.html">Microsoft Azure Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced/microsoft.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/microsoft.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/rackspace.html">Rackspace Cloud Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced/rackspace.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/rackspace.html#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/rackspace.html#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/local.html">Local File System Driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced/local.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/local.html#metadata">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/local.html#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced/local.html#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#base">Base</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/blob.html">Blob</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/container.html">Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/driver.html">Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#drivers">Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/microsoft.html">AzureStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/rackspace.html">CloudFilesDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/google.html">GoogleStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/local.html">LocalDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/amazon.html">S3Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-cloudstorage.helpers">Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-cloudstorage.utils">Utility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-cloudstorage.exceptions">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#logging">Logging</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#unreleased-2018-10-03">Unreleased (2018-10-03)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id4">0.6 (2018-07-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id5">0.5 (2018-02-26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id7">0.4 (2017-08-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id11">0.3 (2017-05-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id13">0.2 (2017-04-21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id14">0.1 (2017-04-20)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authors.html#lead">Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cloud Storage</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Quick Start</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/quick.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="basic-terminology">
+<h2>Basic Terminology<a class="headerlink" href="#basic-terminology" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Blobs are objects, keys, or files.</li>
+<li>Containers (buckets) manage blobs.</li>
+<li>Storage Driver initiates a connection to the storage backend and manage
+containers.</li>
+</ul>
+</div>
+<div class="section" id="connecting-to-storage">
+<h2>Connecting to Storage<a class="headerlink" href="#connecting-to-storage" title="Permalink to this headline">¶</a></h2>
+<p>Let’s start with creating a Local File System storage driver (replace <code class="xref py py-obj docutils literal notranslate"><span class="pre">key</span></code>
+argument with a folder path of your choosing):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cloudstorage.drivers.local</span> <span class="kn">import</span> <span class="n">LocalDriver</span>
+
+<span class="n">storage</span> <span class="o">=</span> <span class="n">LocalDriver</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;/home/webapp/storage&#39;</span><span class="p">,</span> <span class="n">secret</span><span class="o">=</span><span class="s1">&#39;&lt;my-secret&gt;&#39;</span><span class="p">)</span>
+<span class="c1"># &lt;Driver: LOCAL&gt;</span>
+</pre></div>
+</div>
+<p>Alternatively, the driver can be initialized with its name. This is useful if
+you have different configurations for testing vs production. For example, a
+Flask app might use the <code class="xref py py-obj docutils literal notranslate"><span class="pre">LOCAL</span></code> driver for testing and <code class="xref py py-obj docutils literal notranslate"><span class="pre">S3</span></code> for production.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cloudstorage</span> <span class="kn">import</span> <span class="n">get_driver_by_name</span>
+
+<span class="n">driver_cls</span> <span class="o">=</span> <span class="n">get_driver_by_name</span><span class="p">(</span><span class="s1">&#39;LOCAL&#39;</span><span class="p">)</span>
+<span class="n">storage</span> <span class="o">=</span> <span class="n">driver_cls</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;/home/webapp/storage&#39;</span><span class="p">,</span> <span class="n">secret</span><span class="o">=</span><span class="s1">&#39;&lt;my-secret&gt;&#39;</span><span class="p">)</span>
+<span class="c1"># &lt;Driver: LOCAL&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-a-container">
+<h2>Creating a Container<a class="headerlink" href="#creating-a-container" title="Permalink to this headline">¶</a></h2>
+<p>Creating a container:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">container</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">create_container</span><span class="p">(</span><span class="s1">&#39;container-name&#39;</span><span class="p">)</span>
+<span class="c1"># &lt;Container container-name LOCAL&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="accessing-a-container">
+<h2>Accessing a Container<a class="headerlink" href="#accessing-a-container" title="Permalink to this headline">¶</a></h2>
+<p>Getting a container:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">container</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">get_container</span><span class="p">(</span><span class="s1">&#39;container-name&#39;</span><span class="p">)</span>
+<span class="c1"># &lt;Container container-name LOCAL&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deleting-a-container">
+<h2>Deleting a Container<a class="headerlink" href="#deleting-a-container" title="Permalink to this headline">¶</a></h2>
+<p>All of the blob objects in a container must be deleted before the container
+itself can be deleted:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">container</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">get_container</span><span class="p">(</span><span class="s1">&#39;container-name&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">blob</span> <span class="ow">in</span> <span class="n">container</span><span class="p">:</span>
+    <span class="n">blob</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+<span class="n">container</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uploading-a-blob">
+<h2>Uploading a Blob<a class="headerlink" href="#uploading-a-blob" title="Permalink to this headline">¶</a></h2>
+<p>Storing data from a file, stream, or string:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">picture_path</span> <span class="o">=</span> <span class="s1">&#39;/path/picture.png&#39;</span>
+<span class="n">picture_blob</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">upload_blob</span><span class="p">(</span><span class="n">picture_path</span><span class="p">)</span>
+<span class="c1"># &lt;Blob picture.png container-name LOCAL&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/picture.png&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">picture_file</span><span class="p">:</span>
+    <span class="n">picture_blob</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">upload_blob</span><span class="p">(</span><span class="n">picture_file</span><span class="p">,</span> <span class="n">blob_name</span><span class="o">=</span><span class="s1">&#39;picture.png&#39;</span><span class="p">)</span>
+    <span class="c1"># &lt;Blob picture.png container-name LOCAL&gt;</span>
+</pre></div>
+</div>
+<p>Cloud Storage will attempt to guess the uploaded file’s <code class="xref py py-obj docutils literal notranslate"><span class="pre">Content-Type</span></code> using
+<a class="reference external" href="https://python.readthedocs.io/en/latest/library/mimetypes.html#module-mimetypes" title="(in Python v3.7)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mimetypes</span></code></a> and <a class="reference external" href="https://github.com/ahupp/python-magic">python-magic</a>.
+The <code class="xref py py-obj docutils literal notranslate"><span class="pre">Content-Type</span></code> can be overridden with the <code class="xref py py-obj docutils literal notranslate"><span class="pre">content_type</span></code> argument:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/picture.png&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">picture_file</span><span class="p">:</span>
+    <span class="n">picture_blob</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">upload_blob</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">picture_file</span><span class="p">,</span>
+                                         <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/octet-stream&#39;</span><span class="p">)</span>
+    <span class="c1"># &lt;Blob picture.png container-name LOCAL&gt;</span>
+    <span class="n">picture_blob</span><span class="o">.</span><span class="n">content_type</span>
+    <span class="c1"># &#39;application/octet-stream&#39;</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Always use read binary mode <code class="xref py py-obj docutils literal notranslate"><span class="pre">rb</span></code> when uploading a file like
+object.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The effect of uploading to an existing blob depends on
+the “versioning” and “lifecycle” policies defined on the blob’s
+container. In the absence of those policies, upload will overwrite
+any existing contents. As of now, Cloud Storage does not supporting
+versioning/generation.</p>
+</div>
+</div>
+<div class="section" id="accessing-a-blob">
+<h2>Accessing a Blob<a class="headerlink" href="#accessing-a-blob" title="Permalink to this headline">¶</a></h2>
+<p>To get a blob from a container and its attributes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">container</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">get_container</span><span class="p">(</span><span class="s1">&#39;container-name&#39;</span><span class="p">)</span>
+<span class="n">picture_blob</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">get_blob</span><span class="p">(</span><span class="s1">&#39;picture.png&#39;</span><span class="p">)</span>
+<span class="n">picture_blob</span><span class="o">.</span><span class="n">name</span>
+<span class="c1"># &#39;picture.png&#39;</span>
+<span class="n">picture_blob</span><span class="o">.</span><span class="n">size</span>
+<span class="c1"># 50301</span>
+<span class="n">picture_blob</span><span class="o">.</span><span class="n">checksum</span>
+<span class="c1"># &#39;2f907a59924ad96b7478074ed96b05f0&#39;</span>
+<span class="n">picture_blob</span><span class="o">.</span><span class="n">etag</span>
+<span class="c1"># &#39;bf506fc6ffbc3c4a2756eac85a0b4d2f3f227fee&#39;</span>
+<span class="n">picture_blob</span><span class="o">.</span><span class="n">content_type</span>
+<span class="c1"># &#39;image/png&#39;</span>
+<span class="n">picture_blob</span><span class="o">.</span><span class="n">created_at</span>
+<span class="c1"># datetime.datetime(2017, 4, 19, 18, 38, 26, 335373)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="downloading-a-blob">
+<h2>Downloading a Blob<a class="headerlink" href="#downloading-a-blob" title="Permalink to this headline">¶</a></h2>
+<p>Downloading a blob data to a file path:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">picture_blob</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">get_blob</span><span class="p">(</span><span class="s1">&#39;picture.png&#39;</span><span class="p">)</span>
+<span class="n">picture_blob</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;/path/picture-copy.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or to a file like object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">picture_blob</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">get_blob</span><span class="p">(</span><span class="s1">&#39;picture.png&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/picture-copy.png&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">picture_file</span><span class="p">:</span>
+    <span class="n">picture_blob</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">picture_file</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Always use write binary mode <code class="xref py py-obj docutils literal notranslate"><span class="pre">wb</span></code> when downloading a blob to a file like
+object.</p>
+</div>
+</div>
+<div class="section" id="deleting-a-blob">
+<h2>Deleting a Blob<a class="headerlink" href="#deleting-a-blob" title="Permalink to this headline">¶</a></h2>
+<p>Deleting a blob:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">picture_blob</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">get_blob</span><span class="p">(</span><span class="s1">&#39;picture.png&#39;</span><span class="p">)</span>
+<span class="n">picture_blob</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generate-a-download-url">
+<h2>Generate a Download Url<a class="headerlink" href="#generate-a-download-url" title="Permalink to this headline">¶</a></h2>
+<p>Generates a signed URL to download a blob:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlencode</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">storage_url</span> <span class="o">=</span> <span class="s1">&#39;http://localhost/storage&#39;</span>
+
+<span class="n">picture_blob</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">get_blob</span><span class="p">(</span><span class="s1">&#39;picture.png&#39;</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="n">picture_blob</span><span class="o">.</span><span class="n">generate_download_url</span><span class="p">(</span><span class="n">expires</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+
+<span class="n">url_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="n">signature</span><span class="p">,</span>
+    <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="s1">&#39;picture.png&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">download_url</span> <span class="o">=</span> <span class="n">storage_url</span> <span class="o">+</span> <span class="s1">&#39;?&#39;</span> <span class="o">+</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">url_params</span><span class="p">)</span>
+<span class="c1"># &#39;http://localhost/storage?signature=&lt;generated-signature&gt;&amp;filename=picture.png&#39;</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">download_url</span><span class="p">)</span>
+<span class="c1"># &lt;Response [200]&gt;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/picture-download.png&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">picture_file</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+        <span class="n">picture_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generate-an-upload-formpost">
+<h2>Generate an Upload FormPost<a class="headerlink" href="#generate-an-upload-formpost" title="Permalink to this headline">¶</a></h2>
+<p>Generate a signature and policy for uploading objects to a container:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">container</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">get_container</span><span class="p">(</span><span class="s1">&#39;container-name&#39;</span><span class="p">)</span>
+<span class="n">form_post</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">generate_upload_url</span><span class="p">(</span><span class="s1">&#39;avatar.png&#39;</span><span class="p">,</span> <span class="n">expires</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="n">form_post</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+<span class="n">fields</span> <span class="o">=</span> <span class="n">form_post</span><span class="p">[</span><span class="s1">&#39;fields&#39;</span><span class="p">]</span>
+<span class="n">multipart_form_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;file&#39;</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/picture.png&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fields</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">multipart_form_data</span><span class="p">)</span>
+<span class="c1"># &lt;Response [204]&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="iteration-of-containers-and-blobs">
+<h2>Iteration of Containers and Blobs<a class="headerlink" href="#iteration-of-containers-and-blobs" title="Permalink to this headline">¶</a></h2>
+<p>Storage and containers are both iterable:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">container</span> <span class="ow">in</span> <span class="n">storage</span><span class="p">:</span>
+    <span class="n">container</span><span class="o">.</span><span class="n">name</span>
+    <span class="c1"># &#39;container-a&#39;, &#39;container-b&#39;, ...</span>
+
+    <span class="k">for</span> <span class="n">blob</span> <span class="ow">in</span> <span class="n">container</span><span class="p">:</span>
+        <span class="n">blob</span><span class="o">.</span><span class="n">name</span>
+        <span class="c1"># &#39;blob-1&#39;, &#39;blob-2&#39;, ...</span>
+</pre></div>
+</div>
+<p>Check if a container or container name exists in storage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">container</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">get_container</span><span class="p">(</span><span class="s1">&#39;container-name&#39;</span><span class="p">)</span>
+<span class="n">container</span> <span class="ow">in</span> <span class="n">storage</span>
+<span class="c1"># True</span>
+<span class="s1">&#39;container-name&#39;</span> <span class="ow">in</span> <span class="n">storage</span>
+<span class="c1"># True</span>
+</pre></div>
+</div>
+<p>Check if a blob or blob name exists in a container:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">container</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">get_container</span><span class="p">(</span><span class="s1">&#39;container-name&#39;</span><span class="p">)</span>
+<span class="n">picture_blob</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">get_blob</span><span class="p">(</span><span class="s1">&#39;picture.png&#39;</span><span class="p">)</span>
+<span class="n">picture_blob</span> <span class="ow">in</span> <span class="n">container</span>
+<span class="c1"># True</span>
+<span class="s1">&#39;picture.png&#39;</span> <span class="ow">in</span> <span class="n">container</span>
+<span class="c1"># True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="metadata-and-extra-arguments">
+<h2>Metadata and Extra Arguments<a class="headerlink" href="#metadata-and-extra-arguments" title="Permalink to this headline">¶</a></h2>
+<p>If supported by the driver, extra arguments can be included with operations
+on containers and blobs. For example, <code class="xref py py-obj docutils literal notranslate"><span class="pre">meta_data</span></code> can be saved to a blob
+object or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Content-Disposition</span></code> set to inline or attachment.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;acl&#39;</span><span class="p">:</span> <span class="s1">&#39;public-read&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;content_disposition&#39;</span><span class="p">:</span> <span class="s1">&#39;attachment; filename=&quot;user-1-avatar.png&quot;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;image/png&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cache_control&#39;</span><span class="p">:</span> <span class="s1">&#39;max-age=86400&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;meta_data&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;owner-id&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;owner-email&#39;</span><span class="p">:</span> <span class="s1">&#39;user.one@startup.com&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">picture_path</span> <span class="o">=</span> <span class="s1">&#39;/path/picture.png&#39;</span>
+<span class="n">picture_blob</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">upload_blob</span><span class="p">(</span><span class="n">picture_path</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+<span class="n">picture_blob</span><span class="o">.</span><span class="n">content_disposition</span>
+<span class="c1"># &#39;attachment; filename=&quot;user-1-avatar.png&quot;&#39;</span>
+<span class="n">picture_blob</span><span class="o">.</span><span class="n">cache_control</span>
+<span class="c1"># &#39;max-age=86400&#39;</span>
+<span class="n">picture_blob</span><span class="o">.</span><span class="n">meta_data</span>
+<span class="c1"># {&#39;owner-id&#39;: &#39;1&#39;, &#39;owner-email&#39;: &#39;user.one@startup.com&#39;}</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">It is recommended to save to meta data keys with dashes, <code class="xref py py-obj docutils literal notranslate"><span class="pre">owner-id</span></code>,
+instead of with underscores, <code class="xref py py-obj docutils literal notranslate"><span class="pre">owner_id</span></code>. Some drivers will allow
+underscores but other drivers will automatically convert them to dashes.</p>
+</div>
+<p>Proceed to the <a class="reference internal" href="advanced.html#advanced"><span class="std std-ref">Advanced section</span></a> for individual driver
+documentation and advanced usages like generating presigned upload and download
+URLs.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="advanced.html" class="btn btn-neutral float-right" title="Advanced" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="supported.html" class="btn btn-neutral" title="Supported Services" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Copyright 2017-2018 Scott Werner.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.6',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

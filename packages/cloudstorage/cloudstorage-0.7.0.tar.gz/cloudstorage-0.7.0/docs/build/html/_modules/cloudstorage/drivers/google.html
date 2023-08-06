@@ -1,0 +1,791 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cloudstorage.drivers.google &mdash; Cloud Storage 0.6 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cloud Storage
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#source-code">Source Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../supported.html">Supported Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#basic-terminology">Basic Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#connecting-to-storage">Connecting to Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#creating-a-container">Creating a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#accessing-a-container">Accessing a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#deleting-a-container">Deleting a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#uploading-a-blob">Uploading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#accessing-a-blob">Accessing a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#downloading-a-blob">Downloading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#deleting-a-blob">Deleting a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#iteration-of-containers-and-blobs">Iteration of Containers and Blobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#metadata-and-extra-arguments">Metadata and Extra Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/amazon.html">Amazon Simple Storage Service (S3)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/amazon.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/amazon.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/google.html">Google Cloud Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/microsoft.html">Microsoft Azure Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/microsoft.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/microsoft.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/rackspace.html">Rackspace Cloud Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/local.html">Local File System Driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#metadata">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#base">Base</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/blob.html">Blob</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/container.html">Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/driver.html">Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#drivers">Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/microsoft.html">AzureStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/rackspace.html">CloudFilesDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/google.html">GoogleStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/local.html">LocalDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/amazon.html">S3Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.helpers">Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.utils">Utility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.exceptions">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#logging">Logging</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#unreleased-2018-10-03">Unreleased (2018-10-03)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id4">0.6 (2018-07-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id5">0.5 (2018-02-26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id7">0.4 (2017-08-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id11">0.3 (2017-05-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id13">0.2 (2017-04-21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id14">0.1 (2017-04-20)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../authors.html#lead">Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cloud Storage</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>cloudstorage.drivers.google</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for cloudstorage.drivers.google</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Google Cloud Storage Driver.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">codecs</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">http</span> <span class="k">import</span> <span class="n">HTTPStatus</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c1"># noinspection PyUnresolvedReferences</span>
+    <span class="kn">from</span> <span class="nn">httpstatus</span> <span class="k">import</span> <span class="n">HTTPStatus</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span>  <span class="c1"># noqa: F401</span>
+
+<span class="c1"># noinspection PyPackageRequirements</span>
+<span class="kn">from</span> <span class="nn">google.cloud</span> <span class="k">import</span> <span class="n">storage</span>
+<span class="c1"># noinspection PyPackageRequirements</span>
+<span class="kn">from</span> <span class="nn">google.cloud.exceptions</span> <span class="k">import</span> <span class="n">Conflict</span><span class="p">,</span> <span class="n">NotFound</span>
+<span class="c1"># noinspection PyPackageRequirements</span>
+<span class="kn">from</span> <span class="nn">google.cloud.storage.blob</span> <span class="k">import</span> <span class="n">Blob</span> <span class="k">as</span> <span class="n">GoogleBlob</span>
+<span class="c1"># noinspection PyPackageRequirements</span>
+<span class="kn">from</span> <span class="nn">google.cloud.storage.bucket</span> <span class="k">import</span> <span class="n">Bucket</span>
+<span class="kn">from</span> <span class="nn">inflection</span> <span class="k">import</span> <span class="n">underscore</span>
+
+<span class="kn">from</span> <span class="nn">cloudstorage</span> <span class="k">import</span> <span class="n">Blob</span><span class="p">,</span> <span class="n">Container</span><span class="p">,</span> <span class="n">Driver</span><span class="p">,</span> <span class="n">messages</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.exceptions</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">CloudStorageError</span><span class="p">,</span>
+    <span class="n">IsNotEmptyError</span><span class="p">,</span>
+    <span class="n">NotFoundError</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.helpers</span> <span class="k">import</span> <span class="n">file_content_type</span><span class="p">,</span> <span class="n">validate_file_or_path</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.typed</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">FileLike</span><span class="p">,</span>
+    <span class="n">MetaData</span><span class="p">,</span>
+    <span class="n">ContentLength</span><span class="p">,</span>
+    <span class="n">ExtraOptions</span><span class="p">,</span>
+    <span class="n">FormPost</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GoogleStorageDriver&#39;</span><span class="p">]</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="GoogleStorageDriver"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver">[docs]</a><span class="k">class</span> <span class="nc">GoogleStorageDriver</span><span class="p">(</span><span class="n">Driver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Driver for interacting with Google Cloud Storage.</span>
+
+<span class="sd">    The driver will check for `GOOGLE_APPLICATION_CREDENTIALS` environment</span>
+<span class="sd">    variable before connecting. If not found, the driver will use service</span>
+<span class="sd">    worker credentials json file path passed to `key` argument.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from cloudstorage.drivers.google import GoogleStorageDriver</span>
+
+<span class="sd">        credentials_json_file = &#39;/path/cloud-storage-service-account.json&#39;</span>
+<span class="sd">        storage = GoogleStorageDriver(key=credentials_json_file)</span>
+<span class="sd">        # &lt;Driver: GOOGLESTORAGE&gt;</span>
+
+<span class="sd">    .. todo: Support for container or blob encryption key.</span>
+<span class="sd">    .. todo: Support for buckets with more than 256 objects on iteration.</span>
+
+<span class="sd">    References:</span>
+
+<span class="sd">    * `Google Cloud Storage Documentation</span>
+<span class="sd">      &lt;https://cloud.google.com/storage/docs&gt;`_</span>
+<span class="sd">    * `Storage Client &lt;https://googlecloudplatform.github.io/</span>
+<span class="sd">      google-cloud-python/latest/storage/client.html&gt;`_</span>
+<span class="sd">    * `snippets.py</span>
+<span class="sd">      &lt;https://github.com/GoogleCloudPlatform/python-docs-samples/blob/</span>
+<span class="sd">      master/storage/cloud-client/snippets.py&gt;`_</span>
+
+<span class="sd">    :param key: (optional) File path to service worker credentials json file.</span>
+<span class="sd">    :type key: str or None</span>
+
+<span class="sd">    :param kwargs: (optional) Extra driver options.</span>
+<span class="sd">    :type kwargs: dict</span>
+
+<span class="sd">    :raise CloudStorageError: If `GOOGLE_APPLICATION_CREDENTIALS` environment</span>
+<span class="sd">      variable is not set and/or credentials json file is not passed to the</span>
+<span class="sd">      `key` argument.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;GOOGLESTORAGE&#39;</span>
+    <span class="n">hash_type</span> <span class="o">=</span> <span class="s1">&#39;md5&#39;</span>  <span class="c1"># TODO: QUESTION: Switch to crc32c?</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://cloud.google.com/storage&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">google_application_credentials</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_CREDENTIALS_ENV_NAME</span><span class="p">)</span>
+
+        <span class="c1"># Set environment variable using credentials json file path.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">google_application_credentials</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span>
+                    <span class="s2">&quot;Please set environment variable &quot;</span>
+                    <span class="s2">&quot;&#39;GOOGLE_APPLICATION_CREDENTIALS&#39; or provider file path &quot;</span>
+                    <span class="s2">&quot;to Google service account key json file.&quot;</span><span class="p">)</span>
+
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_CREDENTIALS_ENV_NAME</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+
+<div class="viewcode-block" id="GoogleStorageDriver.__iter__"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.__iter__">[docs]</a>    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Container</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">list_buckets</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_container</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.__len__"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.__len__">[docs]</a>    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">containers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">list_buckets</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">containers</span><span class="p">))</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_normalize_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
+                              <span class="n">normalizers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+        <span class="n">normalized</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">normalized</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">key_inflected</span> <span class="o">=</span> <span class="n">underscore</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+            <span class="c1"># Only include parameters found in normalizers</span>
+            <span class="n">key_overrider</span> <span class="o">=</span> <span class="n">normalizers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key_inflected</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">key_overrider</span><span class="p">:</span>
+                <span class="n">normalized</span><span class="p">[</span><span class="n">key_overrider</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">return</span> <span class="n">normalized</span>
+
+    <span class="k">def</span> <span class="nf">_get_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bucket_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GoogleBlob</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get a blob object by name.</span>
+
+<span class="sd">        :param bucket_name: The name of the container that containers the blob.</span>
+<span class="sd">        :type bucket_name:</span>
+
+<span class="sd">        :param blob_name: The name of the blob to get.</span>
+<span class="sd">        :type blob_name: str</span>
+
+<span class="sd">        :return: The blob object if it exists.</span>
+<span class="sd">        :rtype: :class:`google.client.storage.blob.Blob`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span>
+
+        <span class="n">blob</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get_blob</span><span class="p">(</span><span class="n">blob_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">blob</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">BLOB_NOT_FOUND</span> <span class="o">%</span> <span class="p">(</span><span class="n">blob_name</span><span class="p">,</span>
+                                                           <span class="n">bucket_name</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">blob</span>
+
+    <span class="k">def</span> <span class="nf">_get_bucket</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bucket_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bucket</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get a bucket by name.</span>
+
+<span class="sd">        :param bucket_name: The name of the bucket to get.</span>
+<span class="sd">        :type bucket_name: str</span>
+
+<span class="sd">        :return: The bucket matching the name provided.</span>
+<span class="sd">        :rtype: :class:`google.cloud.storage.bucket.Bucket`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">NotFound</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NOT_FOUND</span> <span class="o">%</span> <span class="n">bucket_name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bucket</span><span class="p">:</span> <span class="n">Bucket</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert Google Storage Bucket to Cloud Storage Container.</span>
+
+<span class="sd">        :param bucket: The bucket to convert.</span>
+<span class="sd">        :type bucket: :class:`google.client.storage.bucket.Bucket`</span>
+
+<span class="sd">        :return: A container instance.</span>
+<span class="sd">        :rtype: :class:`.Container`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">acl</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">acl</span>
+        <span class="n">created_at</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">time_created</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Container</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">bucket</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">acl</span><span class="o">=</span><span class="n">acl</span><span class="p">,</span>
+                         <span class="n">meta_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">created_at</span><span class="o">=</span><span class="n">created_at</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">GoogleBlob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert Google Storage Blob to a Cloud Storage Blob.</span>
+
+<span class="sd">        References:</span>
+
+<span class="sd">        * `Objects &lt;https://cloud.google.com/storage/docs/json_api/v1/objects&gt;`_</span>
+
+<span class="sd">        :param container: Container instance.</span>
+<span class="sd">        :type container: :class:`.Container`</span>
+
+<span class="sd">        :param blob: Google Storage blob.</span>
+<span class="sd">        :type blob: :class:`google.cloud.storage.blob.Blob`</span>
+
+<span class="sd">        :return: Blob instance.</span>
+<span class="sd">        :rtype: :class:`.Blob`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">etag_bytes</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">etag</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">etag</span> <span class="o">=</span> <span class="n">etag_bytes</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="c1"># Python 3.4: &#39;bytes&#39; object has no attribute &#39;hex&#39;</span>
+            <span class="n">etag</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">etag_bytes</span><span class="p">,</span> <span class="s1">&#39;hex_codec&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+
+        <span class="n">md5_bytes</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">md5_hash</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">md5_hash</span> <span class="o">=</span> <span class="n">md5_bytes</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="c1"># Python 3.4: &#39;bytes&#39; object has no attribute &#39;hex&#39;</span>
+            <span class="n">md5_hash</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">md5_bytes</span><span class="p">,</span> <span class="s1">&#39;hex_codec&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Blob</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">md5_hash</span><span class="p">,</span> <span class="n">etag</span><span class="o">=</span><span class="n">etag</span><span class="p">,</span>
+                    <span class="n">size</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">container</span><span class="o">=</span><span class="n">container</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+                    <span class="n">acl</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">acl</span><span class="p">,</span> <span class="n">meta_data</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+                    <span class="n">content_disposition</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">content_disposition</span><span class="p">,</span>
+                    <span class="n">content_type</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">content_type</span><span class="p">,</span>
+                    <span class="n">cache_control</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">cache_control</span><span class="p">,</span>
+                    <span class="n">created_at</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">time_created</span><span class="p">,</span>
+                    <span class="n">modified_at</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">updated</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">storage</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Client</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The client bound to this driver.</span>
+
+<span class="sd">        :return: Client for interacting with the Google Cloud Storage API.</span>
+<span class="sd">        :rtype: :class:`google.cloud.storage.client.Client`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">regions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Regions not supported.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="GoogleStorageDriver.create_container"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.create_container">[docs]</a>    <span class="k">def</span> <span class="nf">create_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                         <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">meta_data</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;meta_data&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">Conflict</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_EXISTS</span><span class="p">,</span> <span class="n">container_name</span><span class="p">)</span>
+            <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bucket</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">acl</span><span class="p">:</span>
+            <span class="n">bucket</span><span class="o">.</span><span class="n">acl</span><span class="o">.</span><span class="n">save_predefined</span><span class="p">(</span><span class="n">acl</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_container</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.get_container"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.get_container">[docs]</a>    <span class="k">def</span> <span class="nf">get_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bucket</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_container</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.patch_container"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.patch_container">[docs]</a>    <span class="k">def</span> <span class="nf">patch_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.delete_container"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.delete_container">[docs]</a>    <span class="k">def</span> <span class="nf">delete_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bucket</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">bucket</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">Conflict</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="n">HTTPStatus</span><span class="o">.</span><span class="n">CONFLICT</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">IsNotEmptyError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NOT_EMPTY</span> <span class="o">%</span>
+                                      <span class="n">bucket</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">raise</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.container_cdn_url"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.container_cdn_url">[docs]</a>    <span class="k">def</span> <span class="nf">container_cdn_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;https://storage.googleapis.com/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">container</span><span class="o">.</span><span class="n">name</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.enable_container_cdn"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.enable_container_cdn">[docs]</a>    <span class="k">def</span> <span class="nf">enable_container_cdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bucket</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">bucket</span><span class="o">.</span><span class="n">make_public</span><span class="p">(</span><span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">future</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.disable_container_cdn"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.disable_container_cdn">[docs]</a>    <span class="k">def</span> <span class="nf">disable_container_cdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bucket</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">bucket</span><span class="o">.</span><span class="n">acl</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">revoke_read</span><span class="p">()</span>  <span class="c1"># opposite of make_public</span>
+        <span class="n">bucket</span><span class="o">.</span><span class="n">acl</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.upload_blob"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.upload_blob">[docs]</a>    <span class="k">def</span> <span class="nf">upload_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="n">FileLike</span><span class="p">,</span>
+                    <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">cache_control</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span>
+                    <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">extra</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">extra_args</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_parameters</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_PUT_OBJECT_KEYS</span><span class="p">)</span>
+
+        <span class="n">extra_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;metadata&#39;</span><span class="p">,</span> <span class="n">meta_data</span><span class="p">)</span>
+        <span class="n">extra_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;content_type&#39;</span><span class="p">,</span> <span class="n">content_type</span><span class="p">)</span>
+        <span class="n">extra_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;content_disposition&#39;</span><span class="p">,</span> <span class="n">content_disposition</span><span class="p">)</span>
+        <span class="n">extra_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;cache_control&#39;</span><span class="p">,</span> <span class="n">cache_control</span><span class="p">)</span>
+
+        <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bucket</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">blob_name</span> <span class="o">=</span> <span class="n">blob_name</span> <span class="ow">or</span> <span class="n">validate_file_or_path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">blob</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">blob</span><span class="p">(</span><span class="n">blob_name</span><span class="p">)</span>
+
+        <span class="c1"># Default Content-Type is application/octet-stream for upload_from_file</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">content_type</span><span class="p">:</span>
+            <span class="n">content_type</span> <span class="o">=</span> <span class="n">file_content_type</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">blob</span><span class="o">.</span><span class="n">upload_from_filename</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+                                      <span class="n">content_type</span><span class="o">=</span><span class="n">content_type</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">blob</span><span class="o">.</span><span class="n">upload_from_file</span><span class="p">(</span><span class="n">file_obj</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="n">content_type</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">acl</span><span class="p">:</span>
+            <span class="n">blob</span><span class="o">.</span><span class="n">acl</span><span class="o">.</span><span class="n">save_predefined</span><span class="p">(</span><span class="n">acl</span><span class="p">)</span>
+
+        <span class="c1"># Google object metadata (Content-Type set above)</span>
+        <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_value</span> <span class="ow">in</span> <span class="n">extra_args</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">attr_name</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">blob</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">blob</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_value</span><span class="p">)</span>
+
+        <span class="n">blob</span><span class="o">.</span><span class="n">patch</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">blob</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.get_blob"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.get_blob">[docs]</a>    <span class="k">def</span> <span class="nf">get_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="n">g_blob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_blob</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">g_blob</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.get_blobs"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.get_blobs">[docs]</a>    <span class="k">def</span> <span class="nf">get_blobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Blob</span><span class="p">]:</span>
+        <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bucket</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">blob</span> <span class="ow">in</span> <span class="n">bucket</span><span class="o">.</span><span class="n">list_blobs</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">blob</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.download_blob"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.download_blob">[docs]</a>    <span class="k">def</span> <span class="nf">download_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">,</span>
+                      <span class="n">destination</span><span class="p">:</span> <span class="n">FileLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">g_blob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_blob</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">g_blob</span><span class="o">.</span><span class="n">download_to_filename</span><span class="p">(</span><span class="n">destination</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">g_blob</span><span class="o">.</span><span class="n">download_to_file</span><span class="p">(</span><span class="n">destination</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.patch_blob"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.patch_blob">[docs]</a>    <span class="k">def</span> <span class="nf">patch_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.delete_blob"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.delete_blob">[docs]</a>    <span class="k">def</span> <span class="nf">delete_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">g_blob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_blob</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">g_blob</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.blob_cdn_url"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.blob_cdn_url">[docs]</a>    <span class="k">def</span> <span class="nf">blob_cdn_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_blob</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">public_url</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.generate_container_upload_url"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.generate_container_upload_url">[docs]</a>    <span class="k">def</span> <span class="nf">generate_container_upload_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span>
+                                      <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                                      <span class="n">expires</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3600</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_length</span><span class="p">:</span> <span class="n">ContentLength</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">cache_control</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FormPost</span><span class="p">:</span>
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="n">meta_data</span> <span class="k">if</span> <span class="n">meta_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">extra</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">extra_norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_parameters</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_POST_OBJECT_KEYS</span><span class="p">)</span>
+
+        <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bucket</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">conditions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="c1"># file name can start with any valid character.</span>
+            <span class="p">[</span><span class="s1">&#39;starts-with&#39;</span><span class="p">,</span> <span class="s1">&#39;$key&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
+        <span class="p">]</span>  <span class="c1"># type: List[Any]</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="n">acl</span><span class="p">:</span>
+            <span class="n">conditions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;acl&#39;</span><span class="p">:</span> <span class="n">acl</span><span class="p">})</span>
+            <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;acl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">acl</span>
+
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;Content-Disposition&#39;</span><span class="p">:</span> <span class="n">content_disposition</span><span class="p">,</span>
+            <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="n">content_type</span><span class="p">,</span>
+            <span class="s1">&#39;Cache-Control&#39;</span><span class="p">:</span> <span class="n">cache_control</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">header_name</span><span class="p">,</span> <span class="n">header_value</span> <span class="ow">in</span> <span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">header_value</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">fields</span><span class="p">[</span><span class="n">header_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span> <span class="o">=</span> <span class="n">header_value</span>
+            <span class="n">conditions</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;$&#39;</span> <span class="o">+</span> <span class="n">header_name</span><span class="p">,</span> <span class="n">header_value</span><span class="p">])</span>
+
+        <span class="c1"># Add content-length-range which is a tuple</span>
+        <span class="k">if</span> <span class="n">content_length</span><span class="p">:</span>
+            <span class="n">min_range</span><span class="p">,</span> <span class="n">max_range</span> <span class="o">=</span> <span class="n">content_length</span>
+            <span class="n">conditions</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s1">&#39;content-length-range&#39;</span><span class="p">,</span> <span class="n">min_range</span><span class="p">,</span> <span class="n">max_range</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">meta_name</span><span class="p">,</span> <span class="n">meta_value</span> <span class="ow">in</span> <span class="n">meta_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">meta_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_OBJECT_META_PREFIX</span> <span class="o">+</span> <span class="n">meta_name</span>
+            <span class="n">fields</span><span class="p">[</span><span class="n">meta_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta_value</span>
+            <span class="n">conditions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">meta_name</span><span class="p">:</span> <span class="n">meta_value</span><span class="p">})</span>
+
+        <span class="c1"># Add extra conditions and fields</span>
+        <span class="k">for</span> <span class="n">extra_name</span><span class="p">,</span> <span class="n">extra_value</span> <span class="ow">in</span> <span class="n">extra_norm</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">fields</span><span class="p">[</span><span class="n">extra_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">extra_value</span>
+            <span class="n">conditions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">extra_name</span><span class="p">:</span> <span class="n">extra_value</span><span class="p">})</span>
+
+        <span class="c1"># Determine key value for blob name when uploaded</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">blob_name</span><span class="p">:</span>  <span class="c1"># user provided filename</span>
+            <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;$</span><span class="si">{filename}</span><span class="s1">&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">blob_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span><span class="p">:</span>  <span class="c1"># blob_name is filename</span>
+                <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">blob_name</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># prefix + user provided filename</span>
+                <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">blob_name</span> <span class="o">+</span> <span class="s1">&#39;$</span><span class="si">{filename}</span><span class="s1">&#39;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;conditions=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">conditions</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;fields=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span>
+
+        <span class="n">expiration</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">expires</span><span class="p">)</span>
+
+        <span class="c1"># noinspection PyTypeChecker</span>
+        <span class="n">policy</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">generate_upload_policy</span><span class="p">(</span><span class="n">conditions</span><span class="o">=</span><span class="n">conditions</span><span class="p">,</span>
+                                               <span class="n">expiration</span><span class="o">=</span><span class="n">expiration</span><span class="p">)</span>
+
+        <span class="n">fields</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">policy</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://</span><span class="si">{bucket_name}</span><span class="s1">.storage.googleapis.com&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">bucket_name</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="s1">&#39;fields&#39;</span><span class="p">:</span> <span class="n">fields</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="GoogleStorageDriver.generate_blob_download_url"><a class="viewcode-back" href="../../../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver.generate_blob_download_url">[docs]</a>    <span class="k">def</span> <span class="nf">generate_blob_download_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">,</span> <span class="n">expires</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3600</span><span class="p">,</span>
+                                   <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                                   <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                   <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">extra</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_parameters</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_GET_OBJECT_KEYS</span><span class="p">)</span>
+
+        <span class="n">expiration</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">expires</span><span class="p">))</span>
+        <span class="n">method_norm</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="n">response_type</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;content_type&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">generation</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="n">g_blob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_blob</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">g_blob</span><span class="o">.</span><span class="n">generate_signed_url</span><span class="p">(</span>
+            <span class="n">expiration</span><span class="o">=</span><span class="n">expiration</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method_norm</span><span class="p">,</span>
+            <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">generation</span><span class="o">=</span><span class="n">generation</span><span class="p">,</span>
+            <span class="n">response_disposition</span><span class="o">=</span><span class="n">content_disposition</span><span class="p">,</span>
+            <span class="n">response_type</span><span class="o">=</span><span class="n">response_type</span><span class="p">)</span></div>
+
+    <span class="n">_CREDENTIALS_ENV_NAME</span> <span class="o">=</span> <span class="s1">&#39;GOOGLE_APPLICATION_CREDENTIALS&#39;</span>
+    <span class="n">_OBJECT_META_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;x-goog-meta-&#39;</span>
+
+    <span class="c1">#: `insert-object</span>
+    <span class="c1">#: &lt;https://cloud.google.com/storage/docs/json_api/v1/objects/insert&gt;`</span>
+    <span class="c1">#: Mapping is for blob class attribute names</span>
+    <span class="n">_PUT_OBJECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;acl&#39;</span><span class="p">:</span> <span class="s1">&#39;acl&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="s1">&#39;bucket&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;cache_control&#39;</span><span class="p">:</span> <span class="s1">&#39;cache_control&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content_disposition&#39;</span><span class="p">:</span> <span class="s1">&#39;content_disposition&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content_encoding&#39;</span><span class="p">:</span> <span class="s1">&#39;content_encoding&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content_length&#39;</span><span class="p">:</span> <span class="s1">&#39;content_length&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;content_type&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;expires&#39;</span><span class="p">:</span> <span class="s1">&#39;expires&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;meta_data&#39;</span><span class="p">:</span> <span class="s1">&#39;metadata&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">#: `post-object</span>
+    <span class="c1">#: &lt;https://cloud.google.com/storage/docs/xml-api/post-object&gt;`_</span>
+    <span class="n">_POST_OBJECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;acl&#39;</span><span class="p">:</span> <span class="s1">&#39;acl&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="s1">&#39;bucket&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;cache_control&#39;</span><span class="p">:</span> <span class="s1">&#39;Cache-Control&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content_disposition&#39;</span><span class="p">:</span> <span class="s1">&#39;Content-Disposition&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content_encoding&#39;</span><span class="p">:</span> <span class="s1">&#39;Content-Encoding&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content_length&#39;</span><span class="p">:</span> <span class="s1">&#39;Content-Length&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;expires&#39;</span><span class="p">:</span> <span class="s1">&#39;Expires&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;Key&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;success_action_redirect&#39;</span><span class="p">:</span> <span class="s1">&#39;success_action_redirect&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;success_action_status&#39;</span><span class="p">:</span> <span class="s1">&#39;success_action_status&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;meta_data&#39;</span><span class="p">:</span> <span class="s1">&#39;Metadata&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;x_goog_meta_&#39;</span><span class="p">:</span> <span class="s1">&#39;x-goog-meta-&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content_length_range&#39;</span><span class="p">:</span> <span class="s1">&#39;content-length-range&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">#: `get-object</span>
+    <span class="c1">#: &lt;https://cloud.google.com/storage/docs/xml-api/get-object&gt;`_</span>
+    <span class="n">_GET_OBJECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;content_disposition&#39;</span><span class="p">:</span> <span class="s1">&#39;response_disposition&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;response_type&#39;</span><span class="p">,</span>
+    <span class="p">}</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Copyright 2017-2018 Scott Werner.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.6',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

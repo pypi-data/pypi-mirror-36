@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Google Cloud Storage &mdash; Cloud Storage 0.6 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Microsoft Azure Storage" href="microsoft.html" />
+    <link rel="prev" title="Amazon Simple Storage Service (S3)" href="amazon.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Cloud Storage
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#source-code">Source Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../supported.html">Supported Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quick.html#basic-terminology">Basic Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick.html#connecting-to-storage">Connecting to Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick.html#creating-a-container">Creating a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick.html#accessing-a-container">Accessing a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick.html#deleting-a-container">Deleting a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick.html#uploading-a-blob">Uploading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick.html#accessing-a-blob">Accessing a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick.html#downloading-a-blob">Downloading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick.html#deleting-a-blob">Deleting a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick.html#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick.html#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick.html#iteration-of-containers-and-blobs">Iteration of Containers and Blobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick.html#metadata-and-extra-arguments">Metadata and Extra Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../advanced.html">Advanced</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="amazon.html">Amazon Simple Storage Service (S3)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="amazon.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="amazon.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Google Cloud Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="microsoft.html">Microsoft Azure Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="microsoft.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="microsoft.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rackspace.html">Rackspace Cloud Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rackspace.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rackspace.html#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rackspace.html#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="local.html">Local File System Driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="local.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="local.html#metadata">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="local.html#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l3"><a class="reference internal" href="local.html#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#base">Base</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/blob.html">Blob</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/container.html">Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/driver.html">Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#drivers">Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/microsoft.html">AzureStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/rackspace.html">CloudFilesDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/google.html">GoogleStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/local.html">LocalDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/amazon.html">S3Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-cloudstorage.helpers">Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-cloudstorage.utils">Utility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-cloudstorage.exceptions">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#logging">Logging</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#unreleased-2018-10-03">Unreleased (2018-10-03)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id4">0.6 (2018-07-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id5">0.5 (2018-02-26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id7">0.4 (2017-08-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id11">0.3 (2017-05-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id13">0.2 (2017-04-21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id14">0.1 (2017-04-20)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../authors.html#lead">Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Cloud Storage</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../advanced.html">Advanced</a> &raquo;</li>
+        
+      <li>Google Cloud Storage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/advanced/google.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="google-cloud-storage">
+<h1>Google Cloud Storage<a class="headerlink" href="#google-cloud-storage" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="../api/google.html#cloudstorage.drivers.google.GoogleStorageDriver" title="cloudstorage.drivers.google.GoogleStorageDriver"><code class="xref py py-class docutils literal notranslate"><span class="pre">GoogleStorageDriver</span></code></a> is a wrapper around <a class="reference external" href="https://googlecloudplatform.github.io/google-cloud-python/stable/storage-client.html">google-cloud-storage</a>.</p>
+<div class="section" id="connecting">
+<h2>Connecting<a class="headerlink" href="#connecting" title="Permalink to this headline">¶</a></h2>
+<p>The driver will check for <code class="xref py py-obj docutils literal notranslate"><span class="pre">GOOGLE_APPLICATION_CREDENTIALS</span></code> environment variable
+before connecting. If not found, the driver will use service worker credentials
+json file path passed to <code class="xref py py-obj docutils literal notranslate"><span class="pre">key</span></code> argument.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cloudstorage.drivers.google</span> <span class="kn">import</span> <span class="n">GoogleStorageDriver</span>
+
+<span class="n">credentials_json_file</span> <span class="o">=</span> <span class="s1">&#39;/path/cloud-storage-service-account.json&#39;</span>
+<span class="n">storage</span> <span class="o">=</span> <span class="n">GoogleStorageDriver</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">credentials_json_file</span><span class="p">)</span>
+<span class="c1"># &lt;Driver: GOOGLESTORAGE&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="access-control-list-acl">
+<h2>Access Control List (ACL)<a class="headerlink" href="#access-control-list-acl" title="Permalink to this headline">¶</a></h2>
+<p>By default, all containers and blobs default to <code class="xref py py-obj docutils literal notranslate"><span class="pre">project-private</span></code>. To change
+the access control when creating a container or blob, include the <code class="xref py py-obj docutils literal notranslate"><span class="pre">acl</span></code>
+argument:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">container</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">create_container</span><span class="p">(</span><span class="s1">&#39;container-public&#39;</span><span class="p">,</span> <span class="n">acl</span><span class="o">=</span><span class="s1">&#39;public-read&#39;</span><span class="p">)</span>
+<span class="n">container</span><span class="o">.</span><span class="n">cdn_url</span>
+<span class="c1"># https://storage.googleapis.com/container-public</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">container</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">get_container</span><span class="p">(</span><span class="s1">&#39;container-public&#39;</span><span class="p">)</span>
+<span class="n">picture_blob</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">upload_blob</span><span class="p">(</span><span class="s1">&#39;/path/picture.png&#39;</span><span class="p">,</span> <span class="n">acl</span><span class="o">=</span><span class="s1">&#39;public-read&#39;</span><span class="p">)</span>
+<span class="n">picture_blob</span><span class="o">.</span><span class="n">cdn_url</span>
+<span class="c1"># https://storage.googleapis.com/container-public/picture.png</span>
+</pre></div>
+</div>
+<p>Support ACL values for Google Cloud Storage:</p>
+<ul class="simple">
+<li>private</li>
+<li>public-read</li>
+<li>public-read-write</li>
+<li>authenticated-read</li>
+<li>bucket-owner-read</li>
+<li>bucket-owner-full-control</li>
+<li>project-private</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Updating ACL on an existing container or blob is not currently supported.</p>
+</div>
+</div>
+<div class="section" id="content-delivery-network-cdn">
+<h2>Content Delivery Network (CDN)<a class="headerlink" href="#content-delivery-network-cdn" title="Permalink to this headline">¶</a></h2>
+<p>Calling <code class="xref py py-meth docutils literal notranslate"><span class="pre">container.enable_cdn()</span></code> will make the container public
+(shared publicly). More information available at <a class="reference external" href="https://cloud.google.com/storage/docs/access-control/making-data-public">Making Data Public</a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="microsoft.html" class="btn btn-neutral float-right" title="Microsoft Azure Storage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="amazon.html" class="btn btn-neutral" title="Amazon Simple Storage Service (S3)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Copyright 2017-2018 Scott Werner.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.6',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

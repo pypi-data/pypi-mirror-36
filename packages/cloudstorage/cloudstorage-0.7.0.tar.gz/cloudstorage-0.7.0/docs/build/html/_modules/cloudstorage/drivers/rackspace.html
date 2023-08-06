@@ -1,0 +1,1088 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cloudstorage.drivers.rackspace &mdash; Cloud Storage 0.6 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cloud Storage
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#source-code">Source Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../supported.html">Supported Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#basic-terminology">Basic Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#connecting-to-storage">Connecting to Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#creating-a-container">Creating a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#accessing-a-container">Accessing a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#deleting-a-container">Deleting a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#uploading-a-blob">Uploading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#accessing-a-blob">Accessing a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#downloading-a-blob">Downloading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#deleting-a-blob">Deleting a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#iteration-of-containers-and-blobs">Iteration of Containers and Blobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#metadata-and-extra-arguments">Metadata and Extra Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/amazon.html">Amazon Simple Storage Service (S3)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/amazon.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/amazon.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/google.html">Google Cloud Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/microsoft.html">Microsoft Azure Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/microsoft.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/microsoft.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/rackspace.html">Rackspace Cloud Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/local.html">Local File System Driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#metadata">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#base">Base</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/blob.html">Blob</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/container.html">Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/driver.html">Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#drivers">Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/microsoft.html">AzureStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/rackspace.html">CloudFilesDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/google.html">GoogleStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/local.html">LocalDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/amazon.html">S3Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.helpers">Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.utils">Utility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.exceptions">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#logging">Logging</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#unreleased-2018-10-03">Unreleased (2018-10-03)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id4">0.6 (2018-07-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id5">0.5 (2018-02-26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id7">0.4 (2017-08-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id11">0.3 (2017-05-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id13">0.2 (2017-04-21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id14">0.1 (2017-04-20)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../authors.html#lead">Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cloud Storage</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>cloudstorage.drivers.rackspace</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for cloudstorage.drivers.rackspace</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Rackspace Cloud Files Driver.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">http</span> <span class="k">import</span> <span class="n">HTTPStatus</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c1"># noinspection PyUnresolvedReferences</span>
+    <span class="kn">from</span> <span class="nn">httpstatus</span> <span class="k">import</span> <span class="n">HTTPStatus</span>
+
+<span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">quote</span><span class="p">,</span> <span class="n">urlencode</span><span class="p">,</span> <span class="n">urljoin</span>
+
+<span class="kn">import</span> <span class="nn">dateutil.parser</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="kn">from</span> <span class="nn">inflection</span> <span class="k">import</span> <span class="n">underscore</span>
+<span class="kn">from</span> <span class="nn">openstack.exceptions</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">HttpException</span><span class="p">,</span>
+    <span class="n">NotFoundException</span><span class="p">,</span>
+    <span class="n">ResourceNotFound</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">openstack.object_store.v1.obj</span> <span class="k">import</span> <span class="n">Object</span> <span class="k">as</span> <span class="n">OpenStackObject</span>
+<span class="kn">from</span> <span class="nn">openstack.object_store.v1.container</span> <span class="k">import</span> <span class="n">Container</span> <span class="k">as</span> <span class="n">OpenStackContainer</span>
+<span class="kn">from</span> <span class="nn">rackspace</span> <span class="k">import</span> <span class="n">connection</span>
+
+<span class="kn">from</span> <span class="nn">cloudstorage</span> <span class="k">import</span> <span class="n">Blob</span><span class="p">,</span> <span class="n">Container</span><span class="p">,</span> <span class="n">Driver</span><span class="p">,</span> <span class="n">messages</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.typed</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">FileLike</span><span class="p">,</span>
+    <span class="n">MetaData</span><span class="p">,</span>
+    <span class="n">ContentLength</span><span class="p">,</span>
+    <span class="n">ExtraOptions</span><span class="p">,</span>
+    <span class="n">FormPost</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.exceptions</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">CloudStorageError</span><span class="p">,</span>
+    <span class="n">IsNotEmptyError</span><span class="p">,</span>
+    <span class="n">NotFoundError</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.helpers</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">file_content_type</span><span class="p">,</span>
+    <span class="n">validate_file_or_path</span><span class="p">,</span>
+    <span class="n">parse_content_disposition</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CloudFilesDriver&#39;</span><span class="p">]</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">MetaTempKey</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]</span>
+
+
+<div class="viewcode-block" id="CloudFilesDriver"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver">[docs]</a><span class="k">class</span> <span class="nc">CloudFilesDriver</span><span class="p">(</span><span class="n">Driver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Driver for interacting with Rackspace Cloud Files.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from cloudstorage.drivers.rackspace import CloudFilesDriver</span>
+
+<span class="sd">        storage = CloudFilesDriver(key=&#39;&lt;my-rackspace-username&gt;&#39;,</span>
+<span class="sd">                                   secret=&#39;&lt;my-rackspace-secret-key&gt;&#39;,</span>
+<span class="sd">                                   region=&#39;IAD&#39;)</span>
+<span class="sd">        # &lt;Driver: CLOUDFILES IAD&gt;</span>
+
+<span class="sd">    References:</span>
+
+<span class="sd">    * `Using OpenStack Object Store</span>
+<span class="sd">      &lt;https://developer.openstack.org/sdks/python/openstacksdk/users/guides/</span>
+<span class="sd">      object_store.html&gt;`_</span>
+<span class="sd">    * `Object Store API</span>
+<span class="sd">      &lt;https://developer.openstack.org/sdks/python/openstacksdk/users/proxies/</span>
+<span class="sd">      object_store.html&gt;`_</span>
+<span class="sd">    * `Working with Container Metadata &lt;https://developer.openstack.org</span>
+<span class="sd">      /sdks/python/openstacksdk/users/guides/object_store.html&gt;`_</span>
+<span class="sd">    * `CDN API reference - Rackspace Developer Portal</span>
+<span class="sd">      &lt;https://developer.rackspace.com/docs/cloud-files/v1/</span>
+<span class="sd">      cdn-api-reference/&gt;`_</span>
+
+<span class="sd">    .. todo:: Add support for RackspaceSDK ACL.</span>
+<span class="sd">    .. todo:: Add support for missing features like Cache-Control.</span>
+
+<span class="sd">    :param key: Rackspace username.</span>
+<span class="sd">    :type key: str</span>
+
+<span class="sd">    :param secret: Rackspace secret key.</span>
+<span class="sd">    :type secret: str</span>
+
+<span class="sd">    :param region: (optional) Rackspace region. Defaults to `IAD`.</span>
+
+<span class="sd">        * Dallas-Fort Worth (`DFW`)</span>
+<span class="sd">        * Chicago (`ORD`)</span>
+<span class="sd">        * Northern Virginia (`IAD`)</span>
+<span class="sd">        * London (`LON`)</span>
+<span class="sd">        * Sydney (`SYD`)</span>
+<span class="sd">        * Hong Kong (`HKG`)</span>
+<span class="sd">    :type region: str</span>
+
+<span class="sd">    :param kwargs: (optional) Extra driver options.</span>
+<span class="sd">    :type kwargs: dict</span>
+
+<span class="sd">    :raise CloudStorageError: If region name is not supported.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;CLOUDFILES&#39;</span>
+    <span class="n">hash_type</span> <span class="o">=</span> <span class="s1">&#39;md5&#39;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.rackspace.com/cloud/files&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;IAD&#39;</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">region</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">region</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">REGION_NOT_FOUND</span> <span class="o">%</span> <span class="n">region</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">secret</span><span class="o">=</span><span class="n">secret</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">secret</span><span class="p">,</span>
+                                           <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CloudFilesDriver.__iter__"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.__iter__">[docs]</a>    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Container</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">cont</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">containers</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_container</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.__len__"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.__len__">[docs]</a>    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">containers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">containers</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">containers</span><span class="p">))</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_normalize_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
+                              <span class="n">normalizers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Transform parameter key names to match syntax required by the driver.</span>
+
+<span class="sd">        :param params: Dictionary of parameters for method.</span>
+<span class="sd">        :type params: dict</span>
+
+<span class="sd">        :param normalizers: Dictionary mapping of key names.</span>
+<span class="sd">        :type normalizers: dict</span>
+
+<span class="sd">        :return: Dictionary of transformed key names.</span>
+
+<span class="sd">            ::</span>
+
+<span class="sd">                {</span>
+<span class="sd">                    &#39;&lt;key-name&gt;&#39;: `&lt;Mapped-Name&gt;`</span>
+<span class="sd">                    &#39;meta_data&#39;: &#39;Metadata&#39;,</span>
+<span class="sd">                    &#39;content_disposition&#39;: &#39;ContentDisposition&#39;</span>
+<span class="sd">                }</span>
+
+<span class="sd">        :rtype: Dict[str, str]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">normalized</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">normalized</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+            <span class="n">key_inflected</span> <span class="o">=</span> <span class="n">underscore</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+            <span class="n">key_overrider</span> <span class="o">=</span> <span class="n">normalizers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key_inflected</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">key_overrider</span><span class="p">:</span>
+                <span class="n">normalized</span><span class="p">[</span><span class="n">key_overrider</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">normalized</span><span class="p">[</span><span class="n">key_inflected</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">return</span> <span class="n">normalized</span>
+
+    <span class="k">def</span> <span class="nf">_get_temp_url_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get one of the account metadata keys for signing URLs.</span>
+
+<span class="sd">        :return: Account metadata key.</span>
+<span class="sd">        :rtype: str</span>
+
+<span class="sd">        :raises CloudStorageError: If both account metadata keys are empty.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_account_temp_url_keys</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">keys</span> <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span>
+                <span class="s2">&quot;Please set a temporary URL key on the driver: &quot;</span>
+                <span class="s2">&quot;&#39;storage.set_account_temp_url_keys&#39;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_server_public_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Return the public endpoint URL for a particular service region.</span>
+
+<span class="sd">        `https://storage101.iad3.clouddrive.com/v1/MossoCloudFS_XXXXX`</span>
+
+<span class="sd">        :param service_name: Service name: `cloudFiles` or `cloudFilesCDN`.</span>
+<span class="sd">        :type service_name: str</span>
+
+<span class="sd">        :return: Public URL for the requested service.</span>
+<span class="sd">        :rtype: str</span>
+
+<span class="sd">        :raises CloudStorageError: If service name is not found in catalog.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">service_catalog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">auth_ref</span><span class="o">.</span><span class="n">service_catalog</span><span class="o">.</span> \
+            <span class="n">catalog</span>
+
+        <span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">service_catalog</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">service</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">service_name</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">endpoint</span> <span class="ow">in</span> <span class="n">service</span><span class="p">[</span><span class="s1">&#39;endpoints&#39;</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">endpoint</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="n">endpoint</span><span class="p">[</span><span class="s1">&#39;publicURL&#39;</span><span class="p">]</span>
+
+        <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span>
+            <span class="s2">&quot;Could not determine the public URL for &#39;</span><span class="si">%s</span><span class="s2">&#39;.&quot;</span> <span class="o">%</span> <span class="n">service_name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get Rackspace container by name.</span>
+
+<span class="sd">        :param container_name: Container name to get.</span>
+<span class="sd">        :type container_name: str</span>
+
+<span class="sd">        :return: Openstack object store container.</span>
+<span class="sd">        :rtype: :class:`openstack.object_store.v1.container.Container`</span>
+
+<span class="sd">        :raises NotFoundError: If container does not exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">get_container_metadata</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">NotFoundException</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NOT_FOUND</span> <span class="o">%</span> <span class="n">container_name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                    <span class="n">object_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OpenStackObject</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get Rackspace container by name.</span>
+
+<span class="sd">        :param container_name: Container name that contains the object.</span>
+<span class="sd">        :type container_name: str</span>
+
+<span class="sd">        :param object_name: Object name to get.</span>
+<span class="sd">        :type object_name: str</span>
+
+<span class="sd">        :return: Openstack object store object.</span>
+<span class="sd">        :rtype: :class:`openstack.object_store.v1.obj.Object`</span>
+
+<span class="sd">        :raises NotFoundError: If object does not exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">get_object_metadata</span><span class="p">(</span>
+                <span class="n">obj</span><span class="o">=</span><span class="n">object_name</span><span class="p">,</span> <span class="n">container</span><span class="o">=</span><span class="n">container_name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">ResourceNotFound</span><span class="p">,</span> <span class="n">NotFoundException</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">BLOB_NOT_FOUND</span> <span class="o">%</span> <span class="p">(</span><span class="n">object_name</span><span class="p">,</span>
+                                                           <span class="n">container_name</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="k">def</span> <span class="nf">_set_object_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">OpenStackObject</span><span class="p">,</span>
+                         <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OpenStackObject</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set object meta data.</span>
+
+<span class="sd">        .. note:: The POST request to set metadata deletes all metadata that is</span>
+<span class="sd">                  not explicitly set in the request. In other words, ALL the</span>
+<span class="sd">                  object metadata is set at the time of the POST request. If</span>
+<span class="sd">                  you want to edit or remove one header, include all other</span>
+<span class="sd">                  headers in the POST request and leave out the header that</span>
+<span class="sd">                  you want to remove. This means that if you delete one entry</span>
+<span class="sd">                  without posting the others, the others will also be deleted</span>
+<span class="sd">                  at that time.</span>
+
+<span class="sd">        References:</span>
+
+<span class="sd">        * `Create or update object metadata</span>
+<span class="sd">          &lt;https://developer.rackspace.com/docs/cloud-files/v1/</span>
+<span class="sd">          storage-api-reference/object-services-operations/</span>
+<span class="sd">          #create-or-update-object-metadata&gt;`_</span>
+
+<span class="sd">        :param obj: Openstack object instance.</span>
+<span class="sd">        :type obj: :class:`openstack.object_store.v1.obj.Object`</span>
+
+<span class="sd">        :param meta_data: A map of metadata to store with the object.</span>
+<span class="sd">        :type meta_data: dict</span>
+
+<span class="sd">        :return: Openstack object instance.</span>
+<span class="sd">        :rtype: :class:`openstack.object_store.v1.obj.Object`</span>
+
+<span class="sd">        :raises CloudStorageError: If setting the metadata failed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">set_object_metadata</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span>
+                                                     <span class="n">container</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">container</span><span class="p">,</span>
+                                                     <span class="o">**</span><span class="n">meta_data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_container_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">OpenStackContainer</span><span class="p">,</span>
+                            <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set metadata on container.</span>
+
+<span class="sd">        :param container: Container to set metadata to.</span>
+<span class="sd">        :type container: :class:`openstack.object_store.v1.container.Container`</span>
+
+<span class="sd">        :param meta_data: A map of metadata to store with the container.</span>
+<span class="sd">        :type meta_data: dict</span>
+
+<span class="sd">        :return: NoneType</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        :raises CloudStorageError: If setting the metadata failed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">object_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_server_public_url</span><span class="p">(</span><span class="s1">&#39;cloudFiles&#39;</span><span class="p">)</span>
+        <span class="n">object_url</span> <span class="o">+=</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">quote</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_token</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Add header prefix to user meta data, X-Object-Meta-</span>
+        <span class="k">for</span> <span class="n">meta_key</span><span class="p">,</span> <span class="n">meta_value</span> <span class="ow">in</span> <span class="n">meta_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">headers</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_CONTAINER_META_PREFIX</span> <span class="o">+</span> <span class="n">meta_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta_value</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">object_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="n">HTTPStatus</span><span class="o">.</span><span class="n">NO_CONTENT</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert Rackspace Container to Cloud Storage Container.</span>
+
+<span class="sd">        :param container: Openstack container to convert.</span>
+<span class="sd">        :type container: :class:`openstack.object_store.v1.container.Container`</span>
+
+<span class="sd">        :return: A container instance.</span>
+<span class="sd">        :rtype: :class:`.Container`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Container</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">acl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">meta_data</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="n">created_at</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert Rackspace Object to a Cloud Storage Blob.</span>
+
+<span class="sd">        :param container: Container instance.</span>
+<span class="sd">        :type container: :class:`.Container`</span>
+
+<span class="sd">        :param obj: Openstack object instance.</span>
+<span class="sd">        :type obj: :class:`openstack.object_store.v1.obj.Object`</span>
+
+<span class="sd">        :return: Blob instance.</span>
+<span class="sd">        :rtype: :class:`.Blob`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">content_length</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">last_modified_at</span><span class="p">:</span>
+            <span class="n">modified_at</span> <span class="o">=</span> <span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">last_modified_at</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">obj</span><span class="o">.</span><span class="n">last_modified</span><span class="p">:</span>
+            <span class="n">modified_at</span> <span class="o">=</span> <span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">last_modified</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">modified_at</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">delete_at</span><span class="p">:</span>
+            <span class="n">delete_at</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">delete_at</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">delete_at</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># noinspection PyProtectedMember</span>
+        <span class="k">return</span> <span class="n">Blob</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">_hash</span> <span class="ow">or</span> <span class="n">obj</span><span class="o">.</span><span class="n">etag</span><span class="p">,</span>
+                    <span class="n">etag</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">etag</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">container</span><span class="o">=</span><span class="n">container</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+                    <span class="n">acl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">meta_data</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+                    <span class="n">content_disposition</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">content_disposition</span><span class="p">,</span>
+                    <span class="n">content_type</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">content_type</span><span class="p">,</span> <span class="n">cache_control</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">created_at</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modified_at</span><span class="o">=</span><span class="n">modified_at</span><span class="p">,</span>
+                    <span class="n">expires_at</span><span class="o">=</span><span class="n">delete_at</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_token</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Rackspace authentication token for manual requests.</span>
+
+<span class="sd">        :return: Session token id.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># noinspection PyProtectedMember</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">auth_ref</span><span class="o">.</span><span class="n">_token</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">conn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Rackspace connection.</span>
+
+<span class="sd">        :return: Rackspace connection.</span>
+<span class="sd">        :rtype: rackspace.connection.Connection</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">object_store</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Rackspace object store proxy.</span>
+
+<span class="sd">        :return: Proxy to Rackspace object store.</span>
+<span class="sd">        :rtype: rackspace.object_store.v1._proxy.Proxy</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># noinspection PyUnresolvedReferences</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">object_store</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">regions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;DFW&#39;</span><span class="p">,</span> <span class="s1">&#39;HKG&#39;</span><span class="p">,</span> <span class="s1">&#39;IAD&#39;</span><span class="p">,</span> <span class="s1">&#39;LON&#39;</span><span class="p">,</span> <span class="s1">&#39;ORD&#39;</span><span class="p">,</span> <span class="s1">&#39;SYD&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="CloudFilesDriver.create_container"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.create_container">[docs]</a>    <span class="k">def</span> <span class="nf">create_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                         <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">acl</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;acl&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">cont</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">create_container</span><span class="p">(</span>
+                <span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">container_name</span><span class="p">))</span>
+        <span class="k">except</span> <span class="n">HttpException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">details</span><span class="p">)</span>
+
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="n">meta_data</span> <span class="k">if</span> <span class="n">meta_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_container_meta</span><span class="p">(</span><span class="n">cont</span><span class="p">,</span> <span class="n">meta_data</span><span class="p">)</span>
+
+        <span class="n">cont</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_container</span><span class="p">(</span><span class="n">cont</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_container</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+
+        <span class="c1"># TODO: QUESTION: Automatically enable CDN for public-read?</span>
+        <span class="c1"># if acl == &#39;public-read&#39;:</span>
+        <span class="c1">#     self.enable_container_cdn(container)</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     logger.info(option_not_supported % &#39;acl&#39;)</span>
+
+        <span class="k">return</span> <span class="n">container</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.get_container"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.get_container">[docs]</a>    <span class="k">def</span> <span class="nf">get_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="n">container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_container</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_container</span><span class="p">(</span><span class="n">container</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.patch_container"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.patch_container">[docs]</a>    <span class="k">def</span> <span class="nf">patch_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">cont</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_container</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">cont</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">meta_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">set_container_metadata</span><span class="p">(</span><span class="n">cont</span><span class="p">,</span> <span class="o">**</span><span class="n">container</span><span class="o">.</span><span class="n">meta_data</span><span class="p">)</span>
+
+        <span class="n">diff</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">cont</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">meta_data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">delete_container_metadata</span><span class="p">(</span><span class="n">container</span><span class="o">=</span><span class="n">cont</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="n">diff</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.delete_container"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.delete_container">[docs]</a>    <span class="k">def</span> <span class="nf">delete_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">delete_container</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ResourceNotFound</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NOT_FOUND</span> <span class="o">%</span> <span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">HttpException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">HTTPStatus</span><span class="o">.</span><span class="n">CONFLICT</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">IsNotEmptyError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NOT_EMPTY</span> <span class="o">%</span>
+                                      <span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">details</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.container_cdn_url"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.container_cdn_url">[docs]</a>    <span class="k">def</span> <span class="nf">container_cdn_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">endpoint_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_server_public_url</span><span class="p">(</span>
+            <span class="s1">&#39;cloudFilesCDN&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">container</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_token</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">endpoint_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+        <span class="n">uri</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x-cdn-ssl-uri&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">uri</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CDN_NOT_ENABLED</span> <span class="o">%</span> <span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">uri</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.enable_container_cdn"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.enable_container_cdn">[docs]</a>    <span class="k">def</span> <span class="nf">enable_container_cdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">endpoint_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_server_public_url</span><span class="p">(</span>
+            <span class="s1">&#39;cloudFilesCDN&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">container</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_token</span><span class="p">,</span>
+            <span class="s1">&#39;X-CDN-Enabled&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span>
+        <span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">endpoint_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">(</span>
+            <span class="n">HTTPStatus</span><span class="o">.</span><span class="n">CREATED</span><span class="p">,</span>
+            <span class="n">HTTPStatus</span><span class="o">.</span><span class="n">ACCEPTED</span><span class="p">,</span>
+            <span class="n">HTTPStatus</span><span class="o">.</span><span class="n">NO_CONTENT</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.disable_container_cdn"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.disable_container_cdn">[docs]</a>    <span class="k">def</span> <span class="nf">disable_container_cdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">endpoint_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_server_public_url</span><span class="p">(</span>
+            <span class="s1">&#39;cloudFilesCDN&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">container</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;X-Auth-Token&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_token</span><span class="p">,</span>
+            <span class="s1">&#39;X-CDN-Enabled&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>
+        <span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">endpoint_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">(</span>
+            <span class="n">HTTPStatus</span><span class="o">.</span><span class="n">CREATED</span><span class="p">,</span> <span class="n">HTTPStatus</span><span class="o">.</span><span class="n">ACCEPTED</span><span class="p">,</span> <span class="n">HTTPStatus</span><span class="o">.</span><span class="n">NO_CONTENT</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.upload_blob"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.upload_blob">[docs]</a>    <span class="k">def</span> <span class="nf">upload_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="n">FileLike</span><span class="p">,</span>
+                    <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">cache_control</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span>
+                    <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">acl</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;acl&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">cache_control</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;cache_control&#39;</span><span class="p">)</span>
+
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="n">meta_data</span> <span class="k">if</span> <span class="n">meta_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">extra</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+
+        <span class="n">extra_args</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_parameters</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_OBJECT_META_KEYS</span><span class="p">)</span>
+
+        <span class="c1"># Default arguments</span>
+        <span class="n">extra_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;content_encoding&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="n">blob_name</span> <span class="o">=</span> <span class="n">blob_name</span> <span class="ow">or</span> <span class="n">validate_file_or_path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">content_type</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">content_type</span> <span class="o">=</span> <span class="n">file_content_type</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">content_type</span> <span class="o">=</span> <span class="n">file_content_type</span><span class="p">(</span><span class="n">blob_name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">file_obj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>  <span class="c1"># type: FileLike</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">file_obj</span> <span class="o">=</span> <span class="n">filename</span>
+
+        <span class="k">with</span> <span class="n">file_obj</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">extra_args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+            <span class="n">extra_args</span><span class="p">[</span><span class="s1">&#39;content_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_type</span>
+            <span class="n">extra_args</span><span class="p">[</span><span class="s1">&#39;content_disposition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_disposition</span>
+            <span class="n">extra_args</span><span class="p">[</span><span class="s1">&#39;cache_control&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache_control</span>
+
+            <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">create_object</span><span class="p">(</span>
+                <span class="n">container</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">blob_name</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">extra_args</span><span class="p">)</span>  <span class="c1"># type: OpenStackObject</span>
+
+        <span class="c1"># Manually set meta data after object upload</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_object_meta</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">meta_data</span><span class="p">)</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_object</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.get_blob"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.get_blob">[docs]</a>    <span class="k">def</span> <span class="nf">get_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_object</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.get_blobs"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.get_blobs">[docs]</a>    <span class="k">def</span> <span class="nf">get_blobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Blob</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.download_blob"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.download_blob">[docs]</a>    <span class="k">def</span> <span class="nf">download_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">,</span>
+                      <span class="n">destination</span><span class="p">:</span> <span class="n">FileLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">download_object</span><span class="p">(</span>
+                <span class="n">obj</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">container</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+                    <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">destination</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ResourceNotFound</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">BLOB_NOT_FOUND</span> <span class="o">%</span> <span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                                           <span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.patch_blob"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.patch_blob">[docs]</a>    <span class="k">def</span> <span class="nf">patch_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_object</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">meta_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">set_object_metadata</span><span class="p">(</span>
+            <span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span> <span class="n">container</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">blob</span><span class="o">.</span><span class="n">meta_data</span><span class="p">)</span>
+
+        <span class="n">diff</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">meta_data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">delete_object_metadata</span><span class="p">(</span>
+            <span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span> <span class="n">container</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="n">diff</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.delete_blob"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.delete_blob">[docs]</a>    <span class="k">def</span> <span class="nf">delete_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">delete_object</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">ignore_missing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                            <span class="n">container</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ResourceNotFound</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">BLOB_NOT_FOUND</span> <span class="o">%</span> <span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                                           <span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.blob_cdn_url"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.blob_cdn_url">[docs]</a>    <span class="k">def</span> <span class="nf">blob_cdn_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">container_cdn_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">container_cdn_url</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">container_cdn_url</span><span class="p">,</span> <span class="n">quote</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">url</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.generate_container_upload_url"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.generate_container_upload_url">[docs]</a>    <span class="k">def</span> <span class="nf">generate_container_upload_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span>
+                                      <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                                      <span class="n">expires</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3600</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_length</span><span class="p">:</span> <span class="n">ContentLength</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">cache_control</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FormPost</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">acl</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;acl&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">meta_data</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;meta_data&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">content_disposition</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;content_disposition&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">content_type</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;content_type&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">cache_control</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;cache_control&#39;</span><span class="p">)</span>
+
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">extra</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">extra_norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_parameters</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_POST_OBJECT_KEYS</span><span class="p">)</span>
+
+        <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_temp_url_key</span><span class="p">()</span>
+        <span class="n">storage_public_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_server_public_url</span><span class="p">(</span><span class="s1">&#39;cloudFiles&#39;</span><span class="p">)</span>
+
+        <span class="c1"># POST URL and path field</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">storage_public_url</span><span class="p">,</span> <span class="n">quote</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+                            <span class="n">quote</span><span class="p">(</span><span class="n">blob_name</span><span class="p">))</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">container_path</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/v1/&#39;</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/&#39;</span> <span class="o">+</span> <span class="n">container_path</span>
+
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[Any, Any]</span>
+
+        <span class="c1"># Optional parameters and attributes</span>
+        <span class="n">redirect</span> <span class="o">=</span> <span class="p">(</span><span class="n">extra_norm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;success_action_redirect&#39;</span><span class="p">)</span> <span class="ow">or</span>
+                    <span class="n">extra_norm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redirect&#39;</span><span class="p">))</span>
+        <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;redirect&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="n">redirect</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">redirect</span>
+
+        <span class="c1"># Required parameters and attributes</span>
+        <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;max_file_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">content_length</span><span class="p">:</span>
+            <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;max_file_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_length</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;max_file_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5000000000</span>  <span class="c1"># 5 GB default</span>
+
+        <span class="c1"># Time must be in UNIX epoch format.</span>
+        <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;expires&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">expires</span><span class="p">)</span>
+
+        <span class="n">hmac_body</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{path}</span><span class="se">\n</span><span class="s1">&#39;</span> \
+                    <span class="s1">&#39;</span><span class="si">{redirect}</span><span class="se">\n</span><span class="s1">&#39;</span> \
+                    <span class="s1">&#39;</span><span class="si">{max_file_size}</span><span class="se">\n</span><span class="s1">&#39;</span> \
+                    <span class="s1">&#39;</span><span class="si">{max_file_count}</span><span class="se">\n</span><span class="s1">&#39;</span> \
+                    <span class="s1">&#39;</span><span class="si">{expires}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">fields</span><span class="p">)</span>
+        <span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">hmac_body</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+                             <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;signature&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">signature</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="s1">&#39;fields&#39;</span><span class="p">:</span> <span class="n">fields</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.generate_blob_download_url"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.generate_blob_download_url">[docs]</a>    <span class="k">def</span> <span class="nf">generate_blob_download_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">,</span> <span class="n">expires</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3600</span><span class="p">,</span>
+                                   <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                                   <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                   <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">extra</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;extra&#39;</span><span class="p">)</span>
+
+        <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_temp_url_key</span><span class="p">()</span>
+        <span class="n">storage_public_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_server_public_url</span><span class="p">(</span><span class="s1">&#39;cloudFiles&#39;</span><span class="p">)</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">storage_public_url</span><span class="p">,</span> <span class="n">quote</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+        <span class="n">base_url</span><span class="p">,</span> <span class="n">object_path</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/v1/&#39;</span><span class="p">)</span>
+        <span class="n">object_path</span> <span class="o">=</span> <span class="s1">&#39;/v1/&#39;</span> <span class="o">+</span> <span class="n">object_path</span>
+
+        <span class="c1"># Time must be in UNIX epoch format.</span>
+        <span class="n">expires_in</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">expires</span><span class="p">)</span>
+
+        <span class="n">hmac_body</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">expires_in</span><span class="p">,</span> <span class="n">object_path</span><span class="p">)</span>
+        <span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">hmac_body</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+                             <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;temp_url_sig&#39;</span><span class="p">:</span> <span class="n">signature</span><span class="p">,</span>
+            <span class="s1">&#39;temp_url_expires&#39;</span><span class="p">:</span> <span class="n">expires_in</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Rackspace uses query params: filename (attachment) and inline</span>
+        <span class="k">if</span> <span class="n">content_disposition</span><span class="p">:</span>
+            <span class="n">disposition</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">parse_content_disposition</span><span class="p">(</span><span class="n">content_disposition</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">disposition</span> <span class="o">==</span> <span class="s1">&#39;inline&#39;</span><span class="p">:</span>
+                <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;inline&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+            <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s%s</span><span class="s1">?</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">object_path</span><span class="p">,</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">parameters</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.get_account_temp_url_keys"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.get_account_temp_url_keys">[docs]</a>    <span class="k">def</span> <span class="nf">get_account_temp_url_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MetaTempKey</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Return URL meta keys for signing temporary URLs.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            storage.get_account_temp_url_keys()</span>
+<span class="sd">            # (&#39;&lt;meta_temp_url_key&gt;&#39;, &#39;&lt;meta_temp_url_key_2&gt;&#39;)</span>
+
+<span class="sd">        References:</span>
+
+<span class="sd">        * `Public access to your Cloud Files account</span>
+<span class="sd">          &lt;https://developer.rackspace.com/docs/cloud-files/v1/use-cases/</span>
+<span class="sd">          public-access-to-your-cloud-files-account/&gt;`_</span>
+
+<span class="sd">        :return: Tuple of both temporary URL keys.</span>
+<span class="sd">        :rtype: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">account</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">get_account_metadata</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">account</span><span class="o">.</span><span class="n">meta_temp_url_key</span><span class="p">,</span> <span class="n">account</span><span class="o">.</span><span class="n">meta_temp_url_key_2</span></div>
+
+<div class="viewcode-block" id="CloudFilesDriver.set_account_temp_url_keys"><a class="viewcode-back" href="../../../api/rackspace.html#cloudstorage.drivers.rackspace.CloudFilesDriver.set_account_temp_url_keys">[docs]</a>    <span class="k">def</span> <span class="nf">set_account_temp_url_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp_url_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                  <span class="n">temp_url_key_2</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MetaTempKey</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set URL meta keys for signing temporary URLs.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            # Set key</span>
+<span class="sd">            storage.set_account_temp_url_keys(temp_url_key_2=&#39;&lt;my-new-key&gt;&#39;)</span>
+<span class="sd">            # (&#39;&lt;my-key&gt;&#39;, &#39;&lt;my-new-key&gt;&#39;)</span>
+
+<span class="sd">            # Delete key</span>
+<span class="sd">            storage.set_account_temp_url_keys(temp_url_key_2=&#39;&#39;)</span>
+<span class="sd">            # (&#39;&lt;my-key&gt;&#39;, None)</span>
+
+<span class="sd">        References:</span>
+
+<span class="sd">        * `Public access to your Cloud Files account &lt;https://developer.</span>
+<span class="sd">          rackspace.com/docs/cloud-files/v1/use-cases/public-access-to-your-</span>
+<span class="sd">          cloud-files-account/&gt;`_</span>
+
+<span class="sd">        :param temp_url_key: (optional) First signing key.</span>
+<span class="sd">        :type temp_url_key: str or None</span>
+
+<span class="sd">        :param temp_url_key_2: (optional) Second signing key.</span>
+<span class="sd">        :type temp_url_key_2: str or None</span>
+
+<span class="sd">        :return: Tuple of both temporary URL keys.</span>
+<span class="sd">        :rtype: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;temp_url_key&#39;</span><span class="p">:</span> <span class="n">temp_url_key</span><span class="p">,</span>
+            <span class="s1">&#39;temp_url_key_2&#39;</span><span class="p">:</span> <span class="n">temp_url_key_2</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">object_store</span><span class="o">.</span><span class="n">set_account_metadata</span><span class="p">(</span><span class="o">**</span><span class="n">meta_data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_account_temp_url_keys</span><span class="p">()</span></div>
+
+    <span class="n">_OBJECT_META_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;X-Object-Meta-&#39;</span>
+    <span class="n">_CONTAINER_META_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;X-Container-Meta-&#39;</span>
+    <span class="n">_CONTAINER_DELETE_META_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;X-Remove-Container&#39;</span>
+
+    <span class="c1"># TODO: CODE: Differentiate between keys for POST, GET, PUT, and DELETE.</span>
+    <span class="c1">#: `formpost</span>
+    <span class="c1">#: &lt;https://developer.rackspace.com/docs/cloud-files/v1/use-cases/</span>
+    <span class="c1">#: public-access-to-your-cloud-files-account/#formpost&gt;`_</span>
+    <span class="n">_POST_OBJECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;max_file_size&#39;</span><span class="p">:</span> <span class="s1">&#39;max_file_size&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;max_file_count&#39;</span><span class="p">:</span> <span class="s1">&#39;max_file_count&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;redirect&#39;</span><span class="p">:</span> <span class="s1">&#39;redirect&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">#: `object_store</span>
+    <span class="c1">#: &lt;https://developer.openstack.org/sdks/python/openstacksdk/users/proxies/</span>
+    <span class="c1">#: object_store.html&gt;`_</span>
+    <span class="n">_OBJECT_META_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;content_type&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content_encoding&#39;</span><span class="p">:</span> <span class="s1">&#39;content_encoding&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content_disposition&#39;</span><span class="p">:</span> <span class="s1">&#39;content_disposition&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;cache_control&#39;</span><span class="p">:</span> <span class="s1">&#39;cache-control&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;delete_after&#39;</span><span class="p">:</span> <span class="s1">&#39;delete_after&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;delete_at&#39;</span><span class="p">:</span> <span class="s1">&#39;delete_at&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;is_content_type_detected&#39;</span><span class="p">:</span> <span class="s1">&#39;is_content_type_detected&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">#: `object_store</span>
+    <span class="c1">#: &lt;https://developer.openstack.org/sdks/python/openstacksdk/users/proxies/</span>
+    <span class="c1">#: object_store.html&gt;`_</span>
+    <span class="n">_CONTAINER_META_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;content_type&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;is_content_type_detected&#39;</span><span class="p">:</span> <span class="s1">&#39;is_content_type_detected&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;versions_location&#39;</span><span class="p">:</span> <span class="s1">&#39;versions_location&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;read_ACL&#39;</span><span class="p">:</span> <span class="s1">&#39;read_ACL&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;write_ACL&#39;</span><span class="p">:</span> <span class="s1">&#39;write_ACL&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sync_to&#39;</span><span class="p">:</span> <span class="s1">&#39;sync_to&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sync_key&#39;</span><span class="p">:</span> <span class="s1">&#39;sync_key&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">#: `create-or-update-container-metadata</span>
+    <span class="c1">#: &lt;https://developer.rackspace.com/docs/cloud-files/v1/</span>
+    <span class="c1"># storage-api-reference/container-services-operations/</span>
+    <span class="c1"># #create-or-update-container-metadata&gt;`_</span>
+    <span class="n">_CONTAINER_POST_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;read&#39;</span><span class="p">:</span> <span class="s1">&#39;X-Container-Read&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;write&#39;</span><span class="p">:</span> <span class="s1">&#39;X-Container-Write&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;X-Versions-Location&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;cache_control&#39;</span><span class="p">:</span> <span class="s1">&#39;cache_control&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;detect-content-type&#39;</span><span class="p">:</span> <span class="s1">&#39;X-Detect-Content-Type&#39;</span><span class="p">,</span>
+    <span class="p">}</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Copyright 2017-2018 Scott Werner.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.6',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

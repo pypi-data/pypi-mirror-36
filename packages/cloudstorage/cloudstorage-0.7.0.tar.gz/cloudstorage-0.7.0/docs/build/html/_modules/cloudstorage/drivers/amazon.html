@@ -1,0 +1,873 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cloudstorage.drivers.amazon &mdash; Cloud Storage 0.6 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Cloud Storage
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#source-code">Source Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../supported.html">Supported Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#basic-terminology">Basic Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#connecting-to-storage">Connecting to Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#creating-a-container">Creating a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#accessing-a-container">Accessing a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#deleting-a-container">Deleting a Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#uploading-a-blob">Uploading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#accessing-a-blob">Accessing a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#downloading-a-blob">Downloading a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#deleting-a-blob">Deleting a Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#iteration-of-containers-and-blobs">Iteration of Containers and Blobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quick.html#metadata-and-extra-arguments">Metadata and Extra Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/amazon.html">Amazon Simple Storage Service (S3)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/amazon.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/amazon.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/google.html">Google Cloud Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/google.html#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/microsoft.html">Microsoft Azure Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/microsoft.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/microsoft.html#access-control-list-acl">Access Control List (ACL)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/rackspace.html">Rackspace Cloud Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#access-control-list-acl">Access Control List (ACL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/rackspace.html#content-delivery-network-cdn">Content Delivery Network (CDN)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../advanced/local.html">Local File System Driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#connecting">Connecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#metadata">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#generate-a-download-url">Generate a Download Url</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../advanced/local.html#generate-an-upload-formpost">Generate an Upload FormPost</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#base">Base</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/blob.html">Blob</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/container.html">Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/driver.html">Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#drivers">Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/microsoft.html">AzureStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/rackspace.html">CloudFilesDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/google.html">GoogleStorageDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/local.html">LocalDriver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/amazon.html">S3Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.helpers">Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.utils">Utility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#module-cloudstorage.exceptions">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#logging">Logging</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#unreleased-2018-10-03">Unreleased (2018-10-03)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id4">0.6 (2018-07-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id5">0.5 (2018-02-26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id7">0.4 (2017-08-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id11">0.3 (2017-05-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id13">0.2 (2017-04-21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#id14">0.1 (2017-04-20)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../authors.html#lead">Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Cloud Storage</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>cloudstorage.drivers.amazon</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for cloudstorage.drivers.amazon</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Amazon Simple Storage Service (S3) Driver.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">quote</span><span class="p">,</span> <span class="n">urljoin</span>
+
+<span class="kn">import</span> <span class="nn">boto3</span>
+<span class="kn">from</span> <span class="nn">botocore.exceptions</span> <span class="k">import</span> <span class="n">ClientError</span><span class="p">,</span> <span class="n">ParamValidationError</span><span class="p">,</span> <span class="n">WaiterError</span>
+<span class="kn">from</span> <span class="nn">inflection</span> <span class="k">import</span> <span class="n">camelize</span><span class="p">,</span> <span class="n">underscore</span>
+
+<span class="kn">from</span> <span class="nn">cloudstorage</span> <span class="k">import</span> <span class="n">Blob</span><span class="p">,</span> <span class="n">Container</span><span class="p">,</span> <span class="n">Driver</span><span class="p">,</span> <span class="n">messages</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.exceptions</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">CloudStorageError</span><span class="p">,</span>
+    <span class="n">IsNotEmptyError</span><span class="p">,</span>
+    <span class="n">NotFoundError</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.helpers</span> <span class="k">import</span> <span class="n">file_content_type</span><span class="p">,</span> <span class="n">validate_file_or_path</span>
+<span class="kn">from</span> <span class="nn">cloudstorage.typed</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">ContentLength</span><span class="p">,</span>
+    <span class="n">ExtraOptions</span><span class="p">,</span>
+    <span class="n">FileLike</span><span class="p">,</span>
+    <span class="n">FormPost</span><span class="p">,</span>
+    <span class="n">MetaData</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;S3Driver&#39;</span><span class="p">]</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="S3Driver"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver">[docs]</a><span class="k">class</span> <span class="nc">S3Driver</span><span class="p">(</span><span class="n">Driver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Driver for interacting with Amazon Simple Storage Service (S3).</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from cloudstorage.drivers.amazon import S3Driver</span>
+
+<span class="sd">        storage = S3Driver(key=&#39;&lt;my-aws-access-key-id&gt;&#39;,</span>
+<span class="sd">                   secret=&#39;&lt;my-aws-secret-access-key&gt;&#39;,</span>
+<span class="sd">                   region=&#39;us-east-1&#39;)</span>
+<span class="sd">        # &lt;Driver: S3 us-east-1&gt;</span>
+
+<span class="sd">    References:</span>
+
+<span class="sd">    * `Boto 3 Docs &lt;http://boto3.readthedocs.io&gt;`_</span>
+<span class="sd">    * `Amazon S3 REST API Introduction</span>
+<span class="sd">      &lt;https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html&gt;`_</span>
+
+<span class="sd">    :param key: AWS Access Key ID.</span>
+<span class="sd">    :type key: str</span>
+
+<span class="sd">    :param secret: AWS Secret Access Key.</span>
+<span class="sd">    :type secret: str</span>
+
+<span class="sd">    :param region: (optional) Region to connect to. Defaults to `us-east-1`.</span>
+<span class="sd">    :type region: str</span>
+
+<span class="sd">    :param kwargs: (optional) Extra driver options.</span>
+<span class="sd">    :type kwargs: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;S3&#39;</span>
+    <span class="n">hash_type</span> <span class="o">=</span> <span class="s1">&#39;md5&#39;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://aws.amazon.com/s3/&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">secret</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;us-east-1&#39;</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">region</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">secret</span><span class="o">=</span><span class="n">secret</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">aws_access_key_id</span><span class="o">=</span><span class="n">key</span><span class="p">,</span>
+                                      <span class="n">aws_secret_access_key</span><span class="o">=</span><span class="n">secret</span><span class="p">,</span>
+                                      <span class="n">region_name</span><span class="o">=</span><span class="n">region</span><span class="p">)</span>
+
+        <span class="c1"># session required for loading regions list</span>
+        <span class="k">if</span> <span class="n">region</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">REGION_NOT_FOUND</span> <span class="o">%</span> <span class="n">region</span><span class="p">)</span>
+
+<div class="viewcode-block" id="S3Driver.__iter__"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.__iter__">[docs]</a>    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Container</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">buckets</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_container</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="S3Driver.__len__"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.__len__">[docs]</a>    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="n">bucket</span> <span class="k">for</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">buckets</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">buckets</span><span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_normalize_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
+                              <span class="n">normalizers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+        <span class="n">normalized</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">normalized</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">key_inflected</span> <span class="o">=</span> <span class="n">camelize</span><span class="p">(</span><span class="n">underscore</span><span class="p">(</span><span class="n">key</span><span class="p">),</span>
+                                     <span class="n">uppercase_first_letter</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="c1"># Only include parameters found in normalizers</span>
+            <span class="n">key_overrider</span> <span class="o">=</span> <span class="n">normalizers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key_inflected</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">key_overrider</span><span class="p">:</span>
+                <span class="n">normalized</span><span class="p">[</span><span class="n">key_overrider</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">return</span> <span class="n">normalized</span>
+
+    <span class="k">def</span> <span class="nf">_get_bucket</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bucket_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">validate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a S3 bucket.</span>
+
+<span class="sd">        :param bucket_name: The Bucket&#39;s name identifier.</span>
+<span class="sd">        :type bucket_name: str</span>
+
+<span class="sd">        :param validate: If True, verify that the bucket exists.</span>
+<span class="sd">        :type validate: bool</span>
+
+<span class="sd">        :return: S3 bucket resource object.</span>
+<span class="sd">        :rtype: :class:`boto3.s3.Bucket`</span>
+
+<span class="sd">        :raises NotFoundError: If the bucket does not exist.</span>
+<span class="sd">        :raises CloudStorageError: Boto 3 client error.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">validate</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">head_bucket</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket_name</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;response=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">error_code</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;Error&#39;</span><span class="p">][</span><span class="s1">&#39;Code&#39;</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">error_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NOT_FOUND</span> <span class="o">%</span>
+                                        <span class="n">bucket_name</span><span class="p">)</span>
+
+                <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;Error&#39;</span><span class="p">][</span><span class="s1">&#39;Code&#39;</span><span class="p">],</span>
+                    <span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;Error&#39;</span><span class="p">][</span><span class="s1">&#39;Message&#39;</span><span class="p">]))</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">bucket</span><span class="o">.</span><span class="n">wait_until_exists</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">WaiterError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">bucket</span>
+
+    <span class="k">def</span> <span class="nf">_make_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span> <span class="n">object_summary</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert S3 Object Summary to Blob instance.</span>
+
+<span class="sd">        :param container: The container that holds the blob.</span>
+<span class="sd">        :type container: :class:`.Container`</span>
+
+<span class="sd">        :param object_summary: S3 object summary.</span>
+<span class="sd">        :type object_summary: :class:`boto3.s3.ObjectSummary`</span>
+
+<span class="sd">        :return: A blob object.</span>
+<span class="sd">        :rtype: :class:`.Blob`</span>
+
+<span class="sd">        :raise NotFoundError: If the blob object doesn&#39;t exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">object_summary</span><span class="o">.</span><span class="n">key</span>
+            <span class="c1">#: etag wrapped in quotes</span>
+            <span class="n">checksum</span> <span class="o">=</span> <span class="n">etag</span> <span class="o">=</span> <span class="n">object_summary</span><span class="o">.</span><span class="n">e_tag</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="n">object_summary</span><span class="o">.</span><span class="n">size</span>
+
+            <span class="n">acl</span> <span class="o">=</span> <span class="n">object_summary</span><span class="o">.</span><span class="n">Acl</span><span class="p">()</span>
+            <span class="n">meta_data</span> <span class="o">=</span> <span class="n">object_summary</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Metadata&#39;</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">content_disposition</span> <span class="o">=</span> <span class="n">object_summary</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="s1">&#39;ContentDisposition&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">content_type</span> <span class="o">=</span> <span class="n">object_summary</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ContentType&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">cache_control</span> <span class="o">=</span> <span class="n">object_summary</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CacheControl&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">modified_at</span> <span class="o">=</span> <span class="n">object_summary</span><span class="o">.</span><span class="n">last_modified</span>
+            <span class="n">created_at</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">expires_at</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># TODO: FEATURE: Delete at / expires at</span>
+        <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="n">error_code</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;Error&#39;</span><span class="p">][</span><span class="s1">&#39;Code&#39;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">error_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">BLOB_NOT_FOUND</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">object_summary</span><span class="o">.</span><span class="n">key</span><span class="p">))</span>
+
+            <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;Error&#39;</span><span class="p">][</span><span class="s1">&#39;Code&#39;</span><span class="p">],</span>
+                <span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;Error&#39;</span><span class="p">][</span><span class="s1">&#39;Message&#39;</span><span class="p">]))</span>
+
+        <span class="k">return</span> <span class="n">Blob</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">checksum</span><span class="p">,</span> <span class="n">etag</span><span class="o">=</span><span class="n">etag</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span>
+                    <span class="n">container</span><span class="o">=</span><span class="n">container</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">acl</span><span class="o">=</span><span class="n">acl</span><span class="p">,</span>
+                    <span class="n">meta_data</span><span class="o">=</span><span class="n">meta_data</span><span class="p">,</span>
+                    <span class="n">content_disposition</span><span class="o">=</span><span class="n">content_disposition</span><span class="p">,</span>
+                    <span class="n">content_type</span><span class="o">=</span><span class="n">content_type</span><span class="p">,</span> <span class="n">cache_control</span><span class="o">=</span><span class="n">cache_control</span><span class="p">,</span>
+                    <span class="n">created_at</span><span class="o">=</span><span class="n">created_at</span><span class="p">,</span> <span class="n">modified_at</span><span class="o">=</span><span class="n">modified_at</span><span class="p">,</span>
+                    <span class="n">expires_at</span><span class="o">=</span><span class="n">expires_at</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bucket</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert S3 Bucket to Container.</span>
+
+<span class="sd">        :param bucket: S3 bucket object.</span>
+<span class="sd">        :type bucket: :class:`boto3.s3.Bucket`</span>
+
+<span class="sd">        :return: The container if it exists.</span>
+<span class="sd">        :rtype: :class:`.Container`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">acl</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">Acl</span><span class="p">()</span>
+        <span class="n">created_at</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">creation_date</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Container</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">bucket</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">acl</span><span class="o">=</span><span class="n">acl</span><span class="p">,</span>
+                         <span class="n">meta_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">created_at</span><span class="o">=</span><span class="n">created_at</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">session</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">boto3</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">Session</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Amazon Web Services session.</span>
+
+<span class="sd">        :return: AWS session.</span>
+<span class="sd">        :rtype: :class:`boto3.session.Session`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span>
+
+    <span class="c1"># noinspection PyUnresolvedReferences</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">s3</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">ServiceResource</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;S3 service resource.</span>
+
+<span class="sd">        :return: The s3 resource instance.</span>
+<span class="sd">        :rtype: :class:`boto3.resources.base.ServiceResource`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="n">service_name</span><span class="o">=</span><span class="s1">&#39;s3&#39;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">regions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get_available_regions</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="S3Driver.create_container"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.create_container">[docs]</a>    <span class="k">def</span> <span class="nf">create_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                         <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">meta_data</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">OPTION_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;meta_data&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Required parameters</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;Bucket&#39;</span><span class="p">:</span> <span class="n">container_name</span><span class="p">,</span>
+        <span class="p">}</span>  <span class="c1"># type: Dict[Any, Any]</span>
+
+        <span class="k">if</span> <span class="n">acl</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s1">&#39;ACL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">acl</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="c1"># TODO: BUG: Creating S3 bucket in us-east-1</span>
+        <span class="c1"># See https://github.com/boto/boto3/issues/125</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span> <span class="o">!=</span> <span class="s1">&#39;us-east-1&#39;</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s1">&#39;CreateBucketConfiguration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;LocationConstraint&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="p">,</span>
+            <span class="p">}</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;params=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ParamValidationError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">err</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;report&#39;</span><span class="p">,</span> <span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NAME_INVALID</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">CloudStorageError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">bucket</span><span class="o">.</span><span class="n">wait_until_exists</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">WaiterError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_container</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="S3Driver.get_container"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.get_container">[docs]</a>    <span class="k">def</span> <span class="nf">get_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Container</span><span class="p">:</span>
+        <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bucket</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_container</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="S3Driver.patch_container"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.patch_container">[docs]</a>    <span class="k">def</span> <span class="nf">patch_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="S3Driver.delete_container"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.delete_container">[docs]</a>    <span class="k">def</span> <span class="nf">delete_container</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bucket</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">bucket</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="n">error_code</span> <span class="o">=</span> <span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;Error&#39;</span><span class="p">][</span><span class="s1">&#39;Code&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">error_code</span> <span class="o">==</span> <span class="s1">&#39;BucketNotEmpty&#39;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">IsNotEmptyError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">CONTAINER_NOT_EMPTY</span> <span class="o">%</span>
+                                      <span class="n">bucket</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">raise</span></div>
+
+<div class="viewcode-block" id="S3Driver.container_cdn_url"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.container_cdn_url">[docs]</a>    <span class="k">def</span> <span class="nf">container_cdn_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bucket</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">endpoint_url</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">endpoint_url</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">endpoint_url</span><span class="p">,</span> <span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="S3Driver.enable_container_cdn"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.enable_container_cdn">[docs]</a>    <span class="k">def</span> <span class="nf">enable_container_cdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">FEATURE_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;enable_container_cdn&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="S3Driver.disable_container_cdn"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.disable_container_cdn">[docs]</a>    <span class="k">def</span> <span class="nf">disable_container_cdn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">FEATURE_NOT_SUPPORTED</span><span class="p">,</span> <span class="s1">&#39;disable_container_cdn&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="S3Driver.upload_blob"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.upload_blob">[docs]</a>    <span class="k">def</span> <span class="nf">upload_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="n">FileLike</span><span class="p">,</span>
+                    <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">cache_control</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span>
+                    <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">meta_data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">meta_data</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">extra</span>
+
+        <span class="n">extra_args</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_parameters</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_PUT_OBJECT_KEYS</span><span class="p">)</span>
+
+        <span class="n">config</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">transfer</span><span class="o">.</span><span class="n">TransferConfig</span><span class="p">(</span><span class="n">io_chunksize</span><span class="o">=</span><span class="n">chunk_size</span><span class="p">)</span>
+
+        <span class="c1"># Default arguments</span>
+        <span class="n">extra_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;Metadata&#39;</span><span class="p">,</span> <span class="n">meta_data</span><span class="p">)</span>
+        <span class="n">extra_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;StorageClass&#39;</span><span class="p">,</span> <span class="s1">&#39;STANDARD&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">acl</span><span class="p">:</span>
+            <span class="n">extra_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;ACL&#39;</span><span class="p">,</span> <span class="n">acl</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="n">cache_control</span><span class="p">:</span>
+            <span class="n">extra_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;CacheControl&#39;</span><span class="p">,</span> <span class="n">cache_control</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">content_disposition</span><span class="p">:</span>
+            <span class="n">extra_args</span><span class="p">[</span><span class="s1">&#39;ContentDisposition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_disposition</span>
+
+        <span class="n">blob_name</span> <span class="o">=</span> <span class="n">blob_name</span> <span class="ow">or</span> <span class="n">validate_file_or_path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="c1"># Boto uses application/octet-stream by default</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">content_type</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="c1"># TODO: QUESTION: Any advantages between filename vs blob_name?</span>
+                <span class="n">extra_args</span><span class="p">[</span><span class="s1">&#39;ContentType&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_content_type</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">extra_args</span><span class="p">[</span><span class="s1">&#39;ContentType&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_content_type</span><span class="p">(</span><span class="n">blob_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">extra_args</span><span class="p">[</span><span class="s1">&#39;ContentType&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_type</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;extra_args=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">Filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+                                                       <span class="n">Key</span><span class="o">=</span><span class="n">blob_name</span><span class="p">,</span>
+                                                       <span class="n">ExtraArgs</span><span class="o">=</span><span class="n">extra_args</span><span class="p">,</span>
+                                                       <span class="n">Config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">upload_fileobj</span><span class="p">(</span><span class="n">Fileobj</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+                                                          <span class="n">Key</span><span class="o">=</span><span class="n">blob_name</span><span class="p">,</span>
+                                                          <span class="n">ExtraArgs</span><span class="o">=</span><span class="n">extra_args</span><span class="p">,</span>
+                                                          <span class="n">Config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="S3Driver.get_blob"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.get_blob">[docs]</a>    <span class="k">def</span> <span class="nf">get_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Blob</span><span class="p">:</span>
+        <span class="n">object_summary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">ObjectSummary</span><span class="p">(</span><span class="n">bucket_name</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                               <span class="n">key</span><span class="o">=</span><span class="n">blob_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">object_summary</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="S3Driver.get_blobs"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.get_blobs">[docs]</a>    <span class="k">def</span> <span class="nf">get_blobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Blob</span><span class="p">]:</span>
+        <span class="n">bucket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bucket</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">bucket</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>  <span class="c1"># s3.ObjectSummary</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_blob</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="S3Driver.download_blob"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.download_blob">[docs]</a>    <span class="k">def</span> <span class="nf">download_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">,</span>
+                      <span class="n">destination</span><span class="p">:</span> <span class="n">FileLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span>
+                <span class="n">Key</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span> <span class="n">ExtraArgs</span><span class="o">=</span><span class="p">{})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">download_fileobj</span><span class="p">(</span>
+                <span class="n">Key</span><span class="o">=</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">Fileobj</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span> <span class="n">ExtraArgs</span><span class="o">=</span><span class="p">{})</span></div>
+
+<div class="viewcode-block" id="S3Driver.patch_blob"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.patch_blob">[docs]</a>    <span class="k">def</span> <span class="nf">patch_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="S3Driver.delete_blob"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.delete_blob">[docs]</a>    <span class="k">def</span> <span class="nf">delete_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Required parameters</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;Bucket&#39;</span><span class="p">:</span> <span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s1">&#39;Key&#39;</span><span class="p">:</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;params=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">delete_object</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;response=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="n">error_code</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;Error&#39;</span><span class="p">][</span><span class="s1">&#39;Code&#39;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">error_code</span> <span class="o">!=</span> <span class="mi">200</span> <span class="ow">or</span> <span class="n">error_code</span> <span class="o">!=</span> <span class="mi">204</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="n">messages</span><span class="o">.</span><span class="n">BLOB_NOT_FOUND</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+            <span class="k">raise</span></div>
+
+<div class="viewcode-block" id="S3Driver.blob_cdn_url"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.blob_cdn_url">[docs]</a>    <span class="k">def</span> <span class="nf">blob_cdn_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">container_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">container_cdn_url</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="p">)</span>
+        <span class="n">blob_name_cleaned</span> <span class="o">=</span> <span class="n">quote</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">blob_path</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">container_url</span><span class="p">,</span> <span class="n">blob_name_cleaned</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">container_url</span><span class="p">,</span> <span class="n">blob_path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">url</span></div>
+
+<div class="viewcode-block" id="S3Driver.generate_container_upload_url"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.generate_container_upload_url">[docs]</a>    <span class="k">def</span> <span class="nf">generate_container_upload_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">container</span><span class="p">:</span> <span class="n">Container</span><span class="p">,</span>
+                                      <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                                      <span class="n">expires</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3600</span><span class="p">,</span> <span class="n">acl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">meta_data</span><span class="p">:</span> <span class="n">MetaData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_length</span><span class="p">:</span> <span class="n">ContentLength</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">cache_control</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FormPost</span><span class="p">:</span>
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">meta_data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">meta_data</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">extra</span>
+        <span class="n">extra_norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_parameters</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_POST_OBJECT_KEYS</span><span class="p">)</span>
+
+        <span class="n">conditions</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># type: List[Any]</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[Any, Any]</span>
+
+        <span class="k">if</span> <span class="n">acl</span><span class="p">:</span>
+            <span class="n">conditions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;acl&#39;</span><span class="p">:</span> <span class="n">acl</span><span class="p">})</span>
+            <span class="n">fields</span><span class="p">[</span><span class="s1">&#39;acl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">acl</span>
+
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;Content-Disposition&#39;</span><span class="p">:</span> <span class="n">content_disposition</span><span class="p">,</span>
+            <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="n">content_type</span><span class="p">,</span>
+            <span class="s1">&#39;Cache-Control&#39;</span><span class="p">:</span> <span class="n">cache_control</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">header_name</span><span class="p">,</span> <span class="n">header_value</span> <span class="ow">in</span> <span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">header_value</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">fields</span><span class="p">[</span><span class="n">header_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span> <span class="o">=</span> <span class="n">header_value</span>
+            <span class="n">conditions</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;$&#39;</span> <span class="o">+</span> <span class="n">header_name</span><span class="p">,</span> <span class="n">header_value</span><span class="p">])</span>
+
+        <span class="c1"># Add content-length-range which is a tuple</span>
+        <span class="k">if</span> <span class="n">content_length</span><span class="p">:</span>
+            <span class="n">min_range</span><span class="p">,</span> <span class="n">max_range</span> <span class="o">=</span> <span class="n">content_length</span>
+            <span class="n">conditions</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s1">&#39;content-length-range&#39;</span><span class="p">,</span> <span class="n">min_range</span><span class="p">,</span> <span class="n">max_range</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">meta_name</span><span class="p">,</span> <span class="n">meta_value</span> <span class="ow">in</span> <span class="n">meta_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">meta_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_OBJECT_META_PREFIX</span> <span class="o">+</span> <span class="n">meta_name</span>
+            <span class="n">fields</span><span class="p">[</span><span class="n">meta_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta_value</span>
+            <span class="n">conditions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">meta_name</span><span class="p">:</span> <span class="n">meta_value</span><span class="p">})</span>
+
+        <span class="c1"># Add extra conditions and fields</span>
+        <span class="k">for</span> <span class="n">extra_name</span><span class="p">,</span> <span class="n">extra_value</span> <span class="ow">in</span> <span class="n">extra_norm</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">fields</span><span class="p">[</span><span class="n">extra_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">extra_value</span>
+            <span class="n">conditions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">extra_name</span><span class="p">:</span> <span class="n">extra_value</span><span class="p">})</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">generate_presigned_post</span><span class="p">(</span>
+            <span class="n">Bucket</span><span class="o">=</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">Key</span><span class="o">=</span><span class="n">blob_name</span><span class="p">,</span>
+            <span class="n">Fields</span><span class="o">=</span><span class="n">fields</span><span class="p">,</span>
+            <span class="n">Conditions</span><span class="o">=</span><span class="n">conditions</span><span class="p">,</span>
+            <span class="n">ExpiresIn</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">expires</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="S3Driver.generate_blob_download_url"><a class="viewcode-back" href="../../../api/amazon.html#cloudstorage.drivers.amazon.S3Driver.generate_blob_download_url">[docs]</a>    <span class="k">def</span> <span class="nf">generate_blob_download_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob</span><span class="p">:</span> <span class="n">Blob</span><span class="p">,</span> <span class="n">expires</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3600</span><span class="p">,</span>
+                                   <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                                   <span class="n">content_disposition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                   <span class="n">extra</span><span class="p">:</span> <span class="n">ExtraOptions</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">extra</span> <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_parameters</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_GET_OBJECT_KEYS</span><span class="p">)</span>
+
+        <span class="c1"># Required parameters</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;Bucket&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">blob</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;Key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">blob</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="c1"># Optional</span>
+        <span class="k">if</span> <span class="n">content_disposition</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s1">&#39;ResponseContentDisposition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_disposition</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;params=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">generate_presigned_url</span><span class="p">(</span>
+            <span class="n">ClientMethod</span><span class="o">=</span><span class="s1">&#39;get_object&#39;</span><span class="p">,</span> <span class="n">Params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">ExpiresIn</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">expires</span><span class="p">),</span>
+            <span class="n">HttpMethod</span><span class="o">=</span><span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span></div>
+
+    <span class="n">_OBJECT_META_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;x-amz-meta-&#39;</span>  <span class="c1"># type: str</span>
+
+    <span class="c1">#: `S3.Client.generate_presigned_post</span>
+    <span class="c1">#: &lt;http://boto3.readthedocs.io/en/latest/reference/services/s3.html</span>
+    <span class="c1">#: #S3.Client.generate_presigned_post&gt;`_</span>
+    <span class="n">_POST_OBJECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;acl&#39;</span><span class="p">:</span> <span class="s1">&#39;acl&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;cachecontrol&#39;</span><span class="p">:</span> <span class="s1">&#39;Cache-Control&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contenttype&#39;</span><span class="p">:</span> <span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contentdisposition&#39;</span><span class="p">:</span> <span class="s1">&#39;Content-Disposition&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contentencoding&#39;</span><span class="p">:</span> <span class="s1">&#39;Content-Encoding&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;expires&#39;</span><span class="p">:</span> <span class="s1">&#39;Expires&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;successactionredirect&#39;</span><span class="p">:</span> <span class="s1">&#39;success_action_redirect&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;redirect&#39;</span><span class="p">:</span> <span class="s1">&#39;redirect&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;successactionstatus&#39;</span><span class="p">:</span> <span class="s1">&#39;success_action_status&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;xamzmeta&#39;</span><span class="p">:</span> <span class="s1">&#39;x-amz-meta-&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">#: `#S3.Client.get_object</span>
+    <span class="c1">#: &lt;http://boto3.readthedocs.io/en/latest/reference/services/s3.html</span>
+    <span class="c1">#: #S3.Client.get_object&gt;`_</span>
+    <span class="n">_GET_OBJECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="s1">&#39;Bucket&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ifmatch&#39;</span><span class="p">:</span> <span class="s1">&#39;IfMatch&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ifmodifiedsince&#39;</span><span class="p">:</span> <span class="s1">&#39;IfModifiedSince&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ifnonematch&#39;</span><span class="p">:</span> <span class="s1">&#39;IfNoneMatch&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ifunmodifiedsince&#39;</span><span class="p">:</span> <span class="s1">&#39;IfUnmodifiedSince&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;Key&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;range&#39;</span><span class="p">:</span> <span class="s1">&#39;Range&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;responsecachecontrol&#39;</span><span class="p">:</span> <span class="s1">&#39;ResponseCacheControl&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;responsecontentdisposition&#39;</span><span class="p">:</span> <span class="s1">&#39;ResponseContentDisposition&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;responsecontentencoding&#39;</span><span class="p">:</span> <span class="s1">&#39;ResponseContentEncoding&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;responsecontentlanguage&#39;</span><span class="p">:</span> <span class="s1">&#39;ResponseContentLanguage&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;responsecontenttype&#39;</span><span class="p">:</span> <span class="s1">&#39;ResponseContentType&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;responseexpires&#39;</span><span class="p">:</span> <span class="s1">&#39;ResponseExpires&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;versionid&#39;</span><span class="p">:</span> <span class="s1">&#39;VersionId&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ssecustomeralgorithm&#39;</span><span class="p">:</span> <span class="s1">&#39;SSECustomerAlgorithm&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ssecustomerkey&#39;</span><span class="p">:</span> <span class="s1">&#39;SSECustomerKey&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;requestpayer&#39;</span><span class="p">:</span> <span class="s1">&#39;RequestPayer&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;partnumber&#39;</span><span class="p">:</span> <span class="s1">&#39;PartNumber&#39;</span><span class="p">,</span>
+        <span class="c1"># Extra keys to standarize across all drivers</span>
+        <span class="s1">&#39;cachecontrol&#39;</span><span class="p">:</span> <span class="s1">&#39;ResponseCacheControl&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contentdisposition&#39;</span><span class="p">:</span> <span class="s1">&#39;ResponseContentDisposition&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contentencoding&#39;</span><span class="p">:</span> <span class="s1">&#39;ResponseContentEncoding&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contentlanguage&#39;</span><span class="p">:</span> <span class="s1">&#39;ResponseContentLanguage&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contenttype&#39;</span><span class="p">:</span> <span class="s1">&#39;ResponseContentType&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;expires&#39;</span><span class="p">:</span> <span class="s1">&#39;ResponseExpires&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">#: `S3.Client.put_object</span>
+    <span class="c1">#: &lt;http://boto3.readthedocs.io/en/latest/reference/services/s3.html</span>
+    <span class="c1">#: #S3.Client.put_object&gt;`_</span>
+    <span class="n">_PUT_OBJECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;acl&#39;</span><span class="p">:</span> <span class="s1">&#39;ACL&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;body&#39;</span><span class="p">:</span> <span class="s1">&#39;Body&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="s1">&#39;Bucket&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;cachecontrol&#39;</span><span class="p">:</span> <span class="s1">&#39;CacheControl&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contentdisposition&#39;</span><span class="p">:</span> <span class="s1">&#39;ContentDisposition&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contentencoding&#39;</span><span class="p">:</span> <span class="s1">&#39;ContentEncoding&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contentlanguage&#39;</span><span class="p">:</span> <span class="s1">&#39;ContentLanguage&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contentlength&#39;</span><span class="p">:</span> <span class="s1">&#39;ContentLength&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contentmd5&#39;</span><span class="p">:</span> <span class="s1">&#39;ContentMD5&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contenttype&#39;</span><span class="p">:</span> <span class="s1">&#39;ContentType&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;expires&#39;</span><span class="p">:</span> <span class="s1">&#39;Expires&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;grantfullcontrol&#39;</span><span class="p">:</span> <span class="s1">&#39;GrantFullControl&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;grantread&#39;</span><span class="p">:</span> <span class="s1">&#39;GrantRead&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;grantreadacp&#39;</span><span class="p">:</span> <span class="s1">&#39;GrantReadACP&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;grantwriteacp&#39;</span><span class="p">:</span> <span class="s1">&#39;GrantWriteACP&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;Key&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="s1">&#39;Metadata&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;serversideencryption&#39;</span><span class="p">:</span> <span class="s1">&#39;ServerSideEncryption&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;storageclass&#39;</span><span class="p">:</span> <span class="s1">&#39;StorageClass&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;websiteredirectlocation&#39;</span><span class="p">:</span> <span class="s1">&#39;WebsiteRedirectLocation&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ssecustomeralgorithm&#39;</span><span class="p">:</span> <span class="s1">&#39;SSECustomerAlgorithm&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ssecustomerkey&#39;</span><span class="p">:</span> <span class="s1">&#39;SSECustomerKey&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ssekmskeyid&#39;</span><span class="p">:</span> <span class="s1">&#39;SSEKMSKeyId&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;requestpayer&#39;</span><span class="p">:</span> <span class="s1">&#39;RequestPayer&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;tagging&#39;</span><span class="p">:</span> <span class="s1">&#39;Tagging&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">#: `S3.Client.delete_object</span>
+    <span class="c1">#: &lt;http://boto3.readthedocs.io/en/latest/reference/services/s3.html</span>
+    <span class="c1">#: #S3.Client.delete_object&gt;`_</span>
+    <span class="n">_DELETE_OBJECT_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="s1">&#39;Bucket&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;Key&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;mfa&#39;</span><span class="p">:</span> <span class="s1">&#39;MFA&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;versionid&#39;</span><span class="p">:</span> <span class="s1">&#39;VersionId&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;requestpayer&#39;</span><span class="p">:</span> <span class="s1">&#39;RequestPayer&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1">#: `S3.Bucket.create</span>
+    <span class="c1">#: &lt;http://boto3.readthedocs.io/en/latest/reference/services/s3.html</span>
+    <span class="c1">#: #S3.Bucket.create&gt;`_</span>
+    <span class="n">_POST_CONTAINER_KEYS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;acl&#39;</span><span class="p">:</span> <span class="s1">&#39;ACL&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="s1">&#39;Bucket&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;createbucketconfiguration&#39;</span><span class="p">:</span> <span class="s1">&#39;CreateBucketConfiguration&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;locationconstraint&#39;</span><span class="p">:</span> <span class="s1">&#39;LocationConstraint&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;grantfullcontrol&#39;</span><span class="p">:</span> <span class="s1">&#39;GrantFullControl&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;grantread&#39;</span><span class="p">:</span> <span class="s1">&#39;GrantRead&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;grantreadacp&#39;</span><span class="p">:</span> <span class="s1">&#39;GrantReadACP&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;grantwrite&#39;</span><span class="p">:</span> <span class="s1">&#39;GrantWrite&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;grantwriteacp&#39;</span><span class="p">:</span> <span class="s1">&#39;GrantWriteACP&#39;</span><span class="p">,</span>
+    <span class="p">}</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Copyright 2017-2018 Scott Werner.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.6',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
