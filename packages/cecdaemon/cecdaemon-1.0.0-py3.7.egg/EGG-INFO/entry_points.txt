@@ -1,0 +1,4 @@
+[console_scripts]
+cecdaemon = cecdaemon.__main__:main
+cecusercodes = cecdaemon.cecusercodes:main
+
