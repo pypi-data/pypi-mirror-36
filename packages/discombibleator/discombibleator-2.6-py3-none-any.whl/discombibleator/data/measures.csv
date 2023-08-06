@@ -1,0 +1,42 @@
+﻿biblical,imperial,imperial_multiplier,metric,metric_multiplier
+finger,inches,0.73,centimeters,1.85
+handbreadth,inches,2.92,centimeters,7.4
+span,inches,9,centimeters,22.86
+cubit,feet,1.5,meters,0.4572
+long cubit,feet,1.7,meters,0.519
+fathom,feet,6,meters,1.829
+reed,feet,8.75,meters,2.73
+furlong,feet,660,meters,201.2
+stadion,feet,697,meters,185.4
+sabbath day's journey,miles,0.6,kilometers,0.9656
+day's journey,miles,20,kilometers,32.19
+gerah,ounces,0.02,grams,0.567
+bekah,ounces,0.2,grams,5.67
+pim,ounces,0.333,grams,9.45
+shekel,ounces,0.4,grams,11.34
+mina,pounds,1.25,kg,0.567
+talent,pounds,75,kg,34.02
+log,pints,0.65,liters,0.31
+kab,pints,2.6,liters,1.2
+hin,gallons,0.98,liters,3.7
+bath,gallons,5.9,liters,22
+homer,gallons,59,liters,220
+kor,gallons,59,liters,220
+metretes,gallons,10,liters,37.85
+omer,quarts,2.3,liters,2.2
+seah,quarts,7.7,liters,7.3
+ephah,gallons,5.9,liters,22
+lethech,gallons,29,liters,110
+denarius,USD,3.62,USD,3.62
+daric,USD,94.50,USD,94.50
+drachma,USD,0.65,USD,0.65
+didrachma,USD,1.30,USD,1.30
+the third hour,9:00 AM,,9:00 AM,
+the sixth hour,12:00 noon,,12:00 noon,
+the seventh hour,1:00 PM,,1:00 PM,
+the ninth hour,3:00 PM,,3:00 PM,
+the tenth hour,4:00 PM,,4:00 PM,
+the eleventh hour,5:00 PM,,5:00 PM,
+the second watch,between 9 PM and midnight,,between 9 PM and midnight,
+the third watch,between midnight and 3 AM,,between midnight and 3 AM,
+the fourth watch,between 3 and 6 AM,,between 3 and 6 AM,
