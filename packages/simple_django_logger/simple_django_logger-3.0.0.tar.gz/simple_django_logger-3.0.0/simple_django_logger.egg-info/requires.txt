@@ -1,0 +1,5 @@
+Django>=2.0
+requests>=2.0
+djangorestframework>=3.8
+user-agents>=1.1.0
+django-user-agents>=0.3.2
