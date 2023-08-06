@@ -1,0 +1,17 @@
+python_unsio-0.9.2rc1.dist-info/RECORD,,
+python_unsio-0.9.2rc1.dist-info/WHEEL,sha256=RAKZceQadgvsh5lTcite2djFea5bPggV_oZLUtgekwY,111
+python_unsio-0.9.2rc1.dist-info/entry_points.txt,sha256=ddCEvz_cknFdT5s1xqtugcqHMrGBhS_Y0oqYJd--Ov8,70
+python_unsio-0.9.2rc1.dist-info/top_level.txt,sha256=YniHeQdvcwzWKnjlOLiHLBeAZkHVrTwcGJFey80JTyQ,48
+python_unsio-0.9.2rc1.dist-info/METADATA,sha256=Vom3VeIsbcBHMZLnvqMp_wmU0UF13q8Azhk7dfqnt2Y,1650
+unsio/version.py,sha256=Xolt_RT_xXzOGDttUI-g88pF8cQIz7_xuvpeYmoZ4cY,76
+unsio/__init__.py,sha256=JaJPt79y2i5Qd3SUXRN97647Q5HMKlIjrtH6a-Mtcxw,263
+unsio/_py_unsio.cpython-36m-darwin.so,sha256=MWqf-DlLgv84B9EeTsgePFnOqoaK1Jghrtpnif1MTXY,189288
+unsio/csnapshot.py,sha256=hI3aniI-UxGisJKUZtICtsxdfzUDTeuTBP225LUx2yo,13106
+unsio/py_unsio.py,sha256=9ndSJI7DHzRiDEOsbvTj3DRcm_wovjUx5PFlrGB57SA,11401
+unsio/test/ctestunsio.py,sha256=2mQ_NAa9uaeSqoMm8L-PLnYG5DmfLJ-MtmdlLkYvVvg,9767
+unsio/test/__init__.py,sha256=L4DE96XHXFqllU8-1YvOd9Hoh3Oxf0d3nHSh8gcuqd8,28
+unsio/test/check_platform.py,sha256=gL2SEip9gqkMm_egaYEuLlxMTkKNj52fuvZ8wypOyjs,2888
+unsio/.dylibs/libz.1.2.11.dylib,sha256=tK3czAMsXbW-9UgMycq5SzB1ZHmVkCERHWTLxogdW9o,80956
+unsio/.dylibs/libunsio.dylib,sha256=M3hTF0-VcBYX6JDY-3qBOd3wHopZUQ3rO703NK1bbrQ,1137216
+unsio/.dylibs/libhdf5_cpp.101.dylib,sha256=pQ-yMhJoZ2RF_117x4sCbW8fKjBNtqnbu_K6OWHr7lc,417956
+unsio/.dylibs/libhdf5.101.dylib,sha256=mJAgSaJDHuBsmZmdOA9rdE02TxRw0iZUMjPzkjSBrvk,3031016
