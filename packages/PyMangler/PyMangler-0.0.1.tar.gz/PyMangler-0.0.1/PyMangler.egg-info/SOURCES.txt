@@ -1,0 +1,8 @@
+setup.py
+PyMangler/__init__.py
+PyMangler/keygen.py
+PyMangler/mangle.py
+PyMangler.egg-info/PKG-INFO
+PyMangler.egg-info/SOURCES.txt
+PyMangler.egg-info/dependency_links.txt
+PyMangler.egg-info/top_level.txt
