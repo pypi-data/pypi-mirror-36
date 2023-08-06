@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: CIMtools
+Version: 1.4.8
+Summary: Modeler tools
+Home-page: https://github.com/stsouko/CIMtools
+Author: Dr. Ramil Nugmanov
+Author-email: stsouko@live.ru
+License: AGPLv3
+Keywords: chemoinformatics tools modeler cli ISIDA Framentor EED SVM IAP
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: CGRtools (<2.9,>=2.8.23)
+Requires-Dist: pandas (<0.24,>=0.22.0)
+Requires-Dist: scikit-learn (<0.21,>=0.19.0)
+Requires-Dist: requests (<2.20,>=2.18.4)
+Requires-Dist: scipy (<1.2,>=1.0.0)
+Requires-Dist: pyparsing (<2.3,>=2.2.0)
+
+CIMtools
+=========
+ChemoInformatics Modeling tools distributive.  
+include ISIDA Fragmentor python wrapper
+
+
+INSTALL
+=======
+
+*step 1:*
+
+    pip install CIMtools
+
+or latest repository version
+
+    pip install -U git+https://github.com/stsouko/CIMtools.git@master#egg=CIMtools --process-dependency-links
+
+*step 2:* config ENVIRONMENT
+
+* add CHEMAXON_REST (optional)
+
+        export CHEMAXON_REST="url/to/webservices"
+
+* add/edit for Colorize and EED using
+
+        CLASSPATH should contains paths to lib/jchem.jar and infochim.u-strasbg Utils containing dir
+        SETUP_DIR with path/to/infochim.u-strasbg/Utils dir
+        FORCEFIELD= with path/to/infochim.u-strasbg/Utils/cvffTemplates.xml or another
+
+* edit PATH for Fragmentor using. Add path to fragmentor bin files
+
+* edit PATH for AtomMarkerPharmacophore using. add path to jchem bin files
+
+
