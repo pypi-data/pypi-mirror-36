@@ -1,0 +1,3 @@
+[console_scripts]
+multipart-base-n = multipart_base_n.__main__:main
+
