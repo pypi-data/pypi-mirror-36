@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+setup.py
+version.txt
+chromedriver_py/__init__.py
+chromedriver_py/chromedriver.exe
+chromedriver_py/chromedriver_linux
+chromedriver_py/chromedriver_mac
+chromedriver_py.egg-info/PKG-INFO
+chromedriver_py.egg-info/SOURCES.txt
+chromedriver_py.egg-info/dependency_links.txt
+chromedriver_py.egg-info/not-zip-safe
+chromedriver_py.egg-info/top_level.txt
