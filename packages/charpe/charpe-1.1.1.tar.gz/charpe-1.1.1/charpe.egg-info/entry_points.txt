@@ -1,0 +1,3 @@
+[console_scripts]
+charped = charpe.main:main
+
