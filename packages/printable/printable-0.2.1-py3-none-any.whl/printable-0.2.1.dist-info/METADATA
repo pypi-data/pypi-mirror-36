@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: printable
+Version: 0.2.1
+Summary: functions help for print tabular data
+Home-page: https://github.com/weaming/printable
+Author: weaming
+Author-email: garden.yuen@gmail.com
+License: UNKNOWN
+Project-URL: Source, https://github.com/weaming/printable
+Project-URL: Bug Reports, https://github.com/weaming/printable
+Keywords: math
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: data-process (==0.2.0)
+
+# Printable
+
+Functions help for printing tabular data.
+
+
