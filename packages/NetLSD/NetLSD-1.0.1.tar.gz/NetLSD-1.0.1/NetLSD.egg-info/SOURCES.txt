@@ -1,0 +1,12 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+NetLSD.egg-info/PKG-INFO
+NetLSD.egg-info/SOURCES.txt
+NetLSD.egg-info/dependency_links.txt
+NetLSD.egg-info/requires.txt
+NetLSD.egg-info/top_level.txt
+netlsd/__init__.py
+netlsd/kernels.py
+netlsd/util.py
