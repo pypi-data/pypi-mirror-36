@@ -1,0 +1,56 @@
+{
+    "dashboard": {
+        "id": "5d9cd060-6ad0-11e8-8c5d-cde959907efa",
+        "value": {
+            "description": "",
+            "hits": 0,
+            "kibanaSavedObjectMeta": {
+                "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[],\"highlightAll\":true,\"version\":true}"
+            },
+            "optionsJSON": "{\"darkTheme\":false,\"useMargins\":true,\"hidePanelTitles\":false}",
+            "panelsJSON": "[{\"panelIndex\":\"1\",\"gridData\":{\"x\":0,\"y\":0,\"w\":6,\"h\":7,\"i\":\"1\"},\"version\":\"6.1.0-1\",\"type\":\"visualization\",\"id\":\"440043d0-6ad0-11e8-8c5d-cde959907efa\"},{\"panelIndex\":\"2\",\"gridData\":{\"x\":6,\"y\":0,\"w\":6,\"h\":7,\"i\":\"2\"},\"version\":\"6.1.0-1\",\"type\":\"visualization\",\"id\":\"e6e4d0d0-6acf-11e8-8c5d-cde959907efa\"}]",
+            "timeRestore": false,
+            "title": "EclipseProjects",
+            "uiStateJSON": "{\"P-2\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+            "version": 1
+        }
+    },
+    "index_patterns": [
+        {
+            "id": "67e2a000-6acf-11e8-8c5d-cde959907efa",
+            "value": {
+                "fields": "[{\"name\":\"_id\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_index\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_score\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_source\",\"type\":\"_source\",\"count\":0,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"attribute\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"attribute.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"goal\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"goal.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"metric\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"metric.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"project\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"project.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"score_BugzillaEnrich\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"score_BugzillaEnrich {\\\"filter\\\": {\\\"range\\\" : {\\\"comments\\\" : {\\\"gte\\\" : 1}}}}\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"score_BugzillaEnrich {\\\"filter\\\": {\\\"terms\\\": {\\\"status\\\": [\\\"CLOSED\\\", \\\"RESOLVED\\\"]}}}\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"score_GitEnrich\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true}]",
+                "title": "eclipse_scores"
+            }
+        }
+    ],
+    "searches": [],
+    "visualizations": [
+        {
+            "id": "440043d0-6ad0-11e8-8c5d-cde959907efa",
+            "value": {
+                "description": "",
+                "kibanaSavedObjectMeta": {
+                    "searchSourceJSON": "{\"index\":\"67e2a000-6acf-11e8-8c5d-cde959907efa\",\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"}}"
+                },
+                "title": "EclipseProjectsRadar",
+                "uiStateJSON": "{}",
+                "version": 1,
+                "visState": "{\"title\":\"EclipseProjectsRadar\",\"type\":\"radar\",\"params\":{\"normalize\":false,\"vertexScale\":{\"from\":0,\"to\":5}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"field\",\"params\":{\"field\":\"project.keyword\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"_term\"}},{\"id\":\"5\",\"enabled\":true,\"type\":\"max\",\"schema\":\"vertex\",\"params\":{\"field\":\"score_GitEnrich\",\"customLabel\":\"Commits\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"max\",\"schema\":\"vertex\",\"params\":{\"field\":\"score_BugzillaEnrich\",\"customLabel\":\"Issues\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"max\",\"schema\":\"vertex\",\"params\":{\"field\":\"score_BugzillaEnrich {\\\"filter\\\": {\\\"range\\\" : {\\\"comments\\\" : {\\\"gte\\\" : 1}}}}\",\"customLabel\":\"Issues Attended\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"max\",\"schema\":\"vertex\",\"params\":{\"field\":\"score_BugzillaEnrich {\\\"filter\\\": {\\\"terms\\\": {\\\"status\\\": [\\\"CLOSED\\\", \\\"RESOLVED\\\"]}}}\",\"customLabel\":\"Issues Closed\"}}]}"
+            }
+        },
+        {
+            "id": "e6e4d0d0-6acf-11e8-8c5d-cde959907efa",
+            "value": {
+                "description": "",
+                "kibanaSavedObjectMeta": {
+                    "searchSourceJSON": "{\"index\":\"67e2a000-6acf-11e8-8c5d-cde959907efa\",\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"}}"
+                },
+                "title": "EclipseProjectsTable",
+                "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+                "version": 1,
+                "visState": "{\"title\":\"EclipseProjectsTable\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"project.keyword\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"_term\"}},{\"id\":\"6\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"score_GitEnrich\",\"customLabel\":\"Commits\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"score_BugzillaEnrich\",\"customLabel\":\"Issues\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"score_BugzillaEnrich {\\\"filter\\\": {\\\"range\\\" : {\\\"comments\\\" : {\\\"gte\\\" : 1}}}}\",\"customLabel\":\"Issues Attended\"}},{\"id\":\"5\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"score_BugzillaEnrich {\\\"filter\\\": {\\\"terms\\\": {\\\"status\\\": [\\\"CLOSED\\\", \\\"RESOLVED\\\"]}}}\",\"customLabel\":\"Issues Closed\"}}]}"
+            }
+        }
+    ]
+}
