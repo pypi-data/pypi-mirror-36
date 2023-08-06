@@ -1,0 +1,322 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>qmpy.materials.formation_energy &#8212; qmpy 1.1.0a documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.1.0a',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for qmpy.materials.formation_energy</h1><div class="highlight"><pre>
+<span></span><span class="c1"># qmpy/materials/formation_energy.py</span>
+
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="k">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="k">import</span> <span class="n">Min</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">qmpy.db.custom</span> <span class="k">import</span> <span class="n">DictField</span>
+<span class="kn">import</span> <span class="nn">qmpy.materials.composition</span> <span class="k">as</span> <span class="nn">Comp</span>
+<span class="kn">import</span> <span class="nn">qmpy.analysis</span> <span class="k">as</span> <span class="nn">vasp</span>
+<span class="kn">import</span> <span class="nn">qmpy.materials.element</span> <span class="k">as</span> <span class="nn">elt</span>
+<span class="kn">from</span> <span class="nn">qmpy.data</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">qmpy.utils</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ExptFormationEnergy"><a class="viewcode-back" href="../../../analysis.html#qmpy.ExptFormationEnergy">[docs]</a><span class="k">class</span> <span class="nc">ExptFormationEnergy</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Experimentally measured formation energy.</span>
+
+<span class="sd">    Any external formation energy should be entered as an ExptFormationEnergy</span>
+<span class="sd">    object, rather than a FormationEnergy. If the external source is also</span>
+<span class="sd">    computational, set the &quot;dft&quot; attribute to be True.</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | :mod:`~qmpy.Composition` via composition</span>
+<span class="sd">        | :mod:`~qmpy.Fit` via fit</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | id: integer primary key.</span>
+<span class="sd">        | delta_e: measured formation energy.</span>
+<span class="sd">        | delta_g: measured free energy of formation.</span>
+<span class="sd">        | dft: (bool) True if the formation energy is from a non-OQMD DFT</span>
+<span class="sd">        |   calculation.</span>
+<span class="sd">        | source: (str) Identifier for the source.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">composition</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Composition&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">delta_e</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">delta_g</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">127</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">dft</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;expt_formation_energies&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> : </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">composition</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_e</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">read_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">dft</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">expts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">):</span>
+            <span class="n">comp</span><span class="p">,</span> <span class="n">energy</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">expt</span><span class="p">,</span> <span class="n">new</span> <span class="o">=</span> <span class="n">ExptFormationEnergy</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">delta_e</span><span class="o">=</span><span class="n">energy</span><span class="p">,</span>
+                    <span class="n">composition</span><span class="o">=</span><span class="n">Comp</span><span class="o">.</span><span class="n">Composition</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">comp</span><span class="p">),</span>
+                    <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> 
+                    <span class="n">dft</span><span class="o">=</span><span class="n">dft</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">new</span><span class="p">:</span>
+                <span class="n">expt</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">expts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">expt</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">expts</span></div>
+
+<div class="viewcode-block" id="HubbardCorrection"><a class="viewcode-back" href="../../../analysis.html#qmpy.HubbardCorrection">[docs]</a><span class="k">class</span> <span class="nc">HubbardCorrection</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Energy correction for DFT+U energies.</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | :mod:`~qmpy.Fit` via fit</span>
+<span class="sd">        | :mod:`~qmpy.Element` via element</span>
+<span class="sd">        | :mod:`~qmpy.Hubbard` via hubbard</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | id</span>
+<span class="sd">        | value: Correction energy (eV/atom)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">element</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Element&#39;</span><span class="p">)</span>
+    <span class="n">hubbard</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Hubbard&#39;</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Fit&#39;</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                   <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;hubbard_correction_set&#39;</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;hubbard_corrections&#39;</span></div>
+
+<div class="viewcode-block" id="ReferenceEnergy"><a class="viewcode-back" href="../../../analysis.html#qmpy.ReferenceEnergy">[docs]</a><span class="k">class</span> <span class="nc">ReferenceEnergy</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Elemental reference energy for evaluating heats of formation.</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | :mod:`~qmpy.Fit` via fit</span>
+<span class="sd">        | :mod:`~qmpy.Element` via element</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | id</span>
+<span class="sd">        | value: Reference energy (eV/atom)</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">element</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Element&#39;</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Fit&#39;</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                   <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;reference_energy_set&#39;</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;reference_energies&#39;</span></div>
+
+<div class="viewcode-block" id="FormationEnergy"><a class="viewcode-back" href="../../../analysis.html#qmpy.FormationEnergy">[docs]</a><span class="k">class</span> <span class="nc">FormationEnergy</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for a formation energy.</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | :mod:`~qmpy.Calculation` via calculation</span>
+<span class="sd">        | :mod:`~qmpy.Composition` via composition</span>
+<span class="sd">        | :mod:`~qmpy.Entry` via entry</span>
+<span class="sd">        | :mod:`~qmpy.FormationEnergy` via equilibrium</span>
+<span class="sd">        | :mod:`~qmpy.Fit` via fit</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | id</span>
+<span class="sd">        | delta_e: Formation energy (eV/atom)</span>
+<span class="sd">        | description: A label of the source of the formation energy.</span>
+<span class="sd">        | stability: Distance from the convex hull (eV/atom)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">composition</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Composition&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">entry</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Entry&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">calculation</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Calculation&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Fit&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">stability</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">delta_e</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">equilibrium</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">&#39;self&#39;</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;formation_energies&#39;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">calculation</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">):</span>
+        <span class="n">fit</span> <span class="o">=</span> <span class="n">Fit</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">FormationEnergy</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">calculation</span><span class="o">=</span><span class="n">calculation</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="n">fit</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">FormationEnergy</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">FormationEnergy</span><span class="p">(</span><span class="n">calculation</span><span class="o">=</span><span class="n">calculation</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="n">fit</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">):</span>
+        <span class="n">space</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">basestring</span><span class="p">):</span>
+            <span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">:</span>
+            <span class="n">bound</span> <span class="o">=</span> <span class="n">parse_comp</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+            <span class="n">space</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">bound</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">in_elts</span> <span class="o">=</span> <span class="n">elt</span><span class="o">.</span><span class="n">Element</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">symbol__in</span><span class="o">=</span><span class="n">space</span><span class="p">)</span>
+        <span class="n">out_elts</span> <span class="o">=</span> <span class="n">elt</span><span class="o">.</span><span class="n">Element</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">symbol__in</span><span class="o">=</span><span class="n">space</span><span class="p">)</span>
+        <span class="n">forms</span> <span class="o">=</span> <span class="n">FormationEnergy</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="n">fit</span><span class="p">)</span>
+        <span class="n">forms</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">composition__element_set__in</span><span class="o">=</span><span class="n">out_elts</span><span class="p">)</span>
+        <span class="n">forms</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">composition__element_set__in</span><span class="o">=</span><span class="n">in_elts</span><span class="p">)</span>
+        <span class="n">forms</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">composition__ntypes__lte</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">space</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">forms</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> : </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">composition</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_e</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">composition</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculation</span><span class="o">.</span><span class="n">composition</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculation</span><span class="o">.</span><span class="n">entry</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FormationEnergy</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<span class="n">Formation</span> <span class="o">=</span> <span class="n">FormationEnergy</span>
+
+<div class="viewcode-block" id="Fit"><a class="viewcode-back" href="../../../analysis.html#qmpy.Fit">[docs]</a><span class="k">class</span> <span class="nc">Fit</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The core model for a reference energy fitting scheme. </span>
+<span class="sd">    </span>
+<span class="sd">    The Fit model links to the experimental data (ExptFormationEnergy objects) </span>
+<span class="sd">    that informed the fit, as well as the DFT calculations (Calculation objects) </span>
+<span class="sd">    that were matched to each experimental formation energy. Once the fit is </span>
+<span class="sd">    completed, it also stores a list of chemical potentials both as a </span>
+<span class="sd">    relationship to ReferenceEnergy and HubbardCorrection objects. </span>
+<span class="sd">    These correction energies can also be accessed by dictionaries at </span>
+<span class="sd">    Fit.mus and Fit.hubbard_mus.</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | :mod:`~qmpy.Calculation` via dft</span>
+<span class="sd">        | :mod:`~qmpy.ExptFormationEnergy` via experiments</span>
+<span class="sd">        | :mod:`~qmpy.FormationEnergy` via formationenergy_set</span>
+<span class="sd">        | :mod:`~qmpy.HubbardCorrection` via hubbard_correction_set</span>
+<span class="sd">        | :mod:`~qmpy.ReferenceEnergy` via reference_energy_set</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | name: Name for the fitting</span>
+<span class="sd">    </span>
+<span class="sd">    Examples::</span>
+
+<span class="sd">        &gt;&gt;&gt; f = Fit.get(&#39;standard&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; f.experiments.count()</span>
+<span class="sd">        &gt;&gt;&gt; f.dft.count()</span>
+<span class="sd">        &gt;&gt;&gt; f.mus</span>
+<span class="sd">        &gt;&gt;&gt; f.hubbard_mus</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">elements</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">&#39;Element&#39;</span><span class="p">)</span>
+    <span class="n">experiments</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">&#39;ExptFormationEnergy&#39;</span><span class="p">)</span> 
+    <span class="n">dft</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">&#39;Calculation&#39;</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;fits&#39;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Fit</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">Fit</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Fit</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">mus</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_energy_set</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;element_id&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mus</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">hubbard_mus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">hm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hubbard_correction_set</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">((</span><span class="n">h</span><span class="o">.</span><span class="n">hubbard</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">h</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hm</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Scott Kirklin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>

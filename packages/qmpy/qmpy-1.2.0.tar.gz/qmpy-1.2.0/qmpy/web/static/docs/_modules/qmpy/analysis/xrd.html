@@ -1,0 +1,326 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>qmpy.analysis.xrd &#8212; qmpy 1.1.0a documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.1.0a',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for qmpy.analysis.xrd</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/env/bin python</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">symmetry.routines</span> <span class="k">import</span> <span class="n">find_structure_symmetry</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">qmpy.data</span> <span class="k">import</span> <span class="n">elements</span>
+<span class="kn">from</span> <span class="nn">qmpy.utils</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Peak"><a class="viewcode-back" href="../../../analysis.html#qmpy.Peak">[docs]</a><span class="k">class</span> <span class="nc">Peak</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">      angle (float): </span>
+<span class="sd">        Peak 2*theta angle in radians.</span>
+<span class="sd">      hkl (list): </span>
+<span class="sd">        HKL indices of the peak.</span>
+<span class="sd">      multiplicity (int): </span>
+<span class="sd">        Number of HKL indices which generate the peak.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">multiplicity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">intensity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hkl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                              <span class="n">xrd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">measured</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="n">angle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">two_theta</span> <span class="o">=</span> <span class="n">angle</span><span class="o">*</span><span class="mi">360</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hkl</span> <span class="o">=</span> <span class="n">hkl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiplicity</span> <span class="o">=</span> <span class="n">multiplicity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intensity</span> <span class="o">=</span> <span class="n">intensity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xrd</span> <span class="o">=</span> <span class="n">xrd</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">measured</span> <span class="o">=</span> <span class="n">measured</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imag</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Peak.lp_factor"><a class="viewcode-back" href="../../../analysis.html#qmpy.Peak.lp_factor">[docs]</a>    <span class="k">def</span> <span class="nf">lp_factor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the Lorentz-polarization factor.</span>
+<span class="sd">        </span>
+<span class="sd">        http://reference.iucr.org/dictionary/Lorentz%E2%80%93polarization_correction</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">angle</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">den</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">angle</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">angle</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">num</span><span class="o">/</span><span class="n">den</span></div>
+
+    <span class="k">def</span> <span class="nf">calculate_intensity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bfactors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">intensity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">structure_factor_squared</span><span class="p">(</span><span class="n">bfactors</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intensity</span> <span class="o">=</span> <span class="n">intensity</span> <span class="o">*</span> <span class="n">scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intensity</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiplicity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intensity</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lp_factor</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">intensity</span>
+
+<div class="viewcode-block" id="Peak.thermal_factor"><a class="viewcode-back" href="../../../analysis.html#qmpy.Peak.thermal_factor">[docs]</a>    <span class="k">def</span> <span class="nf">thermal_factor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bfactor</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the Debye-Waller factor for a peak.</span>
+
+<span class="sd">        http://en.wikipedia.org/wiki/Debye-Waller_factor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bfactor</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">angle</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">xrd</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">atomic_scattering_factor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">asfp</span> <span class="o">=</span> <span class="n">elements</span><span class="p">[</span><span class="n">element</span><span class="p">][</span><span class="s1">&#39;scattering_factors&#39;</span><span class="p">]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">angle</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">xrd</span><span class="o">.</span><span class="n">wavelength</span>
+        <span class="n">s2</span> <span class="o">=</span> <span class="n">s</span><span class="o">*</span><span class="n">s</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Atomic scattering factors are not optimized for&#39;</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="s1">&#39; s greater than 2&#39;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">factors</span> <span class="o">=</span> <span class="p">[</span> <span class="n">asfp</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">asfp</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span><span class="o">*</span><span class="n">s2</span><span class="p">)</span> 
+                                              <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="p">]</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">factors</span><span class="p">)</span> <span class="o">+</span> <span class="n">asfp</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">structure_factor_squared</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bfactors</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">bfactors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">bfactors</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">1.0</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">xrd</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">orbits</span> <span class="p">]</span>
+
+        <span class="n">real</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">imag</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="k">for</span> <span class="n">bfactor</span><span class="p">,</span> <span class="n">orbit</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bfactors</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xrd</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">orbits</span><span class="p">):</span>
+            <span class="n">tf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">thermal_factor</span><span class="p">(</span><span class="n">bfactor</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">site</span> <span class="ow">in</span> <span class="n">orbit</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">site</span><span class="p">:</span>
+                    <span class="n">sf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atomic_scattering_factor</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">element_id</span><span class="p">)</span>
+                    <span class="n">dot</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hkl</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">atom</span><span class="o">.</span><span class="n">coord</span><span class="p">)</span>
+                    <span class="n">pre</span> <span class="o">=</span> <span class="n">sf</span> <span class="o">*</span> <span class="n">tf</span> <span class="o">*</span> <span class="n">atom</span><span class="o">.</span><span class="n">occupancy</span>
+                    <span class="n">real</span> <span class="o">+=</span> <span class="n">pre</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span> 
+                    <span class="n">imag</span> <span class="o">+=</span> <span class="n">pre</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imag</span> <span class="o">=</span> <span class="n">imag</span>
+        <span class="k">return</span> <span class="n">real</span><span class="o">*</span><span class="n">real</span> <span class="o">+</span> <span class="n">imag</span><span class="o">*</span><span class="n">imag</span></div>
+
+<div class="viewcode-block" id="XRD"><a class="viewcode-back" href="../../../analysis.html#qmpy.XRD">[docs]</a><span class="k">class</span> <span class="nc">XRD</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Container for an X-ray diffraction pattern.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">      peaks (List): </span>
+<span class="sd">        List of :mod:`~qmpy.Peak` instances.</span>
+<span class="sd">      measured (bool): </span>
+<span class="sd">        True if the XRD is a measured pattern, otherwise False.</span>
+<span class="sd">      min_2th (float): </span>
+<span class="sd">        Minimum 2theta angle allowed. Defaults to 60 degrees.</span>
+<span class="sd">      max_2th (float): </span>
+<span class="sd">        Maximum 2theta angle allowed. Defaults to 10 degrees.</span>
+<span class="sd">      wavelength (float): </span>
+<span class="sd">        X-ray wavelength. Defaults to 1.5418 Ang.</span>
+<span class="sd">      resolution (float): </span>
+<span class="sd">        Minimum 2theta angle the XRD will distinguish between.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">measured</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">wavelength</span><span class="o">=</span><span class="mf">1.5418</span><span class="p">,</span>
+            <span class="n">min_2th</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_2th</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">peaks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">structure</span> <span class="o">=</span> <span class="n">structure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">measured</span> <span class="o">=</span> <span class="n">measured</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavelength</span> <span class="o">=</span> <span class="n">wavelength</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_2th</span> <span class="o">=</span> <span class="n">min_2th</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_2th</span> <span class="o">=</span> <span class="n">max_2th</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span> <span class="o">=</span> <span class="n">resolution</span>
+
+    <span class="k">def</span> <span class="nf">add_peak</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">peak</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">peaks</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">peak</span><span class="o">.</span><span class="n">two_theta</span> <span class="o">-</span> <span class="n">p</span><span class="o">.</span><span class="n">two_theta</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="p">:</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">multiplicity</span> <span class="o">+=</span> <span class="n">peak</span><span class="o">.</span><span class="n">multiplicity</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">hkl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">peak</span><span class="o">.</span><span class="n">hkl</span><span class="p">)</span>
+                <span class="k">return</span>
+        <span class="n">peak</span><span class="o">.</span><span class="n">xrd</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">peaks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">peak</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">d_thermal_factor</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">bfactor</span><span class="p">):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">temp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bfactor</span><span class="o">*</span><span class="n">temp</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">bragg_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hkl</span><span class="p">):</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">inv</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">hkl</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">ratio</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelength</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">ratio</span> <span class="o">&gt;=-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">ratio</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">angle</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+
+<div class="viewcode-block" id="XRD.get_intensities"><a class="viewcode-back" href="../../../analysis.html#qmpy.XRD.get_intensities">[docs]</a>    <span class="k">def</span> <span class="nf">get_intensities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bfactors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Loops over all peaks calculating intensity.</span>
+
+<span class="sd">        Keyword Arguments:</span>
+<span class="sd">          bfactors (list) : list of B factors for each atomic site. Care must</span>
+<span class="sd">            taken to ensure that the order of B factors agrees with the order</span>
+<span class="sd">            of atomic orbits.</span>
+<span class="sd">          scale (float) : Scaling factor to multiply the intensities by. If</span>
+<span class="sd">            scale evaluates to False, the intensities will be re-normalized at</span>
+<span class="sd">            the end such that the highest peak is 1.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rescale</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">scale</span><span class="p">:</span>
+            <span class="n">rescale</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+        <span class="k">for</span> <span class="n">peak</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">peaks</span><span class="p">:</span>
+            <span class="n">peak</span><span class="o">.</span><span class="n">calculate_intensity</span><span class="p">(</span><span class="n">bfactors</span><span class="o">=</span><span class="n">bfactors</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">rescale</span><span class="p">:</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span> <span class="n">p</span><span class="o">.</span><span class="n">intensity</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">peaks</span> <span class="p">])</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">peaks</span><span class="p">:</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">intensity</span> <span class="o">/=</span> <span class="n">m</span></div>
+
+<div class="viewcode-block" id="XRD.get_peaks"><a class="viewcode-back" href="../../../analysis.html#qmpy.XRD.get_peaks">[docs]</a>    <span class="k">def</span> <span class="nf">get_peaks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">max_mag</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_2th</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">90</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelength</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">symmetrize</span><span class="p">()</span>
+        <span class="n">rots</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">rotations</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rr</span><span class="p">)</span> <span class="k">for</span> <span class="n">rr</span> <span class="ow">in</span> <span class="n">rots</span><span class="p">]):</span>
+                <span class="n">rots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+        <span class="n">im</span><span class="p">,</span> <span class="n">jm</span><span class="p">,</span> <span class="n">km</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">max_mag</span><span class="o">*</span><span class="n">x</span><span class="p">)),</span> 
+                 <span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">lat_params</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">h</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">im</span><span class="p">,</span> <span class="n">im</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> 
+                                       <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">jm</span><span class="p">,</span> <span class="n">jm</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+                                       <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="p">[</span><span class="n">h</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">continue</span>
+
+            <span class="n">mult</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">hkl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">h</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">])</span>
+            <span class="n">equiv</span> <span class="o">=</span> <span class="p">[</span><span class="n">hkl</span><span class="p">]</span>
+            <span class="n">repeat</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">for</span> <span class="n">rot</span> <span class="ow">in</span> <span class="n">rots</span><span class="p">:</span>
+                <span class="n">thkl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">rot</span><span class="p">,</span> <span class="n">hkl</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">thkl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">hkl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1e-4</span><span class="p">:</span>
+                    <span class="n">repeat</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">thkl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">hkl</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">1e-4</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">thkl</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">hkl</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1e-4</span><span class="p">:</span>
+                        <span class="n">repeat</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">thkl</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">hkl</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">1e-4</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">thkl</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">hkl</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1e-4</span><span class="p">:</span>
+                            <span class="n">repeat</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="n">repeat</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">thkl</span><span class="p">,</span> <span class="n">shkl</span><span class="p">)</span> <span class="k">for</span> <span class="n">shkl</span> <span class="ow">in</span> <span class="n">equiv</span> <span class="p">]):</span>
+                    <span class="n">equiv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thkl</span><span class="p">)</span>
+                    <span class="n">mult</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="n">angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bragg_angle</span><span class="p">(</span><span class="n">hkl</span><span class="p">)</span>
+            <span class="n">two_theta</span> <span class="o">=</span> <span class="n">angle</span><span class="o">*</span><span class="mi">360</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+            <span class="k">if</span> <span class="n">two_theta</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_2th</span> <span class="ow">or</span> <span class="n">two_theta</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_2th</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">peak</span> <span class="o">=</span> <span class="n">Peak</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">multiplicity</span><span class="o">=</span><span class="n">mult</span><span class="p">,</span> <span class="n">hkl</span><span class="o">=</span><span class="n">equiv</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_peak</span><span class="p">(</span><span class="n">peak</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">renderer</span> <span class="o">=</span> <span class="n">Renderer</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">peaks</span><span class="p">:</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="n">Line</span><span class="p">([[</span><span class="n">p</span><span class="o">.</span><span class="n">two_theta</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+                      <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">two_theta</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">intensity</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+            <span class="n">renderer</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+
+        <span class="n">renderer</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;2&amp;Theta;&quot;</span>
+        <span class="n">renderer</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">renderer</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_2th</span>
+        <span class="n">renderer</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_2th</span>
+        <span class="k">return</span> <span class="n">renderer</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Scott Kirklin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>

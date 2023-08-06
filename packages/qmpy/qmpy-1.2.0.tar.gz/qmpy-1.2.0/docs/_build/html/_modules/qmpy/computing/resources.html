@@ -1,0 +1,1028 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>qmpy.computing.resources &#8212; qmpy 1.1.0a documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.1.0a',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for qmpy.computing.resources</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">numbers</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="k">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="k">import</span> <span class="n">AbstractUser</span>
+<span class="kn">import</span> <span class="nn">pexpect</span><span class="o">,</span> <span class="nn">getpass</span>
+
+<span class="kn">import</span> <span class="nn">qmpy</span>
+<span class="kn">from</span> <span class="nn">qmpy.db.custom</span> <span class="k">import</span> <span class="n">DictField</span>
+<span class="kn">import</span> <span class="nn">queue</span> <span class="k">as</span> <span class="nn">queue</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">is_yes</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">char</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">lower</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">class</span> <span class="nc">AllocationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Problem with the allocation&quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">SubmissionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Failed to submit a job&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="User"><a class="viewcode-back" href="../../../resources.html#qmpy.User">[docs]</a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">AbstractUser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    User model - stores an oqmd users information.</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | :mod:`~qmpy.Account` via account_set</span>
+<span class="sd">        | :mod:`~qmpy.Allocation` via allocation_set</span>
+<span class="sd">        | :mod:`~qmpy.Project` via project_set</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | id</span>
+<span class="sd">        | username</span>
+<span class="sd">        | first_name</span>
+<span class="sd">        | last_name</span>
+<span class="sd">        | date_joined</span>
+<span class="sd">        | is_active</span>
+<span class="sd">        | is_staff</span>
+<span class="sd">        | is_superuser</span>
+<span class="sd">        | last_login</span>
+<span class="sd">        | email</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;users&#39;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">queue</span><span class="o">.</span><span class="n">Job</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">account__user</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">():</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&quot;Username: &quot;</span><span class="p">)</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&quot;E-mail address: &quot;</span><span class="p">)</span>
+        <span class="n">user</span><span class="p">,</span> <span class="n">new</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">new</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s1">&#39;User by that name exists!&#39;</span>
+            <span class="nb">print</span> <span class="s1">&#39;Please try a new name, or exit with Ctrl-x&#39;</span>
+            <span class="k">return</span> <span class="n">User</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+        <span class="nb">print</span> <span class="s1">&#39;Okay, user created!&#39;</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">create_accounts</span><span class="p">()</span>
+        <span class="c1">#user.assign_allocations()</span>
+        <span class="k">return</span> <span class="n">user</span>
+
+    <span class="k">def</span> <span class="nf">create_accounts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Would you like to create cluster accounts for this user?&#39;</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="n">is_yes</span><span class="p">(</span><span class="n">raw_input</span><span class="p">(</span><span class="n">msg</span><span class="o">+</span><span class="s1">&#39; [y/n]: &#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">ans</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">elif</span> <span class="n">ans</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s2">&quot;I didn&#39;t understand that command.&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_accounts</span><span class="p">()</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Does user </span><span class="si">%s</span><span class="s1"> have an account on </span><span class="si">%s</span><span class="s1">? [y/n]: &#39;</span>
+        <span class="n">msg2</span> <span class="o">=</span> <span class="s1">&#39;What is </span><span class="si">%s</span><span class="se">\&#39;</span><span class="s1">s username on </span><span class="si">%s</span><span class="s1">?: &#39;</span>
+        <span class="n">msg3</span> <span class="o">=</span> <span class="s1">&#39;On </span><span class="si">%s</span><span class="s1">@</span><span class="si">%s</span><span class="s1"> where should calculations be run? (absolute path): &#39;</span>
+        <span class="n">known</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">account_set</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;host__name&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">host</span> <span class="ow">in</span> <span class="n">Host</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">name__in</span><span class="o">=</span><span class="n">known</span><span class="p">):</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="n">msg</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">is_yes</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ans</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">uname</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="n">msg2</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+            <span class="n">acct</span><span class="p">,</span> <span class="n">new</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">new</span><span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Account exists!&#39;</span>
+                <span class="k">continue</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="n">msg3</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+            <span class="n">acct</span><span class="o">.</span><span class="n">run_path</span> <span class="o">=</span> <span class="n">path</span>
+            <span class="n">acct</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">uname</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">acct</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">acct</span><span class="o">.</span><span class="n">create_passwordless_ssh</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Host"><a class="viewcode-back" href="../../../resources.html#qmpy.Host">[docs]</a><span class="k">class</span> <span class="nc">Host</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Host model - stores all host information for a cluster.</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | account</span>
+<span class="sd">        | allocation</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | name: Primary key.</span>
+<span class="sd">        | binaries: dict of label:path pairs for vasp binaries.</span>
+<span class="sd">        | check_queue: Path to showq command</span>
+<span class="sd">        | checked_time: datetime object for the last time the queue was </span>
+<span class="sd">        |   checked.</span>
+<span class="sd">        | hostname: Full host name. </span>
+<span class="sd">        | ip_address: Full ip address.</span>
+<span class="sd">        | nodes: Total number of nodes.</span>
+<span class="sd">        | ppn: Number of processors per node.</span>
+<span class="sd">        | running: dict of PBS_ID:state pairs.</span>
+<span class="sd">        | sub_script: Path to qsub command</span>
+<span class="sd">        | sub_text: Path to queue file template.</span>
+<span class="sd">        | utilization: Number of active cores (based on showq).</span>
+<span class="sd">        | walltime: Maximum walltime on the machine.</span>
+<span class="sd">        | state: State code. 1=Up, 0=Full (auto-resets to 1 when jobs are</span>
+<span class="sd">        |   collected), -1=Down.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">63</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ip_address</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IPAddressField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">hostname</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">binaries</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">()</span>
+    <span class="n">ppn</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">walltime</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">3600</span><span class="o">*</span><span class="mi">24</span><span class="p">)</span>
+    <span class="n">sub_script</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+    <span class="n">sub_text</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s1">&#39;/usr/local/bin/qsub&#39;</span><span class="p">)</span>
+    <span class="n">check_queue</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="s1">&#39;/usr/local/maui/bin/showq&#39;</span><span class="p">)</span>
+    <span class="n">checked_time</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">min</span><span class="p">)</span>
+    <span class="n">running</span> <span class="o">=</span> <span class="n">DictField</span><span class="p">()</span>
+    <span class="n">utilization</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;hosts&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+<div class="viewcode-block" id="Host.create"><a class="viewcode-back" href="../../../resources.html#qmpy.Host.create">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Classmethod to create a Host model. Script will ask you questions about</span>
+<span class="sd">        the host to add, and will return the created Host.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">host</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">host</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Hostname:&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">Host</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">host</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="nb">print</span> <span class="s1">&#39;Host by that name already exists!&#39;</span>
+            <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">host</span><span class="p">[</span><span class="s1">&#39;ip_address&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;IP Address:&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">Host</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ip_address</span><span class="o">=</span><span class="n">host</span><span class="p">[</span><span class="s1">&#39;ip_address&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="nb">print</span> <span class="s1">&#39;Host at that address already exists!&#39;</span>
+            <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">host</span><span class="p">[</span><span class="s1">&#39;ppn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Processors per node:&#39;</span><span class="p">)</span>
+        <span class="n">host</span><span class="p">[</span><span class="s1">&#39;nodes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Max nodes to run on:&#39;</span><span class="p">)</span>
+        <span class="n">host</span><span class="p">[</span><span class="s1">&#39;sub_script&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Command to submit a script &#39;</span>
+                <span class="s1">&#39;(e.g. /usr/local/bin/qsub):&#39;</span><span class="p">)</span>
+        <span class="n">host</span><span class="p">[</span><span class="s1">&#39;check_queue&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Command for showq (e.g.&#39;</span>
+                <span class="s1">&#39;/usr/local/maui/bin/showq):&#39;</span><span class="p">)</span>
+        <span class="n">host</span><span class="p">[</span><span class="s1">&#39;sub_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Path to qfile template:&#39;</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">Host</span><span class="p">(</span><span class="o">**</span><span class="n">host</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></div>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">accounts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">account_set</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">jobs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">jobs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">acct</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">accounts</span><span class="p">:</span>
+            <span class="n">jobs</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">acct</span><span class="o">.</span><span class="n">job_set</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">jobs</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">active</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">utilization</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ppn</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">percent_utilization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">100.</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">utilization</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ppn</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_utilization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">util</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">acct</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">account_set</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">acct</span><span class="o">.</span><span class="n">job_set</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">util</span> <span class="o">+=</span> <span class="n">job</span><span class="o">.</span><span class="n">ncpus</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">utilization</span> <span class="o">=</span> <span class="n">util</span>
+        <span class="k">return</span> <span class="n">util</span>
+
+<div class="viewcode-block" id="Host.get_project"><a class="viewcode-back" href="../../../resources.html#qmpy.Host.get_project">[docs]</a>    <span class="k">def</span> <span class="nf">get_project</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Out of the active projects able to run on this host,</span>
+<span class="sd">          select one at random</span>
+
+<span class="sd">        Output:</span>
+<span class="sd">            Project, Active project able to run on this host</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">Project</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">allocations__host</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">task__state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">proj</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">distinct</span><span class="p">()))</span></div>
+
+    <span class="k">def</span> <span class="nf">get_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">tasks</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Task</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">project</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_project</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">project</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span>
+        <span class="n">tasks</span> <span class="o">=</span> <span class="n">tasks</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">project_set</span><span class="o">=</span><span class="n">project</span><span class="p">)</span>
+        <span class="n">tasks</span> <span class="o">=</span> <span class="n">tasks</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">project_set__allocations__host</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">tasks</span> <span class="o">=</span> <span class="n">tasks</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">project_set__users__account__host</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tasks</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;priority&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">qfile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sub_text</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_binary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">binaries</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_try_login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">5.0</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">_login</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_acct</span> <span class="o">=</span> <span class="n">Allocation</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;b1004&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_account</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_ssh</span> <span class="o">=</span> <span class="s1">&#39;ssh </span><span class="si">{user}</span><span class="s1">@</span><span class="si">{host}</span><span class="s1"> &quot;</span><span class="si">{cmd}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_tmp_acct</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                    <span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_tmp_acct</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">ip_address</span><span class="p">,</span>
+                    <span class="n">cmd</span><span class="o">=</span><span class="s1">&#39;whoami&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tmp_ssh</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+            <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_proc</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_acct</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">:</span>
+                <span class="nb">print</span> <span class="s2">&quot;quest is up&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">_login</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_thread</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_thread</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+            <span class="nb">print</span> <span class="s2">&quot;unable login on quest&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_proc</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tmp_proc</span><span class="o">.</span><span class="n">returncode</span>
+
+<div class="viewcode-block" id="Host.check_host"><a class="viewcode-back" href="../../../resources.html#qmpy.Host.check_host">[docs]</a>    <span class="k">def</span> <span class="nf">check_host</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Pings the host to see if it is online. Returns False if it is</span>
+<span class="sd">        offline.&quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;ping -c 1 -w 1 </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">ip_address</span><span class="p">,</span>
+                <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">stdout</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/dev/null&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">),</span>
+                <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">ret</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">write_resources</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="sd">&quot;&quot;&quot;Sometimes quest refuses to respond to ping requests. So, try</span>
+<span class="sd">            logging into it using an(y) account. Trying executing a command and</span>
+<span class="sd">            see if it is successful.&quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;quest&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_try_login</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+                    <span class="n">write_resources</span><span class="p">()</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">running_now</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=-</span><span class="mi">60</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">checked_time</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_running</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">running</span>
+
+<div class="viewcode-block" id="Host.check_running"><a class="viewcode-back" href="../../../resources.html#qmpy.Host.check_running">[docs]</a>    <span class="k">def</span> <span class="nf">check_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Uses the hosts data and one of the associated accounts to check the PBS</span>
+<span class="sd">        queue on the Host. If it has been checked in the last 2 minutes, it</span>
+<span class="sd">        will return the previously returned result.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">checked_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="n">account</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">accounts</span><span class="p">)</span>
+        <span class="n">raw_data</span> <span class="o">=</span> <span class="n">account</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">check_queue</span><span class="p">)</span>
+        <span class="n">running</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">raw_data</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;Active Jobs&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">9</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># &lt; Mohan</span>
+                <span class="k">if</span> <span class="s1">&#39;Moab&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                    <span class="n">qid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">qid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">running</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="s1">&#39;user&#39;</span><span class="p">:</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="s1">&#39;state&#39;</span><span class="p">:</span><span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                        <span class="s1">&#39;proc&#39;</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">])}</span>
+                <span class="c1"># Mohan &gt;</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="o">=</span> <span class="n">running</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></div>
+        
+    <span class="k">def</span> <span class="nf">get_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">running</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="Host.activate"><a class="viewcode-back" href="../../../resources.html#qmpy.Host.activate">[docs]</a>    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Allow jobs to be run on this system. Remember to save() to enact change</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="mi">1</span></div>
+    
+<div class="viewcode-block" id="Host.deactivate"><a class="viewcode-back" href="../../../resources.html#qmpy.Host.deactivate">[docs]</a>    <span class="k">def</span> <span class="nf">deactivate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prevent new jobs from being started on this system. </span>
+<span class="sd">        Remember to save() changes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">utilization_by_project</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">utilization</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobs</span><span class="p">:</span>
+            <span class="n">projects</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">project_set</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">projects</span><span class="p">:</span>
+                <span class="n">utilization</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">)]</span> <span class="o">+=</span> <span class="nb">float</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">ncpus</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">projects</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ppn</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">&gt;</span> <span class="nb">sum</span><span class="p">(</span><span class="n">utilization</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+            <span class="n">utilization</span><span class="p">[</span><span class="s2">&quot;Idle&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ppn</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">utilization</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">utilization</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">utilization_json</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">series</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">utilization_by_project</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">series</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;data&#39;</span><span class="p">:</span><span class="n">v</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span><span class="n">k</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ncpus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ppn</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span></div>
+
+<span class="c1">#===============================================================================#</span>
+
+<div class="viewcode-block" id="Account"><a class="viewcode-back" href="../../../resources.html#qmpy.Account">[docs]</a><span class="k">class</span> <span class="nc">Account</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Base class for a `User` account on a `Host`. </span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | host</span>
+<span class="sd">        | id</span>
+<span class="sd">        | job</span>
+<span class="sd">        | run_path</span>
+<span class="sd">        | state</span>
+<span class="sd">        | user</span>
+<span class="sd">        | username</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Host</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">run_path</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;accounts&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{user}</span><span class="s1">@</span><span class="si">{host}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> 
+                <span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">host</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Account</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">)</span>
+        <span class="k">except</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Account</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create_passwordless_ssh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;id_dsa&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;password for </span><span class="si">{user}</span><span class="s1">@</span><span class="si">{host}</span><span class="s1">: &#39;</span>
+        <span class="k">if</span> <span class="n">origin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;/home/</span><span class="si">{user}</span><span class="s1">/.ssh&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">())</span>
+
+        <span class="n">pas</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;/usr/bin/ssh </span><span class="si">{user}</span><span class="s1">@</span><span class="si">{host}</span><span class="s1"> touch&#39;</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="s1">&#39; /home/</span><span class="si">{user}</span><span class="s1">/.ssh/authorized_keys&#39;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">pexpect</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> 
+                    <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">ip_address</span><span class="p">))</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="s1">&#39;assword:&#39;</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">pas</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;/usr/bin/scp </span><span class="si">{origin}</span><span class="s1">/</span><span class="si">{key}</span><span class="s1"> </span><span class="si">{user}</span><span class="s1">@</span><span class="si">{host}</span><span class="s1">:/home/</span><span class="si">{user}</span><span class="s1">/.ssh/&#39;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">pexpect</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> 
+                    <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">ip_address</span><span class="p">))</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="s1">&#39;assword:&#39;</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">pas</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;/usr/bin/ssh </span><span class="si">{user}</span><span class="s1">@</span><span class="si">{host}</span><span class="s1">&#39;</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="s1">&#39; chmod 600 /home/</span><span class="si">{user}</span><span class="s1">/.ssh/authorized_keys&#39;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">pexpect</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> 
+                    <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">ip_address</span><span class="p">))</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="s1">&#39;assword:&#39;</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">pas</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;/usr/bin/ssh-copy-id -i </span><span class="si">{origin}</span><span class="s1">/</span><span class="si">{key}</span><span class="s1"> </span><span class="si">{user}</span><span class="s1">@</span><span class="si">{host}</span><span class="s1">&#39;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">pexpect</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> 
+                    <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">ip_address</span><span class="p">))</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span><span class="s1">&#39;assword:&#39;</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">pas</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="nb">print</span> <span class="s1">&#39;Great! Lets test it real quick...&#39;</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;whoami&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">:</span> 
+            <span class="nb">print</span> <span class="s1">&#39;Awesome! It worked!&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s1">&#39;Something appears to be wrong, talk to Scott...&#39;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">active</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">run_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">qfile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;mkdir </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">run_path</span><span class="p">,</span> <span class="n">ignore_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="n">run_path</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;command cd </span><span class="si">{path}</span><span class="s1"> &amp;&amp; </span><span class="si">{sub}</span><span class="s1"> </span><span class="si">{qfile}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">path</span><span class="o">=</span><span class="n">run_path</span><span class="p">,</span>
+                <span class="n">sub</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">sub_script</span><span class="p">,</span>
+                <span class="n">qfile</span><span class="o">=</span><span class="n">qfile</span><span class="p">)</span>
+        <span class="n">stdout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+        <span class="c1"># &lt; Mohan</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;Moab&#39;</span> <span class="ow">in</span> <span class="n">tmp</span><span class="p">:</span>
+            <span class="n">jid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">jid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="c1"># Mohan &gt;</span>
+        <span class="k">return</span> <span class="n">jid</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s1">&#39;exit 0&#39;</span><span class="p">,</span> <span class="n">ignore_output</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">ssh</span> <span class="o">=</span> <span class="s1">&#39;ssh </span><span class="si">{user}</span><span class="s1">@</span><span class="si">{host}</span><span class="s1"> &quot;</span><span class="si">{cmd}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                <span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">ip_address</span><span class="p">,</span>
+                <span class="n">cmd</span><span class="o">=</span><span class="n">command</span><span class="p">)</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">ssh</span><span class="p">)</span>
+
+        <span class="n">call</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">ssh</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+        <span class="n">stdout</span><span class="p">,</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">call</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;stdout: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">stdout</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;stderr: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">stderr</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">ignore_output</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;WARNING: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">stdout</span>
+
+    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># where to send the stuff</span>
+            <span class="n">fr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># what to send</span>
+            <span class="n">clear_dest_dir</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">move</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span> <span class="c1"># some conditions on sending it</span>
+
+        <span class="k">if</span> <span class="n">destination</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">destination</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_path</span>
+        <span class="k">if</span> <span class="n">to</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">to</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">if</span> <span class="n">fr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">to</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span><span class="p">:</span>
+                <span class="n">fr</span> <span class="o">=</span> <span class="bp">self</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fr</span> <span class="o">=</span> <span class="s1">&#39;local&#39;</span>
+
+        <span class="k">assert</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="n">Account</span><span class="p">)</span> <span class="ow">or</span> <span class="n">to</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">fr</span><span class="p">,</span> <span class="n">Account</span><span class="p">)</span> <span class="ow">or</span> <span class="n">fr</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span> <span class="ow">not</span> <span class="p">(</span><span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">folder</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="p">)</span>
+
+        <span class="n">send_dir</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">send_dir</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="n">folder</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="n">file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">clear_dest_dir</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">to</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span><span class="p">:</span>
+                <span class="n">command</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="s1">&#39;rm -f </span><span class="si">%s</span><span class="s1">/*&#39;</span> <span class="o">%</span> <span class="n">destination</span><span class="p">,</span>
+                                                  <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                                                  <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+                <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">command</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;rm -f %/*&#39;</span> <span class="o">%</span> <span class="n">destination</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;stdout: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">stdout</span><span class="p">)</span>
+            
+        <span class="k">if</span> <span class="n">fr</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span><span class="p">:</span>
+            <span class="n">scp</span> <span class="o">=</span> <span class="s1">&#39;scp &#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">scp</span> <span class="o">=</span> <span class="s1">&#39;scp </span><span class="si">{user}</span><span class="s1">@</span><span class="si">{host}</span><span class="s1">:&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">user</span><span class="o">=</span><span class="n">fr</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">fr</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">ip_address</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">scp</span> <span class="o">+=</span> <span class="s1">&#39;-r &#39;</span>
+
+        <span class="k">if</span> <span class="n">send_dir</span><span class="p">:</span>
+            <span class="n">scp</span> <span class="o">+=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">scp</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">{path}</span><span class="s1">/</span><span class="si">{file}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">folder</span><span class="p">),</span> <span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">to</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span><span class="p">:</span>
+            <span class="n">scp</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span><span class="o">+</span><span class="n">destination</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">scp</span> <span class="o">+=</span> <span class="s1">&#39; </span><span class="si">{user}</span><span class="s1">@</span><span class="si">{host}</span><span class="s1">:</span><span class="si">{path}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">user</span><span class="o">=</span><span class="n">to</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">to</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">ip_address</span><span class="p">,</span> 
+                <span class="n">path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">destination</span><span class="p">))</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;copy command: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">scp</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">scp</span><span class="p">,</span>
+                <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+        <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;stdout: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">stdout</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;stderr: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">move</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">send_dir</span><span class="p">:</span>
+                <span class="n">rmcmd</span> <span class="o">=</span> <span class="s1">&#39;rm -rf </span><span class="si">{path}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">folder</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">rmcmd</span> <span class="o">=</span> <span class="s1">&#39;rm -f </span><span class="si">{path}</span><span class="s1">/</span><span class="si">{file}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">,</span>
+                        <span class="n">path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">folder</span><span class="p">))</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;wiping source: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">rmcmd</span><span class="p">)</span>
+            <span class="n">stdout</span> <span class="o">=</span> <span class="n">fr</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">rmcmd</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;output: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">stdout</span><span class="p">)</span></div>
+
+<span class="c1">#===============================================================================#</span>
+
+<div class="viewcode-block" id="Allocation"><a class="viewcode-back" href="../../../resources.html#qmpy.Allocation">[docs]</a><span class="k">class</span> <span class="nc">Allocation</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for an Allocation on a computing resources.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | host</span>
+<span class="sd">        | job</span>
+<span class="sd">        | key</span>
+<span class="sd">        | name</span>
+<span class="sd">        | project</span>
+<span class="sd">        | state</span>
+<span class="sd">        | users</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">63</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="n">host</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Host</span><span class="p">)</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;allocations&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Name your allocation:&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">Allocation</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="nb">print</span> <span class="s1">&#39;Allocation by that name already exists!&#39;</span>
+            <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">host</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Which cluster is this allocation on?&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">Host</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">host</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="nb">print</span> <span class="s2">&quot;This host doesn&#39;t exist!&quot;</span>
+            <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">host</span> <span class="o">=</span> <span class="n">Host</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">host</span><span class="p">)</span>
+        <span class="n">alloc</span> <span class="o">=</span> <span class="n">Allocation</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">)</span>
+        <span class="n">alloc</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="nb">print</span> <span class="s1">&#39;Now we will assign users to this allocation&#39;</span>
+        <span class="k">for</span> <span class="n">acct</span> <span class="ow">in</span> <span class="n">Account</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">):</span>
+            <span class="n">inc</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Can </span><span class="si">%s</span><span class="s1"> use this allocation? y/n [y]:&#39;</span> <span class="o">%</span> 
+                    <span class="n">acct</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span> <span class="p">)</span>
+            <span class="k">if</span> <span class="n">inc</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span> <span class="ow">or</span> <span class="n">inc</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                <span class="n">alloc</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">acct</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="s1">&#39;If this allocation requires a special password, enter&#39;</span><span class="p">,</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;it now:&#39;</span><span class="p">)</span>
+        <span class="n">alloc</span><span class="o">.</span><span class="n">key</span><span class="o">=</span><span class="n">key</span>
+        <span class="n">alloc</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">active</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">get_account</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">users</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">users</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">users</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">users</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="n">account_set</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">percent_utilization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">percent_utilization</span></div>
+
+<span class="c1">#===============================================================================#</span>
+
+<div class="viewcode-block" id="Project"><a class="viewcode-back" href="../../../resources.html#qmpy.Project">[docs]</a><span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for a project within qmpy. </span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | allocations</span>
+<span class="sd">        | entry</span>
+<span class="sd">        | name</span>
+<span class="sd">        | priority</span>
+<span class="sd">        | state</span>
+<span class="sd">        | task</span>
+<span class="sd">        | users</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">63</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">priority</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">users</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">allocations</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Allocation</span><span class="p">)</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;projects&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">name</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">completed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_set</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_set</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">waiting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_set</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;priority&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">failed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_set</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Project.create"><a class="viewcode-back" href="../../../resources.html#qmpy.Project.create">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">():</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Create a new project. Prompts user on std-in</span>
+<span class="sd">        for name, users, and allocations of this project.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Name your project: &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">Project</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="nb">print</span> <span class="s1">&#39;Project by that name already exists!&#39;</span>
+            <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">Project</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">proj</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">proj</span><span class="o">.</span><span class="n">priority</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Project priority (1-100): &#39;</span><span class="p">)</span>
+        <span class="n">users</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;List project users (e.g. sjk648 jsaal531 bwm291): &#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">users</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">u</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="nb">print</span> <span class="s1">&#39;User named&#39;</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="s1">&#39;doesn</span><span class="se">\&#39;</span><span class="s1">t exist!&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">proj</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">u</span><span class="p">))</span>
+
+        <span class="n">alloc</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;List project allocations (e.g. byrd victoria b1004): &#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">alloc</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">Allocation</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="nb">print</span> <span class="s1">&#39;Allocation named&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s1">&#39;doesn</span><span class="se">\&#39;</span><span class="s1">t exist!&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">proj</span><span class="o">.</span><span class="n">allocations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Allocation</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">a</span><span class="p">))</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">active</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">get_allocation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">available</span> <span class="o">=</span> <span class="p">[</span> <span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">allocations</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">active</span> <span class="p">]</span>
+        <span class="k">if</span> <span class="n">available</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">available</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span></div>
+
+<span class="c1"># !vih</span>
+<span class="k">def</span> <span class="nf">write_resources</span><span class="p">():</span>
+    
+    <span class="n">current_loc</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+
+    <span class="c1">######</span>
+    <span class="c1"># headers for various configuration files</span>
+    <span class="c1">######</span>
+    
+    <span class="n">hosts_header</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;# host1:</span>
+<span class="s2">    #   binaries:</span>
+<span class="s2">    #       bin_name1: /path/to/bin1</span>
+<span class="s2">    #       bin_name2: /path/to/bin2</span>
+<span class="s2">    #   check_queue: /full/path/to/showq</span>
+<span class="s2">    #   hostname: full.host.name</span>
+<span class="s2">    #   ip_address: ###.###.##.###</span>
+<span class="s2">    #   nodes: # of nodes on machine</span>
+<span class="s2">    #   ppn: # of processors per node</span>
+<span class="s2">    #   sub_script: /full/path/to/submission/command</span>
+<span class="s2">    #   sub_text: filename for qfile to use a template. </span>
+<span class="s2">    #            A file named &quot;filename&quot; must be in configuration/qfiles</span>
+<span class="s2">    #   walltime: maximum walltime, in seconds</span>
+<span class="s2">    # host2: ...</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="n">f_hosts</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">current_loc</span><span class="o">+</span><span class="s1">&#39;/../configuration/resources/hosts.yml&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">f_hosts</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">hosts_header</span><span class="p">)</span>
+    <span class="n">f_hosts</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+    <span class="n">users_header</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;# user1:</span>
+<span class="s2">    #   hostname1:</span>
+<span class="s2">    #       run_path:/where/to/run/on/host1</span>
+<span class="s2">    #       username: usernameonhost1</span>
+<span class="s2">    #   hostname2: </span>
+<span class="s2">    #       run_path:/where/to/run/on/host2</span>
+<span class="s2">    #       username: usernameonhost2</span>
+<span class="s2">    # user2:</span>
+<span class="s2">    #   hostname1: ...</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="n">f_users</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">current_loc</span><span class="o">+</span><span class="s1">&#39;/../configuration/resources/users.yml&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">f_users</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">users_header</span><span class="p">)</span>
+    <span class="n">f_users</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+    <span class="n">allocations_header</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;# allocation1:</span>
+<span class="s2">    #   host: hostname</span>
+<span class="s2">    #   key: key needed for identifying allocation</span>
+<span class="s2">    #   users:</span>
+<span class="s2">    #       - user1</span>
+<span class="s2">    #       - user2</span>
+<span class="s2">    # allocation2: ...</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="n">f_allocations</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">current_loc</span><span class="o">+</span><span class="s1">&#39;/../configuration/resources/allocations.yml&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">f_allocations</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">allocations_header</span><span class="p">)</span>
+    <span class="n">f_allocations</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+    <span class="n">projects_header</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;# project1:</span>
+<span class="s2">    #   allocations:</span>
+<span class="s2">    #       - allocation1</span>
+<span class="s2">    #       - allocation2</span>
+<span class="s2">    #   priority: Base priority for the project. Lower numbers will be done soonest.</span>
+<span class="s2">    #   users:</span>
+<span class="s2">    #       - user1</span>
+<span class="s2">    #       - user2</span>
+<span class="s2">    # project2: ...</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="n">f_projects</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">current_loc</span><span class="o">+</span><span class="s1">&#39;/../configuration/resources/projects.yml&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">f_projects</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">projects_header</span><span class="p">)</span>
+    <span class="n">f_projects</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+    <span class="c1">######</span>
+    <span class="c1"># list of values that need to be written into the configuration files</span>
+    <span class="c1">######</span>
+    
+    <span class="n">host_values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;binaries&#39;</span><span class="p">,</span> <span class="s1">&#39;check_queue&#39;</span><span class="p">,</span> <span class="s1">&#39;hostname&#39;</span><span class="p">,</span> <span class="s1">&#39;ip_address&#39;</span><span class="p">,</span> \
+            <span class="s1">&#39;nodes&#39;</span><span class="p">,</span> <span class="s1">&#39;ppn&#39;</span><span class="p">,</span> <span class="s1">&#39;sub_script&#39;</span><span class="p">,</span> <span class="s1">&#39;sub_text&#39;</span><span class="p">,</span> <span class="s1">&#39;walltime&#39;</span><span class="p">]</span>
+    
+    <span class="n">user_values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;run_path&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">]</span>
+    
+    <span class="n">allocation_values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">,</span> <span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="s1">&#39;users&#39;</span><span class="p">]</span>
+    
+    <span class="n">project_values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;allocations&#39;</span><span class="p">,</span> <span class="s1">&#39;priority&#39;</span><span class="p">,</span> <span class="s1">&#39;users&#39;</span><span class="p">]</span>
+    
+    <span class="c1">######</span>
+    <span class="c1"># a function to &#39;clean&#39; the values from type unicode/ long/ etc. to string/ int</span>
+    <span class="c1">######</span>
+    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">unicode</span><span class="p">):</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Number</span><span class="p">):</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">val</span>
+     
+    <span class="c1">######</span>
+    <span class="c1"># write host configurations into hosts.yml</span>
+    <span class="c1">######</span>
+    
+    <span class="n">hosts</span> <span class="o">=</span> <span class="n">Host</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">dict1</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hosts</span><span class="p">:</span>
+        <span class="n">dict2</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">hv</span> <span class="ow">in</span> <span class="n">host_values</span><span class="p">:</span>
+            <span class="n">dict2</span><span class="p">[</span><span class="n">hv</span><span class="p">]</span> <span class="o">=</span> <span class="n">clean</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">hv</span><span class="p">))</span>
+        <span class="n">dict1</span><span class="p">[</span><span class="n">clean</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dict2</span>
+    <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dict1</span><span class="p">,</span> <span class="n">f_hosts</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="c1">######</span>
+    <span class="c1"># write user configurations into users.yml</span>
+    <span class="c1">######</span>
+    
+    <span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">dict1</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+        <span class="n">dict2</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">accounts</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">u</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">accounts</span><span class="p">:</span>
+            <span class="n">dict2</span><span class="p">[</span><span class="n">clean</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="p">)]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;run_path&#39;</span><span class="p">:</span><span class="n">clean</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">run_path</span><span class="p">),</span> \
+                                        <span class="s1">&#39;username&#39;</span><span class="p">:</span><span class="n">clean</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">username</span><span class="p">)}</span>
+        <span class="n">dict1</span><span class="p">[</span><span class="n">clean</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dict2</span>
+    <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dict1</span><span class="p">,</span> <span class="n">f_users</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="c1">######</span>
+    <span class="c1"># write allocation configurations into allocations.yml</span>
+    <span class="c1">######</span>
+    
+    <span class="n">alloc</span> <span class="o">=</span> <span class="n">Allocation</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">dict1</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">alloc</span><span class="p">:</span>
+        <span class="n">dict2</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">dict2</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">clean</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">dict2</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clean</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">dict2</span><span class="p">[</span><span class="s1">&#39;users&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="n">clean</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="p">]</span>
+        <span class="n">dict1</span><span class="p">[</span><span class="n">clean</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dict2</span>
+    <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dict1</span><span class="p">,</span> <span class="n">f_allocations</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="c1">######</span>
+    <span class="c1"># write project configurations into projects.yml</span>
+    <span class="c1">######</span>
+    
+    <span class="n">pro</span> <span class="o">=</span> <span class="n">Project</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">dict1</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pro</span><span class="p">:</span>
+        <span class="n">dict2</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">dict2</span><span class="p">[</span><span class="s1">&#39;allocations&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="n">clean</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">allocations</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="p">]</span>
+        <span class="n">dict2</span><span class="p">[</span><span class="s1">&#39;priority&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clean</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">priority</span><span class="p">)</span>
+        <span class="n">dict2</span><span class="p">[</span><span class="s1">&#39;users&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="n">clean</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="p">]</span>
+        <span class="n">dict1</span><span class="p">[</span><span class="n">clean</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dict2</span>
+    <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dict1</span><span class="p">,</span> <span class="n">f_projects</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Scott Kirklin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,284 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>qmpy.analysis.vasp.potential &#8212; qmpy 1.1.0a documentation</title>
+    <link rel="stylesheet" href="../../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.1.0a',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for qmpy.analysis.vasp.potential</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="k">import</span> <span class="n">models</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">qmpy</span>
+<span class="kn">import</span> <span class="nn">qmpy.materials.element</span> <span class="k">as</span> <span class="nn">elt</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Potential"><a class="viewcode-back" href="../../../../calculations.html#qmpy.Potential">[docs]</a><span class="k">class</span> <span class="nc">Potential</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for storing a VASP potential.</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | calculation</span>
+<span class="sd">        | element</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | name</span>
+<span class="sd">        | date</span>
+<span class="sd">        | electrons: Electrons in potential.</span>
+<span class="sd">        | enmax</span>
+<span class="sd">        | enmin</span>
+<span class="sd">        | gw</span>
+<span class="sd">        | id</span>
+<span class="sd">        | paw</span>
+<span class="sd">        | potcar</span>
+<span class="sd">        | us</span>
+<span class="sd">        | xc</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">potcar</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+    <span class="n">element</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">elt</span><span class="o">.</span><span class="n">Element</span><span class="p">)</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">xc</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">gw</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">paw</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">us</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">enmax</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">enmin</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">electrons</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;vasp_potentials&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ident</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xc</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">paw</span><span class="p">:</span>
+            <span class="n">ident</span> <span class="o">+=</span> <span class="s1">&#39; PAW&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">us</span><span class="p">:</span>
+            <span class="n">ident</span> <span class="o">+=</span> <span class="s1">&#39; US&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gw</span><span class="p">:</span>
+            <span class="n">ident</span> <span class="o">+=</span> <span class="s1">&#39; GW&#39;</span>
+        <span class="k">return</span> <span class="n">ident</span>
+
+<div class="viewcode-block" id="Potential.read_potcar"><a class="viewcode-back" href="../../../../calculations.html#qmpy.Potential.read_potcar">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">read_potcar</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">potfile</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Import pseudopotential(s) from VASP POTCAR. </span>
+
+<span class="sd">        Make sure to save each of them after importing</span>
+<span class="sd">        in order to store in them in the OQMD</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            potfile - string, Path to POTCAR file</span>
+
+<span class="sd">        Output:</span>
+<span class="sd">            List of Potential objects</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1"># Read entire POTCAR file</span>
+        <span class="n">pots</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">potfile</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+        <span class="c1"># Split into the component POTCARs</span>
+        <span class="n">pots</span> <span class="o">=</span> <span class="n">pots</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;End of Dataset&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Parse each file</span>
+        <span class="n">potobjs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">pot</span> <span class="ow">in</span> <span class="n">pots</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">pot</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Get key information from POTCAR</span>
+            <span class="n">potcar</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">pot</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
+
+                <span class="c1"># Get element name</span>
+                <span class="k">if</span> <span class="s1">&#39;TITEL&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                    <span class="n">potcar</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">3</span><span class="p">]</span>
+                    <span class="n">telt</span> <span class="o">=</span> <span class="n">potcar</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">date</span> <span class="o">=</span> <span class="n">potcar</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">potcar</span><span class="p">[</span><span class="s1">&#39;element&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">elt</span><span class="o">.</span><span class="n">Element</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="n">telt</span><span class="p">)</span>
+                    <span class="k">except</span><span class="p">:</span>
+                        <span class="nb">print</span> <span class="s2">&quot;Unknown element in potcar&quot;</span><span class="p">,</span> <span class="n">telt</span>
+                        <span class="k">raise</span>
+                    <span class="k">if</span> <span class="s1">&#39;GW&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                        <span class="n">potcar</span><span class="p">[</span><span class="s1">&#39;gw&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">if</span> <span class="s1">&#39;PAW&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                        <span class="n">potcar</span><span class="p">[</span><span class="s1">&#39;paw&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">if</span> <span class="s1">&#39;US&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                        <span class="n">potcar</span><span class="p">[</span><span class="s1">&#39;us&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+                <span class="k">if</span> <span class="s1">&#39;ENMAX&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                    <span class="n">potcar</span><span class="p">[</span><span class="s1">&#39;enmax&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">))</span>
+                    <span class="n">potcar</span><span class="p">[</span><span class="s1">&#39;enmin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+
+                <span class="k">if</span> <span class="s1">&#39;VRHFIN&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                    <span class="n">potcar</span><span class="p">[</span><span class="s1">&#39;electrons&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="s1">&#39;LEXCH&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;91&#39;</span><span class="p">:</span>
+                        <span class="n">potcar</span><span class="p">[</span><span class="s1">&#39;xc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;GGA&#39;</span>
+                    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;CA&#39;</span><span class="p">:</span>
+                        <span class="n">potcar</span><span class="p">[</span><span class="s1">&#39;xc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;LDA&#39;</span>
+                    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;PE&#39;</span><span class="p">:</span>
+                        <span class="n">potcar</span><span class="p">[</span><span class="s1">&#39;xc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;PBE&#39;</span>
+            <span class="n">potobj</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="o">**</span><span class="n">potcar</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">created</span><span class="p">:</span>
+                <span class="n">potobj</span><span class="o">.</span><span class="n">potcar</span> <span class="o">=</span> <span class="n">pot</span>
+            <span class="n">potobjs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">potobj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">potobjs</span></div></div>
+
+<div class="viewcode-block" id="Hubbard"><a class="viewcode-back" href="../../../../calculations.html#qmpy.Hubbard">[docs]</a><span class="k">class</span> <span class="nc">Hubbard</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for a hubbard correction parameterization.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | calculation</span>
+<span class="sd">        | convention</span>
+<span class="sd">        | correction</span>
+<span class="sd">        | element</span>
+<span class="sd">        | id</span>
+<span class="sd">        | l</span>
+<span class="sd">        | ligand</span>
+<span class="sd">        | ox</span>
+<span class="sd">        | u</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">element</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">elt</span><span class="o">.</span><span class="n">Element</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;hubbards&#39;</span><span class="p">)</span>
+    <span class="n">convention</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">ox</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ligand</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">elt</span><span class="o">.</span><span class="n">Element</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
+            <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">u</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;hubbards&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__nonzero__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">l</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">element</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">element</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ligand</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">ligand</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">u</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">l</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">l</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">element_id</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ox</span><span class="p">:</span>
+            <span class="n">retval</span> <span class="o">+=</span> <span class="s1">&#39;+</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ox</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ligand</span><span class="p">:</span>
+            <span class="n">retval</span> <span class="o">+=</span> <span class="s1">&#39;-&#39;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">ligand_id</span>
+        <span class="n">retval</span> <span class="o">+=</span> <span class="s1">&#39;, U=</span><span class="si">%0.2f</span><span class="s1">, L=</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">l</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">retval</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">elt</span><span class="p">,</span> <span class="n">ox</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">l</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">lig</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">hub</span><span class="p">,</span> <span class="n">new</span> <span class="o">=</span> <span class="n">Hubbard</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span>
+                <span class="n">element_id</span><span class="o">=</span><span class="n">elt</span><span class="p">,</span>
+                <span class="n">ligand</span><span class="o">=</span><span class="n">lig</span><span class="p">,</span> <span class="n">ox</span><span class="o">=</span><span class="n">ox</span><span class="p">,</span>
+                <span class="n">l</span><span class="o">=</span><span class="n">l</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">new</span><span class="p">:</span>
+            <span class="n">hub</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">hub</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Scott Kirklin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>

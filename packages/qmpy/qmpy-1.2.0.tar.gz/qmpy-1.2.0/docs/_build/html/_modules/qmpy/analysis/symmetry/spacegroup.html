@@ -1,0 +1,479 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>qmpy.analysis.symmetry.spacegroup &#8212; qmpy 1.1.0a documentation</title>
+    <link rel="stylesheet" href="../../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.1.0a',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for qmpy.analysis.symmetry.spacegroup</h1><div class="highlight"><pre>
+<span></span><span class="c1"># qmpy/analysis/symmetry/spacegroup.py</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">fractions</span> <span class="k">as</span> <span class="nn">frac</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="k">import</span> <span class="n">models</span>
+
+<span class="kn">import</span> <span class="nn">qmpy.utils</span> <span class="k">as</span> <span class="nn">utils</span>
+<span class="kn">from</span> <span class="nn">routines</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">TranslationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">RotationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">OperationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">WyckoffSiteError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">SpacegroupError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<div class="viewcode-block" id="Translation"><a class="viewcode-back" href="../../../../analysis.html#qmpy.Translation">[docs]</a><span class="k">class</span> <span class="nc">Translation</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A translation operation.</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | :mod:`~qmpy.Spacegroup` via spacegroup</span>
+<span class="sd">        | :mod:`~qmpy.Operation` via operation</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | id</span>
+<span class="sd">        | x, y, z: Translation vector. Accessed via `vector`.</span>
+
+<span class="sd">    Examples::</span>
+<span class="sd">        </span>
+<span class="sd">        &gt;&gt;&gt; op = Operation.get(&#39;x&#39;, &#39;x+y&#39;, &#39;z-x+1/2&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; print op.translsation</span>
+<span class="sd">        &lt;Translation: 0,0,+1/2&gt;</span>
+<span class="sd">        &gt;&gt;&gt; print op.translation.vector</span>
+<span class="sd">        array([ 0. ,  0. ,  0.5])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;translations&#39;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vector</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">])</span>
+
+    <span class="nd">@vector</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">vector</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">]</span>
+        <span class="n">arr_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">vector</span><span class="p">))</span>
+        <span class="n">obj</span><span class="p">,</span> <span class="n">new</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="o">**</span><span class="n">arr_dict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">new</span><span class="p">:</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ops</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vector</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+            <span class="k">elif</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">frac</span><span class="o">.</span><span class="n">Fraction</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;+</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">frac</span><span class="o">.</span><span class="n">Fraction</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
+            <span class="n">ops</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ops</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Rotation"><a class="viewcode-back" href="../../../../analysis.html#qmpy.Rotation">[docs]</a><span class="k">class</span> <span class="nc">Rotation</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A rotation operation.</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | :mod:`~qmpy.Spacegroup` via spacegroup</span>
+<span class="sd">        | :mod:`~qmpy.Operation` via operation</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | id</span>
+<span class="sd">        | a11, a12, a13</span>
+<span class="sd">        | a21, a22, a23</span>
+<span class="sd">        | a31, a32, a33: Rotation matrix. Accessed via `matrix`.</span>
+
+<span class="sd">    Examples::</span>
+
+<span class="sd">        &gt;&gt;&gt; op = Operation.get(&#39;x&#39;, &#39;x+y&#39;, &#39;z-x+1/2&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; print op.rotation</span>
+<span class="sd">        &lt;Rotation: x,x+y,-x+z&gt;</span>
+<span class="sd">        &gt;&gt;&gt; print op.rotation.matrix</span>
+<span class="sd">        array([[ 1.,  0.,  0.],</span>
+<span class="sd">               [ 1.,  1.,  0.],</span>
+<span class="sd">               [-1.,  0.,  1.]])</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">a11</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">a12</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">a13</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">a21</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">a22</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">a23</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">a31</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">a32</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">a33</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">()</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;rotations&#39;</span>
+
+    <span class="nd">@property</span> 
+    <span class="k">def</span> <span class="nf">matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> 
+            <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">a11</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a12</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a13</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">a21</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a22</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a23</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">a31</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a32</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a33</span> <span class="p">]])</span>
+
+    <span class="nd">@matrix</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a11</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a12</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a13</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a21</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a22</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a23</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a31</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a32</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a33</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">matrix</span><span class="p">):</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;a11&#39;</span><span class="p">,</span> <span class="s1">&#39;a12&#39;</span><span class="p">,</span> <span class="s1">&#39;a13&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;a21&#39;</span><span class="p">,</span> <span class="s1">&#39;a22&#39;</span><span class="p">,</span> <span class="s1">&#39;a23&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;a31&#39;</span><span class="p">,</span> <span class="s1">&#39;a32&#39;</span><span class="p">,</span> <span class="s1">&#39;a33&#39;</span><span class="p">]</span>
+        <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+        <span class="n">mat_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">matrix</span><span class="p">))</span>
+        <span class="n">obj</span><span class="p">,</span> <span class="n">new</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="o">**</span><span class="n">mat_dict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">new</span><span class="p">:</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ops</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">indict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s1">&#39;z&#39;</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;+&#39;</span><span class="o">+</span><span class="n">indict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;-&#39;</span><span class="o">+</span><span class="n">indict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">f</span> <span class="o">=</span> <span class="n">frac</span><span class="o">.</span><span class="n">Fraction</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+                    <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%s%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">indict</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">ops</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ops</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Operation"><a class="viewcode-back" href="../../../../analysis.html#qmpy.Operation">[docs]</a><span class="k">class</span> <span class="nc">Operation</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A symmetry operation (rotation + translation).</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | :mod:`~qmpy.Spacegroup` via spacegroup</span>
+<span class="sd">        | :mod:`~qmpy.Rotation` via rotation_set</span>
+<span class="sd">        | :mod:`~qmpy.Translation` via translation_set</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | id</span>
+
+<span class="sd">    Examples::</span>
+<span class="sd">        </span>
+<span class="sd">        &gt;&gt;&gt; op = Operation.get(&#39;x+y-1/2,-z-y+1/2,x-z+1/2&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; print op</span>
+<span class="sd">        &lt;Operation: +x+y+1/2,-y-z+1/2,+x-z+1/2&gt;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rotation</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Rotation&#39;</span><span class="p">)</span>
+    <span class="n">translation</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Translation&#39;</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;operations&#39;</span>
+
+<div class="viewcode-block" id="Operation.get"><a class="viewcode-back" href="../../../../analysis.html#qmpy.Operation.get">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Accepts symmetry operation strings, i.e. &quot;+x, x+1/2, x+y-z&quot; or a tuple</span>
+<span class="sd">        of rotation matrix and translation vector. </span>
+
+<span class="sd">        Example::</span>
+
+<span class="sd">            &gt;&gt;&gt; Operation.get(&quot;x,y,-y&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; Operation.get(( rot, trans ))</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">basestring</span><span class="p">):</span>
+            <span class="n">rot</span><span class="p">,</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">parse_sitesym</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">rot</span><span class="p">,</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">rot</span> <span class="o">=</span> <span class="n">Rotation</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rot</span><span class="p">)</span>
+        <span class="n">trans</span> <span class="o">=</span> <span class="n">Translation</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
+        <span class="n">op</span><span class="p">,</span> <span class="n">new</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="n">rot</span><span class="p">,</span> <span class="n">translation</span><span class="o">=</span><span class="n">trans</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">new</span><span class="p">:</span>
+            <span class="n">op</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">op</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ops</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">indict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s1">&#39;z&#39;</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">t</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rotation</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> 
+                       <span class="bp">self</span><span class="o">.</span><span class="n">translation</span><span class="o">.</span><span class="n">vector</span><span class="p">):</span>
+
+            <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;+&#39;</span><span class="o">+</span><span class="n">indict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;-&#39;</span><span class="o">+</span><span class="n">indict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">f</span> <span class="o">=</span> <span class="n">frac</span><span class="o">.</span><span class="n">Fraction</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+                    <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%s%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">indict</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">elif</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;-</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">frac</span><span class="o">.</span><span class="n">Fraction</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%08f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">t</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;+</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">frac</span><span class="o">.</span><span class="n">Fraction</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%08f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">t</span><span class="p">))</span>
+            <span class="n">ops</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ops</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WyckoffSite"><a class="viewcode-back" href="../../../../analysis.html#qmpy.WyckoffSite">[docs]</a><span class="k">class</span> <span class="nc">WyckoffSite</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for a Wyckoff site. (e.g. a &quot;b&quot; site).</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | :mod:`~qmpy.Spacegroup` via spacegroup</span>
+<span class="sd">        | :mod:`~qmpy.Atom` via atom_set</span>
+<span class="sd">        | :mod:`~qmpy.Site` via site_set</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | id</span>
+<span class="sd">        | symbol: Site symbol</span>
+<span class="sd">        | multiplicity: Site multiplicity</span>
+<span class="sd">        | x, y, z: Coordinate symbols.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">spacegroup</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Spacegroup&#39;</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;site_set&#39;</span><span class="p">)</span>
+    <span class="n">symbol</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">multiplicity</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;wyckoffsites&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiplicity</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">spacegroup</span><span class="p">):</span>
+        <span class="n">site</span><span class="p">,</span> <span class="n">new</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">spacegroup</span><span class="o">=</span><span class="n">spacegroup</span><span class="p">,</span> 
+                <span class="n">symbol</span><span class="o">=</span><span class="n">symbol</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">new</span><span class="p">:</span>
+            <span class="n">site</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">site</span></div>
+
+<div class="viewcode-block" id="Spacegroup"><a class="viewcode-back" href="../../../../analysis.html#qmpy.Spacegroup">[docs]</a><span class="k">class</span> <span class="nc">Spacegroup</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for a space group.</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | :mod:`~qmpy.Structure` via structure_set</span>
+<span class="sd">        | :mod:`~qmpy.Translation` via centering_vectors</span>
+<span class="sd">        | :mod:`~qmpy.Operation` via operations</span>
+<span class="sd">        | :mod:`~qmpy.WyckoffSite` via site_set</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | number: Spacegroup #. (primary key)</span>
+<span class="sd">        | centrosymmetric: (bool) Is the spacegroup centrosymmetric.</span>
+<span class="sd">        | hall: Hall symbol.</span>
+<span class="sd">        | hm: Hermann-Mauguin symobl.</span>
+<span class="sd">        | lattice_system: Cubic, Hexagonal, Tetragonal, Orthorhombic,</span>
+<span class="sd">        |   Monoclinic or Triclinic.</span>
+<span class="sd">        | pearson: Pearson symbol</span>
+<span class="sd">        | schoenflies: Schoenflies symbol.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">hm</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">hall</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">pearson</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">schoenflies</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">operations</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Operation</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">centering_vectors</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Translation</span><span class="p">)</span>
+    <span class="n">lattice_system</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">centrosymmetric</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">_sym_ops</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_rots</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_trans</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;spacegroups&#39;</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Spacegroup</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sym_ops</span><span class="p">:</span>
+            <span class="n">op</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sym_ops</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Spacegroup</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="n">number</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sym_ops</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List of (rotation, translation) pairs for the spacegroup&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sym_ops</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sym_ops</span> <span class="o">=</span> <span class="p">[</span> <span class="n">op</span> <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sym_ops</span>
+
+    <span class="nd">@sym_ops</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">sym_ops</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sym_ops</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sym_ops</span> <span class="o">=</span> <span class="n">sym_ops</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rotations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List of rotation operations for the spacegroup.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rots</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">op</span><span class="o">.</span><span class="n">rotation</span><span class="o">.</span><span class="n">matrix</span> <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sym_ops</span> <span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rots</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">translations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List of translation operations for the spacegroup.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trans</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_trans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">op</span><span class="o">.</span><span class="n">translation</span><span class="o">.</span><span class="n">vector</span> <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sym_ops</span> <span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trans</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">wyckoff_sites</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List of WyckoffSites.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">site_set</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;symbol&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">symbol</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the Hermann-Mauguin symbol for the spacegroup&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hm</span>
+
+    <span class="k">def</span> <span class="nf">equivalent_sites</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span>
+        <span class="n">equiv</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">rot</span><span class="p">,</span> <span class="n">trans</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rotations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">translations</span><span class="p">):</span>
+            <span class="n">new</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">rot</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span> <span class="o">+</span> <span class="n">trans</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span> <span class="nb">all</span><span class="p">([</span> <span class="nb">abs</span><span class="p">(</span><span class="n">o</span><span class="o">-</span><span class="n">n</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span> <span class="k">for</span> <span class="n">o</span><span class="p">,</span><span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)])</span>
+                                              <span class="k">for</span> <span class="n">old</span> <span class="ow">in</span> <span class="n">equiv</span><span class="p">]):</span>
+                <span class="n">equiv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">equiv</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_sym_ops</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_wyckoff_sites</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">site_set</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Spacegroup.get_site"><a class="viewcode-back" href="../../../../analysis.html#qmpy.Spacegroup.get_site">[docs]</a>    <span class="k">def</span> <span class="nf">get_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symbol</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets WyckoffSite by symbol.&quot;&quot;&quot;</span>
+        <span class="n">symol</span> <span class="o">=</span> <span class="n">symbol</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;0123456789&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">site_set</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">symbol__exact</span><span class="o">=</span><span class="n">symbol</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Scott Kirklin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>

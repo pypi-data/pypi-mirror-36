@@ -1,0 +1,412 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>qmpy.analysis.vasp.dos &#8212; qmpy 1.1.0a documentation</title>
+    <link rel="stylesheet" href="../../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.1.0a',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for qmpy.analysis.vasp.dos</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="k">import</span> <span class="n">models</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">qmpy</span>
+<span class="kn">import</span> <span class="nn">qmpy.db.custom</span> <span class="k">as</span> <span class="nn">custom</span>
+<span class="kn">from</span> <span class="nn">qmpy.utils</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1">#class Orbital(models.Model):</span>
+<span class="c1">#    name = models.CharField(max_length=10)</span>
+
+<span class="c1">#class EnergyLevel(models.Model):</span>
+<span class="c1">#    dos = models.ForeignKey(&#39;DOS&#39;, related_name=&#39;energy_levels&#39;)</span>
+<span class="c1">#    energy = models.FloatField(blank=True, null=True)</span>
+<span class="c1">#    occupation = models.FloatField(blank=True, null=True)</span>
+<span class="c1">#    orbital = models.ForiegnKey(Orbital)</span>
+<span class="c1">#</span>
+<span class="c1">#    class Meta:</span>
+<span class="c1">#        db_table = &#39;states&#39;</span>
+<span class="c1">#        app_label = &#39;qmpy&#39;</span>
+<span class="c1">#        order_by = &#39;energy&#39;</span>
+
+<div class="viewcode-block" id="DOS"><a class="viewcode-back" href="../../../../calculations.html#qmpy.DOS">[docs]</a><span class="k">class</span> <span class="nc">DOS</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Electronic density of states..</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | :mod:`~qmpy.Entry` via entry</span>
+<span class="sd">        | :mod:`~qmpy.MetaData` via meta_data</span>
+<span class="sd">        | :mod:`~qmpy.Calculation` via calculation</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | id</span>
+<span class="sd">        | data: Numpy array of DOS occupations.</span>
+<span class="sd">        | file: Source file.</span>
+<span class="sd">        | gap: Band gap in eV.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">meta_data</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">&#39;MetaData&#39;</span><span class="p">)</span>
+    <span class="n">entry</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Entry&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">efermi</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">gap</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">custom</span><span class="o">.</span><span class="n">NumpyArrayField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">_efermi</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;dos&#39;</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">doscar</span><span class="o">=</span><span class="s1">&#39;DOSCAR&#39;</span><span class="p">,</span> <span class="n">efermi</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dos</span> <span class="o">=</span> <span class="n">DOS</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">doscar</span><span class="p">))</span>
+            <span class="n">dos</span><span class="o">.</span><span class="n">_efermi</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">dos</span><span class="o">.</span><span class="n">read_doscar</span><span class="p">(</span><span class="n">dos</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
+            <span class="n">dos</span><span class="o">.</span><span class="n">efermi</span> <span class="o">=</span> <span class="n">efermi</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">VaspError</span><span class="p">(</span><span class="s1">&#39;Could not parse DOSCAR&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dos</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">efermi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_efermi</span>
+
+    <span class="nd">@efermi</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">efermi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">efermi</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the Fermi level.&quot;&quot;&quot;</span>
+        <span class="n">ef</span> <span class="o">=</span> <span class="n">efermi</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_efermi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_efermi</span> <span class="o">=</span> <span class="n">efermi</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">ef</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_site_dos</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_site_dos</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">ef</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the array with the energies.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="k">def</span> <span class="nf">find_vbm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">edos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_dos</span>
+        <span class="k">while</span> <span class="n">edos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vbm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vbm</span>
+
+    <span class="k">def</span> <span class="nf">find_cbm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">edos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_dos</span>
+        <span class="k">while</span> <span class="n">edos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cbm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cbm</span>
+
+    <span class="k">def</span> <span class="nf">metal_find_vbm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">edos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_dos</span>
+        <span class="k">while</span> <span class="n">edos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">find_gap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span>
+        <span class="n">i0</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+        <span class="n">i1</span> <span class="o">=</span> <span class="p">(</span> <span class="n">i0</span><span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">[</span><span class="n">i0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">i0</span><span class="o">+</span><span class="mi">1</span> <span class="p">)</span>
+        <span class="n">edos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_dos</span>
+        <span class="k">if</span> <span class="n">edos</span><span class="p">[</span><span class="n">i0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="ow">and</span> <span class="n">edos</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gap</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_cbm</span><span class="p">(</span><span class="n">tol</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_vbm</span><span class="p">(</span><span class="n">tol</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gap</span>
+
+    <span class="n">_plot</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">line1</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_dos</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">line2</span> <span class="o">=</span> <span class="n">Line</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total_dos</span><span class="p">)</span><span class="o">*</span><span class="mf">1.1</span><span class="p">]])</span>
+            <span class="n">canvas</span> <span class="o">=</span> <span class="n">Renderer</span><span class="p">(</span><span class="n">lines</span><span class="o">=</span><span class="p">[</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">])</span>
+            <span class="n">canvas</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total_dos</span><span class="p">)</span><span class="o">*</span><span class="mf">1.1</span>
+            <span class="n">canvas</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">canvas</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Energy (eV)&quot;</span>
+            <span class="n">canvas</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;# of States/eV/unit cell&quot;</span> <span class="c1">#[mohan]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_plot</span> <span class="o">=</span> <span class="n">canvas</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot</span>
+
+
+<div class="viewcode-block" id="DOS.get_projected_dos"><a class="viewcode-back" href="../../../../calculations.html#qmpy.DOS.get_projected_dos">[docs]</a>    <span class="k">def</span> <span class="nf">get_projected_dos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strc</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">orbital</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the density of states for a certain element</span>
+
+<span class="sd">        Returns an NDOSx1 array with DOS for the chosen element</span>
+<span class="sd">            and orbital type</span>
+
+<span class="sd">        strc: qmpy.materials.Structure</span>
+<span class="sd">            Structure associated with this DOS</span>
+<span class="sd">        element: str</span>
+<span class="sd">            Symbol of the element</span>
+<span class="sd">        orbital: str or list or None</span>
+<span class="sd">            Which orbitals to retrieve. See site_dos for options.</span>
+<span class="sd">            Use None to integrate all orbitals</span>
+<span class="sd">            If you specify an orbital without phase factors or spins,</span>
+<span class="sd">                this operation will automatically sum all bands that </span>
+<span class="sd">                match that criteria (ex: if you specify &#39;d+&#39;, this </span>
+<span class="sd">                may sum the dxy+, dyz+, dz2+, ... orbitals. Another</span>
+<span class="sd">                example, if you put &quot;+&quot; it will get only the positive band</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Check for input errors</span>
+        <span class="k">if</span> <span class="n">strc</span><span class="o">.</span><span class="n">natoms</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_site_dos</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Structure has different atom count than DOS&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">strc</span><span class="o">.</span><span class="n">composition</span><span class="o">.</span><span class="n">comp</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Element not in structure&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Get the list of atoms to sum over</span>
+        <span class="n">atoms</span> <span class="o">=</span> <span class="p">[</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">atom</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">strc</span><span class="o">.</span><span class="n">atoms</span><span class="p">)</span> <span class="k">if</span> <span class="n">atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span> <span class="o">==</span> <span class="n">element</span> <span class="p">]</span>
+
+        <span class="c1"># Get the number of different bands</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_site_dos</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># If only a string is passed for orbital, convert it to list</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">orbital</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">orbital</span> <span class="o">=</span> <span class="p">[</span><span class="n">orbital</span><span class="p">]</span>
+
+        <span class="c1"># Get the list of orbitals</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+           <span class="n">all_orbs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+           <span class="n">all_orbs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;s+&#39;</span><span class="p">,</span> <span class="s1">&#39;s-&#39;</span><span class="p">,</span> <span class="s1">&#39;p+&#39;</span><span class="p">,</span> <span class="s1">&#39;p-&#39;</span><span class="p">,</span> <span class="s1">&#39;d-&#39;</span><span class="p">,</span> <span class="s1">&#39;d+&#39;</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">10</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">37</span><span class="p">:</span> <span class="c1"># 37 == non-collinear</span>
+           <span class="n">all_orbs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="s1">&#39;py&#39;</span><span class="p">,</span> <span class="s1">&#39;pz&#39;</span><span class="p">,</span> <span class="s1">&#39;dxy&#39;</span><span class="p">,</span> <span class="s1">&#39;dyz&#39;</span><span class="p">,</span> <span class="s1">&#39;dz2&#39;</span><span class="p">,</span> <span class="s1">&#39;dxz&#39;</span><span class="p">,</span> <span class="s1">&#39;dx2&#39;</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">19</span><span class="p">:</span>
+           <span class="n">all_orbs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;s+&#39;</span><span class="p">,</span> <span class="s1">&#39;px+&#39;</span><span class="p">,</span> <span class="s1">&#39;py+&#39;</span><span class="p">,</span> <span class="s1">&#39;pz+&#39;</span><span class="p">,</span> <span class="s1">&#39;dxy+&#39;</span><span class="p">,</span> <span class="s1">&#39;dyz+&#39;</span><span class="p">,</span> <span class="s1">&#39;dz2+&#39;</span><span class="p">,</span> <span class="s1">&#39;dxz+&#39;</span><span class="p">,</span> <span class="s1">&#39;dx2+&#39;</span><span class="p">,</span> 
+              <span class="s1">&#39;s-&#39;</span><span class="p">,</span> <span class="s1">&#39;px-&#39;</span><span class="p">,</span> <span class="s1">&#39;py-&#39;</span><span class="p">,</span> <span class="s1">&#39;pz-&#39;</span><span class="p">,</span> <span class="s1">&#39;dxy-&#39;</span><span class="p">,</span> <span class="s1">&#39;dyz-&#39;</span><span class="p">,</span> <span class="s1">&#39;dz2-&#39;</span><span class="p">,</span> <span class="s1">&#39;dxz-&#39;</span><span class="p">,</span> <span class="s1">&#39;dx2-&#39;</span> <span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span> 
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Unrecognized number of columns in DOS: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">n</span><span class="p">)</span>
+
+        <span class="c1"># Get the ones that the user wants</span>
+        <span class="k">if</span> <span class="n">orbital</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">orb_to_sum</span> <span class="o">=</span> <span class="n">all_orbs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">orb_to_sum</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">orb</span> <span class="ow">in</span> <span class="n">orbital</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">orb</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="ow">in</span> <span class="n">orb</span> <span class="ow">or</span> <span class="s1">&#39;+&#39;</span> <span class="ow">in</span> <span class="n">orb</span><span class="p">):</span>
+                    <span class="n">shl</span> <span class="o">=</span> <span class="n">orb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">spn</span> <span class="o">=</span> <span class="n">orb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">all_orbs</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">shl</span> <span class="ow">in</span> <span class="n">o</span> <span class="ow">and</span> <span class="n">spn</span> <span class="ow">in</span> <span class="n">o</span><span class="p">:</span>
+                            <span class="n">orb_to_sum</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">all_orbs</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">orb</span> <span class="ow">in</span> <span class="n">o</span><span class="p">:</span> <span class="n">orb_to_sum</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+
+        <span class="c1"># Print out info, if debug mode</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s2">&quot;Summing orbitals: &quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">orb_to_sum</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="s2">&quot;For atoms: &quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">])</span>
+
+        <span class="c1"># Do the sum</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">orb</span> <span class="ow">in</span> <span class="n">orb_to_sum</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">site_dos</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span> <span class="n">orb</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span></div>
+        
+
+<div class="viewcode-block" id="DOS.site_dos"><a class="viewcode-back" href="../../../../calculations.html#qmpy.DOS.site_dos">[docs]</a>    <span class="k">def</span> <span class="nf">site_dos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom</span><span class="p">,</span> <span class="n">orbital</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return an NDOSx1 array with dos for the chosen atom and orbital.</span>
+
+<span class="sd">        atom: int</span>
+<span class="sd">            Atom index</span>
+<span class="sd">        orbital: int or str</span>
+<span class="sd">            Which orbital to plot</span>
+
+<span class="sd">        If the orbital is given as an integer:</span>
+<span class="sd">        If spin-unpolarized calculation, no phase factors:</span>
+<span class="sd">        s = 0, p = 1, d = 2</span>
+<span class="sd">        Spin-polarized, no phase factors:</span>
+<span class="sd">        s-up = 0, s-down = 1, p-up = 2, p-down = 3, d-up = 4, d-down = 5</span>
+<span class="sd">        If phase factors have been calculated, orbitals are</span>
+<span class="sd">        s, py, pz, px, dxy, dyz, dz2, dxz, dx2</span>
+<span class="sd">        double in the above fashion if spin polarized.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Integer indexing for orbitals starts from 1 in the _site_dos array</span>
+        <span class="c1"># since the 0th column contains the energies</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">orbital</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_site_dos</span><span class="p">[</span><span class="n">atom</span><span class="p">,</span> <span class="n">orbital</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_site_dos</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">norb</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="n">norb</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;s+&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;s-up&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;s-&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;s-down&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+                    <span class="s1">&#39;p+&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;p-up&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;p-&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;p-down&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+                    <span class="s1">&#39;d+&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;d-up&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;d-&#39;</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;d-down&#39;</span><span class="p">:</span><span class="mi">6</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">10</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">37</span><span class="p">:</span>
+            <span class="n">norb</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;py&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;pz&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;px&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+                    <span class="s1">&#39;dxy&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;dyz&#39;</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;dz2&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;dxz&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span>
+                    <span class="s1">&#39;dx2&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">}</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">37</span><span class="p">:</span> <span class="c1"># Non-collinear</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">norb</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span> <span class="c1"># Add 3 new columns between each entry</span>
+                    <span class="n">norb</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">norb</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">norb</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> 
+        <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">19</span><span class="p">:</span>
+            <span class="n">norb</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;s+&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;s-up&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;s-&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;s-down&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+                    <span class="s1">&#39;py+&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;py-up&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;py-&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;py-down&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+                    <span class="s1">&#39;pz+&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;pz-up&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;pz-&#39;</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;pz-down&#39;</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span>
+                    <span class="s1">&#39;px+&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;px-up&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;px-&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;px-down&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span>
+                    <span class="s1">&#39;dxy+&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;dxy-up&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;dxy-&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;dxy-down&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="s1">&#39;dyz+&#39;</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;dyz-up&#39;</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;dyz-&#39;</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;dyz-down&#39;</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span>
+                    <span class="s1">&#39;dz2+&#39;</span><span class="p">:</span><span class="mi">13</span><span class="p">,</span> <span class="s1">&#39;dz2-up&#39;</span><span class="p">:</span><span class="mi">13</span><span class="p">,</span> <span class="s1">&#39;dz2-&#39;</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span> <span class="s1">&#39;dz2-down&#39;</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span>
+                    <span class="s1">&#39;dxz+&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;dxz-up&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;dxz-&#39;</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;dxz-down&#39;</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span>
+                    <span class="s1">&#39;dx2+&#39;</span><span class="p">:</span><span class="mi">17</span><span class="p">,</span> <span class="s1">&#39;dx2-up&#39;</span><span class="p">:</span><span class="mi">17</span><span class="p">,</span> <span class="s1">&#39;dx2-&#39;</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;dx2-down&#39;</span><span class="p">:</span><span class="mi">18</span><span class="p">}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_site_dos</span><span class="p">[</span><span class="n">atom</span><span class="p">,</span> <span class="n">norb</span><span class="p">[</span><span class="n">orbital</span><span class="o">.</span><span class="n">lower</span><span class="p">()],</span> <span class="p">:]</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">total_dos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:],</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">integrated_dos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span>
+
+<div class="viewcode-block" id="DOS.read_doscar"><a class="viewcode-back" href="../../../../calculations.html#qmpy.DOS.read_doscar">[docs]</a>    <span class="k">def</span> <span class="nf">read_doscar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s2">&quot;DOSCAR&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Read a VASP DOSCAR file&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+        <span class="n">natoms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span> <span class="k">for</span> <span class="n">nn</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>  <span class="c1"># Skip next 4 lines.</span>
+        <span class="c1"># First we have a block with total and total integrated DOS</span>
+        <span class="n">ndos</span><span class="p">,</span> <span class="n">efermi</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_efermi</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">efermi</span><span class="p">)</span>
+        <span class="n">ndos</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ndos</span><span class="p">)</span>
+        <span class="n">dos</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">ndos</span><span class="p">):</span>
+            <span class="n">dos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dos</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="c1"># Next we have one block per atom, if INCAR contains the stuff</span>
+        <span class="c1"># necessary for generating site-projected DOS</span>
+        <span class="n">dos</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">na</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">natoms</span><span class="p">):</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                <span class="c1"># No site-projected DOS</span>
+                <span class="k">break</span>
+            <span class="n">ndos</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">cdos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">ndos</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)))</span>
+            <span class="n">cdos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ndos</span><span class="p">):</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                <span class="n">cdos</span><span class="p">[</span><span class="n">nd</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="p">])</span>
+            <span class="n">dos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cdos</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_site_dos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dos</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Scott Kirklin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>
