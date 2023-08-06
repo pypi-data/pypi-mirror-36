@@ -1,0 +1,32 @@
+Metadata-Version: 1.1
+Name: LightNER
+Version: 0.1.0
+Summary: A Toolkit for Pre-trained Sequence Labeling Models Inference
+Home-page: https://github.com/LiyuanLucasLiu/LightNER
+Author: Lucas Liu
+Author-email: llychinalz@gmail.com
+License: Apache License 2.0
+Description-Content-Type: UNKNOWN
+Description: History
+        =======
+        
+        0.0.1 (2018-10-02)
+        ------------------
+        * Support inference for Char-LSTM-CRF (LD-Net)
+        
+        0.0.2 (2018-10-02)
+        ------------------
+        * Debugged
+        
+        0.1.0 (2018-10-03)
+        ------------------
+        * Add support to load pre-trained model from url or path.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
