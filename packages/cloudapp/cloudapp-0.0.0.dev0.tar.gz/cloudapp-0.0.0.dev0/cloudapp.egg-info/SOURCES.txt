@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+cloudapp/__init__.py
+cloudapp.egg-info/PKG-INFO
+cloudapp.egg-info/SOURCES.txt
+cloudapp.egg-info/dependency_links.txt
+cloudapp.egg-info/entry_points.txt
+cloudapp.egg-info/not-zip-safe
+cloudapp.egg-info/requires.txt
+cloudapp.egg-info/top_level.txt
