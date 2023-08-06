@@ -1,0 +1,7 @@
+include CHANGELOG.txt
+include LICENSE.txt
+include README.txt
+include setup.py
+recursive-include font_fredoka_one *.py
+recursive-include font_fredoka_one/files *.ttf
+include font_fredoka_one/files/OFL.txt
