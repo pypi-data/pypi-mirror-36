@@ -1,0 +1,12 @@
+autopy-1.1.1.dist-info/WHEEL,sha256=8GRmmxXR8CYXjQdIZUVeFxekR9F18ZAil6LbbAlMfZ0,107
+autopy-1.1.1.dist-info/top_level.txt,sha256=XZwopO5i8LsCkf3cJbCQeQLMiBD7XwTozpS9kMDQ_N4,7
+autopy-1.1.1.dist-info/METADATA,sha256=zA5_QJUmz1wJpNWPECjdvsiK6MnwO5tTDQc5HJf5ph4,946
+autopy-1.1.1.dist-info/RECORD,,
+autopy/screen.so,sha256=yuY6c5SKw8gnockH9kD8UUYp1w0X6_eZitUIZ3elGfE,4976520
+autopy/alert.so,sha256=yuY6c5SKw8gnockH9kD8UUYp1w0X6_eZitUIZ3elGfE,4976520
+autopy/key.so,sha256=yuY6c5SKw8gnockH9kD8UUYp1w0X6_eZitUIZ3elGfE,4976520
+autopy/bitmap.so,sha256=yuY6c5SKw8gnockH9kD8UUYp1w0X6_eZitUIZ3elGfE,4976520
+autopy/__init__.py,sha256=_18k7-UnqdGZNQKDAByFLHb_auHfrC1k9BTYQPBbghQ,277
+autopy/color.so,sha256=yuY6c5SKw8gnockH9kD8UUYp1w0X6_eZitUIZ3elGfE,4976520
+autopy/mouse.so,sha256=yuY6c5SKw8gnockH9kD8UUYp1w0X6_eZitUIZ3elGfE,4976520
+autopy/.libs/libXtst-767ad02a.so.6.1.0,sha256=n3LBRO6msHFrP4OQaU7IXR-hMd9lCC-48cBVOcaWziE,21888
