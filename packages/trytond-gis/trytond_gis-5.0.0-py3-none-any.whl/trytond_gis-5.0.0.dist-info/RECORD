@@ -1,0 +1,17 @@
+trytond_gis/__init__.py,sha256=TDMjpOLIaRppwdoqvGbE4NSIXzEuyQoKKt6um_zC4Q8,557
+trytond_gis/const.py,sha256=_0IPrIgugpNmeHpZO2jP4LERyjclqPRvgOltKI461No,258
+trytond_gis/fields.py,sha256=gq7aL7HW8cbXGXeepcTzEQtbOGVMGviUN3C_K3gNVx4,2068
+trytond_gis/sql.py,sha256=R-yK_w_Zdj3PqwqPwEKW_IiL2RSkI9IPT0zHjJDn2dM,285
+trytond_gis/postgis/__init__.py,sha256=cBV19EE6j-u5RDxH9p4siMpkP6Ha5Ioq78g8lRl6NPI,194
+trytond_gis/postgis/database.py,sha256=EHMu3-SFCRNxSjwH4YwrdwkpHy7vnXCRjHU2HAkGL08,2096
+trytond_gis/postgis/table.py,sha256=P6EbqsoSUg_J0mtpOpUNYIyH09ZWC0IUAMI523t1NiI,2951
+trytond_gis/tests/__init__.py,sha256=_ct0EMzyebt_DJYCmvjTBFID2RHHEunQnAhM6TTQpjI,294
+trytond_gis/tests/gis.py,sha256=ZeMIXuzJEZ3JxZUh46iHCXMbnXflbwTaMxTXsoaTh-0,358
+trytond_gis/tests/test_fields.py,sha256=Qb8YWIHeW5Xss_HZgu4DNnng6WhjekMWt5LptkFCt1c,3032
+trytond_gis-5.0.0.dist-info/DESCRIPTION.rst,sha256=Mx3LGLkuseD54xWZNJ9VviAVeqrVV0uASXWHSm-XVek,492
+trytond_gis-5.0.0.dist-info/METADATA,sha256=90PBRwLd41gB2IYWYEcSveeIiyRYMdZLYm1xDysblOc,1414
+trytond_gis-5.0.0.dist-info/RECORD,,
+trytond_gis-5.0.0.dist-info/WHEEL,sha256=rNo05PbNqwnXiIHFsYm0m22u4Zm6YJtugFG2THx4w3g,92
+trytond_gis-5.0.0.dist-info/entry_points.txt,sha256=4QRkWKCPFPDI7r7r8MimeyoXYU1LbUjUzpb46DXDzw8,109
+trytond_gis-5.0.0.dist-info/metadata.json,sha256=Z2wUFUdhGaBhIqq1KHDtw4-1Tn4cC66qS1aij13sW7s,1282
+trytond_gis-5.0.0.dist-info/top_level.txt,sha256=IPvLqSqxO_WQl6N3U_BOJ47Czs7qs_LxULDVgEhaQXE,12
