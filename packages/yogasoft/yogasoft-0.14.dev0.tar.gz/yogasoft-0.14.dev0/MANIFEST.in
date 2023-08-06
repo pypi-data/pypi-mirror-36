@@ -1,0 +1,7 @@
+include requirements.txt
+recursive-include yogasoft/app *
+recursive-include yogasoft/logs *
+recursive-include yogasoft/locale *
+recursive-include yogasof/templates *
+recursive-include yogasof/yogasoft *
+global-exclude *.pyc *pyo *~ *.mo
