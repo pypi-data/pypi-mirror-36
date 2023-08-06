@@ -1,0 +1,15 @@
+SQLAlchemy_Unchained-0.2.0.dist-info/METADATA,sha256=I6oZnQdFIs_YDJkR0ccawPr6kqasqYKo_NtN1LwnngE,11354
+SQLAlchemy_Unchained-0.2.0.dist-info/RECORD,,
+SQLAlchemy_Unchained-0.2.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+SQLAlchemy_Unchained-0.2.0.dist-info/entry_points.txt,sha256=ejs4qG6hGO165L1r__7-HvQpG_vrm0hXJI2Hxqb-0og,59
+SQLAlchemy_Unchained-0.2.0.dist-info/top_level.txt,sha256=UKaop2q6DnOq4lnKif3Cr729BW0PwWMdNzXo4DNbA_M,21
+sqlalchemy_unchained/__init__.py,sha256=haJzarVINJJbUByKFlqzRtyo5y5dped3AMqQYvQ-Fng,3466
+sqlalchemy_unchained/base_model.py,sha256=YTG_B8_AI8my4QULQXqvLiEFYqG0XPn_HNjcdlw7l2Q,5402
+sqlalchemy_unchained/base_model_metaclass.py,sha256=X4Bk8oj91zj7hBIoakTLkRBQbQvy6J3u4de0kXH9VmQ,8341
+sqlalchemy_unchained/base_query.py,sha256=OQ3J9bPTEbbzICBDlZgIjPuzoO0VtvdRUZtdePa2-78,3088
+sqlalchemy_unchained/cli.py,sha256=g7sduPGrLZAA5qrFXP27ui-RBKxRM2gk7fGWrZfbMkY,983
+sqlalchemy_unchained/foreign_key.py,sha256=VAoyCUY9jon5EWw0i7nR-BDRJqWXmkJnizg8X9A_VTA,2441
+sqlalchemy_unchained/model_meta_options.py,sha256=GlOiRvc2rAtV3_bIzNi8h3e9yQZ6j75JYhlEzs9Dzys,11406
+sqlalchemy_unchained/model_registry.py,sha256=TmUP_K3nm5jR2GoXf6PGMq-YN852fP-gn7NENQwcamo,6692
+sqlalchemy_unchained/utils.py,sha256=18LHoGPah0cR_luhODtba97Zm-XV3zBIyqqT1u1-dqo,1190
+sqlalchemy_unchained/validation.py,sha256=0A5hyQ9vDfzJY0DXOQ5lHcvmV7A62yfDjuOx3esETvc,1950
