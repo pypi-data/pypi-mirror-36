@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: trytond_nereid_chimp
+Version: 4.0.0.2
+Summary: Nereid Integration with MailChimp for newsletter management
+Home-page: http://www.fulfil.io/
+Author: Fulfil.IO Inc., Openlabs Technologies & Consulting (P) LTD
+Author-email: info@fulfil.io
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Plugins
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Office/Business
