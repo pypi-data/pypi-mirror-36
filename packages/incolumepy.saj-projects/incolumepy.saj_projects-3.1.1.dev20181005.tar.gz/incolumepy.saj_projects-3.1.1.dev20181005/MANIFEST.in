@@ -1,0 +1,15 @@
+global-exclude *.py[co]
+include data/*.csv
+include data/*.xlsx
+include docs/*.rst
+include drivers/
+include *.md
+include src/incolumepy/saj_projects/version.txt
+graft exemplos/caterva
+prune CCIVIL_03
+prune exemplos
+prune relatorios
+prune view
+prume testes
+recursive-exclude src/testes
+recursive-exclude py?? *
