@@ -1,0 +1,3 @@
+[console_scripts]
+foss-finder-cli = foss_finder.scripts.foss_finder_cli:main
+
