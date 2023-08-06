@@ -1,0 +1,12 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+mastojeppetto/__init__.py
+mastojeppetto.egg-info/PKG-INFO
+mastojeppetto.egg-info/SOURCES.txt
+mastojeppetto.egg-info/dependency_links.txt
+mastojeppetto.egg-info/entry_points.txt
+mastojeppetto.egg-info/requires.txt
+mastojeppetto.egg-info/top_level.txt
