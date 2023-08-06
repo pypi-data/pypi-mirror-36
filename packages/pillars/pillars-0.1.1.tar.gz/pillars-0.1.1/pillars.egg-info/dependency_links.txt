@@ -1,0 +1,2 @@
+git+https://github.com/eyepea/aiosip.git@master#egg=aiosip
+git+https://github.com/gawel/panoramisk.git@master#egg=panoramisk
