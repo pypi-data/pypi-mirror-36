@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+
+import pyerepfit.erepfit
+import sys
+
+pyerepfit.erepfit.run_erepfit(sys.argv[1:])
