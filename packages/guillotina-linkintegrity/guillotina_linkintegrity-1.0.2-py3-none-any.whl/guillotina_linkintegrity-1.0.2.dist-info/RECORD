@@ -1,0 +1,15 @@
+guillotina_linkintegrity/__init__.py,sha256=q2dg_OzvNKMJA0WfpKILN3DJdqISB6Yqaml8fvE1Gz0,1021
+guillotina_linkintegrity/api.py,sha256=wLdclyy1QLS91GJKnlXBzZiu8SOdnAHfw-68XeuWmy8,1451
+guillotina_linkintegrity/install.py,sha256=kM3S0Mhxp5VSxHK5ATk6z9g0f3PLgK2yjEITlbXRXaQ,523
+guillotina_linkintegrity/storage.py,sha256=bOGtV5bT_Oax43msJihie0yu-DVpeSHp0BLiyxIwbXo,2215
+guillotina_linkintegrity/subscribers.py,sha256=Hht5OMUOBLg6VKTY1TI865wrChaHzzl7l0JZhZLvPjo,1725
+guillotina_linkintegrity/utils.py,sha256=4FrAZRXXA4p7aVrn8odmiOUIagOKKccpQPbtCaklQxU,8594
+guillotina_linkintegrity/tests/__init__.py,sha256=MsSFjiLMLJZ7QhUPpVBWKiyDnCzryquRyr329NoCACI,2
+guillotina_linkintegrity/tests/conftest.py,sha256=jbI-idSd2Ei2QOnB3mjeZF3j91xrukvA4mp2KrqiRw4,249
+guillotina_linkintegrity/tests/fixtures.py,sha256=-09w4XwTLS22EEMDFT5PGAL7MQvtmKXmVjouV37M_h4,305
+guillotina_linkintegrity/tests/test_api.py,sha256=aZ4pDtHr0qKoGsF_HmgSbN0XfFsI2Rs3HkcngXU230U,2632
+guillotina_linkintegrity/tests/test_li.py,sha256=b80V6-Sra9oOurOFy0iB2O3-74pm_N4XOjOQU8W7xiY,7291
+guillotina_linkintegrity-1.0.2.dist-info/METADATA,sha256=lOZTBUcch9APfWUlbU5mHuQoGhnQsPhH1GfhjaDS0WE,3531
+guillotina_linkintegrity-1.0.2.dist-info/RECORD,,
+guillotina_linkintegrity-1.0.2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+guillotina_linkintegrity-1.0.2.dist-info/top_level.txt,sha256=zC4BxAbq63ebD1Kz_-ZdfenlD7KfPPzH9Y4CNYLyC8Y,25
