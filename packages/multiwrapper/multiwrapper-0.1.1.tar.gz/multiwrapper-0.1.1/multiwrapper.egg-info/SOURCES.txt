@@ -1,0 +1,11 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+multiwrapper/__init__.py
+multiwrapper/multiprocessing_utils.py
+multiwrapper.egg-info/PKG-INFO
+multiwrapper.egg-info/SOURCES.txt
+multiwrapper.egg-info/dependency_links.txt
+multiwrapper.egg-info/requires.txt
+multiwrapper.egg-info/top_level.txt
