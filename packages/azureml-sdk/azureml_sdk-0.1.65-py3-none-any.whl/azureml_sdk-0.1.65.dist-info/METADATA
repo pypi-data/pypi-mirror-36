@@ -1,0 +1,41 @@
+Metadata-Version: 2.0
+Name: azureml-sdk
+Version: 0.1.65
+Summary: UNKNOWN
+Home-page: https://docs.microsoft.com/en-us/azure/machine-learning/service/
+Author: Microsoft Corp
+License: Proprietary https://aka.ms/azureml-sdk-license
+Platform: UNKNOWN
+Description-Content-Type: text/x-rst
+Provides-Extra: notebooks
+Provides-Extra: webservice-schema
+Provides-Extra: databricks
+Provides-Extra: automl
+Provides-Extra: explain
+Provides-Extra: contrib
+Requires-Dist: azureml-core (==0.1.65)
+Requires-Dist: azureml-train (==0.1.65)
+Requires-Dist: azureml-pipeline (==0.1.65)
+Provides-Extra: automl
+Requires-Dist: azureml-train-automl (==0.1.65); extra == 'automl'
+Provides-Extra: contrib
+Requires-Dist: azureml-contrib-tensorboard (==0.1.65); extra == 'contrib'
+Requires-Dist: azureml-contrib-server (==0.1.65); extra == 'contrib'
+Requires-Dist: azureml-contrib-run (==0.1.65); extra == 'contrib'
+Requires-Dist: azureml-contrib-brainwave (==0.1.65); extra == 'contrib'
+Provides-Extra: databricks
+Requires-Dist: azureml-train-automl (==0.1.65); extra == 'databricks'
+Requires-Dist: pyOpenSSL (==16.0.0); extra == 'databricks'
+Requires-Dist: cryptography (==1.5); extra == 'databricks'
+Requires-Dist: ipython (==2.2.0); extra == 'databricks'
+Provides-Extra: explain
+Requires-Dist: azureml-explain-model (==0.1.65); extra == 'explain'
+Provides-Extra: notebooks
+Requires-Dist: azureml-train-widgets (==0.1.65); extra == 'notebooks'
+Provides-Extra: webservice-schema
+Requires-Dist: azureml-webservice-schema (==0.1.65); extra == 'webservice-schema'
+
+The azureml-sdk is Python SDK for using Azure Machine Learning service (Preview): a cloud service that you can use to develop and deploy machine learning models.
+
+
+
