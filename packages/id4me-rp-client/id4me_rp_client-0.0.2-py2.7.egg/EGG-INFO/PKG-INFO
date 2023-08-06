@@ -1,0 +1,155 @@
+Metadata-Version: 2.1
+Name: id4me-rp-client
+Version: 0.0.2
+Summary: Python client library for ID4me protocol - Relying Party side. See: https://id4me.org
+Home-page: https://gitlab.com/ID4me/id4me-rp-client-python
+Author: Pawel Kowalik
+Author-email: pawel-kow@users.noreply.github.com
+License: https://gitlab.com/ID4me/id4me-rp-client-python/blob/master/LICENSE
+Description: # domain-connect
+        Python Relying Party client library for ID4me protocol.
+        For details of the protocol, please visit: https://id4me.org
+        
+        Library offers Relying Party functionality for authentication with Identity Authority and claim request from the Identity Agent..
+        
+        ## Specification reference
+        https://gitlab.com/ID4me/documentation/blob/master/id4ME%20Technical%20Specification.adoc
+        - Version: 1.0
+        - Revision: 02
+        
+        ## Installation
+        ```shell
+        pip install id4me-rp-client
+        ```
+        
+        ## Usage
+        
+        ### Register the client and authorize with Identity Authority
+        
+        ```python
+        from from id4me_rp_client import *
+        from builtins import input
+        import json
+        
+        # create client object with basic parameters of your app
+        client = ID4meClient(
+            validateUrl='https://foo.com/validate',
+            client_name='Foo app',
+            logoUrl='https://foo.com/logo.png',
+            policyUrl='https://foo.com/policy',
+            tosUrl='https://foo.com/tos')
+        
+        try:
+            # make a discovery of identity authority and register if needed
+            ctx = client.get_rp_context(id='id200.connect.domains')    
+        
+            # get a link to login routine
+            link = client.get_consent_url(
+                ctx, 
+                claimsrequest=ID4meClaimsRequest(
+                    userinfo_claims={
+                        OIDCClaim.name: ID4meClaimRequestProperties(reason='To call you by name'),
+                        OIDCClaim.email: ID4meClaimRequestProperties(essential=True, reason='To be able to contact you'),
+                        OIDCClaim.email_verified: ID4meClaimRequestProperties(reason='To know if your E-mail was verified'),
+                    })
+                )
+            print('Please open the link:\n{}'.format(link))
+        
+            # Normally code will arrive as query param on client.validateUrl
+            code = input('Please enter code: ')
+            # Get ID token
+            client.get_idtoken(context=ctx, code=code)
+            # Get User Info
+            userinfo = client.get_user_info(context=ctx)
+            print('User Info:\n{}'.format(json.dumps(userinfo, sort_keys=True, indent=4)))    
+        except ID4meException as e:
+            print('Exception: {}'.format(e))
+            raise
+        ```
+        
+        Output:
+        ```text
+        https://domainconnect.1and1.com/sync/v2/domainTemplates/providers/exampleservice.domainconnect.org/services/template1/apply?domain=connect.domains&host=foo&IP=132.148.25.185&RANDOMTEXT=shm%3A1531371203%3AHello+world+sync&redirect_uri=http%3A%2F%2Fexample.com&state=%7Bname%3Dvalue%7D
+        ```
+        
+        ### Async flow
+        ```python
+        from domainconnect import *
+        # to assure input works like raw_input in python 2
+        from builtins import input
+        
+        # this will be normally a secret local store on the server
+        credentials = {
+            "1and1": DomainConnectAsyncCredentials(client_id='exampleservice.domainconnect.org',
+                                                   client_secret='cd$;CVZRj#B8C@o3o8E4v-*k2H7S%)',
+                                                   api_url='https://api.domainconnect.1and1.com'),
+            "GoDaddy": DomainConnectAsyncCredentials(client_id='exampleservice.domainconnect.org',
+                                                     client_secret='DomainConnectGeheimnisSecretString',
+                                                     api_url='https://domainconnect.api.godaddy.com'),
+        }
+        
+        dc = DomainConnect()
+        
+        try:
+            # change 'connect.domains' to any domain you have access to
+            context = dc.get_domain_connect_template_async_context(
+                domain='async.connect.domains',
+                provider_id='exampleservice.domainconnect.org',
+                service_id=['template1', 'template2'], 
+                params={"IP": "132.148.25.185", "RANDOMTEXT": "shm:1531371203:Hello world async"},
+                redirect_uri='https://exampleservice.domainconnect.org/async_oauth_response')
+            
+            # Route the browser to URL by a link
+            print('Please open URL: {}'.format(context.asyncConsentUrl))
+            
+            # Normally code will arrive as query param on redirect_url
+            code = input("Please enter code: ")
+            context.code = code
+            
+            # token will be written into context. Context can be saved and re-used for async calls
+            dc.get_async_token(context, credentials[context.config.providerName])
+            print('Token obtained')
+            
+            #apply the template any later with the context
+            dc.apply_domain_connect_template_async(
+                context, 
+                service_id='template1', 
+                params={"IP": "132.148.25.185", "RANDOMTEXT": "shm:1531371203:Hello world async"}, 
+                force=True)
+            print('Template applied')
+        except DomainConnectException as e:
+            print('Exception: {}'.format(e))
+            raise
+        
+        ```
+        
+        Output:
+        ```text
+        Please open URL: https://domainconnect.1and1.com/async/v2/domainTemplates/providers/exampleservice.domainconnect.org?client_id=exampleservice.domainconnect.org&scope=template1+template2&domain=connect.domains&host=async&IP=132.148.25.185&RANDOMTEXT=shm%3A1531371203%3AHello+world+async&redirect_uri=https%3A%2F%2Fexampleservice.domainconnect.org%2Fasync_oauth_response
+        Please enter code: >? 8d9a72b5-d2d9-48e3-b615-34fed04d3398
+        Token obtained
+        Template applied
+        ```
+        
+        ## Custom http/https proxy or dns resolver
+        
+        ```python
+        from domainconnect import *
+        
+        dc = DomainConnect(
+            networkcontext=NetworkContext(
+                proxy_host='proxy.host', 
+                proxy_port='proxy.port', 
+                nameservers='resolver.host')
+            )
+        ```
+        
+        ## TODOs
+        - serialization and deserialization of context for easy storage 
+        - support for signatures
+        - support for provider_name (for shared templates)
+        - async revert
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
