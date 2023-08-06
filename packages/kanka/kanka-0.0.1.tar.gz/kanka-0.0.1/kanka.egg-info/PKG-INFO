@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: kanka
+Version: 0.0.1
+Summary: An wrapper/library/whatever for the kanka.io API.
+Home-page: https://github.com/pypa/sampleproject
+Author: Poolitzer
+Author-email: deadpool10@web.de
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: telegraph,telegraph-api,python-module,dreamgraph
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: OS Independent
