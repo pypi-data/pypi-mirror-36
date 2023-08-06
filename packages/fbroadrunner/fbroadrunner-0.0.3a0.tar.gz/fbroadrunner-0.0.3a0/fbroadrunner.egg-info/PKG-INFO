@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: fbroadrunner
+Version: 0.0.3a0
+Summary: Facebook Road Runner
+Home-page: https://github.com/marcelomoraes28/fbroadrunner
+Author: Marcelo Moraes
+Author-email: marcelomoraesjr28@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Keywords: fbroadrunner roadrunner facebook
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 3.6
+Provides-Extra: test
+Provides-Extra: ci
