@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: ecal
+Version: 0.0.2
+Summary: A package for getting a US equity earnings announcement calendar.
+Home-page: https://github.com/brettelliot/ecal
+Author: Brett Elliot
+Author-email: brett@theelliots.net
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: pandas (==0.22.0)
+Requires-Dist: requests (>=2.19.1)
+Requires-Dist: urllib3 (>=1.23)
+
+What is ecal?
+-------------
+
+``ecal`` A package for getting a US equity earnings announcement calendar.
+
+For more documentation, please see http://be-earnings-calendar.readthedocs.io.
+
+Installation
+------------
+
+``ecal`` can be easily installed with pip::
+
+    $ pip install ecal
+
+
