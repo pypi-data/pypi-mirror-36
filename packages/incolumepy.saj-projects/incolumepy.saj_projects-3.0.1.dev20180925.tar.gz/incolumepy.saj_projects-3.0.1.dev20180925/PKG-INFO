@@ -1,0 +1,45 @@
+Metadata-Version: 1.1
+Name: incolumepy.saj_projects
+Version: 3.0.1.dev20180925
+Summary: package incolumepy saj
+Home-page: http://www.incolume.com.br
+Author: @britodfbr
+Author-email: contato@incolume.com.br
+License: BSD
+Project-URL: Documentation, https://gitlab.com/development-incolume/saj_projects/
+Project-URL: Funding, None
+Project-URL: Say Thanks!, None
+Project-URL: Source, https://gitlab.com/development-incolume/saj_projects
+Project-URL: Git, https://gitlab.com/development-incolume/saj_projects.git
+Project-URL: Tracker, https://gitlab.com/development-incolume/saj_projects/issues
+Project-URL: Oficial, 
+Description: 
+        
+        History
+        ============
+        
+        
+        
+        Examples
+        =============
+        
+        
+        
+        Contributors
+        =============
+        
+        
+        
+        Changes
+        =========
+        
+        
+        
+Keywords: python incolumepy saj
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: Portuguese (Brazilian)
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
