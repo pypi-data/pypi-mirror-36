@@ -1,0 +1,79 @@
+Metadata-Version: 2.1
+Name: jwt_user
+Version: 0.0.6
+Summary: Authorize user via jwt
+Home-page: https://github.com/ilyashusterman/jwt_user
+Author: Ilya shusterman
+Author-email: shusterilyaman@gmail.com
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/ilyashusterman/jwt_user/issues
+Project-URL: Funding, https://donate.pypi.org
+Project-URL: Source, https://github.com/ilyashusterman/jwt_user/
+Description: jwt_user
+        =====
+        
+        A Python implementation of acquiring, authorizing user from jwt token.
+        designed to work for any request entity from flask,django,tornado frameworks. 
+        
+        Installing
+        ----------
+        
+        Install with **pip**:
+        
+            $ pip install jwt_user
+        
+        
+        Usage
+        -----
+        
+            >>> import jwt_user
+            >>> payload = {'username': 'test'}
+            >>> token = jwt_user.generate_token(payload)
+            >>> request = jwt_user.generate_request(token)
+            >>> user = jwt_user.get_jwt_user(request)
+            >>> user
+            {}
+            >>> user.username
+            'test'
+            >>> #Second usage
+            ... 
+            >>> import tornado
+            >>> BaseRequestHandler = tornado.web.RequestHandler
+            >>> class MainHandler(BaseRequestHandler):
+            >>> @authorized_user
+            >>> def get(self):
+            >>>     self.write("Hello, Authorized user")
+            >>> def make_app():
+            >>>     user_valid_fields = {'username', 'user_id', 'test_field', 'token'}
+        	>>>     jwt_user.set_user_valid_fields(user_valid_fields)
+        	>>>     application = tornado.web.Application([
+            >>>     (r"/", MainHandler)])
+            >>>     return application
+        ],
+                
+        Documentation
+        -------------
+        
+        View the full docs online at https://jwt_user.readthedocs.io/en/latest/
+        
+        
+        Tests
+        -----
+        
+        You can run tests from the project root after cloning with:
+        
+            $ make smoke
+Keywords: sample setuptools development
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
