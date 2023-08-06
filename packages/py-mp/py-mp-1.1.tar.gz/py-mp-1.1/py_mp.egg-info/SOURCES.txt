@@ -1,0 +1,13 @@
+README.md
+setup.py
+py_mp.egg-info/PKG-INFO
+py_mp.egg-info/SOURCES.txt
+py_mp.egg-info/dependency_links.txt
+py_mp.egg-info/entry_points.txt
+py_mp.egg-info/requires.txt
+py_mp.egg-info/top_level.txt
+pymp/__init__.py
+pymp/__main__.py
+pymp/helper.py
+pymp/player.py
+pymp/song.py
