@@ -1,0 +1,5 @@
+setuptools
+pytest
+nose
+deprecated
+incolumepy.utils>=0.7
