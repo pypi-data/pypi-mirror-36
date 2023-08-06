@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: canonicalwebteam.yaml-redirects
+Version: 2.0.0
+Summary: A simple redirects utility that uses a YAML file for redirects definitions
+Home-page: https://github.com/canonical-webteam/yaml-redirects
+Author: Canonical Webteam
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Provides-Extra: django
+Provides-Extra: flask
