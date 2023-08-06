@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+swiftace/__init__.py
+swiftace/cli.py
+swiftace/swiftace.py
+swiftace.egg-info/PKG-INFO
+swiftace.egg-info/SOURCES.txt
+swiftace.egg-info/dependency_links.txt
+swiftace.egg-info/entry_points.txt
+swiftace.egg-info/top_level.txt
