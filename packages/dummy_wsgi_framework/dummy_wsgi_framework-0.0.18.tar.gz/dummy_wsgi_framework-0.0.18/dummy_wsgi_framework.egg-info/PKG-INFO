@@ -1,0 +1,43 @@
+Metadata-Version: 1.1
+Name: dummy-wsgi-framework
+Version: 0.0.18
+Summary: Dummy WSGI Framework is base for your Web-applications or your own WSGI-framework
+Home-page: https://github.com/BorisPlus/dummy_wsgi_framework
+Author: BorisPlus
+Author-email: boris-plus@mail.ru
+License: UNKNOWN
+Description: ====================
+        Dummy WSGI Framework
+        ====================
+        
+        Common description
+        ==================
+        
+        **Dummy WSGI Framework** is base for your Web-applications or your own WSGI-framework.
+        It is "unpretentious" and "dummy" (although in fact it is not so "simple" and "stupid" as it may seem at first glance). It was build as *Just4Fun*-project.
+        
+        **Dummy WSGI Framework** methodology contain "controllers" and "views", as pattern "Model-View-Controller" without "Model".
+        
+        It allows you to work with views generated within controllers or loaded from files, for example, in the basic version of the framework it is just HTML-files.
+        
+        **Dummy WSGI Framework** is potentially expanding:
+        
+        * due to open access to the WSGI-interface at the level of application controllers, developed on its (framework) basis;
+        * due to the possibility of using arbitrary template engines due to the function of loading view files implemented in the core of the decorator framework;
+        * and, in the end, it's Python, there's a lot possible.
+        
+        You are free to use **Dummy WSGI Framework** as a framework for your Web applications or as a basis for your Web framework. It is not necessary to refer to the fact that You use **Dummy WSGI Framework**, but I would like to have a public review, even if it is not positive.
+        
+        Links
+        =====
+        
+        GitHub - https://github.com/BorisPlus/dummy_wsgi_framework
+        
+        Author
+        ======
+        
+        BorisPlus
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries
