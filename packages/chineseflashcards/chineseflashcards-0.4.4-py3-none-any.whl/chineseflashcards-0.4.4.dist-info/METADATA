@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: chineseflashcards
+Version: 0.4.4
+Summary: Create Chinese flashcards for Anki using the genanki lib
+Home-page: http://github.com/kerrickstaley/chineseflashcards
+Author: Kerrick Staley
+Author-email: k@kerrickstaley.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: genanki (>=0.4)
+Requires-Dist: pyyaml (>=3.12)
+
+UNKNOWN
+
+
