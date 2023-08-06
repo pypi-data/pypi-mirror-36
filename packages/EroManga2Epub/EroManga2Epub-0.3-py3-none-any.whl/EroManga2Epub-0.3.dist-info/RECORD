@@ -1,0 +1,14 @@
+EroManga2Epub-0.3.dist-info/METADATA,sha256=f2WpTUeKGPD8zUcyaYrdZ4zHHI1yWlErgWrlNT0Aw6E,241
+EroManga2Epub-0.3.dist-info/RECORD,,
+EroManga2Epub-0.3.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+EroManga2Epub-0.3.dist-info/entry_points.txt,sha256=iXx6WG7gA4H0XDegZ5yBd27PbuK_LMgAuMVGaElVdE4,53
+EroManga2Epub-0.3.dist-info/top_level.txt,sha256=A9W4uT9tZxhB6cBFSMQLGhGx6s291OMUvPE903fskdA,8
+eroepub/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+eroepub/main.py,sha256=RoK8jgc0iHA01glxLAcCJQwrt5vv3j0ZDxckJosJrQg,854
+eroepub/utils.py,sha256=j-Ubmzfpplz0Aw85fDW7xYRaG2RjGq115R5isUtkzvo,129
+eroepub/epub_generator/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+eroepub/epub_generator/epub_builder.py,sha256=PdRIE65io3DUNDvMR1HNvdYoL_vOwzSqq-8IwYjYLH8,3545
+eroepub/epub_generator/file_templates.py,sha256=4-w4tfVEeBiLk90yVJhsMDPqgzbHv9kUCx7uNv_XbRo,5173
+eroepub/epub_generator/images_processor.py,sha256=YKs9Qd8zBXn0MSM5EfPsArXf_Kq4R42DP0DidCD5EEg,2002
+eroepub/epub_generator/manifest_generator.py,sha256=VzhQsB5AsH0sT1Kt18qTzKqa-1zCGqZnGVE2B-Tm6sM,2594
+eroepub/epub_generator/xhtml_generator.py,sha256=NJ1YPEpA5Rdn682JInw7fDOXD942TffSMOeRWBkp0jA,1331
