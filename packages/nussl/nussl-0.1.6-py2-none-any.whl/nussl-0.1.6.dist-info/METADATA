@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: nussl
+Version: 0.1.6
+Summary: A flexible sound source separation library.
+Home-page: https://github.com/interactiveaudiolab/nussl
+Author: E. Manilow, P. Seetharaman, F. Pishdadian
+Author-email: ethanmanilow@u.northwestern.edu
+Maintainer: E. Manilow, P. Seetharaman, F. Pishdadian
+Maintainer-email: ethanmanilow@u.northwestern.edu
+License: MIT
+Keywords: audio,source,separation,music,sound,source separation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Artistic Software
+Classifier: Topic :: Multimedia
+Classifier: Topic :: Multimedia :: Sound/Audio
+Classifier: Topic :: Multimedia :: Sound/Audio :: Editors
+Classifier: Topic :: Software Development :: Libraries
+Provides-Extra: melodia
+Provides-Extra: deep
+Provides-Extra: musdb
+Requires-Dist: numpy (>=1.7.0)
+Requires-Dist: scipy (>=0.12.0)
+Requires-Dist: matplotlib (>=1.3.0)
+Requires-Dist: audioread (>=2.1.2)
+Requires-Dist: librosa (>=0.4.1)
+Requires-Dist: mir-eval (>=0.4.0)
+Requires-Dist: sklearn
+Provides-Extra: deep
+Requires-Dist: torch; extra == 'deep'
+Provides-Extra: melodia
+Requires-Dist: vamp; extra == 'melodia'
+Provides-Extra: musdb
+Requires-Dist: stempeg; extra == 'musdb'
+
+UNKNOWN
+
+
