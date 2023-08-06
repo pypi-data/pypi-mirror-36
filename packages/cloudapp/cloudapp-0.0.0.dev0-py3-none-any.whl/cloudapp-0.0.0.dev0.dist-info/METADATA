@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: cloudapp
+Version: 0.0.0.dev0
+Summary: Command-line tool for CloudApp
+Home-page: https://github.com/storborg/cloudapp
+Author: Scott Torborg
+Author-email: storborg@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: six (>=1.4.1)
+Requires-Dist: requests
+
+UNKNOWN
+
+
