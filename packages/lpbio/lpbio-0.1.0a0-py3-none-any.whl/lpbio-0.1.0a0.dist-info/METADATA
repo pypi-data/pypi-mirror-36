@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: lpbio
+Version: 0.1.0a0
+Summary: lpbio provides scripts and modules for computational biology
+Home-page: http://widdowquinn.github.io/lpbio/
+Author: Leighton Pritchard
+Author-email: leighton.pritchard@hutton.ac.uk
+License: MIT
+Download-URL: https://github.com/widdowquinn/lpbio/releases
+Keywords: genome bioinformatics sequence
+Platform: Posix; MacOS X
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Description-Content-Type: text/markdown
+
+# `lpbio`
+
+Scripts, tools and modules for computational biology
+
+<!-- TOC -->
+
+- [Scripts](#scripts)
+- [Modules](#modules)
+- [Development notes](#development-notes)
+    - [Tests](#tests)
+
+<!-- /TOC -->
+
+## Scripts
+
+When installed, the `lpbio` package provides the following scripts, available at the command-line:
+
+- `bulk_prokka`: for application of `prokka` [https://github.com/tseemann/prokka](https://github.com/tseemann/prokka) to a directory of input bacterial genome assemblies, taking advantage of local schedulers.
+
+## Modules
+
+The `lpbio` package provides the following modules for use in Python applications and scripts
+
+- `pysge`: a module that writes job files compatible with SGE-like schedulers, and runs them.
+- `swarm`: a module for interacting with the [`Swarm`](https://github.com/torognes/swarm) clustering tool and its output.
+
+## Development notes
+
+Create a local environment, e.g. in `conda`, and install with `pip install -e .`:
+
+```bash
+$ conda create --name lpbio
+$ source activate lpbio
+$ pip install -e .
+```
+
+### Tests
+
+Tests are intended to be run with `pytest` from the repository root (using `coverage` and `pytest-cov`):
+
+```bash
+$ pwd
+lpbio/
+$ pytest --cov
+```
+

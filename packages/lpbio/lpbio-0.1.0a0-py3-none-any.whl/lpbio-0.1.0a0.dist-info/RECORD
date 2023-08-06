@@ -1,0 +1,16 @@
+lpbio/__init__.py,sha256=9Fiofqkjem2eIeZ0RjdWvyNVt2uGogkAacPB6yVlH5c,983
+lpbio/scripts/__init__.py,sha256=DfhMVFSYPlwT7TyIhTWcuI3j5GVEd_xQPUmaT5PHppY,62
+lpbio/scripts/logger.py,sha256=G79Ti3oNd_fYH2aWUMZ44sibb8KT5cSgfEld8RpmpxY,3214
+lpbio/scripts/prokka_script.py,sha256=UI7YuszFs7p94-V5aEiGQkXGyHZZyOsS-N5bUihFfyg,9133
+lpbio/scripts/parsers/__init__.py,sha256=NqkMNkiYbeTfWfO1j7IX9s4AXkfj_Ao3h4m27ZBEyQ8,69
+lpbio/scripts/parsers/prokka_parser.py,sha256=0Znv63UY_XpJOe9dKCHKr4ThgIfE_SDWN0BYzIPkuUg,4967
+lpbio/swarm/Swarm.py,sha256=_3zHi6P6XC6W0EdL2Ag1cBFKA94iqYtDynqWykrt9ic,1528
+lpbio/swarm/__init__.py,sha256=AM4fFRZvPyOqYggUEU612o1lkNsLmoz8Qgi983maN60,4105
+lpbio-0.1.0a0.data/scripts/bulk_prokka,sha256=sFiX-auydQgvG7R8bHXoN9ynI4iswXg-QpFhpsp2Geo,1696
+lpbio-0.1.0a0.dist-info/METADATA,sha256=_jO8XBXtoEbBJH3RHQAnHKXu6K7KU7UVC1bQ7TnGqQA,2236
+lpbio-0.1.0a0.dist-info/RECORD,,
+lpbio-0.1.0a0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+lpbio-0.1.0a0.dist-info/top_level.txt,sha256=HFswGpnUR8HSbgZTxIp9wqlWd9DdczpnQen8yAJ9QEk,12
+pysge/Job.py,sha256=iNJatujf5jGrkgpYdMxV6OiQuwPMIFE2VTHIv6vIrWw,1849
+pysge/JobGroup.py,sha256=kC3sUIP-ECAyglKyDv97o-2YL0DtFEE_qurIvVSi5RA,4212
+pysge/__init__.py,sha256=VRHhi613ruyciE_cafa2gdJB2CT4RhQxLOSTqJVkn-I,7281
