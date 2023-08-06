@@ -1,0 +1,302 @@
+{
+    "_default": {
+        "id": false,
+        "type": false,
+        "@id": "self",
+        "@type": "&external_typename",
+        "_default": false
+    },
+    "Permission": {
+        "name": true
+    },
+    "Locale": {
+        "locale": true,
+        "rtl": true
+    },
+    "Agent": {
+        "description": true,
+        "name": true,
+        "preferred_email": false
+    },
+    "User": {
+        "@extends": "Agent",
+        "created": "creation_date",
+        "last_login": true,
+        "login_failures": false,
+        "password": false,
+        "verified": true
+    },
+    "UserTemplate": {
+        "@extends": "User",
+        "discussion": true,
+        "for_role": true
+    },
+    "EmailAccount": false,
+    "WebLinkAccount": false,
+    "LoomioAccount": false,
+    "SocialAuthAccount": false,
+    "Usergroup": {
+        "name": true,
+        "provider_type": true,
+        "trust_emails": true
+    },
+    "Container": {
+        "discussion_id": "discussion",
+        "name": true,
+        "created": "creation_date",
+        "connection_error": "connection_error_as_text",
+        "error_description": true,
+        "error_backoff_until": true
+    },
+    "PostSource": {
+        "@extends": "Container",
+        "last_import": true
+    },
+    "AbstractMailbox": {
+        "@extends": "PostSource"
+    },
+    "FeedPostSource": {
+        "@extends": "PostSource",
+        "url": true
+    },
+    "LoomioPostSource": {
+        "@extends": "FeedPostSource"
+    },
+    "FacebookGenericSource": {
+        "@extends": "PostSource",
+        "fb_source_id": true,
+        "url_path": true,
+        "creator_id": "&get_creator_uri"
+    },
+    "FacebookGroupSource": {
+        "@extends": "FacebookGenericSource"
+    },
+    "FacebookGroupSourceFromUser": {
+        "@extends": "FacebookGenericSource"
+    },
+    "FacebookPagePostsSource": {
+        "@extends": "FacebookGenericSource"
+    },
+    "FacebookPageFeedSource": {
+        "@extends": "FacebookGenericSource"
+    },
+    "FacebookSinglePostSource": {
+        "@extends": "FacebookGenericSource"
+    },
+    "AnnotatorSource": {
+        "@extends": "Container"
+    },
+    "SPost": {
+        "date": "creation_date",
+        "created": "creation_date",
+        "hidden": true,
+        "discussion": true,
+        "import_date": false,
+        "subject": "&get_subject:extended",
+        "body": "&get_body:extended",
+        "like_count": true,
+        "extracts": [":id_only"]
+    },
+    "Post": {
+        "@extends": "SPost",
+        "attachments": [":default"],
+        "publication_state": true,
+        "moderation_text": true,
+        "message_id": false,
+        "ancestry": false,
+        "parentId": "parent",
+        "idCreator": "creator"
+    },
+    "LocalPost": {
+        "@extends": "Post"
+    },
+    "WidgetPost": {
+        "@extends": "LocalPost",
+        "metadata_json": false
+    },
+    "IdeaProposalPost": {
+        "@extends": "WidgetPost",
+        "proposes_idea": true
+    },
+    "SynthesisPost": {
+        "@extends": "LocalPost",
+        "publishes_synthesis": true
+    },
+    "ImportedPost": {
+        "@extends": "Post",
+        "source": true
+    },
+    "FeedPost": {
+        "@extends": "ImportedPost"
+    },
+    "LoomioFeedPost": {
+        "@extends": "FeedPost"
+    },
+    "Email": {
+        "@extends": "ImportedPost",
+        "recipients": true,
+        "sender": true,
+        "full_message": false,
+        "in_reply_to": false
+    },
+    "Webpage": {
+        "@extends": "SPost",
+        "last_modified_date": true,
+        "url": true
+    },
+    "IMAPMailbox": {
+        "@extends": "AbstractMailbox",
+        "folder": true,
+        "host": true,
+        "port": true,
+        "username": false,
+        "use_ssl": true,
+        "password": false,
+        "last_imported_email_uid": false,
+        "subject_mangling_regex": false,
+        "subject_mangling_replacement": false
+    },
+    "MailingList": {
+        "@extends": "IMAPMailbox",
+        "post_email_address": true
+    },
+    "Conversation": {
+        "created": "creation_date",
+        "slug": true,
+        "topic": true
+    },
+    "GenericIdeaNode": {
+        "original_uri": true,
+        "longTitle": "synthesis_title:extended",
+        "shortTitle": "title:extended",
+        "definition": "description:extended",
+        "created": "creation_date",
+        "order": "&get_order_from_first_parent",
+        "discussion": false,
+        "hidden": true,
+        "parents": "parent_uris",
+        "subtype": "rdf_type",
+        "parentId": "&get_first_parent_uri",
+        "numChildIdea": "num_children",
+        "num_total_and_read_posts": true
+    },
+    "RootIdea": {
+        "@extends": "GenericIdeaNode",
+        "root": "'true",
+        "parentId": false,
+        "num_orphan_posts": true,
+        "num_synthesis_posts": true
+    },
+    "DirectedIdeaRelation": {
+        "original_uri": true,
+        "target": true,
+        "source": true,
+        "subtype": "rdf_type",
+        "order": true
+    },
+    "Map": {
+        "created": "creation_date",
+        "discussion": false
+    },
+    "ExplicitSubGraphView": {
+        "@extends": "Map"
+    },
+    "TableOfContents": {
+        "@extends": "Map"
+    },
+    "Synthesis": {
+        "@extends": "ExplicitSubGraphView",
+        "subject": true,
+        "introduction": true,
+        "conclusion": true,
+        "is_next_synthesis": true,
+        "published_in_post": true,
+        "ideas": [":partial"],
+        "idea_links": [":partial"]
+    },
+    "Excerpt": {
+        "idIdea": "idea",
+        "idPost": "content",
+        "target": true,
+        "created": "creation_date",
+        "idCreator": "creator",
+        "attributed_to": true,
+        "important": true,
+        "owner": true,
+        "quote": true,
+        "order": true,
+        "discussion": false,
+        "ranges": ["selectors:partial"],
+        "text": "annotation_text"
+    },
+    "AnnotationSelector": {
+        "extract_id": false
+    },
+    "FragmentSelector": {
+        "@extends": "AnnotationSelector",
+        "end": "xpath_end_calc",
+        "endOffset": "offset_end",
+        "start": "xpath_start_calc",
+        "startOffset": "offset_start"
+    },
+    "DiscussionPermission": {
+        "discussion": true,
+        "permission": "&permission_name",
+        "role": "&role_name"
+    },
+    "PartnerOrganization": {
+            "name": true,
+            "description": true,
+            "homepage": true,
+            "logo": true,
+            "is_initiator": true
+    },
+    "UserRole": {
+        "@private": "user",
+        "role": "&get_role_name"
+    },
+    "LocalUserRole": {
+        "@private": "user",
+        "discussion": true,
+        "role": "&get_role_name"
+    },
+    "Widget": {
+        "discussion": true,
+        "settings": "settings_json",
+        "state": "state_json",
+        "start_date": true,
+        "end_date": true,
+        "configured": true,
+        "activity_state": true,
+        "hide_notification": true,
+        "ui_endpoint": "&get_ui_endpoint",
+        "widget_settings_url": "&get_settings_url",
+        "widget_state_url": "&get_state_url"
+    },
+    "BaseIdeaWidget": {
+        "@extends": "Widget",
+        "ideas_url": "&get_ideas_url",
+        "messages_url": "&get_messages_url",
+        "base_idea": true
+    },
+    "IdeaCreatingWidget": {
+        "@extends": "BaseIdeaWidget",
+        "ideas_hiding_url": "&get_ideas_hiding_url",
+        "confirm_ideas_url": "&get_confirm_ideas_url",
+        "confirm_messages_url": "&get_confirm_messages_url"
+    },
+    "CreativitySessionWidget": {
+        "@extends": "IdeaCreatingWidget"
+    },
+    "InspirationWidget": {
+        "@extends": "IdeaCreatingWidget"
+    },
+    "MultiCriterionVotingWidget": {
+        "@extends": "BaseIdeaWidget",
+        "criteria_url": true,
+        "votespecs_url": true,
+        "votables_url": true,
+        "votable_ideas": ":id_only",
+        "vote_specifications": ":"
+    }
+}

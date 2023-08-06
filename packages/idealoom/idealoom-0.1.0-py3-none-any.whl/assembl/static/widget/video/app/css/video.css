@@ -1,0 +1,182 @@
+/* hide Select2 dropdown */
+#select2-drop {
+  display: none !important; }
+
+#JukeTube {
+  width: 100%;
+  padding: 20px;
+  /* modified version of select2.css in .select2-container-multi .select2-choices .select2-search-choice */
+  /*fieldset,*/ }
+  #JukeTube input[type="submit"] {
+    vertical-align: top; }
+  #JukeTube .select2-choices {
+    width: 100%;
+    display: inline-block; }
+  #JukeTube .select2-no-results {
+    display: none !important; }
+  #JukeTube .keywords {
+    padding-left: 0; }
+  #JukeTube .keywords .keyword {
+    -moz-user-select: none;
+    background-clip: padding-box;
+    background-color: #E4E4E4;
+    background-image: linear-gradient(to top, #F4F4F4 20%, #F0F0F0 50%, #E8E8E8 52%, #EEEEEE 100%);
+    border: 1px solid #AAAAAA;
+    border-radius: 3px;
+    box-shadow: 0 0 2px #FFFFFF inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+    color: #333333;
+    cursor: default;
+    line-height: 13px;
+    margin: 3px 0 3px 5px;
+    padding: 3px 5px;
+    /* was 3px 5px 3px 18px; */
+    position: relative;
+    /* added */
+    display: inline-block; }
+  #JukeTube .keywords .keyword:hover {
+    cursor: pointer; }
+  #JukeTube table {
+    border-collapse: collapse;
+    border-spacing: 0; }
+  #JukeTube img {
+    border: 0; }
+  #JukeTube h1, #JukeTube h2, #JukeTube h3, #JukeTube h4, #JukeTube h5, #JukeTube h6 {
+    font-size: 100%;
+    font-weight: normal; }
+  #JukeTube a {
+    cursor: pointer; }
+  #JukeTube body {
+    font: 20px/1 'Montserrat', Arial, sans-serif; }
+  #JukeTube h1 strong, #JukeTube #playlist, #JukeTube .video-title {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: bold; }
+  #JukeTube #query:focus {
+    outline: none; }
+  #JukeTube #search-button {
+    font-size: 14px; }
+  #JukeTube #results {
+    padding-left: 6px;
+    padding-right: 6px;
+    overflow: hidden;
+    min-width: 372px; }
+    #JukeTube #results .strong {
+      font-weight: 700; }
+    #JukeTube #results h3 {
+      font-weight: 700;
+      font-size: 18px;
+      padding-bottom: 0px; }
+    #JukeTube #results fieldset {
+      background: #f5f5f5;
+      border-radius: 5px;
+      margin: 10px 0;
+      padding: 0 7px 5px 7px; }
+      #JukeTube #results fieldset legend {
+        background: rgba(255, 255, 255, 0.5);
+        border: initial;
+        font-size: initial;
+        margin-bottom: 5px;
+        width: initial; }
+  #JukeTube #related_terms_query {
+    height: 35px;
+    width: 70%; }
+  #JukeTube .video {
+    cursor: pointer;
+    min-height: 120px;
+    padding: 10px;
+    padding-left: 140px;
+    position: relative; }
+  #JukeTube .video:nth-child(2n-1) {
+    background: white; }
+  #JukeTube .video-image {
+    float: left;
+    left: 10px;
+    position: absolute;
+    top: 10px; }
+  #JukeTube .video-title {
+    margin: 0 0 2px; }
+  #JukeTube .video-author {
+    color: #696A6D;
+    font-size: 12px;
+    margin: 2px 0 2px; }
+  #JukeTube .video-description {
+    color: #696A6D;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 2px 0 2px; }
+  #JukeTube .video.selected {
+    background: #ececec; }
+  #JukeTube .video:hover, #JukeTube .video.selected:hover {
+    background: #f5f5f5; }
+  #JukeTube #player {
+    background: black;
+    float: right; }
+  #JukeTube #playlist {
+    background: #22242a;
+    color: #b8babe;
+    font-size: 14px;
+    font-weight: normal;
+    overflow-x: hidden;
+    width: 640px;
+    padding-bottom: 20px; }
+  #JukeTube #playlist h3 {
+    font-weight: 700;
+    font-size: 18px; }
+  #JukeTube #playlist .card-comment {
+    margin: 0 20px; }
+    #JukeTube #playlist .card-comment .btn-secondary {
+      color: #333; }
+      #JukeTube #playlist .card-comment .btn-secondary:hover {
+        background: #ccc; }
+  #JukeTube #current {
+    color: white;
+    font-size: 16px;
+    padding: 20px; }
+  #JukeTube #playlist ol, #JukeTube #playlist li {
+    cursor: pointer; }
+  #JukeTube #playlist ol {
+    border-bottom: 1px solid #33363f;
+    height: 340px;
+    overflow-x: hidden; }
+  #JukeTube #playlist li {
+    border-top: 1px solid #33363f;
+    cursor: pointer; }
+  #JukeTube #history li {
+    color: #33522d; }
+  #JukeTube .item-title {
+    margin-right: 80px;
+    padding: 10px 20px; }
+  #JukeTube .item-title:hover {
+    background: #1171A2;
+    color: white; }
+  #JukeTube .item-delete {
+    color: #ac0809;
+    float: right;
+    text-align: center;
+    padding: 10px 0;
+    width: 80px; }
+  #JukeTube .item-delete:hover {
+    background: #ac0809;
+    color: white; }
+  #JukeTube #history .item-title:hover {
+    background: #33522d;
+    color: white; }
+  #JukeTube #tabs, #JukeTube #tabs a {
+    background: #333;
+    height: 64px;
+    left: 0;
+    line-height: 64px;
+    position: absolute;
+    text-align: center;
+    width: 100%; }
+  #JukeTube #tabs {
+    bottom: 0; }
+  #JukeTube #tabs a {
+    color: #666;
+    width: 50%; }
+  #JukeTube #tabs a:last-child {
+    left: 50%; }
+  #JukeTube #tabs .on {
+    background: #22242a;
+    color: white; }
+
+/*# sourceMappingURL=video.css.map */

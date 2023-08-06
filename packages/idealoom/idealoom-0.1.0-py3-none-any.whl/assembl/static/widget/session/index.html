@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <title>Creativity</title>
+    <link rel="icon" href="img/university2.png"/>
+    <link type="text/css" rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="bower_components/angular-growl-v2/build/angular-growl.css"/>
+    <link type="text/css" rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/global.css" />
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script><!-- this script is in <head> instead of the end of <body> because we need it in our use of angularjs, which we do also load in <head> -->
+    <script src="bower_components/angular/angular.min.js"></script><!-- this script is in <head> instead of the end of <body> because of ng-cloak -->
+
+</head>
+<body ng-cloak ng-app="appSession">
+
+<div ui-view="topMenu"></div>
+<div ui-view></div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">{{'connect'| translate}}</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{'needToConnect'| translate: {time: counter} }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div growl></div>
+
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="bower_components/messageformat/messageformat.js"></script>
+<script src="bower_components/angular-translate/angular-translate.min.js"></script>
+<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+<script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.min.js"></script>
+<script src="bower_components/angular-growl-v2/build/angular-growl.min.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/moment/locale/fr.js"></script>
+<script src="bower_components/lodash/dist/lodash.min.js"></script>
+<script src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
+<script src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
+
+<script src="app/app.js"></script>
+
+<script src="app/shared/topMenu/TopMenuModule.js"></script>
+<script src="app/shared/topMenu/TopMenuController.js"></script>
+
+<script src="app/components/admin/AdminModule.js"></script>
+<script src="app/components/admin/AdminController.js"></script>
+<script src="app/components/admin/CreateController.js"></script>
+
+<script src="app/components/home/HomeModule.js"></script>
+<script src="app/components/home/HomeController.js"></script>
+
+<script src="app/components/rate/RateModule.js"></script>
+<script src="app/components/rate/RateController.js"></script>
+
+<script src="app/shared/services/ConfigService.js"></script>
+<script src="app/shared/services/UtilsService.js"></script>
+<script src="app/shared/services/CardGameService.js"></script>
+<script src="app/shared/services/IdeaService.js"></script>
+<script src="app/shared/services/UserService.js"></script>
+
+<script src="app/shared/services/WidgetService.js"></script>
+
+<script src="app/shared/directives/comments/Comments.js"></script>
+<script src="app/shared/directives/rate/Rate.js"></script>
+
+</body>
+</html>

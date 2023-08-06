@@ -1,0 +1,36 @@
+.rate-container {
+  margin: 0 auto; }
+  .rate-container .bloc-left, .rate-container .bloc-right {
+    padding-top: 15px;
+    padding-bottom: 15px; }
+  .rate-container .bloc-left {
+    background-color: #F3F3F3; }
+  .rate-container .bloc-right {
+    background-color: #FFFFFF; }
+
+li {
+  list-style: none; }
+
+.bx-idea {
+  margin-bottom: 20px; }
+  .bx-idea p {
+    margin: 0; }
+  .bx-idea .bx-comment {
+    color: #34495e; }
+    .bx-idea .bx-comment .comment-body {
+      font-weight: normal; }
+  .bx-idea .comments {
+    height: 18px;
+    font-size: 12px;
+    color: #c7c2dd;
+    cursor: pointer; }
+  .bx-idea .lead-text {
+    font-size: 14px;
+    color: #34495e; }
+  .bx-idea .definition {
+    color: #34495e; }
+
+.bx-info {
+  text-align: center; }
+
+/*# sourceMappingURL=rate.css.map */

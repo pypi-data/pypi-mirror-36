@@ -1,0 +1,97 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix pa_ibis: <http://privatealpha.com/ontology/ibis/1#> .
+@prefix aif: <http://www.arg.dundee.ac.uk/aif#> .
+@prefix idea: <http://purl.org/catalyst/idea#> .
+@prefix catalyst: <http://purl.org/catalyst/core#> .
+@prefix ibis: <http://purl.org/catalyst/ibis#> .
+
+<http://purl.org/catalyst/ibis#> a owl:Ontology.
+
+ibis:Issue
+    a owl:Class;
+    rdfs:subClassOf idea:GenericIdeaNode.
+
+ibis:Position
+    a owl:Class;
+    rdfs:subClassOf idea:GenericIdeaNode.
+    # Should we still call it Option?
+
+ibis:Argument
+    a owl:Class;
+    rdfs:subClassOf idea:GenericIdeaNode.
+
+ibis:Reference
+    a owl:Class;
+    rdfs:subClassOf idea:GenericIdeaNode.
+
+ibis:Decision
+    a owl:Class;
+    rdfs:subClassOf ibis:Position.
+
+ibis:PositionRespondsToIssue
+    a owl:Class;
+    rdfs:subClassOf idea:DirectedIdeaRelation, idea:MutualRelevanceStatement.
+
+ibis:response_position
+    a owl:ObjectProperty;
+    rdfs:subPropertyOf idea:source_idea;
+    rdfs:domain ibis:PositionRespondsToIssue;
+    rdfs:range ibis:Position.
+
+# Better idea: use propertychains to deduce a direct link from source to dest, setting range and domain.
+
+ibis:response_issue
+    a owl:ObjectProperty;
+    rdfs:subPropertyOf idea:target_idea;
+    rdfs:domain ibis:PositionRespondsToIssue;
+    rdfs:range ibis:Issue.
+
+ibis:ArgumentApplication
+    a owl:Class;
+    rdfs:subClassOf idea:DirectedIdeaRelation, idea:MutualRelevanceStatement.
+
+ibis:argument_arguing
+    a owl:ObjectProperty;
+    rdfs:subPropertyOf idea:source_idea;
+    rdfs:domain ibis:ArgumentApplication;
+    rdfs:range ibis:Argument.
+
+ibis:ArgumentSupportsIdea
+    a owl:Class;
+    rdfs:subClassOf ibis:ArgumentApplication.
+
+ibis:ArgumentOpposesIdea
+    a owl:Class;
+    rdfs:subClassOf ibis:ArgumentApplication.
+    # TODO: ensure that the target is an idea
+
+#suggests
+
+ibis:IssueAppliesTo
+    a owl:Class;
+    rdfs:subClassOf idea:DirectedIdeaRelation, idea:MutualRelevanceStatement.
+
+ibis:applicable_issue
+    a owl:ObjectProperty;
+    rdfs:subPropertyOf idea:source_idea;
+    rdfs:domain ibis:IssueAppliesTo;
+    rdfs:range ibis:Issue.
+
+# Questions
+
+ibis:IssueQuestions
+    a owl:Class;
+    rdfs:subClassOf ibis:IssueAppliesTo.
+
+[] a owl:AllDisjointClasses ;
+     owl:members  (
+        ibis:Position ibis:Issue ibis:Argument ibis:Reference ibis:PositionRespondsToIssue
+        ibis:ArgumentApplication ibis:IssueAppliesTo ibis:PositionRespondsToIssue ) .
+
+[] a owl:AllDisjointClasses ;
+     owl:members  ( ibis:ArgumentSupportsIdea ibis:ArgumentOpposesIdea ) .

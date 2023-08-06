@@ -1,0 +1,154 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix pa_ibis: <http://privatealpha.com/ontology/ibis/1#> .
+@prefix idea: <http://purl.org/catalyst/idea#> .
+
+<http://purl.org/catalyst/idea#> a owl:Ontology.
+
+idea:GenericIdea
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    a owl:Class.
+
+idea:GenericIdeaNode
+    a owl:Class;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subClassOf idea:GenericIdea;
+    rdfs:label "generic idea"@en, "idée générique"@fr.
+
+idea:IdeaRelation
+    a owl:Class;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subClassOf idea:GenericIdea.
+
+idea:RelationRole
+    a owl:Class;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subClassOf owl:ObjectProperty.
+
+idea:relates_idea
+    a idea:RelationRole, owl:ObjectProperty;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:domain idea:IdeaRelation;
+    rdfs:range idea:GenericIdeaNode.
+
+idea:BinaryIdeaRelation
+    a owl:Class;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subClassOf idea:IdeaRelation .
+
+idea:DirectedIdeaRelation
+    a owl:Class;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subClassOf idea:BinaryIdeaRelation .
+
+idea:source_idea
+    a idea:RelationRole, owl:ObjectProperty;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subPropertyOf idea:relates_idea;
+    rdfs:domain idea:DirectedIdeaRelation;
+    rdfs:range idea:GenericIdeaNode.
+
+idea:target_idea
+    a idea:RelationRole, owl:ObjectProperty;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subPropertyOf idea:relates_idea;
+    rdfs:domain idea:DirectedIdeaRelation;
+    rdfs:range idea:GenericIdeaNode;
+    rdfs:comment "The destination is the parent"@en.
+
+idea:InclusionRelation
+    a owl:Class;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subClassOf idea:DirectedIdeaRelation;
+    rdfs:comment """This is a vague subordination property between ideas,
+        as in mind maps and assembl containment."""@en.
+
+idea:includes
+    a owl:AsymmetricProperty, owl:ObjectProperty;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:domain idea:GenericIdeaNode;
+    rdfs:range idea:GenericIdeaNode;
+    owl:propertyChainAxiom (
+        [owl:inverseOf idea:target_idea;
+        rdfs:range idea:InclusionRelation]
+        idea:source_idea
+        ).
+
+
+idea:includedIn
+    a owl:AsymmetricProperty, owl:ObjectProperty;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    owl:inverseOf idea:includes;
+    rdfs:domain idea:GenericIdeaNode;
+    rdfs:range idea:GenericIdeaNode;
+    owl:propertyChainAxiom (
+        [owl:inverseOf idea:source_idea;
+        rdfs:range idea:InclusionRelation]
+        idea:target_idea
+        ).
+
+idea:WholePartRelation
+    a owl:ObjectProperty, owl:Class;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subClassOf idea:InclusionRelation;
+    rdfs:comment """This is strict idea containment. Examples include
+        a proposal in many points, or identifying premises in an argument.
+        It may also be applied to Compendium-style maps (TBD.)"""@en.
+
+idea:hasPart
+    a owl:ObjectProperty;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subPropertyOf idea:includes, dcterms:hasPart;
+    rdfs:domain idea:GenericIdeaNode;
+    rdfs:range idea:GenericIdeaNode;
+    owl:propertyChainAxiom (
+        [owl:inverseOf idea:target_idea;
+        rdfs:range idea:WholePartRelation]
+        idea:source_idea
+        ).
+
+idea:isPartOf
+    a owl:ObjectProperty;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subPropertyOf idea:includedIn, dcterms:isPartOf;
+    owl:inverseOf idea:hasPart;
+    rdfs:domain idea:GenericIdeaNode;
+    rdfs:range idea:GenericIdeaNode;
+    owl:propertyChainAxiom (
+        [owl:inverseOf idea:source_idea;
+        rdfs:range idea:WholePartRelation]
+        idea:target_idea
+        ).
+
+idea:Question
+    a owl:Class;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subClassOf idea:DirectedIdeaRelation.
+
+#map 
+
+idea:Map
+    a owl:Class;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subClassOf idea:GenericIdea.
+    # Positional. We could just infer from in_map.
+
+idea:inMap
+    a owl:ObjectProperty;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subPropertyOf idea:includes;
+    rdfs:domain idea:GenericIdea;
+    rdfs:range idea:Map.
+    # The map inclusion may not be referenced.
+    # Not clear that we need a reified relation here.
+
+# Relevance
+
+idea:MutualRelevanceStatement
+    a owl:Class;
+    rdfs:isDefinedBy <http://purl.org/catalyst/idea#>;
+    rdfs:subClassOf idea:IdeaRelation .

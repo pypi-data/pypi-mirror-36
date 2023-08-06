@@ -1,0 +1,19 @@
+[console_scripts]
+idealoom-add-user = assembl.scripts.add_user:main
+idealoom-db-manage = assembl.scripts.db_manage:main
+idealoom-imap-test = assembl.scripts.imap_test:main
+idealoom-ini-files = assembl.scripts.ini_files:main
+idealoom-pypsql = assembl.scripts.pypsql:main
+
+[paste.app_factory]
+main = assembl:main
+maintenance = assembl.maintenance:main
+
+[plaster.loader_factory]
+iloom = assembl.lib.plaster:Loader
+iloom+ini = assembl.lib.plaster:Loader
+
+[plaster.wsgi_loader_factory]
+iloom = assembl.lib.plaster:Loader
+iloom+ini = assembl.lib.plaster:Loader
+

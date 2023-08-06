@@ -1,0 +1,42 @@
+
+<div id="admin" ng-controller="adminConfigureInstanceSetCriteriaCtl" ng-init="init()">
+
+    <button onclick="window.history.back()">{{'historyBack' | translate}}</button>
+
+    <h1>{{'adminConfigureInstanceTitle' | translate}}</h1>
+
+    <p>
+        {{'adminConfigureInstanceCurrent' | translate}} <a href="{{ widget_endpoint }}">{{ widget_uri }}</a>.
+
+        <span ng-if="target != null">
+            {{'adminConfigureInstanceCurrentUse' | translate}} <a href="?config={{ widget_uri }}&target={{ target }}" target="_blank">{{'adminConfigureInstanceCurrentUseHere' | translate}}</a>.
+        </span>
+    </p>
+
+    <div id="step_get_data" ng-show="current_step == 1">
+        <p>
+            {{'gettingDataFromServerWidgetInstance' | translate}} "<strong>{{ widget_uri }}</strong>"...
+        </p>
+    </div>
+
+    <div id="step_select_criteria" ng-show="current_step == 2">
+        <h2>{{'adminConfigureInstanceSelectCriteria' | translate}}</h2>
+        <div ng-show="current_step == 2 && current_substep == 1">
+            <p>
+                {{'adminConfigureInstanceLoadingCriteria' | translate}}
+            </p>
+        </div>
+        <div ng-show="current_step == 2 && current_substep == 2">
+            <p>
+                {{'adminConfigureInstanceSelectCriteriaInfo' | translate}}
+            </p>
+            <form id="widget_set_criteria" method="POST">
+                <select multiple size="20" ng-model="criteria" ng-options="item as item.shortTitle for item in ideas track by item['@id']"></select>
+                <br/><br/>
+                <input type="submit" value="{{'adminConfigureInstanceSelectCriteriaSubmit' | translate}}" />
+                <span id="widget_select_criteria_result"></span>
+            </form>
+        </div>
+    </div>
+
+</div>

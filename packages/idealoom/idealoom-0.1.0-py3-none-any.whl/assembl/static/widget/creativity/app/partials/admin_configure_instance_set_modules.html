@@ -1,0 +1,52 @@
+<div id="admin" ng-controller="adminConfigureInstanceSetModulesCtl" ng-init="init()">
+
+    <button onclick="window.history.back()">{{'historyBack' | translate}}</button>
+
+    <h1>{{'adminConfigureInstanceTitle' | translate}}</h1>
+
+    <p>
+        {{'adminConfigureInstanceCurrent' | translate}} <a href="{{ widget_endpoint }}">{{ widget_uri }}</a>.
+
+        <span ng-if="target != null">
+            {{'adminConfigureInstanceCurrentUse' | translate}} <a
+                href="?config={{ widget_uri }}&target={{ target }}" target="_blank">{{'adminConfigureInstanceCurrentUseHere' | translate}}</a>.
+        </span>
+    </p>
+
+    <div id="step_get_data" ng-show="current_step == 1">
+        <p>
+            {{'gettingDataFromServerWidgetInstance' | translate}} "<strong>{{ widget_uri }}</strong>"...
+        </p>
+    </div>
+
+    <div id="step_select_modules" ng-show="current_step == 2">
+        <h2>{{'adminConfigureInstanceSetModulesTitle' | translate}}</h2>
+
+        <div>
+            <p>
+                {{'adminConfigureInstanceSetModulesDetails' | translate}}
+            </p>
+
+            <form id="widget_set_modules" method="POST">
+                <label>
+                    <input type="checkbox" name="modules" value="card" ng-model="widget.settings.active_modules.card">
+                    {{'creativityModuleTitleCards' | translate}} <span ng-show="widget.settings.active_modules.card"> - <a href="../card/?admin=1&locale=fr_CA#/admin_configure_instance?config={{ widget_uri }}&idea={{ target }}">{{'adminConfigureInstanceSetModulesConfigureModule' | translate}}</a></span>
+                </label>
+
+                <br/>
+
+                <label>
+                    <input type="checkbox" name="modules" value="video" ng-model="widget.settings.active_modules.video">
+                    {{'creativityModuleTitleVideos' | translate}}
+                </label>
+
+                <br/>
+                <br/>
+
+                <input type="submit" value="{{'adminConfigureInstanceSetModulesValidate' | translate}}"/>
+                <span id="widget_select_modules_result"></span>
+            </form>
+        </div>
+    </div>
+
+</div>

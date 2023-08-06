@@ -1,0 +1,79 @@
+.pointer {
+  cursor: pointer; }
+
+.cards {
+  font-size: 12px;
+  width: 600px;
+  margin: 0 auto;
+  padding-top: 20px; }
+  .cards .card-browser {
+    position: relative; }
+  .cards .inspire-card {
+    position: relative;
+    height: 390px;
+    min-height: 390px;
+    width: 340px;
+    margin: 0 auto 6px auto;
+    display: table;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc; }
+    .cards .inspire-card img {
+      display: block;
+      margin: 0 auto; }
+    .cards .inspire-card .card-top {
+      height: 5px;
+      background-color: #c7c2dd;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%; }
+    .cards .inspire-card .card-bottom {
+      height: 5px;
+      background-color: #c7c2dd;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%; }
+  .cards #slot-machine {
+    position: absolute;
+    width: 150px;
+    height: 200px;
+    top: 30px;
+    left: 50%;
+    margin-left: 170px;
+    /* 170px; */ }
+  .cards .question {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px; }
+  .cards .card-browser #previousCardButton,
+  .cards .card-browser #nextCardButton {
+    position: absolute;
+    top: 0;
+    height: 24px;
+    width: 24px;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none; }
+  .cards .card-browser a.inactive:hover {
+    color: #DDDDDD; }
+  .cards .card-browser #previousCardButton {
+    left: 150px; }
+  .cards .card-browser #nextCardButton {
+    right: 150px; }
+  .cards .card-browser #card-bottom-control {
+    position: relative;
+    height: 20px;
+    font-size: 20px;
+    text-align: center; }
+  .cards .bs-callout-info,
+  .cards .bs-callout-warning {
+    padding: 3px 10px; }
+
+.card-comment {
+  margin-top: 5px; }
+
+#admin {
+  margin: 10px; }
+
+/*# sourceMappingURL=card.css.map */

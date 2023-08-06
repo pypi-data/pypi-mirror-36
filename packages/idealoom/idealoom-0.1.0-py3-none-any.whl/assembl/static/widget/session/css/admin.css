@@ -1,0 +1,10 @@
+.session-admin {
+  border-color: transparent;
+  box-shadow: none; }
+  .session-admin .panel-admin {
+    width: 80%;
+    margin: 0 auto; }
+    .session-admin .panel-admin .step_select_criteria .success-steps-3 i {
+      font-size: 100px; }
+
+/*# sourceMappingURL=admin.css.map */

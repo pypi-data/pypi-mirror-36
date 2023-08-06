@@ -1,0 +1,77 @@
+<!--
+In Firefox 29, when we make changes to this page and refresh, the old version is displayed in the browser.
+We have to clear the cache or force refresh of the exact URL of this template page in order to show it correctly.
+-->
+
+<style>
+/* Bar chart is based on http://bl.ocks.org/Caged/6476579 */
+
+svg.barchart .axis path,
+svg.barchart .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+svg.barchart .bar {
+  fill: #9013FE;
+}
+svg.barchart .bar:hover {
+  fill: #a846fe;
+}
+svg.barchart .x.axis path {
+  display: none;
+}
+
+
+
+/* Heatmap is based on http://bl.ocks.org/mbostock/3202354 */
+
+.heatmap .label {
+  font-weight: bold;
+}
+
+.heatmap .tile {
+  shape-rendering: crispEdges;
+}
+
+.heatmap .axis path,
+.heatmap .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+/* general style */
+
+.inline-vote-result-for-a-target {
+  display: inline-block;
+  margin-top: 15px;
+  margin-right: 70px;
+  margin-bottom: 30px;
+}
+
+.inline-vote-result-for-a-target--title {
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
+  max-width: 300px;
+}
+
+.inline-vote-result-for-a-target--item {
+
+}
+
+
+
+
+</style>
+
+<div id="index" ng-controller="resultsCtl" ng-init="init()">
+    <!--<h1>Vote results</h1>-->
+  <div id="vote-results">
+
+  </div>
+  <a href="{{ switchDisplayStyleURL }}">{{'voteResultsChangeDisplayStyle' | translate}}</a>
+</div>

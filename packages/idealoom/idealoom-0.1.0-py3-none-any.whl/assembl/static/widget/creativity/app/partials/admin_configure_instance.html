@@ -1,0 +1,38 @@
+<div id="admin" ng-controller="adminConfigureInstanceCtl" ng-init="init()">
+
+    <h1>{{'adminConfigureInstanceTitle' | translate}}</h1>
+
+    <p>
+        {{'adminConfigureInstanceCurrent' | translate}} <a href="{{ widget_endpoint }}">{{ widget_uri }}</a>.
+
+        <span ng-if="target != null">
+            {{'adminConfigureInstanceCurrentUse' | translate}}
+            <a href="?config={{ widget_uri }}&target={{ target }}" target="_blank">{{'adminConfigureInstanceCurrentUseHere' | translate}}</a>.
+        </span>
+    </p>
+    <p>
+        {{'adminConfigureInstanceAvailableActions' | translate}}
+    </p>
+
+    <ul>
+        <li>
+            <a href="#/admin/configure_instance_set_modules?widget_uri={{ widget_uri }}&target={{ target }}">{{'adminConfigureInstanceDefineEnabledModules' | translate}}</a>
+        </li>
+        <!--
+        <li>
+            <a href="#/admin/configure_instance_set_associated_ideas?widget_uri={{ widget_uri }}&target={{ target }}">{{'adminConfigureInstanceSetAssociatedIdeas' | translate}}</a>
+        </li>
+        -->
+        <li>
+            <button ng-click="deleteThisWidget()">{{'adminConfigureInstanceDelete' | translate}}</button>
+            <span id="widget_delete_result"></span>
+        </li>
+    </ul>
+
+    <br/>
+    <br/>
+    <br/>
+
+    
+
+</div>

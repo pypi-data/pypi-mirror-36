@@ -1,0 +1,40 @@
+{
+    "title_settings":"Settings",
+    "title_contribution":"Contribution",
+    "title_selection":"Selection",
+    "confirm":"Confirm",
+    "first_post":"Be the first to comment!",
+    "contribution":"contribution:",
+    "contributions":"contributions:",
+
+    "CREATE":{
+      "create_from_idea_title":"Would you like to create a creativity session on ‟{{idea}}” ?",
+      "helper":"A creativity session helps rejuvenate the discussion by exposing participants to disruptive questions.",
+      "see_more_detail":"See more detail",
+      "create": "Create"
+    },
+    "COMMENTS":{
+      "reply": "Reply"
+    },
+    "HOME":{
+      "question_placeholder":"This issue will be visible above the card",
+      "question_title":"Write a question which participants would react to",
+      "question_helper":"You're mobilizing participants on ‟{{idea}}”.",
+      "step":"Step {{ n }}",
+      "jeton_number":"Number of tokens",
+      "jeton_title":"Token",
+      "start_date":"Start of session",
+      "end_date":"End of session",
+      "empty_question":"Please add a question in the edit menu",
+      "shuffle":"Draw a new card",
+      "idea_prompt":"This question is relative to the idea ‟{{parentIdeaTitle}}”. Please try to answer the question, by using one of the cards below to find inspiration:",
+      "send": "Send",
+      "propose_idea": "Does this card spark new ideas?",
+      "start_end_dates_info": "Please write datetimes in UTC timezone."
+    },
+    "RATE":{
+      "rateIncludeIdea": "Do you want to show this contribution in the table of ideas?",
+      "nbSelection": "{selectedItems, plural, =0 {You have not selected any contribution} one {You have selected one contribution} other {You have selected # contributions}}",
+      "rateIdeaTitle":"{selectedItems, plural, =0 { } one {Do you want to send it to ‟{title}”} other {Do you want to send them to ‟{title}”}}"
+    }
+}

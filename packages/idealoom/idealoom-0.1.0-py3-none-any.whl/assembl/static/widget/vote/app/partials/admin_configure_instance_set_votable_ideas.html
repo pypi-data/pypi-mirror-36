@@ -1,0 +1,42 @@
+
+<div id="admin" ng-controller="adminConfigureInstanceSetVotableIdeasCtl" ng-init="init()">
+
+    <button onclick="window.history.back()">{{'historyBack' | translate}}</button>
+
+    <h1>{{'adminConfigureInstanceTitle' | translate}}</h1>
+
+    <p>
+        {{'adminConfigureInstanceCurrent' | translate}} <a href="{{ widget_endpoint }}">{{ widget_uri }}</a>.
+
+        <span ng-if="target != null">
+            {{'adminConfigureInstanceCurrentUse' | translate}} <a href="?config={{ widget_uri }}&target={{ target }}" target="_blank">{{'adminConfigureInstanceCurrentUseHere' | translate}}</a>.
+        </span>
+    </p>
+
+    <div id="step_get_data" ng-show="current_step == 1">
+        <p>
+            {{'gettingDataFromServerWidgetInstance' | translate}} "<strong>{{ widget_uri }}</strong>"...
+        </p>
+    </div>
+
+    <div id="step_select_criteria" ng-show="current_step == 2">
+        <h2>{{'adminConfigureInstanceSelectVotableIdeas' | translate}}</h2>
+        <div ng-show="current_step == 2 && current_substep == 1">
+            <p>
+                {{'adminConfigureInstanceLoadingIdeas' | translate}}
+            </p>
+        </div>
+        <div ng-show="current_step == 2 && current_substep == 2">
+            <p>
+                {{'adminConfigureInstanceSelectVotableIdeasInfo' | translate}}
+            </p>
+            <form id="widget_set_votable_ideas" method="POST">
+                <select multiple size="20" ng-model="votable_ideas" ng-options="value.title for value in ideaShortTitles track by value.id"></select>
+                <br/><br/>
+                <input type="submit" value="{{'adminConfigureInstanceSelectVotableIdeasSubmit' | translate}}" />
+                <span id="widget_set_votable_ideas_result"></span>
+            </form>
+        </div>
+    </div>
+
+</div>

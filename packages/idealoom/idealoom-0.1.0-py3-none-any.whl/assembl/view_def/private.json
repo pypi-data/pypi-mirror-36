@@ -1,0 +1,101 @@
+{
+    "_default": {
+        "id": false,
+        "type": false,
+        "@id": "self",
+        "@type": "&external_typename",
+        "@view": "@view",
+        "_default": false
+    },
+    "Permission": {
+        "name": true
+    },
+    "Locale": {
+        "locale": true,
+        "rtl": true
+    },
+    "LangString": {
+        "entries": true
+    },
+    "LangStringEntry": {
+        "@language": "locale_code",
+        "error_code": true,
+        "value": true
+    },
+    "Agent": {
+        "description": true,
+        "@private": "self",
+        "avatar_url_base": "&external_avatar_url",
+        "name": "&display_name",
+        "real_name": "&real_name",
+        "preferred_email": false,
+        "is_first_visit": false,
+        "accounts": [":default"]
+    },
+    "Update": {
+        "@private": "actor",
+        "who": "actor"
+    },
+    "ActionOnPost": {
+        "@extends": "Update",
+        "what": "post",
+        "target_type": "'\"SPost\""
+    },
+    "LikedPost": {
+        "@extends": "ActionOnPost"
+    },
+    "ReadStatusChange": {
+        "@extends": "ActionOnPost"
+    },
+    "User": {
+        "@extends": "Agent",
+        "created": "creation_date",
+        "last_login": true,
+        "login_expiry": "&login_expiry_req",
+        "login_failures": false,
+        "password": false,
+        "verified": true,
+        "permissions": "&get_all_permissions",
+        "username": true
+    },
+    "UserTemplate": {
+        "@extends": "User",
+        "discussion": true,
+        "for_role": ":"
+    },
+    "UserAccount": {
+        "@private": "profile",
+        "preferred": true,
+        "email": true,
+        "verified": true,
+        "profile": true
+    },
+    "EmailAccount": {
+        "@extends": "UserAccount",
+        "will_merge_if_validated": "'false"
+    },
+    "WebLinkAccount": {
+        "@extends": "UserAccount",
+        "user_link": true
+    },
+    "LoomioAccount": {
+        "@extends": "WebLinkAccount"
+    },
+    "SourceSpecificAccount": {
+        "@extends": "UserAccount",
+        "user_link": true,
+        "user_id": true,
+        "source_id": true
+    },
+    "SocialAuthAccount": {
+        "@extends": "UserAccount",
+        "provider": "&get_provider_type",
+        "username": true,
+        "picture_url": true
+    },
+    "Usergroup": {
+        "name": true,
+        "provider_type": true,
+        "trust_emails": true
+    }
+}

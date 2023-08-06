@@ -1,0 +1,87 @@
+<div class="session">
+    <div class="col-md-5 bloc-left">
+        <div class="session-cards">
+            <div class="bloc-question">
+                <h4 ng-if="widget.settings.question">{{widget.settings.question}}</h4>
+                <p ng-if="!widget.settings.question"><i class="fa fa-exclamation-triangle fa-lg"></i> {{'HOME.empty_question'| translate}}</p>
+                <!--<p>{{'HOME.idea_prompt'| translate : {parentIdeaTitle: parentIdeaTitle} }}</p>-->
+            </div>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-top"></div>
+                    <input type="hidden" name="random_index" class="random_index" value="{{random_index}}">
+                    <div ng-bind-html="displayed_cards[displayed_card_index].body" style="min-height: 250px; height: 100%;"></div>
+                    <div class="card-bottom"></div>
+                </div>
+                <div class="slot-machine-session">
+                    <a ng-click="pickNextCard()"><img src="img/slot-machine.png"></a>
+                </div>
+            </div>
+            <div class="shuffle">
+                <button class="btn btn-default" ng-click="pickNextCard()">{{'HOME.shuffle' | translate}}</button>
+            </div>
+            <div class="bs-callout">
+                <p>
+                    &nbsp;&nbsp;{{'HOME.propose_idea'| translate}}
+                </p>
+            </div>
+        </div>
+        <div class="card-comment" ng-hide="readOnly">
+            <div style="display: inline-block;">
+                <img ng-src="{{ user_avatar_url }}" class="media-object img-circle" width="30" height="30"/>
+            </div>
+            <div style="float: right; width: calc(100% - 30px); padding-left: 5px;">
+                <form role="form" ng-submit="sendSubIdea()">
+                    <div class="form-group">
+                        <input type="text" ng-model="formData.shortTitle" class="form-control" id="inputEmail1" placeholder="{{'title' | translate}}" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea ng-model="formData.definition" class="form-control" rows="3" placeholder="description" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-purple btn-sm pull-right">{{'HOME.send' | translate}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-7 bloc-right">
+        <ng-pluralize count="ideas.length"
+                      when="{'0':'{} {{&quot;contribution&quot;| translate}}',
+                          '1': '{} {{&quot;contribution&quot; | translate}}',
+                          'other': '{} {{&quot;contributions&quot; | translate}}' }">
+        </ng-pluralize>
+        <div class="msg" ng-show="ideas.length < 1">
+            <p>{{'first_post'| translate}}</p>
+        </div>
+        <div class="session-comment">
+            <div class="media user-comment" ng-if="ideas.length > 0" ng-repeat="idea in ideas | orderBy:'created':'reverse' track by idea['@id']">
+                <div class="pull-left thumbnail">
+                    <img class="media-object img-circle" ng-src="{{idea.avatar}}" alt="30x30" width="30" height="30">
+                </div>
+                <div class="media-body">
+                    <div>
+                        <h6 class="media-heading">{{idea.username}}</h6>
+                        <i class="text-info time">{{idea.beautify_date}}</i>
+                    </div>
+                    <div><h5>{{idea.shortTitle}}</h5></div>
+                    <span class="pull-left"><i class="icon-lamp"></i></span>
+                    <span class="pull-right">
+                        <!-- Vote directive -->
+                        <vote idea="idea" widget="widget"></vote>
+                    </span>
+                    <div class="row">
+                        <div class="col-md-12 comment-idea">
+                            <p>{{idea.definition}}</p>
+                        </div>
+                    </div>
+                    <!-- Comments directive -->
+                    <comments idea="idea" widget="widget" reply="true"></comments>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

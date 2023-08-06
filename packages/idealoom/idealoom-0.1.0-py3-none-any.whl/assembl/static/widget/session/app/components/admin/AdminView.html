@@ -1,0 +1,59 @@
+<div class="edit-container">
+    <section id="settings-edit">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="panel-form">
+                    <form ng-submit="setSettings()">
+                        <div class="form-group">
+                            <p translate="HOME.question_helper" translate-values="{ idea: idea_title }"></p>
+                        </div>
+                        <div class="form-group">
+                            <h3 translate="HOME.step" translate-values="{ n: 1 }"></h3>
+                            <label for="session_question">{{'HOME.question_title' | translate}}</label>
+                            <textarea id="session_question" class="form-control" type="text" ng-model="formData.question" placeholder="{{'HOME.question_placeholder' | translate}}"></textarea>
+                        </div>
+                        <!--<div class="form-group">
+                            <label for="session_jeton" class="edit-title"><i class="fa fa-circle-o"></i> {{'session_jeton_title' | translate}}</label>
+                            <input id="session_jeton" class="form-control" type="text" ng-model="formData.number" placeholder="{{'session_jeton_number' | translate}}">
+                        </div>-->
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputName1">{{'HOME.start_date' | translate}}</label>
+                                <br/>
+                                <div class="form-group col-xs-6">
+                                    <input type="text" class="form-control" ng-model="formData.startDate" id="exampleInputName1" data-date-format="yyyy-MM-dd" data-max-date="{{formData.endDate}}" placeholder="{{'HOME.start_date' | translate}}" data-container="body" data-autoclose="1" bs-datepicker required>
+                                </div>
+                                <div class="form-group col-xs-6">
+                                    <input type="text" size="8" class="form-control" ng-model="formData.startDate" data-time-format="h:mm:ss a" data-container="body" data-autoclose="1" placeholder="Time" bs-timepicker>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputName2">{{'HOME.end_date' | translate}}</label>
+                                <br/>
+                                <div class="form-group col-xs-6">
+                                    <input type="text" class="form-control" ng-model="formData.endDate" id="exampleInputName2" data-date-format="yyyy-MM-dd" data-min-date="{{formData.startDate}}" placeholder="{{'HOME.end_date' | translate}}" data-container="body" data-autoclose="1" bs-datepicker required>
+                                </div>
+                                <div class="form-group col-xs-6">
+                                    <input type="text" size="8" class="form-control" ng-model="formData.endDate" data-time-format="h:mm:ss a" data-container="body" data-autoclose="1" placeholder="Time" bs-timepicker>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <p>{{'HOME.start_end_dates_info' | translate}}</p>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-default btn-purple pull-right" type="submit">{{'confirm' | translate}}</button>
+                    </form>
+                </div>
+                <div>
+                    <h3 translate="HOME.step" translate-values="{ n: 2 }"></h3>
+                    <a ng-href="/static/widget/card/?admin=1&amp;locale={{locale}}#/admin_configure_instance?config={{home}}">{{"Select the deck of cards which will be displayed"| translate}}</a>
+                    <!--<div ng-show="config_status == 1">
+                        <a ui-sref="session.home({config: home})" class="btn btn-primary">{{'Access to the discussion widget' | translate}}</a>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

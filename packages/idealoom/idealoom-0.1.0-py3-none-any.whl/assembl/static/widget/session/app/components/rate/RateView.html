@@ -1,0 +1,58 @@
+<section class="rate-container">
+    <div class="session">
+        <div class="col-md-7 bloc-left">
+            <ng-pluralize count="ideas.length"
+                          when="{'0':'{} {{&quot;contributions&quot;| translate}}',
+                          '1': '{} {{&quot;contributions&quot; | translate}}',
+                          'other': '{} {{&quot;contributions&quot; | translate}}' }">
+            </ng-pluralize>
+
+            <div class="msg" ng-show="ideas.length < 1">
+                <p><i class="fa fa-exclamation-triangle fa-lg"></i> {{'first_post'| translate}}</p>
+            </div>
+            <div class="session-comment">
+                <form id="postForm">
+                <div class="media user-comment" ng-if="ideas.length > 0" ng-repeat="idea in ideas | orderBy:'created':'reverse' track by $index">
+                    <div class="pull-left">
+                        <input type="checkbox" id="checkbox-{{idea.proposed_in_post['@id']}}"  value="{{idea.proposed_in_post['@id']}}" data-toggle="checkbox" class="sub-idea-post" ng-model="idea.proposed_in_post.selected">
+                    </div>
+                    <div class="pull-left thumbnail">
+                        <img class="media-object img-circle" ng-src="{{idea.avatar}}" alt="30x30" width="30" height="30">
+                    </div>
+                    <div class="media-body">
+                        <div>
+                            <h6 class="media-heading">{{idea.username}}</h6>
+                            <i class="text-info time">{{idea.beautify_date}}</i>
+                        </div>
+                        <div><h5>{{idea.shortTitle}}</h5></div>
+                        <span class="pull-left"><i class="icon-lamp"></i></span>
+                        <span class="pull-right">
+                            <!-- Vote directive -->
+                            <!-- <vote idea="idea" widget="widget"></vote> -->
+                        </span>
+                        <div class="row">
+                            <div class="col-md-12 comment-idea">
+                                <p>{{idea.definition}}</p>
+                            </div>
+                        </div>
+                        <div class="row media-control">
+                            <!-- do we show idea? -->
+                            <span><input type="checkbox" id="checkbox-{{idea['@id']}}"  value="{{idea['@id']}}" data-toggle="checkbox" class="sub-idea" ng-model="idea.selected">
+                            <span translate="RATE.rateIncludeIdea"></span></span>
+                        </div>
+                        <!-- Comments directive -->
+                        <comments idea="idea" widget="widget" reply="false"></comments>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="col-md-5 bloc-right">
+          <p translate="RATE.nbSelection" translate-values="{ selectedItems: selectedItems }" translate-interpolation="messageformat"></p>
+          <p translate="RATE.rateIdeaTitle" translate-values="{ selectedItems: selectedItems, title: idea_title }" translate-interpolation="messageformat"></p>
+            <button type="submit" class="btn btn-primary btn-purple btn-sm pull-right" ng-click="validSelection()">{{'send' | translate}}</button>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block page_title %}IdeaLoom{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale = 1,user-scalable=no,maximum-scale=1.0">
+
+    {% block meta_tags %}
+    <meta name="description" content="">
+    <meta property="og:title" content="IdeaLoom" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ application_url }}" />
+    <meta property="og:image" content="{{ STATIC_URL }}/css/themes/default/img/crowd2.jpg" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="222" />
+    <meta property="og:image" content="{{ STATIC_URL }}/css/themes/default/img/logo.png" />
+    <meta property="og:image:width" content="111" />
+    <meta property="og:image:height" content="35" />
+    <meta name="robots" content="noindex" />
+    <meta name="googlebot" content="noindex" />
+    {% endblock meta_tags %}
+
+    {#<link rel="icon" href="{{ STATIC_URL }}/img/icon/infinite-1.png" type="image/x-icon">#}
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}/js/build/theme_{{theme_relative_path}}_web.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}/js/bower/jquery-oembed-all/jquery.oembed.css" />
+
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}/node_modules/hopscotch/dist/css/hopscotch.min.css" />
+
+    {% block extra_css %}{% endblock extra_css %}
+    {% include 'includes/feature_detection.jinja2' %}
+
+</head>
+<body class="preload {{theme_name}}">
+    <div id="wrapper">
+        <header id="header">{# include with marionette region #}</header>
+        <div id="infobars"></div>
+        <main id="main"> {% block content %}{% endblock %} </main>
+    </div>
+    {% block backboneTemplates %}{% endblock %}
+
+    <div id="slider"></div>
+    <div id="tooltips"></div>
+    <div id="popover-oembed" class="hidden"></div>
+
+    {% include 'includes/javascript.jinja2' %}
+    {% include 'includes/updatebrowser.jinja2' %}
+    
+    
+    {% block extra_js %}{% endblock %}
+    {% block main_js %}{% endblock %}
+
+    {% block facebook_sdk_load%}{% endblock %}
+
+</body>
+</html>

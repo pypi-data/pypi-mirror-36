@@ -1,0 +1,9 @@
+{
+    "Excerpt": {
+        "id": "&local_uri_as_resource",
+        "type": "'\"SpecificResource\"",
+        "source": "content",
+        "selector": "&fragements_as_web_annotatation",
+        "_default": false
+    }
+}

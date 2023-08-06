@@ -1,0 +1,283 @@
+body#voteApp {
+  margin: 10px;
+  font: 12px "Open Sans",sans-serif;
+}
+
+
+/* button */
+
+.btn-sm {
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 5px 10px;
+}
+
+.btn-primary {
+    background-color: #b36fe0;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.btn {
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Open Sans",sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+button.btn[disabled], input.btn[disabled] {
+  background: #CBC8CD;
+  color: #717171;
+  cursor: not-allowed;
+}
+
+
+/* d3-tip: D3 tooltip plugin */
+
+.d3-tip {
+  line-height: 1;
+  /*font-weight: bold;*/
+  padding: 12px;
+  background: rgba(235,235,235,0.85); /* #F1F1F1; /* was rgba(0, 0, 0, 0.8) */
+  color: #fff;
+  border-radius: 2px;
+  max-width: 175px; /* cannot be too wide otherwise 2_axes y tooltip does not show completely :/ */
+}
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  
+  color: rgba(235,235,235,0.85); /* #F1F1F1; /* was rgba(0, 0, 0, 0.8) */
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+.d3-tip .text {
+  color: #333333;
+}
+
+.d3-tip .data {
+  color: #9013FE;
+}
+
+
+/* graphical vote representation */
+
+.axis {
+  font-size: 10px;
+}
+
+.axis-label {
+  font-weight: bold;
+  text-anchor: middle;
+  font-size: smaller; /* should be smaller than the target idea title */
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis.gradient path {
+  fill: none;
+  stroke: none;
+}
+
+#table-vote th:first-child {
+    min-width: 100px;
+}
+
+#table-vote th {
+    text-align: center;
+    border: 1px solid #000;
+}
+#table-vote td {
+    border: 1px solid #000;
+}
+
+#vote-submit-result-holder {
+  margin-top: 10px;
+}
+
+#vote-submit-result-holder p.success, .vote-question-result p.success, .vote-votable-idea-result p.success {
+  color: #00A012;
+}
+
+#vote-submit-result-holder p.failure, .vote-question-result p.failure, .vote-votable-idea-result p.failure {
+  color: #9E0000;
+}
+
+
+section.vote-question-item {
+  margin-bottom: 35px;
+}
+
+.inline-vote-for-a-target {
+  display: inline-block;
+  margin-top: 15px;
+  margin-right: 40px;
+  margin-bottom: 15px;
+}
+
+.vote-question-item-type-2_axes .inline-vote-for-a-target {
+  margin-left: 50px; /* needed for 2_axes y tooltip to show completely :/ */
+}
+
+.inline-vote-for-a-target--title, .votable-idea-description {
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
+  max-width: 300px;
+}
+
+.votable-idea-description {
+  font-style: initial;
+  font-weight: initial;
+}
+
+section.vote-votable-idea {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+section.vote-votable-idea .vote-votable-idea-submit-button-container {
+  margin-bottom: 22px;
+}
+
+section.vote-votable-idea .vote-votable-idea--title {
+  margin-bottom: 30px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f2ecf8;
+}
+
+section.vote-votable-idea .vote-votable-idea--title .votable-idea-title {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+section.vote-votable-idea .vote-votable-idea--title .votable-idea-description {
+  text-align: left;
+  max-width: 600px;
+}
+
+section.vote-votable-idea .vote-criterion-question .question-title {
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
+  max-width: 400px;
+}
+
+section.vote-votable-idea .vote-criterion-question .question-description {
+  text-align: left;
+  margin-top: 3px;
+  max-width: 400px;
+}
+
+section.vote-votable-idea .vote-criterion-question {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 40px;
+}
+
+section.vote-votable-idea .vote-criterion-question .vote-criterion-question--item {
+  margin: 0 auto;
+}
+
+/* We have decided to align the items of type radio to the left, and to center horizontally the other ones */
+section.vote-votable-idea .vote-criterion-question .vote-criterion-question--item.item-type-radio > div {
+  padding-left: 0 !important;
+}
+
+
+.inline-vote-for-a-target--item {
+
+}
+
+.vote-question-submit-button-container {
+  margin: 20px 0 30px 0;
+}
+
+.vote-question-item .question-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.vote-question-item .question-description {
+  
+}
+
+.vote-question-item-type-radio .inline-vote-for-a-target--title {
+  text-align: left;
+}
+
+.vote-question-item-type-radio .inline-vote-for-a-target {
+  width: 300px;
+}
+
+.question-mark-icon {
+  cursor: help;
+  background-image: url("../images/question_mark_icon_with_alpha.png"); /* => for <image> tags in SVG, this property is called xlink:href and cannot be set via CSS */
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  margin-left: 5px;
+}
+
+.question-mark-icon-small {
+  cursor: help;
+  background-image: url("../images/question_mark_icon_with_alpha.png"); /* => for <image> tags in SVG, this property is called xlink:href and cannot be set via CSS */
+  background-size: 11px 11px;
+  background-repeat: no-repeat;
+  width: 11px;
+  height: 11px;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.result-info .result-info-for-vote-spec {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.result-info .result-info-for-vote-spec .vote-spec-label {
+  font-weight: bold;
+}

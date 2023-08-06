@@ -1,0 +1,122 @@
+<div id="JukeTube" ng-init="init()">
+    <div id="player">
+        <div id="placeholder"></div>
+
+        <div id="playlist">
+            <p id="current">{{ youtube.videoTitle }}</p>
+
+            <p ng-show="!canPost && canNotPostReason == 'no_endpoint'">
+                {{ 'canNotPostBecauseNoEndpoint' | translate }}
+            </p>
+
+            <div class="card-comment" ng-show="canPost">
+
+                <div ng-hide="message_is_sent">
+                    <h3>
+                        {{ 'videoTopExplanationStep3' | translate }}
+                    </h3>
+                    <p>
+                        {{ 'videoDoesThisVideoInspireYou' | translate: {idea: idea.shortTitle} }}
+                    </p>
+
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="messageTitle"
+                                   placeholder="{{ 'videoCommentTitlePlaceholder' | translate }}">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3"
+                                      placeholder="{{ 'videoCommentContentPlaceholder' | translate }}"
+                                      id="messageContent"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" ng-click="sendIdea()">{{ 'videoSendIdeaButton' | translate }}</button>
+                    </form>
+                </div>
+
+                <div ng-show="message_is_sent">
+                    <p>{{ 'messageSuccessfullyPosted' | translate }}</p>
+                    <button type="submit" class="btn btn-primary mhl" ng-click="resumeInspiration()">{{ 'resumeInspirationButton' | translate }}</button>
+                    <button type="submit" class="btn btn-secondary mhl" ng-click="exit()">{{ 'exitButton' | translate }}</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="results">
+        <p>
+            {{ 'videoTopExplanation' | translate }} <span class="strong">{{idea.shortTitle}}</span>{{ 'videoTopExplanation2' | translate }} <span class="strong">{{discussion.topic}}</span>
+        </p>
+        <h3>
+            {{ 'videoTopExplanationStep1' | translate }}
+        </h3>
+
+        <p>{{ 'videoStep1Description' | translate }}</p>
+
+        <p ng-show="!canPost && canNotPostReason == 'no_endpoint'">
+            {{ 'canNotPostBecauseNoEndpoint' | translate }}
+        </p>
+
+        <form id="search" data-ng-submit="search()">
+            <input ng-model="query" id="query" class="select2-offscreen" type="hidden" value=""
+                   placeholder="{{ 'videoSearchPlaceholderText' | translate }}"/>
+            <input type="submit" id="search-button" value="{{ 'videoSearch' | translate }}" class="btn btn-default"/>
+        </form>
+
+        <ul class="keywords">
+            <li class="keyword" ng-repeat="keyword in inspiration_keywords" ng-click="keywordClick($event)"
+                ng-show="inspiration_keywords_used[keyword] != true">{{keyword}}
+            </li>
+        </ul>
+
+        <!-- -->
+        <fieldset>
+            <legend>{{ 'videoTopExplanationRelatedTermsTitle' | translate }}</legend>
+            <p>
+              {{ 'videoTopExplanationRelatedTermsDescription' | translate }}
+            </p>
+
+            <form id="searchRelatedTerms" data-ng-submit="searchRelatedTerms()">
+                <input ng-model="related_terms_query" id="related_terms_query"
+                       placeholder="{{ 'videoSearchPlaceholderText' | translate }}"/>
+                <input type="submit" id="search-button" value="{{ 'videoSearch' | translate }}" class="btn btn-default"/>
+            </form>
+
+            <ul class="keywords" ng-show="inspiration_keywords_related.length">
+              <li class="keyword" ng-repeat="keyword in inspiration_keywords_related" ng-click="keywordClick($event)" ng-show="inspiration_keywords_used[keyword] != true">{{keyword}}</li>
+            </ul>
+            <p ng-show="inspiration_keywords_related_no_results">{{ 'videoNoRelatedTermsSearchResults' | translate: {query: query} }}
+        </fieldset>
+        <!-- -->
+        <h3>
+            {{ 'videoTopExplanationStep2' | translate }}
+        </h3>
+
+        <p ng-show="results.length">{{ 'videoStep2Description' | translate }}</p>
+        <p ng-show="hasSearched && !results.length">{{ 'videoNoSearchResults' | translate: {query: query} }}</p>
+
+        <div class="video" data-ng-repeat="video in results"
+             data-ng-click="scrollToPlayerAndLaunch(video.id, video.title)" data-ng-class="{selected: video.id == currentVideoId}">
+            <img class="video-image" data-ng-src="{{ video.thumbnail }}">
+
+            <p class="video-title">{{ video.title }}</p>
+
+            <p class="video-author">{{ 'videoByVideoAuthor' | translate }} <strong>{{ video.author }}</strong> &nbsp;&#183;&nbsp;
+                {{ video.publishedAt }}</p>
+
+            <p class="video-description">{{ video.description }}</p>
+        </div>
+
+        <div class="pagination" ng-if="pageInfo.totalResults > 0">
+            <button type="button" class="btn btn-default" ng-disabled="pageInfo.prevPageToken == ''"
+                    ng-click="search(pageInfo.prevPageToken)">{{ 'videoPreviousPage' | translate }}
+            </button>
+            <button type="button" class="btn btn-default" ng-disabled="pageInfo.nextPageToken == ''"
+                    ng-click="search(pageInfo.nextPageToken)">{{ 'videoNextPage' | translate }}
+            </button>
+        </div>
+    </div>
+
+
+</div>

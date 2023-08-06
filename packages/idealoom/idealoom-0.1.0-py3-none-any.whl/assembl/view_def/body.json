@@ -1,0 +1,31 @@
+{
+    "_default": {
+        "id": false,
+        "type": false,
+        "@id": "self",
+        "@type": "&external_typename",
+        "@view": "@view",
+        "_default": false
+    },
+    "Post": {
+        "body": ":"
+    },
+    "LocalPost": {
+        "body": ":"
+    },
+    "IdeaProposalPost": {
+        "body": ":"
+    },
+    "WidgetPost": {
+        "body": ":"
+    },
+    "SynthesisPost": {
+        "body": ":"
+    },
+    "ImportedPost": {
+        "body": ":"
+    },
+    "Email": {
+        "body": ":"
+    }
+}
