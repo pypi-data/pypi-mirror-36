@@ -1,0 +1,11 @@
+tox_travis/__init__.py,sha256=N7nyGroUjPIqNENsUszyt22ruIhEuAz4Swo8wkWCIAo,48
+tox_travis/after.py,sha256=eIH_CcMGeRABU-MgeFb71y45YlY2Yue1sT0SWbiO7-Q,5104
+tox_travis/envlist.py,sha256=4w9B3Nh0aO8ZT5JgVahgya2VuKrxYpH13m9O7svt0rQ,8663
+tox_travis/hacks.py,sha256=mECEuanMLGHOkCOPms4shNEC061UCzSgnQAehDu_nGU,1028
+tox_travis/hooks.py,sha256=1zS5AkTj0j7mA3c6QojE73jvxP3Huf1B2t4uDceb8Q4,2018
+tox_travis/utils.py,sha256=sXBT0XEm1uCyJWAehZVNqh6P73YABGWCSVSBiyaN960,795
+tox_travis-0.11.dist-info/METADATA,sha256=-hbK7YwpR2RcYpU5mGVCnqloyev6ZmpbqZIyOHxygV4,2469
+tox_travis-0.11.dist-info/RECORD,,
+tox_travis-0.11.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+tox_travis-0.11.dist-info/entry_points.txt,sha256=gDFWJwaWj4RLKsF63CHHjczMzgY5TfGIosA6cH_tOrs,33
+tox_travis-0.11.dist-info/top_level.txt,sha256=UFT4PMBKDlB37np9mYAdqvQN-Pnf3SfFcchg7YHOuVU,11
