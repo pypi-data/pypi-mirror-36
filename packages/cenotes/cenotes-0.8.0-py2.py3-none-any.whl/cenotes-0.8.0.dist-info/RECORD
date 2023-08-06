@@ -1,0 +1,13 @@
+cenotes/__init__.py,sha256=2-4pGusSEFC7CCXIGVfAJBRSRk8JXfpPGWJgEkQIW3M,1199
+cenotes/api.py,sha256=eeKWGRZwtr1nOTHV85oREbmBnKcoVcDdZVofSnc7zJA,2169
+cenotes/cli.py,sha256=m6feCZ7jIoPGRpdw84qswM1POA2x6dwMXIoyPr-xPOE,798
+cenotes/config_backend.py,sha256=oKz9Q1tBQZ2Gwq0OncTuMR2i_-fogkarThiZXdFLV1U,4221
+cenotes/controllers.py,sha256=HziQfRCQbRdLjnAr13OOES6vbB5qIy7CvmnWZA78zko,2347
+cenotes/controllers_errors.py,sha256=2_2a3-GPKc_McLEzHhgkiUIEIg3mS4IoEpxvlRezSEQ,774
+cenotes/helpers.py,sha256=2GmONKUfEwdHT5mCebnS9QuYnkrJ2q23nLWNTdZrEas,1486
+cenotes/models.py,sha256=J6ZHyIYoee3RLAC2PLDfL_BTfKPAYKgr9EjdhoYI9jU,2371
+cenotes-0.8.0.dist-info/METADATA,sha256=JFS6LMrVAyOM07nzs0fFh4SJmgZ7Rrf4bX2rppJ3o6U,4001
+cenotes-0.8.0.dist-info/RECORD,,
+cenotes-0.8.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+cenotes-0.8.0.dist-info/entry_points.txt,sha256=6Ni81NKAL222_wYSollBgmjwRlw4kvJgTm8XPKOIJ7o,46
+cenotes-0.8.0.dist-info/top_level.txt,sha256=ROROKXNoPp_h_SvH-tpT-C6As0BMenklrlCH7LU2HEE,8
