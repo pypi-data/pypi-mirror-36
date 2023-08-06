@@ -1,0 +1,15 @@
+numpy
+astropy
+scipy
+ipython
+matplotlib
+lightkurve
+
+[docs]
+sphinx
+nbsphinx
+sphinx_rtd_theme
+numpydoc
+
+[models]
+batman-package
