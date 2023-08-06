@@ -1,0 +1,11 @@
+django_pyuwsgi/__init__.py,sha256=fAQTHu-xZXnYxOhniGvlVOjyNWq5s_Cw7IMO_neQAhI,153
+django_pyuwsgi/management/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_pyuwsgi/management/commands/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_pyuwsgi/management/commands/pyuwsgi.py,sha256=Wmu92tu7XwJueIpSWg3OgWtaz6wDHwzL8LihFQz8QdU,1262
+django_pyuwsgi/tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+django_pyuwsgi/tests/django_settings.py,sha256=g9Ce4wgbwZPs1Gibv1x9K5Uo21kc9MnrqZBhmnMErls,335
+django_pyuwsgi/tests/tests.py,sha256=1xs5ylCCZ0SrG11JR0mQ6hD1AWNgMxgb-hVECtMGFu8,1509
+django_pyuwsgi-1.1.0.dist-info/METADATA,sha256=m1av79NyJpNSwqC8se8ToFLY4xkCtQtAKeTRPJ9CIiE,3223
+django_pyuwsgi-1.1.0.dist-info/RECORD,,
+django_pyuwsgi-1.1.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+django_pyuwsgi-1.1.0.dist-info/top_level.txt,sha256=ttrnpw87fO_ll_WxyVqKmF13mwr4l2xNsypLxoLecn4,15
