@@ -1,0 +1,14 @@
+cached_property
+distlib
+pip-shims
+recursive-monkey-patch
+setuptools
+six
+virtualenv
+vistir[spinner]
+
+[tests]
+pytest-timeout
+pytest-xdist
+pytest-cov
+pytest
