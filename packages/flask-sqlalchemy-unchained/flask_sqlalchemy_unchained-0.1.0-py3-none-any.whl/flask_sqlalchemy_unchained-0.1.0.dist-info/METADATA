@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: flask-sqlalchemy-unchained
+Version: 0.1.0
+Summary: Integrates SQLAlchemy Unchained with Flask
+Home-page: UNKNOWN
+Author: Brian Cappello
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3.6
+Provides-Extra: docs
+Provides-Extra: dev
+Requires-Dist: flask-sqlalchemy (>=2.3.1)
+Requires-Dist: sqlalchemy-unchained (>=0.2.0)
+Provides-Extra: dev
+Requires-Dist: coverage; extra == 'dev'
+Requires-Dist: factory-boy; extra == 'dev'
+Requires-Dist: m2r; extra == 'dev'
+Requires-Dist: mock; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
+Requires-Dist: pytest-flask; extra == 'dev'
+Requires-Dist: tox; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: sphinx; extra == 'docs'
+Requires-Dist: sphinx-autobuild; extra == 'docs'
+Requires-Dist: sphinx-click; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme; extra == 'docs'
+
+UNKNOWN
+
+
