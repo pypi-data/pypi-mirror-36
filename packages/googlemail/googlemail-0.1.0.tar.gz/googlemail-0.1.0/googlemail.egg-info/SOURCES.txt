@@ -1,0 +1,10 @@
+README.md
+setup.py
+googlemail/__init__.py
+googlemail/config.py
+googlemail/gmail.py
+googlemail/login.py
+googlemail.egg-info/PKG-INFO
+googlemail.egg-info/SOURCES.txt
+googlemail.egg-info/dependency_links.txt
+googlemail.egg-info/top_level.txt
