@@ -1,0 +1,14 @@
+README.md
+setup.py
+pybpod_gui_plugin_trial_timeline.egg-info/PKG-INFO
+pybpod_gui_plugin_trial_timeline.egg-info/SOURCES.txt
+pybpod_gui_plugin_trial_timeline.egg-info/dependency_links.txt
+pybpod_gui_plugin_trial_timeline.egg-info/top_level.txt
+pybpodgui_plugin_trial_timeline/__init__.py
+pybpodgui_plugin_trial_timeline/settings.py
+pybpodgui_plugin_trial_timeline/trial_timeline.py
+pybpodgui_plugin_trial_timeline/models/__init__.py
+pybpodgui_plugin_trial_timeline/models/session/__init__.py
+pybpodgui_plugin_trial_timeline/models/session/session_treenode.py
+pybpodgui_plugin_trial_timeline/models/subject/__init__.py
+pybpodgui_plugin_trial_timeline/models/subject/subject_treenode.py
