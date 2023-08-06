@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: wind
+Version: 0.0.0.dev0
+Summary: Wind Project
+Home-page: https://github.com/D3-AI/wind
+Author: MIT Data To AI Lab
+Author-email: dailabmit@gmail.com
+License: MIT license
+Keywords: wind
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.4
+Description-Content-Type: text/markdown
+
+[![PyPI Shield](https://img.shields.io/pypi/v/wind.svg)](https://pypi.python.org/pypi/wind)
+[![Travis CI Shield](https://travis-ci.org/D3-AI/wind.svg?branch=master)](https://travis-ci.org/D3-AI/wind)
+
+# Wind
+
+Wind Project
+
+- Free software: MIT license
+- Documentation: https://D3-AI.github.io/wind
+- Homepage: https://github.com/D3-AI/wind
+
+
+# History
+
+## 0.1.0
+
+* First release on PyPI.
+
+
