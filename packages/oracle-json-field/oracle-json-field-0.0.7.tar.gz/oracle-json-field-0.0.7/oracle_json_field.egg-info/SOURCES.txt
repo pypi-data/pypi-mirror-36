@@ -1,0 +1,17 @@
+README.md
+setup.py
+oracle_json_field/__init__.py
+oracle_json_field/admin.py
+oracle_json_field/apps.py
+oracle_json_field/constants.py
+oracle_json_field/encoders.py
+oracle_json_field/fields.py
+oracle_json_field/managers.py
+oracle_json_field/models.py
+oracle_json_field/tests.py
+oracle_json_field/views.py
+oracle_json_field.egg-info/PKG-INFO
+oracle_json_field.egg-info/SOURCES.txt
+oracle_json_field.egg-info/dependency_links.txt
+oracle_json_field.egg-info/requires.txt
+oracle_json_field.egg-info/top_level.txt
