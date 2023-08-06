@@ -1,0 +1,26 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "dask_memusage"
+description-file = "README.md"
+requires-python = ">=3.5"
+requires = [
+    "distributed",
+    "click",
+]
+author = "Itamar Turner-Trauring"
+author-email = "itamar@itamarst.org"
+home-page = "https://github.com/itamarst/dask-memusage"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+
+[tool.flit.metadata.requires-extra]
+test = [
+    "pytest",
+    "flake8",
+    "numpy"
+]

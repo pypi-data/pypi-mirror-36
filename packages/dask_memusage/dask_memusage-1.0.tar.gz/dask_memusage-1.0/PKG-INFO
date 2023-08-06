@@ -1,0 +1,7 @@
+Metadata-Version: 1.1
+Name: dask_memusage
+Version: 1.0
+Summary: Low-impact, task-level memory profiling for Dask.
+Home-page: https://github.com/itamarst/dask-memusage
+Author: Itamar Turner-Trauring
+Author-email: itamar@itamarst.org
