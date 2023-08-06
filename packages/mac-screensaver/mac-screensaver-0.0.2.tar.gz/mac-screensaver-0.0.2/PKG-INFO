@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: mac-screensaver
+Version: 0.0.2
+Summary: MacOS screensaver
+Home-page: https://github.com/looking-for-a-job/mac-screensaver.py
+License: UNKNOWN
+Description: [![](https://img.shields.io/badge/OS-MacOS-blue.svg?longCache=True)]()
+        [![](https://img.shields.io/pypi/pyversions/mac-screensaver.svg?longCache=True)](https://pypi.org/pypi/mac-screensaver/)
+        
+        ### Install
+        ```bash
+        $ [sudo] pip install mac-screensaver
+        ```
+        
+        ### Examples
+        names, current name
+        ```python
+        >>> mac_screensaver.names()
+        ['Random', 'Flurry', 'Arabesque', 'Word of the Day', 'iTunes Artwork', 'Computer Name', 'Shell', 'FloatingMessage', 'iLifeSlideshows']
+        >>> mac_screensaver.name()
+        'iLifeSlideshows'
+        ```
+        
+        process
+        ```python
+        >>> mac_screensaver.start()
+        >>> mac_screensaver.pid()
+        1488
+        >>> mac_screensaver.kill()
+        ```
+Keywords: screensaver
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: MacOS X
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development
+Description-Content-Type: text/markdown
