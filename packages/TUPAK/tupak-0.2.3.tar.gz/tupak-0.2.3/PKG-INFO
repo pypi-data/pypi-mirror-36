@@ -1,0 +1,40 @@
+Metadata-Version: 1.1
+Name: tupak
+Version: 0.2.3
+Summary: The User friendly Parameter estimAtion Kode
+Home-page: https://git.ligo.org/Monash/tupak
+Author: Greg Ashton, Moritz Huebner, Paul Lasky, Colm Talbot
+Author-email: paul.lasky@monash.edu
+License: MIT
+Description: |pipeline status| |coverage report| |pypi| |version|
+        
+        Tupak
+        =====
+        
+        Fulfilling all your gravitational wave dreams.
+        
+        -  `Installation
+           instructions <https://monash.docs.ligo.org/tupak/installation.html>`__
+        -  `Contributing <https://git.ligo.org/Monash/tupak/blob/master/CONTRIBUTING.md>`__
+        -  `Documentation <https://monash.docs.ligo.org/tupak/index.html>`__
+        -  `Issue tracker <https://git.ligo.org/Monash/tupak/issues>`__
+        
+        We encourage you to contribute to the development via a merge request.  For
+        help in creating a merge request, see `this page
+        <https://docs.gitlab.com/ee/gitlab-basics/add-merge-request.html>`__ or contact
+        us directly.
+        
+        .. |pipeline status| image:: https://git.ligo.org/Monash/tupak/badges/master/pipeline.svg
+           :target: https://git.ligo.org/Monash/tupak/commits/master
+        .. |coverage report| image:: https://monash.docs.ligo.org/tupak/coverage_badge.svg
+           :target: https://monash.docs.ligo.org/tupak/htmlcov/
+        .. |pypi| image:: https://badge.fury.io/py/TUPAK.svg
+           :target: https://pypi.org/project/TUPAK/
+        .. |version| image:: https://img.shields.io/pypi/pyversions/tupak.svg
+           :target: https://pypi.org/project/TUPAK/
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
