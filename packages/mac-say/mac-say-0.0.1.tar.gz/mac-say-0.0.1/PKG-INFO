@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: mac-say
+Version: 0.0.1
+Summary: MacOS say python wrapper
+Home-page: https://github.com/looking-for-a-job/mac-say.py
+License: UNKNOWN
+Description: [![](https://img.shields.io/badge/OS-MacOS-blue.svg?longCache=True)]()
+        [![](https://img.shields.io/pypi/pyversions/mac-say.svg?longCache=True)](https://pypi.org/pypi/mac-say/)
+        
+        ### Install
+        ```bash
+        $ [sudo] pip install mac-say
+        ```
+        
+        ### Examples
+        ```python
+        >>> import mac_say
+        >>> mac_say.say("hello world")  # string
+        >>> mac_say.say(["-f","file.txt","-v","Alex"])  # list of arguments
+        ```
+        
+        voices list
+        ```python
+        >>> mac_say.voices()
+        >>> mac_say.voices("en")  # english voices
+        ```
+        
+        background - add `background=True`
+        ```python
+        >>> mac_say.say("hello world",background=True)
+        ```
+Keywords: say
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: MacOS X
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development
+Description-Content-Type: text/markdown
