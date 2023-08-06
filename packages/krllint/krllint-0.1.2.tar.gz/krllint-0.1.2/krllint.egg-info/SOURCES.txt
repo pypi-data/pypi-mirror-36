@@ -1,0 +1,11 @@
+LICENSE
+MANIFEST.in
+README.md
+krllint.conf.py
+krllint.py
+setup.py
+krllint.egg-info/PKG-INFO
+krllint.egg-info/SOURCES.txt
+krllint.egg-info/dependency_links.txt
+krllint.egg-info/entry_points.txt
+krllint.egg-info/top_level.txt
