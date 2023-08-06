@@ -1,0 +1,14 @@
+docutils
+Markdown
+Markups>=2.0
+Pygments
+chardet>=2.3
+
+[:platform_system == "Darwin"]
+PyQt5
+
+[:platform_system == "Windows"]
+PyQt5
+
+[spellcheck]
+pyenchant
