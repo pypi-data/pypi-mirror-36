@@ -1,0 +1,17 @@
+distlib
+packaging
+packagebuilder
+pip-shims
+requirementslib
+setuptools
+vistir[spinner]
+
+[tests]
+pytest-timeout
+pytest-xdist
+pytest-cov
+pytest
+
+[virtualenv]
+mork
+virtualenv
