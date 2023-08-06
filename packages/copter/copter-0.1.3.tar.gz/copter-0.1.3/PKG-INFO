@@ -1,0 +1,18 @@
+Metadata-Version: 1.2
+Name: copter
+Version: 0.1.3
+Summary: welcome to copter
+Home-page: https://github.com/kyu999/copter
+Author: kyu999
+Author-email: kyukokkyou999@gmail.com
+Maintainer: kyu999
+Maintainer-email: kyukokkyou999@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: Linux
+Platform: Darwin
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
