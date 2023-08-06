@@ -1,0 +1,9 @@
+setup.py
+folha_de_frequencia/__init__.py
+folha_de_frequencia/core.py
+folha_de_frequencia/helpers.py
+folha_de_frequencia/testes.py
+folha_de_frequencia.egg-info/PKG-INFO
+folha_de_frequencia.egg-info/SOURCES.txt
+folha_de_frequencia.egg-info/dependency_links.txt
+folha_de_frequencia.egg-info/top_level.txt
