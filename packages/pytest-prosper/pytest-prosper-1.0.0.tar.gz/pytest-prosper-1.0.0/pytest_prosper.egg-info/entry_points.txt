@@ -1,0 +1,6 @@
+[console_scripts]
+update-prosper-schemas = prosper.test_utils.schema_utils:run_plumbum
+
+[pytest11]
+prosper = prosper.test_utils.pytest_plugin
+
