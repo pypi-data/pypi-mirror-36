@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: nebnr
+Version: 1.0.1
+Summary: Nebulas Rank SDK
+Home-page: https://github.com/nebulasio/nebnr
+Author: nebulas.io
+Author-email: nebnr@nebulas.io
+License: Apache Licence 2.0
+Description: UNKNOWN
+Keywords: nebulas rank nr nebnr nas
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
