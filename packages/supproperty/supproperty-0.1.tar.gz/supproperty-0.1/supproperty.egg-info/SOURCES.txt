@@ -1,0 +1,10 @@
+README.md
+setup.py
+supproperty/__init__.py
+supproperty/basics.py
+supproperty/supproperty.py
+supproperty/versioned.py
+supproperty.egg-info/PKG-INFO
+supproperty.egg-info/SOURCES.txt
+supproperty.egg-info/dependency_links.txt
+supproperty.egg-info/top_level.txt

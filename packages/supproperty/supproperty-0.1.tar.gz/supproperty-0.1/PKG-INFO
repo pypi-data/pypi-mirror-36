@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: supproperty
+Version: 0.1
+Summary: Supremum property
+Home-page: http://ccs.chem.ucl.ac.uk
+Author: Kristof Farkas-Pall
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: ### Sup property
+        
+        A superior to the builtin python `property` to support default values and validators
+        and even version and deprecation support.
+        
+        This is a subclass of `property` so use the same way anywhere in your code.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires: numpy
