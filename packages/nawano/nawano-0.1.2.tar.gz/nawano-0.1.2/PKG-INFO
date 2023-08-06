@@ -1,0 +1,36 @@
+Metadata-Version: 1.2
+Name: nawano
+Version: 0.1.2
+Summary: Nano REPL CLI
+Home-page: https://github.com/rbw/nawano
+Author: Robert Wikman
+Author-email: rbw@vault13.org
+Maintainer: Robert Wikman
+Maintainer-email: rbw@vault13.org
+License: BSD-2-Clause
+Download-URL: https://github.com/rbw/nawano/tarball/0.1.2
+Description:  ```                  
+          ___ ___ _ _ _ ___ ___ ___ 
+         |   | .'| | | | .'|   | . |
+         |_|_|__,|_____|__,|_|_|___|
+                    100% OSS, BSD-2
+        ```
+        
+        Nawano is a lightweight, secure and fast [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) command-line application that provides a simple and intuative interface for managing Nano funds
+        
+        Seeds are encrypted with AES-256 and stored along with information about derivate keys locally.
+        
+        Please bare in mind that—just as the official Nano software—Nawano uses the *BSD 2-Clause License* (i.e. no liability for loss of funds).
+        
+        
+        Author
+        ------
+        Robert Wikman \<rbw@vault13.org\>
+        
+Keywords: nano,cryptocurrency,cli,wallet
+Platform: any
+Classifier: Topic :: Utilities
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
