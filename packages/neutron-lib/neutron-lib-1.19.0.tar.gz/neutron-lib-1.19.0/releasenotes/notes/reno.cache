@@ -1,0 +1,253 @@
+---
+file-contents:
+  releasenotes/notes/add-is-default-to-network-d16a2e6bcfae943a.yaml:
+    features: ['The ``project-default-networks`` extension is now available and adds
+        a new
+
+        attribute ``project_default`` into the ``network`` resource.
+
+        This attribute will be used to indicate if a network is a project
+
+        default network.
+
+        ']
+  releasenotes/notes/add-two-fields-to-duplicated-entry-exception-75b0e07c6e1cc6ae.yaml:
+    other: ['Add two fields ``columns`` and ``value`` to exception
+
+        ``NeutronDbObjectDuplicateEntry``. These two fields are populated
+
+        from the corresponding db exception.
+
+        ']
+  releasenotes/notes/gateway-ip-qos-ext-d3ffb5f517c9f713.yaml:
+    features: ['Add new extension `qos-gateway-ip` which extends the `router_gw_info`
+
+        with new attribute `qos_policy_id`.
+
+        ']
+  releasenotes/notes/mac-generator-f927df2fe57300c0.yaml:
+    features: ['Introduced ``neutron_lib.utils.net.random_mac_generator(basemac)``.
+        It allows
+
+        you to get a mac address string Python generator from the same kind of
+
+        basemac that ``neutron_lib.utils.net.get_random_mac(basemac)`` expects. If
+
+        there are a lot of macs to get, this will speed the process up
+
+        significantly over generating single macs and testing for collisions.
+
+        ']
+  releasenotes/notes/placement-client-bump-latest-supported-version-to-1-20-fe96751dab42399b.yaml:
+    other: ['Bump ``PlacementAPIClient''s`` max supported microversion to ``1.20``,
+
+        as from that microversion placement API returns json body for
+
+        POST /resource_providers.
+
+        ']
+  releasenotes/notes/placement-client-move-9f292ae2067c119c.yaml:
+    other: ['The ``PlacementAPIClient`` class is moved from
+
+        ``neutron_lib.clients.placement`` to ``neutron_lib.placement.client``
+
+        in order to consolidate all Placement related logic under sub-package
+
+        ``neutron_lib.placement``.']
+  releasenotes/notes/placement-client-optional-rp-generations-44d1f1055d5496be.yaml:
+    other: ['The ``resource_provider_generation`` parameters of the following
+
+        methods of ``PlacementAPIClient`` are now optional:
+
+        ``update_resource_provider_inventories``,
+
+        ``update_resource_provider_inventory`` and
+
+        ``update_resource_provider_traits``.
+
+        You may call the methods without this parameter or pass ``None``
+
+        with the meaning to ignore resource provider generations. That is the
+
+        client will (in quick succession) get the object and update it supplying
+
+        the same generation.
+
+        ']
+  releasenotes/notes/placement-client-return-f4f22d244e7b174a.yaml:
+    other: ['The ``create_resource_provider`` and ``associate_aggregates``
+
+        methods of ``PlacementAPIClient`` now return the parsed
+
+        body of the respective responses. Since these methods returned ``None``
+
+        previously this is unlikely to break anything. On the other hand callers
+
+        of these methods now have a chance to simplify their code.
+
+        ']
+  releasenotes/notes/placement-client-update-ensure-rp-9e5c3cf34d49b212.yaml:
+    features: ['New methods available in Placement client:
+
+        ``update_resource_provider`` and ``ensure_resource_provider``.
+
+        ']
+  releasenotes/notes/placement-constants-f2629b98f6fe148f.yaml:
+    features: ['New constants module for Placement: ``neutron_lib.placement.constants``.
+
+        ']
+  releasenotes/notes/placement-utils-a66e6b302d2bc8f0.yaml:
+    features: ['neutron-lib now has a new module: ``neutron_lib.placement.utils``.
+
+        This module contains logic that is to be shared between in-tree
+
+        Neutron components and possibly out-of-tree Neutron agents that want
+
+        to support features involving the Placement service (for example
+
+        guaranteed minimum bandwidth).
+
+        ']
+  releasenotes/notes/policy-in-code-1e73cabebd41d66e.yaml:
+    features: ['policy-in-code support in neutron-lib is added.
+
+        The default policies for ''context_is_admin'' and ''context_is_advsvc'' are
+
+        now implemented as embeded policies.
+
+        (Note that the main policy-in-code support will be implemented
+
+        in the main neutron codebase.)
+
+        ']
+  releasenotes/notes/port-resource-request-cb520720cd19523b.yaml:
+    features: ['The new extension ``port-resource-request`` adds the ``resource_request``
+        attribute to port responses. This attribute enables Neutron to communicate
+        to Nova resources needed by the port, such as physnet, VNIC type and bandwidth.
+        If the port requested by Nova boot has the ``resource_request`` attribute,
+        then the Nova Scheduler will try to allocate the VM in a host that can satisfy
+        those requirements.']
+  releasenotes/notes/qos-bw-minimum-ingress-cff397e598b6fa3a.yaml:
+    features: [New extension ``qos-bw-minimum-ingress`` for extending ``qos_minimum_bandwidth_rule``
+        with ingress direction for placement based enforcement.]
+  releasenotes/notes/reset-db-retry-settings-49e51cef4c842f69.yaml:
+    fixes: ['Increase the DB retry interval and max retry times for the
+
+        ``retry_db_errors`` decorator in ``neutron_lib.db.api`` to
+
+        0.5 seconds and 20 times, respectively. For those actions
+
+        which have a higher chance for DBDeadlock, users should have
+
+        a higher success rate due to the larger random range and retry
+
+        times. For more information
+
+        see bug `1777968 <https://bugs.launchpad.net/neutron/+bug/1777968>`_
+
+        ']
+  releasenotes/notes/resource-provider-uuid5-namespace-f7276ba1945ce82f.yaml:
+    features: ['New MechanismDriver API class property:
+
+        ``resource_provider_uuid5_namespace``.  Mechanism drivers wanting
+
+        to support resource provider information reporting to Placement
+
+        (eg. reporting resource providers to guarantee some minimum bandwidth
+
+        allocated on them later) must set this class property to a UUID
+
+        object unique to that mechanism driver. It will be used as a UUID
+
+        v5 namespace in generating UUIDs for resource providers. The default
+
+        implementation sets it to ``None``, meaning that the mechanism driver
+
+        does not support resource provider information reporting to Placement.
+
+        Unaffected drivers need not be changed.
+
+        ']
+  releasenotes/notes/responsible_for_ports_allocation-5599dc59b3c98db2.yaml:
+    features: ['New MechanismDriver API method: ``responsible_for_ports_allocation``.
+
+        Mechanism drivers wanting to support resource allocations for ports in
+
+        Placement (eg. wanting to guarantee some minimum bandwidth allocated
+
+        on the resource provider in the port''s ``binding:profile.allocation``)
+
+        must implement this method. The default implementation reports not
+
+        being responsible for any resource providers, therefore unaffected
+
+        drivers need not be changed.
+
+        ']
+  releasenotes/notes/update-segment-api-definition-d7297e73e76a754c.yaml:
+    other: ['This release removes the ``description`` from the segment extension''s
+
+        attribute map as well as adds the ``standard-attr-description`` as
+
+        required dependency and ``standard-attr-segment`` as an optional
+
+        dependency.
+
+        ']
+notes:
+- files:
+  - - releasenotes/notes/add-is-default-to-network-d16a2e6bcfae943a.yaml
+    - !!binary |
+      N2ZhOTJlMzdiNDc2NDFlMjZjMDcxZmIwM2QzZDA0MmUwZTFiYjBhYQ==
+  - - releasenotes/notes/add-two-fields-to-duplicated-entry-exception-75b0e07c6e1cc6ae.yaml
+    - !!binary |
+      ZDQ3NTQ5MzQ0ZTM1M2Y0YmEzZTE2ZWZmYjdmZDhlMmVjNGRjYTNiYg==
+  - - releasenotes/notes/gateway-ip-qos-ext-d3ffb5f517c9f713.yaml
+    - !!binary |
+      NzEyNGQ3NmU3N2U5YTA3YzRlODM4YzdkZmQ3ZWM5MjQyY2ExOWQwYw==
+  - - releasenotes/notes/mac-generator-f927df2fe57300c0.yaml
+    - !!binary |
+      Yjg2NzdiYWViNzBjNTM3ODBkY2JmOWIzNjNjMWE0YTgzZDE1NjFmZA==
+  - - releasenotes/notes/placement-client-bump-latest-supported-version-to-1-20-fe96751dab42399b.yaml
+    - !!binary |
+      MDU1NWZmZTRiMmY1ZjZkYWQ4MzgwYWE0ZDc5MTI5Y2FhMDljZGFjMQ==
+  - - releasenotes/notes/placement-client-move-9f292ae2067c119c.yaml
+    - !!binary |
+      ZDMyZTU3MDM2MWE2MzY1MzFhMmExNDNmZGYwMDRhODFlM2UyODg5NA==
+  - - releasenotes/notes/placement-client-optional-rp-generations-44d1f1055d5496be.yaml
+    - !!binary |
+      NzRjNjJkYTNiNTA3NjAxNTU2M2I5ZjhmZTI2OTgxODU0NmRiNjZjYg==
+  - - releasenotes/notes/placement-client-return-f4f22d244e7b174a.yaml
+    - !!binary |
+      NWFhMjg0NzM2NzM0MDVkNGM3MGU1MThmYjFmNDZiOGI1NWZiYTUxZA==
+  - - releasenotes/notes/placement-client-update-ensure-rp-9e5c3cf34d49b212.yaml
+    - !!binary |
+      MjAzZjRmMDY5NjE0ODFlNDAxM2RkMTFjMGU3NGFmYjlmZmUzNTRhNA==
+  - - releasenotes/notes/placement-constants-f2629b98f6fe148f.yaml
+    - !!binary |
+      YjI3MWEzMzZiMTNjMGQ4ZDZiNWVmMDA3ODQxMmQ4NzA0MDA5NDc0Nw==
+  - - releasenotes/notes/placement-utils-a66e6b302d2bc8f0.yaml
+    - !!binary |
+      NTc5ZTBjY2FiYmQ1ZWMxMzIzNjZmZTUxZjQ2YmU2NTNjYmYxNTk4Ng==
+  - - releasenotes/notes/policy-in-code-1e73cabebd41d66e.yaml
+    - !!binary |
+      YmVkZTc4MjYzMDA4ODRmYmExYTY0YWFlM2I4MDdjY2JiNDE5YjVjYQ==
+  - - releasenotes/notes/port-resource-request-cb520720cd19523b.yaml
+    - !!binary |
+      MDYxYTc3YjRmMmQyYzhjMDAwYjQ3NWVlMDM0ODQxYTYwOTZjOTQ2NQ==
+  - - releasenotes/notes/qos-bw-minimum-ingress-cff397e598b6fa3a.yaml
+    - !!binary |
+      ZTc3YzliZWZkNDY3N2M4NDdhNmFmZmY0Y2IxNjRiMDJjY2ViOTM1Mg==
+  - - releasenotes/notes/reset-db-retry-settings-49e51cef4c842f69.yaml
+    - !!binary |
+      ZWQ2MmEwNmE1MzZhMzliMTIzNmJkNGRjYWRiMmRkMTNjYzJjNGI0Yg==
+  - - releasenotes/notes/resource-provider-uuid5-namespace-f7276ba1945ce82f.yaml
+    - !!binary |
+      YzJlMjA1Yjg1YTA4YmQwY2VhNzllNTY2ODgzMzYyZTBiNjBkOTcyOA==
+  - - releasenotes/notes/responsible_for_ports_allocation-5599dc59b3c98db2.yaml
+    - !!binary |
+      Njc5NDgxZjM3NGM5NjlkNDg4N2ZlNjg2ZjM0MmRkMDRhYjkxOGI2Mg==
+  - - releasenotes/notes/update-segment-api-definition-d7297e73e76a754c.yaml
+    - !!binary |
+      ZTNkOTBmZWY2NTViNDFjMzZmMGU2NDAxYTNiMTkxMThkNDk2ZDk5Yw==
+  version: 1.19.0
