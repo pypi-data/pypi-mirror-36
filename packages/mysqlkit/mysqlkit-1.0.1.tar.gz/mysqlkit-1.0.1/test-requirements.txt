@@ -1,0 +1,8 @@
+nose
+tox
+coverage
+sphinx
+tox-pyenv
+codecov
+Fabric==1.14
+twine
