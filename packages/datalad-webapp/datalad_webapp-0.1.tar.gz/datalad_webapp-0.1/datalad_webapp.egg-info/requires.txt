@@ -1,0 +1,5 @@
+datalad
+flask
+flask-restful
+pytest
+pytest-cov
