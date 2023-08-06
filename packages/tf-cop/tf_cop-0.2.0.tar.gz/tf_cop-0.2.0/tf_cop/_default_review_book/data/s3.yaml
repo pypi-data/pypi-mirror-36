@@ -1,0 +1,7 @@
+aws_s3_bucket:
+-
+  title: bucket_checker
+  desc: simple existance checker
+  mode: existance
+  type: alert
+  key: bucket
