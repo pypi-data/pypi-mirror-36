@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: vRedes
+Version: 0.1
+Summary: Utilizado para processar Mensagens usando codigo de Hemming
+Home-page: https://github.com/STHEe/vRedes
+Author: Vitor Henrique Costa Ferreira - STHEe
+Author-email: sootheCF@gmail.com
+License: MIT
+Download-URL: https://github.com/STHEe/vRedes/archive/v_01.tar.gz
+Description: UNKNOWN
+Keywords: HEMMING,32,BITS,REDES 1
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
