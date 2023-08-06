@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: prwm
+Version: 0.0.1
+Summary: Packed Raw WebGL Model (PRWM) exporter in python
+Home-page: https://github.com/ashl1/PRWM/tree/master/implementations/prwm-python
+Author: Alexey Shildyakov
+Author-email: ashl1future@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Multimedia :: Graphics :: 3D Rendering
+Classifier: Topic :: Multimedia :: Graphics :: Graphics Conversion
+Requires: enum34
+Description-Content-Type: text/markdown
+
+# prwm-python
+Packed Raw WebGL Model (PRWM) and PRWB (Packed Raw WebGL Binary) encoder
+
+Packed Raw WebGL Model is a binary file format for nD geometries specifically designed for JavaScript and WebGL with a strong focus on fast parsing (from 1ms to 0.1ms 
+in Chrome 59 on a MBP Late 2013).
+
+See https://github.com/kchapelier/PRWM for specifications detail
+
+
