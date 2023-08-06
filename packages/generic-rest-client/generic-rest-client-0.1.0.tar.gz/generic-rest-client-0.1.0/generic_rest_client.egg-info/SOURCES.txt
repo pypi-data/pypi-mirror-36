@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+setup.py
+generic-rest-client/__init__.py
+generic-rest-client/__version__.py
+generic-rest-client/exceptions.py
+generic-rest-client/generic_rest_client.py
+generic-rest-client/examples/__init__.py
+generic-rest-client/examples/mocky_rest_client.py
+generic-rest-client/tests/__init__.py
+generic-rest-client/tests/test_api_client.py
+generic-rest-client/tests/test_mocky_rest_client.py
+generic_rest_client.egg-info/PKG-INFO
+generic_rest_client.egg-info/SOURCES.txt
+generic_rest_client.egg-info/dependency_links.txt
+generic_rest_client.egg-info/requires.txt
+generic_rest_client.egg-info/top_level.txt
