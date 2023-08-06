@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.min.css') }}">
+    {% block head %}
+    <title>{% block title %}{% endblock %} - Smart Mirror</title>
+    {% endblock %}
+</head>
+<body style="padding-top:0px;background-color:rgb(0,0,0);color:rgb(255,255,255);" onload={% block bodyOnLoad %}{% endblock %}>
+    <i class="material-icons open-sidebar" style="font-size:50px;margin:0px;padding:0px;position:absolute;bottom:50px;left:50px;">apps</i>
+    <div class="d-flex flex-column" id="content" style="height:100vh;padding:50px;padding-left:70px;">{% block content %}{% endblock %}</div>
+    <div>
+        <div class="overlay"></div>
+        <div id="sidebar" style="background-color:rgb(52,55,55); padding: 20px;">
+            <div class="sidebar-header" style="padding-bottom:15px;margin-bottom:20px;background-color:rgba(0,0,0,0.1);">
+                <div id="close-sidebar"><i class="fa fa-chevron-left"></i></div>
+                <h2 onclick="window.location='/template';" class="text-nowrap d-flex justify-content-center">All Apps</h2>
+            </div>
+            <div class="full-width" style="padding-bottom:20px;">
+                <section class="full-width" style="margin-top:0px;padding:20px;padding-bottom:20px;">
+                    <div class="container">
+                        <div class="row">
+                            <div onclick="window.location='/';" class="col-md-6 d-flex justify-content-center align-items-center" style="font-size:14px;"><i class="fas fa-home d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;padding:60px;"></i></div>
+                            <div onclick="window.location='/time';" class="col-md-6 d-flex justify-content-center align-items-center"><i class="far fa-clock d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;"></i></div>
+                        </div>
+                    </div>
+                </section>
+                <section class="full-width" style="margin-top:0px;padding:20px;padding-bottom:20px;">
+                    <div class="container">
+                        <div class="row">
+                            <div onclick="window.location='/news';" class="col-md-6 d-flex justify-content-center align-items-center" style="font-size:14px;"><i class="far fa-newspaper d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;padding:60px;"></i></div>
+                            <div onclick="window.location='/calendar';" class="col-md-6 d-flex justify-content-center align-items-center"><i class="far fa-calendar d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;"></i></div>
+                        </div>
+                    </div>
+                </section>
+                <section class="full-width" style="margin-top:0px;padding:20px;padding-bottom:20px;">
+                    <div class="container">
+                        <div class="row">
+                            <div onclick="window.location='/youtube';" class="col-md-6 d-flex justify-content-center align-items-center"><i class="fab fa-youtube d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;"></i></div>
+                            <div class="col-md-6 d-flex justify-content-center align-items-center" style="font-size:14px;"><i class="fas fa-camera d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;padding:60px;"></i></div>                            
+                        </div>
+                    </div>
+                </section>
+                <section class="full-width" style="margin-top:0px;padding:20px;padding-bottom:20px;">
+                    <div class="container">
+                        <div class="row">
+                            <div onclick="var xhttp = new XMLHttpRequest();xhttp.open('GET', '/toggleLED', true);xhttp.send();" class="col-md-6 d-flex justify-content-center align-items-center" style="font-size:14px;"><i class="material-icons d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;padding:60px;">lightbulb_outline</i></div>
+                            <div onclick="window.location='/zomato';" class="col-md-6 d-flex justify-content-center align-items-center" style="font-size:14px;"><i class="material-icons d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;padding:60px;">local_dining</i></div>
+                        </div>
+                    </div>
+                </section>
+                <section class="full-width" style="margin-top:0px;padding:20px;padding-bottom:20px;">
+                    <div class="container">
+                        <div class="row">
+                            <div onclick="window.location='/railway';" class="col-md-6 d-flex justify-content-center align-items-center" style="font-size:14px;"><i class="far fa-train d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;padding:60px;"></i></div>
+                            <div onclick="window.location='/train_route/12480';" class="col-md-6 d-flex justify-content-center align-items-center"><i class="fas fa-map d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;"></i></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div id="footer" style="margin:0px;padding:0px;position:absolute;bottom:50px;right:50px;">
+        {% block footer %}
+        &copy; Copyright 2018 by <a href="http://katta.xyz">Katta Softwares</a>.
+        {% endblock %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="{{ url_for('static', filename='assets/js/script.min.js') }}"></script>
+</body>
+</html>

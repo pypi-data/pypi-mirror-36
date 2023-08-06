@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.min.css') }}">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <title>Remote Control - Smart Mirror</title>
+
+    <script>
+        var socket = io.connect("http://192.168.1.100:5000");
+        
+    </script>
+</head>
+<body style="padding-top:0px;background-color:rgb(0,0,0);color:rgb(255,255,255);">
+    <i class="material-icons open-sidebar" style="font-size:50px;margin:0px;padding:0px;position:absolute;bottom:0px;left:0px;">apps</i>
+    <div class="d-flex flex-column" id="content" style="height:100vh;padding:50px;padding-left:70px;overflow: auto">
+        <div class="sidebar-header" style="padding-bottom:15px;margin-bottom:20px;background-color:rgba(0,0,0,0.1);">
+            <h2 onclick="socket.emit('home', '');" class="text-nowrap d-flex justify-content-center">All Apps</h2>
+        </div>
+        <div class="full-width" style="padding-bottom:20px;">
+            <section class="full-width" style="margin-top:0px;padding:20px;padding-bottom:20px;">
+                <div class="container">
+                    <div class="row">
+                        <div onclick="socket.emit('home', '');" class="col-md-6 d-flex justify-content-center align-items-center" style="font-size:14px;"><i class="fas fa-home d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;padding:60px;"></i></div>
+                        <div onclick="socket.emit('time', '');" class="col-md-6 d-flex justify-content-center align-items-center"><i class="far fa-clock d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;"></i></div>
+                    </div>
+                </div>
+            </section>
+            <section class="full-width" style="margin-top:0px;padding:20px;padding-bottom:20px;">
+                <div class="container">
+                    <div class="row">
+                        <div onclick="socket.emit('news', '');" class="col-md-6 d-flex justify-content-center align-items-center" style="font-size:14px;"><i class="far fa-newspaper d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;padding:60px;"></i></div>
+                        <div onclick="socket.emit('calendar', '');" class="col-md-6 d-flex justify-content-center align-items-center"><i class="far fa-calendar d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;"></i></div>
+                    </div>
+                </div>
+            </section>
+            <section class="full-width" style="margin-top:0px;padding:20px;padding-bottom:20px;">
+                <div class="container">
+                    <div class="row">
+                        <div onclick="socket.emit('youtube', '');" class="col-md-6 d-flex justify-content-center align-items-center"><i class="fab fa-youtube d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;"></i></div>
+                        <div class="col-md-6 d-flex justify-content-center align-items-center" style="font-size:14px;"><i class="fas fa-camera d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;padding:60px;"></i></div>                            
+                    </div>
+                </div>
+            </section>
+            <section class="full-width" style="margin-top:0px;padding:20px;padding-bottom:20px;">
+                <div class="container">
+                    <div class="row">
+                        <div onclick="socket.emit('toggleLED', '');" class="col-md-6 d-flex justify-content-center align-items-center" style="font-size:14px;"><i class="material-icons d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;padding:60px;">lightbulb_outline</i></div>
+                        <div onclick="socket.emit('zomato', '');" class="col-md-6 d-flex justify-content-center align-items-center" style="font-size:14px;"><i class="material-icons d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;padding:60px;">local_dining</i></div>
+                    </div>
+                </div>
+            </section>
+            <section class="full-width" style="margin-top:0px;padding:20px;padding-bottom:20px;">
+                <div class="container">
+                    <div class="row">
+                        <div onclick="socket.emit('railway', '');" class="col-md-6 d-flex justify-content-center align-items-center" style="font-size:14px;"><i class="fas fa-train d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;padding:60px;"></i></div>
+                        <div onclick="socket.emit('train_route', '');" class="col-md-6 d-flex justify-content-center align-items-center"><i class="fas fa-map d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;"></i></div>
+                    </div>
+                </div>
+            </section>
+            <section class="full-width" style="margin-top:0px;padding:20px;padding-bottom:20px;">
+                <div class="container">
+                    <div class="row">
+                        <div onclick="socket.emit('voice_search', '');" class="col-md-6 d-flex justify-content-center align-items-center" style="font-size:14px;"><i class="material-icons d-flex justify-content-center align-items-center align-content-center" style="width:80px;height:80px;font-size:80px;padding:60px;">record_voice_over</i></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div id="footer" style="margin:0px;padding:0px;position:absolute;bottom:0px;right:0px;">
+        &copy; Copyright 2018 by <a href="http://katta.xyz">Katta Softwares</a>.
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="{{ url_for('static', filename='assets/js/script.min.js') }}"></script>
+</body>
+</html>
