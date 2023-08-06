@@ -1,0 +1,248 @@
+CHANGES
+=======
+
+1.8.22
+------
+
+* Move LACP active to fast\_advertise()
+* Rename services, reduce slow advertise to 15s
+* Add config for fast interval, incremental refactor
+* Revert "Refactor into fast/regular expiry/advertise."
+* Refactor into fast/regular expiry/advertise
+* Bump version for release
+* LACP can cause a loop
+* Right size LACP packet on receipt
+* debug log LACP
+* LACP active should set active flag
+* Some OFAs can't get mask on eth\_dst rule
+* Avoid unnnecessary flowmods cold starting LACP port. Strictly verify LACP packet size
+* LACP content change
+* Rate limit LACP response
+* Reply to LACP packets if different at all, or only after 1s if the same
+* Only attempt to set non-0 metadata fields in TFM
+* Disable metadata write/match if egress pipeline not in use
+* Increase max len for LACP
+* Use actor sync flag for LACP state not local
+* test lacp\_active both sides
+* Basic test for active LACP
+* Clear last LACP packet
+* pylint
+* pylint
+* Don't set LACP sync until received a packet
+* Check defaults/types is synchronized
+* Missing default type for lacp\_timeout
+* fix logic in metadata mask writing
+* pylint
+* pylint
+* dependencies upgrade
+* pylint
+* finalize() compact syntax
+* test\_gauge mock confusion
+* pylint
+* ACL change reporting
+* Deconflict port ACLs and 802.1x
+* finalizing must be recursive
+* Disable 8021X success test until fix for conflict with ACL change detection
+* pylint
+* ACL logging
+* More efficient OrderedDict init
+* Handle dict with any kind of key
+* Dict ordering affects conf hash
+* Simplify 8021x config check
+* Add ACL change logging
+* EAPOL constant
+* Consistent 8021X ACLs
+* pylint
+* Attempt more shards to reduce worst case straggler runtime
+* OTT check that new config has been written
+* with syntax config file write
+* Revert "del\_auth\_mac() returns a list."
+* Chewie won't do IPv6 yet
+* Test coverage for dot1x config. Free RADIUS uses IPv6 port
+* Chewie format MAC addresses
+* coverage
+* del\_auth\_mac() returns a list
+* Reorder 8021x wait
+* 8021X test cleanup
+* Send LACP packet on port startup only after flap
+* Test active LACP, send LACP on port startup
+* verify\_traveling\_dhcp\_mac() should retry slower
+* Deflake 8021x test
+* pkt\_meta.port
+* Experimental active LACP
+* Defaults for LACP packet
+* Allow multi\_out: False (one packet out per port)
+* Allow strict cookie check to be disabled
+* ARP min/max are different
+* ARP reply is bigger
+* Don't require barriers for flow adds/mods and packet outs
+* Aggressively right size ICMPv4 echo messages
+* Able to aggressively right size packets by eth type
+* faucet\_metrics definition consistency
+* Update Makefile to reflect new codebase
+* bad find and replace I guess
+* lint
+* add egress table to full pipeline config test
+* Improve readability
+* Use egress table for output
+* Allow metadata writing and matching in fakeoftable
+* Install output flows in egress table
+* Include vlan\_vid in egress\_table matches
+* allow inclusion of metadata when constructing matches
+* Create faucet\_metadata.py for metadata related functions
+* refactor \_port\_add\_vlans
+* include egress table in pipeline when configured
+* Add egress table to pipeline
+* Add egress\_pipeline configuration option
+* fix typo
+* Increase ICMP size for IPv4
+* Include METADATA\_MASK constants
+* Include metadata\_match and \_write in ValveTableConfig
+* fix rebase
+* make classification table optional
+* Move permanent learn rules into classification table
+* Remove fib from eth\_src next\_tables
+* Move bogons to classification\_table
+* Move RouteManagers to use classification table
+* Build classification table on datapaths
+* include classification table in pipeline
+* Convert magic numbers to increments in faucet\_pipeline
+* remove acls from nfv
+* nfv sw port can now be set. Each valve should be able to have a different value
+* Preversion 1.8.22
+
+1.8.21
+------
+
+* Use newer grafana and prometheus versions
+* Allow iperf retry on client connect failure
+* Add mirroring to global router test
+* Remove iperf diags
+* static gw workaround by address family
+* static neigh workaround
+* Add static router neighbor for global router test
+* Add more iperf diagnostics for client
+* Dump logs for failed tests
+* More iperf diagnostics
+* iperf diagnostics where iperf client or server does not start
+* docstring
+* docstring
+* test dot1x works after conf reload
+* Re-enable FaucetTaggedGlobalIPv6RouteTest with increased timeout
+* Increase timeout for iperf client connection
+* Revert "unit test with chewie"
+* Hairpinning a port disables eth\_dst refresh optimization (because either eth\_dst or eth\_dst\_hairpin might not be used)
+* Bump version for release
+* allow port status to be changed - dot1x
+* Revert "Add random fraction of a second to thread schedule jitter."
+* Revert "Run stack link expiry less often."
+* pylint
+* Add Generic valve type (all defaults)
+* Run stack link expiry less often
+* Global IPv6 route test still failing under CI
+* Add random fraction of a second to thread schedule jitter
+* Allow config exclusion of meters for OVS
+* Reenable Global IPv6 test
+* Disable meter support for OVS while troubleshooting
+* Skip tagged global test for further troubleshooting
+* Add valve\_service processing time
+* Allow setting ping timeout
+* Update sphinx from 1.7.9 to 1.8.0
+* Enable FaucetTaggedGlobalIPv6RouteTest
+* pylint
+* pylint
+* Skip IPv6 global route test for now
+* IPv6 Global router test. Fix IPv6 tuple test
+* No need for HOSTPREFIX
+* Use ipaddress.ip\_interface()
+* Template ping/fping
+* Global routing constants
+* scapy template
+* More efficient drop rule accounting
+* pytype
+* pytype
+* Smarter avoiding of updating Prometheus learned\_macs on a port
+* Avoid updating Prometheus learned\_macs if learned\_macs did not change
+* Relax default learn jitter further
+* Utilize OF capability to multiply output packet on many ports
+* Relax learn jitter further to spread L2 relearn load
+* \_controller\_and\_flood()
+* IP version independant handling of interception/flooding of IP versus ICMP traffic to VIPs
+* refresh rules distinct from delete\_existing
+* add acl for dot1x based on port's dot1x flag
+* check flows added
+* declare var before use
+* change import style after rebase
+* radius options
+* remove exception catch
+* unit test for chewie
+* test chewie interface
+* test chewie interface
+* FaucetTaggedGlobalIPv4RouteTest needs NETNS
+* Since we are apparently limited to creating one netns at a time, serialize netns based tests
+* Workaround the apparently limit of one netns per test by cleaning up netns whether a test passes or fails
+* Shorten timeout for ping
+* get\_host\_netns() needs to be precise
+* Rewrite test should use private MAC addresses
+* Pre-version 1.8.21
+* get\_netns\_list() can include other test hosts
+
+1.8.20
+------
+
+* Don't need to verify flow since verifying functionality
+* Verify hairpin routing
+* Mark ZodiacGX testable with meters
+* macvlan mode default should be vepa
+* Simplify hairpin test
+* add\_macvlan() allows configuration of mode
+* Bump version for release
+* Global router test verifies routing performance between VLAN/subnets
+* Use macvlan VEPA mode in global test for MAC address diversity and enable verification of routing flow counters
+* Revert "https://github.com/google/pytype/issues/133 is fixed so don't have to run under parallel."
+* Revert "Run pytype by top level directory to limit memory usage."
+* Revert "Still need to use parallel for pytype as pytype uses lots of memory."
+* Still need to use parallel for pytype as pytype uses lots of memory
+* Run pytype by top level directory to limit memory usage
+* https://github.com/google/pytype/issues/133 is fixed so don't have to run under parallel
+* Update pytype from 2018.8.10 to 2018.9.7.1
+* Update sphinx from 1.7.8 to 1.7.9
+* verify push\_vlan()
+* ACLs should verify set\_fields
+* Revert "ACLs also verify set\_fields."
+* ACLs also verify set\_fields
+* set\_field() should verify table config
+* Verify all goto\_tables()
+* Verify goto table/miss table config
+* Fix unit tests for goto fix
+* WIP dot1x rules setup
+* chewie version 0.0.6
+* Log labels incorrect for diagnosis
+* Fix unit test for VIP table
+* TFM autosizer more generous with VLAN table
+* Rightsize L3 test
+* VIP table can goto flood
+* next tables must be iterable
+* Rightsize scale L2/L3 tests for mostly TCAM hardware
+* maybe fix pytype error?
+* Only flood down one member of LACP bundle
+* vip table can forward to eth\_dst
+* missed reference to new\_tables
+* Actually use the next tables
+* Bump README for release
+* Handle configuration of very short maximum backoff interval
+* Need to share state on table based variables so labels can be synchronized across all DPs
+* handle cases where dot1x not enabled on first (or any) DPs
+* Add random jitter to nexthop retry time
+* Test delayed resolution
+* Update sphinx from 1.7.7 to 1.7.8
+* Targeted nexthop resolution uses unicast address
+* IPv6 neighbor timeout should be much shorter
+* Use different IPv6 neighbor timeout
+* missed reference to new\_tables
+* Actually use the next tables
+* lint
+* dot1x on multiple ports
+* Add tests for configuring next\_tables
+* Test name was too long. Timeout flow removed check. Start radius in setup
+* dot1x tests with chewie v0.0.3 (radius & state handlers). Tests check all dot1x prometheus variables
