@@ -1,0 +1,14 @@
+flake8_django.py,sha256=d_4-VCanuw5xcrLlM0yO909nhGo89kqlaE_gyRfy7vQ,1072
+issues.py,sha256=JaFlfsDpSOG0VEhud3RSIp8MnwhofePRRnJqd0ar7CQ,604
+checkers/__init__.py,sha256=rnpfNFWdip11O24sZ5AmgH4_CoOAX1-UCKl0LGk0Tv4,172
+checkers/checker.py,sha256=3orF4QcbfkXqHkr3msENCyKZ-lOubqfwAD5GiOsqNw8,516
+checkers/issue.py,sha256=nyR0FX6hA_I3NCAfi-xZ0KM1AcbAKP7cPMFhYE8ibx8,504
+checkers/model_fields.py,sha256=YRSDkaNu8NzXgdlgybao4Cwf8DDZ7etY1M-OhLZz6C0,1491
+checkers/render.py,sha256=L7sA3h9FGricTW--b0uG1SCnC1zOcrRhZwHWLO1Gud4,738
+checkers/urls.py,sha256=DnGIgLcAZe_tMcWug7UKdGbnj-VRqnV0_O6LK4Behk0,1686
+flake8_django-0.0.3.dist-info/LICENSE,sha256=OXLcl0T2SZ8Pmy2_dmlvKuetivmyPd5m1q-Gyd-zaYY,35149
+flake8_django-0.0.3.dist-info/METADATA,sha256=RYN9N_BmzlwOX1ShfqvyZzxDJ1qbs8mUsKA9N0Hi_rk,2022
+flake8_django-0.0.3.dist-info/WHEEL,sha256=YO0P_oFqt6DWX0LhbH7jsyzb3BUtoq2kERtqGsXDJHs,92
+flake8_django-0.0.3.dist-info/entry_points.txt,sha256=gDE8EmLIJDHqWbUxQdQ1GRjic2qK4wg3FFxHMlxLvuI,59
+flake8_django-0.0.3.dist-info/top_level.txt,sha256=is9Itn0xFLCIytBPMxU4M4lVfPIW9cQqQmPopaJ2_pw,23
+flake8_django-0.0.3.dist-info/RECORD,,
