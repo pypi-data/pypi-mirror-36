@@ -1,0 +1,76 @@
+Metadata-Version: 2.1
+Name: mttt
+Version: 0.0.2
+Summary: Minimalist timetracking tool
+Home-page: https://github.com/FeedTheWeb/mttt
+Author: alex
+Author-email: a@b.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# mttt
+
+Minimalistic timetracking tool
+
+
+
+### install
+
+`pip install mttt`
+
+
+
+## commands:
+
+* start
+
+initiate a project / task
+
+* add
+
+create a new task in a project
+  If no project name is given, it will use the latest (current) project
+
+example:
+
+`t.py add myproject:"My latest task" `
+
+example:
+
+`t.py add secondtask `
+
+
+
+* end
+
+end a Task
+
+example:
+
+`t.py end finished`
+
+* projects
+
+list all projects
+
+* report
+
+Display the project data  
+
+* current
+
+Show current project
+
+* edit
+
+Edit the project data in a text editor
+
+### plain text
+
+Data is stored in simple (per project) text-files in `~/ttprojects` folder  
+
+
