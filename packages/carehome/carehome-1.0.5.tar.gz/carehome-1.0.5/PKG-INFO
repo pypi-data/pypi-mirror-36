@@ -1,0 +1,15 @@
+Metadata-Version: 1.0
+Name: carehome
+Version: 1.0.5
+Summary: Make objects with multiple inheritance with Python.
+Home-page: https://github.com/chrisnorman7/
+Author: Chris Norman
+Author-email: chris.norman2@googlemail.com
+License: MPL-2
+Description: # Carehome
+        A stupidly named package for creating MOO-style objects with Python.
+        
+        Objects support multiple inheritance, properties and methods. The resulting database can be dumped and loaded to and from dictionary objects.
+        
+        
+Platform: UNKNOWN
