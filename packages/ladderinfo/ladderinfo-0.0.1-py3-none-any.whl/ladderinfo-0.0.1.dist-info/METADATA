@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: ladderinfo
+Version: 0.0.1
+Summary: Ladder Info app for All Inspiration Apps
+Home-page: https://github.com/frugs/allin-ladderinfo
+Author: Hugo Wainwright
+Author-email: wainwrighthugo@gmail.com
+License: UNKNOWN
+Keywords: sc2,all-inspiration
+Platform: UNKNOWN
+Requires-Dist: requests (>=2.19.1)
+Requires-Dist: requests-toolbelt (>=0.8.0)
+Requires-Dist: flask
+Requires-Dist: pyrebase
+Requires-Dist: google-cloud-datastore
+Requires-Dist: sc2gamedata
+
+UNKNOWN
+
+
