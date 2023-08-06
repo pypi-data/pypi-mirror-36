@@ -1,0 +1,81 @@
+Metadata-Version: 2.1
+Name: contuino
+Version: 0.0.5.dev0
+Summary: Contuino client.
+Home-page: UNKNOWN
+Author: Luka Milosevic
+Author-email: lukamilosevic.py@gmail.com
+License: MIT
+Description: 
+        Contuino project: make arduino controlled games	
+        ========================
+        
+        ---------------
+        Usage:
+        ```
+        from contuino import *
+        
+        board = MyBoard()
+        board.board_port = 'COM3'
+        board.baud_rate = 115200
+        board.server_address = 'x.x.x.x'
+        board.server_port = ''
+        board.wifi_ssid = ''
+        board.wifi_password = ''
+        board.username = 'testhash'
+        board.name = 'board name'
+        board.message = 'board message'
+        
+        # assign action SHOOT to gpio pin 2
+        action_digital = GpioAction()
+        action_digital.event = Events.SHOOT
+        action_digital.pin = 2
+        action_digital.sensor = Sensors.TOUCH
+        action_digital.sensor_code = "XXXX1234"
+        board.add_action(action_digital)
+        
+        # assign action SHOOT to analog pin 0
+        action_analog = GpioAction()
+        action_analog.event = Events.SHOOT
+        action_analog.pin = 0
+        action_analog.analog = True
+        action_analog.sensor = Sensors.TOUCH
+        action_analog.sensor_code = "XXXX1234"
+        board.add_action(action_analog)
+        
+        # flash micropython
+        board.flash_micropython()
+        
+        # deploy and initialize contuino script
+        board.init_contuino()
+        
+        # start serial prompt
+        board.putty_serial_prompt()
+        ```
+        
+        ---------------
+        
+        features:
+        
+        flashing micropython  
+        generating the boot.py script for a board running micropython  
+        deploying the boot script to the board running micropython  
+        reading analog and digital sensor input  
+        sending data to server  
+        opening putty serial prompt  
+        
+        ---------------
+        
+        todo:
+        
+        
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
