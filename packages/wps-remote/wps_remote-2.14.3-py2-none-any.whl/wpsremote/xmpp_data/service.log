@@ -1,0 +1,704 @@
+2018-09-24 14:52:24,674 - main.create_logger - DEBUG - Logger initialized with file ./xmpp_data/configs/logger.properties
+2018-09-24 14:52:24,676 - WPSAgentService.create_bot - INFO - Create process bot
+2018-09-24 14:52:24,839 - WPSAgentService.create_bot - INFO - Create resource cleaner
+2018-09-24 14:52:24,839 - WPSAgent.run - INFO - Start bot execution
+2018-09-24 14:52:24,839 - Resource.clean_up_all - INFO - start resource cleaner main loop
+2018-09-24 14:52:24,840 - servicebot.run - INFO - Start listening on bus
+2018-09-24 14:52:24,841 - Resource.clean_up - DEBUG - Sleep for 300.0 seconds
+2018-09-24 14:52:24,841 - root - INFO - Trying to connect...
+2018-09-24 14:52:27,075 - root - INFO - State: connected
+2018-09-24 14:52:27,188 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=invite"
+2018-09-24 14:52:27,188 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:52:27,189 - root - INFO - handle invite message from WPS topic=invite
+2018-09-24 14:52:27,190 - servicebot.handle_invite - INFO - handle invite message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 14:52:47,381 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 14:52:47,381 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:52:47,382 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 14:53:17,380 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 14:53:17,381 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:53:17,382 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 14:53:42,591 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=request&id=bb4f2b5794cf16d&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%08%00%00%00intervalq%01X%03%00%00%00350q%02X%0F%00%00%00application%2Fzipq%03X%18%00%00%00application%2Foctet-streamq%04u."
+2018-09-24 14:53:42,594 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:53:42,596 - root - INFO - handle request message from WPS topic=request&id=bb4f2b5794cf16d&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%08%00%00%00intervalq%01X%03%00%00%00350q%02X%0F%00%00%00application%2Fzipq%03X%18%00%00%00application%2Foctet-streamq%04u.
+2018-09-24 14:53:42,612 - servicebot.handle_execute - DEBUG - save parameters file for executing process GdalContour in /tmp/wps_params_XImzBv.tmp
+2018-09-24 14:53:42,613 - servicebot.handle_execute - INFO - Start the resource cleaner!
+2018-09-24 14:53:42,632 - servicebot.handle_execute - INFO - created process GdalContour with PId 1254 and cmd: python wpsagent.py -r ./xmpp_data/configs/remote.config -s ./xmpp_data/configs/myservice/service.config -p /tmp/wps_params_XImzBv.tmp process
+2018-09-24 14:53:42,635 - servicebot.handle_execute - INFO - end of execute message handler, going back in listening mode
+2018-09-24 14:53:42,636 - servicebot.output_parser_verbose - INFO - wait for end of execution of created process GdalContour, PId 1254
+2018-09-24 14:53:43,378 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:43,377 [DEBUG] Logger initialized with file ./xmpp_data/configs/myservice/logger.properties
+2018-09-24 14:53:43,378 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:43,377 [INFO] Create process bot
+2018-09-24 14:53:43,429 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:43,428 [INFO] Start bot execution
+2018-09-24 14:53:43,429 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:43,429 [INFO] Trying to connect...
+2018-09-24 14:53:43,445 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:43,443 [INFO] process GdalContour created with PId 1258 and command line: python /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py -i 350 -w ./xmpp_data/output//bb4f2b5794cf16d
+2018-09-24 14:53:43,457 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:43,457 [INFO] start parsing stdout of created process GdalContour
+2018-09-24 14:53:45,560 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:45,560 [INFO] State: connected
+2018-09-24 14:53:47,382 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 14:53:47,383 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:53:47,385 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 14:53:47,949 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:47,946 [DEBUG] Received line: 2018-09-24 14:53:43,628 - main.create_logger - [DEBUG] Logger initialized with file logger_test.properties
+2018-09-24 14:53:47,980 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:47,947 [DEBUG] Received line: 2018-09-24 14:53:43,628 - main.create_logger - [INFO] ProgressInfo:0.0%
+2018-09-24 14:53:47,999 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:47,957 [DEBUG] Received line: 2018-09-24 14:53:43,628 - main.create_logger - [DEBUG] Running command > /usr/bin/gdal_contour -a elev /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../resource_dir/srtm_39_04/srtm_39_04_c.tif /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../output/contour_0fdc0865-7f02.shp -i 350
+2018-09-24 14:53:48,012 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:47,958 [DEBUG] Received line: 2018-09-24 14:53:43,863 - main.create_logger - [INFO] 0...10...20...30...40...50...60...70...80...90...100 - done.
+2018-09-24 14:53:48,016 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:47,958 [DEBUG] Received line:
+2018-09-24 14:53:48,017 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:47,959 [DEBUG] Received line: 2018-09-24 14:53:43,878 - main.create_logger - [INFO] ProgressInfo:100%
+2018-09-24 14:53:48,018 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:47,959 [DEBUG] process GdalContourstdout is over
+2018-09-24 14:53:48,040 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:47,959 [INFO] process exit code is 0
+2018-09-24 14:53:48,042 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:47,960 [INFO] process exit code is 0: success
+2018-09-24 14:53:48,043 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:47,960 [INFO] send job-completed message to WPS with output parameter
+2018-09-24 14:53:48,044 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:47,960 [INFO] trying to acquire bus lock...
+2018-09-24 14:53:48,045 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:47,960 [INFO] bus lock acquired...
+2018-09-24 14:53:48,046 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:47,960 [INFO] sending 'completed' message tentative #1
+2018-09-24 14:53:57,962 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:53:57,962 [INFO] sending 'completed' message tentative #2
+2018-09-24 14:54:07,963 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:54:07,963 [INFO] sending 'completed' message tentative #3
+2018-09-24 14:54:12,615 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:54:12,614 [INFO] Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=abort"
+2018-09-24 14:54:12,616 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:54:12,615 [INFO] handle message from WPS Role moderator
+2018-09-24 14:54:12,617 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:54:12,615 [INFO] handle abort message from WPS topic=abort
+2018-09-24 14:54:17,382 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 14:54:17,382 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:54:17,384 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 14:54:17,964 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:54:17,964 [INFO] sending 'completed' message tentative #4
+2018-09-24 14:54:27,966 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:54:27,965 [INFO] sending 'completed' message tentative #5
+2018-09-24 14:54:37,967 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:54:37,967 [INFO] sending 'completed' message tentative #6
+2018-09-24 14:54:47,383 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 14:54:47,384 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:54:47,384 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 14:54:47,968 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:54:47,968 [INFO] sending 'completed' message tentative #7
+2018-09-24 14:54:57,970 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:54:57,969 [INFO] sending 'completed' message tentative #8
+2018-09-24 14:55:07,970 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:55:07,970 [INFO] sending 'completed' message tentative #9
+2018-09-24 14:55:17,385 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 14:55:17,385 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:55:17,386 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 14:55:17,971 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:55:17,971 [INFO] sending 'completed' message tentative #10
+2018-09-24 14:55:27,973 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:55:27,972 [INFO] sending 'completed' message tentative #11
+2018-09-24 14:55:37,974 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:55:37,974 [INFO] sending 'completed' message tentative #12
+2018-09-24 14:55:47,385 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 14:55:47,386 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:55:47,386 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 14:55:47,976 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:55:47,975 [INFO] sending 'completed' message tentative #13
+2018-09-24 14:55:57,977 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:55:57,976 [INFO] sending 'completed' message tentative #14
+2018-09-24 14:56:07,978 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:56:07,978 [INFO] sending 'completed' message tentative #15
+2018-09-24 14:56:17,386 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 14:56:17,386 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:56:17,387 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 14:56:17,980 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:56:17,979 [INFO] sending 'completed' message tentative #16
+2018-09-24 14:56:27,981 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:56:27,981 [INFO] sending 'completed' message tentative #17
+2018-09-24 14:56:37,983 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:56:37,982 [INFO] sending 'completed' message tentative #18
+2018-09-24 14:56:47,386 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 14:56:47,387 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:56:47,388 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 14:56:47,983 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:56:47,983 [INFO] sending 'completed' message tentative #19
+2018-09-24 14:56:57,984 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:56:57,984 [INFO] sending 'completed' message tentative #20
+2018-09-24 14:57:07,986 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:57:07,985 [INFO] sending 'completed' message tentative #21
+2018-09-24 14:57:17,387 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 14:57:17,387 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:57:17,388 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 14:57:17,987 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:57:17,986 [INFO] sending 'completed' message tentative #22
+2018-09-24 14:57:24,842 - Resource.clean_up - DEBUG - look for resources to clean up
+2018-09-24 14:57:24,843 - Resource.clean_up - DEBUG - found resource file ./xmpp_data/resource_dir/29e786fbd9ed6e6.pid
+2018-09-24 14:57:24,845 - Resource.clean_up - INFO - start to clean up resource: process 1222 working on ./xmpp_data/output/29e786fbd9ed6e6 from 2018-09-24T14:43:51
+2018-09-24 14:57:24,845 - Resource.kill_spawned_process - INFO - Try to kill computational job process(es)
+2018-09-24 14:57:24,846 - Resource.kill_process - INFO - request for killing process 1226
+2018-09-24 14:57:24,846 - Resource.kill_process - WARNING - pid 1226 doesn't exist
+2018-09-24 14:57:24,847 - Resource.kill_process - INFO - request for killing process 1222
+2018-09-24 14:57:24,847 - Resource.kill_process - WARNING - pid 1222 doesn't exist
+2018-09-24 14:57:24,848 - Resource.delete_sandbox_dir - INFO - try to delete directory ./xmpp_data/output/29e786fbd9ed6e6
+2018-09-24 14:57:24,850 - Resource.delete_sandbox_dir - INFO - Directory ./xmpp_data/output/29e786fbd9ed6e6 correctly deleted
+2018-09-24 14:57:24,850 - Resource.clean_up - DEBUG - kill computational job, kill request handler process,  delete sandbox dir = [True, True, True]
+2018-09-24 14:57:24,851 - Resource.clean_up - INFO - all pending resource have been deallocated, remove resource file ./xmpp_data/resource_dir/29e786fbd9ed6e6.pid
+2018-09-24 14:57:24,853 - Resource.clean_up - DEBUG - found resource file ./xmpp_data/resource_dir/bb4f2b5794cf16d.pid
+2018-09-24 14:57:24,854 - Resource.clean_up - DEBUG - process 1254 working on ./xmpp_data/output/bb4f2b5794cf16d from 2018-09-24T14:53:42 is 222.854577 seconds old and it is not yet ready to be cleaned up, wait for next round
+2018-09-24 14:57:24,855 - Resource.clean_up - DEBUG - found resource file ./xmpp_data/resource_dir/c60f01578dcfd9a.pid
+2018-09-24 14:57:24,855 - Resource.clean_up - INFO - start to clean up resource: process 1232 working on ./xmpp_data/output/c60f01578dcfd9a from 2018-09-24T14:46:41
+2018-09-24 14:57:24,856 - Resource.kill_spawned_process - INFO - Try to kill computational job process(es)
+2018-09-24 14:57:24,856 - Resource.kill_process - INFO - request for killing process 1236
+2018-09-24 14:57:24,857 - Resource.kill_process - WARNING - pid 1236 doesn't exist
+2018-09-24 14:57:24,857 - Resource.kill_process - INFO - request for killing process 1232
+2018-09-24 14:57:24,858 - Resource.kill_process - WARNING - pid 1232 doesn't exist
+2018-09-24 14:57:24,859 - Resource.delete_sandbox_dir - INFO - try to delete directory ./xmpp_data/output/c60f01578dcfd9a
+2018-09-24 14:57:24,860 - Resource.delete_sandbox_dir - INFO - Directory ./xmpp_data/output/c60f01578dcfd9a correctly deleted
+2018-09-24 14:57:24,861 - Resource.clean_up - DEBUG - kill computational job, kill request handler process,  delete sandbox dir = [True, True, True]
+2018-09-24 14:57:24,861 - Resource.clean_up - INFO - all pending resource have been deallocated, remove resource file ./xmpp_data/resource_dir/c60f01578dcfd9a.pid
+2018-09-24 14:57:24,864 - Resource.clean_up - DEBUG - Sleep for 300.0 seconds
+2018-09-24 14:57:27,988 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:57:27,988 [INFO] sending 'completed' message tentative #23
+2018-09-24 14:57:37,989 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:57:37,989 [INFO] sending 'completed' message tentative #24
+2018-09-24 14:57:47,388 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 14:57:47,388 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:57:47,389 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 14:57:47,990 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:57:47,990 [INFO] sending 'completed' message tentative #25
+2018-09-24 14:57:57,991 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:57:57,991 [INFO] sending 'completed' message tentative #26
+2018-09-24 14:58:07,993 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:58:07,992 [INFO] sending 'completed' message tentative #27
+2018-09-24 14:58:17,388 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 14:58:17,389 - root - INFO - handle message from WPS Role moderator
+2018-09-24 14:58:17,390 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 14:58:17,993 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 14:58:17,993 [INFO] sending 'completed' message tentative #28
+2018-09-24 15:04:13,673 - main.create_logger - DEBUG - Logger initialized with file ./xmpp_data/configs/logger.properties
+2018-09-24 15:04:13,675 - WPSAgentService.create_bot - INFO - Create process bot
+2018-09-24 15:04:13,866 - WPSAgentService.create_bot - INFO - Create resource cleaner
+2018-09-24 15:04:13,866 - WPSAgent.run - INFO - Start bot execution
+2018-09-24 15:04:13,866 - Resource.clean_up_all - INFO - start resource cleaner main loop
+2018-09-24 15:04:13,867 - servicebot.run - INFO - Start listening on bus
+2018-09-24 15:04:13,867 - Resource.clean_up - DEBUG - Sleep for 300.0 seconds
+2018-09-24 15:04:13,868 - root - INFO - Trying to connect...
+2018-09-24 15:04:15,798 - root - INFO - State: connected
+2018-09-24 15:04:15,909 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=invite"
+2018-09-24 15:04:15,909 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:04:15,910 - root - INFO - handle invite message from WPS topic=invite
+2018-09-24 15:04:15,911 - servicebot.handle_invite - INFO - handle invite message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:04:17,399 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:04:17,400 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:04:17,401 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:04:26,030 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=request&id=d22687e9c1a577f&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%0F%00%00%00application%2Fzipq%01X%18%00%00%00application%2Foctet-streamq%02X%08%00%00%00intervalq%03X%03%00%00%00350q%04u."
+2018-09-24 15:04:26,033 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:04:26,035 - root - INFO - handle request message from WPS topic=request&id=d22687e9c1a577f&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%0F%00%00%00application%2Fzipq%01X%18%00%00%00application%2Foctet-streamq%02X%08%00%00%00intervalq%03X%03%00%00%00350q%04u.
+2018-09-24 15:04:26,048 - servicebot.handle_execute - DEBUG - save parameters file for executing process GdalContour in /tmp/wps_params_lEfhBN.tmp
+2018-09-24 15:04:26,048 - servicebot.handle_execute - INFO - Start the resource cleaner!
+2018-09-24 15:04:26,070 - servicebot.handle_execute - INFO - created process GdalContour with PId 1280 and cmd: python wpsagent.py -r ./xmpp_data/configs/remote.config -s ./xmpp_data/configs/myservice/service.config -p /tmp/wps_params_lEfhBN.tmp process
+2018-09-24 15:04:26,072 - servicebot.handle_execute - INFO - end of execute message handler, going back in listening mode
+2018-09-24 15:04:26,072 - servicebot.output_parser_verbose - INFO - wait for end of execution of created process GdalContour, PId 1280
+2018-09-24 15:04:26,902 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:26,901 [DEBUG] Logger initialized with file ./xmpp_data/configs/myservice/logger.properties
+2018-09-24 15:04:26,903 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:26,902 [INFO] Create process bot
+2018-09-24 15:04:26,968 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:26,967 [INFO] Start bot execution
+2018-09-24 15:04:26,968 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:26,968 [INFO] Trying to connect...
+2018-09-24 15:04:26,980 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:26,979 [INFO] process GdalContour created with PId 1284 and command line: python /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py -i 350 -w ./xmpp_data/output//d22687e9c1a577f
+2018-09-24 15:04:26,989 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:26,989 [INFO] start parsing stdout of created process GdalContour
+2018-09-24 15:04:29,406 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:29,406 [INFO] State: connected
+2018-09-24 15:04:31,549 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:31,547 [DEBUG] Received line: 2018-09-24 15:04:27,178 - main.create_logger - [DEBUG] Logger initialized with file logger_test.properties
+2018-09-24 15:04:31,551 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:31,549 [DEBUG] Received line: 2018-09-24 15:04:27,178 - main.create_logger - [INFO] ProgressInfo:0.0%
+2018-09-24 15:04:31,554 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:31,553 [DEBUG] Received line: 2018-09-24 15:04:27,178 - main.create_logger - [DEBUG] Running command > /usr/bin/gdal_contour -a elev /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../resource_dir/srtm_39_04/srtm_39_04_c.tif /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../output/contour_904e6afa-e4a7.shp -i 350
+2018-09-24 15:04:31,556 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:31,555 [DEBUG] Received line: 2018-09-24 15:04:27,374 - main.create_logger - [INFO] 0...10...20...30...40...50...60...70...80...90...100 - done.
+2018-09-24 15:04:31,558 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:31,557 [DEBUG] Received line:
+2018-09-24 15:04:31,560 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:31,559 [DEBUG] Received line: 2018-09-24 15:04:27,391 - main.create_logger - [INFO] ProgressInfo:100%
+2018-09-24 15:04:31,562 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:31,561 [DEBUG] process GdalContourstdout is over
+2018-09-24 15:04:31,564 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:31,563 [INFO] process exit code is 0
+2018-09-24 15:04:31,566 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:31,564 [INFO] process exit code is 0: success
+2018-09-24 15:04:31,567 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:31,566 [INFO] send job-completed message to WPS with output parameter
+2018-09-24 15:04:31,567 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:31,566 [INFO] trying to acquire bus lock...
+2018-09-24 15:04:31,568 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:31,567 [INFO] bus lock acquired...
+2018-09-24 15:04:31,571 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:31,569 [INFO] sending 'completed' message tentative #1
+2018-09-24 15:04:41,574 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:41,573 [INFO] sending 'completed' message tentative #2
+2018-09-24 15:04:41,578 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:41,578 [INFO] Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=abort"
+2018-09-24 15:04:41,579 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:41,578 [INFO] handle message from WPS Role moderator
+2018-09-24 15:04:41,581 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:41,578 [INFO] handle abort message from WPS topic=abort
+2018-09-24 15:04:47,400 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:04:47,400 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:04:47,401 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:04:51,575 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:04:51,574 [INFO] sending 'completed' message tentative #3
+2018-09-24 15:05:01,576 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:05:01,576 [INFO] sending 'completed' message tentative #4
+2018-09-24 15:05:11,577 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:05:11,577 [INFO] sending 'completed' message tentative #5
+2018-09-24 15:05:17,399 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:05:17,400 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:05:17,400 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:05:21,579 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:05:21,578 [INFO] sending 'completed' message tentative #6
+2018-09-24 15:05:31,580 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:05:31,579 [INFO] sending 'completed' message tentative #7
+2018-09-24 15:05:41,581 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:05:41,581 [INFO] sending 'completed' message tentative #8
+2018-09-24 15:05:47,400 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:05:47,401 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:05:47,402 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:05:51,583 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:05:51,582 [INFO] sending 'completed' message tentative #9
+2018-09-24 15:06:01,584 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:06:01,583 [INFO] sending 'completed' message tentative #10
+2018-09-24 15:06:11,585 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:06:11,585 [INFO] sending 'completed' message tentative #11
+2018-09-24 15:06:17,401 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:06:17,401 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:06:17,402 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:06:21,586 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:06:21,586 [INFO] sending 'completed' message tentative #12
+2018-09-24 15:06:31,587 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:06:31,587 [INFO] sending 'completed' message tentative #13
+2018-09-24 15:06:41,588 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:06:41,587 [INFO] sending 'completed' message tentative #14
+2018-09-24 15:06:47,401 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:06:47,402 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:06:47,403 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:06:51,589 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:06:51,589 [INFO] sending 'completed' message tentative #15
+2018-09-24 15:07:01,590 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:07:01,590 [INFO] sending 'completed' message tentative #16
+2018-09-24 15:07:11,592 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:07:11,592 [INFO] sending 'completed' message tentative #17
+2018-09-24 15:07:17,402 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:07:17,403 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:07:17,404 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:07:21,593 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:07:21,593 [INFO] sending 'completed' message tentative #18
+2018-09-24 15:07:31,594 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:07:31,594 [INFO] sending 'completed' message tentative #19
+2018-09-24 15:07:41,595 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:07:41,595 [INFO] sending 'completed' message tentative #20
+2018-09-24 15:07:47,403 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:07:47,404 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:07:47,407 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:08:14,588 - main.create_logger - DEBUG - Logger initialized with file ./xmpp_data/configs/logger.properties
+2018-09-24 15:08:14,590 - WPSAgentService.create_bot - INFO - Create process bot
+2018-09-24 15:08:14,754 - WPSAgentService.create_bot - INFO - Create resource cleaner
+2018-09-24 15:08:14,755 - WPSAgent.run - INFO - Start bot execution
+2018-09-24 15:08:14,755 - Resource.clean_up_all - INFO - start resource cleaner main loop
+2018-09-24 15:08:14,756 - servicebot.run - INFO - Start listening on bus
+2018-09-24 15:08:14,757 - Resource.clean_up - DEBUG - Sleep for 300.0 seconds
+2018-09-24 15:08:14,757 - root - INFO - Trying to connect...
+2018-09-24 15:08:16,791 - root - INFO - State: connected
+2018-09-24 15:08:16,905 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=invite"
+2018-09-24 15:08:16,905 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:08:16,906 - root - INFO - handle invite message from WPS topic=invite
+2018-09-24 15:08:16,907 - servicebot.handle_invite - INFO - handle invite message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:08:17,404 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:08:17,405 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:08:17,405 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:08:25,824 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=request&id=88ba3bf157214c9&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%08%00%00%00intervalq%01X%03%00%00%00350q%02X%0F%00%00%00application%2Fzipq%03X%18%00%00%00application%2Foctet-streamq%04u."
+2018-09-24 15:08:25,827 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:08:25,827 - root - INFO - handle request message from WPS topic=request&id=88ba3bf157214c9&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%08%00%00%00intervalq%01X%03%00%00%00350q%02X%0F%00%00%00application%2Fzipq%03X%18%00%00%00application%2Foctet-streamq%04u.
+2018-09-24 15:08:25,841 - servicebot.handle_execute - DEBUG - save parameters file for executing process GdalContour in /tmp/wps_params_Q1OTwc.tmp
+2018-09-24 15:08:25,842 - servicebot.handle_execute - INFO - Start the resource cleaner!
+2018-09-24 15:08:25,866 - servicebot.handle_execute - INFO - created process GdalContour with PId 1302 and cmd: python wpsagent.py -r ./xmpp_data/configs/remote.config -s ./xmpp_data/configs/myservice/service.config -p /tmp/wps_params_Q1OTwc.tmp process
+2018-09-24 15:08:25,869 - servicebot.handle_execute - INFO - end of execute message handler, going back in listening mode
+2018-09-24 15:08:25,869 - servicebot.output_parser_verbose - INFO - wait for end of execution of created process GdalContour, PId 1302
+2018-09-24 15:08:26,633 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:26,632 [DEBUG] Logger initialized with file ./xmpp_data/configs/myservice/logger.properties
+2018-09-24 15:08:26,633 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:26,632 [INFO] Create process bot
+2018-09-24 15:08:26,693 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:26,692 [INFO] Start bot execution
+2018-09-24 15:08:26,694 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:26,693 [INFO] Trying to connect...
+2018-09-24 15:08:26,706 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:26,705 [INFO] process GdalContour created with PId 1306 and command line: python /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py -i 350 -w ./xmpp_data/output//88ba3bf157214c9
+2018-09-24 15:08:26,716 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:26,715 [INFO] start parsing stdout of created process GdalContour
+2018-09-24 15:08:29,027 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:29,027 [INFO] State: connected
+2018-09-24 15:08:31,068 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:31,067 [DEBUG] Received line: 2018-09-24 15:08:26,885 - main.create_logger - [DEBUG] Logger initialized with file logger_test.properties
+2018-09-24 15:08:31,070 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:31,069 [DEBUG] Received line: 2018-09-24 15:08:26,885 - main.create_logger - [INFO] ProgressInfo:0.0%
+2018-09-24 15:08:31,074 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:31,073 [DEBUG] Received line: 2018-09-24 15:08:26,885 - main.create_logger - [DEBUG] Running command > /usr/bin/gdal_contour -a elev /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../resource_dir/srtm_39_04/srtm_39_04_c.tif /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../output/contour_f487ed32-e62d.shp -i 350
+2018-09-24 15:08:31,078 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:31,074 [DEBUG] Received line: 2018-09-24 15:08:27,107 - main.create_logger - [INFO] 0...10...20...30...40...50...60...70...80...90...100 - done.
+2018-09-24 15:08:31,081 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:31,080 [DEBUG] Received line:
+2018-09-24 15:08:31,084 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:31,081 [DEBUG] Received line: 2018-09-24 15:08:27,125 - main.create_logger - [INFO] ProgressInfo:100%
+2018-09-24 15:08:31,084 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:31,082 [DEBUG] process GdalContourstdout is over
+2018-09-24 15:08:31,085 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:31,082 [INFO] process exit code is 0
+2018-09-24 15:08:31,085 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:31,083 [INFO] process exit code is 0: success
+2018-09-24 15:08:31,086 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:31,084 [INFO] send job-completed message to WPS with output parameter
+2018-09-24 15:08:31,087 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:31,086 [INFO] trying to acquire bus lock...
+2018-09-24 15:08:31,087 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:31,087 [INFO] bus lock acquired...
+2018-09-24 15:08:31,088 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:31,087 [INFO] sending 'completed' message tentative #1
+2018-09-24 15:08:41,090 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:41,089 [INFO] sending 'completed' message tentative #2
+2018-09-24 15:08:41,095 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:41,094 [INFO] Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=abort"
+2018-09-24 15:08:41,096 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:41,094 [INFO] handle message from WPS Role moderator
+2018-09-24 15:08:41,096 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:41,094 [INFO] handle abort message from WPS topic=abort
+2018-09-24 15:08:41,097 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:41,095 [INFO] received finish mesasge from WPS
+2018-09-24 15:08:47,406 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:08:47,406 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:08:47,407 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:08:51,091 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:51,090 [INFO] after send job-completed message to WPS
+2018-09-24 15:08:51,210 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:08:51,210 [INFO] disconnected from communication bus
+2018-09-24 15:08:53,114 - servicebot.output_parser_verbose - DEBUG - created process GdalContour, PId 1302 stopped send data on stdout
+2018-09-24 15:08:53,114 - servicebot.output_parser_verbose - DEBUG - Process GdalContour PId 1302 terminated successfully!
+2018-09-24 15:09:17,406 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:09:17,406 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:09:17,407 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:09:47,406 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:09:47,407 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:09:47,408 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:10:17,407 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:10:17,408 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:10:17,408 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:10:47,408 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:10:47,408 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:10:47,409 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:11:17,409 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:11:17,409 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:11:17,410 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:11:36,966 - main.create_logger - DEBUG - Logger initialized with file ./xmpp_data/configs/logger.properties
+2018-09-24 15:11:36,968 - WPSAgentService.create_bot - INFO - Create process bot
+2018-09-24 15:11:37,122 - WPSAgentService.create_bot - INFO - Create resource cleaner
+2018-09-24 15:11:37,123 - WPSAgent.run - INFO - Start bot execution
+2018-09-24 15:11:37,123 - Resource.clean_up_all - INFO - start resource cleaner main loop
+2018-09-24 15:11:37,123 - servicebot.run - INFO - Start listening on bus
+2018-09-24 15:11:37,124 - Resource.clean_up - DEBUG - Sleep for 300.0 seconds
+2018-09-24 15:11:37,125 - root - INFO - Trying to connect...
+2018-09-24 15:11:38,952 - root - INFO - State: connected
+2018-09-24 15:11:39,064 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=invite"
+2018-09-24 15:11:39,064 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:11:39,065 - root - INFO - handle invite message from WPS topic=invite
+2018-09-24 15:11:39,066 - servicebot.handle_invite - INFO - handle invite message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:12:01,761 - main.create_logger - DEBUG - Logger initialized with file ./xmpp_data/configs/logger.properties
+2018-09-24 15:12:01,765 - WPSAgentService.create_bot - INFO - Create process bot
+2018-09-24 15:12:01,924 - WPSAgentService.create_bot - INFO - Create resource cleaner
+2018-09-24 15:12:01,924 - WPSAgent.run - INFO - Start bot execution
+2018-09-24 15:12:01,925 - Resource.clean_up_all - INFO - start resource cleaner main loop
+2018-09-24 15:12:01,925 - servicebot.run - INFO - Start listening on bus
+2018-09-24 15:12:01,926 - Resource.clean_up - DEBUG - Sleep for 300.0 seconds
+2018-09-24 15:12:01,926 - root - INFO - Trying to connect...
+2018-09-24 15:12:04,059 - root - INFO - State: connected
+2018-09-24 15:12:04,169 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=invite"
+2018-09-24 15:12:04,169 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:12:04,170 - root - INFO - handle invite message from WPS topic=invite
+2018-09-24 15:12:04,171 - servicebot.handle_invite - INFO - handle invite message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:12:17,412 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:12:17,413 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:12:17,414 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:12:20,755 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=request&id=0314e22720473cd&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%08%00%00%00intervalq%01X%03%00%00%00350q%02X%0F%00%00%00application%2Fzipq%03X%18%00%00%00application%2Foctet-streamq%04u."
+2018-09-24 15:12:20,757 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:12:20,758 - root - INFO - handle request message from WPS topic=request&id=0314e22720473cd&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%08%00%00%00intervalq%01X%03%00%00%00350q%02X%0F%00%00%00application%2Fzipq%03X%18%00%00%00application%2Foctet-streamq%04u.
+2018-09-24 15:12:20,769 - servicebot.handle_execute - DEBUG - save parameters file for executing process GdalContour in /tmp/wps_params_2Fz3oU.tmp
+2018-09-24 15:12:20,770 - servicebot.handle_execute - INFO - Start the resource cleaner!
+2018-09-24 15:12:20,787 - servicebot.handle_execute - INFO - created process GdalContour with PId 1340 and cmd: python wpsagent.py -r ./xmpp_data/configs/remote.config -s ./xmpp_data/configs/myservice/service.config -p /tmp/wps_params_2Fz3oU.tmp process
+2018-09-24 15:12:20,789 - servicebot.handle_execute - INFO - end of execute message handler, going back in listening mode
+2018-09-24 15:12:20,790 - servicebot.output_parser_verbose - INFO - wait for end of execution of created process GdalContour, PId 1340
+2018-09-24 15:12:21,505 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:21,504 [DEBUG] Logger initialized with file ./xmpp_data/configs/myservice/logger.properties
+2018-09-24 15:12:21,506 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:21,504 [INFO] Create process bot
+2018-09-24 15:12:21,562 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:21,562 [INFO] Start bot execution
+2018-09-24 15:12:21,563 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:21,562 [INFO] Trying to connect...
+2018-09-24 15:12:21,577 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:21,575 [INFO] process GdalContour created with PId 1344 and command line: python /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py -i 350 -w ./xmpp_data/output//0314e22720473cd
+2018-09-24 15:12:21,587 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:21,586 [INFO] start parsing stdout of created process GdalContour
+2018-09-24 15:12:23,504 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:23,503 [INFO] State: connected
+2018-09-24 15:12:25,449 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:25,448 [DEBUG] Received line: 2018-09-24 15:12:21,754 - main.create_logger - [DEBUG] Logger initialized with file logger_test.properties
+2018-09-24 15:12:25,451 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:25,449 [DEBUG] Received line: 2018-09-24 15:12:21,755 - main.create_logger - [INFO] ProgressInfo:0.0%
+2018-09-24 15:12:25,455 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:25,454 [DEBUG] Received line: 2018-09-24 15:12:21,755 - main.create_logger - [DEBUG] Running command > /usr/bin/gdal_contour -a elev /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../resource_dir/srtm_39_04/srtm_39_04_c.tif /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../output/contour_00a0971d-4100.shp -i 350
+2018-09-24 15:12:25,457 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:25,454 [DEBUG] Received line: 2018-09-24 15:12:21,947 - main.create_logger - [INFO] 0...10...20...30...40...50...60...70...80...90...100 - done.
+2018-09-24 15:12:25,458 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:25,456 [DEBUG] Received line:
+2018-09-24 15:12:25,458 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:25,457 [DEBUG] Received line: 2018-09-24 15:12:21,968 - main.create_logger - [INFO] ProgressInfo:100%
+2018-09-24 15:12:25,460 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:25,458 [DEBUG] process GdalContourstdout is over
+2018-09-24 15:12:25,461 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:25,459 [INFO] process exit code is 0
+2018-09-24 15:12:25,461 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:25,460 [INFO] process exit code is 0: success
+2018-09-24 15:12:25,463 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:25,460 [INFO] send job-completed message to WPS with output parameter
+2018-09-24 15:12:25,464 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:25,462 [INFO] trying to acquire bus lock...
+2018-09-24 15:12:25,464 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:25,464 [INFO] bus lock acquired...
+2018-09-24 15:12:25,465 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:25,464 [INFO] sending 'completed' message tentative #1
+2018-09-24 15:12:35,468 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:35,468 [INFO] sending 'completed' message tentative #2
+2018-09-24 15:12:35,473 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:35,473 [INFO] Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=abort"
+2018-09-24 15:12:35,474 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:35,473 [INFO] handle message from WPS Role moderator
+2018-09-24 15:12:35,475 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:35,473 [INFO] handle abort message from WPS topic=abort
+2018-09-24 15:12:35,476 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:35,473 [INFO] received abort mesasge from WPS
+2018-09-24 15:12:45,469 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:45,468 [INFO] after send job-completed message to WPS
+2018-09-24 15:12:45,588 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:12:45,588 [INFO] disconnected from communication bus
+2018-09-24 15:12:47,412 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:12:47,412 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:12:47,414 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:12:47,491 - servicebot.output_parser_verbose - DEBUG - created process GdalContour, PId 1340 stopped send data on stdout
+2018-09-24 15:12:47,492 - servicebot.output_parser_verbose - DEBUG - Process GdalContour PId 1340 terminated successfully!
+2018-09-24 15:13:17,414 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:13:17,414 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:13:17,415 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:13:45,180 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=request&id=27d6a3f8745577b&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%0F%00%00%00application%2Fzipq%01X%18%00%00%00application%2Foctet-streamq%02X%08%00%00%00intervalq%03X%03%00%00%00350q%04u."
+2018-09-24 15:13:45,182 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:13:45,184 - root - INFO - handle request message from WPS topic=request&id=27d6a3f8745577b&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%0F%00%00%00application%2Fzipq%01X%18%00%00%00application%2Foctet-streamq%02X%08%00%00%00intervalq%03X%03%00%00%00350q%04u.
+2018-09-24 15:13:45,192 - servicebot.handle_execute - DEBUG - save parameters file for executing process GdalContour in /tmp/wps_params_cGp00e.tmp
+2018-09-24 15:13:45,192 - servicebot.handle_execute - INFO - Start the resource cleaner!
+2018-09-24 15:13:45,212 - servicebot.handle_execute - INFO - created process GdalContour with PId 1350 and cmd: python wpsagent.py -r ./xmpp_data/configs/remote.config -s ./xmpp_data/configs/myservice/service.config -p /tmp/wps_params_cGp00e.tmp process
+2018-09-24 15:13:45,215 - servicebot.handle_execute - INFO - end of execute message handler, going back in listening mode
+2018-09-24 15:13:45,215 - servicebot.output_parser_verbose - INFO - wait for end of execution of created process GdalContour, PId 1350
+2018-09-24 15:13:45,913 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:45,912 [DEBUG] Logger initialized with file ./xmpp_data/configs/myservice/logger.properties
+2018-09-24 15:13:45,914 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:45,912 [INFO] Create process bot
+2018-09-24 15:13:45,962 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:45,962 [INFO] Start bot execution
+2018-09-24 15:13:45,963 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:45,962 [INFO] Trying to connect...
+2018-09-24 15:13:45,976 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:45,974 [INFO] process GdalContour created with PId 1354 and command line: python /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py -i 350 -w ./xmpp_data/output//27d6a3f8745577b
+2018-09-24 15:13:45,986 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:45,985 [INFO] start parsing stdout of created process GdalContour
+2018-09-24 15:13:47,415 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:13:47,416 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:13:47,418 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:13:48,297 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:48,297 [INFO] State: connected
+2018-09-24 15:13:50,433 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:50,432 [DEBUG] Received line: 2018-09-24 15:13:46,155 - main.create_logger - [DEBUG] Logger initialized with file logger_test.properties
+2018-09-24 15:13:50,435 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:50,433 [DEBUG] Received line: 2018-09-24 15:13:46,155 - main.create_logger - [INFO] ProgressInfo:0.0%
+2018-09-24 15:13:50,438 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:50,437 [DEBUG] Received line: 2018-09-24 15:13:46,155 - main.create_logger - [DEBUG] Running command > /usr/bin/gdal_contour -a elev /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../resource_dir/srtm_39_04/srtm_39_04_c.tif /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../output/contour_66012790-533a.shp -i 350
+2018-09-24 15:13:50,439 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:50,438 [DEBUG] Received line: 2018-09-24 15:13:46,345 - main.create_logger - [INFO] 0...10...20...30...40...50...60...70...80...90...100 - done.
+2018-09-24 15:13:50,440 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:50,438 [DEBUG] Received line:
+2018-09-24 15:13:50,441 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:50,438 [DEBUG] Received line: 2018-09-24 15:13:46,366 - main.create_logger - [INFO] ProgressInfo:100%
+2018-09-24 15:13:50,441 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:50,439 [DEBUG] process GdalContourstdout is over
+2018-09-24 15:13:50,442 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:50,439 [INFO] process exit code is 0
+2018-09-24 15:13:50,442 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:50,439 [INFO] process exit code is 0: success
+2018-09-24 15:13:50,443 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:50,439 [INFO] send job-completed message to WPS with output parameter
+2018-09-24 15:13:50,444 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:50,439 [INFO] trying to acquire bus lock...
+2018-09-24 15:13:50,447 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:50,439 [INFO] bus lock acquired...
+2018-09-24 15:13:50,449 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:13:50,439 [INFO] sending 'completed' message tentative #1
+2018-09-24 15:14:00,442 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:14:00,442 [INFO] sending 'completed' message tentative #2
+2018-09-24 15:14:10,444 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:14:10,443 [INFO] sending 'completed' message tentative #3
+2018-09-24 15:14:17,415 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:14:17,415 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:14:17,415 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:14:20,445 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:14:20,444 [INFO] sending 'completed' message tentative #4
+2018-09-24 15:14:30,446 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:14:30,446 [INFO] sending 'completed' message tentative #5
+2018-09-24 15:14:40,447 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:14:40,447 [INFO] sending 'completed' message tentative #6
+2018-09-24 15:14:47,416 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:14:47,416 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:14:47,417 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:14:50,449 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:14:50,448 [INFO] sending 'completed' message tentative #7
+2018-09-24 15:14:51,992 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:14:51,991 [INFO] Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=abort"
+2018-09-24 15:14:51,994 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:14:51,992 [INFO] handle message from WPS Role moderator
+2018-09-24 15:14:51,997 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:14:51,992 [INFO] handle abort message from WPS topic=abort
+2018-09-24 15:14:52,000 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:14:51,992 [INFO] received abort mesasge from WPS
+2018-09-24 15:15:00,450 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:15:00,449 [INFO] after send job-completed message to WPS
+2018-09-24 15:15:00,487 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:15:00,487 [INFO] disconnected from communication bus
+2018-09-24 15:15:02,473 - servicebot.output_parser_verbose - DEBUG - created process GdalContour, PId 1350 stopped send data on stdout
+2018-09-24 15:15:02,473 - servicebot.output_parser_verbose - DEBUG - Process GdalContour PId 1350 terminated successfully!
+2018-09-24 15:15:17,417 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:15:17,418 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:15:17,419 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:15:47,418 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:15:47,419 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:15:47,420 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:23:41,189 - main.create_logger - DEBUG - Logger initialized with file ./xmpp_data/configs/logger.properties
+2018-09-24 15:23:41,191 - WPSAgentService.create_bot - INFO - Create process bot
+2018-09-24 15:23:41,328 - WPSAgentService.create_bot - INFO - Create resource cleaner
+2018-09-24 15:23:41,329 - WPSAgent.run - INFO - Start bot execution
+2018-09-24 15:23:41,329 - Resource.clean_up_all - INFO - start resource cleaner main loop
+2018-09-24 15:23:41,329 - servicebot.run - INFO - Start listening on bus
+2018-09-24 15:23:41,330 - Resource.clean_up - DEBUG - Sleep for 300.0 seconds
+2018-09-24 15:23:41,331 - root - INFO - Trying to connect...
+2018-09-24 15:23:43,476 - root - INFO - State: connected
+2018-09-24 15:23:43,587 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=invite"
+2018-09-24 15:23:43,588 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:23:43,589 - root - INFO - handle invite message from WPS topic=invite
+2018-09-24 15:23:43,590 - servicebot.handle_invite - INFO - handle invite message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:23:47,427 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:23:47,427 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:23:47,429 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:23:49,524 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=request&id=2783fe0a7205114&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%0F%00%00%00application%2Fzipq%01X%18%00%00%00application%2Foctet-streamq%02X%08%00%00%00intervalq%03X%03%00%00%00350q%04u."
+2018-09-24 15:23:49,526 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:23:49,527 - root - INFO - handle request message from WPS topic=request&id=2783fe0a7205114&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%0F%00%00%00application%2Fzipq%01X%18%00%00%00application%2Foctet-streamq%02X%08%00%00%00intervalq%03X%03%00%00%00350q%04u.
+2018-09-24 15:23:49,539 - servicebot.handle_execute - DEBUG - save parameters file for executing process GdalContour in /tmp/wps_params_mTk8J0.tmp
+2018-09-24 15:23:49,539 - servicebot.handle_execute - INFO - Start the resource cleaner!
+2018-09-24 15:23:49,558 - servicebot.handle_execute - INFO - created process GdalContour with PId 1372 and cmd: python wpsagent.py -r ./xmpp_data/configs/remote.config -s ./xmpp_data/configs/myservice/service.config -p /tmp/wps_params_mTk8J0.tmp process
+2018-09-24 15:23:49,562 - servicebot.handle_execute - INFO - end of execute message handler, going back in listening mode
+2018-09-24 15:23:49,562 - servicebot.output_parser_verbose - INFO - wait for end of execution of created process GdalContour, PId 1372
+2018-09-24 15:23:50,258 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:50,257 [DEBUG] Logger initialized with file ./xmpp_data/configs/myservice/logger.properties
+2018-09-24 15:23:50,259 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:50,257 [INFO] Create process bot
+2018-09-24 15:23:50,311 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:50,310 [INFO] Start bot execution
+2018-09-24 15:23:50,311 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:50,311 [INFO] Trying to connect...
+2018-09-24 15:23:50,324 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:50,322 [INFO] process GdalContour created with PId 1376 and command line: python /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py -i 350 -e 2783fe0a7205114
+2018-09-24 15:23:50,333 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:50,332 [INFO] start parsing stdout of created process GdalContour
+2018-09-24 15:23:52,646 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:52,645 [INFO] State: connected
+2018-09-24 15:23:54,380 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,379 [DEBUG] Received line: 2018-09-24 15:23:50,501 - main.create_logger - [DEBUG] Logger initialized with file logger_test.properties
+2018-09-24 15:23:54,382 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,379 [DEBUG] Received line: 2018-09-24 15:23:50,501 - main.create_logger - [INFO] ProgressInfo:0.0%
+2018-09-24 15:23:54,384 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,383 [DEBUG] Received line: 2018-09-24 15:23:50,501 - main.create_logger - [DEBUG] Running command > /usr/bin/gdal_contour -a elev /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../resource_dir/srtm_39_04/srtm_39_04_c.tif /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../output/contour_eda8f1bc-2dc0.shp -i 350
+2018-09-24 15:23:54,386 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,383 [DEBUG] Received line: 2018-09-24 15:23:50,740 - main.create_logger - [INFO] 0...10...20...30...40...50...60...70...80...90...100 - done.
+2018-09-24 15:23:54,386 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,383 [DEBUG] Received line:
+2018-09-24 15:23:54,387 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,384 [DEBUG] Received line: Traceback (most recent call last):
+2018-09-24 15:23:54,388 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,384 [DEBUG] Received line: File "/mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py", line 90, in <module>
+2018-09-24 15:23:54,389 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,384 [DEBUG] Received line: return_code = gdalTest.run()
+2018-09-24 15:23:54,390 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,384 [DEBUG] Received line: File "/mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py", line 52, in run
+2018-09-24 15:23:54,394 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,385 [DEBUG] Received line: output_dir = '%s/../../../output/%s' % (os.path.dirname(os.path.abspath(__file__), self.args.execution_id))
+2018-09-24 15:23:54,397 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,386 [DEBUG] Received line: TypeError: dirname() takes exactly 1 argument (2 given)
+2018-09-24 15:23:54,397 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,388 [DEBUG] process GdalContourstdout is over
+2018-09-24 15:23:54,398 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,388 [INFO] process exit code is 1
+2018-09-24 15:23:54,398 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,389 [CRITICAL] process exit code is 1: failure
+2018-09-24 15:23:54,398 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,390 [ERROR] process exit code is 1: failure
+2018-09-24 15:23:54,399 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:50,501 - main.create_logger - [DEBUG] Logger initialized with file logger_test.properties
+2018-09-24 15:23:54,399 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:50,501 - main.create_logger - [INFO] ProgressInfo:0.0%
+2018-09-24 15:23:54,400 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:50,501 - main.create_logger - [DEBUG] Running command > /usr/bin/gdal_contour -a elev /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../resource_dir/srtm_39_04/srtm_39_04_c.tif /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../output/contour_eda8f1bc-2dc0.shp -i 350
+2018-09-24 15:23:54,402 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:50,740 - main.create_logger - [INFO] 0...10...20...30...40...50...60...70...80...90...100 - done.
+2018-09-24 15:23:54,404 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 
+2018-09-24 15:23:54,404 - servicebot.output_parser_verbose - DEBUG - [SERVICE] Traceback (most recent call last):
+2018-09-24 15:23:54,405 - servicebot.output_parser_verbose - DEBUG - [SERVICE] File "/mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py", line 90, in <module>
+2018-09-24 15:23:54,406 - servicebot.output_parser_verbose - DEBUG - [SERVICE] return_code = gdalTest.run()
+2018-09-24 15:23:54,406 - servicebot.output_parser_verbose - DEBUG - [SERVICE] File "/mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py", line 52, in run
+2018-09-24 15:23:54,407 - servicebot.output_parser_verbose - DEBUG - [SERVICE] output_dir = '%s/../../../output/%s' % (os.path.dirname(os.path.abspath(__file__), self.args.execution_id))
+2018-09-24 15:23:54,407 - servicebot.output_parser_verbose - DEBUG - [SERVICE] TypeError: dirname() takes exactly 1 argument (2 given)
+2018-09-24 15:23:54,407 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:23:54,392 [DEBUG] send error msg complete
+2018-09-24 15:23:54,408 - servicebot.output_parser_verbose - DEBUG - created process GdalContour, PId 1372 stopped send data on stdout
+2018-09-24 15:23:54,408 - servicebot.output_parser_verbose - CRITICAL - Process GdalContour PId 1372 terminated with exit code 255
+2018-09-24 15:23:54,409 - servicebot.output_parser_verbose - DEBUG - gs_UID[None] / gs_JID[None]
+2018-09-24 15:23:54,409 - servicebot.output_parser_verbose - DEBUG - Trying to recover Originator from Process Params!
+2018-09-24 15:23:54,415 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=abort"
+2018-09-24 15:23:54,416 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:23:54,417 - root - INFO - handle abort message from WPS topic=abort
+2018-09-24 15:25:13,008 - main.create_logger - DEBUG - Logger initialized with file ./xmpp_data/configs/logger.properties
+2018-09-24 15:25:13,010 - WPSAgentService.create_bot - INFO - Create process bot
+2018-09-24 15:25:13,189 - WPSAgentService.create_bot - INFO - Create resource cleaner
+2018-09-24 15:25:13,190 - WPSAgent.run - INFO - Start bot execution
+2018-09-24 15:25:13,190 - Resource.clean_up_all - INFO - start resource cleaner main loop
+2018-09-24 15:25:13,192 - servicebot.run - INFO - Start listening on bus
+2018-09-24 15:25:13,192 - Resource.clean_up - DEBUG - Sleep for 300.0 seconds
+2018-09-24 15:25:13,193 - root - INFO - Trying to connect...
+2018-09-24 15:25:15,551 - root - INFO - State: connected
+2018-09-24 15:25:15,662 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=invite"
+2018-09-24 15:25:15,663 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:25:15,663 - root - INFO - handle invite message from WPS topic=invite
+2018-09-24 15:25:15,664 - servicebot.handle_invite - INFO - handle invite message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:25:17,429 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:25:17,429 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:25:17,430 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:25:19,083 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=request&id=a0958cbd19e457d&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%0F%00%00%00application%2Fzipq%01X%18%00%00%00application%2Foctet-streamq%02X%08%00%00%00intervalq%03X%03%00%00%00350q%04u."
+2018-09-24 15:25:19,085 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:25:19,086 - root - INFO - handle request message from WPS topic=request&id=a0958cbd19e457d&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%0F%00%00%00application%2Fzipq%01X%18%00%00%00application%2Foctet-streamq%02X%08%00%00%00intervalq%03X%03%00%00%00350q%04u.
+2018-09-24 15:25:19,101 - servicebot.handle_execute - DEBUG - save parameters file for executing process GdalContour in /tmp/wps_params_3U2au_.tmp
+2018-09-24 15:25:19,101 - servicebot.handle_execute - INFO - Start the resource cleaner!
+2018-09-24 15:25:19,117 - servicebot.handle_execute - INFO - created process GdalContour with PId 1394 and cmd: python wpsagent.py -r ./xmpp_data/configs/remote.config -s ./xmpp_data/configs/myservice/service.config -p /tmp/wps_params_3U2au_.tmp process
+2018-09-24 15:25:19,119 - servicebot.output_parser_verbose - INFO - wait for end of execution of created process GdalContour, PId 1394
+2018-09-24 15:25:19,119 - servicebot.handle_execute - INFO - end of execute message handler, going back in listening mode
+2018-09-24 15:25:19,870 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:19,866 [DEBUG] Logger initialized with file ./xmpp_data/configs/myservice/logger.properties
+2018-09-24 15:25:19,872 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:19,867 [INFO] Create process bot
+2018-09-24 15:25:19,948 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:19,948 [INFO] Start bot execution
+2018-09-24 15:25:19,949 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:19,948 [INFO] Trying to connect...
+2018-09-24 15:25:19,965 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:19,964 [INFO] process GdalContour created with PId 1398 and command line: python /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py -i 350 -e a0958cbd19e457d
+2018-09-24 15:25:19,977 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:19,976 [INFO] start parsing stdout of created process GdalContour
+2018-09-24 15:25:21,884 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:21,883 [INFO] State: connected
+2018-09-24 15:25:23,418 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:23,418 [DEBUG] Received line: File "/mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py", line 52
+2018-09-24 15:25:23,420 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:23,419 [DEBUG] Received line: output_dir =
+2018-09-24 15:25:23,422 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:23,419 [DEBUG] Received line: ^
+2018-09-24 15:25:23,422 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:23,420 [DEBUG] Received line: SyntaxError: invalid syntax
+2018-09-24 15:25:23,423 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:23,420 [DEBUG] process GdalContourstdout is over
+2018-09-24 15:25:23,423 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:23,420 [INFO] process exit code is 1
+2018-09-24 15:25:23,423 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:23,420 [CRITICAL] process exit code is 1: failure
+2018-09-24 15:25:23,424 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:23,420 [ERROR] process exit code is 1: failure
+2018-09-24 15:25:23,424 - servicebot.output_parser_verbose - DEBUG - [SERVICE] File "/mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py", line 52
+2018-09-24 15:25:23,425 - servicebot.output_parser_verbose - DEBUG - [SERVICE] output_dir =
+2018-09-24 15:25:23,425 - servicebot.output_parser_verbose - DEBUG - [SERVICE] ^
+2018-09-24 15:25:23,426 - servicebot.output_parser_verbose - DEBUG - [SERVICE] SyntaxError: invalid syntax
+2018-09-24 15:25:23,426 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:23,420 [DEBUG] send error msg complete
+2018-09-24 15:25:23,427 - servicebot.output_parser_verbose - DEBUG - created process GdalContour, PId 1394 stopped send data on stdout
+2018-09-24 15:25:23,431 - servicebot.output_parser_verbose - CRITICAL - Process GdalContour PId 1394 terminated with exit code 255
+2018-09-24 15:25:23,432 - servicebot.output_parser_verbose - DEBUG - gs_UID[None] / gs_JID[None]
+2018-09-24 15:25:23,433 - servicebot.output_parser_verbose - DEBUG - Trying to recover Originator from Process Params!
+2018-09-24 15:25:23,439 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=abort"
+2018-09-24 15:25:23,439 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:25:23,440 - root - INFO - handle abort message from WPS topic=abort
+2018-09-24 15:25:45,295 - main.create_logger - DEBUG - Logger initialized with file ./xmpp_data/configs/logger.properties
+2018-09-24 15:25:45,297 - WPSAgentService.create_bot - INFO - Create process bot
+2018-09-24 15:25:45,435 - WPSAgentService.create_bot - INFO - Create resource cleaner
+2018-09-24 15:25:45,436 - WPSAgent.run - INFO - Start bot execution
+2018-09-24 15:25:45,436 - Resource.clean_up_all - INFO - start resource cleaner main loop
+2018-09-24 15:25:45,436 - servicebot.run - INFO - Start listening on bus
+2018-09-24 15:25:45,437 - Resource.clean_up - DEBUG - Sleep for 300.0 seconds
+2018-09-24 15:25:45,438 - root - INFO - Trying to connect...
+2018-09-24 15:25:47,568 - root - INFO - State: connected
+2018-09-24 15:25:47,679 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=invite"
+2018-09-24 15:25:47,680 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:25:47,680 - root - INFO - handle invite message from WPS topic=invite
+2018-09-24 15:25:47,682 - servicebot.handle_invite - INFO - handle invite message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:25:50,232 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=request&id=8baf0ec319b3a0d&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%0F%00%00%00application%2Fzipq%01X%18%00%00%00application%2Foctet-streamq%02X%08%00%00%00intervalq%03X%03%00%00%00350q%04u."
+2018-09-24 15:25:50,235 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:25:50,235 - root - INFO - handle request message from WPS topic=request&id=8baf0ec319b3a0d&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%0F%00%00%00application%2Fzipq%01X%18%00%00%00application%2Foctet-streamq%02X%08%00%00%00intervalq%03X%03%00%00%00350q%04u.
+2018-09-24 15:25:50,250 - servicebot.handle_execute - DEBUG - save parameters file for executing process GdalContour in /tmp/wps_params_839v9a.tmp
+2018-09-24 15:25:50,251 - servicebot.handle_execute - INFO - Start the resource cleaner!
+2018-09-24 15:25:50,270 - servicebot.handle_execute - INFO - created process GdalContour with PId 1414 and cmd: python wpsagent.py -r ./xmpp_data/configs/remote.config -s ./xmpp_data/configs/myservice/service.config -p /tmp/wps_params_839v9a.tmp process
+2018-09-24 15:25:50,272 - servicebot.handle_execute - INFO - end of execute message handler, going back in listening mode
+2018-09-24 15:25:50,272 - servicebot.output_parser_verbose - INFO - wait for end of execution of created process GdalContour, PId 1414
+2018-09-24 15:25:50,920 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:50,920 [DEBUG] Logger initialized with file ./xmpp_data/configs/myservice/logger.properties
+2018-09-24 15:25:50,921 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:50,920 [INFO] Create process bot
+2018-09-24 15:25:50,968 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:50,968 [INFO] Start bot execution
+2018-09-24 15:25:50,969 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:50,968 [INFO] Trying to connect...
+2018-09-24 15:25:50,981 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:50,980 [INFO] process GdalContour created with PId 1418 and command line: python /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py -i 350 -e 8baf0ec319b3a0d
+2018-09-24 15:25:50,989 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:50,989 [INFO] start parsing stdout of created process GdalContour
+2018-09-24 15:25:53,503 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:53,502 [INFO] State: connected
+2018-09-24 15:25:55,637 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:55,636 [DEBUG] Received line: 2018-09-24 15:25:51,152 - main.create_logger - [DEBUG] Logger initialized with file logger_test.properties
+2018-09-24 15:25:55,639 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:55,637 [DEBUG] Received line: 2018-09-24 15:25:51,152 - main.create_logger - [INFO] ProgressInfo:0.0%
+2018-09-24 15:25:55,644 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:55,643 [DEBUG] Received line: 2018-09-24 15:25:51,152 - main.create_logger - [DEBUG] Running command > /usr/bin/gdal_contour -a elev /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../resource_dir/srtm_39_04/srtm_39_04_c.tif /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../output/contour_d37a4eb8-b183.shp -i 350
+2018-09-24 15:25:55,645 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:55,644 [DEBUG] Received line: 2018-09-24 15:25:51,395 - main.create_logger - [INFO] 0...10...20...30...40...50...60...70...80...90...100 - done.
+2018-09-24 15:25:55,647 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:55,644 [DEBUG] Received line:
+2018-09-24 15:25:55,649 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:55,647 [DEBUG] Received line: 2018-09-24 15:25:51,403 - main.create_logger - [INFO] ProgressInfo:100%
+2018-09-24 15:25:55,651 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:55,650 [DEBUG] process GdalContourstdout is over
+2018-09-24 15:25:55,652 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:55,651 [INFO] process exit code is 0
+2018-09-24 15:25:55,653 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:55,652 [INFO] process exit code is 0: success
+2018-09-24 15:25:55,654 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:55,653 [INFO] send job-completed message to WPS with output parameter
+2018-09-24 15:25:55,655 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:55,655 [INFO] trying to acquire bus lock...
+2018-09-24 15:25:55,656 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:55,656 [INFO] bus lock acquired...
+2018-09-24 15:25:55,659 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:25:55,658 [INFO] sending 'completed' message tentative #1
+2018-09-24 15:26:05,662 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:05,661 [INFO] sending 'completed' message tentative #2
+2018-09-24 15:26:05,667 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:05,666 [INFO] Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=abort"
+2018-09-24 15:26:05,668 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:05,667 [INFO] handle message from WPS Role moderator
+2018-09-24 15:26:05,668 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:05,667 [INFO] handle abort message from WPS topic=abort
+2018-09-24 15:26:05,669 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:05,667 [INFO] received abort mesasge from WPS
+2018-09-24 15:26:15,663 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:15,662 [INFO] after send job-completed message to WPS
+2018-09-24 15:26:15,783 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:15,783 [INFO] disconnected from communication bus
+2018-09-24 15:26:17,430 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:26:17,431 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:26:17,432 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:26:17,692 - servicebot.output_parser_verbose - DEBUG - created process GdalContour, PId 1414 stopped send data on stdout
+2018-09-24 15:26:17,693 - servicebot.output_parser_verbose - DEBUG - Process GdalContour PId 1414 terminated successfully!
+2018-09-24 15:26:26,045 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=request&id=58f06d4f38498aa&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%08%00%00%00intervalq%01X%03%00%00%00350q%02X%0F%00%00%00application%2Fzipq%03X%18%00%00%00application%2Foctet-streamq%04u."
+2018-09-24 15:26:26,049 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:26:26,049 - root - INFO - handle request message from WPS topic=request&id=58f06d4f38498aa&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%08%00%00%00intervalq%01X%03%00%00%00350q%02X%0F%00%00%00application%2Fzipq%03X%18%00%00%00application%2Foctet-streamq%04u.
+2018-09-24 15:26:26,059 - servicebot.handle_execute - DEBUG - save parameters file for executing process GdalContour in /tmp/wps_params_utU0Ir.tmp
+2018-09-24 15:26:26,060 - servicebot.handle_execute - INFO - Start the resource cleaner!
+2018-09-24 15:26:26,077 - servicebot.handle_execute - INFO - created process GdalContour with PId 1424 and cmd: python wpsagent.py -r ./xmpp_data/configs/remote.config -s ./xmpp_data/configs/myservice/service.config -p /tmp/wps_params_utU0Ir.tmp process
+2018-09-24 15:26:26,079 - servicebot.handle_execute - INFO - end of execute message handler, going back in listening mode
+2018-09-24 15:26:26,080 - servicebot.output_parser_verbose - INFO - wait for end of execution of created process GdalContour, PId 1424
+2018-09-24 15:26:26,751 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:26,751 [DEBUG] Logger initialized with file ./xmpp_data/configs/myservice/logger.properties
+2018-09-24 15:26:26,752 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:26,751 [INFO] Create process bot
+2018-09-24 15:26:26,799 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:26,799 [INFO] Start bot execution
+2018-09-24 15:26:26,800 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:26,799 [INFO] Trying to connect...
+2018-09-24 15:26:26,814 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:26,812 [INFO] process GdalContour created with PId 1428 and command line: python /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py -i 350 -e 58f06d4f38498aa
+2018-09-24 15:26:26,825 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:26,825 [INFO] start parsing stdout of created process GdalContour
+2018-09-24 15:26:28,630 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:28,629 [INFO] State: connected
+2018-09-24 15:26:30,561 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:30,561 [DEBUG] Received line: 2018-09-24 15:26:26,998 - main.create_logger - [DEBUG] Logger initialized with file logger_test.properties
+2018-09-24 15:26:30,564 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:30,561 [DEBUG] Received line: 2018-09-24 15:26:26,998 - main.create_logger - [INFO] ProgressInfo:0.0%
+2018-09-24 15:26:30,567 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:30,564 [DEBUG] Received line: 2018-09-24 15:26:26,999 - main.create_logger - [DEBUG] Running command > /usr/bin/gdal_contour -a elev /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../resource_dir/srtm_39_04/srtm_39_04_c.tif /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../output/contour_960aa36b-9656.shp -i 350
+2018-09-24 15:26:30,568 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:30,567 [DEBUG] Received line: 2018-09-24 15:26:27,280 - main.create_logger - [INFO] 0...10...20...30...40...50...60...70...80...90...100 - done.
+2018-09-24 15:26:30,569 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:30,568 [DEBUG] Received line:
+2018-09-24 15:26:30,570 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:30,569 [DEBUG] Received line: 2018-09-24 15:26:27,283 - main.create_logger - [INFO] ProgressInfo:100%
+2018-09-24 15:26:30,573 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:30,570 [DEBUG] process GdalContourstdout is over
+2018-09-24 15:26:30,573 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:30,572 [INFO] process exit code is 0
+2018-09-24 15:26:30,574 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:30,573 [INFO] process exit code is 0: success
+2018-09-24 15:26:30,576 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:30,573 [INFO] send job-completed message to WPS with output parameter
+2018-09-24 15:26:30,576 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:30,574 [INFO] trying to acquire bus lock...
+2018-09-24 15:26:30,577 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:30,574 [INFO] bus lock acquired...
+2018-09-24 15:26:30,577 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:30,575 [INFO] sending 'completed' message tentative #1
+2018-09-24 15:26:40,578 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:40,577 [INFO] sending 'completed' message tentative #2
+2018-09-24 15:26:47,431 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:26:47,432 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:26:47,435 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:26:50,579 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:26:50,578 [INFO] sending 'completed' message tentative #3
+2018-09-24 15:27:00,580 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:27:00,580 [INFO] sending 'completed' message tentative #4
+2018-09-24 15:27:10,581 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:27:10,581 [INFO] sending 'completed' message tentative #5
+2018-09-24 15:27:17,433 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:27:17,433 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:27:17,434 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:27:20,582 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:27:20,582 [INFO] sending 'completed' message tentative #6
+2018-09-24 15:27:30,583 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:27:30,583 [INFO] sending 'completed' message tentative #7
+2018-09-24 15:27:40,585 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:27:40,584 [INFO] sending 'completed' message tentative #8
+2018-09-24 15:27:47,435 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:27:47,435 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:27:47,436 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:27:50,586 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:27:50,586 [INFO] sending 'completed' message tentative #9
+2018-09-24 15:28:00,587 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:28:00,587 [INFO] sending 'completed' message tentative #10
+2018-09-24 15:28:10,589 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:28:10,588 [INFO] sending 'completed' message tentative #11
+2018-09-24 15:29:47,112 - main.create_logger - DEBUG - Logger initialized with file ./xmpp_data/configs/logger.properties
+2018-09-24 15:29:47,114 - WPSAgentService.create_bot - INFO - Create process bot
+2018-09-24 15:29:47,259 - WPSAgentService.create_bot - INFO - Create resource cleaner
+2018-09-24 15:29:47,260 - WPSAgent.run - INFO - Start bot execution
+2018-09-24 15:29:47,260 - Resource.clean_up_all - INFO - start resource cleaner main loop
+2018-09-24 15:29:47,261 - servicebot.run - INFO - Start listening on bus
+2018-09-24 15:29:47,261 - Resource.clean_up - DEBUG - Sleep for 300.0 seconds
+2018-09-24 15:29:47,262 - root - INFO - Trying to connect...
+2018-09-24 15:29:48,892 - root - INFO - State: connected
+2018-09-24 15:29:49,005 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=invite"
+2018-09-24 15:29:49,006 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:29:49,006 - root - INFO - handle invite message from WPS topic=invite
+2018-09-24 15:29:49,008 - servicebot.handle_invite - INFO - handle invite message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:30:02,112 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:30:02,113 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:30:02,114 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:30:25,413 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=request&id=1742f5ad1dbe0b6&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%08%00%00%00intervalq%01X%03%00%00%00350q%02X%0F%00%00%00application%2Fzipq%03X%18%00%00%00application%2Foctet-streamq%04u."
+2018-09-24 15:30:25,415 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:30:25,416 - root - INFO - handle request message from WPS topic=request&id=1742f5ad1dbe0b6&baseURL=http://localhost:8080/geoserver&message=%80%02%7Dq%00%28X%08%00%00%00intervalq%01X%03%00%00%00350q%02X%0F%00%00%00application%2Fzipq%03X%18%00%00%00application%2Foctet-streamq%04u.
+2018-09-24 15:30:25,430 - servicebot.handle_execute - DEBUG - save parameters file for executing process GdalContour in /tmp/wps_params_rIxIZM.tmp
+2018-09-24 15:30:25,431 - servicebot.handle_execute - INFO - Start the resource cleaner!
+2018-09-24 15:30:25,450 - servicebot.handle_execute - INFO - created process GdalContour with PId 1452 and cmd: python wpsagent.py -r ./xmpp_data/configs/remote.config -s ./xmpp_data/configs/myservice/service.config -p /tmp/wps_params_rIxIZM.tmp process
+2018-09-24 15:30:25,452 - servicebot.handle_execute - INFO - end of execute message handler, going back in listening mode
+2018-09-24 15:30:25,452 - servicebot.output_parser_verbose - INFO - wait for end of execution of created process GdalContour, PId 1452
+2018-09-24 15:30:26,179 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:26,178 [DEBUG] Logger initialized with file ./xmpp_data/configs/myservice/logger.properties
+2018-09-24 15:30:26,179 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:26,178 [INFO] Create process bot
+2018-09-24 15:30:26,236 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:26,235 [INFO] Start bot execution
+2018-09-24 15:30:26,236 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:26,236 [INFO] Trying to connect...
+2018-09-24 15:30:26,249 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:26,248 [INFO] process GdalContour created with PId 1456 and command line: python /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/./xmpp_data/configs/myservice/code/test.py -i 350 -e 1742f5ad1dbe0b6
+2018-09-24 15:30:26,257 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:26,257 [INFO] start parsing stdout of created process GdalContour
+2018-09-24 15:30:28,470 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:28,468 [INFO] State: connected
+2018-09-24 15:30:30,504 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:30,503 [DEBUG] Received line: 2018-09-24 15:30:26,425 - main.create_logger - [DEBUG] Logger initialized with file logger_test.properties
+2018-09-24 15:30:30,506 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:30,503 [DEBUG] Received line: 2018-09-24 15:30:26,425 - main.create_logger - [INFO] ProgressInfo:0.0%
+2018-09-24 15:30:30,508 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:30,506 [DEBUG] Received line: 2018-09-24 15:30:26,425 - main.create_logger - [DEBUG] Running command > /usr/bin/gdal_contour -a elev /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../resource_dir/srtm_39_04/srtm_39_04_c.tif /mnt/d/work/code/python/remote-wps/RemoteWPS/src/wpsremote/xmpp_data/configs/myservice/code/../../../output/contour_746a448e-6d3d.shp -i 350
+2018-09-24 15:30:30,510 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:30,507 [DEBUG] Received line: 2018-09-24 15:30:26,664 - main.create_logger - [INFO] 0...10...20...30...40...50...60...70...80...90...100 - done.
+2018-09-24 15:30:30,512 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:30,507 [DEBUG] Received line:
+2018-09-24 15:30:30,513 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:30,507 [DEBUG] Received line: 2018-09-24 15:30:26,670 - main.create_logger - [INFO] ProgressInfo:100%
+2018-09-24 15:30:30,513 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:30,509 [DEBUG] process GdalContourstdout is over
+2018-09-24 15:30:30,515 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:30,510 [INFO] process exit code is 0
+2018-09-24 15:30:30,516 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:30,510 [INFO] process exit code is 0: success
+2018-09-24 15:30:30,517 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:30,510 [INFO] send job-completed message to WPS with output parameter
+2018-09-24 15:30:30,518 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:30,511 [INFO] trying to acquire bus lock...
+2018-09-24 15:30:30,518 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:30,511 [INFO] bus lock acquired...
+2018-09-24 15:30:30,518 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:30,512 [INFO] sending 'completed' message tentative #1
+2018-09-24 15:30:32,112 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:30:32,112 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:30:32,113 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:30:40,516 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:40,516 [INFO] sending 'completed' message tentative #2
+2018-09-24 15:30:40,780 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:40,779 [INFO] Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=finish"
+2018-09-24 15:30:40,781 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:40,780 [INFO] handle message from WPS Role moderator
+2018-09-24 15:30:40,781 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:40,780 [INFO] handle finish message from WPS topic=finish
+2018-09-24 15:30:40,782 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:40,780 [INFO] received finish mesasge from WPS
+2018-09-24 15:30:50,517 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:50,517 [INFO] after send job-completed message to WPS
+2018-09-24 15:30:50,636 - servicebot.output_parser_verbose - DEBUG - [SERVICE] 2018-09-24 15:30:50,636 [INFO] disconnected from communication bus
+2018-09-24 15:30:52,562 - servicebot.output_parser_verbose - DEBUG - created process GdalContour, PId 1452 stopped send data on stdout
+2018-09-24 15:30:52,565 - servicebot.output_parser_verbose - DEBUG - Process GdalContour PId 1452 terminated successfully!
+2018-09-24 15:31:02,113 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:31:02,114 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:31:02,114 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:31:32,115 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:31:32,115 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:31:32,116 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:32:02,117 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:32:02,117 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:32:02,118 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
+2018-09-24 15:32:32,117 - root - INFO - Received XMPP bus signal from default@conference.geoserver.org/admin@geoserver.org: "topic=getloadavg"
+2018-09-24 15:32:32,118 - root - INFO - handle message from WPS Role moderator
+2018-09-24 15:32:32,118 - servicebot.handle_getloadavg - INFO - handle getloadavg message from WPS default@conference.geoserver.org/admin@geoserver.org
