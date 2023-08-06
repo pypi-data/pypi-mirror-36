@@ -1,0 +1,9 @@
+munch
+requests
+cement
+
+[dev]
+check-manifest
+
+[test]
+coverage
