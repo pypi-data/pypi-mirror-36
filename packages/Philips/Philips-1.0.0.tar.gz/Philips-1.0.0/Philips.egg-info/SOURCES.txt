@@ -1,0 +1,8 @@
+setup.py
+Philips.egg-info/PKG-INFO
+Philips.egg-info/SOURCES.txt
+Philips.egg-info/dependency_links.txt
+Philips.egg-info/top_level.txt
+philips/__init__.py
+philips/author_info.py
+philips/utils.py
