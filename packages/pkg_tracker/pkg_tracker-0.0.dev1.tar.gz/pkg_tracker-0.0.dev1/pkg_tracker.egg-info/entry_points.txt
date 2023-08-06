@@ -1,0 +1,5 @@
+
+      # -*- Entry points: -*-
+      [console_scripts]
+      pkg_track = pkg_tracker.update:update
+    
