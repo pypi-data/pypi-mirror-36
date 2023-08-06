@@ -1,0 +1,11 @@
+requests
+pyjwt
+
+[dev]
+pytest
+coverage
+pytest-cov
+mock
+
+[docs]
+sphinx
