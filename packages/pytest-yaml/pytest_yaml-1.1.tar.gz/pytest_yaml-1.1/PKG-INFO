@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: pytest_yaml
+Version: 1.1
+Summary: This plugin is used to load yaml output to your test using pytest framework.
+Home-page: https://github.com/Benabra/pytest_yaml
+Author: Jihad BENABRA
+Author-email: jihad_benabra@carrefour.com
+License: Mozilla Public License 2.0 (MPL 2.0)
+Description: UNKNOWN
+Keywords: py.test pytest yaml
+Platform: UNKNOWN
+Classifier: Framework :: Pytest
