@@ -1,0 +1,113 @@
+Metadata-Version: 2.1
+Name: saraki
+Version: 0.1.0a0
+Summary: A web application helper
+Home-page: https://github.com/mbarakaja/saraki
+Author: José María Domínguez Moreno
+Author-email: miso.0b11@gmail.com
+License: MIT license
+Keywords: saraki
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: flask (>=1.0.2)
+Requires-Dist: sqlalchemy (>=1.2.10)
+Requires-Dist: flask-sqlalchemy (>=2.3.2)
+Requires-Dist: pyjwt (>=1.6.4)
+Requires-Dist: cerberus (>=1.2)
+Requires-Dist: passlib (>=1.7.1)
+Requires-Dist: psycopg2-binary (>=2.7.5)
+Requires-Dist: bcrypt (>=3.1.4)
+
+Saraki (wip)
+============
+
+A framework for multi-tenant applications
+
+This framework aims to help you build as quick as possible multi-tenant
+applications.
+
+This is a work in progress, so things could change and break, but you can try
+it if you want.
+
+
+.. image:: https://img.shields.io/pypi/v/saraki.svg
+        :target: https://pypi.python.org/pypi/saraki
+
+.. image:: https://img.shields.io/travis/mbarakaja/saraki.svg
+        :target: https://travis-ci.org/mbarakaja/saraki
+
+.. image:: https://readthedocs.org/projects/saraki/badge/?version=latest
+        :target: https://saraki.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
+
+
+Work in progress
+~~~~~~~~~~~~~~~~
+
+* User management
+* Organization management
+* Membership management
+* Authentication and Authorization system
+
+
+=======
+History
+=======
+0.1.0a0 (2018-09-23)
+--------------------
+
+Bug Fixes
+~~~~~~~~~
+
+* Fix tests that break when run individually
+* user - Use SQLAlchemy hybrid_property on User's columns
+* endpoint - Use the table name for endpoint in add_resource
+* auth - Validate only Claim type view_args against token
+
+Features
+~~~~~~~~
+
+* Make default auth and database initialization optional
+* app - Add add_resource method to Saraki and Blueprint
+* endpoint
+
+  - Make collection decorator aware of organization model classes
+  - Add automatic API creation for organization resources
+  - Add add_resource to automate API endpoints creation
+* utility
+
+  - Make @json support returns in the form (payload, headers)
+  - Support global column exclusion from response payloads.
+  - Use export_data method in export_from_sqla_object
+  - Add current_org local proxy object
+  - Add custom (Cerberus) validator
+  - Add json decorator
+  - Add export_from_sqla_object utility function
+  - Add validation schema generator
+* refactor - Require model_class only with unique rule in Validator
+* auth
+
+  - Include member privileges in access token
+  - Add persistence for actions and resources
+  - Add default scp claim value for organization owners
+  - Add resource/action based authorization
+  - Add authorization mechanism for org endpoints
+  - Add initial authorization mechanism
+  - Make iss claim optional by default
+  - Add authentication
+* role - Add member role management endpoints
+* action - Add API to retrieve Action resources
+* resource - Add API to retrieve Resource resources
+* testing - Add a new module that implements test helpers
+* plan - Add basic plans management
+* member - Add endpoints to add and list members
+* org - Add org account endpoints
+* model - Add export_data method to Model class
+* signup - Add signup endpoint
+
+
+
