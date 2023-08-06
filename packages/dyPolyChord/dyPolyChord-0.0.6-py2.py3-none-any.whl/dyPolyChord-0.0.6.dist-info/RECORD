@@ -1,0 +1,16 @@
+dyPolyChord/__init__.py,sha256=r7XjUVS0kkglnQ9f5wMxKlUZx_CteZf_vgTdYa7j43g,214
+dyPolyChord/_version.py,sha256=CHUdJvPS3l7PphMt_r17ufrpB0TIJkmifpqmTNjwh84,22
+dyPolyChord/nlive_allocation.py,sha256=H6g_2UEQKsLt-YuihZGBTjMCSz3jaEfrL9wYj2L4XiU,7889
+dyPolyChord/output_processing.py,sha256=4Z-PXfDfwIa0fqhAvO5iKg4jX9MfYqFFwSl1_f6pmoQ,8280
+dyPolyChord/polychord_utils.py,sha256=v4AfbhapBxZIlIKZFSwDe1Bw1RZS3Qg8kkdPyRhCSpk,9252
+dyPolyChord/pypolychord_utils.py,sha256=Ip_j4TEK_7FQiTk9hS3QqpSg1wCfLgabkPyHGAbWFz0,1878
+dyPolyChord/python_likelihoods.py,sha256=5XMpCOQ84TsuZWhUt-OoY5JCNDrgbU96nn7dMfIdzq0,11360
+dyPolyChord/python_priors.py,sha256=Xjs9acUp7_qAm46PTTN935P2DDS6SV5TdoCzILxOmzw,10735
+dyPolyChord/run_dynamic_ns.py,sha256=ol3DDZzFTXJC2gfEGd_ey5UFAq-RF7u3kdeWV4CP5vM,21530
+dyPolyChord-0.0.6.dist-info/DESCRIPTION.rst,sha256=wqDJPluAvFyVc-eG9za7_rexcWsoDjm9zwMbDd5xNoA,1256
+dyPolyChord-0.0.6.dist-info/LICENSE.txt,sha256=eZodAcIN9mnLnuJfD8EYvSo_BnzODvfZn48QnnCjELc,1070
+dyPolyChord-0.0.6.dist-info/METADATA,sha256=OoTrqDpX2HxypK2gIbmn1eKgeKQ0rinQ9Y266Tvr7eY,2881
+dyPolyChord-0.0.6.dist-info/RECORD,,
+dyPolyChord-0.0.6.dist-info/WHEEL,sha256=kdsN-5OJAZIiHN-iO4Rhl82KyS0bDWf4uBwMbkNafr8,110
+dyPolyChord-0.0.6.dist-info/metadata.json,sha256=QTiICVtPU6hNM5Y7tflrH2bCk1GGp29Ycvs_FopgLOU,1634
+dyPolyChord-0.0.6.dist-info/top_level.txt,sha256=iVoQLggDd52t-DHrIPZF2yFtDhhL0zWp09LhLE-IXtM,12
