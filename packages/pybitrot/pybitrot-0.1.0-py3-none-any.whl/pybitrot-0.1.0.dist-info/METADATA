@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: pybitrot
+Version: 0.1.0
+Summary: Bits rotation module.
+Home-page: https://github.com/lzutao/pybitrot
+Author: Lzu Tao
+Author-email: lzutao@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=2.7.0
+Description-Content-Type: text/x-rst
+
+
+pybitrot
+========
+
+|build_status|
+
+Python Bits Rotation module
+
+Installation
+------------
+
+.. code:: bash
+
+    python setup.py install
+
+Contributing
+------------
+
+Please read `<CONTRIBUTING.rst>`__ for details on our code of conduct,
+and the process for submitting pull requests to us.
+
+Thanks To
+---------
+
+See also the list of `contributors`_ who participated in this project.
+
+License
+-------
+
+This project is licensed under the MIT License - see the `<LICENSE>`__ file for details.
+
+.. _contributors: https://github.com/lzutao/pybitrot/graphs/contributors
+.. |build_status| image:: https://travis-ci.com/lzutao/pybitrot.svg?branch=master
+    :target: https://travis-ci.com/lzutao/pybitrot
+
+
