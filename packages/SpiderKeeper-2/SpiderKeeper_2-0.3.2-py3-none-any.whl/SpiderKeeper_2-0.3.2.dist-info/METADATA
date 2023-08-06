@@ -1,0 +1,27 @@
+Metadata-Version: 2.0
+Name: SpiderKeeper-2
+Version: 0.3.2
+Summary: Admin ui for spider service
+Home-page: https://github.com/kalombos/SpiderKeeper/
+Author: kalombo
+Author-email: nogamemorebrain@gmail.com
+License: MIT
+Description-Content-Type: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: APScheduler (==3.5.3)
+Requires-Dist: Flask (==1.0.2)
+Requires-Dist: Flask-BasicAuth (==0.2.0)
+Requires-Dist: Flask-RESTful (==0.3.6)
+Requires-Dist: flask-restful-swagger (==0.20.1)
+Requires-Dist: Flask-SQLAlchemy (==2.3.2)
+Requires-Dist: demjson (==2.2.4)
+Requires-Dist: requests (==2.19.1)
+Requires-Dist: scrapyd
+
+Go to https://github.com/kalombos/SpiderKeeper/ for more information.
+
+
