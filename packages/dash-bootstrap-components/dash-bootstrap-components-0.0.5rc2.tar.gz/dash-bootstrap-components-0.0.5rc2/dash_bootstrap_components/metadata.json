@@ -1,0 +1,1926 @@
+{
+  "src/components/Alert.js": {
+    "description": "",
+    "displayName": "Alert",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "color": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Alert color, options: primary, secondary, success, info, warning, danger,\nlink. Default is secondary"
+      },
+      "isOpen": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether alert is open, default: true"
+      },
+      "fade": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Fade on close."
+      }
+    }
+  },
+  "src/components/Badge.js": {
+    "description": "",
+    "displayName": "Badge",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "color": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Badge color, options: primary, secondary, success, info, warning, danger,\nlink. Default is secondary"
+      },
+      "pill": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Make badge \"pill\" shaped (rounded ends, like a pill), default: false"
+      },
+      "href": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Attach link to badge."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the Badge, default: span"
+      }
+    }
+  },
+  "src/components/Button.js": {
+    "description": "",
+    "displayName": "Button",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "n_clicks": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "An integer that represents the number of times\nthat this element has been clicked on.",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "n_clicks_timestamp": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "An integer that represents the time (in ms since 1970)\nat which n_clicks changed. This can be used to tell\nwhich button was changed most recently.",
+        "defaultValue": {
+          "value": "-1",
+          "computed": false
+        }
+      },
+      "key": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "A unique identifier for the component, used to improve\nperformance by React.js while rendering components\nSee https://reactjs.org/docs/lists-and-keys.html for more info"
+      },
+      "active": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether button is in active state"
+      },
+      "block": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Create block button."
+      },
+      "color": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Button color, options: primary, secondary, success, info, warning, danger,\nlink. Default is secondary"
+      },
+      "disabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Disable button (make unclickable)."
+      },
+      "size": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Button size, options: lg, md, sm."
+      },
+      "outline": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Set outline button style"
+      },
+      "fireEvent": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "A callback for firing events to dash."
+      },
+      "dashEvents": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'click'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": ""
+      }
+    }
+  },
+  "src/components/ButtonGroup.js": {
+    "description": "",
+    "displayName": "ButtonGroup",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Class for the button group"
+      },
+      "vertical": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Stack buttons vertically"
+      },
+      "size": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Size of button group"
+      }
+    }
+  },
+  "src/components/Collapse.js": {
+    "description": "",
+    "displayName": "Collapse",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the card body, default: div"
+      },
+      "isOpen": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether collapse is currently open."
+      },
+      "navbar": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Enable for use in a navbar"
+      }
+    }
+  },
+  "src/components/Fade.js": {
+    "description": "",
+    "displayName": "Fade",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "in": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "timeout": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "shape",
+              "value": {
+                "enter": {
+                  "name": "number",
+                  "required": false
+                },
+                "exit": {
+                  "name": "number",
+                  "required": false
+                }
+              }
+            }
+          ]
+        },
+        "required": false,
+        "description": "The duration of the transition, in milliseconds.\n\nYou may specify a single timeout for all transitions like: `timeout=500`\nor individually like: timeout={'enter': 300, 'exit': 500}"
+      },
+      "appear": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Make component appear when page loads."
+      },
+      "enter": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Enable or disable enter transitions."
+      },
+      "exit": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Enable or disable exit transitions."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the fade component, default div."
+      },
+      "baseClass": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "baseClassActive": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      }
+    }
+  },
+  "src/components/Popover.js": {
+    "description": "",
+    "displayName": "Popover",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "placement": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'auto'",
+              "computed": false
+            },
+            {
+              "value": "'auto-start'",
+              "computed": false
+            },
+            {
+              "value": "'auto-end'",
+              "computed": false
+            },
+            {
+              "value": "'top'",
+              "computed": false
+            },
+            {
+              "value": "'top-start'",
+              "computed": false
+            },
+            {
+              "value": "'top-end'",
+              "computed": false
+            },
+            {
+              "value": "'right'",
+              "computed": false
+            },
+            {
+              "value": "'right-start'",
+              "computed": false
+            },
+            {
+              "value": "'right-end'",
+              "computed": false
+            },
+            {
+              "value": "'bottom'",
+              "computed": false
+            },
+            {
+              "value": "'bottom-start'",
+              "computed": false
+            },
+            {
+              "value": "'bottom-end'",
+              "computed": false
+            },
+            {
+              "value": "'left'",
+              "computed": false
+            },
+            {
+              "value": "'left-start'",
+              "computed": false
+            },
+            {
+              "value": "'left-end'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Specify popover placement."
+      },
+      "target": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "ID of the component to attach the popover to."
+      },
+      "container": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Where to inject the popper DOM node, default body"
+      },
+      "isOpen": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether the Popover is open or not."
+      },
+      "hideArrow": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Hide popover arrow"
+      },
+      "innerClassName": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "CSS class to apply to the popover"
+      },
+      "delay": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "shape",
+              "value": {
+                "show": {
+                  "name": "number",
+                  "required": false
+                },
+                "hide": {
+                  "name": "number",
+                  "required": false
+                }
+              }
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Optionally override show/hide delays - defualt {show: 0, hide: 250}"
+      },
+      "offset": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Popover offset"
+      }
+    }
+  },
+  "src/components/PopoverBody.js": {
+    "description": "",
+    "displayName": "PopoverBody",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the PopoverBody, default: div"
+      }
+    }
+  },
+  "src/components/PopoverHeader.js": {
+    "description": "",
+    "displayName": "PopoverHeader",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the PopoverHeader, default: h3"
+      }
+    }
+  },
+  "src/components/Table.js": {
+    "description": "",
+    "displayName": "Table",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "func"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "description": "HTML tag to use for the table, default: table"
+      },
+      "size": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Specify table size, options: sm, md, lg"
+      },
+      "bordered": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Set bordered style"
+      },
+      "borderless": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Set borderless style"
+      },
+      "striped": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Apply striped style"
+      },
+      "dark": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "set 'dark' style"
+      },
+      "hover": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Add hover animation"
+      },
+      "responsive": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Allow horizontal scrolling if parent is too small to contain table."
+      }
+    }
+  },
+  "src/components/Tooltip.js": {
+    "description": "",
+    "displayName": "Tooltip",
+    "methods": [
+      {
+        "name": "toggle",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      }
+    ],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "target": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The id of the element to attach the tooltip to"
+      },
+      "boundariesElement": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "boundaries for popper, can be scrollParent, window, viewport, or any DOM element"
+      },
+      "hideArrow": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Hide arrow on tooltip"
+      },
+      "container": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Where to inject the popper DOM node, default body"
+      },
+      "delay": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "shape",
+              "value": {
+                "show": {
+                  "name": "number",
+                  "required": false
+                },
+                "hide": {
+                  "name": "number",
+                  "required": false
+                }
+              }
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "required": false,
+        "description": "optionally override show/hide delays - default { show: 0, hide: 250 }"
+      },
+      "innerClassName": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "CSS classes to apply to the inner-tooltip"
+      },
+      "arrowClassName": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "CSS classes to apply to the arrow-tooltip ('arrow' by default)"
+      },
+      "autohide": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Optionally hide tooltip when hovering over tooltip content - default true"
+      },
+      "placement": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'auto'",
+              "computed": false
+            },
+            {
+              "value": "'auto-start'",
+              "computed": false
+            },
+            {
+              "value": "'auto-end'",
+              "computed": false
+            },
+            {
+              "value": "'top'",
+              "computed": false
+            },
+            {
+              "value": "'top-start'",
+              "computed": false
+            },
+            {
+              "value": "'top-end'",
+              "computed": false
+            },
+            {
+              "value": "'right'",
+              "computed": false
+            },
+            {
+              "value": "'right-start'",
+              "computed": false
+            },
+            {
+              "value": "'right-end'",
+              "computed": false
+            },
+            {
+              "value": "'bottom'",
+              "computed": false
+            },
+            {
+              "value": "'bottom-start'",
+              "computed": false
+            },
+            {
+              "value": "'bottom-end'",
+              "computed": false
+            },
+            {
+              "value": "'left'",
+              "computed": false
+            },
+            {
+              "value": "'left-start'",
+              "computed": false
+            },
+            {
+              "value": "'left-end'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "How to place the tooltip."
+      },
+      "offset": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Tooltip offset"
+      }
+    }
+  },
+  "src/components/base/DashLink.js": {
+    "description": "",
+    "displayName": "DashLink",
+    "methods": [
+      {
+        "name": "updateLocation",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "e",
+            "type": null
+          }
+        ],
+        "returns": null
+      }
+    ],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "href": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "URL of the resource to link to"
+      },
+      "refresh": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether to refresh the page if using as a dash core components style link.\nDefault: False",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "dashLink": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether to use this link as a dash core components style link or a HTML anchor",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "n_clicks": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "An integer that represents the number of times\nthat this element has been clicked on.",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "n_clicks_timestamp": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "An integer that represents the time (in ms since 1970)\nat which n_clicks changed. This can be used to tell\nwhich button was changed most recently.",
+        "defaultValue": {
+          "value": "-1",
+          "computed": false
+        }
+      }
+    }
+  },
+  "src/components/card/Card.js": {
+    "description": "",
+    "displayName": "Card",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "color": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Card color, options: primary, secondary, success, info, warning, danger,\nlink. Default is secondary"
+      },
+      "body": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Wrap all children in a CardBody element (basically add some padding)"
+      },
+      "outline": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Use outline style."
+      },
+      "inverse": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Invert text colours for use with a dark color background."
+      }
+    }
+  },
+  "src/components/card/CardBody.js": {
+    "description": "",
+    "displayName": "CardBody",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the card body, default: div"
+      }
+    }
+  },
+  "src/components/card/CardColumns.js": {
+    "description": "",
+    "displayName": "CardColumns",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the card columns container, default: div"
+      }
+    }
+  },
+  "src/components/card/CardDeck.js": {
+    "description": "",
+    "displayName": "CardDeck",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the card deck, default: div"
+      }
+    }
+  },
+  "src/components/card/CardFooter.js": {
+    "description": "",
+    "displayName": "CardFooter",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the card footer, default: div"
+      }
+    }
+  },
+  "src/components/card/CardGroup.js": {
+    "description": "",
+    "displayName": "CardGroup",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the card group, default: div"
+      }
+    }
+  },
+  "src/components/card/CardHeader.js": {
+    "description": "",
+    "displayName": "CardHeader",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the card header, default: div"
+      }
+    }
+  },
+  "src/components/card/CardImg.js": {
+    "description": "",
+    "displayName": "CardImg",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the card body, default: div"
+      },
+      "top": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Place image at top of card (round corners etc.)"
+      },
+      "bottom": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Place image at bottom of card (round corners etc.)"
+      },
+      "src": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The URI of the embeddable content."
+      },
+      "alt": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Alternative text in case an image can't be displayed."
+      },
+      "title": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Text to be displayed as a tooltip when hovering"
+      }
+    }
+  },
+  "src/components/card/CardImgOverlay.js": {
+    "description": "",
+    "displayName": "CardImgOverlay",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the card image overlay, default: div"
+      }
+    }
+  },
+  "src/components/card/CardLink.js": {
+    "description": "",
+    "displayName": "CardLink",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "href": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "URL of the resource to link to"
+      },
+      "refresh": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether to refresh the page if using as a dash core components style link.\nDefault: False"
+      },
+      "dashLink": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether to use this link as a dash core components style link or a HTML anchor"
+      },
+      "n_clicks": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "An integer that represents the number of times\nthat this element has been clicked on."
+      },
+      "n_clicks_timestamp": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "An integer that represents the time (in ms since 1970)\nat which n_clicks changed. This can be used to tell\nwhich button was changed most recently."
+      }
+    }
+  },
+  "src/components/card/CardSubtitle.js": {
+    "description": "",
+    "displayName": "CardSubtitle",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the card subtitle, default: h6"
+      }
+    }
+  },
+  "src/components/card/CardText.js": {
+    "description": "",
+    "displayName": "CardText",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the card text, default: p"
+      }
+    }
+  },
+  "src/components/card/CardTitle.js": {
+    "description": "",
+    "displayName": "CardTitle",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the card body, default: h5"
+      }
+    }
+  },
+  "src/components/layout/Col.js": {
+    "description": "",
+    "displayName": "Col",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "xs": {
+        "type": {
+          "name": "custom",
+          "raw": "columnProps"
+        },
+        "required": false,
+        "description": "Specify column behaviour on an extra small screen"
+      },
+      "sm": {
+        "type": {
+          "name": "custom",
+          "raw": "columnProps"
+        },
+        "required": false,
+        "description": "Specify column behaviour on a small screen"
+      },
+      "md": {
+        "type": {
+          "name": "custom",
+          "raw": "columnProps"
+        },
+        "required": false,
+        "description": "Specify column behaviour on a medium screen"
+      },
+      "lg": {
+        "type": {
+          "name": "custom",
+          "raw": "columnProps"
+        },
+        "required": false,
+        "description": "Specify column behaviour on a large screen"
+      },
+      "xl": {
+        "type": {
+          "name": "custom",
+          "raw": "columnProps"
+        },
+        "required": false,
+        "description": "Specify column behaviour on an extra large screen"
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to apply the col classes to, default: div"
+      }
+    }
+  },
+  "src/components/layout/Container.js": {
+    "description": "",
+    "displayName": "Container",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "fluid": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Should container be fluid or not"
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to apply the container class to, default: div"
+      }
+    }
+  },
+  "src/components/layout/Row.js": {
+    "description": "",
+    "displayName": "Row",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components\nin callbacks. The ID needs to be unique across all of the\ncomponents in an app."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Defines CSS styles which will override styles previously set."
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Often used with CSS to style elements with common properties."
+      },
+      "noGutters": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Remove the \"gutters\" between columns in this row.\nsee https://getbootstrap.com/docs/4.0/layout/grid/#no-gutters"
+      },
+      "tag": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "HTML tag to use for the row, default: div"
+      }
+    }
+  }
+}
