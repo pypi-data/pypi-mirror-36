@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        refget-compliance=compliance_suite.cli:main
+    
