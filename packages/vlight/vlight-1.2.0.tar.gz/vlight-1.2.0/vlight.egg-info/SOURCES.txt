@@ -1,0 +1,8 @@
+README.md
+setup.py
+vlight/__init__.py
+vlight/validate.py
+vlight.egg-info/PKG-INFO
+vlight.egg-info/SOURCES.txt
+vlight.egg-info/dependency_links.txt
+vlight.egg-info/top_level.txt
