@@ -1,0 +1,12 @@
+[console_scripts]
+macdaily = macdaily.__main__:main
+macdaily-archive = macdaily.daily_archive:main
+macdaily-bundle = macdaily.daily_bundle:main
+macdaily-config = macdaily.daily_config:main
+macdaily-dependency = macdaily.daily_dependency:main
+macdaily-logging = macdaily.daily_logging:main
+macdaily-postinstall = macdaily.daily_postinstall:main
+macdaily-reinstall = macdaily.daily_reinstall:main
+macdaily-uninstall = macdaily.daily_uninstall:main
+macdaily-update = macdaily.daily_update:main
+
