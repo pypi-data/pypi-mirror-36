@@ -1,0 +1,12 @@
+bsql/__init__.py,sha256=aqqK-zU-EX1ZsImxW8d9hBUWGz2fKoCXPU48ydupXoo,38
+bsql/database.py,sha256=vyC2aDY1hUszJFD-GlsJljXoH0CVX1NGvUJW0wKpIrc,10461
+bsql/json_encoder.py,sha256=Ja5NcgJsAygWB5T3CH14ZklyP39JOLD2Yu-cHy8Q2UU,185
+bsql/migration.py,sha256=KZhQYt8iJUr_FKOwoVQAhsuWOPP_7Jf7bMJRL2f-TKc,2702
+bsql/model.py,sha256=LqR1DkNDQNIBW9szKMgfoxSikkYQykP_Ft4A7aNeZsU,20300
+bsql/record.py,sha256=JwVyF378Jch9CP9CkjE9Gtaw8v5iHjroHjXqKR2UXc0,2170
+bsql/recordset.py,sha256=t59iETYkjPxQscrb32IpGj_wjLpietoVbGPMPuv7nnE,1593
+bsql/sql.py,sha256=SnVjMIyMEfzJJCdPTUo2k1qqDvTT0qv49sWSG2t6e8w,1898
+bsql-0.13.0.dist-info/METADATA,sha256=47QhNppLWD4bQ2jkHZfTHdj9PHFZS_VtqgtpsJ_e8Pg,664
+bsql-0.13.0.dist-info/RECORD,,
+bsql-0.13.0.dist-info/WHEEL,sha256=J3CsTk7Mf2JNUyhImI-mjX-fmI4oDjyiXgWT4qgZiCE,110
+bsql-0.13.0.dist-info/top_level.txt,sha256=WTEh2w70eChkGwa-_LlN5lpayWhEO_SwTJImbxMOftk,5
