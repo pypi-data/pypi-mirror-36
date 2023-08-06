@@ -1,0 +1,14 @@
+language: python
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+
+# command to run tests
+script: py.test
+
+install: if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]]; then pip install pathlib2; fi
+
+# Enable new Travis stack, should speed up builds
+sudo: false
