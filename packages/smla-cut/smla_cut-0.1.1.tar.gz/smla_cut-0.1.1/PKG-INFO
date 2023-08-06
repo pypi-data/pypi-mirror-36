@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: smla_cut
+Version: 0.1.1
+Summary: Chinese text segmentation from HuMan Inc.
+Home-page: https://github.com/smart-lands-com/smla-cut
+Author: smartlands
+Author-email: info@smart-lands.com
+License: UNKNOWN
+Description: Chinese text segmentation from HuMan Inc.
+Keywords: Smart Lands,Chinese word segementation
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: License :: OSI Approved :: MIT License
