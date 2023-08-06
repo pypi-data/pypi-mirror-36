@@ -1,0 +1,17 @@
+auklet/__about__.py,sha256=CPqX7yXWQGxYueRO0BQCw5LBMWlslB-H9zJoJkMK0gk,43
+auklet/__init__.py,sha256=d6Qbm-Fy-iag1AflBvoapYZz3FKwIAyYABGLISNARSo,130
+auklet/apps.py,sha256=F1qu-6shNLjt6pFCKdAwauhiHTGMJDi8c7nmOEfaARM,298
+auklet/broker.py,sha256=OWDnq5nUEPTs2Zcv7pPZ_1Ea44OaA1dFRHzZ5SeqMKw,3147
+auklet/client.py,sha256=EfeP_86P7SCWCFQDZWXG0ATneTHpadnKUpQ18q_4ijY,3245
+auklet/errors.py,sha256=MH8ElT5ICktaYNLRhE5svSvGXHu9PWizaPyU1YIq9BA,260
+auklet/middleware.py,sha256=97CLRmNzyhG4z60ltWWg3RFF3QFeBGI8zA2iMvVK4sw,1419
+auklet/stats.py,sha256=jm21H_TPUTa8qZwEoiBnOVlMGyyXYsHegZgrWB9fBzA,3246
+auklet/utils.py,sha256=yYyrhLgb13NsHx8DFby51MZE9-hvEHbyMbk4U9EX68c,2252
+auklet/licenses/auklet,sha256=z8d0m5b2O9McPEK1xHG_dWgUBT6EfBDz6wA0F7xSPTA,11358
+auklet/monitoring/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+auklet/monitoring/logging.py,sha256=LQaVz9IBms7VjS_BrD4E6YkJOsvaF_PWMz825Mwpne0,550
+django_auklet-0.1.2.dist-info/LICENSE,sha256=z8d0m5b2O9McPEK1xHG_dWgUBT6EfBDz6wA0F7xSPTA,11358
+django_auklet-0.1.2.dist-info/METADATA,sha256=_IUZoZq6dOOD9_coClIzTccZ91RQ6f70-l3PVTCqjUE,5012
+django_auklet-0.1.2.dist-info/WHEEL,sha256=CrDFromy0BmNYzyZFyVIlKdTa5Zg2RBBtjMkE7goq78,110
+django_auklet-0.1.2.dist-info/top_level.txt,sha256=VWO5X-LBHO2-p2kJBlWNf0sieEg_QZvGYCBnhgxwOpc,7
+django_auklet-0.1.2.dist-info/RECORD,,
