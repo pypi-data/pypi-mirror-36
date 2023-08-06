@@ -1,0 +1,8 @@
+README.rst
+setup.py
+notify/__init__.py
+src/_notify.c
+winnotify.egg-info/PKG-INFO
+winnotify.egg-info/SOURCES.txt
+winnotify.egg-info/dependency_links.txt
+winnotify.egg-info/top_level.txt
