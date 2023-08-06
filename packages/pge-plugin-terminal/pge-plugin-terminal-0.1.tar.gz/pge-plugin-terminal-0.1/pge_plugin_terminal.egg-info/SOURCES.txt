@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+pge_plugin_terminal/__init__.py
+pge_plugin_terminal/settings.py
+pge_plugin_terminal/terminal_window.py
+pge_plugin_terminal.egg-info/PKG-INFO
+pge_plugin_terminal.egg-info/SOURCES.txt
+pge_plugin_terminal.egg-info/dependency_links.txt
+pge_plugin_terminal.egg-info/top_level.txt
+pge_plugin_terminal/models/__init__.py
+pge_plugin_terminal/models/projects/__init__.py
+pge_plugin_terminal/models/projects/projects_terminal.py
