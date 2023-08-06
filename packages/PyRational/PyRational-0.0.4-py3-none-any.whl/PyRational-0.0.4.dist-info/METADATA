@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: PyRational
+Version: 0.0.4
+Summary: A package for rational modelling and dual probabilisitc programming
+Home-page: https://github.com/PyRational/PyRational
+Author: Alessio Benavoli
+Author-email: benavoli@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.7)
+Requires-Dist: scipy (>=0.16)
+Requires-Dist: SymPy (>=1.2)
+
+# PyRational 
+
+The rational choice modelling framework in Python.
+
+* PyRational homepage
+* Tutorial notebooks
+
+## Citation
+    @Misc{PyRational2018,
+      author =   {{Benavoli, A.}},
+      title =    {{PyRational}: A rational choice modelling framework in Python,
+      howpublished = {\url{https://github.com/PyRational/PyRational/}},
+      year = {since 2018}
+    }
+## Getting started: installing with pip
+
+pip install PyRational
+
+
