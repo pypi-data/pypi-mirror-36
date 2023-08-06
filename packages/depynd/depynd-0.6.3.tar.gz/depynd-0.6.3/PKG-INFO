@@ -1,0 +1,19 @@
+Metadata-Version: 1.0
+Name: depynd
+Version: 0.6.3
+Summary: Evaluating dependencies among random variables.
+Home-page: https://github.com/y-takashina/depynd
+Author: Yuya Takashina
+Author-email: takashina2051@gmail.com
+License: UNKNOWN
+Description: depynd is a Python library for evaluating dependencies among random variables from data.
+        It supports learning statistical dependencies for one-to-one, one-to-many, and many-to-many relationships,
+        where each one corresponds to
+        
+        - mutual information (MI) estimation,
+        - feature selection, and
+        - graphical model structure learning,
+        
+        respectively. Specifically, depynd supports MI estimation for discrete-continuous mixtures, MI-based feature
+        selection, and structure learning of undirected graphical models (a.k.a. Markov random fields).
+Platform: UNKNOWN
