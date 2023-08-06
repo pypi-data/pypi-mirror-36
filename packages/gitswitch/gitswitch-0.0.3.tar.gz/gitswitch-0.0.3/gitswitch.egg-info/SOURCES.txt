@@ -1,0 +1,9 @@
+README.md
+setup.py
+bin/git-switch
+gitswitch/__init__.py
+gitswitch/gitswitch.py
+gitswitch.egg-info/PKG-INFO
+gitswitch.egg-info/SOURCES.txt
+gitswitch.egg-info/dependency_links.txt
+gitswitch.egg-info/top_level.txt
