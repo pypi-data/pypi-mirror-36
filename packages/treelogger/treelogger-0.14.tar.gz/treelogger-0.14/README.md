@@ -1,0 +1,92 @@
+# Treelogger
+
+This package adds structure to your application logs by creating a tree structure for functions that execute within functions.
+
+These nested functions can be very troublesome to troubleshoot using a regular logger, but by using the tree logger, you can easily see the chain of events and drill down to where the error occurs. 
+
+Below is an example of what the tree would look like. The example shows how output of a function can be nested to the appropriate level. 
+
+```
+.
+├── Function Stand_Up 
+│   ├── "Begin Standing Up" 
+│   ├── Function Move_Legs
+│   │   ├── "Moving Legs" 
+│   │   ├── Function Check_Balance
+│   │   │   ├── Function Check_Balance
+│   │   │   └── "Balance is Good"
+│   │   ├── Finish Check_Balance
+│   │   └── "Leg Movement Sucessful"
+│   ├── Finish Move_Legs 
+│   └── "Stand Up took 1 Second(s)" 
+└── Finish Stand_up
+```
+
+To begin tree logging, import the tree object and treewrap decorator into your modules. 
+
+```
+#test.py 
+
+from treelogger import tree, treewrap 
+
+
+@treewrap()
+def showthis(value):
+    tree.log(value)
+
+    return
+
+@treewrap()
+def nest(value):
+
+    tree.log('Nesting a value of %i' % value)
+
+    showthis(value)
+
+    tree.log('Nesting a value of %i + 1' % value)
+
+    showthis(value + 1)
+    
+```
+
+You can then import things from your modules into one or more main modules. In the main module, use the tree = TreeLogger() form to create a logging instance.
+
+The TreeLogger class instance is a global instance (kind of like sys.stdout) and all of your modules that imported tree will send their logs to the global tree. When defining the global tree, it has 2 default outputs: stdout and text file.
+
+```
+#main.py
+from test import showthis, nest
+from treelogger import tree, TreeLogger
+
+tree = TreeLogger()
+nest(123)
+
+tree.close_log()
+
+```
+
+Running main.py would give you the output below. 
+
+```
+
+<?xml version="1.0" ?>
+<log>
+	<nest>
+		<msg>  Nesting a value of 123  </msg>
+		<showthis>
+			<msg>  123  </msg>
+		</showthis>
+		<msg>  Nesting a value of 123 + 1  </msg>
+		<showthis>
+			<msg>  124  </msg>
+        </showthis>
+	</nest>
+</log>
+
+
+```
+
+As you can see, functions become nested and so do the logging messages for the functions. The resulting XML file can be searched using Xpath or visualized using an XML visualizer. 
+
+A common mistake is to use the treewrap without the (). Unlike other decorators, the brackets are necessary for properly returning values from the decorated function.
+
