@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: rendascii
+Version: 1.0.0a2.post1
+Summary: Real-time ASCII 3D rendering engine
+Home-page: https://bitbucket.org/Foxbud/rendascii
+Author: Garrett Fairburn
+Author-email: rendascii@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Console
+Classifier: Topic :: Multimedia :: Graphics :: 3D Rendering
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Description-Content-Type: text/markdown
+
+# RendASCII
+
+RendASCII is a real-time, z-buffering based 3D rendering engine written from scratch in and for Python 3. Unlike traditional real-time rendering engines, RendASCII renders frames as printable strings using ASCII characters for pixels. RendASCII is open source under the MIT license.
+
+[Project Homepage](https://bitbucket.org/Foxbud/rendascii)
+
+[Project Documentation](https://bitbucket.org/Foxbud/rendascii/wiki)
+
+Please direct questions to **rendascii@gmail.com**.
+
+## Features
+
+* No external dependencies; uses just the Python standard library.
+* Multiprocess based rendering.
+* Optional Cython based accelerator extension modules.
+* Load and render 3D models from Wavefront object and material files (\*.obj and \*.mtl, respectively).
+* Load and render 2D sprites from ASCII based Portable PixMap files (\*.ppm).
+* Render the same or different scene(s) using multiple virtual cameras.
+* ASCII overlays for displaying fixed graphics and/or information.
+* Map sprite and material colors to ASCII characters using JSON colormaps.
+* Transform models, sprites, and virtual cameras using arbitrary homogeneous transformation matrices.
+* Utility for easily constructing complex transformation matrices with scaling, translations, and rotations.
+* Utility for managing frame-rate and calculating delta time.
+
+## Installation
+
+### Using Pip
+
+`# pip3 install rendascii` - download and install pure Python distribution.
+
+`# pip3 install --no-binary :all: rendascii` - download source distribution, build accelerator extension modules using Cython and a C compiler, and install resulting binary distribution.
+
+### Manual
+
+`$ git clone https://bitbucket.org/Foxbud/rendascii.git` - clone repository source.
+
+`$ cd rendascii` - change working directory to cloned source.
+
+`# python3 -m setup install` - build accelerator extension modules using Cython and a C compiler and install resulting binary distribution.
+
+`# PURE_PY_DIST=true python3 -m setup install` - build and install pure Python distribution.
+
+
