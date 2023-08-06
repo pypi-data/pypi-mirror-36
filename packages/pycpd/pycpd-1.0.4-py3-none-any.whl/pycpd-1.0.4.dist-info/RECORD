@@ -1,0 +1,11 @@
+pycpd/__init__.py,sha256=Bi_fePmKus_8t8xaRIFSVr1MUp9WDUcmlUDMWbiJvvU,219
+pycpd/affine_registration.py,sha256=5AbaGwHHT5HqZmyt_xfYPg6qEaMAIkubZS3_B-NpIfA,1984
+pycpd/deformable_registration.py,sha256=AV1Bjs7-PFnxI9m5JiOS5AhPeDbkM5OA1QnnGzWBDEY,1866
+pycpd/expectation_maximization_registration.py,sha256=fO-JtKZwALt4SWys3Oqlc8muWbXA3YmSGVqb-91fx4A,3159
+pycpd/jrmpc_rigid.py,sha256=nBVQWkfVQ-bCWq_R8yk6eW_ug1MLxqbu7S7lJeE5QGU,1715
+pycpd/rigid_registration.py,sha256=7S3J7QYDrSBn_hkbLbK8dLcvSETlZyFCGu3YC2wWjSo,2511
+pycpd-1.0.4.dist-info/LICENSE,sha256=HGJg3LFZg0C6QQ3o8UNt3UESDr9F3fBRWPZ-KG3WFSw,1110
+pycpd-1.0.4.dist-info/METADATA,sha256=e3X3qjR46JEkTPHx_WezzJKo5LLWAZ_logTosSRSGbY,2840
+pycpd-1.0.4.dist-info/WHEEL,sha256=-ZFxwj8mZJPIVcZGLrsQ8UGRcxVAOExzPLVBGR7u7bE,92
+pycpd-1.0.4.dist-info/top_level.txt,sha256=-xCDyzdXwkRRZs7YMSsOynF76SZvCUNQwGM2U8dX9w0,6
+pycpd-1.0.4.dist-info/RECORD,,
