@@ -1,0 +1,29 @@
+Metadata-Version: 1.2
+Name: kk
+Version: 0.0.4
+Summary: a simple upload server
+Home-page: http://www.ishield.cn
+Author: zhangkai
+Author-email: zkdfbb@qq.com
+License: MIT
+Description: 1. run `zkdir` to start a http server, the default port is 8000
+        2. run `zkdir -port=9000` to use a custom port
+        命令行模式：
+        kk
+        参数:
+            -port=8000  端口号，默认端口为8000
+            -dev=False  开发者模式，默认为False
+            -all=False  是否显示隐藏文件，默认为True
+        
+        
+        3. click "切换显示" to change display image/video/audio
+        4. add url parameter w=256 or h=256 to scale image
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6
