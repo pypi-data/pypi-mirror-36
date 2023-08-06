@@ -1,0 +1,126 @@
+Metadata-Version: 2.1
+Name: trimarlib-brio
+Version: 0.1.0rc1
+Summary: Basic Remote IO Application
+Home-page: https://dsl2.trimar.org/pythons-ll/brio
+Author: TRIMAR Developer
+Author-email: developer@trimar.com.pl
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Embedded Systems
+Description-Content-Type: text/markdown
+Requires-Dist: trimarlib-sysfsgpio
+Requires-Dist: trimarlib-newland
+Requires-Dist: json-rpc
+
+##  trimarlib-brio
+
+**Basic Remote Input/Output** - Python application
+
+###  Getting started
+
+These instructions will get you a copy of the project on your local machine for development and testing purposes. 
+See [Deployment](#deployment) for notes on how to deploy the project on a live system.
+
+####  Prerequisites
+
+The build process requires some basic development tools:
+
+* `make` - GNU Make program, either for *nix or Windows system, used to execute build and test targets
+* `git` - used not only to clone the repository, but also in auto-versioning (see [Versioning](#versioning))
+* `python3`
+
+Two standard Python packages are used for build and installation steps:
+
+* `setuptools`
+* `wheel`
+
+The application depends on the following libraries:
+
+ - `trimarlib-sysfsgpio`
+ - `trimarlib-newland`
+ - `json-rpc`
+
+These dependencies are defined in the `setup.py` installation script and therefore should be
+automatically satisfied by `pip`.
+
+####  Building and releasing
+
+Invoking `make all` (default target) prepares archives for distribution. It is done in two steps:
+
+1. query Git repository for tags (`git describe` command) to determine current version and generate 
+`version.py` file,
+2. invoke Python interpreter passing `setup.py` script to prepare source and wheel distributions.
+
+The Python interpreter invoked by the `Makefile` defaults to `python` - it is possible to override it 
+passing a `PYTHON` variable to the command, e.g. `make all PYTHON=python3`.
+
+The release process is automated and based on GitLab CI/CD environment - each commit triggers a build job
+which attempts to make and install built packages. If the commit is tagged, the built wheel distribution
+is passed to the deployment stage and the runner attempts to upload the package to the repository 
+specified in project settings.
+
+###  Deployment
+
+Installation via `pip` (i.e. `pip install trimarlib-brio`) is the recommended method of deployment.
+
+After the package has been installed it is recommended to perform additional steps:
+
+1. Install `gpio-exporter.service` and `gpio.rules` - see
+[`sysfsgpiolib` project](https://dsl2.trimar.org/pythons-ll/sysfsgpiolib) for more information;
+2. Install `brio.service` and `brio.ini` configuration file.
+
+The second step is performed using the entry points exposed by the package:
+
+* `brio-install-service` - copies the predefined service file to `/etc/systemd/system/brio.service`, reloads
+`systemd` daemons and enables the service. Run `brio-install-service -h` for more information;
+* `brio-install-configuration` - copies the default configuration file to the default location.
+Run `brio-install-configuration -h` for more information.
+* `brio-install` - performs the above steps in one go. Run `brio-install -h` for more information.
+
+The application is started using another entry point - `brio-app`. Run `brio-app -h` for more information.
+
+###  Versioning
+
+The project is versioned using a simple pattern based on repository tagging feature. See [Makefile](Makefile)
+for implementation details, for versions available see 
+[tags on this repository](https://dsl2.trimar.org/pythons-ll/brio/tags).
+
+###  Usage
+
+See docstrings for API documentation.
+
+Example of using the server in a custom application:
+
+```python
+from brio import Server
+import time
+
+
+server = Server()
+server.configure()
+server.start()
+time.sleep(10)
+server.stop()
+```
+
+The application is run using the `brio-app` entry point, see [Deployment](#deployment) for more information. 
+
+###  License
+
+This software is licensed under the MIT License - see [LICENSE](LICENSE).
+
+--------
+
+
+###  Related documents
+
+This software conforms to the JSON RPC protocol, see [website](https://www.jsonrpc.org/) for more information.
+
+

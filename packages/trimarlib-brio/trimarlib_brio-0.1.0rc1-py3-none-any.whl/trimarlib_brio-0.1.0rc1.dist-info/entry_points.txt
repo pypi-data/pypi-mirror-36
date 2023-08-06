@@ -1,0 +1,6 @@
+[console_scripts]
+brio-app = brio.__main__:main
+brio-install = brio.__main__:install
+brio-install-configuration = brio.__main__:install_configuration
+brio-install-service = brio.__main__:install_service
+
