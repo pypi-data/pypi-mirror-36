@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: lookml
+Version: 0.0.3
+Summary: A pythonic api for programatically manipulating LookML
+Home-page: https://github.com/llooker/lookml
+Author: Russell Garner
+Author-email: russelljgarner@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+This is a pythonic api for creating LookML objects.
+
+get started fast:
+`pip install lookml`
+
+```
+import lookml
+
+order_items = lookml.View('order_items')
+
+order_items + 'id' + 'value'
+
+order_itmems.addSum('id')
+
+print(order_items)
+
+```
+
+
+
