@@ -1,0 +1,78 @@
+Metadata-Version: 1.1
+Name: fast-datacard
+Version: 0.1.1
+Summary: F.A.S.T. datacard creation package
+Home-page: https://gitlab.cern.ch/fast-hep/public/fast-datacard
+Author: F.A.S.T
+Author-email: fast-hep@cern.ch
+License: Apache Software License 2.0
+Description: =====================
+        fast-datacard
+        =====================
+        
+        
+        .. image:: https://img.shields.io/pypi/v/fast-datacard.svg
+                :target: https://pypi.python.org/pypi/fast-datacard
+        
+        
+        .. image:: https://readthedocs.org/projects/fast-datacard/badge/?version=latest
+                :target: https://fast-datacard.readthedocs.io/en/latest/?badge=latest
+                :alt: Documentation Status
+        
+        
+        * Free software: Apache Software License 2.0
+        * Documentation: https://fast-datacard.readthedocs.io.
+        
+        Overview
+        --------
+        fast-datacard is a python packaged developed within the `Faster Analysis Software Taskforce (FAST)`_ collaboration.
+        The main purpose of this package is to create datacards_ compatible with the `HiggsCombine tool`_ from data frames.
+        The package will take categorical\ :sup:`citation needed` data frames, e.g. as created by the alphatwirl_ package, and create
+        the necessary ROOT and datacard outputs.
+        
+        
+        Features
+        --------
+        
+        * convert categorical data frames (see `examples/data/*.csv`) into valid data to use in the `HiggsCombine tool`_.
+        
+        Credits
+        -------
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        .. _`HiggsCombine tool`: https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit
+        .. _`Faster Analysis Software Taskforce (FAST)`: https://fast-hep.web.cern.ch/fast-hep
+        .. _datacards: https://cms-hcomb.gitbooks.io/combine/content/part2/settinguptheanalysis.html#preparing-the-datacard
+        .. _alphatwirl: https://github.com/alphatwirl/alphatwirl
+        
+        
+        =======
+        History
+        =======
+        
+        0.1.1 (2018-10-01)
+        ------------------
+        
+        * added initial documentation
+        
+        0.1.0 (2018-08-21)
+        ------------------
+        
+        * First release on PyPI.
+        
+Keywords: fast,datacard
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
