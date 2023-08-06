@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: taskforge-cli
+Version: 0.2.2
+Summary: A task management library and tool that integrates with 3rd party services
+Home-page: https://github.com/chasinglogic/taskforge
+Author: Mathew Robinson
+Author-email: chasinglogic@gmail.com
+License: AGPL-3.0
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Provides-Extra: mongo
+Requires-Dist: docopt
+Requires-Dist: toml
+Provides-Extra: mongo
+Requires-Dist: pymongo (==3.7.1); extra == 'mongo'
+
+# taskforge, a task management cli
+
+Task management tool that integrates well with other services.
+
+Checkout out the [Getting Started](http://taskforge.io/getting_started.html)
+guide to learn how to use Taskforge!
+
+## Contributing
+
+Contributions are greatly appreciated. We have a process for making a
+contribution via Github that you can read in the 
+[CONTRIBUTING.md](https://github.com/chasinglogic/taskforge/blob/master/CONTRIBUTING.md)
+document.
+
+## License
+
+This code is distributed under the GNU General Public License
+
+```text
+    Copyright (C) 2018 Mathew Robinson
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+```
+
+
