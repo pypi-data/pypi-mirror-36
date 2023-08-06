@@ -1,0 +1,15 @@
+trained-model.bin,sha256=BP7YC5MaTxdjweSbRNH5Cv2fYsupouhwl6qZv08dcsQ,2833
+autosubsync/__init__.py,sha256=-FJjHaUEtII9NVsg_vcTxDAks2lgodjiDXh7xXACvoM,83
+autosubsync/features.py,sha256=qZIf46SVpU8FFcNuKlHMYxsydZujfCgzCcQOm5qsmTI,5784
+autosubsync/find_transform.py,sha256=ATBK2wZV9rNZa-h7bpTxyCx0EH2y0YXJFsNKr11xYks,3550
+autosubsync/main.py,sha256=xC2KnqiePFO6_8j2iJCyrwYzCi3PmGlAxrUPkjbguVc,3734
+autosubsync/model.py,sha256=i1mJ6AEENFlKSg9gbaXdShjgmYsEYxXHolbjVAt9y4U,2787
+autosubsync/predict.py,sha256=a8d9LwQ8hdVkrO3dhyF48YPcqjQMWNNpV6n2ZbhtkBU,932
+autosubsync/preprocessing.py,sha256=psDD8Bx7BxW5b8NFfLGEWtB3XPNTAq4P79YSJV6ogaw,3165
+autosubsync/quality_of_fit.py,sha256=in_Wrx9vwBNCpVrHSLgY2uTFqXfV3C9oXivbeQ8zS3E,2503
+autosubsync/srt_io.py,sha256=5R2aOf6Hsg5UHgZlML3FXCrhMgGiuZEwFWRzvshp3V8,3087
+autosubsync-0.1.0.dist-info/METADATA,sha256=SXNtSqGYId3wAX80I4QURTeQYso70wIxtOryFINdgAc,1017
+autosubsync-0.1.0.dist-info/RECORD,,
+autosubsync-0.1.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+autosubsync-0.1.0.dist-info/entry_points.txt,sha256=wcHRYgF-uNMufAoC3wgGIdt-Ild2YXs-1nCLNuPdEtY,63
+autosubsync-0.1.0.dist-info/top_level.txt,sha256=DaKBwrGt_AWGLJsWzbP67BHFJ9IwRO9jLhRJtpELpJU,12
