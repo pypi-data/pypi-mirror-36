@@ -1,0 +1,10 @@
+django_octicons-1.0.1.dist-info/METADATA,sha256=jShVYlOQyoZPTN5b1qkgQ3yakZvAABC6YE4ibMhQ-jE,2361
+django_octicons-1.0.1.dist-info/RECORD,,
+django_octicons-1.0.1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+django_octicons-1.0.1.dist-info/top_level.txt,sha256=cOiWxvte0dsp8Z5_pMIW8hVIe4nnvo29rn8PGp0k5JI,9
+octicons/__init__.py,sha256=t0D73BL6YwVXFOwOgPfUVc_kw3NQVVf12MZ0hVDT4ag,131
+octicons/__version__.py,sha256=A7t7VlkrsorHUQ3ElVnD29hx0-2G2tfz9TdZaBhp34I,69
+octicons/apps.py,sha256=ULArnO7cHiLR0oKshTVQaHGHazqrCkVpYwRSGpmD-7U,137
+octicons/data.json,sha256=eoAgT2LH7X23Giif_lDJmNfa-FwC80cAEP0deVVnU-w,84030
+octicons/templatetags/__init__.py,sha256=yYic9QFyzUWxazXtM_3Dgb5b0-28YbXlLLDq7zFmPUk,322
+octicons/templatetags/octicons.py,sha256=sS3_v_fzCi7TM1P6nWUKJBKKQMKdA23zqns1UmfdoSk,2763
