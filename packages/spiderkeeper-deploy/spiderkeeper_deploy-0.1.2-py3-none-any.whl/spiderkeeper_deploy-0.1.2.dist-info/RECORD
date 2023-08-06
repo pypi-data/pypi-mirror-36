@@ -1,0 +1,15 @@
+spiderkeeper_deploy/__init__.py,sha256=mdp2CftfqYbdKtP-eWv1z7rAUycYv6X1ntXSMUf8Kss,22
+spiderkeeper_deploy/__main__.py,sha256=ZBYrCWNBdOEAW0hLzfl3wFpwtdwpR_qFfbginmZ2Z04,385
+spiderkeeper_deploy/cli.py,sha256=4uw0Wsstne2fbcYaItSH4UP4grFe7u5m-CWcC1fcLE0,10583
+spiderkeeper_deploy-0.1.2.dist-info/METADATA,sha256=2dObaVL4OisoswcfGSRwZlboGlOsEmB577zeQaiv194,4294
+spiderkeeper_deploy-0.1.2.dist-info/RECORD,,
+spiderkeeper_deploy-0.1.2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+spiderkeeper_deploy-0.1.2.dist-info/entry_points.txt,sha256=UhzNGi_BxbE1ivjhMJFqVJRe1Lp_rGgSiv3jX99L9J8,70
+spiderkeeper_deploy-0.1.2.dist-info/top_level.txt,sha256=W8GRJ1hj9v5GLDo6D5NiAEuV6oUs2DxL7APqVqFlPSI,20
+tutorial/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tutorial/items.py,sha256=w7fTVfU2PAwdDxZ0MGX9DrI_jI--Svp-rvKsJUvygUo,288
+tutorial/middlewares.py,sha256=voGY3-MGhe9f2ILzuNf1qRCTPEB1MCOYK3x-ErELxow,3601
+tutorial/pipelines.py,sha256=aQ7wrW58gLtC7D-D-LP_fbWbOV4M-tt-LtPBBwGaTXI,289
+tutorial/settings.py,sha256=gbYN8G7OLQ-b9_dZ9ito3CO343-_vMN6sMdZpsB-e6Y,3094
+tutorial/spiders/__init__.py,sha256=ULwecZkx3_NTphkz7y_qiazBeUoHFnCCWnKSjoDCZj0,161
+tutorial/spiders/quotes_spider.py,sha256=yjiGZEwADvIf-wKzweJlv2B98e4VwLe34UiWGE-lkxQ,572
