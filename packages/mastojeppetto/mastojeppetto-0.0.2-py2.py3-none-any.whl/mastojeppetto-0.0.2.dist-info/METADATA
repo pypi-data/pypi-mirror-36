@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: mastojeppetto
+Version: 0.0.2
+Summary: A Mastodon/Pleroma emoji downloader
+Home-page: https://github.com/autoscatto/mastojeppetto
+Author: Perpli.me
+Author-email: 4utoscatto@gmail.com
+License: UNKNOWN
+Project-URL: Say Thanks!, https://saythanks.io/to/autoscatto
+Project-URL: Funding, https://donate.pypi.org
+Project-URL: Bug Reports, https://github.com/autoscatto/mastojeppetto/issues
+Project-URL: Source, https://github.com/autoscatto/mastojeppetto/
+Keywords: mastodon pleroma development download downloader
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Provides-Extra: dev
+Requires-Dist: check-manifest; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: coverage; extra == 'test'
+
+# mastojeppetto
+
+
+Mastodon (and pleroma) emoji downloader
+
+## Badges
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/autoscatto) [![Build Status](https://travis-ci.org/autoscatto/mastojeppetto.svg?branch=master)](https://travis-ci.org/autoscatto/mastojeppetto)
+
+
