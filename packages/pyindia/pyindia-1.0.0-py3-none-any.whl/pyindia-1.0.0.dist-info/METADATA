@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: pyindia
+Version: 1.0.0
+Summary: India's states and cities
+Home-page: https://github.com/rishabhbatra10/india
+Author: Rishabh Batra
+Author-email: ribhu.1996@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# India package
+#### Version 0.0.1
+
+This repository makes it easy to access metadata of states and union territories of India.
+```python
+>>> import india
+>>> india.states.AR
+Out: <State: Arunachal Pradesh>
+
+```
+
+You can also lookup whether your input is state or not.
+```python
+>>> import india
+>>> india.states.lookup('arunachal pradesh')
+Out: <State: Arunachal Pradesh>
+```
+
+
+
