@@ -1,0 +1,13 @@
+odoo10_addon_intrastat_product_generic-10.0.1.0.0.99.dev3-py2.7-nspkg.pth,sha256=BRP8mvEvEhIFmA57wbSTfAVbaAesjZh6WbtWMKUVv1c,1118
+odoo/addons/intrastat_product_generic/README.rst,sha256=0tWZ6wyyFRF0kGILAPUqoKgQDvtHecLuVw34XzV1QTs,1589
+odoo/addons/intrastat_product_generic/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+odoo/addons/intrastat_product_generic/__manifest__.py,sha256=t_SkkSZYsyLOUjkfDTLvT83hKBCLa_-lbCr2tRB2bPc,575
+odoo/addons/intrastat_product_generic/i18n/intrastat_product_generic.pot,sha256=l7ye3CJZSrAE62_K9F15WkSQZEerxlJA75CsLDE-_fM,752
+odoo/addons/intrastat_product_generic/security/intrastat_security.xml,sha256=pvfcAt-O0AHgxuO1D1d4WusE88k7aDps0MeNbzEOQ5w,362
+odoo/addons/intrastat_product_generic/static/description/icon.png,sha256=6xBPJauaFOF0KDHfHgQopSc28kKvxMaeoQFQWZtfZDo,9455
+odoo/addons/intrastat_product_generic/views/intrastat_product.xml,sha256=RhsYpk7aRdltobzqSI1Idu_epdIQvqzQAeHZvdeNVpE,651
+odoo10_addon_intrastat_product_generic-10.0.1.0.0.99.dev3.dist-info/METADATA,sha256=QoKLJv_HFDQXGAqfa4FjlaoybL4FJlwvtS0_VRD_DJk,2157
+odoo10_addon_intrastat_product_generic-10.0.1.0.0.99.dev3.dist-info/RECORD,,
+odoo10_addon_intrastat_product_generic-10.0.1.0.0.99.dev3.dist-info/WHEEL,sha256=_V8uWu5F_h-lvAz5Mbq4oZqV_uCfL4cHgm4IIlDevzU,92
+odoo10_addon_intrastat_product_generic-10.0.1.0.0.99.dev3.dist-info/namespace_packages.txt,sha256=igDP6S4ywc6jzcMqzrKZpRtAUXrS-iYaA_Hu1EtlI48,17
+odoo10_addon_intrastat_product_generic-10.0.1.0.0.99.dev3.dist-info/top_level.txt,sha256=qBj40grFkGOfDZ2WDSw3y1RnDlgG0u8rP8pvGNdbz4w,5
