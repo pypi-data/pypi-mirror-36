@@ -1,0 +1,11 @@
+widgetastic.bootstrap-0.1.2.dist-info/METADATA,sha256=LM4koy7bSoPxIiC7jgch3vkFi_047WLcK2TS_36UcUQ,672
+widgetastic.bootstrap-0.1.2.dist-info/RECORD,,
+widgetastic.bootstrap-0.1.2.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+widgetastic.bootstrap-0.1.2.dist-info/top_level.txt,sha256=iS2LqHJRoyXGd76yThvf_9JkgWQBYtPp40oFG1OzCog,22
+widgetastic_bootstrap/__init__.py,sha256=l-4NTM2RxYWP7sRdlX-jShu2naXKXkX6dJeGUKcrTjQ,305
+widgetastic_bootstrap/accordion.py,sha256=Bw4Osutuqo6X07dP1Ovf52uc-negqF28pvPgG1YXCqc,2092
+widgetastic_bootstrap/breadcrumb.py,sha256=7IGlxT6KTWhc_s6lIqJ_k_HA0KpVx6VitYlV7vysrC4,1431
+widgetastic_bootstrap/button.py,sha256=b61sLEFTCFgmQe8I5Wy8T5C_U7iark6QJAOZDlIa3j4,3223
+widgetastic_bootstrap/carousel.py,sha256=msXHPBaZnJf8KvL8qcWTJQYsdI-T1Dw_Bjf6qpcHKvY,1870
+widgetastic_bootstrap/dropdown.py,sha256=E4pdmzAFpQCH0Vl4ToUeybE7EctfYKW-1gmvlJkYLqk,4919
+widgetastic_bootstrap/tab.py,sha256=NBove8O9PClX1wasnnzHcckpvuHcCaj7dXEm6Pj9jWE,3723
