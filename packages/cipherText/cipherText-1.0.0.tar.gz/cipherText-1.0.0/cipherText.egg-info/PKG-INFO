@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: cipherText
+Version: 1.0.0
+Summary: encryption/decryption file for text files
+Home-page: https://github.com/Aniket8001/Cipher-v1.0
+Author: Aniket Mahesh Alvekar
+Author-email: aniketalvekar@gmail.com
+License: MIT
+Description: 'cipherText' is a package which helps to encrypt and decrypt text(.txt) files. It uses the 4-key combination to encrypt and decrypt particular file. It creates a encrypted or decrypted file near the original file location. It has two functions 'Encryp()' and 'Decryp()'. They both exactly take 5 arguements - path of file, number(key) between 1-25, number(key) between 1-25, number(key) between 1-29, number(key) between 1-9. The key used for encryption is required to decrypt that particular file.
+Keywords: Encryp Decryp
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Internet
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
