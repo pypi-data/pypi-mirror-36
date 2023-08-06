@@ -1,0 +1,12 @@
+BUILD.md
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+Rpi_encoder/Rpi_encoder.py
+Rpi_encoder/__init__.py
+Rpi_encoder.egg-info/PKG-INFO
+Rpi_encoder.egg-info/SOURCES.txt
+Rpi_encoder.egg-info/dependency_links.txt
+Rpi_encoder.egg-info/requires.txt
+Rpi_encoder.egg-info/top_level.txt
