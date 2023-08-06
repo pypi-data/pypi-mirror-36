@@ -1,0 +1,9 @@
+numpy
+scipy
+lxml
+pyteomics>=3.4.1
+cffi
+IsoSpecPy<2.0
+networkx>=2.0
+matplotlib
+intervaltree
