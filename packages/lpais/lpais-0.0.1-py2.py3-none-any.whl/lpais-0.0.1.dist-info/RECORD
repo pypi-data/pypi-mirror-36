@@ -1,0 +1,9 @@
+lpais/__init__.py,sha256=vssCR1ALGNn6WXDRsS2L5lt5Knw56wo3nj7Tqp-qtLM,158
+lpais/ais.py,sha256=u_3UJckSGRzQUU8_Ky_qzVJCnXGtYwXSaPZW3cK81D0,13395
+lpais-0.0.1.dist-info/METADATA,sha256=LJ9IRbcSAVGH9-b_nBlWG3Q3H6Tt9X-dKRjWYX7gins,3347
+lpais-0.0.1.dist-info/RECORD,,
+lpais-0.0.1.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+lpais-0.0.1.dist-info/top_level.txt,sha256=OY8E96BKvlTy-GMYcEQZuyKAUEkk14M0dfw7-NiSSyw,12
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_ais.py,sha256=EqRMiOb_dvJgI7SZ47j_eE7-Xcvsh5H27_kE5sea1zI,2394
+tests/test_pep8.py,sha256=fH7CqH7xSGy6HOdxiw0vSU3uOwih0X6FmBCzRWzNjX0,355
