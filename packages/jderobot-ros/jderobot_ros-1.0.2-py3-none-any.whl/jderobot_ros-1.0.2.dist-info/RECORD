@@ -1,0 +1,12 @@
+JDRros/__init__.py,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+JDRros/listenerBumper.py,sha256=Poqvv3Yw4K4RaKNf7EfQOPmZSMfupEwEpepATDPNhEI,1974
+JDRros/listenerCamera.py,sha256=pFuwd-1EvXyKg9X8Z81wDkY0565hwOvLXZXeJ-U6H2A,3140
+JDRros/listenerLaser.py,sha256=B84thUjzZ5JvA9IvNMpwF-osdTre6n1k8pYKxIgav98,2287
+JDRros/listenerPose3d.py,sha256=3baSBfSkvKaNqTB8VQmcVwqLt6d8sJSnOqYUmJk6jiE,3420
+JDRros/listenerRgbd.py,sha256=uCimRacqfPooWeJbpIxsKe_I3ypbFaHvEjHzBGt-0Lo,3135
+JDRros/publisherMotors.py,sha256=uIgCEa3MxZMiLbIo3720FvL7DbndlP-VOynun_vjYz0,3497
+JDRros/threadPublisher.py,sha256=K6ouFCKLZdJ6zPmu5yXHsynuvFmy9KMqb1J_H8zHFuM,1539
+jderobot_ros-1.0.2.dist-info/METADATA,sha256=3-4bv5XhixBN_h7XXXc5PR-YHUD1dqZnTHY4dTLUN_0,554
+jderobot_ros-1.0.2.dist-info/RECORD,,
+jderobot_ros-1.0.2.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+jderobot_ros-1.0.2.dist-info/top_level.txt,sha256=EfJeJ6qCf25vqwKk0ZbhoYiFa2AjtmrtTHDq7QExROY,7
