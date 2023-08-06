@@ -1,0 +1,76 @@
+{% load staticfiles i18n %}<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{{demo_site.title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!--[if lt IE 9]>
+  <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+
+<body>
+
+<div class="m-b">
+  <nav class="navbar navbar-dark navbar-static-top bg-inverse">
+    <div class="container">
+      <a class="navbar-brand" href="/">{{demo_site.title}}</a>
+      <button type="button" class="navbar-toggler hidden-sm-up pull-xs-right" data-toggle="collapse"
+              data-target="#bs-navbar-collapse-1">
+        &#9776;
+      </button>
+
+    </div>
+  </nav>
+</div>
+
+<div class="container">
+
+  <div class="jumbotron">
+  <h1 class="display-4">{{demo_site.title}}</h1>
+  <p class="lead">{{demo_site.text}}</p>
+  <hr class="my-4">
+    {% if demo_site.requires_access_token %}
+  <p>
+    <p>{% trans 'You need an access token to continue. This should be supplied by the project manager.' %}</p>
+    {% if msg %}<p style="padding: 20px; color: red; font-weight: bold;">{{ msg}}</p>{% endif %}
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <input type="text" class="form-control" name="used_token" placeholder="{% trans 'Access token' %}">
+      </div>
+      <button type="submit" class="btn btn-primary">{% trans 'Validate access token' %}</button>
+    </form>
+  </p>
+  {% else %}
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="{{demo_site.default_success_url}}" role="button">{% trans 'Continue to site' %}</a>
+    </p>
+  {% endif %}
+</div>
+
+    <p class="text-muted" style="font-size: small;">
+    {% if demo_site.status %}<i class="fas fa-thermometer-three-quarters"></i> Status: {{ demo_site.status }}&nbsp;&raquo;&nbsp;{% endif %}
+    {% if demo_site.version %}<i class="fas fa-code-branch"></i> Version: {{ demo_site.version }}&nbsp;&raquo;&nbsp;{% endif %}
+    {% if demo_site.final_release_date %}<i class="fas fa-calendar-alt"></i> Final release date: {{ demo_site.final_release_date }}&nbsp;&raquo;&nbsp;{% endif %}
+    {% if demo_site.demo_available_until_date %}<i class="fas fa-calendar-alt"></i> This demo is available until: {{ demo_site.demo_available_until_date }}&nbsp;&raquo;&nbsp;{% endif %}
+    {% if demo_site.contact_email %}<i class="fas fa-at"></i> <a href="mailto:{{ demo_site.contact_email }}">{{ demo_site.contact_email }}</a>&nbsp;&raquo;&nbsp;{% endif %}
+    {% if demo_site.project_page %}<i class="fas fa-home"></i> Project page: {{ demo_site.project_page }}&nbsp;&raquo;&nbsp;{% endif %}
+    {% if demo_site.issue_handler %}<i class="fas fa-bug"></i> Issue handler: {{ demo_site.issue_handler }}&nbsp;&raquo;&nbsp;{% endif %}
+  </p>
+
+
+</div> <!-- /container -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
+<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+
+</body>
+</html>
+
