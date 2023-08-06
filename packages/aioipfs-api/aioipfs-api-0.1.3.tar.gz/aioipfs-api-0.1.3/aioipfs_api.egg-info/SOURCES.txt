@@ -1,0 +1,15 @@
+README.md
+setup.py
+aioipfs_api/__init__.py
+aioipfs_api/autoapi.py
+aioipfs_api/client.py
+aioipfs_api/exceptions.py
+aioipfs_api/http.py
+aioipfs_api.egg-info/PKG-INFO
+aioipfs_api.egg-info/SOURCES.txt
+aioipfs_api.egg-info/dependency_links.txt
+aioipfs_api.egg-info/requires.txt
+aioipfs_api.egg-info/top_level.txt
+aioipfs_api/tests/__init__.py
+aioipfs_api/tests/test_client.py
+aioipfs_api/tests/test_linting.py
