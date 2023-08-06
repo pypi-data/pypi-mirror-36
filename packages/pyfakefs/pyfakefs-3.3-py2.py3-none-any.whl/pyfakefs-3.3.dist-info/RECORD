@@ -1,0 +1,12 @@
+pyfakefs/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pyfakefs/fake_filesystem.py,sha256=0jVowycmghorv4d5eCvafs5ZPTl8zGZw6v_cCIrTTJw,194288
+pyfakefs/fake_filesystem_shutil.py,sha256=lCsT9zylc6og4zjsieRZvWJanC_8sT6IoREKLPoNNCk,2170
+pyfakefs/fake_filesystem_unittest.py,sha256=5yOL04Jm-ihVKtydrO5vSz-HebQvTqRZ62KEKdy8uyo,21938
+pyfakefs/fake_pathlib.py,sha256=AEy9SaSZ6CdY5x2t8lW7belqAw0IpXiHfcd9b86m7Dw,24152
+pyfakefs/mox3_stubout.py,sha256=8LYwnL6rlbNic2bE-HmRIM4XlRwOXlkRg8KbyYSKIQA,6088
+pyfakefs/pytest_plugin.py,sha256=mgnZDqWf5PaUlgezWsilIAG6DTnAle3Bmm6fR7snhUo,598
+pyfakefs-3.3.dist-info/METADATA,sha256=bLUJQtb7fjxJzh5DVWAsL7SZo4FbHDfsiJwwkmf_SaA,1527
+pyfakefs-3.3.dist-info/RECORD,,
+pyfakefs-3.3.dist-info/WHEEL,sha256=saUSQBLOUjf5ACZdNkhQ0lB6XrHU-l4vpzxq_W1n_AY,116
+pyfakefs-3.3.dist-info/entry_points.txt,sha256=XcNLTXRRguIDMMzFYNjV8F9N4vPyf8g_d6cjRl4_lJ8,51
+pyfakefs-3.3.dist-info/top_level.txt,sha256=RjJk0MUaoyY24IlA5aXRjEE1HcLScXXL17orRtU7E2o,9
