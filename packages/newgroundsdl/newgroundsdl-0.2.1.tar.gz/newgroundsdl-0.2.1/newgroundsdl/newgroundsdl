@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+# command-line wrapper script for newgroundsdl
+
+import newgroundsdl
+import sys
+import re
+import shutil
+import urllib.request
+import argparse
+import os.path
+
+parser = argparse.ArgumentParser(description="Downloads all of the songs on a Newgrounds audio page.")
+parser.add_argument("pageuri")
+parser.add_argument('-s', "--stop-on-exist", help="stop downloading files when the filename already exists.", action="store_true")
+args = parser.parse_args()
+
+print("[newgroundsdl] Downloading list page...")
+songpages = newgroundsdl.getSongPages(args.pageuri)
+
+for s in songpages:
+    print("[newgroundsdl] Downloading song page " + s + "...")
+    fileuri = newgroundsdl.getSongFileURI(s)
+    dlfilename = re.sub(r'.*/', '', fileuri)
+    if args.stop_on_exist and os.path.isfile(dlfilename):
+        print("[newgroundsdl] " + dlfilename + " exists, exiting.")
+        sys.exit(0)
+    
+    print("[newgroundsdl] Downloading " + dlfilename + "...")
+    dlreq = urllib.request.Request(fileuri, data=None, headers=newgroundsdl.headers)
+    with urllib.request.urlopen(dlreq) as dlfile, open(dlfilename, 'wb') as dlout:
+        shutil.copyfileobj(dlfile, dlout, length=1024*1024) # block size 1M (the default, 16K, is freakin' slow)
