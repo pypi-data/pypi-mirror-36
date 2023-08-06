@@ -1,0 +1,9 @@
+seekr/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+seekr/fasta_reader.py,sha256=X0d5UDtWfSVEk6WJX1MDUnJ_5C5N-aohHETcwX1PnH8,3245
+seekr/kmer_counts.py,sha256=eFXRa8CYOuOEKyQ3KSPDwkfh-1EmgS9u3arsdmBqf6I,8182
+seekr/my_tqdm.py,sha256=-rsAIwtMbfxqc5xMyFA_NCJk87G6c6N1Yh-ydqw4Rn0,705
+seekr/pearson.py,sha256=uxAErGIbCYkB_nsk_gmfcydit-5iDiAykajidV5z1FI,8564
+seekr-1.1.1.dist-info/METADATA,sha256=P-Lp5x-1ec84Bhyg_j6v5xQlaiLxm5pXxDn9AL0sXiQ,4717
+seekr-1.1.1.dist-info/RECORD,,
+seekr-1.1.1.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+seekr-1.1.1.dist-info/top_level.txt,sha256=-hbTc6AYqRaD1tIReX2yEYLqccKdhB7NwUqEbZTbDWA,6
