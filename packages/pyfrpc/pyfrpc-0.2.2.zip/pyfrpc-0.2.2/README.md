@@ -1,0 +1,72 @@
+# Pyfrpc
+
+Pyfrpc is a Python implementation of FastRPC protocol/library (
+[@github](https://seznam.github.io/frpc/) or
+[@sourceforge](http://fastrpc.sourceforge.net/)
+). The original library contains Python bindings, but:
+
+1. I prefer python packages without dependencies on debian packages.
+2. Its flexibility is limited in some points. E.g. the library provides its own 
+implementation of HTTP server and client, which is nice to have in C++, but not 
+in Python I would say as there are already full-featured and more mature 
+libraries available for those tasks.
+3. In my opinion it's not worth to wrap such a library for python anyway (at 
+least not from today's perspective). The original binding itself is 3500 lines 
+of code. So this is an alternative aproach.
+4. And I want to use it as a showcase for cython as well.
+
+This library provides FastRPC encoding/decoding functions, FastRPC client 
+(based on 'requests') and an interactive FastRPC client/terminal 'pyfrpc' (an 
+alternative to 'fastrpc-netcat' based on 'IPython'). API mostly differs and is 
+not meant to be a drop-in replacement.
+
+It is compatible with protocol versions 1.0, 2.0, 2.1 and 3.0.
+
+Package provides both cython (C extencion) and pure python implementations. 
+Cython implementation is faster but requires C toolchain (or available python 
+wheels). To use pure python implementation set env variable `PYFRPC_NOEXT=1` 
+during installation.
+
+Some features missing are:
+
+- handling of base64 encoded FastRPC
+- helper to build a server
+
+Aside from distribution as a python package, it's also possible to download 
+single-file amalgamated distribution: 
+[pyfrpc.py](https://gitlab.com/vladaburian/pyfrpc/-/jobs/artifacts/master/raw/dist/pyfrpc.py?job=archive).
+
+
+## Interactive client
+
+Interactive client opens na ipython session with varible `client` initialized to 
+FastFRPC connection. It supports tab-based completion of remote procedures' 
+names as well as shownig their documentation using question mark notation as is 
+usual in ipython.
+
+```
+$ pyfrpc --help
+
+usage: pyfrpc [-h] [--insecure] URL
+
+FRPC netcat for interactive connection to FRPC server
+
+positional arguments:
+  URL         URL of FRPC server to connect to
+
+optional arguments:
+  -h, --help  show this help message and exit
+  --insecure  Do not check server's cert
+```
+
+```
+$ pyfrpc http://my-avesome-server
+
+In [1]: client.greeting?
+...
+Docstring:   Prints greeting.
+
+In [2]: client.greeting()
+Out[2]: 
+'hello from server'
+```
