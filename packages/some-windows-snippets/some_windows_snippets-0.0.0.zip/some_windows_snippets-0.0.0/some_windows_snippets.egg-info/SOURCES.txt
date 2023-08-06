@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.py
+some_windows_snippets/__init__.py
+some_windows_snippets/clr_print.py
+some_windows_snippets/desktop.py
+some_windows_snippets/single_instance.py
+some_windows_snippets/window_titles.py
+some_windows_snippets.egg-info/PKG-INFO
+some_windows_snippets.egg-info/SOURCES.txt
+some_windows_snippets.egg-info/dependency_links.txt
+some_windows_snippets.egg-info/top_level.txt
