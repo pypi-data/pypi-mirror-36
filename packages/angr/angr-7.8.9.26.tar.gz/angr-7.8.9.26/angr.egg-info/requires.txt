@@ -1,0 +1,22 @@
+ana==0.05
+sortedcontainers==2.0.5
+cachetools==2.1.0
+capstone==3.0.5
+cooldict==1.03
+dpkt-fix==1.7
+mulpyplexer==0.08
+networkx==2.1
+progressbar==2.3
+rpyc==3.3.0
+cffi==1.7.0
+unicorn==1.0.1
+archinfo==7.8.9.26
+claripy==7.8.9.26
+cle==7.8.9.26
+pyvex==7.8.9.26
+ailment==7.8.9.26
+GitPython==2.1.9
+pycparser==2.18
+
+[:python_version == "2.7"]
+futures==3.2.0
