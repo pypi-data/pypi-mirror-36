@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: coats
+Version: 0.0.1.dev1
+Summary: Collection of scripts (coats) that improve open-stack developer browsing experience
+Home-page: https://github.com/ssbarnea/coats
+Author: Sorin Sbarnea
+Author-email: sorin.sbarnea@gmail.com
+License: BSD
+Keywords: openstack,greasemonkey,foxreplace,web
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet :: WWW/HTTP
+
+# coats
+Collection of scripts (coats) that improve open-stack developer browsing experience
+
+
+
