@@ -1,0 +1,13 @@
+
+[dev]
+sphinx
+coverage
+pytest
+pre-commit
+
+[docs]
+sphinx
+
+[tests]
+coverage
+pytest
