@@ -1,0 +1,6 @@
+cffi
+ruamel.yaml
+appdirs
+
+[:python_version < "3"]
+future
