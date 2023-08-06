@@ -1,0 +1,26 @@
+News
+====
+0.3
+---
+
+*Release date: 1-Oct-2018*
+
+* More uniform output on empty dataframes
+* Coerce columns to strings to allow append/reset of numeric
+* Removed lingering TODOs
+
+0.2
+---
+
+*Release date: 29-Sep-2018*
+
+* Support for a broader collection of types, including testing.
+* Suppress uninteresting RangeIndex by default in output.
+
+0.1
+---
+
+*Release date: 28-Sep-2018*
+
+* Initial release
+
