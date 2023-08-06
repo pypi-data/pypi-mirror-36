@@ -1,0 +1,16 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+versioneer.py
+aerial/__init__.py
+aerial/__main__.py
+aerial/_version.py
+aerial/demo.py
+aerial/feed.py
+aerial/signalData.py
+aerial/wrappers.py
+aerial.egg-info/PKG-INFO
+aerial.egg-info/SOURCES.txt
+aerial.egg-info/dependency_links.txt
+aerial.egg-info/top_level.txt
