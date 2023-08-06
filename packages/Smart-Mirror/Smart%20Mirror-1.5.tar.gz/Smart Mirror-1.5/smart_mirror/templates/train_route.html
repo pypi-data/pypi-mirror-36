@@ -1,0 +1,46 @@
+{% extends "template.html" %}
+{% block title %}Railway{% endblock %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex flex-column justify-content-center align-items-center" id="content" style="height:100vh;padding:5px;">
+        <div class="container" style="overflow-y:auto;">
+            <h1 class="text-center" style="padding:25px;margin:25px;">Train Route</h1>
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                <h6>{{ train['number'] }}</h6>
+                <h4>{{ train['name'] }}</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Station</th>
+                            <th>Arrival</th>
+                            <th>Departure</th>
+                            <th>Halt</th>
+                            <th>Day</th>
+                            <th>Distance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for station in route %}
+                            <tr>
+                                <td>{{ station['no'] }}</td>
+                                <td>{{ station['station']['name'] }}({{ station['station']['code'] }})</td>
+                                <td>{{ station['scharr'] }}</td>
+                                <td>{{ station['schdep'] }}</td>
+                                <td>{{ station['halt'] }}</td>
+                                <td>{{ station['day'] }}</td>
+                                <td>{{ station['distance'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends "template.html" %}
+{% block title %}Zomato{% endblock %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width:100%;">
+    <form class="d-inline justify-content-end align-items-start">
+        <div class="form-group float-left row">
+            <label class="col-md-5 col-form-label" for="source_station">Your Location</label>
+            <div class="col-md-7">
+                <input class="form-control" type="text" name="your_location" value="{{ your_location }}" required="" placeholder="Location" autofocus="" id="your_location">
+            </div>
+        </div>
+        <div class="form-group float-right" style="right:0px;margin-bottom:0px;">
+            <div class="input-group" style="padding-right:15px;padding-left:15px;">
+                <input class="form-control" type="text" name="search_query" value="{{ search_query }}" placeholder="Search for Restaurant, Categories, Establishments">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<a class="text-white" href="{{ url_for('showZomato') }}"><h2 class="text-center" style="margin-bottom:35px;">Zomato</h2></a>
+<div class="d-flex" style="height:100%;">
+    <div class="container" style="overflow:auto;white-space:nowrap;width:30%;">
+        <div style="padding-top:10px;padding-bottom:10px;">
+            <h5 class="text-center">Categories</h5>
+            <div class="d-flex" style="overflow:auto;white-space:nowrap;">
+                {% for category in categories %}
+                    <div class="d-inline-block d-inline-flex flex-column" style="margin-left:5px;margin-right:5px;" onclick="window.location='{{ url_for('showZomatoCategories', category_id=category['categories']['id']) }}'">
+                        <img class="rounded-circle" src="https://b.zmtcdn.com/images/search_tokens/app_icons/category_{{ category['categories']['id'] }}.png" alt="{{ category['categories']['name'] }}" width="100" height="100" style="background-color:#ffffff;">
+                        <span style="text-align:center;word-wrap:break-word;white-space:pre-wrap;">{{ category['categories']['name'] }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div style="padding-top:10px;padding-bottom:10px;">
+            <h5 class="text-center">Establishments</h5>
+            <div class="d-flex" style="overflow:auto;white-space:nowrap;">
+                {% for establishment in establishments %}
+                    <div class="d-inline-block d-inline-flex flex-column align-items-center" style="margin-right:10px;margin-left:5px;" onclick="window.location='{{ url_for('showZomatoEstablishments', establishment_id=establishment['establishment']['id']) }}'">
+                        <div class="d-flex justify-content-center align-items-center" style="width:100px;height:100px;background-color:#f4dbaa;border-radius:50%;color:rgb(0,0,0);font-family:'Aguafina Script', cursive;font-size:20px;">
+                            <span style="word-wrap:break-word;white-space:pre-wrap;text-align:center;">{{ establishment['establishment']['name'] }}</span>
+                        </div>
+                        <span style="text-align:center;word-wrap:break-word;white-space:pre-wrap;">{{ establishment['establishment']['name'] }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div style="padding-top:10px;padding-bottom:10px;">
+            <h5 class="text-center">Cuisines</h5>
+            <div class="d-flex" style="overflow:auto;white-space:nowrap;">
+                {% for cuisine in cuisines %}
+                    <div class="d-inline-block d-inline-flex flex-column align-items-center" style="margin-right:10px;margin-left:5px;" onclick="window.location='{{ url_for('showZomatoCuisines', cuisine_id=cuisine['cuisine']['cuisine_id']) }}'">
+                        <div class="d-flex justify-content-center align-items-center" style="width:100px;height:100px;background-color:#c4c7ff;border-radius:50%;font-family:Aladin, cursive;font-size:20px;color:rgb(0,0,0);">
+                            <span style="word-wrap:break-word;white-space:pre-wrap;text-align:center;">{{ cuisine['cuisine']['cuisine_name'] }}</span>
+                        </div>
+                        <span style="text-align:center;word-wrap:break-word;white-space:pre-wrap;">{{ cuisine['cuisine']['cuisine_name'] }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div style="padding-top:10px;padding-bottom:10px;">
+            <h5 class="text-center">Collections</h5>
+            <div class="d-flex" style="overflow:auto;white-space:nowrap;">
+                {% for collection in collections %}
+                    <div class="d-inline-block d-inline-flex flex-column" style="margin-left:5px;margin-right:5px;" onclick="window.location='{{ url_for('showZomatoCollections', collection_id=collection['collection']['collection_id']) }}'">
+                        <img class="rounded-circle" src="{{ collection['collection']['image_url'] }}" alt="{{ collection['collection']['title'] }}" width="100" height="100" style="background-color:#ffffff;">
+                        <span style="text-align:center;word-wrap:break-word;white-space:pre-wrap;">{{ collection['collection']['title'] }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column" style="width:70%;overflow:auto;white-space:nowrap;">
+        <a href="{{ url_for('showAllZomato') }}" style="bottom:0px;position:fixed;">Show All Restaurants</a>
+        <div style="position:fixed;right:0px;">
+            <a  href="{{ request.path[:-1] + (request.path[-1]|int - 1|int)|string }}" style="margin-right:10px;">Prev</a>
+            <a href="{{ request.path[:-1] + (request.path[-1]|int + 1|int)|string }}">Next</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    {% for restaurant in restaurants %}
+                        <tr onclick="window.location='{{ restaurant['restaurant']['url'] }}'">
+                            <td style="width:20%;"><img src="{{ restaurant['restaurant']['thumb'] }}" height="100"></td>
+                            <td>
+                                <div class="d-flex flex-column"><span class="text-secondary">Quick Bites</span>
+                                    <a class="text-white" href="{{ restaurant['restaurant']['url'] }}"><h4>{{ restaurant['restaurant']['name'] }}</h4></a>
+                                    <h6>American Food House, Bodakdev</h6>
+                                    <span class="text-dark" style="white-space:pre-wrap;word-wrap:break-word;">{{ restaurant['restaurant']['location']['address'] }}<br></span>
+                                </div>
+                            </td>
+                            <td rowspan="2">
+                                <div class="d-flex flex-column"><span style="font-size:22px;background-color:#{{ restaurant['restaurant']['user_rating']['rating_color'] }};border-radius:20px;text-align:center;">{{ restaurant['restaurant']['user_rating']['aggregate_rating'] }}</span><span class="text-secondary">{{ restaurant['restaurant']['user_rating']['votes'] }}<br></span></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="d-flex flex-row">
+                                    <div class="d-inline-flex flex-column" style="width:20%;">
+                                        <span class="text-secondary">CUISINES</span>
+                                        <span class="text-secondary">COST FOR TWO:</span>
+                                    </div>
+                                    <div
+                                        class="d-inline-flex flex-column" style="width:80%;">
+                                        <span>{{ restaurant['restaurant']['cuisines'] }}</span>
+                                        <span>{{ restaurant['restaurant']['average_cost_for_two'] }}</span>
+                                    </div>
+                                </div>
+                                {% if restaurant['restaurant']['has_online_delivery'] %}
+                                    <img src="{{ url_for('static', filename='images/zomato/has_online_delivery.png') }}" height="64" title="Has Online Delivery" style="padding:10px;">
+                                {% endif %}
+                                {% if restaurant['restaurant']['is_delivering_now'] %}
+                                    <img src="{{ url_for('static', filename='images/zomato/is_delivering_now.png') }}" height="64" title="Delivering Now" style="padding:10px;">
+                                {% endif %}
+                                {% if restaurant['restaurant']['is_table_reservation_supported'] %}
+                                <img src="{{ url_for('static', filename='images/zomato/is_table_reservation_supported.png') }}" height="64" title="Table Reservation Supported" style="padding:10px;">
+                                {% endif %}
+                                {% if restaurant['restaurant']['has_table_booking'] %}
+                                    <img src="{{ url_for('static', filename='images/zomato/has_table_booking.png') }}" height="64" title="Has Table Booking" style="padding:10px;">
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
