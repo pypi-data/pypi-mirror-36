@@ -1,0 +1,2 @@
+recursive-include track/templates *.html
+recursive-include track/static *.css *.js

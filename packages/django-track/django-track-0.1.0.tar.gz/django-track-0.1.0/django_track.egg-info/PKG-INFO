@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: django-track
+Version: 0.1.0
+Summary: A django app for doing analytics on site usage.
+Home-page: https://track.samireland.com
+Author: Sam Ireland
+Author-email: mail@samireland.com
+License: MIT
+Description: UNKNOWN
+Keywords: django analytics logging
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: System :: Logging
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
