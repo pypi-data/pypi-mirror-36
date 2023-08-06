@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: elasticache-pyclient
+Version: 2.1
+Summary: pythone client for elasticache auto discovery
+Home-page: https://github.com/yupeng820921/elasticache_pyclient
+Author: yupeng
+Author-email: yupeng0921@gmail.com
+License: LGPL
+Keywords: aws,ealsticache
+Platform: any
+Requires-Dist: python-memcached
+Requires-Dist: uhashring
+
+UNKNOWN
+
+
