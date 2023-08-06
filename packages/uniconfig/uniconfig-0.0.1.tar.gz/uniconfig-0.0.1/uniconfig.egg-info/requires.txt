@@ -1,0 +1,9 @@
+toml
+
+[shipping]
+twine
+
+[testing]
+coverage
+pytest
+pytest-cov

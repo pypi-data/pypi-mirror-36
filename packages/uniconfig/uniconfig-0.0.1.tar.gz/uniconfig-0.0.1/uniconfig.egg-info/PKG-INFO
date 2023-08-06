@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: uniconfig
+Version: 0.0.1
+Summary: Python library for unifying configuration handling
+Home-page: https://github.com/kblin/uniconfig
+Author: Kai Blin
+Author-email: kblin@biosustain.dtu.dk
+License: Apache Software License
+Description: Python library for unifying configuration handling
+        ==================================================
+        
+        A Python library for unifying configuration handling through config files, environment variables and
+        command line options.
+        
+        Installation
+        ------------
+        
+        You can install `uniconfig` from PYPI by running `pip install uniconfig`.
+        
+        If you want to update an existing install, run `pip install --update uniconfig`.
+        
+        You can also clone this repository from github and run `pip install .` from the repository base directory.
+        
+        
+        License
+        -------
+        `uniconfig` is licensed under the Apache License, Version 2.0.
+        See [`LICENSE`](LICENSE) for details.
+        
+Platform: POSIX
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: POSIX
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Description-Content-Type: text/markdown
+Provides-Extra: shipping
+Provides-Extra: testing
