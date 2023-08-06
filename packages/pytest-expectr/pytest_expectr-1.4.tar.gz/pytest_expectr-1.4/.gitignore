@@ -1,0 +1,15 @@
+# ignore vscode config files
+.vscode
+
+# ignore python files
+**__pycache__**
+pip-log.txt
+pip-delete-this-directory.txt
+venv/
+.pytest_cache/
+*.pyc
+.pypirc
+.eggs
+build/
+dist/
+*.egg-info
