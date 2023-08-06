@@ -1,0 +1,6 @@
+[console_scripts]
+sdb_dump_database = scripts.sdb_dump_database:main
+sdb_dump_info = scripts.sdb_dump_info:main
+sdb_dump_raw = scripts.sdb_dump_raw:main
+sdb_dump_shims = scripts.sdb_dump_shims:main
+
