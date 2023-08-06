@@ -1,0 +1,17 @@
+Metadata-Version: 1.2
+Name: chemreps
+Version: 0.0.2
+Summary: Molecular machine learning representations
+Home-page: https://github.com/dlf57/chemreps
+Maintainer: Dakota Folmsbee, Amanda Dumi, Shiv Upadhyay
+Maintainer-email: dfolmsbee@gmail.com, amandaedumi@gmail.com, shivnupadhyay@gmail.com
+License: MIT License
+Description: # chemreps
+        Implementation of various machine learning representations for molecules 
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Scientific/Engineering :: Chemistry
