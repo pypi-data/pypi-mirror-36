@@ -1,0 +1,56 @@
+# Keras Utils
+
+This package provides utilities for Keras, such as modified callbacks, genereators, etc.
+
+## Installation
+
+To install the package from the PyPi repository you can execute the following
+command:
+```sh
+pip install keras-utils
+```
+
+## Usage
+
+The usage of the package is simple:
+```py
+import keras
+import keras_utils
+
+# build your model
+model = get_model(input_shape, num_classes=num_classes, reserve_layers=reserve_layers)
+
+# build your train-set & validation-set generators
+train_generator = ImageDataGenerator().flow_from_directory(
+        train_images_path,
+        target_size=target_size,
+        batch_size=batch_size,
+        color_mode='rgb',
+        class_mode='categorical',
+        seed=seed,
+        shuffle=True
+)
+
+valid_generator = ImageDataGenerator().flow_from_directory(
+        valid_images_path,
+        target_size=target_size,
+        batch_size=1,
+        color_mode='rgb',
+        class_mode='categorical',
+        shuffle=False
+)
+
+# create a validation-callback which tests the validation-set every 10 epocks
+valid_callback = ValidateCallback(10, valid_generator, model)
+
+# create a save-callback which saves the model every 20 epochs under the name "model_name"
+save_callback = SaveCallback(20, 'model_name.model', model)
+
+# train your model
+model.fit_generator(generator=train_generator,
+                    epochs=epochs,
+                    verbose=1,
+                    workers=8,
+                    callbacks=[valid_callback, save_callback])
+
+```
