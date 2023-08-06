@@ -1,0 +1,5 @@
+pbr!=2.1.0,>=2.0.0
+python-heatclient>=1.6.1
+python-neutronclient<6.8,>=6.3.0
+oslo.serialization!=2.19.1,>=1.10.0
+oslo.utils>=3.20.0
