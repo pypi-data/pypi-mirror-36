@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: sphinx-autodoc-future-annotations
+Version: 0.1.0
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Ismo Toijala
+Author-email: ismo.toijala@gmail.com
+License: MIT
+Project-URL: Bug Tracker, https://gitlab.com/itoijala/sphinx_autodoc_future_annotations/issues
+Project-URL: Source Code, https://gitlab.com/itoijala/sphinx_autodoc_future_annotations
+Platform: UNKNOWN
+Classifier: Framework :: Sphinx :: Extension
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Documentation :: Sphinx
+Requires-Python: >= 3.7
+Requires-Dist: astor (>=0.7.1)
+Requires-Dist: sphinx (>=1.8)
+
+UNKNOWN
+
+
