@@ -1,0 +1,10 @@
+README.md
+setup.py
+zsingleton/__init__.py
+zsingleton/singleton_base.py
+zsingleton/singleton_decorator.py
+zsingleton/singleton_metaclass.py
+zsingleton.egg-info/PKG-INFO
+zsingleton.egg-info/SOURCES.txt
+zsingleton.egg-info/dependency_links.txt
+zsingleton.egg-info/top_level.txt
