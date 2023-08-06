@@ -1,0 +1,14 @@
+django_project_version-0.2.4.dist-info/DESCRIPTION.rst,sha256=OCTuuN6LcWulhHS3d5rfjdsQtW22n7HENFRh6jC6ego,10
+django_project_version-0.2.4.dist-info/METADATA,sha256=_mFjE-V3S7nJjo1_CZbWAcjziMvJbkoDwGMg68PeEJQ,1071
+django_project_version-0.2.4.dist-info/RECORD,,
+django_project_version-0.2.4.dist-info/WHEEL,sha256=5wvfB7GvgZAbKBSE9uX9Zbi6LCL-_KgezgHblXhCRnM,113
+django_project_version-0.2.4.dist-info/metadata.json,sha256=yV-XzAix7wygfgMeXjP0xMcCFUqq9fjWJvWlGFa6N_s,1164
+django_project_version-0.2.4.dist-info/top_level.txt,sha256=OqqhEVGaE-Kj0SMUVTVuyYCWsRxHMDWTI_MGqO31tvY,10
+djversion/__init__.py,sha256=ibgXr9Nhay0QQLlWT6BJP_fLwOfiGSWUl0H3P3m2ErA,205
+djversion/apps.py,sha256=W1Z2-SPs3k4yBuWUKgYQ67zIfi7JBAJOh0W_Fy9mbFg,272
+djversion/context_processors.py,sha256=TTWDZDIGLNQBDbJdvAyyxfi8DmoOyEmu19lZb10FjVM,528
+djversion/models.py,sha256=kc57drxZYiLwNRbFZXY8I31802aYLjpBzVP2xt8H6-8,129
+djversion/settings.py,sha256=3JkYx1lKCnkGEGMHxffRr8wKP8uZxmmQorRA6h_fvR0,415
+djversion/utils.py,sha256=9AD7omGn1xwCIJLxn2sZ6yypIkTWTPnug85gXMrgHuk,844
+djversion/templatetags/__init__.py,sha256=0lFFSX4hHKn_V8QtbHciPg0NXICBhtUq7PEM018eWfA,144
+djversion/templatetags/djversion_tags.py,sha256=r3kIpBcDM7g-rNfY8I2cUB78O-1iF684ii5P9IAvUig,480
