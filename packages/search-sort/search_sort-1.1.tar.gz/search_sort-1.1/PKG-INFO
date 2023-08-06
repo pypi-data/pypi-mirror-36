@@ -1,0 +1,19 @@
+Metadata-Version: 1.0
+Name: search_sort
+Version: 1.1
+Summary: Search and Sort algorithms library
+Home-page: https://github.com/Nikhil-Xavier-DS/Sort-Search-Algorithms
+Author: Nikhil Xavier
+Author-email: nikhilxavier@yahoo.com
+License: UNKNOWN
+Description: Sorting Algorithms: Pypi Repository for Search and Sort Algorithms
+        
+        1. Bubble sort
+        2. Selection sort
+        3. Insertion sort
+        4. Shell sort
+        5. Merge sort
+        6. Quick sort
+        7. Hash Table
+Keywords: search sort algorithms
+Platform: UNKNOWN
