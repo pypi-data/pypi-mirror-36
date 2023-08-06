@@ -1,0 +1,3 @@
+[console_scripts]
+run-valkka-live = valkka_live.gui:main
+
