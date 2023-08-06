@@ -1,0 +1,30 @@
+#!python
+
+import argparse
+import json
+
+from sndr import Requester
+
+def main():
+    parser = argparse.ArgumentParser(description='Xompass Image Poster Command Line Tools')
+    parser.add_argument('--host', default='localhost')
+    parser.add_argument('--port', default=23400, type=int)
+    parser.add_argument('-c', '--cmd', required=True)
+    parser.add_argument('-d', '--data', default='{}')
+
+    args = parser.parse_args()
+
+    r = Requester(args.host, args.port)
+    try:
+        payload = {'cmd':args.cmd, **json.loads(args.data)}
+        response = r.request(payload)
+
+        if response['status'] != 'OK':
+            print('Server error: %s' %response['error'])
+        else:
+            print(response)
+    except json.decoder.JSONDecodeError as err:
+        print('Data is not JSON deserializable')
+
+if __name__ == '__main__':
+    main()
