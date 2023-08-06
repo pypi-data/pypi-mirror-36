@@ -1,0 +1,31 @@
+Metadata-Version: 1.1
+Name: keras-perturbation
+Version: 0.1
+Summary: A demonstration of perturbation of data
+Home-page: https://github.com/CyberZHG/keras-perturbation
+Author: CyberZHG
+Author-email: CyberZHG@gmail.com
+License: MIT
+Description: 
+        Keras Perturbation
+        ==================
+        
+        A demonstration of perturbation of data.
+        
+        Install
+        -------
+        
+        .. code-block:: bash
+        
+           pip install keras-perturbation
+        
+        Usage
+        -----
+        
+        See `demo <https://github.com/CyberZHG/keras-perturbation/tree/master/demo>`_.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
