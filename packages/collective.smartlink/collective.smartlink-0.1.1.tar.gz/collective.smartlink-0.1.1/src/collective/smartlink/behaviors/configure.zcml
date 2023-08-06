@@ -1,0 +1,14 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  i18n_domain="collective.smartlink">
+
+  <plone:behavior
+    name="collective_smartlink_behavior"
+    title="Additional fields for a link object"
+    description="We want to add some fields for links objects."
+    provides=".interfaces.ISmartLinkExtension"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    />
+
+</configure>
