@@ -1,0 +1,37 @@
+{% load static %}
+{% load i18n %}
+
+<script
+    type="text/javascript"
+    src="{% url "django_popup_view_field:javascript-catalog" %}">
+</script>
+
+
+<script type="text/template" id="template-django-popup-view-field">
+    <div class="modal fade" tabindex="-1" role="dialog" id="popup-modal-dialog-" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div><!-- /.modal-header -->
+                <div class="modal-body">
+                    Data is loading ...
+                </div><!-- /.modal-body -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        {% trans "Close" %}
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</script>
+
+
+<script
+    type="text/javascript"
+    src="{% static 'django_popup_view_field/js/django_popup_view_field.js' %}">
+</script>
