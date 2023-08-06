@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: muesli
+Version: 0.1.0
+Summary: Dummy Data for Humans.
+Home-page: https://www.github.com/vinayak-mehta/muesli
+Author: Vinayak Mehta
+Author-email: vmehta94@gmail.com
+License: MIT License
+Description: # Muesli: Dummy Data for Humans
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown

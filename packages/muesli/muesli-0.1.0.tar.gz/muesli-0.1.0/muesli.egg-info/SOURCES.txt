@@ -1,0 +1,9 @@
+README.md
+setup.py
+muesli/__init__.py
+muesli/__version__.py
+muesli.egg-info/PKG-INFO
+muesli.egg-info/SOURCES.txt
+muesli.egg-info/dependency_links.txt
+muesli.egg-info/requires.txt
+muesli.egg-info/top_level.txt
