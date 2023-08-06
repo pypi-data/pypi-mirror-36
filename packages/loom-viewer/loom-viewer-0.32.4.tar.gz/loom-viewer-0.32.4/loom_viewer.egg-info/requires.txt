@@ -1,0 +1,14 @@
+loompy
+matplotlib
+scikit-learn
+h5py
+pandas
+scipy
+pillow
+numpy
+requests
+flask
+flask-compress
+gevent
+typing
+mypy_extensions
