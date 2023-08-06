@@ -1,0 +1,9 @@
+README.md
+setup.py
+bin/pling
+pling/__init__.py
+pling.egg-info/PKG-INFO
+pling.egg-info/SOURCES.txt
+pling.egg-info/dependency_links.txt
+pling.egg-info/requires.txt
+pling.egg-info/top_level.txt
