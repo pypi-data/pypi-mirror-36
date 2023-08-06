@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: amanobot
+Version: 1.1.1
+Summary: Python framework for Telegram Bot API forked from Telepot
+Home-page: https://github.com/AmanoTeam/amanobot
+Author: Amano Team
+Author-email: contact@amanoteam.ml
+License: MIT
+Description: # amanobot - Python framework for Telegram Bot API based on Telepot
+        
+        **[Bot API 4.1](https://core.telegram.org/bots/api)**-compliant!
+        
+        ### [Introduction »](http://amanobot.readthedocs.io/en/latest/)
+        ### [Reference »](http://amanobot.readthedocs.io/en/latest/reference.html)
+        ### [Examples »](https://github.com/AmanoTeam/amanobot/tree/master/examples)
+        ### [Changelog »](https://github.com/AmanoTeam/amanobot/blob/master/CHANGELOG.md)
+        
+Keywords: telegram bot api python wrapper
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Communications :: Chat
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
