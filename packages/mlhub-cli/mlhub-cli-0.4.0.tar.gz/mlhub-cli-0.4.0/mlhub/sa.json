@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "mlhub-firebase",
+  "private_key_id": "4af5e73e93b0b312f512d43d0880f84850f4dc5e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCXL1hhb2lKhepp\nD3NlGFtDwEe5ScV1UI9dYRb8dynpbA751iibO6vQUxwQns/xy1LLO8Ql9NDlCkak\n91ALc066tS/rClXXq0jrLLANY00g0u45t5UCDepgPg9wVhivGPQ1L+2o5o4aa6bU\nDHTBfbw/TgqPW27JCDkMAVaKDIIbpGHynMBtSoVc9IuFeUK/nPdRGzY3kGb40E+f\nWa2iYiK2kpj8LnBUW2Dn8WDagzNXQrr7t8MAaKD6k+PvL0nAwg3bXUCBcDxtZgwV\nIQZ6Obf4F6GIu9BovmkgdUVH2zkJQpSJX+WbcFmCe2+Hpvb05DAZozKovMHNBMeD\nSYD9tmGbAgMBAAECggEAD1wgYZMnzQolUlPfMx0yCy8aL7P+sLg6PeV4Ura/S6zO\nf17dCfBvuJ7zp1NLPdNHb8h8WX2G9PjXS+P905FSerD1KQRddlI7pVEJTe2Rz3eT\n+8nar2EUjSn2TZZ3CYsX0d4zCh7qabrC3KEArQvbjUmeKbRuC/9JickKWW+DOdA7\nTjWQYXOyy3lAk6GvY2qfL7m0/5PdF7WE8h44hIQpKQ+5BW87mXU1XSpfdH+iFQNJ\nD036c5vG6WXSL9aweYTNR/4H+BXT/sMR9JFFB6dKSlknuDGpvWqdIgUoJfAGLJVS\nYy6GQ46YnEFEzzFBgtwg7gMCW++sr6nmiabSnQ6u+QKBgQDK2Hz8Ozy7rhRL/1TG\nhz4DAbPmpg1MnE/nSEe+QZfz+bAqNy4nCz0eFGwwNpMQJlwS/iDFt/XfItMTadJ0\nbYG3SstXaaC5/HMPBqzc2Wg2dNL3iZoavmqwdAOwIracwCFiuaSLFJEdbBFGPuaL\nunAC62jjPv0zWHXfHJXI+nSWtQKBgQC+zUwMduYCnjnk7piIlXDCG/oacqgNKhkp\nhGGP6/IXXZ1dLg6c/7puXFdmbyU8z6BH2QY0D840g4lc3pRngnEsxEvVgXKxXRTy\n8hvgLrsN7Rk9ovT7+JFsFhnCwPDUWF/dtMh8WF4446ezidrBHenfxDQEHv26is9W\nyjruMM55DwKBgFdGypAkVL9T6TvBwpIhApd8lhE5hSNfZinXObcstdqtphSj5WG7\nPjLBCsO7147tUlSBr0wjGNFHRJZnw7uAmn1o2xDjS9p6Om9OqfXkPSihH1yOghXb\ntD/zytpwNS5ApJy7z4Zf9Qg5xTz6N2wLbcJz049jPMJo315+CByPVra5AoGAcrdm\nMNxPwGU3c8BMb1pCOEKv5bTn+zpDdKXGLszyej/rvDlTyesrQO0+EzViEyTWPjxq\nsWSLWyF2tiKQ4YcY2oyO96hjt+W6EbOlNO2Dw4S5N0jBuLkjXfQPuvtcEJ+ty9PE\n8pYC2Htvuc95ecCte78wcwXbEYwhyxG9yrYHfdsCgYEAhpbwNrXAdA+YkCjzcROJ\n0T8fyFUQTxJXojo5V6DTAaB5xwjZp1wh+gbI/VoS6QwgmhC6wyrD7xHtgCqiVrEx\nq5j0+UqSlxoj/xshQ3IdNerMgeOAerTnV57bLs5jYwFLLcjUYda1c8o+EhI3zxsq\nC/lin3CFL1hrNK84ypfd+wg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "mlhub-cli@mlhub-firebase.iam.gserviceaccount.com",
+  "client_id": "113489773981818879074",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mlhub-cli%40mlhub-firebase.iam.gserviceaccount.com"
+}
