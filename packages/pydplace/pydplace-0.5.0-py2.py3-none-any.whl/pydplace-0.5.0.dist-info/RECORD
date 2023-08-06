@@ -1,0 +1,13 @@
+pydplace/__init__.py,sha256=Lr4RJP39K7_VBlhhSiEYjeNPwlV1SylOGEuaPELln-w,25
+pydplace/__main__.py,sha256=SrGaYyQKqTHiI9Z1wX6xL-ia9dh-DLX_kPzP4V_3XO4,966
+pydplace/api.py,sha256=XVmhrJsaTXpzLXxlQ7r_IKDg0K18qTvpRvTjd4Y96wo,7159
+pydplace/commands.py,sha256=O_lWEiS53EMIQhcGOA7wy0RlfdO2u5uIwAsmG3D7iXU,8330
+pydplace/geo.py,sha256=usLLyv51RSCoGoRxnMdLp_BWt5yZSoW_3qesuZMYqrE,692
+pydplace/glottolog.py,sha256=jNC_3cBh5GRdMadX7qRRcfaHWvP2U4eT_DHfNVV-Gh8,5252
+pydplace/util.py,sha256=_lv3dFYkTbrMR4O5mlAw4nkHMWw4RNUw5czWYa0OdzI,702
+pydplace-0.5.0.dist-info/LICENSE.txt,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+pydplace-0.5.0.dist-info/METADATA,sha256=O9Ungpu8d5Pyn4yznwuRHi1LmsuZ_xXxER-mD7nUFzc,2644
+pydplace-0.5.0.dist-info/RECORD,,
+pydplace-0.5.0.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+pydplace-0.5.0.dist-info/entry_points.txt,sha256=mMKz2NpvWx8kreGD8HacSLvANOdTxTED5AMKoLtkrNo,51
+pydplace-0.5.0.dist-info/top_level.txt,sha256=znnVpkYKGSYj3pyOojLBSZJhbuSlFgmrt0eBakp3FZw,9
