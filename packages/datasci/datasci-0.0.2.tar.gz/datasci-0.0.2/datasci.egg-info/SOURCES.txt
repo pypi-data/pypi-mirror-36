@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+datasci/__init__.py
+datasci.egg-info/PKG-INFO
+datasci.egg-info/SOURCES.txt
+datasci.egg-info/dependency_links.txt
+datasci.egg-info/requires.txt
+datasci.egg-info/top_level.txt

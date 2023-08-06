@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: datasci
+Version: 0.0.2
+Summary: Data science utilities
+Home-page: https://github.com/chbrown/datasci-python
+Author: Christopher Brown
+Author-email: io@henrian.com
+License: MIT
+Description: ## `datasci`
+        
+        [![Latest version on PyPI](https://badge.fury.io/py/datasci.svg)](https://pypi.org/project/datasci/)
+        
+        Install from PyPI:
+        
+        ```shell
+        pip install datasci
+        ```
+        
+        Install in development mode:
+        
+        ```shell
+        pip install -e .
+        ```
+        
+        
+        ## Testing
+        
+        ```shell
+        python setup.py test
+        ```
+        
+        
+        ## License
+        
+        Copyright 2018 Christopher Brown.
+        [MIT Licensed](https://chbrown.github.io/licenses/MIT/#2018).
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Sociology
+Classifier: Topic :: Text Processing
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
