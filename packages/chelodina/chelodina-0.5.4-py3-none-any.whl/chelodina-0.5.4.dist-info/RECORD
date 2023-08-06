@@ -1,0 +1,11 @@
+chelodina/__init__.py,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+chelodina/__main__.py,sha256=tgvNt5eg8ZK5DzTNuihOa9CGn2ptw3LnHnqwc-7E1L8,815
+chelodina/ast_builder.py,sha256=Z_n0y_HaMjgu8JtxL3LDdYnsIY9l1IpyIURHxKyWX4o,3000
+chelodina/compiler.py,sha256=JMHEfhYLuQGU9ZAcBCa7hBgVsvtTrZqxVIzvuWNPyJA,530
+chelodina/lexer.py,sha256=ql16363cYPqSkRvmvOL_UYZ8nY9Ql3JTxYqEwieKkIY,1032
+chelodina/parser.py,sha256=JcDwFq_YPugtEdEn9V3lGyb7SQpxVBWGtJCGbZQ_osU,3464
+chelodina-0.5.4.dist-info/METADATA,sha256=b01C_hlAcxoVpENY6wR8TRuFArug2a5W3jn5geEc1Sk,4598
+chelodina-0.5.4.dist-info/RECORD,,
+chelodina-0.5.4.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+chelodina-0.5.4.dist-info/entry_points.txt,sha256=UE2dXXoATwFT6TeIbUNwDLl1mdKUfzoacXGIROKhJVs,55
+chelodina-0.5.4.dist-info/top_level.txt,sha256=2r1590C0scNAsziE7dMxNndqjWlKPK1wo6L0UMkmaAQ,10
