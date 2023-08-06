@@ -1,0 +1,10 @@
+[Unit]
+Description=Basic Remote IO Application
+After=gpio-exporter
+
+[Service]
+Type=simple
+ExecStart=python3 -m brio
+
+[Install]
+WantedBy=default.target
