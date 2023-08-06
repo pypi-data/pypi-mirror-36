@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: pymicroconnectors
+Version: 0.0.3
+Summary: Make connection easier for your microservices
+Home-page: https://github.com/ddelizia/pymicroconnectors
+Author: Danilo Delizia
+Author-email: ddelizia@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: pybars3
+Requires-Dist: requests
+Requires-Dist: figgypy
+Requires-Dist: colorlog
+Requires-Dist: google-api-python-client
+Requires-Dist: oauth2client
+Requires-Dist: pipenv
+Requires-Dist: ebaysdk
+Requires-Dist: mongoengine
+Requires-Dist: flask
+Requires-Dist: flask-restful
+Requires-Dist: flask-graphql
+Requires-Dist: flask-restful-swagger
+Requires-Dist: flask-restful-swagger-2
+Requires-Dist: sqlalchemy
+Requires-Dist: gunicorn
+Requires-Dist: flask-ask (==0.8.9)
+Requires-Dist: click
+Requires-Dist: flask-assistant
+
+# Py Micro Connectors
+
+[![made-with-python](https://img.shields.io/badge/pypi-pymicroconnectors-green.svg?style=flat-square)](https://pypi.org/project/pymicroconnectors/)
+[![licence](https://img.shields.io/badge/licence-MIT-green.svg?style=flat-square)](https://github.com/ddelizia/pymicroconnectors/LICENCE)
+
+
+This is a simple example package. You can use
+[Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+to write your content.
+
+
+## Config
+
+## Logger
+
+Adding colored logs to the application in an easy and configurable way
+
+
+```
+import pymicroconnectors.logger as logger
+
+logger.init()
+```
+
+## Ebay
+
+```
+import pymicroconnectors.ebay as ebay
+
+logger.init()
+```
+
+### Dev Notes
+
+```
+python3 setup.py sdist bdist_wheel
+twine upload dist/*
+```
+
+
