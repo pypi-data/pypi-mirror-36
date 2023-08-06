@@ -1,0 +1,17 @@
+cpnest/NestedSampling.py,sha256=mA5OQaQa4Mo9-Whk9ATi6s4hFUVxqnec5TEson4QE5I,12798
+cpnest/__init__.py,sha256=Wjsm1tdtbATFOpJ5l4GcRgO2w73wx5R3oqCXaQ7S3IE,122
+cpnest/cpnest.py,sha256=YBo3Mno6HrLlFAosBxio_wI4frOEYjfvKKjDulBywkc,9394
+cpnest/model.py,sha256=_EaDNPFa8TGFNlRq05X1lhPD_NC8XIAxXcFr7ZYSjNI,3191
+cpnest/nest2pos.py,sha256=lFlv3C-UpDVTclAKbeKYqoTCE4ViJo-e1lt_gjjUTG4,6967
+cpnest/parameter.c,sha256=goDM3We0-F8V4egQULiM7dk_BIgp9OvIHNRxyQDIqAc,493492
+cpnest/parameter.cpython-36m-darwin.so,sha256=3BgU5btkN-5rMfhdTAgaJq2NBfUOEPyPBTJjz4mtYoo,84272
+cpnest/parameter.pxd,sha256=uSmHGklRhfVJ-VtOu9TV0puHXYondIu0B86LDT69sRI,343
+cpnest/parameter.pyx,sha256=zn3UudXLrxFdOGCLNjtYzABNHidL9lJgipecNQv0SYU,4711
+cpnest/plot.py,sha256=iLL31GS67jo10YbsIivgbgVkRk_ZjzIqB4mGhjSV6sQ,1246
+cpnest/proposal.py,sha256=jFW5EzwEu4115F1MxI7bXs_9WSzLx9SBDWwY0chVsCQ,20763
+cpnest/sampler.py,sha256=CD1o-0vNG8jQ5wN_iRWtlIUSS3Jc2uBxhME2apAcHdQ,11054
+cpnest-0.9.1.dist-info/LICENSE,sha256=q1GRQFFlPVPS804Wtn_cOKKP9DcZa8uNFu0e0W_4KY8,1091
+cpnest-0.9.1.dist-info/METADATA,sha256=WRsf4hmI3440ZjTEylE76OHTWtkp8zd9UtgoCA-e1bY,948
+cpnest-0.9.1.dist-info/WHEEL,sha256=qe-yAldcKn0gy2BnUQtAKsX4FW1FAdDwcNvoZ-XxPhY,111
+cpnest-0.9.1.dist-info/top_level.txt,sha256=9QvGVRkiZ9Msq5_vjlAwSo4NRaNRrsrrv8eSjiFJbOk,7
+cpnest-0.9.1.dist-info/RECORD,,
