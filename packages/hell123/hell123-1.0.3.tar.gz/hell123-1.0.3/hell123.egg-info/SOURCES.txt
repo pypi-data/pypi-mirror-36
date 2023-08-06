@@ -1,0 +1,10 @@
+MANIFEST.in
+README.md
+setup.py
+hell123/__init__.py
+hell123/main.py
+hell123.egg-info/PKG-INFO
+hell123.egg-info/SOURCES.txt
+hell123.egg-info/dependency_links.txt
+hell123.egg-info/entry_points.txt
+hell123.egg-info/top_level.txt
