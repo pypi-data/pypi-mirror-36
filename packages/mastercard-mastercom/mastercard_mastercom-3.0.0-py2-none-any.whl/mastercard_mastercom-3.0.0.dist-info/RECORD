@@ -1,0 +1,17 @@
+mastercardmastercom/__init__.py,sha256=jIzuB8Ap9o8o-Kts8_aC1PqNHQwkpUEfbIs7Q3hZ5ac,598
+mastercardmastercom/casefiling.py,sha256=1DrzM42YUCAk1adxFI9bo5uxxDneHdj0fh_mFdI2ekk,4481
+mastercardmastercom/chargebacks.py,sha256=yuNFYOPu_K33spNsKqgL6SczqO6JRDGs83hELe-V2LI,6287
+mastercardmastercom/claims.py,sha256=PPXTwKYvfcRm4aZ_B0SZxpY4ttrJbnXBYFcmvIytjpg,4234
+mastercardmastercom/fees.py,sha256=hYFg0d-poCdlotIAZfMxbjEU-FAaXN9aVfY7g4ijWkk,3607
+mastercardmastercom/fraud.py,sha256=CesPJhVVbttq1ERi7TmycM68PVDCE_kd402e9_67UQA,3612
+mastercardmastercom/healthcheck.py,sha256=O8gGSfL4BHfaPFWGFHrcK5fau_goj6vcWu4rcu3Ghm4,3009
+mastercardmastercom/migrateddisputes.py,sha256=Tt6_CZkOY9kDdz-NK7dqeMnizgUFuqdbxSQMYIMy7z8,3062
+mastercardmastercom/queues.py,sha256=V-yrTA83LFrHCAESA-A_aEsuLKPfZr6gldi458vnMCY,3763
+mastercardmastercom/resourceconfig.py,sha256=btJtdnmHNi0ZkRTJmiy6c7wzRk3-ZXSPojOi1UiSwxw,3411
+mastercardmastercom/retrievals.py,sha256=guGAl550FxOL8HzrOCLR5ejQ9PLZiUivGY7qU5oIdUs,5982
+mastercardmastercom/transactions.py,sha256=VZNfW2Y0Y_5sF0Odu_45tag8soEmGfGpJuwYsgQbZPg,4796
+mastercard_mastercom-3.0.0.dist-info/LICENSE,sha256=tAkwu8-AdEyGxGoSvJ2gVmQdcicWw3j1ZZueVV74M-E,11357
+mastercard_mastercom-3.0.0.dist-info/METADATA,sha256=jaUzAMNNR4GNfUGeFcp4Z_-ORE5jVckGhSfmYDLHxV8,678
+mastercard_mastercom-3.0.0.dist-info/WHEEL,sha256=MlnUWFZCxbgBkC_PfU2CprVf8-ZZlVOAfry_BsXUBxw,92
+mastercard_mastercom-3.0.0.dist-info/top_level.txt,sha256=I0gwnIy9hT8yw6OnZbOSS5GKTNH7l2-vJ0Nb1zAwmdI,20
+mastercard_mastercom-3.0.0.dist-info/RECORD,,
