@@ -1,0 +1,15 @@
+Metadata-Version: 1.2
+Name: passvault
+Version: 0.0.1
+Summary: Password storing manager
+Home-page: https://github.com/ikrugloff/passvault
+Author: ['Ilia Kruglov', 'Rail Zakirov', 'Leonid Mikhailov', 'Veronika Korepanova', 'Daniyar Kaliyev', 'Nikolai Kotov']
+License: GNU General Public License v3.0
+Description: # passvault
+        Team development project of a program for storing passwords.
+        
+        Authors: Калиев Данияр, Корепанова Вероника, Михайлов Леонид, Котов Николай, Закиров Раиль, Круглов Илья В.
+        
+Keywords: python,vault,password
+Platform: UNKNOWN
+Requires-Python: >=3.6.5
