@@ -1,0 +1,7 @@
+[console_scripts]
+fs_report = incolumepy.saj_projects.fs_report:run
+interval = incolumepy.checkinterval.Check:Check.interval
+
+[gui_scripts]
+baz = my_package_gui:start_func
+
