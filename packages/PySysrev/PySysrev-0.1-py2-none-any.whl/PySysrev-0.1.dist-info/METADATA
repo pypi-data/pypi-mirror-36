@@ -1,0 +1,16 @@
+Metadata-Version: 2.0
+Name: PySysrev
+Version: 0.1
+Summary: Gets annotations from Sysrev API
+Home-page: http://github.com/sysrev/PySysrev
+Author: nole-lin
+Author-email: nole@insilica.co
+License: UNKNOWN
+Description-Content-Type: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: pandas
+Requires-Dist: requests
+
+UNKNOWN
+
+
