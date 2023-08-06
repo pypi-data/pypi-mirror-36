@@ -1,0 +1,9 @@
+README.md
+setup.py
+pychatbotlib/__init__.py
+pychatbotlib/pychatbotlib.py
+pychatbotlib/sqlite3_wrapper.py
+pychatbotlib.egg-info/PKG-INFO
+pychatbotlib.egg-info/SOURCES.txt
+pychatbotlib.egg-info/dependency_links.txt
+pychatbotlib.egg-info/top_level.txt
