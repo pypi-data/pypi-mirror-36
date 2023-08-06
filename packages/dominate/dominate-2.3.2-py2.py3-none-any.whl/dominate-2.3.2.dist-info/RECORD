@@ -1,0 +1,12 @@
+dominate/__init__.py,sha256=qZ6CLTkIM6XUGeCvrWxODTC0KwHqdGHhuPK_IOq9FN8,88
+dominate/_version.py,sha256=x5E5rGPk11E54Ism6mcjq8DHJco3CqdUI1t6H5vK01M,23
+dominate/document.py,sha256=wKkHjVd4YINjgtDUvtkdpbav2wq29P4ANBMqbAUgWK4,2217
+dominate/dom1core.py,sha256=abRAFVImeyRmdK_eLUE3Fr0LfnIGiRkJzfKZCfKJXqM,1760
+dominate/dom_tag.py,sha256=LlbeYHnKIXcgjlUImjfpRovqV53QDE4FRQF8VnsIzUQ,12287
+dominate/tags.py,sha256=DPVBkQfq7Q2uh33_RVymdVt2gqLugqXsgJUNM5fSZxA,28054
+dominate/util.py,sha256=VKjUgOl_Rx2N0glk-DPQ1FtFgC4g--VWmcF5CQFYIzE,3902
+dominate-2.3.2.dist-info/LICENSE.txt,sha256=nM8mz-hF4OuLtYBT5HNm56traXrgEPdlCXjUtxt9H8E,7637
+dominate-2.3.2.dist-info/METADATA,sha256=tZd98EloRShR-Dlq0F8HcgqZ6ci24qLxMUtArMQi9Fw,12966
+dominate-2.3.2.dist-info/RECORD,,
+dominate-2.3.2.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+dominate-2.3.2.dist-info/top_level.txt,sha256=lkq2NuHoGLvvjfSl6OLHyLNBidBuRCf1CbUpKhH-lYY,9
