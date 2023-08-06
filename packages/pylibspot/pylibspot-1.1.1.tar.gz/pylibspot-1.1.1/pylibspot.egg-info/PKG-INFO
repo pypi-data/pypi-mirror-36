@@ -1,0 +1,12 @@
+Metadata-Version: 1.2
+Name: pylibspot
+Version: 1.1.1
+Summary: PyPI version of the python3 bindings to libspot
+Home-page: https://asiffer.github.io/libspot/
+Author: Alban Siffer
+Author-email: alban.siffer@irisa.fr
+Maintainer: Alban Siffer
+Maintainer-email: alban.siffer@irisa.fr
+License: GPL-3
+Description: Originally, libspot and its python bindings are available      through debian packages (libspot and python3-libspot on ppa:asiffer/libspot.       However, to build python applications above libspot, it is more convenient       to use only pip to manage the dependencies
+Platform: UNKNOWN
