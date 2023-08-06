@@ -1,0 +1,8 @@
+MANIFEST.in
+README.md
+call_graph.py
+setup.py
+fuzzycallgraph.egg-info/PKG-INFO
+fuzzycallgraph.egg-info/SOURCES.txt
+fuzzycallgraph.egg-info/dependency_links.txt
+fuzzycallgraph.egg-info/top_level.txt
