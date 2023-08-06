@@ -1,0 +1,189 @@
+#!/usr/bin/env python
+
+usage = "lvalert_ping blablalba"
+description = "a tool to collect uptime and message statistics for lvalert"
+author = "Alexander Pace (aep14@psu.edu)"
+
+#-------------------------------------------------
+
+# Import stuff:
+import sys
+import os
+import json
+from ligo.lvalert import sleeklvalert
+from optparse import OptionParser
+import socket
+import getpass
+import datetime
+import time
+import numpy
+#import threading
+#from multiprocessing.pool import ThreadPool
+
+#-------------------------------------------------
+
+class color:
+   PURPLE    = '\033[95m'
+   CYAN      = '\033[96m'
+   DARKCYAN  = '\033[36m'
+   BLUE      = '\033[94m'
+   GREEN     = '\033[92m'
+   YELLOW    = '\033[93m'
+   RED       = '\033[91m'
+   BOLD      = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END       = '\033[0m'
+
+def main(client=None):
+    parser = OptionParser(usage=usage, description=description)
+ 
+    parser.add_option('-s', '--server', default=False, type='string',
+            help="address of lvalert openfire server to ping")
+ 
+    parser.add_option('-u', '--user', default=False, type='string',
+            help="lvalert username")
+
+    parser.add_option('-R', '--restart', default=False, action='store_true',
+            help="option to start from previous run")
+
+    parser.add_option('-o', '--outputdir', default='~/public_html/', type='string',
+            help="output directory for status plot")
+
+    parser.add_option('-n', '--node', default=None, type='string',
+            help="lvalert node to test")
+
+    opts, args = parser.parse_args()
+
+    # Initialize the sleekxmpp session.
+    client = sleeklvalert.LVAlertClient(server=opts.server,username=opts.user)
+
+
+
+    # Define some variables and empty dictionaries:
+    global is_received
+    global latency, throughput
+
+    # Initiate and zero message counting variables.
+    global message_count, first_message_id, old_message_id
+    global old_time_obj
+    message_count=0
+    first_message_id=0
+    old_message_id=0
+    old_time_obj=datetime.datetime.utcnow()
+
+    is_received = True
+    latency=[]  
+    throughput=[]
+
+    # Open up the output file for writing.
+    #if opts.restart:
+    #    outfile = open(os.path.join(opts.outputdir,'lvalert-data.dat'),'a+')
+    #else:
+    #    outfile = open(os.path.join(opts.outputdir,'lvalert-data.dat'),'r+')
+
+
+    try:
+    	client.connect()
+    	client.process(block=False)
+    	print("Starting listener...")
+    	client.listen(on_message)
+	while True: time.sleep(5)
+	print("yay")
+    except (KeyboardInterrupt, SystemExit):
+        # Kill the client upon exiting the loop:
+        print("disconnecting...")
+        client.abort()
+
+    #Do some math:
+    np_lat = numpy.array(latency[2:])
+    np_rtp = numpy.array(throughput[2:])
+
+    print("Latency (s), average: %s, stddev: %s" % (numpy.mean(np_lat),numpy.std(np_lat)))
+    print("Throughput (kbyte/s), average: %s, stddev: %s" % (numpy.mean(np_rtp),numpy.std(np_rtp)))
+
+#-------------------------------------------------
+# callback function to respond to lvalert messages
+#-------------------------------------------------
+
+def on_message(node=None, payload=None):
+    #print("Payload received from node %s" % node) 
+    # The first thing it does when getting the message is
+    # flip the "is_received" variable so the loop continues.
+    # This reeks of a race condition, but let's run with it.
+    global is_received
+    global latency, throughput
+    global message_count, first_message_id, old_message_id
+    global old_time_obj
+
+    is_received=True
+
+    # Define the number of messages to skip. I'm hardwiring this for now.
+    nskip = 1
+
+    # Convert the payload into a json object:
+    obj = json.loads(payload)
+
+    # Get the message time from the payload as a datetime object:
+    recv_obj = datetime.datetime.strptime(obj["time"],"%Y-%m-%dT%H:%M:%S.%f")
+
+    # Calculate the latency by subtracting from the current time. 
+    latency_obj = datetime.datetime.utcnow() - recv_obj
+
+    # Get the id of the current message.
+    this_message_id = obj["id"]
+
+    # Recover the total size (in bytes) and the latency in seconds.
+    latency_s = latency_obj.total_seconds()
+    msg_size = sys.getsizeof(payload)
+    rtp = .001*msg_size/latency_s    # round-trip throughput
+
+    # Calculate actual message frequency:
+    message_frq = recv_obj - old_time_obj
+    message_frq_s = message_frq.total_seconds()
+
+    #Advance message counts and perform missed/nonsequential message checks.
+    message_count += 1
+    
+    # Hardwire in some transience. There might be a message in the queue,
+    # So if we're on the second message received, set that as the first message.
+    if (message_count == nskip + 1): first_message_id = this_message_id
+
+    # Calculate the expected number of messages we're expecting to have received.
+    expected_message_count = 1 + this_message_id - first_message_id + nskip
+    dropped_messages = expected_message_count - message_count
+    message_reliability = 100*(message_count/expected_message_count)
+
+    if (message_count > nskip):
+	warnings = ""
+	try:
+           if (message_frq_s/obj["send_frequency"] > 2.00):  # Allow for 100% message slowdown?
+		warnings = warnings + color.YELLOW + "\tPossible message slowing." + color.END
+           output = "msgid: %s\tlat: %.2f ms\tthrpt: %.2f kbyte/s\tmissed: %s/%s (%.2f%%)" + warnings   
+           print(output % (obj["id"], 1000*latency_s, rtp, dropped_messages,expected_message_count,message_reliability))
+    	except Exception as e: print(e)
+
+    #if (latency_s > obj["send_frequency"]):
+    #    print(color.YELLOW + "Latency greater than broadcast frequency. Non-sequential messages may ocur." + color.END)
+    #if (int(obj["id"]) - message_id != 1):
+    #    print(color.RED + "Warning: non-sequential message received! Possible missed message." + color.END)
+
+
+    # Save the latency, throughput, message_id, and arrival time of the 
+    # current message for the next iteration. 
+    latency.append(latency_s)
+    throughput.append(rtp)
+    old_message_id = this_message_id
+    old_time_obj = recv_obj
+
+    return
+
+#-------------------------------------------------
+# read in data and make a plot
+#-------------------------------------------------
+
+def read_and_plot(datafile=None, outdir=None):
+    return
+
+if __name__ == '__main__':
+    main(client=None)
+

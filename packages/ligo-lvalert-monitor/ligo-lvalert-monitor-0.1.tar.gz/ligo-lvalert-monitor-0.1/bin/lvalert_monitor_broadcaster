@@ -1,0 +1,146 @@
+#!/usr/bin/env python
+
+usage = "lvalert_status_broadcaster blablalba"
+description = "a tool to collect uptime and message statistics for lvalert"
+author = "Alexander Pace (aep14@psu.edu)"
+
+#-------------------------------------------------
+
+# Import stuff:
+import sys
+import os
+import json
+from ligo.lvalert import sleeklvalert
+from optparse import OptionParser
+import socket
+import getpass
+import datetime
+import time
+
+# Random character stuff:
+from random import choice
+from string import digits, ascii_lowercase
+
+#-------------------------------------------------
+
+class color:
+   PURPLE    = '\033[95m'
+   CYAN      = '\033[96m'
+   DARKCYAN  = '\033[36m'
+   BLUE      = '\033[94m'
+   GREEN     = '\033[92m'
+   YELLOW    = '\033[93m'
+   RED       = '\033[91m'
+   BOLD      = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END       = '\033[0m'
+
+def main(client=None):
+    parser = OptionParser(usage=usage, description=description)
+ 
+    parser.add_option('-s', '--server', default=False, type='string',
+            help="address of lvalert openfire server to ping")
+ 
+    parser.add_option('-u', '--user', default=False, type='string',
+            help="lvalert username")
+
+    parser.add_option('-t', '--time', default=1.0, type='float',
+            help="time in between successive pings")
+
+    parser.add_option('-R', '--restart', default=False, action='store_true',
+            help="option to start from previous run")
+
+    parser.add_option('-o', '--outputdir', default='~/public_html/', type='string',
+            help="lvalert username")
+
+    parser.add_option('-n', '--node', default=None, type='string',
+            help="lvalert node to test")
+
+    parser.add_option('-S', '--size', default=None, type='int',
+            help="size (in bytes) of additional random data to send")
+
+    opts, args = parser.parse_args()
+
+    # Construct the basic json file to send out, this doesn't contain the date or time.
+    # The date/time get slapped on right before it gets sent out.
+    jsonAlert=construct_lvalert_json(opts)
+
+    # Initialize the sleekxmpp session.
+    client = sleeklvalert.LVAlertClient(server=opts.server,username=opts.user)
+
+
+    client.connect()
+    client.process(block=False)
+    client.subscribe(opts.node)
+
+    # Define some variables and empty dictionaries:
+    global is_received
+    is_received=True
+
+    # Open up the output file for writing.
+    #if opts.restart:
+    #    outfile = open(os.path.join(opts.outputdir,'lvalert-data.dat'),'a+')
+    #else:
+    #    outfile = open(os.path.join(opts.outputdir,'lvalert-data.dat'),'r+')
+
+
+    print("starting sender...")
+    messageID=0
+    while is_received:
+        try:
+            send_json(xmpp=client, send_node=opts.node, msg=jsonAlert, msgid=messageID)
+            messageID = messageID + 1
+            time.sleep(opts.time)
+        except KeyboardInterrupt:
+            print("disconnecting...")
+            client.abort()
+            is_received=False
+            break
+
+#-------------------------------------------------
+# function to construct a json to send
+#-------------------------------------------------
+
+def construct_lvalert_json(opts):
+    # Start with a blank dictionary:
+    jsonData={}
+
+    jsonData["dest_server"]=opts.server     # destination lvalert server
+    jsonData["lvuser"]=opts.user            # lvalert username
+    jsonData["orig_server"]=socket.getfqdn()        # orgin server
+    jsonData["username"]=getpass.getuser()          # origin username
+    jsonData["send_frequency"]=opts.time         # send frequency
+
+    # Construct some random data.
+    chars = digits + ascii_lowercase
+    L = "".join([choice(chars) for i in range(opts.size)])
+
+    jsonData["send_size"]=L
+
+    # Dump and load the dictionary to a json:
+    jsonDumped=json.dumps(jsonData)
+    jsonSend=json.loads(jsonDumped)
+    return jsonSend
+
+
+#-------------------------------------------------
+# background function to send lvalert messages
+#-------------------------------------------------
+
+def send_json(send_node=None, xmpp=None, msg=None, msgid=None):
+    msg["id"] = msgid
+    msg["time"] = datetime.datetime.isoformat(datetime.datetime.utcnow())
+    print("Sending lvalert...")
+    xmpp.publish(node=send_node,msg=json.dumps(msg))
+
+
+#-------------------------------------------------
+# read in data and make a plot
+#-------------------------------------------------
+
+def read_and_plot(datafile=None, outdir=None):
+    return
+
+if __name__ == '__main__':
+    main(client=None)
+
