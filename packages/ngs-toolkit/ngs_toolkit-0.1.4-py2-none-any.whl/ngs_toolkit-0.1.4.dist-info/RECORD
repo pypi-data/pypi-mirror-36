@@ -1,0 +1,16 @@
+ngs_toolkit/__init__.py,sha256=K8kQn_Z93wYVRPT5tWPQrJhi7V9M5v3-f9myagrvJLw,47
+ngs_toolkit/_version.py,sha256=Wzf5T3NBDfhQoTnhnRNHSlAsE0XMqbclXG-M81Vas70,22
+ngs_toolkit/atacseq.py,sha256=qS8Lwl4KRgA5Xrfw-COu06UCOHRT2rpNGpFmVucbBWI,139346
+ngs_toolkit/chipseq.py,sha256=zRZKXTU_W10UcxndgMXQg96yPFaE0nmDKu85jx4eIwg,19612
+ngs_toolkit/general.py,sha256=y-UtFWQqOpSoi5_Kr34kaPLkTLk4wU28_mBTnosjD2Y,196022
+ngs_toolkit/graphics.py,sha256=8p3jOWZ7eGPRN7ZF8HhmqtSZtYdkmzqIP_rw1GOZwlE,9035
+ngs_toolkit/project_manager.py,sha256=lj7kAmtwJfU4iJGRMSVadeX8y_hVtrnayDp2MQYEbR8,9125
+ngs_toolkit/rnaseq.py,sha256=zbM4rFS57txAerWV-mYd5MPRb2KYpScGv8XdcjOgWD4,26409
+ngs_toolkit/track_manager.py,sha256=3JpwQKCEu8ZCD3B3_2WSrttAfWC8cvC6_FrDYVcyVq4,12913
+ngs_toolkit-0.1.4.dist-info/DESCRIPTION.rst,sha256=rfFxoN_usLOlQ5n1LBEa3zmYgNBEkajV76e3tUQnMUE,865
+ngs_toolkit-0.1.4.dist-info/METADATA,sha256=Fv93dZ_C9_hFRY0zXV1ON-_x2vaGK6RgEIiweBXIYyY,1914
+ngs_toolkit-0.1.4.dist-info/RECORD,,
+ngs_toolkit-0.1.4.dist-info/WHEEL,sha256=hZvi-8L6mc2COqhOUWREM_h2lvnJbaHycZt8eohtmso,92
+ngs_toolkit-0.1.4.dist-info/entry_points.txt,sha256=nPGBCXVOy79PfKIUoZnAoumBgkXtzRXmXOmrfRbgf1k,329
+ngs_toolkit-0.1.4.dist-info/metadata.json,sha256=AL-0rjuD6yxIUxjzkvKdhtcTFtmZ4XPHEQFhuFUYdzY,1895
+ngs_toolkit-0.1.4.dist-info/top_level.txt,sha256=yebNxTanNMQNQk0CIEgeinE9jbmBCXrGrLCTRkX7w_k,12
