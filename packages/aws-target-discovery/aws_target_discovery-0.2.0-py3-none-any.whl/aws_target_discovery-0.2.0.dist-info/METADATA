@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: aws-target-discovery
+Version: 0.2.0
+Summary: Discovers AWS EC2 instance targets for Prometheus
+Home-page: https://github.com/peimanja/aws_target_discovery
+Author: Peiman Jafari
+Author-email: peiman.ja@hotmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: boto3
+Requires-Dist: pyyaml
+
+UNKNOWN
+
+
