@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: nanslice
+Version: 0.9.0
+Summary: Scripts to slice and display neuroimages (probably stored in nifti format)
+Home-page: https://github.com/spinicist/nanslice
+Author: Tobias Wood
+Author-email: tobias@spinicist.org.uk
+License: MPL
+Description: UNKNOWN
+Keywords: neuroimaging nifti
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Programming Language :: Python :: 3
