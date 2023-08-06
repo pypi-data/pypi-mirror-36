@@ -1,0 +1,14 @@
+mlcrate/__init__.py,sha256=Vw21ZLieZeJH-yLY5bRERHYOBFI79E8bpIk1VTC2iRY,7054
+mlcrate/backend.py,sha256=lVQyzNmk3jj8gH3RzeeeVOvA4EMnoyvzMLKSGSfGT4Q,372
+mlcrate/ensemble.py,sha256=szmjD02JVmG6CiP7BOXtwBOZs14XanY3g2vAUI4oukQ,1647
+mlcrate/kaggle.py,sha256=F7i2xJu3k4-ByYaFwTRL1eRDr_S2CEVC07TMCx2P3Dg,683
+mlcrate/models.py,sha256=uDs6mkHIQU5-tatV7oQT8YMLRrQhqsxJaqkghGWpI2M,923
+mlcrate/time.py,sha256=vbP87QPAtWt5_m0DSJSZgSfL4wFXZnk_AQfaqkZ3N88,2901
+mlcrate/torch.py,sha256=NosFUu0wBUMcnCV5F05eHq5g9zkT0rKRtMb4sG4rWb4,3691
+mlcrate/xgb.py,sha256=aoj5wSXcmCEgrR8PUwO3wYdnr5f8GB2YhZ0ugptVklk,6969
+mlcrate-0.2.0.dist-info/DESCRIPTION.rst,sha256=_TAsG4ccuOrhv62rguenyjTdloe8ci3ycJMOnR6H1mA,13128
+mlcrate-0.2.0.dist-info/METADATA,sha256=I-OQfl7SN0g3_fR12cv8Tcch_fuXdk6EBpwAztqaaFM,13674
+mlcrate-0.2.0.dist-info/RECORD,,
+mlcrate-0.2.0.dist-info/WHEEL,sha256=Ds0ba8WsPJtjBPzEMyPOBG3qfPa6B4mlzB-vhzorIZs,97
+mlcrate-0.2.0.dist-info/metadata.json,sha256=m4Ioyz4G7KhY0X9d1uNbaWuGPtT_AxQ_nWSHrrSz20Y,713
+mlcrate-0.2.0.dist-info/top_level.txt,sha256=Jg8s0NHGY0TLjIqAK0rTXsr74GTH85DLdGgpT1UuM9A,8
