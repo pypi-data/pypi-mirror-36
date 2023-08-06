@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: pedersen-commitment-py
+Version: 0.0.1
+Summary: pedersen Commitment[Ped92]
+Home-page: https://github.com/ssuminpark/seminar
+Author: uct
+Author-email: ssuminpark.1119@gmail.com
+License: UNKNOWN
+Description: # Commitment
+        
+        It allows one to commit to chosen value while keeping it hidden to others.
+        
+        However, it can be revealed at a later time when the one opens necessary parameter.
+Keywords: crypto,pederson
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
