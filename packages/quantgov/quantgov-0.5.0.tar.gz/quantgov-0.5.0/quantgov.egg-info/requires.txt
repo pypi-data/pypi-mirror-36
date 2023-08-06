@@ -1,0 +1,17 @@
+decorator
+joblib
+pandas
+requests
+scikit-learn
+scipy
+
+[nlp]
+textblob
+nltk
+
+[s3driver]
+sqlalchemy
+boto3
+
+[testing]
+pytest-flake8
