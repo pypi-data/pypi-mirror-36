@@ -1,0 +1,9 @@
+click
+bio2bel
+bio2bel_mirbase
+tqdm
+pybel
+
+[web]
+flask
+flask-admin
