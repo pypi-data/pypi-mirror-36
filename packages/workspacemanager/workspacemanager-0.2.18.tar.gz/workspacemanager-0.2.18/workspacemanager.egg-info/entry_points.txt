@@ -1,0 +1,12 @@
+[console_scripts]
+wm-deps = workspacemanager.deps:installDeps
+wm-dist = workspacemanager.dist:generateDists
+wm-freeze = workspacemanager.freeze:dispFreeze
+wm-help = workspacemanager.help:printHelp
+wm-path = workspacemanager.path:generatePythonpath
+wm-pew = workspacemanager.venv:generateVenv
+wm-req = workspacemanager.req:installReqs
+wm-setup = workspacemanager.setup:generateSetup
+wm-subl = workspacemanager.subl:installSublReqs
+wm-workon = workspacemanager.workon:dispWorkon
+
