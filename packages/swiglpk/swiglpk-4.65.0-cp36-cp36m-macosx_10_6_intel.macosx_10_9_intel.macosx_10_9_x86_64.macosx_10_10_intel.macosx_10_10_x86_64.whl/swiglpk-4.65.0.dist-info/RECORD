@@ -1,0 +1,8 @@
+swiglpk/__init__.py,sha256=4bVoDRKGYZ3NG-6E1o7y1KNiVlfbk3jo3FlArLPkNw4,22
+swiglpk/_swiglpk.cpython-36m-darwin.so,sha256=9AqZErSUrWbU6KnPH7bwEsE5Z_L8EObmU9WONwrIZQ0,724684
+swiglpk/swiglpk.py,sha256=kblfzOL9SL4REfGZu57aqjN1OCP0gnvsaQ5ajg62Bj4,66535
+swiglpk/.dylibs/libglpk.40.dylib,sha256=rJis3eP4duLjj6HZxAg69AodnfHSHHOuhFp-VULRjhA,2560764
+swiglpk/.dylibs/libgmp.10.dylib,sha256=kYQ1jQAoHWOGF0gbmo49EraPq4NFr9fPUvH1fLzjk9k,422620
+swiglpk-4.65.0.dist-info/METADATA,sha256=9svismIiuIrP1Ma_78wcPFtwXIZ8KDUCwpLIctFhAK0,5702
+swiglpk-4.65.0.dist-info/RECORD,,
+swiglpk-4.65.0.dist-info/WHEEL,sha256=tiLeek1oNTIC85Ebac-hFGFA7V52LkBitEJ2MuLs8lo,249
