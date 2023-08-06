@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: radar5
+Version: 0.1
+Summary: Python wrapper of the RADAR5 solver for delayed differential equations (DDE).
+Home-page: https://github.com/thoduv/pyradar5
+Author: Aurélien Thorette
+Author-email: thoduv@free.fr
+License: LGPL
+Keywords: delay,differential equation,numerical,radar5,dde,integration,mathematics
+Platform: UNKNOWN
+Classifier: Topic :: Scientific/Engineering
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Intended Audience :: Science/Research
+Classifier: Development Status :: 4 - Beta
+Requires-Dist: numpy
+
+The radar5 module is a numerical solver for delay differential equations. It is a wrapper around an original FORTRAN code, that uses a colocation method on Radau nodes for an efficient integration of stiff problems. Please note that all the capabilities of the FORTRAN code are not wrapped yet. The original FORTRAN code is the work of Nicola Guglielmi and Ernst Hairer, and can be found on: http://www.unige.ch/~hairer/software.html
+
+
