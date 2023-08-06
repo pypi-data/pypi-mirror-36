@@ -1,0 +1,72 @@
+Metadata-Version: 1.1
+Name: minty_config
+Version: 0.0.4
+Summary: Retrieving of specific instance configuration and caching
+Home-page: https://gitlab.com/minty-python/minty-config
+Author: Michiel Ootjers
+Author-email: michiel@mintlab.nl
+License: EUPL license
+Description: .. _readme:
+        
+        Introduction
+        ============
+        
+        Configuration reader for Minty projects, supporting both Redis and file storage
+        backends.
+        
+        Getting started
+        ---------------
+        
+           from minty_config import Configuration
+           from minty_config.parser import ApacheConfigParser
+           from minty_config.store import FileStore, RedisStore
+        
+           store = FileStore("/etc/minty")
+           parser = ApacheConfigParser()
+           configuration = Configuration(parser=parser, store=store)
+        
+           # Will read "/etc/minty/foobar.com.conf"
+           configuration.get(name="foobar.com")
+        
+        More documentation
+        ------------------
+        
+        Please see the generated documentation via CI for more information about this
+        module and how to contribute in our online documentation. Open index.html
+        when you get there:
+        `<https://gitlab.com/minty-python/Minty Configuration/-/jobs/artifacts/master/browse/tmp/docs?job=qa>`_
+        
+        
+        Contributing
+        ------------
+        
+        Please read `CONTRIBUTING.md <https://gitlab.com/minty-python/Minty Configuration/blob/master/CONTRIBUTING.md>`_
+        for details on our code of conduct, and the process for submitting pull requests to us.
+        
+        Versioning
+        ----------
+        
+        We use `SemVer <https://semver.org/>`_ for versioning. For the versions
+        available, see the
+        `tags on this repository <https://gitlab.com/minty-python/Minty Configuration/tags/>`_
+        
+        License
+        -------
+        
+        Copyright (c) 2018, Minty Team and all persons listed in
+        :doc:`Contributors </CONTRIBUTORS>`
+        
+        This project is licensed under the EUPL, v1.2. See the
+        `EUPL-1.2.txt <https://gitlab.com/minty-python/Minty Configuration/blob/master/LICENSE>`_
+        file for details.
+        
+        
+        
+Keywords: minty_config
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
