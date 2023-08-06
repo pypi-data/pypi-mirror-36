@@ -1,0 +1,8 @@
+alembic
+flask
+flask-cors
+flask-jwt-simple
+python-dateutil
+sqlalchemy
+sqlalchemy-utils
+werkzeug
