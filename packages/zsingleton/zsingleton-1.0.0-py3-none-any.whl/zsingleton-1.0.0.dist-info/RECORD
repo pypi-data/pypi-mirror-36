@@ -1,0 +1,8 @@
+zsingleton/__init__.py,sha256=A8wq73TA2zUl8RmQp1-HF7tBR9QL0utXANomNcKS0BQ,274
+zsingleton/singleton_base.py,sha256=ty0Jj0BCpXJfbfHH5l4LjED-LaAkveV5DQTATGu_NH0,887
+zsingleton/singleton_decorator.py,sha256=XVmWR_cccCjAJ0_FA5c5JIJQDtOP0ls3HABrHSJ-JlQ,879
+zsingleton/singleton_metaclass.py,sha256=vXYtTuZqBCnJBNJ-XLJr_Y_1-tZSK33P987781a2BfQ,923
+zsingleton-1.0.0.dist-info/METADATA,sha256=9ntDIcu-ORIZTuAXntqzP2jXtqmYz_UFiHFYIfxFMBA,730
+zsingleton-1.0.0.dist-info/RECORD,,
+zsingleton-1.0.0.dist-info/WHEEL,sha256=cScVKDQXc_cp1jHmxFDq9fIOIg17a2BsmfS6J39H6Eo,97
+zsingleton-1.0.0.dist-info/top_level.txt,sha256=nIJQW-1Eitxj-Oem_oVDbeP9LecA3usRLt2wGAbQj5U,11

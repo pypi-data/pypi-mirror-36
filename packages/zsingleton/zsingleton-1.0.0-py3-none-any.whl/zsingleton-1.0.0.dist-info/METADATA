@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: zsingleton
+Version: 1.0.0
+Summary: 单例模式常用包,包括三种单例实现方式, 1:基类继承, 2:装饰器, 3:元类metaclass
+Home-page: https://pypi.org/
+Author: zlyuan
+Author-email: 1277260932@qq.com
+License: GNU GENERAL PUBLIC LICENSE
+Platform: all
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+
+单例模式常用包
+
+包括三种单例实现方式:
+    1:基类继承
+    2:装饰器
+    3:元类metaclass'
+
