@@ -1,0 +1,699 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>qmpy.materials.entry &#8212; qmpy 1.1.0a documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.1.0a',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for qmpy.materials.entry</h1><div class="highlight"><pre>
+<span></span><span class="c1"># qmpy/materials/entry.py</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="k">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="k">import</span> <span class="n">transaction</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+
+<span class="kn">from</span> <span class="nn">qmpy.db.custom</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">qmpy.materials.composition</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">qmpy.materials.element</span> <span class="k">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">Species</span>
+<span class="kn">from</span> <span class="nn">qmpy.materials.structure</span> <span class="k">import</span> <span class="n">Structure</span><span class="p">,</span> <span class="n">StructureError</span>
+<span class="kn">from</span> <span class="nn">qmpy.utils</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">qmpy.computing.resources</span> <span class="k">import</span> <span class="n">Project</span>
+<span class="kn">from</span> <span class="nn">qmpy.data.meta_data</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">qmpy.io</span> <span class="k">as</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">qmpy.computing.scripts</span> <span class="k">as</span> <span class="nn">scripts</span>
+<span class="kn">import</span> <span class="nn">qmpy.analysis.vasp</span> <span class="k">as</span> <span class="nn">vasp</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+<span class="n">k_desc</span> <span class="o">=</span> <span class="s1">&#39;Descriptive keyword for looking up entries&#39;</span>
+<span class="n">h_desc</span> <span class="o">=</span> <span class="s1">&#39;A note indicating a reason the entry should not be calculated&#39;</span>
+<div class="viewcode-block" id="Entry"><a class="viewcode-back" href="../../../materials.html#qmpy.Entry">[docs]</a><span class="nd">@add_meta_data</span><span class="p">(</span><span class="s1">&#39;keyword&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">k_desc</span><span class="p">)</span>
+<span class="nd">@add_meta_data</span><span class="p">(</span><span class="s1">&#39;hold&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">h_desc</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Entry</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for a database entry.</span>
+
+<span class="sd">    The core model for typical database entries. An Entry model represents an</span>
+<span class="sd">    input structure to the database, and can be created from any input file.</span>
+<span class="sd">    The Entry also ties together all of the associated :mod:`qmpy.Structure`,</span>
+<span class="sd">    :mod:`qmpy.Calculation`, :mod:`qmpy.Reference`,</span>
+<span class="sd">    :mod:`qmpy.FormationEnergies`, and other associated databas entries.</span>
+
+<span class="sd">    Relationships:</span>
+<span class="sd">        | :mod:`~qmpy.Calculation` via calculation_set</span>
+<span class="sd">        | :mod:`~qmpy.DOS` via dos_set</span>
+<span class="sd">        | :mod:`~qmpy.Entry` via duplicate_of</span>
+<span class="sd">        | :mod:`~qmpy.Entry` via duplicates</span>
+<span class="sd">        | :mod:`~qmpy.Element` via element_set</span>
+<span class="sd">        | :mod:`~qmpy.FormationEnergy` via formationenergy_set</span>
+<span class="sd">        | :mod:`~qmpy.Job` via job_set</span>
+<span class="sd">        | :mod:`~qmpy.MetaData` via meta_data</span>
+<span class="sd">        | :mod:`~qmpy.Project` via project_set</span>
+<span class="sd">        | :mod:`~qmpy.Prototype` via prototype</span>
+<span class="sd">        | :mod:`~qmpy.Species` via species_set</span>
+<span class="sd">        | :mod:`~qmpy.Structure` via structure_set</span>
+<span class="sd">        | :mod:`~qmpy.Task` via task_set</span>
+<span class="sd">        | :mod:`~qmpy.Reference` via reference</span>
+<span class="sd">        | :mod:`~qmpy.Composition` via composition</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        | id: Primary key (auto-incrementing int)</span>
+<span class="sd">        | label: An identifying name for the structure. e.g. icsd-1001 or A3</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">### structure properties</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">meta_data</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">&#39;MetaData&#39;</span><span class="p">)</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1">### record keeping</span>
+    <span class="n">duplicate_of</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Entry&#39;</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;duplicates&#39;</span><span class="p">,</span>
+            <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ntypes</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">natoms</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1">### links</span>
+    <span class="n">element_set</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">&#39;Element&#39;</span><span class="p">)</span>
+    <span class="n">species_set</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">&#39;Species&#39;</span><span class="p">)</span>
+    <span class="n">project_set</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="s1">&#39;Project&#39;</span><span class="p">)</span>
+    <span class="n">composition</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Composition&#39;</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">reference</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Reference&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">prototype</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;Prototype&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">app_label</span> <span class="o">=</span> <span class="s1">&#39;qmpy&#39;</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;entries&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> - </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Entry.save"><a class="viewcode-back" href="../../../materials.html#qmpy.Entry.save">[docs]</a>    <span class="nd">@transaction</span><span class="o">.</span><span class="n">atomic</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Saves the Entry, as well as all associated objects.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="o">.</span><span class="n">id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">reference</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Entry</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_structures</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">v</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">k</span>
+                <span class="n">v</span><span class="o">.</span><span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span>
+                <span class="n">v</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="c1">#self.structure_set = self.structures.values()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculations</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculations</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">v</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">k</span>
+                <span class="n">v</span><span class="o">.</span><span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span>
+                <span class="n">v</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="c1">#self.calculation_set = self.calculations.values()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">element_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_species</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">species_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">species</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projects</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">project_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">projects</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keywords</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_holds</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">meta_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hold_objects</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyword_objects</span></div>
+
+<div class="viewcode-block" id="Entry.create"><a class="viewcode-back" href="../../../materials.html#qmpy.Entry.create">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">keywords</span><span class="o">=</span><span class="p">[],</span> <span class="n">projects</span><span class="o">=</span><span class="p">[],</span> <span class="n">prototype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Attempts to create an Entry object from a provided input file.</span>
+
+<span class="sd">        Processed in the following way:</span>
+
+<span class="sd">        #. If an Entry exists at the specified path, returns that Entry.</span>
+<span class="sd">        #. Create an Entry, and assign all fundamental attributes. (natoms,</span>
+<span class="sd">           ntypes, input, path, elements, keywords, projects).</span>
+<span class="sd">        #. If the input file is a CIF, and because CIF files have additional</span>
+<span class="sd">           composition and reference information, if that file format is</span>
+<span class="sd">           found, an additional test is performed to check that the reported</span>
+<span class="sd">           composition matches the composition of the resulting structure. The</span>
+<span class="sd">           reference for the work is also created and assigned to the entry.</span>
+<span class="sd">        #. Attempt to identify another entry that this is either exactly</span>
+<span class="sd">           equivalent to, or a defect cell of.</span>
+
+<span class="sd">        Keywords:</span>
+<span class="sd">            keywords: list of keywords to associate with the entry.</span>
+<span class="sd">            projects: list of project names to associate with the entry.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">source_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">source_file</span><span class="p">)</span>
+
+        <span class="c1"># Step 1</span>
+        <span class="k">if</span> <span class="n">Entry</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">Entry</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="c1"># Step 2</span>
+        <span class="n">entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">structure</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">source_file</span><span class="p">)</span>
+        <span class="n">structure</span><span class="o">.</span><span class="n">make_primitive</span><span class="p">()</span>
+        <span class="n">entry</span><span class="o">.</span><span class="n">source_file</span> <span class="o">=</span> <span class="n">source_file</span>
+        <span class="n">entry</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">source_file</span><span class="p">)</span>
+        <span class="n">entry</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">structure</span>
+        <span class="n">entry</span><span class="o">.</span><span class="n">ntypes</span> <span class="o">=</span> <span class="n">structure</span><span class="o">.</span><span class="n">ntypes</span>
+        <span class="n">entry</span><span class="o">.</span><span class="n">natoms</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">structure</span><span class="o">.</span><span class="n">sites</span><span class="p">)</span>
+        <span class="n">entry</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">comp</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">entry</span><span class="o">.</span><span class="n">composition</span> <span class="o">=</span> <span class="n">Composition</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">structure</span><span class="o">.</span><span class="n">comp</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">:</span>
+            <span class="n">entry</span><span class="o">.</span><span class="n">add_keyword</span><span class="p">(</span><span class="n">kw</span><span class="p">)</span>
+        <span class="n">entry</span><span class="o">.</span><span class="n">projects</span> <span class="o">=</span> <span class="n">projects</span>
+        <span class="n">entry</span><span class="o">.</span><span class="n">prototype</span> <span class="o">=</span> <span class="n">prototype</span>
+
+        <span class="c1"># Step 3</span>
+        <span class="n">c1</span> <span class="o">=</span> <span class="n">structure</span><span class="o">.</span><span class="n">composition</span>
+        <span class="k">if</span> <span class="s1">&#39;cif&#39;</span> <span class="ow">in</span> <span class="n">source_file</span><span class="p">:</span>
+            <span class="n">c2</span> <span class="o">=</span> <span class="n">structure</span><span class="o">.</span><span class="n">reported_composition</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">c1</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">c2</span><span class="p">,</span> <span class="mf">5e-2</span><span class="p">):</span>
+                <span class="n">entry</span><span class="o">.</span><span class="n">add_hold</span><span class="p">(</span><span class="s2">&quot;composition mismatch in cif&quot;</span><span class="p">)</span>
+                <span class="n">entry</span><span class="o">.</span><span class="n">composition</span> <span class="o">=</span> <span class="n">c2</span>
+            <span class="n">entry</span><span class="o">.</span><span class="n">reference</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">cif</span><span class="o">.</span><span class="n">read_reference</span><span class="p">(</span><span class="n">source_file</span><span class="p">)</span>
+
+        <span class="c1"># check for perfect crystals</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span> <span class="n">s</span><span class="o">.</span><span class="n">partial</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">structure</span><span class="o">.</span><span class="n">sites</span> <span class="p">]):</span>
+            <span class="n">dup</span> <span class="o">=</span> <span class="n">Entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">structure</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">dup</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">entry</span><span class="o">.</span><span class="n">duplicate_of</span> <span class="o">=</span> <span class="n">dup</span>
+                <span class="n">entry</span><span class="o">.</span><span class="n">add_hold</span><span class="p">(</span><span class="s1">&#39;duplicate&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">entry</span>
+
+        <span class="c1"># detect solid solution</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">([</span> <span class="n">s</span><span class="o">.</span><span class="n">occupancy</span> <span class="o">&gt;</span> <span class="mf">0.99</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">structure</span><span class="o">.</span><span class="n">sites</span> <span class="p">]):</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">([</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">structure</span><span class="o">.</span><span class="n">sites</span> <span class="p">]):</span>
+                <span class="n">entry</span><span class="o">.</span><span class="n">add_keyword</span><span class="p">(</span><span class="s1">&#39;solid solution&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">([</span> <span class="n">s</span><span class="o">.</span><span class="n">partial</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">structure</span><span class="o">.</span><span class="n">sites</span> <span class="p">]):</span>
+            <span class="n">entry</span><span class="o">.</span><span class="n">add_hold</span><span class="p">(</span><span class="s1">&#39;partial occupancy&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">entry</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">structure</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">structure</span><span class="p">,</span> <span class="n">Structure</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">Entry</span><span class="o">.</span><span class="n">search_by_structure</span><span class="p">(</span><span class="n">structure</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">search_by_structure</span><span class="p">(</span><span class="n">structure</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">Composition</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">structure</span><span class="o">.</span><span class="n">comp</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">entries</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">structure</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">e</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">_elements</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List of Elements&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span> <span class="o">=</span> <span class="p">[</span> <span class="n">Element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">comp</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span>
+
+    <span class="nd">@elements</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elements</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span> <span class="o">=</span> <span class="p">[</span> <span class="n">Element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">elements</span> <span class="p">]</span>
+
+    <span class="n">_species</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">species</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List of Species&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_species</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_species</span> <span class="o">=</span> <span class="p">[</span> <span class="n">Species</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">spec_comp</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_species</span>
+
+    <span class="nd">@species</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_species</span> <span class="o">=</span> <span class="p">[</span> <span class="n">Species</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">species</span> <span class="p">]</span>
+
+    <span class="n">_projects</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">projects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List of Projects&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projects</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_projects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project_set</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projects</span>
+
+    <span class="nd">@projects</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">projects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projects</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_projects</span> <span class="o">=</span> <span class="p">[</span> <span class="n">Project</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">projects</span> <span class="p">]</span>
+
+    <span class="n">_structures</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">structures</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_structures</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_structures</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">structs</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">structure_set</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+                    <span class="n">structs</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_structures</span> <span class="o">=</span> <span class="n">structs</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_structures</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">structures</span>
+
+    <span class="nd">@structures</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">structures</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">structs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">structs</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;structures must be a dict&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">Structure</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">structs</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;structures must be a dict of Calculations&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_structures</span> <span class="o">=</span> <span class="n">structs</span>
+
+    <span class="nd">@structures</span><span class="o">.</span><span class="n">deleter</span>
+    <span class="k">def</span> <span class="nf">structures</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">struct</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_structures</span><span class="p">[</span><span class="n">struct</span><span class="p">]</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_structures</span><span class="p">[</span><span class="n">struct</span><span class="p">]</span>
+
+
+    <span class="n">_calculations</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">calculations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Dictionary of label:Calculation pairs.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculations</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_calculations</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">calcs</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculation_set</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+                    <span class="n">calcs</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_calculations</span> <span class="o">=</span> <span class="n">calcs</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculations</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">calculations</span>
+
+    <span class="nd">@calculations</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">calculations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calcs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">calcs</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;calculations must be a dict&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">vasp</span><span class="o">.</span><span class="n">Calculation</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">calcs</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;calculations must be a dict of Calculations&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_calculations</span> <span class="o">=</span> <span class="n">calcs</span>
+
+    <span class="nd">@calculations</span><span class="o">.</span><span class="n">deleter</span>
+    <span class="k">def</span> <span class="nf">calculations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calc</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_calculations</span><span class="p">[</span><span class="n">calc</span><span class="p">]</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculations</span><span class="p">[</span><span class="n">calc</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">structure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;final&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="p">[</span><span class="s1">&#39;final&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="s1">&#39;relaxed&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="p">[</span><span class="s1">&#39;relaxed&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="s1">&#39;relaxation&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="p">[</span><span class="s1">&#39;relaxation&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="s1">&#39;standard&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="p">[</span><span class="s1">&#39;standard&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="s1">&#39;fine_relax&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="p">[</span><span class="s1">&#39;fine_relax&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="nd">@input</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">structure</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">structures</span><span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">structure</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_set</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">jobs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">job_set</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">comp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">composition_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">parse_comp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">composition_id</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">comp</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">spec_comp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Composition dictionary, using species (element + oxidation state)</span>
+<span class="sd">        instead of just the elements.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">spec_comp</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">unit_comp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Composition dictionary, normalized to 1 atom.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">unit_comp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">comp</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">red_comp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Composition dictionary, in reduced form.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">reduce_comp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">comp</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Unformatted name&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">format_comp</span><span class="p">(</span><span class="n">reduce_comp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">comp</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">latex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;LaTeX formatted name&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">format_latex</span><span class="p">(</span><span class="n">reduce_comp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">comp</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">html</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;HTML formatted name&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">format_html</span><span class="p">(</span><span class="n">reduce_comp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">comp</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">proto_label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#if not self.prototype is None:</span>
+        <span class="c1">#    return self.prototype.name</span>
+        <span class="n">protos</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">duplicates</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">e</span><span class="o">.</span><span class="n">prototype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">protos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">protos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">protos</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">protos</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">protos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">protos</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the set of elements in the input structure.</span>
+
+<span class="sd">        Examples::</span>
+
+<span class="sd">            &gt;&gt;&gt; e = Entry.create(&quot;fe2o3/POSCAR&quot;) # an input containing Fe2O3</span>
+<span class="sd">            &gt;&gt;&gt; e.space</span>
+<span class="sd">            set([&quot;Fe&quot;, &quot;O&quot;])</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">([</span> <span class="n">e</span><span class="o">.</span><span class="n">symbol</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">])</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">total_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If the structure has been relaxed, returns the formation energy of the</span>
+<span class="sd">        final relaxed structure. Otherwise, returns None.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">es</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="s1">&#39;static&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculations</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculations</span><span class="p">[</span><span class="s1">&#39;static&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">converged</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculations</span><span class="p">[</span><span class="s1">&#39;static&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">energy_pa</span>
+                <span class="c1">#es.append(self.calculations[&#39;static&#39;].energy_pa)</span>
+        <span class="k">if</span> <span class="s1">&#39;standard&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculations</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculations</span><span class="p">[</span><span class="s1">&#39;standard&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">converged</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculations</span><span class="p">[</span><span class="s1">&#39;standard&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">energy_pa</span>
+                <span class="c1">#es.append(self.calculations[&#39;standard&#39;].energy_pa)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">es</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="c1">#else:</span>
+        <span class="c1">#    return min(es)</span>
+
+    <span class="n">_energy</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If the structure has been relaxed, returns the formation energy of the</span>
+<span class="sd">        final relaxed structure. Otherwise, returns None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_energy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">formationenergy_set</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;delta_e&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fes</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_energy</span> <span class="o">=</span> <span class="n">fes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delta_e</span>
+            <span class="c1">#if &#39;static&#39; in self.calculations:</span>
+            <span class="c1">#    if self.calculations[&#39;static&#39;].converged:</span>
+            <span class="c1">#        de = self.calculations[&#39;static&#39;].formation_energy()</span>
+            <span class="c1">#        self._energy = de</span>
+            <span class="c1">#elif &#39;standard&#39; in self.calculations:</span>
+            <span class="c1">#    if self.calculations[&#39;standard&#39;].converged:</span>
+            <span class="c1">#        de = self.calculations[&#39;standard&#39;].formation_energy()</span>
+            <span class="c1">#        self._energy = de</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_energy</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">stable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">forms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">formationenergy_set</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">)</span>
+        <span class="n">forms</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">stability</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">forms</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">([</span> <span class="n">f</span><span class="o">.</span><span class="n">stability</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">forms</span> <span class="p">])</span>
+        
+
+    <span class="n">_history</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">history_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculation_set</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+                <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">input</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">output</span><span class="p">,</span> <span class="nb">object</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="o">=</span> <span class="n">G</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_history</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">history</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="s1">&#39;static&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculations</span><span class="p">:</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculations</span><span class="p">[</span><span class="s1">&#39;static&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="s1">&#39;standard&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculations</span><span class="p">:</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculations</span><span class="p">[</span><span class="s1">&#39;standard&#39;</span><span class="p">]</span>
+        <span class="k">while</span> <span class="n">step</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">vasp</span><span class="o">.</span><span class="n">Calculation</span><span class="p">):</span>
+                <span class="n">step</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;calculation&#39;</span>
+                <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+                <span class="n">step</span> <span class="o">=</span> <span class="n">step</span><span class="o">.</span><span class="n">input</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">Structure</span><span class="p">):</span>
+                <span class="n">step</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;structure&#39;</span>
+                <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">step</span> <span class="o">=</span> <span class="n">step</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">step</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">steps</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">spacegroup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">structure</span><span class="o">.</span><span class="n">spacegroup</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the mass of the entry, normalized to per atom.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">Element</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="n">elt</span><span class="p">)</span><span class="o">.</span><span class="n">mass</span><span class="o">*</span><span class="n">amt</span> <span class="k">for</span> 
+                <span class="n">elt</span><span class="p">,</span> <span class="n">amt</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_comp</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If the entry has gone through relaxation, returns the relaxed</span>
+<span class="sd">        volume. Otherwise, returns the input volume.</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">relaxed</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">relaxed</span><span class="o">.</span><span class="n">volume</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">natoms</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">volume</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">natoms</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List of errors encountered in all calculations.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span> <span class="p">(</span> <span class="n">c</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">calculation_set</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">chg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Attempts to load the charge density of the final calculation, if it is</span>
+<span class="sd">        done. If not, returns False.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_chg&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_chg</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_chg</span> <span class="o">=</span> <span class="n">Grid</span><span class="o">.</span><span class="n">load_xdensity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">+</span><span class="s1">&#39;/standard/CHGCAR.gz&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chg</span>
+
+<div class="viewcode-block" id="Entry.do"><a class="viewcode-back" href="../../../materials.html#qmpy.Entry.do">[docs]</a>    <span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Looks for a computing script matching the first argument, and attempts</span>
+<span class="sd">        to run it with itself as the first argument. Sends args and kwargs</span>
+<span class="sd">        to the script. Should return a Calculation object, or list of</span>
+<span class="sd">        Calculation objects. </span>
+
+<span class="sd">        Examples::</span>
+
+<span class="sd">            &gt;&gt;&gt; e = Entry.objects.get(id=123)</span>
+<span class="sd">            &gt;&gt;&gt; e.do(&#39;relaxation&#39;)</span>
+<span class="sd">            &lt;Calculation: 523 @ relaxation settings&gt;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">scripts</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Entry.move"><a class="viewcode-back" href="../../../materials.html#qmpy.Entry.move">[docs]</a>    <span class="nd">@transaction</span><span class="o">.</span><span class="n">atomic</span>
+    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Moves all calculation files to the specified path.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;mv </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">err</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">old_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
+        <span class="n">old_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">old_path</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)))</span>
+        <span class="n">en_newpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">old_base</span><span class="p">)</span>
+        <span class="n">Entry</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">en_newpath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="c1">#labels = [ c.label.strip(&#39;_[0-9]&#39;) for c in self.calculation_set.all() ]</span>
+        <span class="k">for</span> <span class="n">calc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculation_set</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="n">calc_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">calc</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">calc_base</span> <span class="o">!=</span> <span class="n">calc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;_[0-9]&#39;</span><span class="p">):</span>
+                <span class="n">calc_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">calc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;_[0-9]&#39;</span><span class="p">),</span> <span class="n">calc_base</span><span class="p">)</span>
+            <span class="n">newpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">calc_base</span><span class="p">)</span>
+            <span class="c1">#newpath = calc.path.replace(old_path, path)</span>
+            <span class="n">vasp</span><span class="o">.</span><span class="n">Calculation</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">calc</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">newpath</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Moved </span><span class="si">%s</span><span class="s1"> to </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_set</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">todo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_set</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">wipe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">structure_set</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;input&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculation_set</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_set</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Entry.reset"><a class="viewcode-back" href="../../../materials.html#qmpy.Entry.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Deletes all calculations, removes all associated structures - returns</span>
+<span class="sd">        the entry to a pristine state.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">structure_set</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;input&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_structures</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculation_set</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_calculations</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="mi">0</span> 
+            <span class="n">task</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_set</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">job</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+            <span class="n">job</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_set</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="nb">dir</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">dir</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;rm -rf </span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1"> &amp;&gt; /dev/null&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="nb">dir</span><span class="p">)</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;rm -rf </span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1"> &amp;&gt; /dev/null&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="nb">dir</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Entry.visualize"><a class="viewcode-back" href="../../../materials.html#qmpy.Entry.visualize">[docs]</a>    <span class="k">def</span> <span class="nf">visualize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="s1">&#39;source&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Attempts to open the input structure for visualization using VESTA&quot;&quot;&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;VESTA </span><span class="si">%s</span><span class="s1">/POSCAR&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span></div></div>
+
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">qmpy 1.1.0a documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, Scott Kirklin.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+    </div>
+  </body>
+</html>
