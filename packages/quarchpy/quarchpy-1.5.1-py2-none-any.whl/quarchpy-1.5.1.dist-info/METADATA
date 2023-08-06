@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: quarchpy
+Version: 1.5.1
+Summary: This packpage offers Python support for Quarch Technology modules. 
+
+v1.5 supports FIO integration: imports and parses FIO configurations file, run a test and parse the results.
+v1.5.1 Correct bugs.
+Home-page: UNKNOWN
+Author: Quarch Technology ltd
+Author-email: support@quarch.com
+License: Quarch Technology ltd
+Description: UNKNOWN
+Keywords: quarch quarchpy torridon
+Platform: UNKNOWN
