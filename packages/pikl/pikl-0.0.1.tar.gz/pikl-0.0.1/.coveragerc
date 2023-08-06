@@ -1,0 +1,6 @@
+[run]
+branch = True
+source = pikl
+
+[report]
+precision = 2
