@@ -1,0 +1,32 @@
+Installation
+
+Prerequisite:
+  * gcc (http://gcc.gnu.org/)
+  * python2.7 (http://www.python.org/getit/releases/2.7/)
+  * numpy (http://numpy.scipy.org/)
+  * cython (http://cython.org/)
+  * Xcode (https://developer.apple.com/xcode/) Mac OS only. Note: all command line tools need to be installed.
+
+Installation using pip (Please note: To avoid name collision, we register "epidaurus" as "epiprofile" on pypi.org, since another pacakge already used "epidaurus".):
+
+$ pip install epiprofile	#do NOT use "pip install epidaurus", you will install a different pacakge. 
+
+Installation from source code:
+
+$ tar zxf epiprofile-VERSION.tar.gz
+
+$ cd epiprofile-VERSION
+
+$ python setup.py install
+
+
+Run epidaurus example:
+
+$ python(v2.7) epidaurus.py  CONFIG_FILE  BED_FILE OUT_PREFIX 
+
+Online Manual:
+
+http://epidaurus.sourceforge.net/
+
+Contact:
+Liguo Wang, wang.liguo@mayo.edu
