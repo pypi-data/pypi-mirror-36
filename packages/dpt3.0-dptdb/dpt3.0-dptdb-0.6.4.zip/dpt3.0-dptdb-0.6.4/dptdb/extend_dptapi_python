@@ -1,0 +1,79 @@
+%extend dpt::APIRecordList {
+
+    // Add the & ^ | &= ^= |= operators implemented with Place and Remove.
+    // __and__ __xor__ __or__ __iand__ __ixor__ and __ior__ in other words.
+
+    dpt::APIRecordList __and__(dpt::APIRecordList &other) {
+
+        return other;
+
+    }
+
+    dpt::APIRecordList __xor__(dpt::APIRecordList &other) {
+
+        return other;
+
+    }
+
+    dpt::APIRecordList __or__(dpt::APIRecordList &other) {
+
+        return other;
+
+    }
+
+    dpt::APIRecordList* __iand__(dpt::APIRecordList &other) {
+
+        dpt::APIRecordList *s;
+        s = new dpt::APIRecordList(other);
+        s->Remove(other);
+        $self->Remove(*s);
+        delete s;
+        s = NULL;
+        return $self;
+
+    }
+
+    dpt::APIRecordList* __ixor__(dpt::APIRecordList &other) {
+
+        dpt::APIRecordList *s;
+        s = new dpt::APIRecordList(other);
+        s->Remove(*($self));
+        $self->Remove(other);
+        $self->Place(*s);
+        delete s;
+        s = NULL;
+        return $self;
+
+    }
+
+    dpt::APIRecordList* __ior__(dpt::APIRecordList &other) {
+
+        $self->Place(other);
+        return $self;
+
+    }
+
+};
+
+%pythonprepend dpt::APIRecordList::__and__(dpt::APIRecordList &other) %{
+    newlist = APIRecordList(self)
+    s = APIRecordList(self)
+    s.Remove(other)
+    newlist.Remove(s)
+    other = newlist
+%}
+
+%pythonprepend dpt::APIRecordList::__xor__(dpt::APIRecordList &other) %{
+    newlist = APIRecordList(self)
+    newlist.Remove(other)
+    s = APIRecordList(other)
+    s.Remove(self)
+    newlist.Place(s)
+    other = newlist
+%}
+
+%pythonprepend dpt::APIRecordList::__or__(dpt::APIRecordList &other) %{
+    newlist = APIRecordList(self)
+    newlist.Place(other)
+    other = newlist
+%}
