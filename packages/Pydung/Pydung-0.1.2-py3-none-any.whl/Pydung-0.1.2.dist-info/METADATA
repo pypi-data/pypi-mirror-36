@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: Pydung
+Version: 0.1.2
+Summary: An experimental, 3D terminal game. 'Nuff said.
+Home-page: UNKNOWN
+Author: Gustavo6046
+Author-email: gugurehermann@gmail.com
+License: MIT
+Keywords: terminal 3d game experiment
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# Pydung
+
+**An experimental 3D console game.**
+
+![Short film of it.](https://i.imgur.com/wy8kN8S.gif)
+
+## Running
+After installing the game via pip, to run, simply perform the following
+command:
+
+    python -m pydung
+
+## Controls
+* **Move:** Arrow keys/WASD
+* **Jump:** Ctrl/Spacebar
+* **Sprint:** Z
+* **Quit:** Q
+* **Reset:** R
+* **Zero Gravity:** G
+
