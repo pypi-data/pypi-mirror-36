@@ -1,0 +1,7 @@
+prettytable
+ipykernel
+
+[test]
+pytest
+pytest-pep8
+pytest-flakes
