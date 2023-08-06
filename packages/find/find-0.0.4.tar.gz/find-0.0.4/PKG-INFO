@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: find
+Version: 0.0.4
+Summary: find files and dirs
+Home-page: https://github.com/looking-for-a-job/find.py
+License: UNKNOWN
+Description: [![](https://img.shields.io/pypi/pyversions/find.svg?longCache=True)](https://pypi.org/pypi/find/)
+        
+        ### Install
+        ```bash
+        $ [sudo] pip install find
+        ```
+        
+        ### Examples
+        ```python
+        >>> import find
+        
+        >>> find.files(".")
+        ['./README.md', './requirements.txt','./setup.py','package/__init_.py',...]
+        
+        >>> find.dirs(".")
+        ['./package','./tests',...]
+        ```
+        
+        find in multiple paths
+        ```python
+        >>> find.files(["/usr/local/etc", "/usr/local/var"])
+        >>> find.dirs(["/usr/local/etc", "/usr/local/var"])
+        ```
+Keywords: find
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: System :: Filesystems
+Requires: public
+Requires: setuptools
+Description-Content-Type: text/markdown
