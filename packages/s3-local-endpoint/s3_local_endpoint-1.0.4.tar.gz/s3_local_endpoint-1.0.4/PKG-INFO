@@ -1,0 +1,29 @@
+Metadata-Version: 1.2
+Name: s3_local_endpoint
+Version: 1.0.4
+Summary: Library used as an S3 gateway abstraction over boto3 library.
+Home-page: https://git.unistra.fr/di/cesar/s3_local_endpoint.git
+Author: di-dip-unistra
+Author-email: dnum-dip@unistra.fr
+Maintainer: di-dip-unistra
+Maintainer-email: dnum-dip@unistra.fr
+License: GPLv3
+Description: ********************
+        s3_local_endpoint
+        ********************
+        
+        Abstract
+        ####################
+        
+        Library used as an S3 gateway abstraction over boto3 library.
+        
+        .. image:: https://git.unistra.fr/di/cesar/s3_local_endpoint/badges/develop/pipeline.svg
+           :target: https://git.unistra.fr/di/cesar/s3_local_endpoint/commits/develop
+           :alt: develop branch pipeline
+        
+        .. image:: https://git.unistra.fr/di/cesar/s3_local_endpoint/badges/develop/coverage.svg
+           :target: https://git.unistra.fr/di/cesar/s3_local_endpoint/commits/develop
+           :alt: develop branch coverage
+        
+Keywords: s3,Université de Strasbourg
+Platform: UNKNOWN
