@@ -1,0 +1,19 @@
+# we want to make sure it is run on trusty where sudo is provided for postgres
+dist: trusty
+language: python
+python: 3.6-dev
+sudo: required
+
+services:
+  - redis-server
+
+cache:
+  directories:
+    - eggs
+install:
+  - pip install -e .[test]
+script:
+  - pytest -s --cov=guillotina_rediscache -v --cov-report term-missing guillotina_rediscache
+after_success:
+  - pip install coveralls
+  - coveralls
