@@ -1,0 +1,9 @@
+README.md
+setup.py
+django_xlspopulator/__init__.py
+django_xlspopulator/populator.py
+django_xlspopulator.egg-info/PKG-INFO
+django_xlspopulator.egg-info/SOURCES.txt
+django_xlspopulator.egg-info/dependency_links.txt
+django_xlspopulator.egg-info/requires.txt
+django_xlspopulator.egg-info/top_level.txt
