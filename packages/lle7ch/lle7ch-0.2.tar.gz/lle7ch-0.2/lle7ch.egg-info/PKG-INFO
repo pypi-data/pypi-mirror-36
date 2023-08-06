@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: lle7ch
+Version: 0.2
+Summary: Controls SOLA light engine.
+Home-page: https://github.com/TRSasasusu/PyLumencorLightEngine7Channel
+Author: kaito kishi
+Author-email: trsasasusu@gmail.com
+License: GPLv3
+Description: UNKNOWN
+Keywords: biology,life sciences,light,LED,SOLA light engine,Lumencor
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Visualization
