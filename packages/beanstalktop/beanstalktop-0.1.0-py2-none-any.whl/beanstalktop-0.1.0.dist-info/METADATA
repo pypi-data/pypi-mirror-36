@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: beanstalktop
+Version: 0.1.0
+Summary: A simple, top-like monitoring tool for beanstalkd
+Home-page: https://github.com/OldhamMade/beanstalktop
+Author: Phillip B Oldham
+Author-email: UNKNOWN
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: beanstalkc
+Requires-Dist: PyYAML
+
+beanstalktop
+============
+
+DESCRIPTION
+-----------
+
+beanstalktop is a simple, top-like UI for monitoring beanstalkd_ servers.
+
+**NOTE:** This project is no longer under active development, however PRs
+are welcome and will be reviewed and merged as quickly as possible.
+
+
+TO DO
+-----
+
+- Sortable columns
+- Multiple host support
+- Better colours
+
+.. _beanstalkd: http://kr.github.io/beanstalkd/
+
+
