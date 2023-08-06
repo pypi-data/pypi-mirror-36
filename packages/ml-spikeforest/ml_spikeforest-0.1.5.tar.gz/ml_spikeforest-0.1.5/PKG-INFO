@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: ml_spikeforest
+Version: 0.1.5
+Summary: MountainLab package with spike sorting utilities
+Home-page: https://github.com/magland/ml_spikeforest
+Author: Jeremy Magland
+Author-email: 
+License: UNKNOWN
+Description: # ml_spikeforest
+        
+        Spike sorting tools
+        MountainLab processor package
+        
+        Installation from conda (with python 3.6):
+        
+        ```
+        pip install -c flatiron -c conda-forge ml_spikeforest
+        ```
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
