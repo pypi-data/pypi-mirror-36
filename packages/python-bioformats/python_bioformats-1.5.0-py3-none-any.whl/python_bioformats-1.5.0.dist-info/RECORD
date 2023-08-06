@@ -1,0 +1,13 @@
+bioformats/__init__.py,sha256=VVh996TzX_S58TClU_vTNr97cRnkdZnZjag0IA_wuTM,3621
+bioformats/_version.py,sha256=Q5UugsEnTbL68RFvW9YO9CWSDugF8XjbysDvrd_fFo8,116
+bioformats/formatreader.py,sha256=LWAv71f0aWGPGwcl6aurJMsWymAOb8lPTlat0nUQjNY,43026
+bioformats/formatwriter.py,sha256=s9bpWbmhQ--MRJgw28_zgwcgjlDmLKRAqSV-n-zBw_0,23605
+bioformats/log4j.py,sha256=mKRbJHcZN6755m8t8Txz823GDg4aacfjRiThFNoGycg,462
+bioformats/metadatatools.py,sha256=FhP0SLQk8ykVmKlPp8KA1e6JFsIzL8TFzgCO_slpoY0,12378
+bioformats/noseplugin.py,sha256=9nLHI3kaYRmgFf1EGeTZTOROyZGLJrXVhmK5b-_2gag,1295
+bioformats/omexml.py,sha256=mVJXfdCCwsyGE3K5QqNDzocHv08SK1lytnyBKgONoD0,49379
+bioformats/jars/loci_tools.jar,sha256=yWKdlL0p8whMi84580MXCqEraqOqTcCUyzIPrc9T2Zs,32269020
+python_bioformats-1.5.0.dist-info/METADATA,sha256=JBPrO3_AkGPBYISjSWmILMSSR7BcrPFDajLdIvM4EKY,1328
+python_bioformats-1.5.0.dist-info/RECORD,,
+python_bioformats-1.5.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+python_bioformats-1.5.0.dist-info/top_level.txt,sha256=P_Ft9mnlx_-3vkihL_HRcuyVUrHyfvGwL6MJqCZxIa0,11
