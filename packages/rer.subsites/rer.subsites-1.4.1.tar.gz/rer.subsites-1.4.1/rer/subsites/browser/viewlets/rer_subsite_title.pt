@@ -1,0 +1,23 @@
+<div id="subsite-title"
+     tal:define="subsite nocall:view/subsite"
+     class="${view/get_css_class}">
+     <div class="subsite-title-wrapper">
+        <div class="subsite-title-container">
+            <div class="subsite-title-content">
+                <div class="subsite-title">
+                    <h2>${subsite/Title}</h2>
+                </div>
+                <p class="subsite-description"
+                   tal:condition="subsite/Description">${subsite/Description}</p>
+                <div class="subsite-anchor">
+                    <a href="#portal-column-two" title="In questa sezione">
+                        <span class="subsite-anchor-label">In questa sezione</span>
+                        <span class="subsite-anchor-icon">
+                            <i class="fas fa-angle-down"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,218 @@
+Metadata-Version: 2.1
+Name: rer.subsites
+Version: 1.4.1
+Summary: Subsites for ER portals
+Home-page: https://rersvn.ente.regione.emr.it/svn/plone/prodotti/rer.subsites/
+Author: RedTurtle Technology
+Author-email: sviluppoplone@redturtle.it
+License: GPL
+Description: ==============================================================================
+        rer.subsites
+        ==============================================================================
+        
+        .. image:: https://travis-ci.org/PloneGov-IT/rer.subsites.svg?branch=master
+            :target: https://travis-ci.org/PloneGov-IT/rer.subsites
+        
+        Subsites implementation for RER.
+        
+        
+        Features
+        --------
+        
+        - No additional portal-types
+        - Viewlet with subsite's customizable color and background image in every subsite children
+        - Control panel where set additional styles for the subsite
+        
+        Enable a subsite
+        ----------------
+        
+        Folderish contents has a new "`Set as subsite`" action that mark them as a subsite.
+        
+        Disable a subsite
+        -----------------
+        
+        Folderish contents marked as a subsite, have a new "`Unset as subsite`" action that unmark them as a subsite.
+        
+        
+        Subsite settings
+        ----------------
+        
+        A subsite has a new voice in the toolbar: Subsite styles.
+        In this view we can set two parameters:
+        - subsite color
+        - background image
+        
+        These parameters are used to style the subsite header (viewlet)
+        The styles are combined in a custom viewlet that inject them like css styles.
+        
+        Customize subsite layout
+        ------------------------
+        
+        There is a configuration in the site control-panel with a text-area where you can insert some custom
+        css rules that will be applied only in subsites and their children.
+        
+        This is useful for example if all headers (<h1> or <h2>) in the subsite should have the same color of the subsite.
+        
+        
+        Translations
+        ------------
+        
+        This product has been translated into
+        
+        - Italian
+        
+        
+        Installation
+        ------------
+        
+        Install rer.subsites by adding it to your buildout::
+        
+           [buildout]
+        
+            ...
+        
+            eggs =
+                rer.subsites
+        
+        
+        and then running "bin/buildout"
+        
+        
+        Compatibility
+        -------------
+        This package is fully compatible for Plone 5.
+        
+        
+        Contribute
+        ----------
+        
+        - Issue Tracker: https://github.com/PloneGov-IT/rer.subsites/issues
+        - Source Code: https://github.com/PloneGov-IT/rer.subsites
+        
+        
+        License
+        -------
+        
+        The project is licensed under the GPLv2.
+        
+        Changelog
+        =========
+        
+        1.4.1 (2018-09-21)
+        ------------------
+        
+        - Add timestamp in image url to bypass caching when the image is updated.
+          [cekk]
+        
+        
+        1.4.0 (2018-09-11)
+        ------------------
+        
+        - Remove dependency to collective.z3form.colorpicker because its pattern had
+          problems with some base js in Plone.
+          [cekk]
+        
+        
+        1.3.7 (2018-03-15)
+        ------------------
+        
+        - Added icon for title viewlet link in template [nzambello]
+        
+        
+        1.3.6 (2018-01-11)
+        ------------------
+        
+        - Fix template viewlet [nzambello]
+        
+        
+        1.3.5 (2018-01-04)
+        ------------------
+        
+        - Added anchor in title viewlet to link to the second colum [nzambello]
+        
+        
+        1.3.4 (2017-12-29)
+        ------------------
+        
+        - Added subsite css classes when enabling subsite.
+          [daniele]
+        
+        1.3.3 (2017-12-21)
+        ------------------
+        
+        - Fix typo in upgrade-step
+          [cekk]
+        
+        
+        1.3.2 (2017-12-20)
+        ------------------
+        
+        - Added template elements and conditions needed for styling [nzambello]
+        - Use AddSubsite permission to handle all subsite configuration
+          (enable/disable and customization form).
+          [cekk]
+        
+        1.3.1 (2017-01-10)
+        ------------------
+        
+        - Fix viewlet render
+          [cekk]
+        
+        1.3.0 (2016-11-14)
+        ------------------
+        
+        - Add customizable styles control panel.
+          [cekk]
+        
+        
+        1.2.2 (2015-12-02)
+        ------------------
+        
+        - Fix reference field [cekk]
+        
+        
+        1.2.1 (2014-05-08)
+        ------------------
+        
+        - Add tinymce config file [cekk]
+        
+        
+        1.2.0 (2012-10-11)
+        ------------------
+        
+        - Aggiunti campi ``tag`` e ``__bobo_traverse__`` assenti per
+          la gestione dell'immagine (#625) [keul]
+        - Rimossa la base_view tra le viste disponibili [keul]
+        - Aggiunta procedura di migrazione ai blob [keul]
+        - Aggiunto validatore per il campo del colore CSS [keul]
+        
+        1.1.2 (2012-08-01)
+        ------------------
+        
+        - egg cleanup [keul]
+        - z3c.autoinclude [keul]
+        
+        1.1.1 (2011/04/07)
+        ------------------
+        
+        - removed required in color field [cekk]
+        
+        1.1.0 (2011/03/29)
+        ------------------
+        
+        - aggiunti campi colore e immagine testata [cekk]
+        - modificato html viewlet testata [nekorin]
+        - aggiunto css per colore specifico [nekorin]
+        
+        1.0.0 (2011/03/14)
+        ------------------
+        
+        - Initial release
+        
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: 5.0
+Classifier: Framework :: Plone :: 5.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Provides-Extra: test

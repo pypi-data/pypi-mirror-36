@@ -1,0 +1,4 @@
+<registry>
+  <records interface="rer.subsites.interfaces.IRERSubsitesSettings"
+           remove="True"/>
+</registry>

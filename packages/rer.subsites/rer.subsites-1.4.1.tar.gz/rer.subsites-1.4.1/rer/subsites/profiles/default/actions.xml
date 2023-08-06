@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+  <object name="object" meta_type="CMF Action Category">
+    <object name="subsite-styles-form" meta_type="CMF Action" i18n:domain="rer.subsites">
+      <property name="title" i18n:translate="">Subsite styles</property>
+      <property name="description" i18n:translate=""></property>
+      <property name="url_expr">string:${plone_context_state/canonical_object_url}/@@subsite_styles_form</property>
+      <property name="icon_expr"></property>
+      <property name="available_expr">python: context.restrictedTraverse('@@check_subsite_action_remove')()</property>
+      <property name="permissions">
+        <element value="rer.subsites: Add RERSubsite"/>
+      </property>
+      <property name="visible">True</property>
+    </object>
+  </object>
+  <object name="object_buttons" meta_type="CMF Action Category">
+    <object name="mark-subsite" meta_type="CMF Action" i18n:domain="rer.subsites">
+      <property name="title" i18n:translate="">Set as subsite</property>
+      <property name="description" i18n:translate="">Set this folder as subsite</property>
+      <property name="url_expr">string:${object/absolute_url}/@@mark_subsite</property>
+      <property name="icon_expr"/>
+      <property name="available_expr">
+        python: context.restrictedTraverse('@@check_subsite_action_add')()
+      </property>
+      <property name="permissions">
+        <element value="rer.subsites: Add RERSubsite"/>
+      </property>
+      <property name="visible">True</property>
+    </object>
+    <object name="unmark-subsite" meta_type="CMF Action" i18n:domain="rer.subsites">
+      <property name="title" i18n:translate="">Unset as subsite</property>
+      <property name="description" i18n:translate="">Unset this folder as subsite</property>
+      <property name="url_expr">
+        string:${object/absolute_url}/@@unmark_subsite
+      </property>
+      <property name="icon_expr"/>
+      <property name="available_expr">
+        python: context.restrictedTraverse('@@check_subsite_action_remove')()
+      </property>
+      <property name="permissions">
+        <element value="rer.subsites: Add RERSubsite"/>
+      </property>
+      <property name="visible">True</property>
+    </object>
+   </object>
+</object>
