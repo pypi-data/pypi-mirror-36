@@ -1,0 +1,8 @@
+setup.py
+hyperdual/__init__.py
+hyperdual/hyperdual.so
+hyperdual.egg-info/PKG-INFO
+hyperdual.egg-info/SOURCES.txt
+hyperdual.egg-info/dependency_links.txt
+hyperdual.egg-info/requires.txt
+hyperdual.egg-info/top_level.txt
