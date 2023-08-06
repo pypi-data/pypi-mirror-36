@@ -1,0 +1,9 @@
+angr==7.8.9.26
+pygments==2.2.0
+websocket-client==0.53.0
+qtconsole==4.4.1
+ipython==5.8.0
+pyzmq==17.1.2
+PySide==1.2.4
+pyqode.core==2.11.0
+pyqode.python==2.10.0
