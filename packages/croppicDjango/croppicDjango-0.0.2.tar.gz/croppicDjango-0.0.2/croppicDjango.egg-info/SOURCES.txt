@@ -1,0 +1,16 @@
+README.txt
+setup.py
+croppicDjango/__init__.py
+croppicDjango/admin.py
+croppicDjango/conf.py
+croppicDjango/forms.py
+croppicDjango/models.py
+croppicDjango/tests.py
+croppicDjango/urls.py
+croppicDjango/utils.py
+croppicDjango/views.py
+croppicDjango.egg-info/PKG-INFO
+croppicDjango.egg-info/SOURCES.txt
+croppicDjango.egg-info/dependency_links.txt
+croppicDjango.egg-info/top_level.txt
+croppicDjango/migrations/__init__.py
