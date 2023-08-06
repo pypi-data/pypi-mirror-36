@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: tf_cop
+Version: 0.0.1
+Summary: auto terraform review
+Home-page: https://github.com/ys-tydy/tf_cop
+Author: ys-tydy
+Author-email: UNKNOWN
+License: ys-tydy
+Description: UNKNOWN
+Keywords: terraform hcl review
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Programming Language :: Python :: 3.6
