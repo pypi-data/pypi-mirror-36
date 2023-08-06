@@ -1,0 +1,90 @@
+Metadata-Version: 2.1
+Name: pyktionary
+Version: 0.5a0
+Summary: Simple Wiktionary scraper
+Home-page: https://gitlab.com/flow.gunso/pyktionary
+Author: flow.gunso
+Author-email: flow.gunso@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content :: Wiki
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+
+# pyktionary
+
+Simple Wiktionary scraper. Get information from words in Wiktionary.
+
+__The module is at an early stage, be advised that:__
+- **Only [french Wiktionary](https://fr.wiktionary.org/) is supported.**
+- **The following sections are not scraped:**
+  - **_Prononciation_**
+  - **_Anagrammes_**
+  - **_Voir aussi_**
+  - **_Références_**
+  - **_Forme de verbe_**
+- __Any section not matching _Étymologie_ is scraped as _Définition_.__
+
+# What pyktionary is
+
+A scraper that gets data on words from Wiktionary.
+Sections of a word are scraped as raw HTML into a dict, see [Example](#Example).
+
+# What pyktionary is not
+
+An interface to make changes to Wiktionary. You can NOT send data to Wiktionary with this module.
+
+# What's next ?
+
+This module is at a very early stage. It only cover my specific use case, which is scraping a word's etymology and definitions from french Wiktionary.
+
+The module will improve over time. Priorities are for the following features and fixes:
+- Scrap all sections from a word.
+- Support wiktionaries from other languages.
+
+You can read the [TODO](TODO.md) for more stuff to do.
+
+# Usage
+
+```python
+from pyktionary import Wiktionary
+
+# ...
+
+wik = Wiktionary()
+word = wik.word("oui")
+
+# ...
+```
+
+# Example
+
+###### With word [oui](https://fr.wiktionary.org/wiki/oui):
+
+The following code:
+```python
+    from pyktionary import Wiktionary
+    wik = Wiktionary()
+    word = wik.word("oui")
+    pprint.pprint(word, compact=True)
+```
+output:
+```bash
+{   
+    'Définition': '<ol><li>Réponsede<i><ahref="https://fr.wiktionary.org/wiki/oui#fr-interj"title="oui">oui</a></i>.Votepour.<strong>Noted’usage:</strong>L’<ahref="https://fr.wiktionary.org/wiki/article"title="article">article</a>définines’<ahref="https://fr.wiktionary.org/wiki/%C3%A9lider"title="élider">élide</a>pasdevantcemot.<ul><li><i>Uneballade,uneballade!s’écrial’ermite,celavautmieuxquetouslesocetles<b>oui</b>deFrance.</i><spanclass="sources"><spanclass="tiret">—</span>(<aclass="extiw"href="https://fr.wikipedia.org/wiki/Walter_Scott"title="w:WalterScott">Walter<spanclass="petites_capitales"style="font-variant:small-caps">Scott</span></a>,<i><aclass="extiw"href="https://fr.wikipedia.org/wiki/Ivanho%C3%A9"title="w:Ivanhoé">Ivanhoé</a></i>,traduitdel’anglaispar<aclass="extiw"href="https://fr.wikipedia.org/wiki/Alexandre_Dumas"title="w:AlexandreDumas">Alexandre<spanclass="petites_capitales"style="font-variant:small-caps">Dumas</span></a>,<aclass="extiw"href="https://fr.wikisource.org/wiki/Ivanho%C3%A9_(Scott_-_Dumas)"title="s:Ivanhoé(Scott-Dumas)">1820</a>)</span></li><li><i>Le<b>oui</b>etlenon.</i></li><li><i>Iladitce<b>oui</b>-làdeboncœur.</i></li><li><i>Ilnefautpastantdediscours,onnevousdemandequ’un<b>oui</b>ouunnon.Ditesunbon<b>oui</b>.</i></li></ul></li></ol>',
+    'Étymologie': '<dl><dd><spanclass="date"><i>(<spanclass="texte">1380</span>)</i></span>Del’ancienfrançais<i><spanclass="lang-fro"lang="fro"><ahref="https://fr.wiktionary.org/wiki/o%C3%AFl#fro"title="oïl">oïl</a></span></i><spanclass="date"><i>(<spanclass="texte">1080</span>)</i></span>,formecomposéede<i>o</i>«cela»<spanclass="date"><i>(<spanclass="texte">842</span>)</i></span>,ausensde«oui»(àcomparerde<i><ahref="https://fr.wiktionary.org/wiki/%C3%B2c"title="òc">òc</a></i>«oui»en<ahref="https://fr.wiktionary.org/wiki/occitan"title="occitan">occitan</a>),renforcéparlepronompersonnel<i><ahref="https://fr.wiktionary.org/wiki/il"title="il">il</a></i>(ontrouveaussi<i>o-je</i>,<i>o-tu</i>,<i>onos</i>,<i>ovos</i>).<spanid="ref-1"><small></small><sup><ahref="#reference-1">[1]</a></sup></span><spanid="ref-2"><small></small><sup><ahref="#reference-2">[2]</a></sup></span>Lesmots«oui»et«òc»sontdescalquesceltiques<supclass="reference"id="cite_ref-1"><ahref="#cite_note-1">[1]</a></sup></dd></dl>'
+}
+
+```
+
+# Licence
+
+This module is licenced under GNU GPL v3.
+
