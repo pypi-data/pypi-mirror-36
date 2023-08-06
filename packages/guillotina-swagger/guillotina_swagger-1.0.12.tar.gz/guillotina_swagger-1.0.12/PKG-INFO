@@ -1,0 +1,153 @@
+Metadata-Version: 1.1
+Name: guillotina_swagger
+Version: 1.0.12
+Summary: Swagger integration for viewing REST on your guillotina install
+Home-page: https://github.com/guillotinaweb/guillotina_swagger
+Author: Nathan Van Gheem
+Author-email: vangheem@gmail.com
+License: BSD
+Description: Introduction
+        ============
+        
+        A `guillotina` application to automatically generate swagger interfaces for
+        APIs defined with `guillotina`.
+        
+        
+        Configuration
+        -------------
+        
+        Available config.json options::
+        
+            {
+                "swagger": {
+                    "authentication_allowed": false,
+                    "base_configuration": {
+                        "swagger": "2.0",
+                        "info": {
+                            "version": "",
+                            "title": "Guillotina",
+                            "description": "The REST Resource API"
+                        },
+                        "host": "",
+                        "basePath": "",
+                        "schemes": [],
+                        "produces": [
+                            "application/json"
+                        ],
+                        "consumes": [
+                            "application/json"
+                        ],
+                        "paths": {},
+                        "definitions": {}
+                    },
+                    "index_html": null
+                }
+            }
+        
+        
+        Viewing swagger for resource
+        ----------------------------
+        
+        Append `@docs` onto any url: `http://localhost:8080/@docs`.
+        
+        
+        Generating swagger docs
+        -----------------------
+        
+        `guillotina_swagger` reads service configuration.
+        
+        You can provide additional swagger configuration hints by providing a swagger
+        configuration with any of the following options:
+        
+        - ignore: to prevent swagger from aggregating it
+        - additional_paths: provide a list of additional paths this configuration is used for(think routing here)
+        - display_permission: if you do not want to show permission setting, set this to false
+        - tags: what tags to use for it
+        
+        1.0.12 (2018-09-20)
+        -------------------
+        
+        - Be able to customize swagger index.html file
+          [vangheem]
+        
+        
+        1.0.11 (2018-09-14)
+        -------------------
+        
+        - bump
+        
+        
+        1.0.10 (2018-09-13)
+        -------------------
+        
+        - More docs and support for customizing more parts of generated
+          swagger definition.
+          [vangheem]
+        
+        
+        1.0.8 (2017-06-19)
+        ------------------
+        
+        - Add permission to documentation
+          [vangheem]
+        
+        
+        1.0.7 (2017-06-18)
+        ------------------
+        
+        - Tweak UI
+          [vangheem]
+        
+        
+        1.0.6 (2017-06-18)
+        ------------------
+        
+        - Automatically detect auth tokens and be able to provide own authorization header
+          [vangheem]
+        
+        
+        1.0.5 (2017-06-13)
+        ------------------
+        
+        - Also pull basePath for swagger from vhm if provided
+          [vangheem]
+        
+        
+        1.0.4 (2017-06-13)
+        ------------------
+        
+        - Use vhm for host setting on swagger
+          [vangheem]
+        
+        
+        1.0.3 (2017-06-13)
+        ------------------
+        
+        - Pay attention to vhm
+        
+        
+        1.0.2 (2017-06-12)
+        ------------------
+        
+        - be able to provide custom base_url for swagger
+          [vangheem]
+        
+        
+        1.0.1 (2017-06-07)
+        ------------------
+        
+        - Fix getting path of resource
+        
+        
+        1.0.0 (2017-04-04)
+        ------------------
+        
+        - initial release
+        
+Keywords: guillotina,REST,swagger
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
