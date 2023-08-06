@@ -1,0 +1,14 @@
+skippy/__init__.py,sha256=EswYubbEgjyZVLxw0UwbceOWJ-OHjvasnWFWGWtypec,531
+skippy/__main__.py,sha256=CRzP2UEPg8A3tmSv1XjwBWyqc-Nl-PlMObXaRtftszg,1068
+skippy/classification.py,sha256=pLPG5f6JliwhNbM2x3PwXhqNcEFVIpojCpTglMPU0EQ,941
+skippy/get_data.py,sha256=nAOjJzGJaY9UvIsy9-cGkO7GYiVVbAfCpk3QHm1XjqE,253
+skippy/get_model.py,sha256=Rx10dJ_KKaq3WCm6g8oRfs0JyP9FUupp2NNoqsI7X3g,187
+skippy/pickle_model.py,sha256=XkfQ7j2eGCRVG8M1WF2ChApHy-ClQcaTjJU2XrhjQPI,227
+skippy/plot.py,sha256=PDJ1d_f-_fc9NF-LSKwgNxsXIKWcaH2CHd9pAon__44,933
+skippy/regression.py,sha256=qvtBuLRAR7bOb34wX3KnOvP1l-odURPlWZLHdCc19no,990
+skippy/split_data.py,sha256=Pa29gvGSGrGrAIVFJ1t683UeIyvLtVvnUbeBySZ9Ipc,421
+skippy-0.0.7.dist-info/METADATA,sha256=7OwahY4N6M7IKrQR0oue3mLk7b881qFITjGwct9zO6o,1798
+skippy-0.0.7.dist-info/RECORD,,
+skippy-0.0.7.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+skippy-0.0.7.dist-info/entry_points.txt,sha256=Z1De92Nmr2osA2QNdCT4JqC_B1B8vPehWKXsURdIMqA,56
+skippy-0.0.7.dist-info/top_level.txt,sha256=4mykRo8oiepDAH4UQ_9WKhUvFwv73nCU94tIZefJNYA,7
