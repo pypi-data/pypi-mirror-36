@@ -1,0 +1,16 @@
+readme.rst,sha256=r71YwcEyQHn-p1GNxOdAmM3ts9Nf50Fx8DzPFw_G1gA,3616
+reference.docx,sha256=-rt7iOyhQXyDUUVn7i2wIjBzCUbKqMkopa0ceNriulg,15800
+reference.tex,sha256=M3QFWT7wgjMA4Ie6FRTx2WRwjITFj9UYie4KOKTnoOU,21347
+rstdoc/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+rstdoc/dcx.py,sha256=NHzjiU27b7wE3FYuN6Y0mIWbI08DvMcBSLskzuMZhf0,70100
+rstdoc/fromdocx.py,sha256=Du82xShLEXyvklvppGe5Pd1Fw6hWKcnmNe5SWZAf49E,8908
+rstdoc/listtable.py,sha256=aerOwV03_3q3t326lYUdb-Y-YEoU-KbvByl0tulcAwM,6375
+rstdoc/reflow.py,sha256=dySWRVh_KVD5VEwA_WmdLolT60mgMcopLH4kq0-gPqs,9459
+rstdoc/reimg.py,sha256=5C9xVNXs-dauNnQTQrh8Lv25MCIxZcbuLOvUtHisMmg,5422
+rstdoc/retable.py,sha256=Y5gG8xuhJ9w7C6P9AQdIpzSXj5eVpG9y06TPEdPXMZY,13189
+rstdoc/untable.py,sha256=XPmYBoW9R1SPWCq75aYlCl02v6rbwA0dv8Pl45nHDcs,6986
+rstdoc-1.4.dist-info/METADATA,sha256=rg5EZqJ1x5_pmWw_H4X5Wj6R-knKPRcy3bwEO1OIwpE,12262
+rstdoc-1.4.dist-info/RECORD,,
+rstdoc-1.4.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+rstdoc-1.4.dist-info/entry_points.txt,sha256=egnuLDpQDeqV00mifb6I3Kamwrz_rl2GoRSyR4oxiNA,242
+rstdoc-1.4.dist-info/top_level.txt,sha256=cDmOTsFJOGRtCmNUHd6BHe2BCia3ynupJGgl8bOjEvs,7
