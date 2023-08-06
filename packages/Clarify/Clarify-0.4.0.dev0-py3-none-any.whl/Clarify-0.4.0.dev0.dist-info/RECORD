@@ -1,0 +1,10 @@
+Clarify-0.4.0.dev0.dist-info/DESCRIPTION.rst,sha256=WNIfsvp2IQRzOH2B5LfIa7ZEv-eYnRyVpRHfs3HltaQ,9258
+Clarify-0.4.0.dev0.dist-info/METADATA,sha256=CCrNGQe3qG1lsVSSenYoUBZj4-VE7l6IzldjXl1PcxM,10305
+Clarify-0.4.0.dev0.dist-info/RECORD,,
+Clarify-0.4.0.dev0.dist-info/WHEEL,sha256=rNo05PbNqwnXiIHFsYm0m22u4Zm6YJtugFG2THx4w3g,92
+Clarify-0.4.0.dev0.dist-info/metadata.json,sha256=XEjzdD8Kc6I2dF9oCQNSNDiLY4Gmr6smBXRAaWqUdio,1184
+Clarify-0.4.0.dev0.dist-info/top_level.txt,sha256=v-GEZb2LDUXcSuSBVMsaSWXMxppSUvXRO1mZcKFPE0c,8
+clarify/__init__.py,sha256=RW3Iqrj9FyEN2eGH0dQZetcdwFIggunzL1kgx6BJ7M0,99
+clarify/jurisdiction.py,sha256=n8EXIXGhRrMOERowv2KZfWG_rJVerPmDu-h6fTaVh44,9026
+clarify/parser.py,sha256=LID9WjPhVb3biEeBBLw5ZveGFTn_1kJxbTQcsJeqFm4,17854
+clarify/version.py,sha256=dVsznP3hOhSWEF9QzhFj9P47TMC_sdhXCkxsOaKPz94,27
