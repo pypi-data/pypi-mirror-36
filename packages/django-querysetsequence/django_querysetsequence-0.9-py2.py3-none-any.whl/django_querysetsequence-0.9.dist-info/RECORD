@@ -1,0 +1,11 @@
+django_querysetsequence-0.9.dist-info/METADATA,sha256=KgDNSoUF73gGl7rW1Uyo0SCPSn0FETU3K7te4D6fuV0,15735
+django_querysetsequence-0.9.dist-info/RECORD,,
+django_querysetsequence-0.9.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+django_querysetsequence-0.9.dist-info/top_level.txt,sha256=12kobFPjHRH4_Xj90PWDeF5XjMA-ntd910OTrj1utW0,24
+queryset_sequence/__init__.py,sha256=s_IwF41Zkbn0ceH-1O2suWxkEb1jZg3kBjovnqNGT2A,21663
+queryset_sequence/pagination.py,sha256=QjFBCBbJv2cKd0i2BFBfflUQRk0AkoDqQUln6cF3x4Y,8850
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/models.py,sha256=7yl1zL7LI8hjxg2_iRhqi8C_ZgeHpm3qBindYghmcn8,1643
+tests/settings.py,sha256=UCGVSP1QJQPRkw9Ms4-ZJTh5PtxjeJstByiiGO_dids,846
+tests/test_pagination.py,sha256=3KH2AbYL0JHdCciFuSjoChn1WKEJA0M6ZOmLOS9pAFQ,9367
+tests/test_querysetsequence.py,sha256=WL_fmm1G8VsX15vhgDoCOjo0jUMHYpFhfgv0aoIFRX4,42269
