@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: gos-asm
+Version: 0.10
+Summary: Multi-genome gene order based scaffold assembler
+Home-page: https://github.com/aganezov/gos-asm
+Author: Sergey Aganezov
+Author-email: aganezov@cs.jhu.edu
+License: MIT
+Keywords: breakpoint graph,data structures,python,scaffolding,gene order,assembly,genome
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: gos
+Requires-Dist: bg
+Requires-Dist: enum-compat
+Requires-Dist: networkx
+
+UNKNOWN
+
+
