@@ -1,0 +1,12 @@
+siquant/__init__.py,sha256=-PIiotw45CEXB0oqya2zWKjVdNYi_FRIQ26g00dsvKM,39
+siquant/dimensions.py,sha256=N4rIwkfOmeKvUOcMpcrZIpqFLl5e2RsADZPsulrJ8Tw,1038
+siquant/quantities.py,sha256=vNVwMv0rrmaMRUbRqbiZxyt75udu5dmjqgpfNTqci-0,4184
+siquant/units.py,sha256=nX0mYLgP4Hlh_7CQJtnrGcDM2c3dLEbbjVj6AylDSbc,3821
+siquant/systems/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+siquant/systems/imperial.py,sha256=vkM2T7L2PmTT6WnHRkXoOaRDI1NlfgkZspr625dwvk0,872
+siquant/systems/si.py,sha256=MQbJbTp6m4flrN1dSy5zHH2ql4zWOU7mf0B1g_R1iBI,2689
+siquant-2.4.0.dist-info/METADATA,sha256=40phy9luwILXP8t51uQfNzWyamV2HmQ7tKyCps3obLE,6967
+siquant-2.4.0.dist-info/RECORD,,
+siquant-2.4.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+siquant-2.4.0.dist-info/top_level.txt,sha256=5-isa-gxwKvvi5W1H9D9JX2b3Uhi9D9J4ZaemAFgcaQ,8
+siquant-2.4.0.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
