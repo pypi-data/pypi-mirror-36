@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: model-zoo
+Version: 0.1.0
+Summary: A framework to help you build model much more easily
+Home-page: http://pypi.python.org/pypi/model-zoo/
+Author: germey
+Author-email: cqc@cuiqingcai.com
+License: MIT
+Description: UNKNOWN
+Keywords: model_zoo,tensorflow,keras
+Platform: UNKNOWN
