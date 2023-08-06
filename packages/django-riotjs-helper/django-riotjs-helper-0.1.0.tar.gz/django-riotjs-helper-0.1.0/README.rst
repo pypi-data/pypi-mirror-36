@@ -1,0 +1,95 @@
+=============================
+Django RiotJS Helper
+=============================
+
+A small, rudimentary helper app for RiotJS (https://riot.js.org) integration into django projects.
+
+
+Quickstart
+----------
+
+Install Django RiotJS Helper::
+
+    pip install django-riotjs-helper
+
+Add it to your `INSTALLED_APPS`:
+
+.. code-block:: python
+
+    INSTALLED_APPS = (
+        ...
+        'riotjs_helper',
+        ...
+    )
+
+Add this to your base template (base.html):
+
+.. code-block:: html
+
+    {% include 'riotjs_helper/riotjs_core.html' %}
+    {% block riot_tags %}
+    {% endblock riot_tags %}
+    {% include 'riotjs_helper/riotjs_mount.html' %}
+
+If you plan on using django rest framework you can switch riotjs_core.html to the more elaborate riotjs_setup.html:
+
+.. code-block:: html
+
+    {% include 'riotjs_helper/riotjs_setup.html' %}
+
+This setup requires some additional libraries as well, allready included in the requirements.txt:
+
+.. code-block:: bash
+
+    djangorestframework
+    django-filter
+    django-rest-swagger
+    httpie
+    Markdown
+    python-dateutil
+    coreapi
+    coreapi-cli
+    coreschema
+
+And these has to be added to your INSTALLED_APPS, urls has to be updated etc.
+
+And then to create some tags:
+
+.. code-block:: bash
+
+    python manage.py riot_tag <appname> <tag1-name> <tag2-name>
+
+In the page you want to use your tag:
+
+.. code-block:: html
+
+    {% block content %}
+    ...
+    <tag1-name></tag1-name>
+    ...
+    <tag2-name></tag2-name>
+    ...
+    {% endblock %}
+
+    {% block riot_tags %}
+    {% include '<appname>/include/<tag1-name>_tag.html' %}
+    {% include '<appname>/include/<tag2-name>_tag.html' %}
+    {% endblock riot_tags %}
+
+If you need to add more context to your tags you can do that by editing the generated include files, for instance like so:
+
+.. code-block:: html
+
+    {% load static %}
+    <script src="{% static '<appname>/tags/<tag1-name>.tag' %}" type="riot/tag"></script>
+    <script>
+
+    riot_context['<tag1-name>'] = {more_context_goes_here: { ... something fancy ...}};
+
+    </script>
+
+If you want to look at some boilerplate/example code generate your tags with the --example-code option:
+
+.. code-block:: bash
+
+    python manage.py riot_tag <appname> <tag1-name> <tag2-name> --example-code

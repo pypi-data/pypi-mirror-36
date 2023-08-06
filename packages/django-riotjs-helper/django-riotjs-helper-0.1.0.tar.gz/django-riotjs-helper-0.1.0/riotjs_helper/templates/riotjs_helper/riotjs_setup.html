@@ -1,0 +1,23 @@
+{% load static %}
+
+  <script src="https://cdn.jsdelivr.net/npm/riot@3.9/riot+compiler.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/riot-route@3.0.0/dist/route.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="{% static 'rest_framework/js/coreapi-0.1.1.js' %}"></script>
+  <script src="{% url 'api-docs:schema-js' %}"></script>
+  <script language="JavaScript">
+
+    let auth = new coreapi.auth.SessionAuthentication({
+      csrfCookieName: 'csrftoken',
+      csrfHeaderName: 'X-CSRFToken'
+    });
+
+    let client = new coreapi.Client({auth: auth});
+
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+
+    var riot_context = {};
+    window.riot_context = riot_context;
+
+  </script>
