@@ -1,0 +1,33 @@
+Metadata-Version: 2.0
+Name: font-caladea
+Version: 0.0.2
+Summary: Caladea serif font
+Home-page: https://github.com/pimoroni/fonts-python
+Author: Philip Howard
+Author-email: phil@pimoroni.com
+License: APACHE 2.0
+Keywords: Caladea Font
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Operating System :: POSIX :: Linux
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development
+Classifier: Topic :: Text Processing :: Fonts
+
+Fonts: Caladea
+==============
+
+Caladea is a hand-drawn font by Carolina Giovagnoli and Andres Torresi released under the Apache 2.0 License.
+
+Preview: https://fontlibrary.org/en/font/caladea
+
+This font has been repackaged for the Python Fonts module: https://pypi.org/project/fonts/
+
+Copyright, Carolina Giovagnoli and Andres Torresi. Redistributed under the terms of the Apache 2.0 License: http://www.apache.org/licenses/LICENSE-2.0
+
+
+
