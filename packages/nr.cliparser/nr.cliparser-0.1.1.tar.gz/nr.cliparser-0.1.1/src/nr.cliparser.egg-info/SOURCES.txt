@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.py
+src/nr/__init__.py
+src/nr.cliparser.egg-info/PKG-INFO
+src/nr.cliparser.egg-info/SOURCES.txt
+src/nr.cliparser.egg-info/dependency_links.txt
+src/nr.cliparser.egg-info/namespace_packages.txt
+src/nr.cliparser.egg-info/top_level.txt
+src/nr/cliparser/__init__.py
+src/nr/cliparser/formatter.py
+src/nr/cliparser/utils.py
