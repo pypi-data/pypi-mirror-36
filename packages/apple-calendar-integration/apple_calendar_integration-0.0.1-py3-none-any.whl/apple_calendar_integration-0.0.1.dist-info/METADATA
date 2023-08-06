@@ -1,0 +1,181 @@
+Metadata-Version: 2.1
+Name: apple-calendar-integration
+Version: 0.0.1
+Summary: The ICloud API for events management
+Home-page: https://github.com/SoulSoft/apple-calendar-integration
+Author: SoulSoft Inc
+Author-email: admin@soulsoftinc.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+### About
+The ICloud API for events management
+
+## Tools 
+* Python 3
+
+## How to install with pip
+
+Run this command:
+
+```bash
+pip install apple-calendar-integration
+```
+
+## How to create event
+
+```python
+from datetime import datetime, timedelta
+from apple_calendar_integration import ICloudCalendarAPI
+
+api = ICloudCalendarAPI(username, password)
+
+start_date = int(datetime.now().timestamp())
+end_date = start_date + timedelta(hours=2)
+etag, ctag, guid = api.create_event('Your title', start_date, end_date)
+
+```
+
+This python script will create one two hour event from now. `etag`, `ctag` and `guid` will be used to edit or delete event.
+
+
+## How to delete event
+```python
+from apple_calendar_integration import ICloudCalendarAPI
+
+api = ICloudCalendarAPI(username, password)
+api.delete_event(new_etag, ctag, guid)
+
+```
+
+Should return `True` if everything is OK.
+
+## How to edit event with repeat
+
+#### How to add repeat num of times with some frequency
+```json
+{
+  "count": 5,
+  "freq": "daily"
+}
+```
+This will mean repeat every day for 5 times(days).
+
+`freq` has such options:
+* daily
+* weekly
+* monthly
+* yearly
+
+#### How to add repeat until date with some frequency
+Also, you can specify not num of times, but with the end date parameter.
+```json
+{
+  "until": 1536910206,
+  "freq": "monthly"
+}
+```
+
+All code together
+
+```python
+from apple_calendar_integration import ICloudCalendarAPI
+
+api = ICloudCalendarAPI(username, password)
+repeat = {
+  "until": 1536910206,
+  "freq": "monthly"
+}
+new_etag = api.edit_event(etag, ctag, guid, repeat=repeat)
+
+```
+Should return new `etag` if everything is `OK`
+
+## How to edit event with alarm
+
+If you want to create alarm in the moment of event
+
+```json
+{
+  "before": false
+}
+```
+
+If before the event
+
+```json
+{
+  "before": false,
+  "hours": 3,
+  "minutes": 2,
+  "seconds": 1 
+}
+```
+
+This will send notification about event 3 hours 2 minute and 1 second before event start date
+
+There are such options:
+* weeks
+* days
+* hours
+* minutes
+* seconds
+
+All code together
+```python
+from apple_calendar_integration import ICloudCalendarAPI
+
+api = ICloudCalendarAPI(username, password)
+alarm = {
+  "before": False,
+  "hours": 3,
+  "minutes": 2,
+  "seconds": 1 
+}
+new_etag = api.edit_event(etag, ctag, guid, alarm=alarm)
+```
+Should return new `etag` if everything is `OK`
+
+
+## How to edit event with invites
+
+How to add new people to event
+```python
+from apple_calendar_integration import ICloudCalendarAPI
+
+api = ICloudCalendarAPI(username, password)
+invites = ["email_1@gmail.com", "email_2@gmail.com"]
+new_etag = api.edit_event(etag, ctag, guid, add_invites=invites)
+```
+
+How to remove someone from invites
+```python
+from apple_calendar_integration import ICloudCalendarAPI
+
+api = ICloudCalendarAPI(username, password)
+invites = ["email_1@gmail.com"]
+new_etag = api.edit_event(new_etag, ctag, guid, remove_invites=invites)
+
+```
+Should return new `etag` if everything is `OK`
+
+
+## How to edit `note`, `url`, `title` or `event date`
+
+```python
+from apple_calendar_integration import ICloudCalendarAPI
+import time
+
+api = ICloudCalendarAPI(username, password)
+
+new_etag = api.edit_event(etag, ctag, guid,
+                          note='New notw', url='https://my_url.com', title='New title',
+                          start_date_timestamp=int(time.time()), end_date_timestamp=int(time.time()) + 1000)
+```
+
+Should return new `etag` if everything is `OK`
+
