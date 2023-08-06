@@ -1,0 +1,256 @@
+#!/usr/bin/env python
+
+import sys
+import argparse
+from os import path
+from collections import defaultdict
+
+from tabulate import tabulate
+from termcolor import colored, cprint
+
+from dcat import Feature, Label, Model, Project
+
+PROG = "dcat"
+
+LABELS = "labels"
+FEATURES = "features"
+MODELS = "models"
+PROJECTS = "projects"
+
+LIST = "list"
+CREATE = "create"
+MODIFY = "modify"
+DELETE = "delete"
+
+
+def process_output(resp):
+    if "errors" not in resp:
+        if "data" in resp and type(resp["data"]) == dict:
+            output = resp["data"]
+            if output is None:
+                if len(resp["messages"]) > 0:
+                    return colored("\n".join(resp["messages"]), "green")
+                else:
+                    return colored("Done", "green")
+            elif len(output.keys()) == 0:
+                return "No results found"
+
+            columns = output.keys()
+
+            formatted_output = []
+
+            for key in columns:
+                formatted_output.append([key, output[key]])
+            return tabulate(formatted_output, headers=["Name", "Value"])
+
+        elif "data" in resp and type(resp["data"]) == list:
+            output = resp["data"]
+
+            if len(output) == 0:
+                return "No results found"
+
+            columns = output[0].keys()
+
+            formatted_output = []
+
+            for row in output:
+                formatted_output.append(row.values())
+            return tabulate(formatted_output, headers=columns)
+        else:
+            return colored("Done", "green")
+    elif "errors" in resp:
+        if len(resp["errors"]) > 0:
+            return colored("\n".join(resp["errors"]), "red")
+        else:
+            return colored("Unkown Error", "red")
+    else:
+        return ""
+
+
+def add_action_arguments(action_parser, type_cmd, action_cmd):
+    if type_cmd == PROJECTS:
+        if action_cmd is LIST:
+            pass
+        elif action_cmd is CREATE:
+            action_parser.add_argument(
+                "name", help="Name of the project")
+            action_parser.add_argument(
+                "--slug",
+                help="Slug is a unique string identifier for the project"
+                )
+        elif action_cmd is MODIFY:
+            action_parser.add_argument(
+                "project_drn", help="Project's Data Resource Name")
+            columns = action_parser.add_argument_group(
+                "available columns")
+            columns.add_argument(
+                "--name", help="Name of the project")
+        elif action_cmd is DELETE:
+            action_parser.add_argument(
+                "project_drn", help="Project's Data Resource Name")
+    elif type_cmd in [MODELS, LABELS, FEATURES]:
+        if action_cmd in [LIST, CREATE]:
+            action_parser.add_argument(
+                "project_drn",
+                help="Project's Data Resource Name"
+            )
+
+        else:
+            action_parser.add_argument(
+                "%s_drn" % type_cmd[:-1],
+                help="%s's Data Resource Name, Example: %s" % (
+                    type_cmd[:-1].capitalize(),
+                    "arn:<project_slug>:%s:<version_id>" % type_cmd
+                )
+            )
+
+        if action_cmd is CREATE:
+            file_name = None
+            if type_cmd is MODELS:
+                file_name = "model.pkl"
+            else:
+                file_name = "%s.parquet" % type_cmd
+            action_parser.add_argument(
+                "source_path",
+                help=(
+                    "Client specific resource path. User can store any "
+                    "arbitrary value that could point to the resource. "
+                    "For example, this can be a s3 path, SQL query, or "
+                    "path a to pickle file. Example: s3://bucket/path/%s"
+                ) % file_name
+            )
+
+        if action_cmd == MODIFY:
+            action_parser.add_argument(
+                "-r", "--rm", default=None, action="store_true", dest="remove",
+                help=(
+                    "This flag must be provided along with with attribute "
+                    "and/or lineage arguments. When set, corresponding "
+                    "attributes/lineages are removed from the resource "
+                ))
+
+        if action_cmd in [CREATE, MODIFY]:
+            action_parser.add_argument(
+                "--version",
+                help=(
+                    "Update resource version. This will affect "
+                    "the drn string for the %s"
+                    ) % type_cmd[:-1].capitalize()
+                )
+
+            action_parser.add_argument(
+                "--notes",
+                help=(
+                    "Add resource notes. User can add additional "
+                    "notes about the resource for better documentation"
+                    )
+                )
+
+        if action_cmd in [LIST, CREATE, MODIFY]:
+            attribute_help = (
+                "Add upto 10 attributes to the resource.  "
+                "For example: --attribute=\"company_id=32\"  "
+                "You can add more than one attributes at a time by "
+                "passing multiple --attribute=\"KEY=VALUE\" arguments"
+                )
+            action_parser.add_argument(
+                "--attribute", default=[], action='append',
+                metavar="KEY=VALUE", dest="attributes", help=attribute_help)
+
+            lineage_help = (
+                "Link upto 10 parent resources to the resource.  For example: "
+                "--lineage=\"drn:example-project:features:2018.9.24\"  "
+                "You can add more than one lineage at a time by "
+                "passing multiple --lineage=\"<arn-string>\" arguments.  "
+                "Lineage resource must be either a model, features or label."
+                )
+            action_parser.add_argument(
+                "--lineage", default=[], action='append', help=lineage_help,
+                metavar="drn:<project_id>:<resource-name>:<version_id>",
+                dest="lineages")
+
+
+def add_common_arguments(parser):
+    verbosity_help_text = (
+        "Verbose mode.  Causes %s to print debugging messages about its "
+        "progress.  This is helpful in debugging connection, "
+        "authentication, and configuration problems.  Multiple -v options "
+        "increase the verbosity.  The maximum is 3.") % PROG
+    parser.add_argument("-v", action="count", help=verbosity_help_text,
+                        default=0, dest="verbosity")
+
+
+if __name__ == "__main__":
+    main_parser = argparse.ArgumentParser()
+    add_common_arguments(main_parser)
+
+    action_subparsers = {}
+
+    subparsers = main_parser.add_subparsers(dest="type")
+    for type_cmd in [PROJECTS, MODELS, LABELS, FEATURES]:
+        type_parser = subparsers.add_parser(type_cmd)
+        action_parser_generator = type_parser.add_subparsers(dest="action")
+        add_common_arguments(type_parser)
+
+        for action_cmd in [LIST, CREATE, MODIFY, DELETE]:
+            action_parser = action_parser_generator.add_parser(action_cmd)
+            add_common_arguments(action_parser)
+            add_action_arguments(action_parser, type_cmd, action_cmd)
+
+    args = main_parser.parse_args()
+    if args.verbosity == 3:
+        print(args)
+
+    if args.type is None or args.action is None:
+        # TODO: Print Subparser Help when action is not present
+        main_parser.print_help()
+        exit(1)
+
+    if args.type == PROJECTS:
+        if args.action == LIST:
+            resp = Project(verbosity=args.verbosity).list()
+        elif args.action == CREATE:
+            payload = {}
+            if args.slug:
+                payload["slug"] = args.slug
+            resp = Project(verbosity=args.verbosity).create(args.name, **payload)
+        elif args.action == MODIFY:
+            payload = {}
+            if args.name:
+                payload["name"] = args.name
+            resp = Project(verbosity=args.verbosity).modify(args.project_drn, **payload)
+        elif args.action == DELETE:
+            resp = Project(verbosity=args.verbosity).delete(args.project_drn)
+    else:
+        attributes_dict = None
+        if args.action in [LIST, CREATE, MODIFY]:
+            attributes_dict = dict(
+                map(lambda attr: attr.split("="), args.attributes))
+
+        klass = getattr(sys.modules[__name__], args.type[:-1].capitalize())
+        method = getattr(klass(verbosity=args.verbosity), args.action)
+        if args.action == LIST:
+            resp = method(
+                args.project_drn,
+                attributes=attributes_dict,
+                lineages=args.lineages)
+        elif args.action == CREATE:
+            resp = method(
+                args.project_drn,
+                args.source_path,
+                attributes=attributes_dict,
+                lineages=args.lineages,
+                version=args.version,
+                notes=args.notes)
+        elif args.action == MODIFY:
+            resp = method(
+                getattr(args, "%s_drn" % args.type[:-1]),
+                attributes=attributes_dict,
+                lineages=args.lineages,
+                remove=args.remove,
+                version=args.version,
+                notes=args.notes)
+        elif args.action == DELETE:
+            resp = method(getattr(args, "%s_drn" % args.type[:-1]))
+
+    print(process_output(resp))
