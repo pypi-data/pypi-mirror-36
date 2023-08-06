@@ -1,0 +1,3 @@
+[console_scripts]
+graphql-validate = graphql_validate.cli:cli
+
