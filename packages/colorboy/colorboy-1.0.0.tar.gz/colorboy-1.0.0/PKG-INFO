@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: colorboy
+Version: 1.0.0
+Summary: Easily add color to your strings
+Home-page: https://github.com/spectralkh/colorboy-py
+Author: KH
+Author-email: kasperkh.kh@gmail.com
+Keywords: colorboy,color,terminal,chalk,colorama,termcolor
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: colorama (>=0.3.9,<0.4.0)
