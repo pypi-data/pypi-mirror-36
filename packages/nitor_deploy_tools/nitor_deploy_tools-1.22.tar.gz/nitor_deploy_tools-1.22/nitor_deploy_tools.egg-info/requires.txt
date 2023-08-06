@@ -1,0 +1,15 @@
+pyaml
+boto3
+awscli
+requests
+termcolor
+ipaddr
+argcomplete
+nitor-vault
+psutil
+Pygments
+pyotp
+pyqrcode
+six
+pytz
+iniconfig
