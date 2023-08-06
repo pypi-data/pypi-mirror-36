@@ -1,0 +1,14 @@
+Metadata-Version: 1.2
+Name: sterimol
+Version: 1.0
+Summary: A Command-Line Tool to Calculate Sterimol Parameters from Sructure Input/Output Files
+Home-page: https://github.com/bobbypaton/sterimol
+Author: Robert Paton
+Author-email: robert.paton@colostate.edu
+License: UNKNOWN
+Download-URL: https://github.com/bobbypaton/Sterimol/archive/v1.0.zip
+Description-Content-Type: UNKNOWN
+Description: UNKNOWN
+Keywords: cone-angles,sterimol,sterimol-parameters,organic-chemistry,conformational-analysis,qsar,sterics,gaussian
+Platform: UNKNOWN
+Requires-Python: >=2.6

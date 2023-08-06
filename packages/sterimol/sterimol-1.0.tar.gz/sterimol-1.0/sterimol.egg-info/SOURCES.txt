@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.py
+sterimol/__init__.py
+sterimol/__main__.py
+sterimol/sterimol.py
+sterimol/sterimoltools.py
+sterimol.egg-info/PKG-INFO
+sterimol.egg-info/SOURCES.txt
+sterimol.egg-info/dependency_links.txt
+sterimol.egg-info/requires.txt
+sterimol.egg-info/top_level.txt
