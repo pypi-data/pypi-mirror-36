@@ -1,0 +1,15 @@
+README.md
+setup.cfg
+setup.py
+django_pyuwsgi/__init__.py
+django_pyuwsgi.egg-info/PKG-INFO
+django_pyuwsgi.egg-info/SOURCES.txt
+django_pyuwsgi.egg-info/dependency_links.txt
+django_pyuwsgi.egg-info/requires.txt
+django_pyuwsgi.egg-info/top_level.txt
+django_pyuwsgi/management/__init__.py
+django_pyuwsgi/management/commands/__init__.py
+django_pyuwsgi/management/commands/pyuwsgi.py
+django_pyuwsgi/tests/__init__.py
+django_pyuwsgi/tests/django_settings.py
+django_pyuwsgi/tests/tests.py
