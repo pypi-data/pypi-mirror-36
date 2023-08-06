@@ -1,0 +1,14 @@
+ccobra/__init__.py,sha256=xRh-MbUHP1fky5Ft_ZiQvb_msHcY5DGAPhr3uWeHdXs,263
+ccobra/data.py,sha256=AOZgS4M4b7Y0aNB1SJe9pBKCpoqlttrWYZod8IcmyIo,507
+ccobra/model.py,sha256=8eKJwyxPHRYJac5WwwiJbP_9dEpD39X3ltapbrHDZIg,1778
+ccobra/simulation.py,sha256=rFXlZSReJXK7jbP_TiGMK8uX9ShWh6kpwjEL_XeohBw,5358
+ccobra/syllogistic/__init__.py,sha256=3o4UYdgzxeY8jc7xRND1BaIZzFP0DMu-EgiiGSRbiu8,688
+ccobra/syllogistic/encoding.py,sha256=8l9teD69uv99KlUACUXkFpxs98g0-fu9L7ZV0bq7NPw,9130
+ccobra/syllogistic/syldata.py,sha256=RyEpeHWfprfpZkOmnqb4MzWjk8ALkZDdgcPA7lXARDY,3629
+ccobra/syllogistic/syllogisms.py,sha256=TLhz3yXjF9rM9WwaDu-FMmTgs2UpzHp9vneIOFbIS3Q,4487
+ccobra/syllogistic/sylmodel.py,sha256=tQBLESvuT86L3JJmm964Z8uuSxSV_D1pKeJLO9hdt2I,1753
+ccobra-0.0.1.dist-info/LICENSE,sha256=ijnakUjJR3cUuvnBNOQJhMG9ITTfZUnu1XV9GTVCoKA,1082
+ccobra-0.0.1.dist-info/METADATA,sha256=yPP9UjhVqMR-J4hyf9jhFP1wcP7UFPPV7uGXDVBES2k,2380
+ccobra-0.0.1.dist-info/WHEEL,sha256=YO0P_oFqt6DWX0LhbH7jsyzb3BUtoq2kERtqGsXDJHs,92
+ccobra-0.0.1.dist-info/top_level.txt,sha256=7pohXGYoP44TQDEziB02pk0Xukd3bYu0KTNQP9eAPoY,7
+ccobra-0.0.1.dist-info/RECORD,,
