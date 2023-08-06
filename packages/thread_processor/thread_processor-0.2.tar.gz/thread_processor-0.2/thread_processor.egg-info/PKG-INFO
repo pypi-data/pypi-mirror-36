@@ -1,0 +1,13 @@
+Metadata-Version: 1.0
+Name: thread-processor
+Version: 0.2
+Summary: Execute function for each argument through a fixed number of threads
+Home-page: https://github.com/krishnabhupatiraju/thread_processor
+Author: Krishna Bhupatiraju
+Author-email: krishnavarma@gmail.com
+License: MIT
+Description-Content-Type: UNKNOWN
+Description: # thread_processor
+        Generate tasks for each argument in a list and execute them through a fixed number of threads
+        
+Platform: UNKNOWN
