@@ -1,0 +1,11 @@
+ml_mearec/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ml_mearec/ml_mearec.py,sha256=w-vVX4nKP9b7kSAW690scO2SVRQWYM88TFOL3J7W7Kk,8162
+ml_mearec/ml_mearec.py.mp,sha256=w-vVX4nKP9b7kSAW690scO2SVRQWYM88TFOL3J7W7Kk,8162
+ml_mearec/MEArec/__init__.py,sha256=hykOQPwdTqH2BYmg5yAPcm_kk3bMh8uVPOx-lxvl0ro,96
+ml_mearec/MEArec/gen_recordings.py,sha256=TgfeiX_SPCQ40oFc8BVC1pNTXyMGvtoYiz75bfDzj_Y,23813
+ml_mearec/MEArec/gen_spiketrains.py,sha256=153bxKchjDhT0Pa4NKWli983fC059dWaAtShxUdenWs,15930
+ml_mearec/MEArec/tools.py,sha256=j4wufOCXauWw85kji9j-STd6nnS-JUDl9AOpT-jALTk,58256
+ml_mearec-0.1.5.dist-info/METADATA,sha256=kVJCYZF34I9K7RcqYcJqc3pKC2BaPS4LTHQH3WqXpkI,1407
+ml_mearec-0.1.5.dist-info/RECORD,,
+ml_mearec-0.1.5.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+ml_mearec-0.1.5.dist-info/top_level.txt,sha256=NBw9F19QQ6722tg1oA_VeYsR7U3SWfU9x-_h51c1kxA,10
