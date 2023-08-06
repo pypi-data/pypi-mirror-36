@@ -1,0 +1,16 @@
+eggit/__init__.py,sha256=3LOMIFpU6nmRpZPqoAcWvDbsCkfB6CYJrh-8UnxWtWs,23
+eggit/converters.py,sha256=xsdb-B0w2P-Wfddqwb8x7kAsuVUTVCfZJ_N-wFygEKk,1363
+eggit/enums.py,sha256=zuvFyEXA7zFhWksi0FEvNJb5f5iLpFOtYHQQq0jVhoU,308
+eggit/paginator.py,sha256=EHMGdwtBuE8BG9wiaGARwTEja67OoZB2AVh4A6_UeB0,976
+eggit/time_utils.py,sha256=-hLM-lZygybWzvtX9hvKYVpk1-9nTTS0DiSRF1qTETA,3206
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/test_converters.py,sha256=eSImE0W4fildw9Rebx47HKPo0DBkODY4IZc9a3FGGm4,613
+tests/test_enums.py,sha256=f_uo7CNYvyewpga40sjO5cMC92hRB0G9ebEgOeYOmEc,260
+tests/test_paginator.py,sha256=xC4_icjlAUZehVADCyT8psJnF0kBpLNu8An_LklCbqw,283
+tests/test_time_utils.py,sha256=bH88vpTgWp2WtB_kyYpDgmpXLBj-L52WGTKiXJNCPDU,2469
+eggit-0.0.23.dist-info/LICENSE,sha256=jOtLnuWt7d5Hsx6XXB2QxzrSe2sWWh3NgMfFRetluQM,35147
+eggit-0.0.23.dist-info/METADATA,sha256=ImK6uRlvEsK9Ia_TxuA2W4VhEX3EQVzdU42XY2bAbBA,759
+eggit-0.0.23.dist-info/WHEEL,sha256=-ZFxwj8mZJPIVcZGLrsQ8UGRcxVAOExzPLVBGR7u7bE,92
+eggit-0.0.23.dist-info/top_level.txt,sha256=8wtz7XfBCQG2uCkZ5-azPLreNee6MAoZk9oXOJqwkfM,12
+eggit-0.0.23.dist-info/zip-safe,sha256=AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs,1
+eggit-0.0.23.dist-info/RECORD,,
