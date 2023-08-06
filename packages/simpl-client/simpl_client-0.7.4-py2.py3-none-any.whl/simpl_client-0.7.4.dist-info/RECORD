@@ -1,0 +1,9 @@
+simpl_client/__init__.py,sha256=oT2yDH4Npt6kIFNA1KfMgKmHuC2hm21JTps99ABmUII,131
+simpl_client/games_client.py,sha256=o6Uh69QNArsfGMYgyO1LuGP8g5QpcN-uzJ0SwT7Jh7E,5095
+simpl_client-0.7.4.dist-info/METADATA,sha256=9PkGoXaL3VhRVi73FiZ_5-7PkrSQ8tbUG-ZlinKHnuA,5234
+simpl_client-0.7.4.dist-info/RECORD,,
+simpl_client-0.7.4.dist-info/WHEEL,sha256=gduuPyBvFJQSQ0zdyxF7k0zynDXbIbvg5ZBHoXum5uk,110
+simpl_client-0.7.4.dist-info/top_level.txt,sha256=g9KLJZTG1WHiwEsI8AnIBS5u_9KllyFWBFNaCW1YGIU,19
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/conftest.py,sha256=k-P9mJvU75IgNoxRNff8ZjalPl0HeMAO1ZGb0ebPsLU,851
+tests/test_games_client.py,sha256=7Lh99FCapmVZddpTN-wcjG0btQQ2AeXOINxZGTBIyd4,5358
