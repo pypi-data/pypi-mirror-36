@@ -1,0 +1,14 @@
+pypare/__init__.py,sha256=ubVE5a_wG0I4Hf7WAt33ndblKuBQk9Up-g-us-lIrws,71
+pypare/config.py,sha256=U2GxE8SwFLRrvhruu6csrVOWltz4c6OkeO1qQy5KL84,4350
+pypare/logging.py,sha256=cnQ2MjrgiYY_5kn34c_Z5C0tc9Qeux0gjcs7XxR-_zo,6104
+pypare/plugins.py,sha256=zYXR4tX7seAOF2QTwfCcoQU5GKeBI_DEUahUHsNpB_8,1492
+pypare/pypi.py,sha256=QZvo-LmAUHpNfj_O2nQoVisFS-B_IbB5hOQQow_AncI,18444
+pypare/scripts/__init__.py,sha256=5Y-HwB-5cbpmQLFKEK4S_Toui1aZCVM-Wewb_APcpBU,3940
+pypare/templates/simple.j2,sha256=T8duWQNiHXz-cZhsksPdJ6Khk_QwFcsZgfp_5l_9444,513
+pypare/templates/simple_package.j2,sha256=Pq2xO7xMYtVPXtFMzjejxw-c_SmgHa_YPtQrRW7TZQI,513
+pypare/utils.py,sha256=FYgsc6aTQEHuoHO6E3N2c7hfruK7DROKr8Eoe9faQvA,2663
+pypare-0.2.3.dist-info/entry_points.txt,sha256=m0MrJPHYiHkvGx31h2IXzzESPXz7sMDSw9QSTpL5Us4,46
+pypare-0.2.3.dist-info/LICENSE.txt,sha256=4qdM8wuJ2QZxkAVl7atHM_eYky3vYgZoLo1Snh4eg_U,11344
+pypare-0.2.3.dist-info/WHEEL,sha256=kHdCpTJzhyw1N1frf4kV6yKKRXuffzPY8J9zMFxvyGg,84
+pypare-0.2.3.dist-info/METADATA,sha256=c-vVUkgpPM5kKnsRE7zNvaILC7oghAG4ME0n8mAys5g,3022
+pypare-0.2.3.dist-info/RECORD,,
