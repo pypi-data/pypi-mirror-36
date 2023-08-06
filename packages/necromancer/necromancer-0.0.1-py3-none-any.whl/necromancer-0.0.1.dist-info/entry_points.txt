@@ -1,0 +1,3 @@
+[console_scripts]
+necro = necromancer.cli.__main__
+
