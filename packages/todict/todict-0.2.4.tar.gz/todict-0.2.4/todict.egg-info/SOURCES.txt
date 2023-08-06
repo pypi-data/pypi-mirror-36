@@ -1,0 +1,9 @@
+README.rst
+setup.py
+todict/__init__.py
+todict/mixins.py
+todict.egg-info/PKG-INFO
+todict.egg-info/SOURCES.txt
+todict.egg-info/dependency_links.txt
+todict.egg-info/not-zip-safe
+todict.egg-info/top_level.txt
