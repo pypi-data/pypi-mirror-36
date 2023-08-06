@@ -1,0 +1,3 @@
+[console_scripts]
+smart-rename = smart_rename.smart_rename:main
+
