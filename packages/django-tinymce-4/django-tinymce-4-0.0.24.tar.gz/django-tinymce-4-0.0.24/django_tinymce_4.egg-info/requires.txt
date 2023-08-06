@@ -1,0 +1,4 @@
+django<2,>=1.11
+django-filebrowser<3.10,>=3.9
+django-grappelli<2.11,>=2.10
+Pillow
