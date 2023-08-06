@@ -1,0 +1,17 @@
+redisobjects/__init__.py,sha256=mT38phetyzVUeuvME7K7rYPkbnjfhn7MCpSSnJOIgQ4,383
+redisobjects/connect.py,sha256=psYjV2f_9e2-DKx5t0eWozZUwZEKX8T7iXhiGxheXXs,249
+redisobjects/redis_atom.py,sha256=5ZyAvCQjE4MjWtWjTFJVGS77QsZNvXsvN4OJZoMfip4,1308
+redisobjects/redis_dict.py,sha256=yeLtda943T2SWqbK4I9MS-cSSD9ISVz0QblbeFU2jsk,1381
+redisobjects/redis_keyspace.py,sha256=ICPZSMkmTYJCHfcKdQrS4pZ1WGKGOLwZRxmenF-8XSI,853
+redisobjects/redis_list.py,sha256=fM1sbGqSSOfO4CIgyElMVTiGznNZ2A88m1kkHat3qE0,1362
+redisobjects/redis_manager.py,sha256=m6XnH33qydj6AhnB1x0LwMQg6qWBeFlaWemnrTvnUGo,507
+redisobjects/redis_object_factory.py,sha256=y2nJNvcARi6t1ASZjF2GTXR3z4JRfl-bdOEwJmuz4_Q,966
+redisobjects/redis_set.py,sha256=7XKogEIzg_h_Jq5FjOP-KwED_bws9TetPJ8rqWPtPWQ,2297
+redisobjects/serializer/__init__.py,sha256=kindtLqyH28O2lMRM1MZ0BaZB7SiMd7k4_WhDrrtk2g,234
+redisobjects/serializer/generic_serializer.py,sha256=1sOkjnK8IJHsb-C5F5iovd5pCqH-yf0Qmhx0JsmlI24,254
+redisobjects/serializer/identity_serializer.py,sha256=HrUwkeEx0sabsbgN0aKehc7QXOpXB3jThOv5BSVZAkI,135
+redisobjects/serializer/json_serializer.py,sha256=h1w2v9CbprN-6CPbXazP_x1Vf4ziH6Crkks_I-gtPvg,168
+redisobjects-0.4.0.dist-info/METADATA,sha256=doWz9ID8mxHP_S8MflYLBZW_2_alH5Cgzs5udak6HfI,2800
+redisobjects-0.4.0.dist-info/RECORD,,
+redisobjects-0.4.0.dist-info/WHEEL,sha256=NzFAKnL7g-U64xnS1s5e3mJnxKpOTeOtlXdFwS9yNXI,92
+redisobjects-0.4.0.dist-info/top_level.txt,sha256=CXgNQ8jM_tYQLiT_XT5dlZzUZtUSAurApzgFWam_8yg,13
