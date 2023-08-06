@@ -1,0 +1,6 @@
+global-include *.pyx
+global-exclude *.cpp
+global-exclude *.c
+global-exclude em.pyx
+include LICENSE
+include README.markdown
