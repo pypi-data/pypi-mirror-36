@@ -1,0 +1,10 @@
+htmresearch_core/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+htmresearch_core/_experimental.so,sha256=x99679KcHBC3BuEXUTu6OTzLTQs9-lHeidyGNHygevU,1081904
+htmresearch_core/dummy.so,sha256=LDd8YT-kuVQzbKJ0ZwMlv9JPFsEBgTCMEKqwHG8kC_Q,4600
+htmresearch_core/experimental.py,sha256=VApYdnOEdvaSA5Y1efEq0BKmxZzArSoVPSALiSyx088,35666
+htmresearch_core/proto/ApicalTiebreakTemporalMemoryProto.capnp,sha256=TdrQrMb9crZqQCG-t1nRuskGuQN9hN-eSlkk9Zu6wP4,2272
+htmresearch_core/proto/__init__.py,sha256=G6bsQoWdWDrIsGriBmTOWAqp6Kq4UBuFXlon8wzfPs0,976
+htmresearch_core-0.0.3.dist-info/METADATA,sha256=pFohRZfXIWKBfPOvcdGz8RVVcIaNP4Mmpn2PRVuT0Ac,835
+htmresearch_core-0.0.3.dist-info/RECORD,,
+htmresearch_core-0.0.3.dist-info/WHEEL,sha256=FIuJdQUuLXt3RrwsDil0JWG1LHeclbfipxhiEIzLQes,110
+htmresearch_core-0.0.3.dist-info/top_level.txt,sha256=bYKHmD9uCBdSv4hK3MmdpnCzd68ko8SEVe-wkghKuZw,17
