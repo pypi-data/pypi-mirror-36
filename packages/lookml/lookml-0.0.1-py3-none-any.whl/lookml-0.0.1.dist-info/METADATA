@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: lookml
+Version: 0.0.1
+Summary: A pythonic api for programatically manipulating LookML
+Home-page: https://github.com/pypa/sampleproject
+Author: Russell Garner
+Author-email: russelljgarner@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+This is a pythonic api for creating LookML objects.
+
+
