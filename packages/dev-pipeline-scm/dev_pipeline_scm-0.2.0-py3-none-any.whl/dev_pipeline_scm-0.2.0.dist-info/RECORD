@@ -1,0 +1,10 @@
+dev_pipeline_scm-0.2.0.dist-info/DESCRIPTION.rst,sha256=7BCamZLH4_vmSqOeu0N5mMFTHSxgxvblp1yk8FTd8yo,1358
+dev_pipeline_scm-0.2.0.dist-info/METADATA,sha256=X9vzBIJlbwOrCx9KRJNSNE0_PDjAxy3OcUwrFTKENQ4,1987
+dev_pipeline_scm-0.2.0.dist-info/RECORD,,
+dev_pipeline_scm-0.2.0.dist-info/WHEEL,sha256=rNo05PbNqwnXiIHFsYm0m22u4Zm6YJtugFG2THx4w3g,92
+dev_pipeline_scm-0.2.0.dist-info/entry_points.txt,sha256=VcDX6RsHThdryCM1hFredLwnJKTzhBx-I5J8kbpwRhU,135
+dev_pipeline_scm-0.2.0.dist-info/metadata.json,sha256=_yfn9gK35AKxYi6fHCDtrP7aubhTTDCMTW-tkP-NCac,957
+dev_pipeline_scm-0.2.0.dist-info/top_level.txt,sha256=xC7XrQiqGZrfCcTB_wCQgsHrq6Ore7HBsol_JzGbVhQ,16
+devpipeline_scm/__init__.py,sha256=HUFxdWGbGbW0LutjWUmLBkDLu0JR1n_Pmwl31OuO9EE,888
+devpipeline_scm/checkout.py,sha256=ZvkIYfns7zCMbUDFisI5azDHc70_6A7YXvoQYKtumLE,1513
+devpipeline_scm/scm.py,sha256=DAVQ5jV9xZ0WJWzd-KlTKaZMVZ2AeqI2N5fUkF8yVKQ,1152
