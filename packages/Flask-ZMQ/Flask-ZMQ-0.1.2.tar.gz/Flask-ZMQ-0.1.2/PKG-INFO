@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: Flask-ZMQ
+Version: 0.1.2
+Summary: Flask extension for ZMQ
+Home-page: https://github.com/rebill/flask-zmq
+Author: Rebill
+Author-email: rebill@qq.com
+License: BSD
+Description: flask-zmq
+        =========
+        
+        Adds ZMQ support to your Flask application.
+        
+        ## Installation
+        
+            python setup.py install
+        
+Platform: any
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
