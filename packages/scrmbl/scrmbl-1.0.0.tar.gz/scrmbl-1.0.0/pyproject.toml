@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "scrmbl"
+version = "1.0.0"
+description = "Library for scrambled printing in terminal"
+authors = ["Etienne Napoleone <etienne@tomochain.com>"]
+readme = "README.md"
+license = "MIT"
+homepage = "https://github.com/etienne-napoleone/scrmbl"
+repository = "https://github.com/etienne-napoleone/scrmbl"
+documentation = "https://github.com/etienne-napoleone/scrmbl/blob/master/README.md"
+keywords = ["print", "library", "movie", "action", "scramble"]
+
+[tool.poetry.dependencies]
+python = "^3.5"
+click = "^7.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+flake8 = "^3.5"
+coveralls = "^1.5"
+pytest-cov = "^2.6"
+
+[tool.poetry.scripts]
+scrmbl = 'scrmbl.cli:cli'
