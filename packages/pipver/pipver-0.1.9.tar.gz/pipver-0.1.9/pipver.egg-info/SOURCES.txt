@@ -1,0 +1,8 @@
+README.md
+setup.py
+pipver.egg-info/PKG-INFO
+pipver.egg-info/SOURCES.txt
+pipver.egg-info/dependency_links.txt
+pipver.egg-info/requires.txt
+pipver.egg-info/top_level.txt
+scripts/pipver
