@@ -1,0 +1,43 @@
+<http://a.example/S1> {
+   <http://a.example/p1> NOT MINLENGTH 20 @<http://a.example/S1>
+}
+<http://a.example/S1> {
+   <http://a.example/p1> BNODE @<http://a.example/S1> OR MINLENGTH 20 @<http://a.example/S1>
+}
+
+3circularRef1 -> 3cirRefPlus1
+
+2Ref:
+<http://a.example/S1> {
+   <http://a.example/p2> @<http://a.example/S2>
+}
+
+<http://a.example/S2> {
+   <http://a.example/p3> .
+}
+
+1-IS2: IS2 S1 | 2: S2
+2-IS1: IS1 S2 | 1: S1
+
+3circularRef:
+<http://a.example/S1> {
+   <http://a.example/p1> .;
+   <http://a.example/p2> @<http://a.example/S2>?
+}
+
+<http://a.example/S2> {
+   <http://a.example/p3> @<http://a.example/S3>
+}
+
+<http://a.example/S3> {
+   <http://a.example/p4> @<http://a.example/S1>
+}
+
+123: S1 S2 S3
+1-IS23: IS23 S1 | 23    : S2 S3
+1-IS23: IS23 S1 | 23-IS1: IS1 S2 S3
+1-IS2 : IS2  S1 | 2-IS3 : IS3 S2 | 3: S3
+1-IS2 : IS2  S1 | 2-IS3 : IS3 S2 | 3-IS1: IS1 S3
+3-IS12: S3 IS12 | 12    : S1 S2
+
+
