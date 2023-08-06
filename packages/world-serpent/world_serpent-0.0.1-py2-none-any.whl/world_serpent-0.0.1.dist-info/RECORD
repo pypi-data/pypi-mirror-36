@@ -1,0 +1,11 @@
+world_serpent/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+world_serpent/aggregation/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+world_serpent/aggregation/aggregation.py,sha256=02q3v2rrH2BG-nzmcxyQN0bJsLPRPHl9rLgOX5O5IZ0,2717
+world_serpent/aggregation/stage.py,sha256=HVsBlIqU0kX1jNv0Iq57JmLv8nM5P9qioAbDfaLQ3i0,2591
+world_serpent/utils/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+world_serpent/utils/typecheck.py,sha256=1hX3RR3GoxVcQ-SelhxAYejispNsK5U3Q2DbFogrDaY,510
+world_serpent-0.0.1.dist-info/LICENSE,sha256=7EI8xVBu6h_7_JlVw-yPhhOZlpY9hP8wal7kHtqKT_E,1074
+world_serpent-0.0.1.dist-info/METADATA,sha256=ouOCPJ5AYhKGToauFUij5yqC1fABCyeAZWA4tgQzY_0,299
+world_serpent-0.0.1.dist-info/WHEEL,sha256=quTwCBwEhCqvWQayaLINV6u_GggLcWROgOHAbyu7a04,92
+world_serpent-0.0.1.dist-info/top_level.txt,sha256=YMTZ7ps_iSaR7TkoL8DZHY15Z8k18tZUR8kWY1ESUlk,14
+world_serpent-0.0.1.dist-info/RECORD,,
