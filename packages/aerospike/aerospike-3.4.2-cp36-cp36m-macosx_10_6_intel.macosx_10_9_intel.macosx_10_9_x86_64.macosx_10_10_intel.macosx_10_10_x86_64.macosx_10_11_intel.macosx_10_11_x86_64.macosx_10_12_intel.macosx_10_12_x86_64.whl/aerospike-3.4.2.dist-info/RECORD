@@ -1,0 +1,12 @@
+aerospike.cpython-36m-darwin.so,sha256=8bF0D5Dc8xFQkwsHG9Wt5KwMpwaQYlJIyGoc3Zpfr4M,1231436
+aerospike-3.4.2.dist-info/DESCRIPTION.rst,sha256=LcdaupErxCufxfmNkTPjg05W3Re-xdt9H2j1GU63x_I,5673
+aerospike-3.4.2.dist-info/METADATA,sha256=zuqRmDiazOCL5sV-MFl6dqLG6yirO6Ke7IBFRuqkGsw,6358
+aerospike-3.4.2.dist-info/RECORD,,
+aerospike-3.4.2.dist-info/WHEEL,sha256=4EQIVWoWNv9cN4C-LnuFEZiavplxczoB5qp3wqw6_bk,111
+aerospike-3.4.2.dist-info/metadata.json,sha256=CAXKnBTmf-tPm4X-OZTMN4FE_z2_V5BKd9uEF86wKCg,829
+aerospike-3.4.2.dist-info/top_level.txt,sha256=XhJubcYzeF45sbHvOTaGj59HYj0aeU3zIH66BKeIELU,28
+aerospike_helpers/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+aerospike_helpers/operations/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+aerospike_helpers/operations/list_operations.py,sha256=DwypbowqwDBPyr3nlk_sTT2TE2ubcUbDHNWtIvp8b0Q,33709
+aerospike_helpers/operations/map_operations.py,sha256=Amd3PLDbznsTwh-uaAspyrPXaBQJPOCI9D93_r2yQ_4,34588
+aerospike_helpers/operations/operations.py,sha256=vRPixTfIRIPrEgpmEA61_PWPLcapk3h3YiASnF9ViOU,3396
