@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: azureml-train-automl
+Version: 0.1.65
+Summary: automl
+Home-page: https://docs.microsoft.com/en-us/azure/machine-learning/service/
+Author: Microsoft Corp
+License: Proprietary https://aka.ms/azureml-sdk-license
+Platform: UNKNOWN
+Description-Content-Type: text/x-rst
+Requires-Dist: lightgbm
+Requires-Dist: numpy
+Requires-Dist: pandas (>=0.22.0)
+Requires-Dist: pytz
+Requires-Dist: resource
+Requires-Dist: scipy
+Requires-Dist: scikit-learn (<=0.19.1,>=0.18.0)
+Requires-Dist: sklearn-pandas
+Requires-Dist: azureml-core (==0.1.65)
+Requires-Dist: azureml-telemetry (==0.1.65)
+
+The azureml-train-automl package contains functionality for automatically finding the best machine learning model and its parameters, given training and test data. 
+
+
+
