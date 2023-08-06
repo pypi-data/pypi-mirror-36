@@ -1,0 +1,10 @@
+graphql_ws/__init__.py,sha256=67DLozk-hfRr0owA4kM54Nk4J8-yd9ZrVhTUCbN5DDw,200
+graphql_ws/abc.py,sha256=8342L0TXDev2rAYztAa7Tf-rUABShBhTL_55ir-y3tg,1206
+graphql_ws/aiohttp.py,sha256=JXBI8EDGTMfXhh81j-nukim1i2HagpN_XMankEmghY4,874
+graphql_ws/protocol.py,sha256=eI-HH2VmsQamS__rrGgSnxbeVXO0klxit26xomDlZVM,3610
+graphql_ws/server.py,sha256=CELqaGowC9_ZLyl1BQZbTGTcXQAtG97OCKGkkuLFGoM,8442
+graphql_ws/testing.py,sha256=pFHo0GehyDeP_O9XdRITsA6WGhg4K1toyyTZsEjiiGw,2305
+graphql_ws_next-1.0.0.dist-info/LICENSE,sha256=dDl5Vp9eq-_CDeO2ne0rSSdwO0F7QFfhc7R-C2lWUTQ,1080
+graphql_ws_next-1.0.0.dist-info/WHEEL,sha256=kHdCpTJzhyw1N1frf4kV6yKKRXuffzPY8J9zMFxvyGg,84
+graphql_ws_next-1.0.0.dist-info/METADATA,sha256=T5wqrav0svgpUSzVpEXIGQOPNYKJd6JrcwtH1PIa59Y,3971
+graphql_ws_next-1.0.0.dist-info/RECORD,,
